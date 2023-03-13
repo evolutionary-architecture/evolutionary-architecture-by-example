@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet", "Fitnet\Fitnet.csproj", "{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.IntegrationTests", "Fitnet.IntegrationTests\Fitnet.IntegrationTests.csproj", "{219A3E1D-3F5B-4D06-B912-DB9080F819F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219A3E1D-3F5B-4D06-B912-DB9080F819F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219A3E1D-3F5B-4D06-B912-DB9080F819F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219A3E1D-3F5B-4D06-B912-DB9080F819F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219A3E1D-3F5B-4D06-B912-DB9080F819F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

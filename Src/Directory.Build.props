@@ -1,0 +1,13 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>SuperSimpleArchitecture.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>SuperSimpleArchitecture.$(AssemblyName)</RootNamespace>
+        <TargetFramework>net7.0</TargetFramework>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+    
+</Project>
