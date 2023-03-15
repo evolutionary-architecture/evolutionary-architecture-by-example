@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <AssemblyName>SuperSimpleArchitecture.$(MSBuildProjectName)</AssemblyName>
-        <RootNamespace>SuperSimpleArchitecture.$(AssemblyName)</RootNamespace>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
         <TargetFramework>net7.0</TargetFramework>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <ImplicitUsings>enable</ImplicitUsings>
