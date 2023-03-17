@@ -1,6 +1,5 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.Register;
 
-using Bogus;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes.Api;
