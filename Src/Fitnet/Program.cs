@@ -23,3 +23,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+namespace SuperSimpleArchitecture.Fitnet
+{
+    [UsedImplicitly]
+    public sealed class Program
+    {
+    }
+}
