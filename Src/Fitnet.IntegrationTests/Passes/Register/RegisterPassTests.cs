@@ -29,7 +29,10 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
        
         // Assert
         response.EnsureSuccessStatusCode();
-        var all = await _applicationHttpClient.GetFromJsonAsync<PassesListViewModel>(Paths.Passes);
-        all.Passes.Should().Contain(listItemDto => listItemDto.CustomerId == registerPassRequest.CustomerId);
+        var passesResponse = await GetAllPasses();
+        passesResponse.Passes.Should().Contain(pass => pass.CustomerId == registerPassRequest.CustomerId);
     }
+    
+    private async Task<PassesResponse> GetAllPasses() => 
+        await _applicationHttpClient.GetFromJsonAsync<PassesResponse>(Paths.Passes);
 }
