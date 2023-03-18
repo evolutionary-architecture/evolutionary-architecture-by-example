@@ -2,7 +2,7 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
 
 using Testcontainers.PostgreSql;
 
-public sealed class DockerDatabase : IAsyncLifetime
+public sealed class DatabaseContainer : IAsyncLifetime
 {
     private const string Username = "admin";
     private const string Password = "$3cureP@ssw0rd";
