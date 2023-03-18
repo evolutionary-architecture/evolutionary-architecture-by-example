@@ -5,11 +5,11 @@ using Common.TestEngine.Configuration;
 using Fitnet.Passes;
 using Fitnet.Passes.GetAll.ViewModels;
 using Fitnet.Passes.Register;
+using Requests;
 
 public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly Faker _faker = new();
 
     public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory, 
         DatabaseContainer database) =>
@@ -21,7 +21,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
     public async Task Given_valid_pass_registration_request_When_processed_Then_pass_should_be_available_on_passes_list()
     {
         // Arrange
-        var registerPassRequest = new RegisterPassRequest(Guid.NewGuid(), _faker.Date.Recent(),_faker.Date.Future());
+        RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
         
         // Act
         var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes, registerPassRequest);
