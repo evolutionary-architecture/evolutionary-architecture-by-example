@@ -2,9 +2,9 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.Register;
 
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
-using Fitnet.Passes.Api;
-using Fitnet.Passes.Api.GetAll.ViewModels;
-using Fitnet.Passes.Api.Register;
+using Fitnet.Passes;
+using Fitnet.Passes.GetAll.ViewModels;
+using Fitnet.Passes.Register;
 
 public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
@@ -24,7 +24,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         var registerPassRequest = new RegisterPassRequest(Guid.NewGuid(), _faker.Date.Recent(),_faker.Date.Future());
         
         // Act
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(Paths.Passes, registerPassRequest);
+        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes, registerPassRequest);
        
         // Assert
         registerPassResponse.EnsureSuccessStatusCode();
@@ -33,5 +33,5 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
     }
     
     private async Task<PassesResponse> GetAllPasses() => 
-        await _applicationHttpClient.GetFromJsonAsync<PassesResponse>(Paths.Passes);
+        await _applicationHttpClient.GetFromJsonAsync<PassesResponse>(ApiPaths.Passes);
 }

@@ -1,3 +1,3 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes.Api.GetAll.ViewModels;
+namespace SuperSimpleArchitecture.Fitnet.Passes.GetAll.ViewModels;
 
 public record struct PassesResponse(IReadOnlyCollection<PassListItemDto> Passes);
