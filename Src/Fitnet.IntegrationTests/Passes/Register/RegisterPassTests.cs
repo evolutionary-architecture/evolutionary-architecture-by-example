@@ -8,14 +8,13 @@ using Fitnet.Passes.Api.Register;
 
 public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
-    private const string PassesPersistence = "PassesPersistence";
     private readonly HttpClient _applicationHttpClient;
     private readonly Faker _faker = new();
 
     public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory, 
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithConnectionString(PassesPersistence, database.ConnectionString!)
+            .WithConnectionString(ConfigurationKeys.PassesConnectionString, database.ConnectionString!)
             .CreateClient();
 
     [Fact]
@@ -25,12 +24,12 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         var registerPassRequest = new RegisterPassRequest(Guid.NewGuid(), _faker.Date.Recent(),_faker.Date.Future());
         
         // Act
-        var response = await _applicationHttpClient.PostAsJsonAsync(Paths.Passes, registerPassRequest);
+        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(Paths.Passes, registerPassRequest);
        
         // Assert
-        response.EnsureSuccessStatusCode();
-        var passesResponse = await GetAllPasses();
-        passesResponse.Passes.Should().Contain(pass => pass.CustomerId == registerPassRequest.CustomerId);
+        registerPassResponse.EnsureSuccessStatusCode();
+        var getAllPassesResponse = await GetAllPasses();
+        getAllPassesResponse.Passes.Should().Contain(pass => pass.CustomerId == registerPassRequest.CustomerId);
     }
     
     private async Task<PassesResponse> GetAllPasses() => 
