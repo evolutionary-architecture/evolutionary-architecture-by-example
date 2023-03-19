@@ -3,7 +3,7 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.Register;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes;
-using Fitnet.Passes.GetAll.ViewModels;
+using Fitnet.Passes.GetAll.Responses;
 using Fitnet.Passes.Register;
 using Requests;
 
