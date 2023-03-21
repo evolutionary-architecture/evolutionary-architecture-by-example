@@ -1,8 +1,7 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes.Persistence;
+namespace SuperSimpleArchitecture.Fitnet.Passes.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Domain;
 
 internal sealed class PassEntityConfiguration : IEntityTypeConfiguration<Pass>
 {
@@ -13,6 +12,5 @@ internal sealed class PassEntityConfiguration : IEntityTypeConfiguration<Pass>
         builder.Property(pass => pass.CustomerId).IsRequired();
         builder.Property(pass => pass.From).IsRequired();
         builder.Property(pass => pass.To).IsRequired();
-        builder.Property(pass => pass.PassType).IsRequired();
     }
 }

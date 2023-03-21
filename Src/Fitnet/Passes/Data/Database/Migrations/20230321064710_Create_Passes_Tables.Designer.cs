@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SuperSimpleArchitecture.Fitnet.Passes.Persistence;
+using SuperSimpleArchitecture.Fitnet.Passes.Data.Database;
 
 #nullable disable
 
 namespace SuperSimpleArchitecture.Fitnet.Migrations
 {
     [DbContext(typeof(PassesPersistence))]
-    [Migration("20230315201959_Create_Passes_Tables")]
-    partial class CreatePassesTables
+    [Migration("20230321064710_Create_Passes_Tables")]
+    partial class Create_Passes_Tables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,12 +21,12 @@ namespace SuperSimpleArchitecture.Fitnet.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Passes")
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SuperSimpleArchitecture.Fitnet.Passes.Domain.Pass", b =>
+            modelBuilder.Entity("SuperSimpleArchitecture.Fitnet.Passes.Data.Pass", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,9 +37,6 @@ namespace SuperSimpleArchitecture.Fitnet.Migrations
 
                     b.Property<DateTimeOffset>("From")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("PassType")
-                        .HasColumnType("integer");
 
                     b.Property<DateTimeOffset>("To")
                         .HasColumnType("timestamp with time zone");

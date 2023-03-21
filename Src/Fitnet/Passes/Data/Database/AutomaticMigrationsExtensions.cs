@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes.Persistence;
+namespace SuperSimpleArchitecture.Fitnet.Passes.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
 
