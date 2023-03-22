@@ -1,6 +1,6 @@
-using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
-
 namespace SuperSimpleArchitecture.Fitnet.Contracts;
+
+using PrepareContract;
 
 internal static class ContractsEndpoints
 {
