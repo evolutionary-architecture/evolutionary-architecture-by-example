@@ -5,14 +5,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["SuperSimpleArchitecture.Fitnet.csproj", "./"]
-RUN dotnet restore "SuperSimpleArchitecture.Fitnet.csproj"
+COPY ["Fitnet/Fitnet.csproj", "Fitnet/"]
+RUN dotnet restore "Fitnet/Fitnet.csproj"
 COPY . .
-WORKDIR "/src/"
-RUN dotnet build "SuperSimpleArchitecture.Fitnet.csproj" -c Release -o /app/build
+WORKDIR "/src/Fitnet"
+RUN dotnet build "Fitnet.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SuperSimpleArchitecture.Fitnet.csproj" -c Release -o /app/publish
+RUN dotnet publish "Fitnet.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
