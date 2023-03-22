@@ -1,6 +1,6 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.Register.Requests;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 
-using Fitnet.Passes.RegisterPass;
+using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
 internal sealed class RegisterPassRequestFaker : Faker<RegisterPassRequest>
 {

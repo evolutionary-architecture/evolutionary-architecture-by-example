@@ -5,7 +5,7 @@ using Data.Database;
 
 internal static class RegisterEndpoint
 {
-    internal static void MapRegister(this IEndpointRouteBuilder app)
+    internal static void MapRegisterPass(this IEndpointRouteBuilder app)
     {
         app.MapPost(ApiPaths.Passes, async (RegisterPassRequest request, PassesPersistence persistance) =>
         {
