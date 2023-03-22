@@ -3,7 +3,6 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes.RegisterPass;
-using Requests;
 
 public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {

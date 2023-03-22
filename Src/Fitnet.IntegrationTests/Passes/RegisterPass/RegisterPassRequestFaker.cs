@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass.Requests;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 
 using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
