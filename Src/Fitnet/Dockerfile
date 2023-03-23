@@ -5,6 +5,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+COPY Directory.Build.props ./
 COPY ["Fitnet/Fitnet.csproj", "Fitnet/"]
 RUN dotnet restore "Fitnet/Fitnet.csproj"
 COPY . .
