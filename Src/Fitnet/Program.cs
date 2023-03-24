@@ -1,5 +1,5 @@
+using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Passes;
-using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPasses(builder.Configuration);
+builder.Services.AddContracts(builder.Configuration);
 
 var app = builder.Build();
 
@@ -19,6 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UsePasses();
+app.UseContracts();
     
 app.UseHttpsRedirection();
 
@@ -27,6 +29,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapPasses();
+app.MapContracts();
 
 app.Run();
 

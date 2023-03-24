@@ -3,4 +3,5 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Conf
 internal static class ConfigurationKeys
 {
     internal const string PassesConnectionString = "Passes";
+    internal const string ContractsConnectionString = "Contracts";
 }
