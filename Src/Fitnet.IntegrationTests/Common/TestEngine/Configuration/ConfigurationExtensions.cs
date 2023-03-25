@@ -4,23 +4,26 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 internal static class ConfigurationExtensions
 {
-    internal static WebApplicationFactory<T> WithConnectionString<T>(this WebApplicationFactory<T> webApplicationFactory, string name, string value)
-        where T : class =>
-        webApplicationFactory.WithConfiguration($"ConnectionStrings:{name}", value);
+    internal static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(this WebApplicationFactory<T> webApplicationFactory, string connectionString)
+        where T : class
+    {
+
+        var connectionStringsConfiguration = new Dictionary<string, string?>
+        {
+            {ConfigurationKeys.ContractsConnectionString, connectionString},
+            {ConfigurationKeys.PassesConnectionString, connectionString}
+        };
+
+        return webApplicationFactory.UseSettings(connectionStringsConfiguration);
+    }
     
-    private static WebApplicationFactory<T> WithConfiguration<T>(this WebApplicationFactory<T> webApplicationFactory, string key, string value)
+    private static WebApplicationFactory<T> UseSettings<T>(this WebApplicationFactory<T> webApplicationFactory, Dictionary<string, string?> settings)
         where T : class
     {
         return webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
         {
-            var configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(new[]
-                {
-                    new KeyValuePair<string, string?>(key, value),
-                })
-                .Build();
-
-            webHostBuilder.UseConfiguration(configuration);
+            foreach (var setting in settings)
+                webHostBuilder.UseSetting(setting.Key, setting.Value);
         });
     }
 }
