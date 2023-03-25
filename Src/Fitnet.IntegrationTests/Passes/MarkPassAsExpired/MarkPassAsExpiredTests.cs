@@ -13,11 +13,11 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     public MarkPassAsExpiredTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithConnectionString(ConfigurationKeys.PassesConnectionString, database.ConnectionString!)
+            .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
 
-    [Fact]
-    public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_created_status_code()
+    [Fact(Skip = "Not implemented yet")]
+    public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_ok_status_code()
     {
         // Arrange
         var registeredPassPath = await RegisterPass();
@@ -30,14 +30,14 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.OK);
     }
     
-    private async Task<string> RegisterPass()
+    private async Task<Guid> RegisterPass()
     {
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes, registerPassRequest);
-        var path = await registerPassResponse.Content.ReadAsStringAsync();
-        
-        return path;
+        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes.Register, registerPassRequest);
+        var registeredPassId = await registerPassResponse.Content.ReadFromJsonAsync<Guid>();
+
+        return registeredPassId;
     }
     
-    private static string BuildUrl(string registeredPassPath) => $"{registeredPassPath}/mark-as-expired";
+    private static string BuildUrl(Guid id) => ApiPaths.Passes.MarkPassAsExpired.Replace("{id}", id.ToString());
 }

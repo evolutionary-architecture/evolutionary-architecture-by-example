@@ -11,7 +11,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
     public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithConnectionString(ConfigurationKeys.PassesConnectionString, database.ConnectionString!)
+            .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
 
     [Fact]
@@ -21,7 +21,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
 
         // Act
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes, registerPassRequest);
+        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes.Register, registerPassRequest);
 
         // Assert
         registerPassResponse.Should().HaveStatusCode(HttpStatusCode.Created);
