@@ -7,6 +7,10 @@ on:
     branches: [ "main" ]
 
 jobs:
+  defaults:
+    run:
+      working-directory: Src
+      
   build:
     runs-on: ubuntu-latest
     steps:
@@ -16,11 +20,8 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Restore dependencies
-        working-directory: Src
         run: dotnet restore
       - name: Build
-        working-directory: Src
         run: dotnet build --no-restore
       - name: Test
-        working-directory: Src
         run: dotnet test --no-build --verbosity normal
