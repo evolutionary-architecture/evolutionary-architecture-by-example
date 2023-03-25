@@ -10,13 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Change directory to 'Src'
-        run: cd Src
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
+      - name: Change directory to 'Src'
+        run: cd Src
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
