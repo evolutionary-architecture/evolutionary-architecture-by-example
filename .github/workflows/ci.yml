@@ -12,6 +12,7 @@ jobs:
       run:
         working-directory: Src
     runs-on: ubuntu-latest
+    name: Build and test
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
