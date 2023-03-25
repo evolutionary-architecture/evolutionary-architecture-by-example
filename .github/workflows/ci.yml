@@ -6,12 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
-jobs:
-  defaults:
-    run:
-      working-directory: Src
-      
+jobs: 
   build:
+    defaults:
+      run:
+        working-directory: Src
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
