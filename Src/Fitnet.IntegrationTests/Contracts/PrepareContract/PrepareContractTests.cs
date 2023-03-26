@@ -10,7 +10,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
     public PrepareContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithConnectionString(ConfigurationKeys.ContractsConnectionString, database.ConnectionString!)
+            .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
     
     [Fact]

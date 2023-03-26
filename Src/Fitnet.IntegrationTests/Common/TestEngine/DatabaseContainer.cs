@@ -2,6 +2,7 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
 
 using Testcontainers.PostgreSql;
 
+[UsedImplicitly]
 public sealed class DatabaseContainer : IAsyncLifetime
 {
     private const string Username = "admin";
