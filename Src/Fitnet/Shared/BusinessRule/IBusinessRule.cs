@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet;
+namespace SuperSimpleArchitecture.Fitnet.Shared.BusinessRule;
 
 public interface IBusinessRule
 {
