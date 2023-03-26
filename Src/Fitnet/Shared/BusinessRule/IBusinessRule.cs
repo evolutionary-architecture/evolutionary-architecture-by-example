@@ -1,6 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.Shared.BusinessRule;
 
-public interface IBusinessRule
+internal interface IBusinessRule
 {
     bool IsMet();
     string Error { get; }
