@@ -4,7 +4,7 @@ internal static class MarkPassAsExpiredEndpoint
 {
     internal static void MapMarkPassAsExpired(this IEndpointRouteBuilder app)
     {
-        app.MapPatch(ApiPaths.Passes.MarkPassAsExpired, (Guid id) =>
+        app.MapPatch(PassesApiPaths.MarkPassAsExpired, (Guid id) =>
         {
             throw new NotImplementedException();
         });

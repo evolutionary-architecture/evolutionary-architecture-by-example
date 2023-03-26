@@ -2,6 +2,7 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
+using Fitnet.Passes;
 using Fitnet.Passes.RegisterPass;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
@@ -33,11 +34,11 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     private async Task<Guid> RegisterPass()
     {
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Passes.Register, registerPassRequest);
+        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
         var registeredPassId = await registerPassResponse.Content.ReadFromJsonAsync<Guid>();
 
         return registeredPassId;
     }
     
-    private static string BuildUrl(Guid id) => ApiPaths.Passes.MarkPassAsExpired.Replace("{id}", id.ToString());
+    private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
 }
