@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Shared.BusinessRule;
+namespace SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
 internal static class BusinessRuleValidator
 {
