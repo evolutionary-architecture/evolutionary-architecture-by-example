@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
+namespace SuperSimpleArchitecture.Fitnet.Passes.MarkPassAsExpired;
 
 internal static class MarkPassAsExpiredEndpoint
 {
