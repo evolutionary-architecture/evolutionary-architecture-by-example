@@ -10,11 +10,8 @@ internal sealed class FakeBusinessRule : IBusinessRule
     {
         _someNumber = someNumber;
     }
-    
-    public bool IsMet()
-    {
-        return _someNumber > 10;
-    }
+
+    public bool IsMet() => _someNumber > 10;
 
     public string Error => "Fake business rule was not met";
 }
