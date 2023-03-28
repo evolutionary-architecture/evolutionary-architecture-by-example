@@ -31,6 +31,20 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         // Assert
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
+    
+    [Fact]
+    public async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_no_found()
+    {
+        // Arrange
+        var notExistingId = Guid.NewGuid();
+        var url = BuildUrl(notExistingId);
+
+        // Act
+        var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+
+        // Assert
+        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+    }
 
     private async Task<Guid> RegisterPass()
     {
