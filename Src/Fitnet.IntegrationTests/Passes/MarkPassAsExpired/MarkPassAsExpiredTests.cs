@@ -17,8 +17,8 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
 
-    [Fact(Skip = "Not implemented yet")]
-    public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_ok_status_code()
+    [Fact]
+    public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_no_content()
     {
         // Arrange
         var registeredPassPath = await RegisterPass();
@@ -28,7 +28,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.OK);
+        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
     
     private async Task<Guid> RegisterPass()

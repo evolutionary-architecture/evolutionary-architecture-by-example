@@ -1,7 +1,22 @@
 namespace SuperSimpleArchitecture.Fitnet.Passes.Data;
 
-internal record Pass(Guid Id, Guid CustomerId, DateTimeOffset From, DateTimeOffset To)
+internal class Pass
 {
+    public Guid Id { get; init; }
+    public Guid CustomerId { get; init; }
+    public DateTimeOffset From { get; init; }
+    public DateTimeOffset To { get; private set; }
+
+    private Pass(Guid id, Guid customerId, DateTimeOffset from, DateTimeOffset to)
+    {
+        Id = id;
+        CustomerId = customerId;
+        From = from;
+        To = to;
+    }
+    
     internal static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) => 
         new(Guid.NewGuid(), customerId, from, to);
+    
+    internal void MarkAsExpired(DateTimeOffset nowDateTimeOffset) => To = nowDateTimeOffset;
 }
