@@ -1,6 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.Passes.Data;
 
-internal class Pass
+internal sealed class Pass
 {
     public Guid Id { get; init; }
     public Guid CustomerId { get; init; }
