@@ -1,9 +1,10 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.MarkPassAsExpired;
 
-using Common.TestEngine;
-using Common.TestEngine.Configuration;
 using Fitnet.Passes;
-using Fitnet.Passes.RegisterPass;
+using RegisterPass;
+using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
+using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
+using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {

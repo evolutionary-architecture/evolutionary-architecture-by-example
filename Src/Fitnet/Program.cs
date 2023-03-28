@@ -1,5 +1,6 @@
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Passes;
+using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 
 var builder = WebApplication.CreateBuilder(args);
 

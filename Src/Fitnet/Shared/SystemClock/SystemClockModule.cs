@@ -1,6 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes;
-
-using Shared.SystemClock;
+namespace SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 
 internal static class SystemClockModule
 {
