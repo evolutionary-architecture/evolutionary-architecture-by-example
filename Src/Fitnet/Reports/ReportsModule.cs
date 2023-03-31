@@ -1,6 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes;
-
-using Data.Database;
+namespace SuperSimpleArchitecture.Fitnet.Reports;
 
 internal static class ReportsModule
 {

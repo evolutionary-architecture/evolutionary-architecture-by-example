@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes;
+namespace SuperSimpleArchitecture.Fitnet.Reports;
 
 public static class ReportsApiPaths
 {

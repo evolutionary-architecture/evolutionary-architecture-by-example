@@ -1,7 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes;
-
-using MarkPassAsExpired;
-using RegisterPass;
+namespace SuperSimpleArchitecture.Fitnet.Reports;
 
 internal static class ReportsEndpoints
 {

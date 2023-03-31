@@ -1,8 +1,8 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
-using Common.TestEngine;
-using Common.TestEngine.Configuration;
-using Fitnet.Passes;
+using Fitnet.Reports;
+using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
+using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
