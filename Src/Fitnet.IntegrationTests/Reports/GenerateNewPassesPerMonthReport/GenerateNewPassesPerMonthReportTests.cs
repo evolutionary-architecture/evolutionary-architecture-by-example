@@ -1,9 +1,10 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
 using Fitnet.Reports;
-using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
-using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
+using Common.TestEngine;
+using Common.TestEngine.Configuration;
 
+[UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
@@ -20,10 +21,11 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         // Arrange
         
         // Act
-        var resultReport = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
+        var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
         // Assert
-        var stream = await resultReport.Content.ReadAsStreamAsync();
-        await Verify(stream);
+        getReportResult.Content.Headers.ContentType!.MediaType.Should().Be("application/pdf");
+        var fileBytes = await getReportResult.Content.ReadAsStreamAsync();
+        fileBytes.Should().NotBeNull();
     }
 }

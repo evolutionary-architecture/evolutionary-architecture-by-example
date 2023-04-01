@@ -1,5 +1,6 @@
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Passes;
+using SuperSimpleArchitecture.Fitnet.Reports;
 using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddSystemClock();
 
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
+builder.Services.AddReports();
 
 var app = builder.Build();
 
@@ -23,6 +25,7 @@ if (app.Environment.IsDevelopment())
 
 app.UsePasses();
 app.UseContracts();
+app.UseReports();
     
 app.UseHttpsRedirection();
 
@@ -32,6 +35,7 @@ app.MapControllers();
 
 app.MapPasses();
 app.MapContracts();
+app.MapReports();
 
 app.Run();
 

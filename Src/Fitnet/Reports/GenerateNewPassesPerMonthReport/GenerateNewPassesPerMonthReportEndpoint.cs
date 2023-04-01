@@ -1,12 +1,16 @@
 namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesPerMonthReport;
 
-using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
+using System.Net.Mime;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {
-    internal static void MapGenerateNewPassesPerMonthReport(this IEndpointRouteBuilder app) =>
-        app.MapGet(ReportsApiPaths.GenerateNewReport, (Guid id, ISystemClock systemClock) =>
+    internal static void MapGenerateNewPassesPerMonthReport(this IEndpointRouteBuilder app)
+    {
+        app.MapGet(ReportsApiPaths.GenerateNewReport, () =>
         {
-            throw new NotImplementedException();
+            var fakerReportFile = Enumerable.Repeat((byte)0x20, 100).ToArray();
+
+            return Results.File(fakerReportFile, MediaTypeNames.Application.Pdf);
         });
+    }
 }
