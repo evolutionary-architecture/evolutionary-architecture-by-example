@@ -1,6 +1,22 @@
+using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
+using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
+
 namespace SuperSimpleArchitecture.Fitnet.Contracts.Data;
 
-internal record Contract(Guid Id)
+internal sealed class Contract
 {
-    internal static Contract Prepare() => new(Guid.NewGuid());
+    public Guid Id { get; init; }
+
+    private Contract(Guid id)
+    {
+        Id = id;
+    }
+
+    internal static Contract Prepare(int customerAge, int customerHeight)
+    {
+        BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
+        BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
+        
+        return new(Guid.NewGuid());
+    }
 }

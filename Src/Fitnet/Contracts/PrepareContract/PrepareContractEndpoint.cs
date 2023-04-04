@@ -7,9 +7,9 @@ internal static class PrepareContractEndpoint
 {
     internal static void MapPrepareContract(this IEndpointRouteBuilder app)
     {
-        app.MapPost(ApiPaths.Contracts, async (ContractsPersistence persistence) =>
+        app.MapPost(ApiPaths.Contracts, async (PrepareContractRequest request, ContractsPersistence persistence) =>
         {
-            var contract = Contract.Prepare();
+            var contract = Contract.Prepare(request.CustomerAge, request.CustomerHeight);
             await persistence.Contracts.AddAsync(contract);
             await persistence.SaveChangesAsync();
 
