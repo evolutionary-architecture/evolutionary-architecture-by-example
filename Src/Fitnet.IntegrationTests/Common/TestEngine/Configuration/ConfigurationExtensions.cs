@@ -11,7 +11,8 @@ internal static class ConfigurationExtensions
         var connectionStringsConfiguration = new Dictionary<string, string?>
         {
             {ConfigurationKeys.ContractsConnectionString, connectionString},
-            {ConfigurationKeys.PassesConnectionString, connectionString}
+            {ConfigurationKeys.PassesConnectionString, connectionString},
+            {ConfigurationKeys.ReportsConnectionString, connectionString}
         };
 
         return webApplicationFactory.UseSettings(connectionStringsConfiguration);
