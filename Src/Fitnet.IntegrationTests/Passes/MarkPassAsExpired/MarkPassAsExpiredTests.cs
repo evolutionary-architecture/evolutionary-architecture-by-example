@@ -2,8 +2,8 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.MarkPassAsExpir
 
 using Fitnet.Passes;
 using RegisterPass;
-using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
-using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
+using Common.TestEngine;
+using Common.TestEngine.Configuration;
 using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
@@ -22,8 +22,8 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_no_content()
     {
         // Arrange
-        var registeredPassPath = await RegisterPass();
-        var url = BuildUrl(registeredPassPath);
+        var registeredPassId = await RegisterPass();
+        var url = BuildUrl(registeredPassId);
 
         // Act
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
@@ -32,6 +32,20 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
     
+    [Fact]
+    public async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_not_found()
+    {
+        // Arrange
+        var notExistingId = Guid.NewGuid();
+        var url = BuildUrl(notExistingId);
+
+        // Act
+        var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+
+        // Assert
+        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+    }
+
     private async Task<Guid> RegisterPass()
     {
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
