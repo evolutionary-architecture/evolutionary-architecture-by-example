@@ -9,10 +9,9 @@ internal sealed class NewPassesPerMonthReportDataPdfReportGenerator : INewPasses
 {
     const int columnCount = 4;
 
-    public async Task<FileStream> GeneratePdfReportAsync(string name, IReadOnlyCollection<NewPassesPerMonthDto> report, CancellationToken cancellationToken)
+    public async Task<byte[]> GeneratePdfReportAsync(string name, IReadOnlyCollection<NewPassesPerMonthDto> report, CancellationToken cancellationToken)
     {
-        var fileName = $"{name}.pdf";
-        await using var file = new FileStream(fileName, FileMode.Create);
+        await using var file = new MemoryStream();
         await using var writer = new PdfWriter(file);
         var pdf = new PdfDocument(writer);
         using var document = new Document(pdf);
@@ -21,12 +20,14 @@ internal sealed class NewPassesPerMonthReportDataPdfReportGenerator : INewPasses
         AddTableData(table, report);
         document.Add(table);
 
-        return file;
+        var bytes = file.ToArray()!;
+
+        return bytes;
     }
 
     private static void AddTableHeader(Table table)
     {
-        table.AddHeaderCell(nameof(NewPassesPerMonthDto.NewPasses));
+        table.AddHeaderCell(nameof(NewPassesPerMonthDto.RegisteredPasses));
         table.AddHeaderCell(nameof(NewPassesPerMonthDto.Month));
     }
 
@@ -34,7 +35,7 @@ internal sealed class NewPassesPerMonthReportDataPdfReportGenerator : INewPasses
     {
         foreach (var pass in passes)
         {
-            table.AddCell(pass.NewPasses.ToString());
+            table.AddCell(pass.RegisteredPasses.ToString());
             table.AddCell(pass.Month);
         }
     }
