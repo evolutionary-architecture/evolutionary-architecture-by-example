@@ -14,20 +14,13 @@ internal sealed class NewPassesPerMonthReportDataRetriever : INewPassesPerMonthR
     {
         using var connection = _databaseConnectionFactory.Create();
         const string query = $@"
-        SELECT DATENAME(Month, From)) AS MonthName,
-               COUNT(*) AS NewPassesCount
-        FROM Passes 
-        WHERE 'From' >= @StartDate 
-          AND 'To' <= @EndDate
-        GROUP BY DATENAME(Month, From)";    
+        SELECT to_char(""Passes"".""From"", 'Month') AS {nameof(NewPassesPerMonthDto.Month)},
+               COUNT(*) AS {nameof(NewPassesPerMonthDto.RegisteredPasses)}
+        FROM ""Passes"".""Passes""
+        WHERE EXTRACT(YEAR FROM ""Passes"".""From"") = EXTRACT(YEAR FROM NOW())
+        GROUP BY {nameof(NewPassesPerMonthDto.Month)}";   
         
-        var passes = await connection.QueryAsync<NewPassesPerMonthDto>(query, 
-            new
-            {
-                StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
-                EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 
-                    DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))
-            });
+        var passes = await connection.QueryAsync<NewPassesPerMonthDto>(query);
 
         return passes.ToList();
     }
