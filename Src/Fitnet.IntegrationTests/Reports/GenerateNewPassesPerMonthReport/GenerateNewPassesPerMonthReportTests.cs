@@ -34,9 +34,9 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
         // Assert
         getReportResult.Content.Headers.ContentType!.MediaType.Should().Be("application/pdf");
-        var fileBytes = await getReportResult.Content.ReadAsStreamAsync();
+        var fileBytes = await getReportResult.Content.ReadAsByteArrayAsync();
         fileBytes.Should().NotBeNull();
-         await Verify(fileBytes, "pdf");  
+        await Verify(fileBytes, "pdf");  
     }
     
     private async Task<Guid> RegisterPass()
