@@ -1,8 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesPerMonthReport;
 
-using System.Net.Mime;
 using DataRetriver;
-using ReportGenerator;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {
@@ -11,13 +9,11 @@ internal static class GenerateNewPassesPerMonthReportEndpoint
     internal static void MapGenerateNewPassesPerMonthReport(this IEndpointRouteBuilder app)
     {
         app.MapGet(ReportsApiPaths.GenerateNewReport,  async (
-            INewPassesPerMonthReportDataPdfReportGenerator generator, 
             INewPassesPerMonthReportDataRetriever dataRetriever) =>
         {
             var reportData = await dataRetriever.GetReportDataAsync();
-            var report = await generator.GeneratePdfReportAsync(ReportName, reportData);
 
-            return Results.File(report, MediaTypeNames.Application.Pdf, ReportName);
+            return Results.Ok(reportData);
         });
     }
 }

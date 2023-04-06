@@ -7,7 +7,7 @@ using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes;
 using Fitnet.Passes.RegisterPass;
-
+using Fitnet.Reports.GenerateNewPassesPerMonthReport.Dtos;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
@@ -19,17 +19,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
-    
-    [ModuleInitializer]
-    internal static void Initialize()
-    {
-        VerifyDocNet.Initialize();
-    }
-    //
-    // [ModuleInitializer]
-    // internal static void Initialize() =>
-    //     VerifyAspose.Initialize();
-    
+
     [Fact]
     public async Task Given_valid_generate_new_report_request_Then_should_return_correct_pdf_report()
     {
@@ -43,12 +33,8 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
         // Assert
-        getReportResult.Content.Headers.ContentType!.MediaType.Should().Be("application/pdf");
-        var fileBytes = await getReportResult.Content.ReadAsByteArrayAsync();
-        fileBytes.Should().NotBeNull();
-        
-        var stream = new MemoryStream(fileBytes);
-        await Verify(stream, "pdf");
+        getReportResult.Should().HaveStatusCode(HttpStatusCode.OK);
+        await Verify(getReportResult.Content.ReadFromJsonAsync<List<NewPassesPerMonthDto>>());
     }
     
     private async Task<Guid> RegisterPass()
