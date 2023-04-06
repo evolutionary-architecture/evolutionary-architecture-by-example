@@ -6,16 +6,18 @@ using ReportGenerator;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {
+    private const string ReportName = "new_passes_per_month.pdf";
+    
     internal static void MapGenerateNewPassesPerMonthReport(this IEndpointRouteBuilder app)
     {
         app.MapGet(ReportsApiPaths.GenerateNewReport,  async (
             INewPassesPerMonthReportDataPdfReportGenerator generator, 
             INewPassesPerMonthReportDataRetriever dataRetriever) =>
         {
-            var data = await dataRetriever.GetReportDataAsync();
-            var fakerReportFile = await generator.GeneratePdfReportAsync("test", data);
+            var reportData = await dataRetriever.GetReportDataAsync();
+            var report = await generator.GeneratePdfReportAsync(ReportName, reportData);
 
-            return Results.File(fakerReportFile, MediaTypeNames.Application.Pdf, "test.pdf");
+            return Results.File(report, MediaTypeNames.Application.Pdf, ReportName);
         });
     }
 }

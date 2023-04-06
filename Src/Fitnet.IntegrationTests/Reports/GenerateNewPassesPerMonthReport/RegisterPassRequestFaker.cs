@@ -1,16 +1,16 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
 using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
 internal sealed class RegisterPassRequestFaker : Faker<RegisterPassRequest>
 {
-    public RegisterPassRequestFaker()
+    public RegisterPassRequestFaker(DateTimeOffset from, DateTimeOffset to)
     {
         CustomInstantiator(faker =>
             new RegisterPassRequest(
                 faker.Random.Guid(),
-                faker.Date.Past().ToUniversalTime(),
-                faker.Date.Future().ToUniversalTime()
+                from,
+                to
             )
         );
     }
