@@ -4,8 +4,6 @@ using DataRetriver;
 
 internal static class GenerateNewPassesPerMonthReportEndpoint
 {
-    private const string ReportName = "new_passes_per_month.pdf";
-    
     internal static void MapGenerateNewPassesPerMonthReport(this IEndpointRouteBuilder app)
     {
         app.MapGet(ReportsApiPaths.GenerateNewReport,  async (
