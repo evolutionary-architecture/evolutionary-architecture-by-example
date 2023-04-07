@@ -27,7 +27,7 @@ internal static class ConfigurationExtensions
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
         });
 
-    internal static WebApplicationFactory<T> ConfigureTime<T>(this WebApplicationFactory<T> webApplicationFactory, DateTimeOffset fakeDateTimeOffset)
+    internal static WebApplicationFactory<T> SetFakeSystemClock<T>(this WebApplicationFactory<T> webApplicationFactory, DateTimeOffset fakeDateTimeOffset)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
             services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));

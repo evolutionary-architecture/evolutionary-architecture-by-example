@@ -12,13 +12,12 @@ using TestData;
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly DateTimeOffset _fakeDateTime = new(2021, 1, 1, 0, 0, 0, TimeSpan.Zero);
     
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .ConfigureTime(_fakeDateTime)
+            .SetFakeSystemClock(ReportTestCases.FakeNowDate)
             .CreateClient();
 
     [Theory]
