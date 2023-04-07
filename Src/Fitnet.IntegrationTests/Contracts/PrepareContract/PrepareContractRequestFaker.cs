@@ -9,7 +9,8 @@ internal sealed class PrepareContractRequestFaker : Faker<PrepareContractRequest
         CustomInstantiator(faker =>
             new PrepareContractRequest(
                 faker.Random.Number(minAge, maxAge),
-                faker.Random.Number(minHeight, maxHeight)
+                faker.Random.Number(minHeight, maxHeight),
+                DateTimeOffset.Now
             )
         );
     }

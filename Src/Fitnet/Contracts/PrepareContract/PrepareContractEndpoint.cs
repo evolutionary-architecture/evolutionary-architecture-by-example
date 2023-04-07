@@ -9,7 +9,7 @@ internal static class PrepareContractEndpoint
     {
         app.MapPost(ApiPaths.Contracts, async (PrepareContractRequest request, ContractsPersistence persistence) =>
         {
-            var contract = Contract.Prepare(request.CustomerAge, request.CustomerHeight);
+            var contract = Contract.Prepare(request.CustomerAge, request.CustomerHeight, request.PreparedAt);
             await persistence.Contracts.AddAsync(contract);
             await persistence.SaveChangesAsync();
 
