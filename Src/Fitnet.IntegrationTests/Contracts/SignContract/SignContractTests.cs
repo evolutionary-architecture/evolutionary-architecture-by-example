@@ -61,5 +61,5 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         return preparedContractId;
     }
 
-    private static string BuildUrl(Guid id) => ContractsApiPaths.Prepare.Replace("{id}", id.ToString());
+    private static string BuildUrl(Guid id) => ContractsApiPaths.Sign.Replace("{id}", id.ToString());
 }
