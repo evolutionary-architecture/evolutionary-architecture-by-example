@@ -8,6 +8,8 @@ internal sealed class Contract
     public Guid Id { get; init; }
     
     public DateTimeOffset PreparedAt { get; init; }
+    
+    public DateTimeOffset SignedAt { get; private set; }
 
     private Contract(Guid id, DateTimeOffset preparedAt)
     {
@@ -22,4 +24,6 @@ internal sealed class Contract
         
         return new(Guid.NewGuid(), preparedAt);
     }
+
+    public void Sign(DateTimeOffset signedAt) => SignedAt = signedAt;
 }
