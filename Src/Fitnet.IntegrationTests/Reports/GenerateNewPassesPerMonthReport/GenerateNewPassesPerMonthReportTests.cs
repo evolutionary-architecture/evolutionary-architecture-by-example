@@ -23,7 +23,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
     [Theory]
     [ClassData(typeof(ReportTestCases))]
-    public async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges, string verificationFileName)
+    public async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
     {
         // Arrange
         await RegisterPasses(passRegistrationDateRanges);
@@ -34,8 +34,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         // Assert
         getReportResult.Should().HaveStatusCode(HttpStatusCode.OK);
         var reportData = await getReportResult.Content.ReadFromJsonAsync<List<NewPassesPerMonthDto>>();
-        await Verify(reportData).
-            UseFileName(verificationFileName);
+        await Verify(reportData);
     }
     
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
