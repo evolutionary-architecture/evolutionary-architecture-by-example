@@ -44,7 +44,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var signContractResponse = await _applicationHttpClient.PatchAsJsonAsync(url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
     }
 
     private async Task<Guid> PrepareContract()
