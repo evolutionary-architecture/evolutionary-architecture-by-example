@@ -18,7 +18,7 @@
     },
     {
       Month: January  ,
-      RegisteredPasses: 1
+      RegisteredPasses: 2
     },
     {
       Month: July     ,

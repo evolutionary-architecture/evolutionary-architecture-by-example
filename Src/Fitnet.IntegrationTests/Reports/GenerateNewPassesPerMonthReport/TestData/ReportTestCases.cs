@@ -1,7 +1,5 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport.TestData;
 
-using System.Collections;
-
 internal sealed class ReportTestCases : IEnumerable<object[]>
 {
     internal static DateTimeOffset FakeNowDate = new(2021, 1, 1, 0, 0, 0, TimeSpan.Zero);
@@ -13,6 +11,7 @@ internal sealed class ReportTestCases : IEnumerable<object[]>
             new List<PassRegistrationDateRange>
             {
                 new(new DateTimeOffset(FakeNowDate.Year, 1, 3, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 1, 10 ,1, 1, 1,1, TimeSpan.Zero)),
+                new(new DateTimeOffset(FakeNowDate.Year, 1, 5, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 1, 20 ,1, 1, 1,1, TimeSpan.Zero)),
                 new(new DateTimeOffset(FakeNowDate.Year, 2, 1, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 2, 28 ,1, 1, 1,1, TimeSpan.Zero)),
                 new(new DateTimeOffset(FakeNowDate.Year, 3, 1, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 3, 31 ,1, 1, 1,1, TimeSpan.Zero)),
                 new(new DateTimeOffset(FakeNowDate.Year, 4, 1, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 4, 30 ,1, 1, 1,1, TimeSpan.Zero)),

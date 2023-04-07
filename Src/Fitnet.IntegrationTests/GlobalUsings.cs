@@ -1,5 +1,6 @@
 // Global using directives
 
+global using System.Collections;
 global using System.Net;
 global using FluentAssertions;
 global using Xunit;
