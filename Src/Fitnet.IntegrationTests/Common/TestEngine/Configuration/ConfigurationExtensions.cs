@@ -3,6 +3,7 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Conf
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Shared.SystemClock;
+using SystemClock;
 
 internal static class ConfigurationExtensions
 {

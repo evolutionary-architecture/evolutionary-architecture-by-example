@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesPerMonthReport.DataRetriver;
+namespace SuperSimpleArchitecture.Fitnet.Reports.DataAccess;
 
 using System.Data;
 

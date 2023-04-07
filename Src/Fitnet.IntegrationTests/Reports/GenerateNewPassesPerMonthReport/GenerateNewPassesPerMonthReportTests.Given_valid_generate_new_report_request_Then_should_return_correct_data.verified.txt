@@ -1,50 +1,52 @@
-﻿[
-  {
-    Month: April    ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: August   ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: December ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: February ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: January  ,
-    RegisteredPasses: 2
-  },
-  {
-    Month: July     ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: June     ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: March    ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: May      ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: November ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: October  ,
-    RegisteredPasses: 1
-  },
-  {
-    Month: September,
-    RegisteredPasses: 1
-  }
-]
+﻿{
+  PassesRegistrationsPerMonth: [
+    {
+      Month: April    ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: August   ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: December ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: February ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: January  ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: July     ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: June     ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: March    ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: May      ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: November ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: October  ,
+      RegisteredPasses: 1
+    },
+    {
+      Month: September,
+      RegisteredPasses: 1
+    }
+  ]
+}

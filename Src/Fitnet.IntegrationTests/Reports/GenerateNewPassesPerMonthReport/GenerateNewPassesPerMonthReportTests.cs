@@ -5,7 +5,7 @@ using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes;
 using Fitnet.Passes.RegisterPass;
-using Fitnet.Reports.GenerateNewPassesPerMonthReport.Dtos;
+using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using TestData;
 
 [UsesVerify]
@@ -32,7 +32,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
         // Assert
         getReportResult.Should().HaveStatusCode(HttpStatusCode.OK);
-        var reportData = await getReportResult.Content.ReadFromJsonAsync<List<NewPassesPerMonthDto>>();
+        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
         await Verify(reportData);
     }
     

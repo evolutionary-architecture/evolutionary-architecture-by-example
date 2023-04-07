@@ -1,9 +1,9 @@
 namespace SuperSimpleArchitecture.Fitnet.Reports;
 
-using GenerateNewPassesPerMonthReport;
+using GenerateNewPassesRegistrationsPerMonthReport;
 
 internal static class ReportsEndpoints
 {
     internal static void MapReports(this IEndpointRouteBuilder app) => 
-        app.MapGenerateNewPassesPerMonthReport();
+        app.MapGenerateNewPassesRegistrationsPerMonthReport();
 }
