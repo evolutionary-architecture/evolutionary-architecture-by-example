@@ -1,6 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 
-public interface ISystemClock
+internal interface ISystemClock
 {
     DateTimeOffset Now { get; }
 }
