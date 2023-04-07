@@ -4,10 +4,10 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.SignContract
 
 internal sealed class SignContractRequestFaker : Faker<SignContractRequest>
 {
-    public SignContractRequestFaker()
+    public SignContractRequestFaker(DateTimeOffset signedAt)
     {
-        CustomInstantiator((faker) =>
-            new SignContractRequest(faker.Date.RecentOffset())
+        CustomInstantiator(_ =>
+            new SignContractRequest(signedAt)
         );
     }
 }

@@ -1,4 +1,5 @@
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
+using SuperSimpleArchitecture.Fitnet.Contracts.SignContract.BusinessRules;
 using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
 namespace SuperSimpleArchitecture.Fitnet.Contracts.Data;
@@ -25,5 +26,11 @@ internal sealed class Contract
         return new(Guid.NewGuid(), preparedAt);
     }
 
-    public void Sign(DateTimeOffset signedAt) => SignedAt = signedAt;
+    public void Sign(DateTimeOffset signedAt)
+    {
+        BusinessRuleValidator.Validate(
+            new ContractCanOnlyBeSignedWithin30DaysFromPreparation(PreparedAt, signedAt));
+
+        SignedAt = signedAt;
+    }
 }

@@ -23,7 +23,8 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         // Arrange
         var preparedContractId = await PrepareContract();
         var url = BuildUrl(preparedContractId);
-        var signContractRequest = new SignContractRequestFaker();
+        var signedAt = GetValidSignedAtDate();
+        var signContractRequest = new SignContractRequestFaker(signedAt);
 
         // Act
         var signContractResponse = await _applicationHttpClient.PatchAsJsonAsync(url, signContractRequest);
@@ -38,7 +39,8 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         // Arrange
         var notExistingId = Guid.NewGuid();
         var url = BuildUrl(notExistingId);
-        var signContractRequest = new SignContractRequestFaker();
+        var signedAt = GetValidSignedAtDate();
+        var signContractRequest = new SignContractRequestFaker(signedAt);
 
         // Act
         var signContractResponse = await _applicationHttpClient.PatchAsJsonAsync(url, signContractRequest);
@@ -50,7 +52,6 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     private async Task<Guid> PrepareContract()
     {
         var requestParameters = PrepareContractRequestParameters.GetValid();
-
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
         var prepareContractResponse =
@@ -61,4 +62,9 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     }
 
     private static string BuildUrl(Guid id) => ContractsApiPaths.Sign.Replace("{id}", id.ToString());
+    
+    private static DateTimeOffset GetValidSignedAtDate()
+    {
+        return DateTimeOffset.Now.AddDays(31);
+    }
 }
