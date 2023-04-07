@@ -6,17 +6,20 @@ namespace SuperSimpleArchitecture.Fitnet.Contracts.Data;
 internal sealed class Contract
 {
     public Guid Id { get; init; }
+    
+    public DateTimeOffset PreparedAt { get; init; }
 
-    private Contract(Guid id)
+    private Contract(Guid id, DateTimeOffset preparedAt)
     {
         Id = id;
+        PreparedAt = preparedAt;
     }
 
-    internal static Contract Prepare(int customerAge, int customerHeight)
+    internal static Contract Prepare(int customerAge, int customerHeight, DateTimeOffset preparedAt)
     {
         BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
         
-        return new(Guid.NewGuid());
+        return new(Guid.NewGuid(), preparedAt);
     }
 }
