@@ -1,3 +1,4 @@
+using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
@@ -27,7 +28,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(minAge, maxAge, minHeight, maxHeight);  
 
         // Act
-        var prepareContractResponse = await _applicationHttpClient.PostAsJsonAsync(ApiPaths.Contracts, prepareContractRequest);
+        var prepareContractResponse = await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
