@@ -1,0 +1,3 @@
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport.TestData;
+
+public record PassRegistrationDateRange(DateTimeOffset From, DateTimeOffset To);
