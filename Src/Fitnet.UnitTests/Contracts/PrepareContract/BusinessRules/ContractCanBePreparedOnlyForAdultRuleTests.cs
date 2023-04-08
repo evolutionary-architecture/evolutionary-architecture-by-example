@@ -1,7 +1,7 @@
+namespace SuperSimpleArchitecture.Fitnet.UnitTests.Contracts.PrepareContract.BusinessRules;
+
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
 using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
-
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract.BusinessRules;
 
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests
 {
