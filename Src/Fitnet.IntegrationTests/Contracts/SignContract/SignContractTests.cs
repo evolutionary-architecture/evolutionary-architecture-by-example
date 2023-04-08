@@ -49,13 +49,12 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
     private async Task<Guid> PrepareContract()
     {
-        const int minAge = 18;
-        const int maxAge = 100;
-        const int minHeight = 0;
-        const int maxHeight = 210;
-        
-        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(minAge, maxAge, minHeight, maxHeight);
-        var prepareContractResponse = await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+        var requestParameters = PrepareContractRequestParameters.GetValid();
+
+        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
+            requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
+        var prepareContractResponse =
+            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
         var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>();
 
         return preparedContractId;

@@ -6,7 +6,8 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContr
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 
-public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<Program>>,
+    IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
 
@@ -15,20 +16,19 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
-    
+
     [Fact]
     public async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
     {
         // Arrange
-        const int minAge = 18;
-        const int maxAge = 100;
-        const int minHeight = 0;
-        const int maxHeight = 210;
-        
-        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(minAge, maxAge, minHeight, maxHeight);  
+        var requestParameters = PrepareContractRequestParameters.GetValid();
+
+        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
+            requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
         // Act
-        var prepareContractResponse = await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+        var prepareContractResponse =
+            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
