@@ -24,9 +24,10 @@ internal sealed class NewPassesRegistrationPerMonthReportDataRetriever : INewPas
                COUNT(*) AS {nameof(NewPassesRegistrationsPerMonthDto.RegisteredPasses)}
         FROM ""Passes"".""Passes""
         WHERE EXTRACT(YEAR FROM ""Passes"".""From"") = '{_clock.Now.Year}'
-        GROUP BY {nameof(NewPassesRegistrationsPerMonthDto.Month)}";   
-        
-        var newPassesRegistrationsPerMonthDtos = await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(query);
+        GROUP BY {nameof(NewPassesRegistrationsPerMonthDto.Month)}";
+       
+        var queryDefinition = new CommandDefinition(query, cancellationToken);
+        var newPassesRegistrationsPerMonthDtos = await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(queryDefinition);
 
         return newPassesRegistrationsPerMonthDtos.ToList();
     }
