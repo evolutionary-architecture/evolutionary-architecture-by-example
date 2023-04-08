@@ -10,7 +10,7 @@ internal sealed class PrepareContractRequestFaker : Faker<PrepareContractRequest
             new PrepareContractRequest(
                 faker.Random.Number(minAge, maxAge),
                 faker.Random.Number(minHeight, maxHeight),
-                faker.Date.RecentOffset()
+                faker.Date.RecentOffset().ToUniversalTime()
             )
         );
     }
