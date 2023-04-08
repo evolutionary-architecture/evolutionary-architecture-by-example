@@ -11,5 +11,4 @@ internal static class ContractsEndpoints
         app.MapPrepareContract();
         app.MapSignContract();
     }
-        
 }
