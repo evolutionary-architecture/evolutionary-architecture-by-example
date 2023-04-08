@@ -15,5 +15,9 @@
     <ItemGroup>
         <InternalsVisibleTo Include="SuperSimpleArchitecture.Fitnet.UnitTests" />
     </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="SuperSimpleArchitecture.Fitnet.IntegrationTests" />
+    </ItemGroup>
     
 </Project>
