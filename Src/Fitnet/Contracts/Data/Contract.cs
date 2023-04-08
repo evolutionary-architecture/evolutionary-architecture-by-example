@@ -1,8 +1,8 @@
-using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
-using SuperSimpleArchitecture.Fitnet.Contracts.SignContract.BusinessRules;
-using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
-
 namespace SuperSimpleArchitecture.Fitnet.Contracts.Data;
+
+using PrepareContract.BusinessRules;
+using SignContract.BusinessRules;
+using Shared.BusinessRulesEngine;
 
 internal sealed class Contract
 {
