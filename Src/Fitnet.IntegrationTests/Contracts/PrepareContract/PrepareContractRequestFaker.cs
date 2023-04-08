@@ -1,6 +1,6 @@
-using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
-
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
+
+using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 
 internal sealed class PrepareContractRequestFaker : Faker<PrepareContractRequest>
 {

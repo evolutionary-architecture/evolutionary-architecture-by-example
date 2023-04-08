@@ -1,8 +1,7 @@
-using SuperSimpleArchitecture.Fitnet.Contracts;
-using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
-
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
+using SuperSimpleArchitecture.Fitnet.Contracts;
+using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 

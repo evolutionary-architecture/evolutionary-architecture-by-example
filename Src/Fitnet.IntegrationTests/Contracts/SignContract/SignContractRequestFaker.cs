@@ -1,6 +1,6 @@
-using SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
-
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
+
+using SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
 
 internal sealed class SignContractRequestFaker : Faker<SignContractRequest>
 {
