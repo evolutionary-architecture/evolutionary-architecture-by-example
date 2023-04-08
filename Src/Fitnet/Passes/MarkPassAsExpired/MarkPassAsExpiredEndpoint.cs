@@ -9,7 +9,7 @@ internal static class MarkPassAsExpiredEndpoint
     {
         app.MapPatch(PassesApiPaths.MarkPassAsExpired, async (Guid id, PassesPersistence persistence, ISystemClock systemClock,  CancellationToken cancellationToken) =>
         {
-            var pass = await persistence.Passes.FindAsync(id, cancellationToken);
+            var pass = await persistence.Passes.FindAsync(new object?[] { id }, cancellationToken);
             if (pass is null)
                 return Results.NotFound();
 

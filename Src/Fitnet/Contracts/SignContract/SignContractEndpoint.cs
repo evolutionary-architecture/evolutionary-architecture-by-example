@@ -6,9 +6,11 @@ internal static class SignContractEndpoint
 {
     internal static void MapSignContract(this IEndpointRouteBuilder app)
     {
-        app.MapPatch(ContractsApiPaths.Sign, async (Guid id, SignContractRequest request, ContractsPersistence persistence,  CancellationToken cancellationToken) =>
+        app.MapPatch(ContractsApiPaths.Sign, async (Guid id, SignContractRequest request,
+            ContractsPersistence persistence, CancellationToken cancellationToken) =>
         {
-            var contract = await persistence.Contracts.FindAsync(id);
+            var contract =
+                await persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
             if (contract is null)
                 return Results.NotFound();
 
