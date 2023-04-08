@@ -64,6 +64,6 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     
     private static DateTimeOffset GetValidSignedAtDate()
     {
-        return DateTimeOffset.Now.AddDays(31).ToUniversalTime();
+        return DateTimeOffset.Now.AddDays(1).ToUniversalTime();
     }
 }
