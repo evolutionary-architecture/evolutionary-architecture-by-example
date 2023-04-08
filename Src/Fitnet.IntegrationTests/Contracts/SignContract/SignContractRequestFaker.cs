@@ -6,8 +6,8 @@ internal sealed class SignContractRequestFaker : Faker<SignContractRequest>
 {
     public SignContractRequestFaker()
     {
-        CustomInstantiator(_ =>
-            new SignContractRequest(DateTimeOffset.Now)
+        CustomInstantiator((faker) =>
+            new SignContractRequest(faker.Date.RecentOffset())
         );
     }
 }
