@@ -1,51 +1,63 @@
 ﻿{
   PassesRegistrationsPerMonth: [
     {
-      Month: April    ,
-      RegisteredPasses: 1
-    },
-    {
-      Month: August   ,
-      RegisteredPasses: 1
-    },
-    {
-      Month: December ,
-      RegisteredPasses: 1
-    },
-    {
-      Month: February ,
-      RegisteredPasses: 1
-    },
-    {
-      Month: January  ,
+      MonthOrder: 1,
+      MonthName: January  ,
       RegisteredPasses: 2
     },
     {
-      Month: July     ,
+      MonthOrder: 2,
+      MonthName: February ,
       RegisteredPasses: 1
     },
     {
-      Month: June     ,
+      MonthOrder: 3,
+      MonthName: March    ,
       RegisteredPasses: 1
     },
     {
-      Month: March    ,
+      MonthOrder: 4,
+      MonthName: April    ,
       RegisteredPasses: 1
     },
     {
-      Month: May      ,
+      MonthOrder: 5,
+      MonthName: May      ,
       RegisteredPasses: 1
     },
     {
-      Month: November ,
+      MonthOrder: 6,
+      MonthName: June     ,
       RegisteredPasses: 1
     },
     {
-      Month: October  ,
+      MonthOrder: 7,
+      MonthName: July     ,
       RegisteredPasses: 1
     },
     {
-      Month: September,
+      MonthOrder: 8,
+      MonthName: August   ,
+      RegisteredPasses: 1
+    },
+    {
+      MonthOrder: 9,
+      MonthName: September,
+      RegisteredPasses: 1
+    },
+    {
+      MonthOrder: 10,
+      MonthName: October  ,
+      RegisteredPasses: 1
+    },
+    {
+      MonthOrder: 11,
+      MonthName: November ,
+      RegisteredPasses: 1
+    },
+    {
+      MonthOrder: 12,
+      MonthName: December ,
       RegisteredPasses: 1
     }
   ]

@@ -20,13 +20,15 @@ internal sealed class NewPassesRegistrationPerMonthReportDataRetriever : INewPas
     {
         using var connection = _databaseConnectionFactory.Create();
         var query = $@"
-        SELECT to_char(""Passes"".""From"", 'Month') AS {nameof(NewPassesRegistrationsPerMonthDto.Month)},
-               COUNT(*) AS {nameof(NewPassesRegistrationsPerMonthDto.RegisteredPasses)}
+        SELECT EXTRACT(MONTH FROM ""Passes"".""From"")::INTEGER AS ""{nameof(NewPassesRegistrationsPerMonthDto.MonthOrder)}"",
+               to_char(""Passes"".""From"", 'Month') AS ""{nameof(NewPassesRegistrationsPerMonthDto.MonthName)}"",
+               COUNT(*) AS ""{nameof(NewPassesRegistrationsPerMonthDto.RegisteredPasses)}""
         FROM ""Passes"".""Passes""
         WHERE EXTRACT(YEAR FROM ""Passes"".""From"") = '{_clock.Now.Year}'
-        GROUP BY {nameof(NewPassesRegistrationsPerMonthDto.Month)}";
-       
-        var queryDefinition = new CommandDefinition(query, cancellationToken);
+        GROUP BY ""{nameof(NewPassesRegistrationsPerMonthDto.MonthName)}"", ""{nameof(NewPassesRegistrationsPerMonthDto.MonthOrder)}""
+        ORDER BY ""{nameof(NewPassesRegistrationsPerMonthDto.MonthOrder)}""";
+
+        var queryDefinition = new CommandDefinition(query, cancellationToken: cancellationToken);
         var newPassesRegistrationsPerMonthDtos = await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(queryDefinition);
 
         return newPassesRegistrationsPerMonthDtos.ToList();
