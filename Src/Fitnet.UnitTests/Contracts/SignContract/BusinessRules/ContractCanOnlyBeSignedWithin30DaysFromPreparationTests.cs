@@ -30,7 +30,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
         var act = () =>
             BusinessRuleValidator.Validate(
                 new ContractCanOnlyBeSignedWithin30DaysFromPreparation(DateTimeOffset.Now,
-                    DateTimeOffset.Now.AddDays(30)));;
+                    DateTimeOffset.Now.AddDays(30)));
         
         // Assert
         act.Should().NotThrow<BusinessRuleValidationException>();
@@ -45,7 +45,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
         var act = () =>
             BusinessRuleValidator.Validate(
                 new ContractCanOnlyBeSignedWithin30DaysFromPreparation(DateTimeOffset.Now,
-                    DateTimeOffset.Now.AddDays(29)));;
+                    DateTimeOffset.Now.AddDays(29)));
         
         // Assert
         act.Should().NotThrow<BusinessRuleValidationException>();
