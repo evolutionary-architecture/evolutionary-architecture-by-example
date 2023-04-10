@@ -1,7 +1,7 @@
+namespace SuperSimpleArchitecture.Fitnet.UnitTests.Contracts.SignContract.BusinessRules;
+
 using SuperSimpleArchitecture.Fitnet.Contracts.SignContract.BusinessRules;
 using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
-
-namespace SuperSimpleArchitecture.Fitnet.UnitTests.Contracts.SignContract.BusinessRules;
 
 public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
 {
