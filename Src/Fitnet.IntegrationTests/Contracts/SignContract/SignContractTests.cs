@@ -61,9 +61,6 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     }
 
     private static string BuildUrl(Guid id) => ContractsApiPaths.Sign.Replace("{id}", id.ToString());
-    
-    private static DateTimeOffset GetValidSignedAtDate()
-    {
-        return DateTimeOffset.Now.AddDays(1).ToUniversalTime();
-    }
+
+    private static DateTimeOffset GetValidSignedAtDate() => DateTimeOffset.Now.AddDays(1).ToUniversalTime();
 }
