@@ -4,6 +4,8 @@ using Fitnet.Passes;
 using RegisterPass;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
+using Fitnet.Shared.Events;
+using Fitnet.Shared.Events.EventBus;
 using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
@@ -11,15 +13,31 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     private static readonly StringContent EmptyContent = new(string.Empty);
     
     private readonly HttpClient _applicationHttpClient;
+    private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public MarkPassAsExpiredTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
+            .WithFakeEventBus(_fakeEventBus)
             .CreateClient();
 
     [Fact]
     public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_no_content()
+    {
+        // Arrange
+        var registeredPassId = await RegisterPass();
+        var url = BuildUrl(registeredPassId);
+
+        // Act
+        await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+
+        // Assert
+        _fakeEventBus.Verify(x => x.PublishAsync(It.IsAny<IIntegrationEvent>(), It.IsAny<CancellationToken>()));
+    }
+    
+    [Fact]
+    public async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
     {
         // Arrange
         var registeredPassId = await RegisterPass();

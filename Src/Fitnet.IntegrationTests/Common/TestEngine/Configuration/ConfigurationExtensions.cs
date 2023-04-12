@@ -1,8 +1,9 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
+using Fitnet.Shared.Events.EventBus;
+using Fitnet.Shared.SystemClock;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Shared.SystemClock;
 using SystemClock;
 
 internal static class ConfigurationExtensions
@@ -32,4 +33,9 @@ internal static class ConfigurationExtensions
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
             services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
+    
+    internal static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IMock<IEventBus> eventBusMock)
+        where T : class =>
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
+            services.AddSingleton(eventBusMock.Object)));
 }

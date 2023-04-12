@@ -1,6 +1,7 @@
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Passes;
 using SuperSimpleArchitecture.Fitnet.Reports;
+using SuperSimpleArchitecture.Fitnet.Shared.Events.EventBus;
 using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
+builder.Services.AddEventBus();
 
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
