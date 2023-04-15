@@ -33,7 +33,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        _fakeEventBus.Verify(x => x.PublishAsync(It.IsAny<IIntegrationEvent>(), It.IsAny<CancellationToken>()));
+        EnsureThatPassExpiredEventWasPublished();
     }
     
     [Fact]
@@ -74,4 +74,6 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     }
     
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
+
+    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<IIntegrationEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 }
