@@ -73,7 +73,6 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
         
         var responseMessage = await ResponseMessageDeserializer.Deserialize(prepareContractResponse);
-        responseMessage.Should()
-            .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
+        responseMessage.Should().Be("Customer height must fit maximum limit for gym instruments");
     }
 }
