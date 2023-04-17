@@ -1,3 +1,4 @@
+using SuperSimpleArchitecture.Fitnet;
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Passes;
 using SuperSimpleArchitecture.Fitnet.Reports;
@@ -32,6 +33,8 @@ app.UseReports();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 
