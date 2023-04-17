@@ -10,7 +10,7 @@ internal record PrepareContractRequestParameters(int MinAge, int MaxAge, int Min
     internal static PrepareContractRequestParameters GetValid() => new(_minAge, _maxAge, _minHeight, _maxHeight);
 
     internal static PrepareContractRequestParameters GetWithInvalidAge() =>
-        new(_maxAge + 1, _maxAge + 1, _minHeight, _maxHeight);
+        new(0, _minAge - 1, _minHeight, _maxHeight);
     
     internal static PrepareContractRequestParameters GetWithInvalidHeight() =>
         new(_minAge, _maxAge, _maxHeight + 1, _maxHeight + 1);
