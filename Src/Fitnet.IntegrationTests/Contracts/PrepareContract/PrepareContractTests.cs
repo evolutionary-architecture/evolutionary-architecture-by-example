@@ -1,10 +1,8 @@
-using Newtonsoft.Json;
-using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common;
-
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
+using Common;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 
