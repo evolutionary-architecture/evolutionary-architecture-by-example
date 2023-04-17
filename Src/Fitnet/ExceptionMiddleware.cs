@@ -1,0 +1,55 @@
+namespace SuperSimpleArchitecture.Fitnet;
+
+using System.Net;
+using Newtonsoft.Json;
+using Shared.BusinessRulesEngine;
+
+internal class ExceptionMiddleware
+{
+    private const string ContentType = "application/json";
+    private readonly RequestDelegate _next;
+
+    public ExceptionMiddleware(RequestDelegate next) => _next = next;
+    
+    public async Task InvokeAsync(HttpContext context)
+    {
+        try
+        {
+            await _next(context);
+        }
+        catch (Exception ex)
+        {
+            await HandleExceptionAsync(context, ex);
+        }
+    }
+    
+    private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+    {
+        context.Response.ContentType = ContentType;
+
+        int statusCode;
+        string message;
+
+        switch (exception)
+        {
+            case BusinessRuleValidationException businessRuleValidationException:
+                statusCode = (int)HttpStatusCode.Conflict;
+                message = businessRuleValidationException.Message;
+                break;
+            default:
+                statusCode = (int)HttpStatusCode.InternalServerError;
+                message = exception.Message;
+                break;
+        }
+
+        context.Response.StatusCode = statusCode;
+
+        var result = JsonConvert.SerializeObject(new
+        {
+            StatusCode = statusCode,
+            Message = message
+        });
+
+        await context.Response.WriteAsync(result);
+    }
+}
