@@ -15,7 +15,7 @@ public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<
             .WithFakeConsumers();
     
     [Fact]
-    public async Task Given_valid_event_Then_event_should_be_consumed()
+    public async Task Given_valid_event_published_Then_event_should_be_consumed()
     {
         // Arrange
         var eventBus = _applicationInMemory.Services.GetRequiredService<IEventBus>();
