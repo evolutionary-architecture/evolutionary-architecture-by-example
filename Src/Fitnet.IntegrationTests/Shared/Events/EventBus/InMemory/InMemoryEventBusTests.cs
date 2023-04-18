@@ -22,7 +22,7 @@ public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<
         var fakeEvent = FakeEvent.Create();
         
         // Act
-         await eventBus.PublishAsync(fakeEvent, CancellationToken.None);
+        await eventBus.PublishAsync(fakeEvent, CancellationToken.None);
         
         // Assert
         fakeEvent.Consumed.Should().BeTrue();        
