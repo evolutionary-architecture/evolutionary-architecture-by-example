@@ -2,7 +2,6 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContr
 
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
-using Common;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 
@@ -33,13 +32,13 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
     }
-    
+
     [Fact]
     public async Task Given_contract_preparation_request_with_invalid_age_Then_should_return_conflict_status_code()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetWithInvalidAge();
-        
+
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
@@ -50,16 +49,17 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
 
-        var responseMessage = await ResponseMessageDeserializer.Deserialize(prepareContractResponse);
-        responseMessage.Should().Be("Contract can not be prepared for a person who is not adult");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
+        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Message.Should().Be("Contract can not be prepared for a person who is not adult");
     }
-    
+
     [Fact]
     public async Task Given_contract_preparation_request_with_invalid_height_Then_should_return_conflict_status_code()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetWithInvalidHeight();
-        
+
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
@@ -69,8 +69,9 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-        
-        var responseMessage = await ResponseMessageDeserializer.Deserialize(prepareContractResponse);
-        responseMessage.Should().Be("Customer height must fit maximum limit for gym instruments");
+
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
+        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Message.Should().Be("Customer height must fit maximum limit for gym instruments");
     }
 }

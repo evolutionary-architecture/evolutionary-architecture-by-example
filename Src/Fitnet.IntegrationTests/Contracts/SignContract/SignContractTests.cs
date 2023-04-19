@@ -4,7 +4,6 @@ using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 using SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
-using Common;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 
@@ -66,7 +65,8 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
 
-        var responseMessage = await ResponseMessageDeserializer.Deserialize(signContractResponse);
+        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
+        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
         responseMessage.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }

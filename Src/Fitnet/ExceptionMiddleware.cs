@@ -1,7 +1,8 @@
+using System.Text.Json;
+
 namespace SuperSimpleArchitecture.Fitnet;
 
 using System.Net;
-using Newtonsoft.Json;
 using Shared.BusinessRulesEngine;
 
 internal class ExceptionMiddleware
@@ -44,12 +45,10 @@ internal class ExceptionMiddleware
 
         context.Response.StatusCode = statusCode;
 
-        var result = JsonConvert.SerializeObject(new
-        {
-            StatusCode = statusCode,
-            Message = message
-        });
-
+        var result = JsonSerializer.Serialize(new ExceptionResponseMessage(statusCode, message));
+        
         await context.Response.WriteAsync(result);
     }
 }
+
+internal record ExceptionResponseMessage(int StatusCode, string Message);
