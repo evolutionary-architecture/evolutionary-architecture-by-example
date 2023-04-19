@@ -68,7 +68,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
         var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
         responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage.Should()
+        responseMessage?.Message.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
 
