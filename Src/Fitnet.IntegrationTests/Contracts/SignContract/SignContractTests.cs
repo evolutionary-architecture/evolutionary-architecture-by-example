@@ -1,7 +1,9 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
 
+using ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
+using SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
@@ -21,12 +23,12 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     {
         // Arrange
         var preparedContractId = await PrepareContract();
-        var url = BuildUrl(preparedContractId);
-        var signedAt = GetValidSignedAtDate();
-        var signContractRequest = new SignContractRequestFaker(signedAt);
+        var requestParameters = SignContractRequestParameters.GetValid(preparedContractId);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        var signContractResponse = await _applicationHttpClient.PatchAsJsonAsync(url, signContractRequest);
+        var signContractResponse =
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
@@ -36,16 +38,38 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     public async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
     {
         // Arrange
-        var notExistingId = Guid.NewGuid();
-        var url = BuildUrl(notExistingId);
-        var signedAt = GetValidSignedAtDate();
-        var signContractRequest = new SignContractRequestFaker(signedAt);
+        var requestParameters = SignContractRequestParameters.GetWithNotExistingContractId();
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        var signContractResponse = await _applicationHttpClient.PatchAsJsonAsync(url, signContractRequest);
+        var signContractResponse =
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+    }
+
+    [Fact]
+    public async Task
+        Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict_status_code()
+    {
+        // Arrange
+        var preparedContractId = await PrepareContract();
+        var requestParameters =
+            SignContractRequestParameters.GetWithInvalidSignedAtDate(preparedContractId);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+
+        // Act
+        var signContractResponse =
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+
+        // Assert
+        signContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+
+        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
+        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Message.Should()
+            .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
 
     private async Task<Guid> PrepareContract()
@@ -59,8 +83,4 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
         return preparedContractId;
     }
-
-    private static string BuildUrl(Guid id) => ContractsApiPaths.Sign.Replace("{id}", id.ToString());
-
-    private static DateTimeOffset GetValidSignedAtDate() => DateTimeOffset.Now.AddDays(1).ToUniversalTime();
 }

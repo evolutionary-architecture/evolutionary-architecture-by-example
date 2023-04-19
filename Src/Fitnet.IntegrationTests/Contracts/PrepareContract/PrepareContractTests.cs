@@ -1,5 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
+using ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
@@ -31,5 +32,47 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
+    }
+
+    [Fact]
+    public async Task Given_contract_preparation_request_with_invalid_age_Then_should_return_conflict_status_code()
+    {
+        // Arrange
+        var requestParameters = PrepareContractRequestParameters.GetWithInvalidAge();
+
+        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
+            requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
+
+        // Act
+        var prepareContractResponse =
+            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+
+        // Assert
+        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
+        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Message.Should().Be("Contract can not be prepared for a person who is not adult");
+    }
+
+    [Fact]
+    public async Task Given_contract_preparation_request_with_invalid_height_Then_should_return_conflict_status_code()
+    {
+        // Arrange
+        var requestParameters = PrepareContractRequestParameters.GetWithInvalidHeight();
+
+        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
+            requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
+
+        // Act
+        var prepareContractResponse =
+            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+
+        // Assert
+        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
+        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Message.Should().Be("Customer height must fit maximum limit for gym instruments");
     }
 }

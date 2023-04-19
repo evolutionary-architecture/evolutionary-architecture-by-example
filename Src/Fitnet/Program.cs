@@ -1,4 +1,6 @@
+using SuperSimpleArchitecture.Fitnet;
 using SuperSimpleArchitecture.Fitnet.Contracts;
+using SuperSimpleArchitecture.Fitnet.ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Passes;
 using SuperSimpleArchitecture.Fitnet.Reports;
 using SuperSimpleArchitecture.Fitnet.Shared.Events.EventBus;
@@ -32,6 +34,8 @@ app.UseReports();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseErrorHandling();
 
 app.MapControllers();
 
