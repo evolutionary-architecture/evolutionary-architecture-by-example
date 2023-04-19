@@ -4,7 +4,7 @@ using System.Net;
 using System.Text.Json;
 using Shared.BusinessRulesEngine;
 
-internal class ExceptionMiddleware
+internal sealed class ExceptionMiddleware
 {
     private const string ContentType = "application/json";
     private readonly RequestDelegate _next;
