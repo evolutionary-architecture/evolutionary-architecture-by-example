@@ -1,5 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
 
+using ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 using SuperSimpleArchitecture.Fitnet.Contracts.SignContract;

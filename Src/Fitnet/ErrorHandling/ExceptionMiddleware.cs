@@ -1,8 +1,7 @@
-using System.Text.Json;
-
-namespace SuperSimpleArchitecture.Fitnet;
+namespace SuperSimpleArchitecture.Fitnet.ErrorHandling;
 
 using System.Net;
+using System.Text.Json;
 using Shared.BusinessRulesEngine;
 
 internal class ExceptionMiddleware
