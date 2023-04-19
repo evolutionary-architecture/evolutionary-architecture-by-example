@@ -8,6 +8,7 @@ using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 public class ExceptionMiddlewareTests
 {
     private readonly HttpContext _context;
+    
     public ExceptionMiddlewareTests()
     {
         _context = GetHttpContext();
