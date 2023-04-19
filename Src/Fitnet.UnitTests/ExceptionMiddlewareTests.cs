@@ -9,10 +9,7 @@ public class ExceptionMiddlewareTests
 {
     private readonly HttpContext _context;
     
-    public ExceptionMiddlewareTests()
-    {
-        _context = GetHttpContext();
-    }
+    public ExceptionMiddlewareTests() => _context = GetHttpContext();
     
     [Fact]
     public async Task Given_business_rule_validation_exception_Then_returns_conflict()
