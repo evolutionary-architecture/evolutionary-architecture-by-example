@@ -1,8 +1,8 @@
 using SuperSimpleArchitecture.Fitnet;
 using SuperSimpleArchitecture.Fitnet.Contracts;
-using SuperSimpleArchitecture.Fitnet.ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Passes;
 using SuperSimpleArchitecture.Fitnet.Reports;
+using SuperSimpleArchitecture.Fitnet.Shared.ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Shared.Events.EventBus;
 using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 

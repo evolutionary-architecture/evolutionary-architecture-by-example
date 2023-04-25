@@ -1,8 +1,8 @@
-namespace SuperSimpleArchitecture.Fitnet.ErrorHandling;
+namespace SuperSimpleArchitecture.Fitnet.Shared.ErrorHandling;
 
 using System.Net;
 using System.Text.Json;
-using Shared.BusinessRulesEngine;
+using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
 internal sealed class ExceptionMiddleware
 {

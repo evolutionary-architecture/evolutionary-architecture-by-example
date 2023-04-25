@@ -3,8 +3,8 @@ namespace SuperSimpleArchitecture.Fitnet.UnitTests;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Shared.ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
-using ErrorHandling;
 
 public class ExceptionMiddlewareTests
 {

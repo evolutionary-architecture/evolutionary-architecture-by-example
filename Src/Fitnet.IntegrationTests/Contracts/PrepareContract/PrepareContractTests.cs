@@ -1,10 +1,10 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
-using ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Contracts;
 using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
+using Fitnet.Shared.ErrorHandling;
 
 public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
