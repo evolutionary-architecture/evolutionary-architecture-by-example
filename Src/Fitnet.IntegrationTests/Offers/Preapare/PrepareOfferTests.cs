@@ -20,7 +20,7 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
     }
 
     [Fact]
-    internal async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
+    internal async Task Given_pass_expired_event_published_Then_new_offer_should_be_prepared()
     {
         // Arrange
         var @event = PassExpiredEventFaker.CreateValid();
@@ -30,5 +30,6 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
         await integrationEventHandler.Handle(@event, CancellationToken.None);
 
         // Assert
+        // TODO: Assert that offer prepared event was published
     }
 }

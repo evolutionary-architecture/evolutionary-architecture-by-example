@@ -5,8 +5,6 @@ using Shared.Events;
 
 internal sealed class PassExpiredEventHandler: IIntegrationEventHandler<PassExpiredEvent>
 {
-    public Task Handle(PassExpiredEvent notification, CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
-    }
+    public Task Handle(PassExpiredEvent notification, CancellationToken cancellationToken) => 
+        Task.CompletedTask;
 }
