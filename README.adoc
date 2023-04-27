@@ -21,3 +21,5 @@
 ### Chapter 3: Microservice Extraction
 
 ### Chapter 4: Domain Model
+
+## Technologies and Tools Used
