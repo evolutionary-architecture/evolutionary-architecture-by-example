@@ -6,11 +6,13 @@
 
 ### Proposed Solution
 
-## Repository Structure
+## Domain
 
 ### Overview
 
-### How To Navigate?
+### Subdomains
+
+### Potential Architectural Patterns
 
 ## Chapters
 
