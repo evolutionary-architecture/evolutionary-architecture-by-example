@@ -9,6 +9,21 @@
 ## Domain
 
 ### Overview
+The chosen domain for analysis and implementation is the _Fitness Studio_. It is an area that most of people have an idea of how it works. You can:
+
+- Get an offer
+- Request for a contract
+- Sign the contract
+- Receive a pass (to be able to enter the fitness studio)
+- Attend to fitness classes
+
+and any more.
+
+However, in order to identify the above processes, you usually need to analyse the domain with _Domain Experts_ and break it down into smaller pieces called _Subdomains_. Otherwise, there is a high risk of falling into a big ball of mud where everything is tightly coupled.
+
+At first glance, the domain seems small. And problems of oversimplification of initial assumptions usually arise from this interpretation. There are dozens of processes related to expired passes and renewals, discount policies, VIP access, negative cases (e.g. rejection of the access). We often tend to underestimate the problem.
+
+IMPORTANT: Remember that what we want to show you in this repository is how to handle a domain split into a few example subdomains, and how to prepare building blocks that will allow you to easily extend them to cover all processes. We are not able to cover the entire _Fitness Studio_ domain, as that would probably take us a year (or more) of work. **Do not worry -  we try to show ideas here that are complex enough to be applied to your application.**
 
 ### Subdomains
 
