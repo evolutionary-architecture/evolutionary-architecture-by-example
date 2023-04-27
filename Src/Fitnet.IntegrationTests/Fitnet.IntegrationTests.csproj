@@ -30,14 +30,4 @@
       <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Update="Reports\GenerateNewPassesPerMonthReport\GenerateNewPassesPerMonthReportTests.Given_valid_generate_new_report_request_Then_should_return_correct_data.received.txt">
-        <DependentUpon>GenerateNewPassesPerMonthReportTests.cs</DependentUpon>
-      </None>
-      <None Update="Reports\GenerateNewPassesPerMonthReport\GenerateNewPassesPerMonthReportTests.Given_valid_generate_new_report_request_Then_should_return_correct_data.verified.txt">
-        <ParentFile>GenerateNewPassesPerMonthReportTests</ParentFile>
-        <DependentUpon>GenerateNewPassesPerMonthReportTests.cs</DependentUpon>
-      </None>
-    </ItemGroup>
-
 </Project>
