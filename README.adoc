@@ -22,6 +22,12 @@
 
 ### Chapter 4: Domain Model
 
+## Repository Structure
+
+### Overview
+
+### How To Navigate?
+
 ## Technologies and Tools Used
 
 ## Authors
