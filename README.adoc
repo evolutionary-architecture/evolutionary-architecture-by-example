@@ -26,38 +26,38 @@ At first glance, the domain seems small. And problems of oversimplification of i
 IMPORTANT: Remember that what we want to show you in this repository is how to handle a domain split into a few example subdomains, and how to prepare building blocks that will allow you to easily extend them to cover all processes. We are not able to cover the entire _Fitness Studio_ domain, as that would probably take us a year (or more) of work. **Do not worry -  we try to show ideas here that are complex enough to be applied to your application.**
 
 ### Subdomains
-Now, when you understand on what business domain do we focus, it is a time to split it into smaller pieces called _Subdomains_.
+Now that you understand which business domain we are focusing on, it is time to break it down into smaller pieces called _Subdomains_.
 
-There are many ways to handle it. Our 3 favorites are:
+There are many ways to do this. Our 3 favourites are:
 
 - https://domainstorytelling.org[Domain Storytelling]
 - https://www.eventstorming.com[Event Storming]
 - https://storystorming.com[Story Storming]
 
-In general, it is all about finding processes by discovering the flow. Based on different heuristics, you are able to define the smaller blocks.
+In general, the idea is to find processes by discovering the flow. Based on different heuristics you are able to define the smaller blocks.
 
-After analysis round, we decided to choose following areas for the implementation to show you the idea of _Evolutionary Architecture_:
+After a round of analysis, we decided to choose the following areas for implementation to show you the idea of _Evolutionary Architecture_:
 
 image::Assets/subdomains.jpg[]
 
-As you can imagine, each subdomain covers a lot of different processes. Again, due to a limited time we cannot focus on each and every aspect. That is why we selected following actions for each subdomain:
+As you can imagine, each subdomain covers a lot of different processes. Again, due to time constraints, we cannot focus on every single aspect. Therefore, we have chosen the following actions for each subdomain:
 
 image::Assets/subdomains_processes.jpg[]
 
-There are in total 6 different processes in 4 different subdomains. There is one problem here - these subdomains do not communicate with each other and this is one of the most common problems that we have in our applications. Therefore, we decided to complicate it a bit and add some communication:
+There are 6 different processes in 4 different subdomains. There is a problem here - these subdomains do not communicate with each other and this is one of the most common problems we have in our applications. So we decided to complicate things a bit and add some communication:
 
 image::Assets//subdomains_communication.jpg[]
 
 There are 2 triggers:
 
-- when contract is signed by you (a customer), then the new pass is registered to allow you to enter the fitness studio
-- when contract is expired, then the new offer is prepared (that will be send to you as a customer)
+- when the contract is signed by you (a customer), then the new pass is registered to allow you to enter the fitness studio
+- when the contract expires, then the new offer is prepared (which will be sent to you as a customer)
 
 This way we are almost ready to start the implementation.
 
-One more thing to mention - in our example, each subdomain is going to be a separate _Bounded Context_.
+One more thing to mention - in our example, each subdomain is will be a separate _Bounded Context_.
 
-IMPORTANT: It is worth to mention that there might be a situation where several subdomains will create one _Bounded Context_. We look deeper at it in chapter 4, where we introduce a domain model.
+IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. We will look at this in more detail in Chapter 4, where we introduce a domain model.
 
 ### Potential Architectural Patterns
 Before you decide to start coding, it is worth to look at your analysis and division one more time and check the complexity of each (it will be mainly defined by the amount of processes and its business rules/policies). Let's take a look at below examples.
