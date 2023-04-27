@@ -11,3 +11,13 @@
 ### Overview
 
 ### How To Navigate?
+
+## Chapters
+
+### Chapter 1: Initial Architecture
+
+### Chapter 2: Projects Separation
+
+### Chapter 3: Microservice Extraction
+
+### Chapter 4: Domain Model
