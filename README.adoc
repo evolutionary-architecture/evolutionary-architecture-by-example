@@ -79,7 +79,7 @@ NOTE: _Active Record_ is an architectural pattern that rationalises the persiste
 
 image::Assets/subdomain_offers_logic.jpg[]
 
-The story here is similar to the _Passes_ module. There is no business logic, only the fact that the pass is expiring.
+The story here is similar to _Passes_. There is no business logic, only the fact that the pass is expiring.
 
 #### Contracts
 
@@ -90,7 +90,7 @@ This is the place where the fun begins. There are 3 business rules:
 - in the process of contract preparation, it is only allowed if the customer is an adult AND smaller than the maximum height allowed (210 cm)
 - in the contract signing process, it is only allowed if it is signed within 30 days of the contract being created, otherwise the contract has to be created from scratch
 
-In addition, the potential for new business rules being applied to the above processes or other actions is quite high. Here the warning bell should go off - this module has a really high potential to become more and more complex, so it might be a good candidate for a _Domain Model_.
+In addition, the potential for new business rules being applied to the above processes or other actions is quite high. Here the warning bell should go off - this has a really high potential to become more and more complex, so it might be a good candidate for a _Domain Model_.
 
 NOTE: _Domain Model_ is a widely used architectural pattern in software engineering that encapsulates the concepts and behaviours of a particular problem domain. This representation is designed to mimic the structure and functionality of the real-world system. The domain model pattern is particularly well known for its ability to handle complex business logic by providing a rich, object-oriented representation of the problem domain.
 
@@ -98,7 +98,7 @@ NOTE: _Domain Model_ is a widely used architectural pattern in software engineer
 
 image::Assets/subdomain_reports.jpg[]
 
-In this module the case is really simple. The only thing that we want to do is to get the information about passes that have been registered in each month. 
+In this are the case is really simple. The only thing that we want to do is to get the information about passes that have been registered in each month. 
 
 There is no business logic and there is also no need to have an object representation of the data retrieved. This is a perfect candidate for a _Transaction Script_.
 
