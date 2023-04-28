@@ -1,0 +1,35 @@
+# Evolutionary Architecture
+
+## Objective
+
+### Problem
+
+### Proposed Solution
+
+## Domain
+
+### Overview
+
+### Subdomains
+
+### Potential Architectural Patterns
+
+## Chapters
+
+### Chapter 1: Initial Architecture
+
+### Chapter 2: Projects Separation
+
+### Chapter 3: Microservice Extraction
+
+### Chapter 4: Domain Model
+
+## Repository Structure
+
+### Overview
+
+### How To Navigate?
+
+## Technologies and Tools Used
+
+## Authors
