@@ -51,7 +51,7 @@ image::Assets//subdomains_communication.jpg[]
 There are 2 triggers:
 
 - when the contract is signed by you (a customer), then the new pass is registered to allow you to enter the fitness studio
-- when the contract expires, then the new offer is prepared (which will be sent to you as a customer)
+- when the pass expires, then the new offer is prepared (which will be sent to you as a customer)
 
 This way we are almost ready to start the implementation.
 
