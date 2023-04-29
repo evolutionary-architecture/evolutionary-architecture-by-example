@@ -1,4 +1,5 @@
 # Evolutionary Architecture
+Maciej "MJ" Jedrzejewski; Kamil Baczek
 
 ## Objective
 
