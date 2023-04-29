@@ -1,3 +1,3 @@
 namespace SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
 
-public record SignContractRequest(DateTimeOffset SignedAt);
+public sealed record SignContractRequest(DateTimeOffset SignedAt);

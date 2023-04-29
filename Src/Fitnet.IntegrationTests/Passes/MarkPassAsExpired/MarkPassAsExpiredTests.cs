@@ -23,7 +23,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
             .CreateClient();
 
     [Fact]
-    public async Task Given_valid_mark_pass_as_expired_request_Then_should_return_no_content()
+    internal async Task Given_valid_mark_pass_as_expired_request_Then_should_return_no_content()
     {
         // Arrange
         var registeredPassId = await RegisterPass();
@@ -37,7 +37,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     }
     
     [Fact]
-    public async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
+    internal async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
     {
         // Arrange
         var registeredPassId = await RegisterPass();
@@ -51,7 +51,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     }
     
     [Fact]
-    public async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_not_found()
+    internal async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_not_found()
     {
         // Arrange
         var notExistingId = Guid.NewGuid();

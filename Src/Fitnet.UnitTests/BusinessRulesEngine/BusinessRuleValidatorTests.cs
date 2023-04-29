@@ -5,7 +5,7 @@ namespace SuperSimpleArchitecture.Fitnet.UnitTests.BusinessRulesEngine;
 public sealed class BusinessRuleValidatorTests
 {
     [Fact]
-    public void Given_concrete_business_rule_which_is_met_Then_validation_should_pass()
+    internal void Given_concrete_business_rule_which_is_met_Then_validation_should_pass()
     {
         // Arrange
 
@@ -17,7 +17,7 @@ public sealed class BusinessRuleValidatorTests
     }
     
     [Fact]
-    public void Given_concrete_business_rule_which_is_not_met_Then_validation_should_throw()
+    internal void Given_concrete_business_rule_which_is_not_met_Then_validation_should_throw()
     {
         // Arrange
         

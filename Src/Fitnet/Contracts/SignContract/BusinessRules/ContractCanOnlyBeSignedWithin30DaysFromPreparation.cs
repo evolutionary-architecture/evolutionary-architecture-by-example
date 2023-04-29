@@ -2,7 +2,7 @@ namespace SuperSimpleArchitecture.Fitnet.Contracts.SignContract.BusinessRules;
 
 using Shared.BusinessRulesEngine;
 
-internal class ContractCanOnlyBeSignedWithin30DaysFromPreparation : IBusinessRule
+internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparation : IBusinessRule
 {
     private readonly DateTimeOffset _preparedAt;
     private readonly DateTimeOffset _signedAt;

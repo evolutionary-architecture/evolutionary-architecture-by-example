@@ -19,7 +19,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
             .CreateClient();
 
     [Fact]
-    public async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
+    internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
     {
         // Arrange
         var preparedContractId = await PrepareContract();
@@ -35,7 +35,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     }
     
     [Fact]
-    public async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
+    internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
     {
         // Arrange
         var requestParameters = SignContractRequestParameters.GetWithNotExistingContractId();
@@ -50,7 +50,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     }
 
     [Fact]
-    public async Task
+    internal async Task
         Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict_status_code()
     {
         // Arrange

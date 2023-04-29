@@ -6,7 +6,7 @@ using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
 {
     [Fact]
-    public void Given_signed_at_date_which_is_more_than_30_days_from_prepared_at_date_Then_validation_should_throw()
+    internal void Given_signed_at_date_which_is_more_than_30_days_from_prepared_at_date_Then_validation_should_throw()
     {
         // Arrange
         
@@ -22,7 +22,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
     }
     
     [Fact]
-    public void Given_signed_at_date_which_is_30_days_from_prepared_at_date_Then_validation_should_pass()
+    internal void Given_signed_at_date_which_is_30_days_from_prepared_at_date_Then_validation_should_pass()
     {
         // Arrange
 
@@ -37,7 +37,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
     }
     
     [Fact]
-    public void Given_signed_at_date_which_is_less_than_30_days_from_prepared_at_date_Then_validation_should_pass()
+    internal void Given_signed_at_date_which_is_less_than_30_days_from_prepared_at_date_Then_validation_should_pass()
     {
         // Arrange
 

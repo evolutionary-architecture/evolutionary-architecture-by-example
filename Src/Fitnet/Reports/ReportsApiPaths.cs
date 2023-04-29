@@ -1,7 +1,7 @@
 namespace SuperSimpleArchitecture.Fitnet.Reports;
 
-public static class ReportsApiPaths
+internal static class ReportsApiPaths
 {
     private const string Reports = $"{ApiPaths.Root}/reports";
-    public const string GenerateNewReport = $"{Reports}/generate";
+    internal const string GenerateNewReport = $"{Reports}/generate";
 }

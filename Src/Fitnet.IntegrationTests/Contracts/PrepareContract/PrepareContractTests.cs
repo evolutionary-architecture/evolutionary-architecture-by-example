@@ -18,7 +18,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
             .CreateClient();
 
     [Fact]
-    public async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
+    internal async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetValid();
@@ -35,7 +35,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
     }
 
     [Fact]
-    public async Task Given_contract_preparation_request_with_invalid_age_Then_should_return_conflict_status_code()
+    internal async Task Given_contract_preparation_request_with_invalid_age_Then_should_return_conflict_status_code()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetWithInvalidAge();
@@ -56,7 +56,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
     }
 
     [Fact]
-    public async Task Given_contract_preparation_request_with_invalid_height_Then_should_return_conflict_status_code()
+    internal async Task Given_contract_preparation_request_with_invalid_height_Then_should_return_conflict_status_code()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetWithInvalidHeight();

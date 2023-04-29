@@ -1,10 +1,10 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesRegistrationsPerMonthReport;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
-using Fitnet.Reports;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes;
 using Fitnet.Passes.RegisterPass;
+using Fitnet.Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using GenerateNewPassesRegistrationsPerMonthReport;
 using GenerateNewPassesRegistrationsPerMonthReport.TestData;
@@ -23,7 +23,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
     [Theory]
     [ClassData(typeof(ReportTestCases))]
-    public async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
+    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
     {
         // Arrange
         await RegisterPasses(passRegistrationDateRanges);

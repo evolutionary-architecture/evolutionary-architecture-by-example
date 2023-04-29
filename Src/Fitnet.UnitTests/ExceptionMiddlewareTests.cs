@@ -6,14 +6,14 @@ using Newtonsoft.Json;
 using Shared.ErrorHandling;
 using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
-public class ExceptionMiddlewareTests
+public sealed class ExceptionMiddlewareTests
 {
     private readonly HttpContext _context;
     
     public ExceptionMiddlewareTests() => _context = GetHttpContext();
     
     [Fact]
-    public async Task Given_business_rule_validation_exception_Then_returns_conflict()
+    internal async Task Given_business_rule_validation_exception_Then_returns_conflict()
     {
         // Arrange
         const string exceptionMessage = "Business rule not met";
@@ -31,7 +31,7 @@ public class ExceptionMiddlewareTests
     }
     
     [Fact]
-    public async Task Given_other_than_business_rule_validation_exception_Then_returns_internal_server_error()
+    internal async Task Given_other_than_business_rule_validation_exception_Then_returns_internal_server_error()
     {
         // Arrange
         const string exceptionMessage = "Some exception";
@@ -48,17 +48,15 @@ public class ExceptionMiddlewareTests
         responseMessage.Should().Be(exceptionMessage);
     }
     
-    private static HttpContext GetHttpContext()
-    {
-        return new DefaultHttpContext
+    private static HttpContext GetHttpContext() =>
+        new DefaultHttpContext
         {
             Response =
             {
                 Body = new MemoryStream()
             }
         };
-    }
-    
+
     private async Task<string> GetExceptionResponseMessage()
     {
         _context.Response.Body.Seek(0, SeekOrigin.Begin);

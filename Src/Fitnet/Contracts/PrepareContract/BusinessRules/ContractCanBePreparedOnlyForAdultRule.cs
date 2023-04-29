@@ -2,13 +2,11 @@ namespace SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules
 
 using Shared.BusinessRulesEngine;
 
-internal class ContractCanBePreparedOnlyForAdultRule : IBusinessRule
+internal sealed class ContractCanBePreparedOnlyForAdultRule : IBusinessRule
 {
     private readonly int _age;
-    internal ContractCanBePreparedOnlyForAdultRule(int age)
-    {
-        _age = age;
-    }
+    
+    internal ContractCanBePreparedOnlyForAdultRule(int age) => _age = age;
 
     public bool IsMet() => _age >= 18;
 

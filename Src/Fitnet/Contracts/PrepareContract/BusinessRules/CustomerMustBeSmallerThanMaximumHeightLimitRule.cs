@@ -2,15 +2,13 @@ namespace SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules
 
 using Shared.BusinessRulesEngine;
 
-internal class CustomerMustBeSmallerThanMaximumHeightLimitRule : IBusinessRule
+internal sealed class CustomerMustBeSmallerThanMaximumHeightLimitRule : IBusinessRule
 {
     private const int MAXIMUM_HEIGHT = 210;
     
     private readonly int _height;
-    internal CustomerMustBeSmallerThanMaximumHeightLimitRule(int height)
-    {
-        _height = height;
-    }
+   
+    internal CustomerMustBeSmallerThanMaximumHeightLimitRule(int height) => _height = height;
 
     public bool IsMet() => _height <= MAXIMUM_HEIGHT;
 

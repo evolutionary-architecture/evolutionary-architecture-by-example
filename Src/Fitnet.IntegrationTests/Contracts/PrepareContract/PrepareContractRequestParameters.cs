@@ -1,6 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
-internal record PrepareContractRequestParameters(int MinAge, int MaxAge, int MinHeight, int MaxHeight)
+internal sealed record PrepareContractRequestParameters(int MinAge, int MaxAge, int MinHeight, int MaxHeight)
 {
     private const int _minAge = 18;
     private const int _maxAge = 100;
@@ -15,4 +15,3 @@ internal record PrepareContractRequestParameters(int MinAge, int MaxAge, int Min
     internal static PrepareContractRequestParameters GetWithInvalidHeight() =>
         new(_minAge, _maxAge, _maxHeight + 1, _maxHeight + 1);
 }
-    

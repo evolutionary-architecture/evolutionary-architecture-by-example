@@ -6,7 +6,7 @@ using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests
 {
     [Fact]
-    public void Given_customer_age_which_is_less_than_18_Then_validation_should_throw()
+    internal void Given_customer_age_which_is_less_than_18_Then_validation_should_throw()
     {
         // Arrange
         
@@ -18,7 +18,7 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
     }
     
     [Fact]
-    public void Given_customer_age_which_is_equal_to_18_Then_validation_should_pass()
+    internal void Given_customer_age_which_is_equal_to_18_Then_validation_should_pass()
     {
         // Arrange
 
@@ -30,7 +30,7 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
     }
     
     [Fact]
-    public void Given_customer_age_which_is_greater_than_18_Then_validation_should_pass()
+    internal void Given_customer_age_which_is_greater_than_18_Then_validation_should_pass()
     {
         // Arrange
 

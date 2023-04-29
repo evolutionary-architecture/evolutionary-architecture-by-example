@@ -1,6 +1,6 @@
 namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 
-public record NewPassesRegistrationsPerMonthResponse(IReadOnlyCollection<NewPassesRegistrationsPerMonthDto> PassesRegistrationsPerMonth)
+public sealed record NewPassesRegistrationsPerMonthResponse(IReadOnlyCollection<NewPassesRegistrationsPerMonthDto> PassesRegistrationsPerMonth)
 {
     internal static NewPassesRegistrationsPerMonthResponse Create(IReadOnlyCollection<NewPassesRegistrationsPerMonthDto> passesRegistrationsPerMonth) => new(passesRegistrationsPerMonth);
 }

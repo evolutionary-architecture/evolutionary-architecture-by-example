@@ -16,7 +16,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
             .CreateClient();
 
     [Fact]
-    public async Task Given_valid_pass_registration_request_Then_should_return_created_status_code()
+    internal async Task Given_valid_pass_registration_request_Then_should_return_created_status_code()
     {
         // Arrange
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();

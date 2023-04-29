@@ -6,7 +6,7 @@ using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
 {
     [Fact]
-    public void Given_customer_height_which_is_greater_than_maximum_height_limit_Then_validation_should_throw()
+    internal void Given_customer_height_which_is_greater_than_maximum_height_limit_Then_validation_should_throw()
     {
         // Arrange
         const int height = 211;
@@ -19,7 +19,7 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
     }
     
     [Fact]
-    public void Given_customer_height_which_is_equal_to_maximum_height_limit_Then_validation_should_pass()
+    internal void Given_customer_height_which_is_equal_to_maximum_height_limit_Then_validation_should_pass()
     {
         // Arrange
         const int height = 210;
@@ -32,7 +32,7 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
     }
     
     [Fact]
-    public void Given_customer_height_which_is_less_than_maximum_height_limit_Then_validation_should_pass()
+    internal void Given_customer_height_which_is_less_than_maximum_height_limit_Then_validation_should_pass()
     {
         // Arrange
         const int height = 209;

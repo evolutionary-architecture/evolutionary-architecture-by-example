@@ -1,3 +1,3 @@
 namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 
-public record NewPassesRegistrationsPerMonthDto(int MonthOrder, string MonthName, long RegisteredPasses);
+public sealed record NewPassesRegistrationsPerMonthDto(int MonthOrder, string MonthName, long RegisteredPasses);

@@ -4,7 +4,7 @@ using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
 
 internal sealed class PrepareContractRequestFaker : Faker<PrepareContractRequest>
 {
-    public PrepareContractRequestFaker(int minAge, int maxAge, int minHeight, int maxHeight)
+    internal PrepareContractRequestFaker(int minAge, int maxAge, int minHeight, int maxHeight)
     {
         CustomInstantiator(faker =>
             new PrepareContractRequest(
