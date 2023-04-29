@@ -5,6 +5,20 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
 ## Objective
 
 ### Problem
+There are many repositories that describe software and solution architecture in .NET. As there is no single definition of software architecture, they combine several topics:
+
+- Modular Monolith
+- Microservices
+- Domain-Driven Design
+- Clean, Onion, Hexagonal Architecture
+
+as if each of the above were the only possible solution. And that is the problem - it is very rare that any single material shows you a concrete decision path or mix of the above approaches.
+
+Often the examples you find are either too trivial or too complex. Sometimes they are harmful because they misunderstand different concepts. As a result, it is very difficult to take just one and follow some patterns for your own application.
+
+_It depends_ - one of the most overused phrases. Well, it always depends on something, but there are always heuristics to help you decide.
+
+In summary, if you are looking for a journey - not just a single article describing a solution - look no further. It starts here, in this repo.
 
 ### Proposed Solution
 
