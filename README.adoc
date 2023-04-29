@@ -9,10 +9,105 @@
 ## Domain
 
 ### Overview
+The chosen domain for analysis and implementation is the _Fitness Studio_. It is an area that most of people have an idea of how it works. You can:
+
+- Get an offer
+- Request for a contract
+- Sign the contract
+- Receive a pass (to be able to enter the fitness studio)
+- Attend to fitness classes
+
+and any more.
+
+However, in order to identify the above processes, you usually need to analyse the domain with _Domain Experts_ and break it down into smaller pieces called _Subdomains_. Otherwise, there is a high risk of falling into a big ball of mud where everything is tightly coupled.
+
+At first glance, the domain seems small. And problems of oversimplification of initial assumptions usually arise from this interpretation. There are dozens of processes related to expired passes and renewals, discount policies, VIP access, negative cases (e.g. rejection of the access). We often tend to underestimate the problem.
+
+IMPORTANT: Remember that what we want to show you in this repository is how to handle a domain split into a few example subdomains, and how to prepare building blocks that will allow you to easily extend them to cover all processes. We are not able to cover the entire _Fitness Studio_ domain, as that would probably take us a year (or more) of work. **Do not worry -  we try to show ideas here that are complex enough to be applied to your application.**
 
 ### Subdomains
+Now that you understand which business domain we are focusing on, it is time to break it down into smaller pieces called _Subdomains_.
+
+There are many ways to do this. Our 3 favourites are:
+
+- https://domainstorytelling.org[Domain Storytelling]
+- https://www.eventstorming.com[Event Storming]
+- https://storystorming.com[Story Storming]
+
+In general, the idea is to find processes by discovering the flow. Based on different heuristics you are able to define the smaller blocks.
+
+After a round of analysis, we decided to choose the following areas for implementation to show you the idea of _Evolutionary Architecture_:
+
+image::Assets/subdomains.jpg[]
+
+As you can imagine, each subdomain covers a lot of different processes. Again, due to time constraints, we cannot focus on every single aspect. Therefore, we have chosen the following actions for each subdomain:
+
+image::Assets/subdomains_processes.jpg[]
+
+There are 6 different processes in 4 different subdomains. There is a problem here - these subdomains do not communicate with each other and this is one of the most common problems we have in our applications. So we decided to complicate things a bit and add some communication:
+
+image::Assets//subdomains_communication.jpg[]
+
+There are 2 triggers:
+
+- when the contract is signed by you (a customer), then the new pass is registered to allow you to enter the fitness studio
+- when the pass expires, then the new offer is prepared (which will be sent to you as a customer)
+
+This way we are almost ready to start the implementation.
+
+One more thing to mention - in our example, each subdomain is will be a separate _Bounded Context_.
+
+IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. We will look at this in more detail in Chapter 4, where we introduce a domain model.
 
 ### Potential Architectural Patterns
+Before you decide to start coding, it is worth to look at your analysis and division one more time and check the complexity of each (it will be mainly defined by the amount of processes and its business rules/policies). Let's take a look at below examples.
+
+#### Passes
+
+image::Assets/subdomain_passes_logic.jpg[]
+
+There is no business logic:
+
+- in the pass registration process, it is only informed that the contract has been signed
+- In the pass expiry process, it is only informed that the pass expiry date has been reached.
+
+In addition, the potential for new business rules to be applied to the above processes or other actions is rather low. As it looks like a perfect candidate for CRUD operations, we want to mark it as a candidate to become an _Active Record_.
+
+NOTE: _Active Record_ is an architectural pattern that rationalises the persistence layer in an application. It encapsulates the idea that a database record is an object in the application, with properties that map to the columns of the database table. Each instance of an Active Record class represents a particular row in a database table.
+
+#### Offers
+
+image::Assets/subdomain_offers_logic.jpg[]
+
+The story here is similar to _Passes_. There is no business logic, only the fact that the pass is expiring.
+
+#### Contracts
+
+image::Assets//subdomain_contracts_logic.jpg[]
+
+This is the place where the fun begins. There are 3 business rules:
+
+- in the process of contract preparation, it is only allowed if the customer is an adult AND smaller than the maximum height allowed (210 cm)
+- in the contract signing process, it is only allowed if it is signed within 30 days of the contract being created, otherwise the contract has to be created from scratch
+
+In addition, the potential for new business rules being applied to the above processes or other actions is quite high. Here the warning bell should go off - this has a really high potential to become more and more complex, so it might be a good candidate for a _Domain Model_.
+
+NOTE: _Domain Model_ is a widely used architectural pattern in software engineering that encapsulates the concepts and behaviours of a particular problem domain. This representation is designed to mimic the structure and functionality of the real-world system. The domain model pattern is particularly well known for its ability to handle complex business logic by providing a rich, object-oriented representation of the problem domain.
+
+#### Reports
+
+image::Assets/subdomain_reports.jpg[]
+
+In this are the case is really simple. The only thing that we want to do is to get the information about passes that have been registered in each month. 
+
+There is no business logic and there is also no need to have an object representation of the data retrieved. This is a perfect candidate for a _Transaction Script_.
+
+NOTE: _Transaction Script_ is an architectural pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
+
+#### Summary
+After deeper thinking about our subdomains, we decided for following architectural patterns that will be applied in one of 4 chapters:
+
+image::Assets/subdomains_architectural_patterns.jpg[]
 
 ## Chapters
 
