@@ -13,7 +13,7 @@ internal sealed class PassExpiredEventHandler: IIntegrationEventHandler<PassExpi
 
     public async Task Handle(PassExpiredEvent @event, CancellationToken cancellationToken)
     {
-        var offerPreparedEvent = OfferPreparedEvent.Create(@event.PassId);
+        var offerPreparedEvent = OfferPrepareEvent.Create(@event.PassId);
         await _eventBus.PublishAsync(offerPreparedEvent, cancellationToken);
     }
 }

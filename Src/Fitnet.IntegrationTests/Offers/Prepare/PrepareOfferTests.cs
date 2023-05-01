@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Offers.Preapare;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
@@ -37,5 +37,5 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
         EnsureThatOfferPreparedEventWasPublished();
     }
     
-    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<OfferPreparedEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<OfferPrepareEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 }

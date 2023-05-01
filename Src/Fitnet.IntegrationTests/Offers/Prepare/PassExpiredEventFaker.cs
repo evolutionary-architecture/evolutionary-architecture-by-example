@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Offers.Preapare;
+namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
 using SuperSimpleArchitecture.Fitnet.Passes.MarkPassAsExpired.Events;
 
