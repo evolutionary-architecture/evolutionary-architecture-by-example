@@ -9,7 +9,8 @@ internal static class WebApplicationFactoryExtensions
         this WebApplicationFactory<Program> applicationInMemoryFactory)
         where TIntegrationEvent : IIntegrationEvent
     {
-        var integrationEventConsumer = applicationInMemoryFactory.Services.GetRequiredService<INotificationHandler<TIntegrationEvent>>();
+        var integrationEventConsumer =
+            applicationInMemoryFactory.Services.GetRequiredService<INotificationHandler<TIntegrationEvent>>();
 
         return (IIntegrationEventHandler<TIntegrationEvent>)integrationEventConsumer;
     }
