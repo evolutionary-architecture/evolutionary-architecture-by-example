@@ -33,10 +33,10 @@ Our solution should be read like a story and is divided into 4 chapters:
 
 In each chapter we describe the evolution of the architecture of a selected domain:
 
-- Starting with a simple solution architecture that meets early production needs, where modules are separated in their own namespaces and communication is handled by an in-memory queue.
-- Moving to module separation with the structure of multiple projects associated with each module (including CQRS).
-- Continue with the single module extraction to a microservice and add the message queue component.
-- Refactoring the architectural pattern of one of the modules to a domain model (using Domain-Driven Design).
+- Starting with a simple solution architecture that meets early production needs, where modules are separated in their own namespaces and communication is handled by an in-memory queue
+- Moving to module separation with the structure of multiple projects associated with each module (including CQRS)
+- Continue with the single module extraction to a microservice and add the message queue component
+- Refactoring the architectural pattern of one of the modules to a domain model (using Domain-Driven Design)
 
 We apply everything we have learned over many years of software development - our goal is to help you avoid making the same mistakes we have. This way you can be sure that your architecture will not be too trivial for too long, or too complex from the start. Treat it as a guide, something you can come back to as often as you like.
 
@@ -58,7 +58,7 @@ What we do not focus on:
 - Frontend (you can use React, Vue, Angular, Svelte or anything else)
 - Logging (you can use https://serilog.net/[Serilog])
 - Request validation (you can use https://docs.fluentvalidation.net/en/latest[Fluent Validation])
-- Contract testing (you can use https://github.com/VerifyTests/Verify[Verify])
+- Contract testing (you can use https://github.com/pact-foundation/pact-net[Pact Net])
 - Static code analysis (you can use https://github.com/dotnet/roslyn-analyzers[Roslyn Analyzers] and/or https://www.sonarsource.com/products/sonarqube[SonarQube])
 
 so that you get the gist of what we have to share with you.
