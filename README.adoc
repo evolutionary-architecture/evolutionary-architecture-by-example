@@ -25,13 +25,20 @@ Our solution should be read like a story and is divided into 4 chapters:
 
 **Chapter 1:** Initial architecture
 
-**Chapter 2:** Projects Separation
+**Chapter 2:** Modules Separation
 
 **Chapter 3:** Microservice Extraction
 
 **Chapter 4:** Domain Model
 
-In each chapter we describe the evolution of the architecture of a selected domain. We apply everything we have learned over many years of software development - our goal is to help you avoid making the same mistakes we have. This way you can be sure that your architecture will not be too trivial for too long, or too complex from the start. Treat it as a guide, something you can come back to as often as you like.
+In each chapter we describe the evolution of the architecture of a selected domain:
+
+- Starting with a simple solution architecture that meets early production needs, where modules are separated in their own namespaces and communication is handled by an in-memory queue.
+- Moving to module separation with the structure of multiple projects associated with each module (including CQRS).
+- Continue with the single module extraction to a microservice and add the message queue component.
+- Refactoring the architectural pattern of one of the modules to a domain model (using Domain-Driven Design).
+
+We apply everything we have learned over many years of software development - our goal is to help you avoid making the same mistakes we have. This way you can be sure that your architecture will not be too trivial for too long, or too complex from the start. Treat it as a guide, something you can come back to as often as you like.
 
 What we focus on:
 
