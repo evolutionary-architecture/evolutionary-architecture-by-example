@@ -216,6 +216,20 @@ Here you will learn about various concepts that are important from a microservic
 
 ### Chapter 4: Domain Model
 
+At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point. We want to show you that it is always possible, no matter where you are today. 
+
+You do not have to start from scratch if you do not know your business domain. And you do not need to apply all the concepts of Domain Driven Design to get good results. 
+
+Interesting fact - if you have done a proper analysis of your business domain in the beginning (Event Storming, Domain Storytelling, Story Storming or some other method) and have already broken it down into different sub-domains (and combined them into e.g. a module), then you are almost done from a strategic Domain-Driven Design perspective. Cool? Absolutely cool!
+
+Here we focus mainly on tactical DDD and describe
+
+- value objects
+- entities
+- aggregates
+
+You will also find some tips for the next steps.
+
 ## Repository Structure
 
 ### Overview
