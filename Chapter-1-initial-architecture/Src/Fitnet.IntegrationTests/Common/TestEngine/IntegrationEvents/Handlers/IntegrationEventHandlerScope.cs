@@ -11,7 +11,7 @@ internal sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposa
     public IntegrationEventHandlerScope(WebApplicationFactory<Program> applicationInMemoryFactory)
     {
         _serviceScope = applicationInMemoryFactory.Services.CreateScope();
-        IntegrationEventHandler = _serviceScope.ServiceProvider.GetRequiredService<IIntegrationEventHandler<TIntegrationEvent>>();
+        IntegrationEventHandler = (IIntegrationEventHandler<TIntegrationEvent>)_serviceScope.ServiceProvider.GetRequiredService<INotificationHandler<TIntegrationEvent>>();
     }
 
     public void Dispose() => 
