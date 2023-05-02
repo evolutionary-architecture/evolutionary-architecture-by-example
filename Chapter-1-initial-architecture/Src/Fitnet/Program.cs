@@ -1,10 +1,11 @@
-using EvolutionaryArchitecture.Fitnet;
-using EvolutionaryArchitecture.Fitnet.Contracts;
-using EvolutionaryArchitecture.Fitnet.Passes;
-using EvolutionaryArchitecture.Fitnet.Reports;
-using EvolutionaryArchitecture.Fitnet.Shared.ErrorHandling;
-using EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Shared.SystemClock;
+using SuperSimpleArchitecture.Fitnet;
+using SuperSimpleArchitecture.Fitnet.Contracts;
+using SuperSimpleArchitecture.Fitnet.Offers;
+using SuperSimpleArchitecture.Fitnet.Passes;
+using SuperSimpleArchitecture.Fitnet.Reports;
+using SuperSimpleArchitecture.Fitnet.Shared.ErrorHandling;
+using SuperSimpleArchitecture.Fitnet.Shared.Events.EventBus;
+using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddEventBus();
 
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
+builder.Services.AddOffers(builder.Configuration);
 builder.Services.AddReports();
 
 var app = builder.Build();
@@ -30,6 +32,7 @@ if (app.Environment.IsDevelopment())
 app.UsePasses();
 app.UseContracts();
 app.UseReports();
+app.UseOffers();
     
 app.UseHttpsRedirection();
 
@@ -45,7 +48,7 @@ app.MapReports();
 
 app.Run();
 
-namespace EvolutionaryArchitecture.Fitnet
+namespace SuperSimpleArchitecture.Fitnet
 {
     [UsedImplicitly]
     public sealed class Program

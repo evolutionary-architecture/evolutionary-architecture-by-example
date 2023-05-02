@@ -5,22 +5,27 @@ using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Offers.Prepare;
 using Fitnet.Passes.MarkPassAsExpired.Events;
+using Fitnet.Shared.Events;
 using Fitnet.Shared.Events.EventBus;
 
 public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Program>>,
-    IClassFixture<DatabaseContainer>
+    IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
-    private readonly WebApplicationFactory<Program> _applicationInMemory;
+    private readonly IntegrationEventHandlerScope _integrationEventHandlerScope;
+    private readonly IIntegrationEventHandler<PassExpiredEvent> _integrationEventHandler;
+
     private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public PrepareOfferTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
-        _applicationInMemory = applicationInMemoryFactory
+        var applicationInMemory = applicationInMemoryFactory
             .WithFakeEventBus(_fakeEventBus)
             .WithContainerDatabaseConfigured(database.ConnectionString!);
 
-        _applicationInMemory.CreateClient();
+        applicationInMemory.CreateClient();
+        _integrationEventHandlerScope = new IntegrationEventHandlerScope(applicationInMemory);
+        _integrationEventHandler = _integrationEventHandlerScope.GetIntegrationEventHandler<PassExpiredEvent>();
     }
 
     [Fact]
@@ -28,14 +33,22 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
     {
         // Arrange
         var @event = PassExpiredEventFaker.CreateValid();
-        var integrationEventHandler = _applicationInMemory.GetIntegrationEventHandler<PassExpiredEvent>();
-        
+       
         // Act
-        await integrationEventHandler.Handle(@event, CancellationToken.None);
-
+        await _integrationEventHandler.Handle(@event, CancellationToken.None);
+         
         // Assert
         EnsureThatOfferPreparedEventWasPublished();
     }
     
     private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<OfferPrepareEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    
+    public async Task InitializeAsync() => 
+        await Task.CompletedTask;
+    
+    public async Task DisposeAsync()
+    {
+        _integrationEventHandlerScope.Dispose();
+        await Task.CompletedTask;
+    }
 }

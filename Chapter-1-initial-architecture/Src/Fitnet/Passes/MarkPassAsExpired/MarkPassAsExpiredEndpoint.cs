@@ -23,7 +23,7 @@ internal static class MarkPassAsExpiredEndpoint
 
                 pass.MarkAsExpired(systemClock.Now);
                 await persistence.SaveChangesAsync(cancellationToken);
-                await eventBus.PublishAsync(PassExpiredEvent.Create(pass.Id), cancellationToken);
+                await eventBus.PublishAsync(PassExpiredEvent.Create(pass.Id, pass.CustomerId), cancellationToken);
 
                 return Results.NoContent();
             });

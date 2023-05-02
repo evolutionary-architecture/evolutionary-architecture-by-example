@@ -10,6 +10,7 @@ internal sealed class PassExpiredEventFaker : Faker<PassExpiredEvent>
             new PassExpiredEvent(
                 Guid.NewGuid(),
                 Guid.NewGuid(),
+                Guid.NewGuid(),
                 faker.Date.RecentOffset()
             )
         );
