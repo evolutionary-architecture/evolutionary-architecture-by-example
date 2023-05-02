@@ -11,7 +11,7 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
 {
     private readonly Mock<IEventBus> _fakeEventBus = new();
     private readonly WebApplicationFactory<Program> _applicationInMemory;
-    
+
     public PrepareOfferTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
@@ -29,13 +29,13 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
         using var integrationEventHandlerScope = new IntegrationEventHandlerScope<PassExpiredEvent>(_applicationInMemory);
         var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
         var @event = PassExpiredEventFaker.CreateValid();
-       
+
         // Act
         await integrationEventHandler.Handle(@event, CancellationToken.None);
-         
+
         // Assert
         EnsureThatOfferPreparedEventWasPublished();
     }
-    
+
     private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<OfferPrepareEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 }
