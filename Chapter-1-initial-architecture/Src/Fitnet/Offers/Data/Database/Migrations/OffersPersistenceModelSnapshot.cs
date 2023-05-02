@@ -10,7 +10,10 @@ using SuperSimpleArchitecture.Fitnet.Offers.Data.Database;
 
 namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
 
+using System.Diagnostics.CodeAnalysis;
+
 [DbContext(typeof(OffersPersistence))]
+[ExcludeFromCodeCoverage]
 partial class OffersPersistenceModelSnapshot : ModelSnapshot
 {
     protected override void BuildModel(ModelBuilder modelBuilder)
