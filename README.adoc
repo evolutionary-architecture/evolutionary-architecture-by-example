@@ -171,6 +171,20 @@ image::Assets/subdomains_architectural_patterns.jpg[]
 
 ## Chapters
 
+In the beginning of every greenfield projects we need to make a lot of decisions. Quite often we are biased by confrences, meetups, friends and colleagues. As a result we decide for too complex architecture. This means starting with:
+
+- microservices (where we do not yet know the traffic, scale and other factors)
+- orchestrators
+- data streaming
+- NoSQL
+- cache
+
+and many more. In the end we have a lot of problems that we created and the entry threshold is extremely high for every team member. In fact, after release we do not know if we need this or other block. We are also not optimized from the cost perspective and it is very hard to find bottlenecks.
+
+Other problem is related to selecting too trivial architecture for too long (this happens less times than "overcomplicated" one). This means that we just add code to a monolith, new features flood our codebase and then it becomes a big ball of mud.
+
+What we would like to present you in our story is the evolutionary approach that will tackle most of the applications that you work with.
+
 ### Chapter 1: Initial Architecture
 
 ### Chapter 2: Projects Separation
