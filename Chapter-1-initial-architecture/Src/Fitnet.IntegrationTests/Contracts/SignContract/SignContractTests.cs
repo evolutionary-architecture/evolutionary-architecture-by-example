@@ -4,7 +4,6 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
-using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Shared.ErrorHandling;
 

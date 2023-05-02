@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
-using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Passes;
 using Fitnet.Passes.RegisterPass;

@@ -2,7 +2,6 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.MarkPassAsExpi
 
 using Fitnet.Passes;
 using RegisterPass;
-using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Shared.Events;
 using Fitnet.Shared.Events.EventBus;

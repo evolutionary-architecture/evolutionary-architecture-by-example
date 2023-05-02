@@ -3,20 +3,15 @@ namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Inte
 using MediatR;
 using SuperSimpleArchitecture.Fitnet.Shared.Events;
 
-internal sealed class IntegrationEventHandlerScope : IDisposable
+internal sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable where TIntegrationEvent : IIntegrationEvent
 {
     private readonly IServiceScope _serviceScope;
-
-    public IntegrationEventHandlerScope(WebApplicationFactory<Program> applicationInMemoryFactory) => 
-        _serviceScope = applicationInMemoryFactory.Services.CreateScope();
-
-    public IIntegrationEventHandler<TIntegrationEvent> GetIntegrationEventHandler<TIntegrationEvent>()
-        where TIntegrationEvent : IIntegrationEvent
+    internal readonly IIntegrationEventHandler<TIntegrationEvent> IntegrationEventHandler;
+    
+    public IntegrationEventHandlerScope(WebApplicationFactory<Program> applicationInMemoryFactory)
     {
-        var integrationEventConsumer =
-            _serviceScope.ServiceProvider.GetRequiredService<INotificationHandler<TIntegrationEvent>>();
-
-        return (IIntegrationEventHandler<TIntegrationEvent>)integrationEventConsumer;
+        _serviceScope = applicationInMemoryFactory.Services.CreateScope();
+        IntegrationEventHandler = _serviceScope.ServiceProvider.GetRequiredService<IIntegrationEventHandler<TIntegrationEvent>>();
     }
 
     public void Dispose() => 

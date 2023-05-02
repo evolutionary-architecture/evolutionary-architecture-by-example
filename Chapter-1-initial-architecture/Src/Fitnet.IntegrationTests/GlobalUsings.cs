@@ -8,3 +8,4 @@ global using Microsoft.AspNetCore.Mvc.Testing;
 global using Bogus;
 global using JetBrains.Annotations;
 global using Moq;
+global using SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine;
