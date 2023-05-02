@@ -1,16 +1,22 @@
-name: CI
+name: Chapter 1 workflow
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'Chapter-1-initial-architecture/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'Chapter-1-initial-architecture/**'
+env:
+  CHAPTER_DIR: 'Chapter-1-initial-architecture'
 
 jobs: 
   build:
     defaults:
       run:
-        working-directory: Src
+        working-directory: cd ${{ env.CHAPTER_DIR }}/Src
     runs-on: ubuntu-latest
     name: Build
     steps:
@@ -27,7 +33,7 @@ jobs:
   test:
     defaults:
       run:
-        working-directory: Src
+        working-directory: cd ${{ env.CHAPTER_DIR }}/Src
     runs-on: ubuntu-latest
     name: Test
     needs: build
