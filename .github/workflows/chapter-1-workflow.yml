@@ -10,11 +10,14 @@ on:
     paths:
       - 'Chapter-1-initial-architecture/**'
 
+env:
+  CHAPTER_DIR: 'Chapter-1-initial-architecture'
+
 jobs: 
   build:
     defaults:
       run:
-        working-directory: Chapter-1-initial-architecture/Src
+        working-directory: ${{ env.CHAPTER_DIR }}/Src
     runs-on: ubuntu-latest
     name: Build
     steps:
@@ -31,7 +34,7 @@ jobs:
   test:
     defaults:
       run:
-        working-directory: Chapter-1-initial-architecture/Src
+        working-directory: ${{ env.CHAPTER_DIR }}/Src
     runs-on: ubuntu-latest
     name: Test
     needs: build
