@@ -164,6 +164,7 @@ There is no business logic and there is also no need to have an object represent
 NOTE: _Transaction Script_ is an architectural pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
 
 #### Summary
+
 After deeper thinking about our subdomains, we decided for following architectural patterns that will be applied in one of 4 chapters:
 
 image::Assets/subdomains_architectural_patterns.jpg[]
