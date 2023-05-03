@@ -1,3 +1,3 @@
-namespace SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 
 public sealed record PrepareContractRequest(int CustomerAge, int CustomerHeight, DateTimeOffset PreparedAt);

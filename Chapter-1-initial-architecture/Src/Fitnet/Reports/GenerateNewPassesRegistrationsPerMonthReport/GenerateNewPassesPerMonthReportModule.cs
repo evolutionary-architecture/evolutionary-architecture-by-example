@@ -1,7 +1,7 @@
-namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport;
+namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport;
 
 using DataRetriever;
-using SuperSimpleArchitecture.Fitnet.Reports.DataAccess;
+using EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
 
 internal static class GenerateNewPassesPerMonthReportModule
 {

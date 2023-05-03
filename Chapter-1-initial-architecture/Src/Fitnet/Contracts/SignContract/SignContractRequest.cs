@@ -1,3 +1,3 @@
-namespace SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 
 public sealed record SignContractRequest(DateTimeOffset SignedAt);

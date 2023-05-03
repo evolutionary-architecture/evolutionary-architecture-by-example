@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
+namespace EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
 internal class BusinessRuleValidationException : InvalidOperationException
 {

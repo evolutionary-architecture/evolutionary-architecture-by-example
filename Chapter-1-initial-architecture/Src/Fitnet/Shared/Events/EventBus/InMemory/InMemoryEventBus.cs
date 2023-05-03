@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Shared.Events.EventBus.InMemory;
+namespace EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus.InMemory;
 
 using MediatR;
 

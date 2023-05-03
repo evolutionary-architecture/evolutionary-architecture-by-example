@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SuperSimpleArchitecture.Fitnet.Contracts.Data.Database;
+using EvolutionaryArchitecture.Fitnet.Contracts.Data.Database;
 
 #nullable disable
 
-namespace SuperSimpleArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Migrations
 {
     [DbContext(typeof(ContractsPersistence))]
     [Migration("20230322141428_Create_Contracts_Table")]
@@ -26,7 +26,7 @@ namespace SuperSimpleArchitecture.Fitnet.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SuperSimpleArchitecture.Fitnet.Contracts.Data.Contract", b =>
+            modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Contracts.Data.Contract", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

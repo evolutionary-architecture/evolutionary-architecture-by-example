@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
 using Common.TestEngine;
 using Common.TestEngine.Configuration;

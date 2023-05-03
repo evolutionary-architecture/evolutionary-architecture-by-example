@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 
 using Data.Database;
 

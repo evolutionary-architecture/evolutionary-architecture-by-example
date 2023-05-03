@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
 using System.Reflection;
 using Fitnet.Shared.Events.EventBus;

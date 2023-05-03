@@ -1,10 +1,10 @@
-namespace SuperSimpleArchitecture.Fitnet.UnitTests;
+namespace EvolutionaryArchitecture.Fitnet.UnitTests;
 
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Shared.ErrorHandling;
-using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
+using EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
 public sealed class ExceptionMiddlewareTests
 {

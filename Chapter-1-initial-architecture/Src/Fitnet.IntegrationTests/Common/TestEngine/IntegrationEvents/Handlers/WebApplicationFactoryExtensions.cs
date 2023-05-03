@@ -1,7 +1,7 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.IntegrationEvents.Handlers;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.IntegrationEvents.Handlers;
 
 using MediatR;
-using SuperSimpleArchitecture.Fitnet.Shared.Events;
+using EvolutionaryArchitecture.Fitnet.Shared.Events;
 
 internal static class WebApplicationFactoryExtensions
 {

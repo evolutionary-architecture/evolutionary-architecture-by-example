@@ -1,3 +1,3 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesRegistrationsPerMonthReport.TestData;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesRegistrationsPerMonthReport.TestData;
 
 internal sealed record PassRegistrationDateRange(DateTimeOffset From, DateTimeOffset To);

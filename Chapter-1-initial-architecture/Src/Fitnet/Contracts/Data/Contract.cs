@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Contracts.Data;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Data;
 
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;

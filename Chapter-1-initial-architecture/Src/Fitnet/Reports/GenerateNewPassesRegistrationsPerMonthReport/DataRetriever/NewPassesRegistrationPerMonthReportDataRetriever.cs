@@ -1,9 +1,9 @@
-namespace SuperSimpleArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
+namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
 
 using Dapper;
 using Dtos;
-using SuperSimpleArchitecture.Fitnet.Reports.DataAccess;
-using SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
+using EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
+using EvolutionaryArchitecture.Fitnet.Shared.SystemClock;
 
 internal sealed class NewPassesRegistrationPerMonthReportDataRetriever : INewPassesRegistrationPerMonthReportDataRetriever
 {

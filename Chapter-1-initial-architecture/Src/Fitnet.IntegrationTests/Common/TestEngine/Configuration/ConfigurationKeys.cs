@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
 internal static class ConfigurationKeys
 {

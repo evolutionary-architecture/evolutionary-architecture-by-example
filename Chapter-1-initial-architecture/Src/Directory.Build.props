@@ -1,7 +1,7 @@
 <Project>
 
     <PropertyGroup>
-        <AssemblyName>SuperSimpleArchitecture.$(MSBuildProjectName)</AssemblyName>
+        <AssemblyName>EvolutionaryArchitecture.$(MSBuildProjectName)</AssemblyName>
         <RootNamespace>$(AssemblyName)</RootNamespace>
         <TargetFramework>net7.0</TargetFramework>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

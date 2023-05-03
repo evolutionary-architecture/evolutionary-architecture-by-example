@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Offers.Prepare;
+namespace EvolutionaryArchitecture.Fitnet.Offers.Prepare;
 
 using Passes.MarkPassAsExpired.Events;
 using Shared.Events;

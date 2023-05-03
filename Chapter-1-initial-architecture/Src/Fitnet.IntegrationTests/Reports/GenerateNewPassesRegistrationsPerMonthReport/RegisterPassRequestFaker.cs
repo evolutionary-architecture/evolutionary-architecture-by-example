@@ -1,6 +1,6 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesRegistrationsPerMonthReport;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesRegistrationsPerMonthReport;
 
-using SuperSimpleArchitecture.Fitnet.Passes.RegisterPass;
+using EvolutionaryArchitecture.Fitnet.Passes.RegisterPass;
 
 internal sealed class RegisterPassRequestFaker : Faker<RegisterPassRequest>
 {

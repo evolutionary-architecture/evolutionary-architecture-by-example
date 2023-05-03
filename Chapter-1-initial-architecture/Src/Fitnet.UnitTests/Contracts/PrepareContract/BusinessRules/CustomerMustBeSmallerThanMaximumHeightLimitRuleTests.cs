@@ -1,7 +1,7 @@
-namespace SuperSimpleArchitecture.Fitnet.UnitTests.Contracts.PrepareContract.BusinessRules;
+namespace EvolutionaryArchitecture.Fitnet.UnitTests.Contracts.PrepareContract.BusinessRules;
 
-using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
-using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
+using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
+using EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
 {
