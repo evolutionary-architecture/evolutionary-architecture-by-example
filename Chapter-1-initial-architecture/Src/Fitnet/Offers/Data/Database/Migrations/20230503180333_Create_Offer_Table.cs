@@ -1,13 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
 
-using System.Diagnostics.CodeAnalysis;
-
-/// <inheritdoc />
 [ExcludeFromCodeCoverage]
 public partial class CreateOfferTable : Migration
 {

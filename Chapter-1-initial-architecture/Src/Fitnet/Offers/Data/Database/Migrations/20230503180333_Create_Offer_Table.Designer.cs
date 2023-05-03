@@ -12,7 +12,7 @@ using SuperSimpleArchitecture.Fitnet.Offers.Data.Database;
 namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
 
 [DbContext(typeof(OffersPersistence))]
-[Migration("20230502200349_Create_Offer_Table")]
+[Migration("20230503180333_Create_Offer_Table")]
 partial class CreateOfferTable
 {
     /// <inheritdoc />
