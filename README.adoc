@@ -191,9 +191,10 @@ What we would like to present you in our story is the evolutionary approach that
 
 ### Chapter 1: Initial Architecture
 
-In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is vertically sliced - all the code is covered in each process namespace. This way we gain 2 advantages:
+In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is vertically sliced - all the code is covered in each process namespace. This way we gain several advantages:
 
-- All the code for each process is in just one namespace, so there is no need to look around in folders like ```Controllers, Entities, Commands, Queries``` etc. Everything is just in e.g. ```SignContract```
+- better productivity - when starting new design, we are not distracted by creating namespaces, renaming, moving things around
+- all the code for each process is in just one namespace, so there is no need to look around in folders like ```Controllers, Entities, Commands, Queries``` etc. Everything is just in e.g. ```SignContract```
 - deleting or extracting the process is super easy - you just drop or extract a namespace
 
 Modules communicate with the in-memory queue.
