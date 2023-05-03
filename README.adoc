@@ -171,7 +171,11 @@ image::Assets/subdomains_architectural_patterns.jpg[]
 
 ## Chapters
 
-In the beginning of every greenfield projects we need to make a lot of decisions. Quite often we are biased by confrences, meetups, friends and colleagues. As a result we decide for too complex architecture. This means starting with:
+In the beginning of every greenfield projects we need to make a lot of decisions and we lack of knowledge. It is called _The Project Paradox_:
+
+image::Assets/project_paradox.png[]
+
+Quite often we are biased by confrences, meetups, friends and colleagues. As a result we decide for too complex architecture. This means starting with:
 
 - microservices (where we do not yet know the traffic, scale and other factors)
 - orchestrators
