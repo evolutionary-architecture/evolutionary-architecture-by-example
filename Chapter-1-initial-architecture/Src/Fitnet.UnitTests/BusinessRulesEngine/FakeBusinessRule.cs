@@ -1,6 +1,6 @@
-using SuperSimpleArchitecture.Fitnet.Shared.BusinessRulesEngine;
+using EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
 
-namespace SuperSimpleArchitecture.Fitnet.UnitTests.BusinessRulesEngine;
+namespace EvolutionaryArchitecture.Fitnet.UnitTests.BusinessRulesEngine;
 
 internal sealed class FakeBusinessRule : IBusinessRule
 {

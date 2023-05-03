@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes.MarkPassAsExpired;
+namespace EvolutionaryArchitecture.Fitnet.Passes.MarkPassAsExpired;
 
 using Data.Database;
 using Events;

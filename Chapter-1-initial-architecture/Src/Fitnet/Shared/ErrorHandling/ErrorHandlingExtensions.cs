@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Shared.ErrorHandling;
+namespace EvolutionaryArchitecture.Fitnet.Shared.ErrorHandling;
 
 internal static class ErrorHandlingExtensions
 {

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SuperSimpleArchitecture.Fitnet.Passes.Data.Database;
+using EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
 
 #nullable disable
 
-namespace SuperSimpleArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Migrations
 {
     [DbContext(typeof(PassesPersistence))]
     [Migration("20230321064710_Create_Passes_Tables")]
@@ -26,7 +26,7 @@ namespace SuperSimpleArchitecture.Fitnet.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SuperSimpleArchitecture.Fitnet.Passes.Data.Pass", b =>
+            modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Passes.Data.Pass", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

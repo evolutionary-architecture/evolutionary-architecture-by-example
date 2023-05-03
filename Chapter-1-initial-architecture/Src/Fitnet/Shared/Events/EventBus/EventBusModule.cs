@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Shared.Events.EventBus;
+namespace EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus;
 
 using System.Reflection;
 using InMemory;

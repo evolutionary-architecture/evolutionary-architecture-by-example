@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Reports;
+namespace EvolutionaryArchitecture.Fitnet.Reports;
 
 using DataAccess;
 using GenerateNewPassesRegistrationsPerMonthReport;

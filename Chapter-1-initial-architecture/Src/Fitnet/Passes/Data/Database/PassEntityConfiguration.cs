@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes.Data.Database;
+namespace EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

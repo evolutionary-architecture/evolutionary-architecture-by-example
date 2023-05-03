@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet;
+namespace EvolutionaryArchitecture.Fitnet;
 
 internal static class ApiPaths
 {

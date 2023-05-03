@@ -1,6 +1,6 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
 
-using SuperSimpleArchitecture.Fitnet.Contracts;
+using EvolutionaryArchitecture.Fitnet.Contracts;
 
 internal record SignContractRequestParameters(string Url, DateTimeOffset SignedAt)
 {

@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Shared.SystemClock;
+namespace EvolutionaryArchitecture.Fitnet.Shared.SystemClock;
 
 internal interface ISystemClock
 {

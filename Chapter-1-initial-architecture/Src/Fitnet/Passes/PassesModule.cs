@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Passes;
+namespace EvolutionaryArchitecture.Fitnet.Passes;
 
 using Data.Database;
 

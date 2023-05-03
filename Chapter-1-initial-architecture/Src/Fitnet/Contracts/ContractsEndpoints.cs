@@ -1,6 +1,6 @@
-using SuperSimpleArchitecture.Fitnet.Contracts.SignContract;
+using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 
-namespace SuperSimpleArchitecture.Fitnet.Contracts;
+namespace EvolutionaryArchitecture.Fitnet.Contracts;
 
 using PrepareContract;
 

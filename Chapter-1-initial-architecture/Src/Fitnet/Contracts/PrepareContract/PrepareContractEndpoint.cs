@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 
 using Data;
 using Data.Database;

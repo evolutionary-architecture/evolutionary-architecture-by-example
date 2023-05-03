@@ -1,7 +1,7 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
-using SuperSimpleArchitecture.Fitnet.Contracts;
-using SuperSimpleArchitecture.Fitnet.Contracts.PrepareContract;
+using EvolutionaryArchitecture.Fitnet.Contracts;
+using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using Fitnet.Shared.ErrorHandling;

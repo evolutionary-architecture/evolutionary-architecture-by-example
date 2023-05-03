@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
 internal sealed record PrepareContractRequestParameters(int MinAge, int MaxAge, int MinHeight, int MaxHeight)
 {

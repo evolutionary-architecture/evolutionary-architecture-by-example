@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 
 using Common.TestEngine;
 using Common.TestEngine.Configuration;

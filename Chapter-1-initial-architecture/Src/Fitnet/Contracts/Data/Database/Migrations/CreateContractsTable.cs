@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SuperSimpleArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Migrations
 {
     /// <inheritdoc />
     public partial class CreateContractsTable : Migration

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SuperSimpleArchitecture.Fitnet.Migrations.ContractsPersistenceMigrations
+namespace EvolutionaryArchitecture.Fitnet.Migrations.ContractsPersistenceMigrations
 {
     /// <inheritdoc />
     public partial class AddSignedAtDate : Migration

@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Contracts.SignContract.BusinessRules;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.SignContract.BusinessRules;
 
 using Shared.BusinessRulesEngine;
 
