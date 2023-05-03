@@ -164,19 +164,76 @@ There is no business logic and there is also no need to have an object represent
 NOTE: _Transaction Script_ is an architectural pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
 
 #### Summary
+
 After deeper thinking about our subdomains, we decided for following architectural patterns that will be applied in one of 4 chapters:
 
 image::Assets/subdomains_architectural_patterns.jpg[]
 
 ## Chapters
 
+In the beginning of every greenfield projects we need to make a lot of decisions and we lack of knowledge. It is called _The Project Paradox_:
+
+image::Assets/project_paradox.png[]
+
+Quite often we are biased by confrences, meetups, friends and colleagues. As a result we decide for too complex architecture. This means starting with:
+
+- microservices (where we do not yet know the traffic, scale and other factors)
+- orchestrators
+- data streaming
+- NoSQL
+- cache
+
+and many more. In the end we have a lot of problems that we created and the entry threshold is extremely high for every team member. In fact, after release we do not know if we need this or other block. We are also not optimized from the cost perspective and it is very hard to find bottlenecks.
+
+Other problem is related to selecting too trivial architecture for too long (this happens less times than "overcomplicated" one). This means that we just add code to a monolith, new features flood our codebase and then it becomes a big ball of mud.
+
+What we would like to present you in our story is the evolutionary approach that will tackle most of the applications that you work with.
+
 ### Chapter 1: Initial Architecture
 
-### Chapter 2: Projects Separation
+In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is vertically sliced - all the code is covered in each process namespace. This way we gain several advantages:
+
+- better productivity - when starting new design, we are not distracted by creating namespaces, renaming, moving things around
+- all the code for each process is in just one namespace, so there is no need to look around in folders like ```Controllers, Entities, Commands, Queries``` etc. Everything is just in e.g. ```SignContract```
+- deleting or extracting the process is super easy - you just drop or extract a namespace
+
+Modules communicate with the in-memory queue.
+
+### Chapter 2: Modules Separation
+
+This chapter focuses on the second step you can do in your application. After some time, you will realise that your assumptions about modules were wrong - it grows fast, the business logic becomes complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way round - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. 
+
+With this in mind, you can now start splitting your single ```Fitnet``` project into several:
+
+- for one module it will be just ```Fitnet.Reports``` - there is only a transaction script, no business logic
+- for another, it will be ```Fitnet.Passes.Api, Fitnet.Passes.Data```
+- for the complex one it will be ```Fitnet.Contracts.Api, Fitnet.Contracts.Application, Fitnet.Contracts.Domain, Fitnet.Contracts.Infrastructure````
+
+and so on. The modules still communicate with the in-memory queue (alternatives described in the chapter's own README).
 
 ### Chapter 3: Microservice Extraction
 
+Over time, you may need to extract a microservice from one of your application modules. In this chapter you will recognise the most common disintegrators (decision drivers to extract a microservice). 
+
+We will also add a message queue component to replace the in-memory queue. In this way, we will improve the exchange of messages between the modules themselves and the microservice.
+
+Here you will learn about various concepts that are important from a microservices architecture perspective.
+
 ### Chapter 4: Domain Model
+
+At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point. We want to show you that it is always possible, no matter where you are today. 
+
+You do not have to start from scratch if you do not know your business domain. And you do not need to apply all the concepts of Domain Driven Design to get good results. 
+
+Interesting fact - if you have done a proper analysis of your business domain in the beginning (Event Storming, Domain Storytelling, Story Storming or some other method) and have already broken it down into different sub-domains (and combined them into e.g. a module), then you are almost done from a strategic Domain-Driven Design perspective. Cool? Absolutely cool!
+
+Here we focus mainly on tactical DDD and describe
+
+- value objects
+- entities
+- aggregates
+
+You will also find some tips for the next steps.
 
 ## Repository Structure
 
