@@ -1,8 +1,7 @@
 namespace SuperSimpleArchitecture.Fitnet.Offers.Data;
 
-sealed class Offer
+internal sealed class Offer
 {
-    private const decimal StandardDiscount = 0.1m;
     public Guid Id { get; init; }
     public Guid CustomerId { get; init; }
     public DateTimeOffset PreparedAt { get; init; }
@@ -21,7 +20,16 @@ sealed class Offer
     }
 
     internal static Offer PrepareStandardPassExtension(Guid customerId, DateTimeOffset nowDate)
-    {
-        return new Offer(Guid.NewGuid(), customerId, nowDate, StandardDiscount, nowDate, nowDate.AddYears(1));
+    { 
+        var standardDiscount = 0.1m;
+        var offer = new Offer(
+            Guid.NewGuid(), 
+            customerId, 
+            nowDate,
+            standardDiscount, 
+            nowDate, 
+            nowDate.AddYears(1));
+
+        return offer;
     }
 }
