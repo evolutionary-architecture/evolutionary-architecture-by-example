@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SuperSimpleArchitecture.Fitnet.Offers.Data.Database;
 
 #nullable disable
 
 namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
 
 using System.Diagnostics.CodeAnalysis;
+using EvolutionaryArchitecture.Fitnet.Offers.Data.Database;
 
 [DbContext(typeof(OffersPersistence))]
 [ExcludeFromCodeCoverage]

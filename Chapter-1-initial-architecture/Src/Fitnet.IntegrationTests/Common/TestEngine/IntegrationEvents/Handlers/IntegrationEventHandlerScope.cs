@@ -1,7 +1,7 @@
-namespace SuperSimpleArchitecture.Fitnet.IntegrationTests.Common.TestEngine.IntegrationEvents.Handlers;
+namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.IntegrationEvents.Handlers;
 
+using Fitnet.Shared.Events;
 using MediatR;
-using SuperSimpleArchitecture.Fitnet.Shared.Events;
 
 internal sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable 
 where TIntegrationEvent : IIntegrationEvent

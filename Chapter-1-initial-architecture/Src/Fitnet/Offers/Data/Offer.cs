@@ -1,4 +1,4 @@
-namespace SuperSimpleArchitecture.Fitnet.Offers.Data;
+namespace EvolutionaryArchitecture.Fitnet.Offers.Data;
 
 internal sealed class Offer
 {

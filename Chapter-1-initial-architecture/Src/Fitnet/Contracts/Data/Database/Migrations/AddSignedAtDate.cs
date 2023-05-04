@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿#nullable disable
 
-#nullable disable
-
-namespace EvolutionaryArchitecture.Fitnet.Migrations.ContractsPersistenceMigrations
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     /// <inheritdoc />
     public partial class AddSignedAtDate : Migration
     {
