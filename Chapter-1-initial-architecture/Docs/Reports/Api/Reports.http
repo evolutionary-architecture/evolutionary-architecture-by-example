@@ -1,0 +1,4 @@
+###
+### Generate new report
+# @name generateNewReport
+GET {{baseUrl}}/api/reports/generate
