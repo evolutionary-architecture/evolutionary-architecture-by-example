@@ -8,41 +8,41 @@ using EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
 
 #nullable disable
 
-namespace EvolutionaryArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Migrations;
+
+[DbContext(typeof(PassesPersistence))]
+[ExcludeFromCodeCoverage]
+partial class PassesPersistenceModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(PassesPersistence))]
-    partial class PassesPersistenceModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasDefaultSchema("Passes")
-                .HasAnnotation("ProductVersion", "7.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasDefaultSchema("Passes")
+            .HasAnnotation("ProductVersion", "7.0.4")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Passes.Data.Pass", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Passes.Data.Pass", b =>
+        {
+            b.Property<Guid>("Id")
+                .ValueGeneratedOnAdd()
+                .HasColumnType("uuid");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
+            b.Property<Guid>("CustomerId")
+                .HasColumnType("uuid");
 
-                    b.Property<DateTimeOffset>("From")
-                        .HasColumnType("timestamp with time zone");
+            b.Property<DateTimeOffset>("From")
+                .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTimeOffset>("To")
-                        .HasColumnType("timestamp with time zone");
+            b.Property<DateTimeOffset>("To")
+                .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Id");
+            b.HasKey("Id");
 
-                    b.ToTable("Passes", "Passes");
-                });
+            b.ToTable("Passes", "Passes");
+        });
 #pragma warning restore 612, 618
-        }
     }
 }
