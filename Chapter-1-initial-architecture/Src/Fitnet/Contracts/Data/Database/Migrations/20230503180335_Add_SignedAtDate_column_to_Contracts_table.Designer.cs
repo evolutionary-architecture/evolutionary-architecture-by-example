@@ -12,7 +12,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations
 
     [DbContext(typeof(ContractsPersistence))]
     [Migration("20230407123603_AddSignedAtDate")]
-    partial class AddSignedAtDate
+    partial class Add_SignedAtDate_column_to_Contracts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -12,7 +12,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations
 
     [DbContext(typeof(ContractsPersistence))]
     [Migration("20230322141428_Create_Contracts_Table")]
-    partial class CreateContractsTable
+    partial class Create_Contracts_Table
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
