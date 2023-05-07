@@ -24,3 +24,4 @@ Modules cannot access other modules by reference, ensuring that each module rema
 - If needed, extracting modules into separate projects or microservices becomes straightforward, as each module is represented by a single namespace
 - Developers may need time to learn how to effectively modularize a monolithic application, particularly if they have no prior experience with this approach
 - Managing multiple independent modules may increase complexity, particularly when it comes to communication and data sharing between modules
+- If significant changes need to be made across the entire application, such as implementing a new API or database technology, this approach may result in slower development and deployment times, as changes will need to be made to each module individually
