@@ -239,6 +239,8 @@ You will also find some tips for the next steps.
 
 ### Overview
 
+We are trying to keep this repository as simple as possible, so that you can read it like a book. It contains chapters, where each chapter is an extension of the previous one, read like a story.
+
 ### How To Navigate?
 
 ## Technologies and Tools Used
