@@ -1,0 +1,34 @@
+== Running the Application
+
+To run the application, you will need to have the recent Dotnet SDK installed on your computer. You can download it from the official Microsoft website: https://dotnet.microsoft.com/en-us/download.
+
+The application can be run using Docker.
+The only service required for the application to work is PostgresSQL.
+To get started, navigate to the 'Src' directory using the Terminal and run the command "docker-compose up".
+ This will start the PostgresSQL service.
+
+Once Postgres is up and running, you have two options to run the application:
+
+Option 1: Launch the application in an IDE
+
+If you have an IDE installed, you can launch the application directly from there. Open the project in your IDE and run the project. The application should start running.
+
+Option 2: Build and run the application as a Docker container
+
+If you prefer to run the application as a Docker container, you can build and run it using the following steps:
+
+1. Build the Docker image:
+[source,shell]
+----
+docker build -t myapp .
+----
+
+2. Run the Docker container:
+[source,shell]
+----
+docker run -p 8080:80 --name myappcontainer myapp
+----
+
+The "8080" is the port number on which the container will be exposed, and "myapp" is the name of the image that you built in the previous step. Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
+
+That's it! You should now be able to run the application using either of the above options. :thumbsup:
