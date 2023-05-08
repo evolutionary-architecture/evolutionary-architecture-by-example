@@ -1,32 +1,55 @@
-== Running the Application
+== How to Run the "Fitnet" Application?
 
-To run the application, you will need to have the recent Dotnet SDK installed on your computer. You can download it from the official Microsoft website: https://dotnet.microsoft.com/en-us/download.
+To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
+Click link:https://dotnet.microsoft.com/en-us/download[here] 
+to download it from the official Microsoft website.
 
-The application can be run using Docker.
-The only service required for the application to work is PostgresSQL.
-To get started, navigate to the 'Src' directory using the Terminal and run the command "docker-compose up".
- This will start the PostgresSQL service.
+=== Prepare Postgres
 
-Once Postgres is up and running, you have two options to run the application:
+The Fitnet application requires PostgresSQL as a component to work properly. You can either install it directly on your system or launch it using Docker Compose.
 
-Option 1: Launch the application in an IDE
-
-If you have an IDE installed, you can launch the application directly from there. Open the project in your IDE and run the project. The application should start running.
-
-Option 2: Build and run the application as a Docker container
-
-If you prefer to run the application as a Docker container, you can build and run it using the following steps:
-
+To run PostgresSQL using Docker Compose, navigate to the `Src` directory using the Terminal and run the command:
 1. Build the Docker image:
+
 [source,shell]
 ----
 docker build -t myapp .
 ----
 
+This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
+
+=== Run the Fitnet Application
+
+There are two options to run the Fitnet application:
+
+==== Option 1: Launch the Fitnet application in an IDE
+
+If you have an IDE installed, you can launch the Fitnet application directly from there by following these steps:
+
+1. Open the project in your IDE.
+2. Run the project.
+3. The Fitnet application should start running.
+
+[NOTE]
+Fitnet supports .NET User Secrets to store local secrets like connection strings on developer machine. 
+We encourage you to use this feature to securely store the connection string.
+[end]
+
+==== Option 2: Build and run the Fitnet application as a Docker container
+
+If you prefer to run the Fitnet application as a Docker container, you can build and run it using the following steps:
+
+1. Build the Docker image:
+
+[source,shell]
+----
+docker build -t fitnet .
+----
+
 2. Run the Docker container:
 [source,shell]
 ----
-docker run -p 8080:80 --name myappcontainer myapp
+docker run -p 8080:80 --name fitnet-container fitnet
 ----
 
 The "8080" is the port number on which the container will be exposed, and "myapp" is the name of the image that you built in the previous step. Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
