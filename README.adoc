@@ -252,6 +252,10 @@ In each folder you will find the same root solution but extended:
 3. Chapter 3 - Extraction of one module to a microservice and using the message queue
 4. Chapter 4 - Applying a domain model to one of the modules
 
+Another important thing is that the detailed description of each chapter is in its own README folder. There you will find the information on how to run the solution, what solution structure is used and other important things that are only relevant to that particular chapter. 
+
+We do not repeat the information covered in the previous chapter, we just extend it with the decision we have made.
+
 IMPORTANT: If you want to get the most out of this repository, we recommend that you read the first chapter, understand the code and description, and then navigate to another folder. Of course you can go through the folders in your own way but you might miss some concepts.
 
 ## Technologies and Tools Used
