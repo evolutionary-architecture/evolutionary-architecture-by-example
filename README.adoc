@@ -239,7 +239,24 @@ You will also find some tips for the next steps.
 
 ### Overview
 
+We are trying to keep this repository as simple as possible, so that you can read it like a book. It contains chapters, where each chapter is an extension of the previous one, read like a story.
+
 ### How To Navigate?
+
+In the root folder of this repository you will only find this README, assets (images & diagrams) used in it, and 4 folders containing the content for each chapter.
+
+In each folder you will find the same root solution but extended:
+
+1. Chapter 1 - Initial state of the application
+2. Chapter 2 - Extraction to separate projects
+3. Chapter 3 - Extraction of one module to a microservice and using the message queue
+4. Chapter 4 - Applying a domain model to one of the modules
+
+Another important thing is that the detailed description of each chapter is in its own README folder. There you will find the information on how to run the solution, what solution structure is used and other important things that are only relevant to that particular chapter. 
+
+We do not repeat the information covered in the previous chapter, we just extend it with the decision we have made.
+
+IMPORTANT: If you want to get the most out of this repository, we recommend that you read the first chapter, understand the code and description, and then navigate to another folder. Of course you can go through the folders in your own way but you might miss some concepts.
 
 ## Technologies and Tools Used
 
