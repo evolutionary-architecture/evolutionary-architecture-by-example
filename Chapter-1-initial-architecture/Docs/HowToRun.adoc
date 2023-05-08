@@ -8,12 +8,12 @@ to download it from the official Microsoft website.
 
 The Fitnet application requires PostgresSQL as a component to work properly. You can either install it directly on your system or launch it using Docker Compose.
 
-To run PostgresSQL using Docker Compose, navigate to the `Src` directory using the Terminal and run the command:
-1. Build the Docker image:
+To run PostgresSQL using Docker Compose, navigate to the `Docker` directory using the Terminal and run the command:
+1. Build the Docker compose:
 
 [source,shell]
 ----
-docker build -t myapp .
+ docker-compose up
 ----
 
 This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
