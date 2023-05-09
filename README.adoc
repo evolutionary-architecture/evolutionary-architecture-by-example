@@ -1,10 +1,10 @@
-# Evolutionary Architecture
+= Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc:
 
-## Objective
+== Objective
 
-### Problem
+=== Problem
 There are many repositories that describe software and solution architecture in .NET. As there is no single definition of software architecture, they combine several topics:
 
 - Modular Monolith
@@ -20,7 +20,7 @@ _It depends_ - one of the most overused phrases. Well, it always depends on some
 
 In summary, if you are looking for a journey - not just a single article describing a solution - look no further. It starts here, in this repo.
 
-### Proposed Solution
+=== Proposed Solution
 Our solution should be read like a story and is divided into 4 chapters:
 
 **Chapter 1:** Initial architecture
@@ -65,9 +65,9 @@ so that you get the gist of what we have to share with you.
 
 NOTE: Keep in mind that these are our suggestions. In the end you will have to decide for yourself which chapters fit your needs or combine them into one solution.
 
-## Domain
+== Domain
 
-### Overview
+=== Overview
 The chosen domain for analysis and implementation is the _Fitness Studio_. It is an area that most of people have an idea of how it works. You can:
 
 - Get an offer
@@ -84,7 +84,7 @@ At first glance, the domain seems small. And problems of oversimplification of i
 
 IMPORTANT: Remember that what we want to show you in this repository is how to handle a domain split into a few example subdomains, and how to prepare building blocks that will allow you to easily extend them to cover all processes. We are not able to cover the entire _Fitness Studio_ domain, as that would probably take us a year (or more) of work. **Do not worry -  we try to show ideas here that are complex enough to be applied to your application.**
 
-### Subdomains
+=== Subdomains
 Now that you understand which business domain we are focusing on, it is time to break it down into smaller pieces called _Subdomains_.
 
 There are many ways to do this. Our 3 favourites are:
@@ -118,10 +118,10 @@ One more thing to mention - in our example, each subdomain is will be a separate
 
 IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. We will look at this in more detail in Chapter 4, where we introduce a domain model.
 
-### Potential Architectural Patterns
+=== Potential Architectural Patterns
 Before you decide to start coding, it is worth to look at your analysis and division one more time and check the complexity of each (it will be mainly defined by the amount of processes and its business rules/policies). Let's take a look at below examples.
 
-#### Passes
+==== Passes
 
 image::Assets/subdomain_passes_logic.jpg[]
 
@@ -134,13 +134,13 @@ In addition, the potential for new business rules to be applied to the above pro
 
 NOTE: _Active Record_ is an architectural pattern that rationalises the persistence layer in an application. It encapsulates the idea that a database record is an object in the application, with properties that map to the columns of the database table. Each instance of an Active Record class represents a particular row in a database table.
 
-#### Offers
+==== Offers
 
 image::Assets/subdomain_offers_logic.jpg[]
 
 The story here is similar to _Passes_. There is no business logic, only the fact that the pass is expiring.
 
-#### Contracts
+==== Contracts
 
 image::Assets//subdomain_contracts_logic.jpg[]
 
@@ -153,7 +153,7 @@ In addition, the potential for new business rules being applied to the above pro
 
 NOTE: _Domain Model_ is a widely used architectural pattern in software engineering that encapsulates the concepts and behaviours of a particular problem domain. This representation is designed to mimic the structure and functionality of the real-world system. The domain model pattern is particularly well known for its ability to handle complex business logic by providing a rich, object-oriented representation of the problem domain.
 
-#### Reports
+==== Reports
 
 image::Assets/subdomain_reports.jpg[]
 
@@ -163,13 +163,13 @@ There is no business logic and there is also no need to have an object represent
 
 NOTE: _Transaction Script_ is an architectural pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
 
-#### Summary
+==== Summary
 
 After deeper thinking about our subdomains, we decided for following architectural patterns that will be applied in one of 4 chapters:
 
 image::Assets/subdomains_architectural_patterns.jpg[]
 
-## Chapters
+== Chapters
 
 In the beginning of every greenfield projects we need to make a lot of decisions and we lack of knowledge. It is called _The Project Paradox_:
 
@@ -189,7 +189,7 @@ Other problem is related to selecting too trivial architecture for too long (thi
 
 What we would like to present you in our story is the evolutionary approach that will tackle most of the applications that you work with.
 
-### Chapter 1: Initial Architecture
+=== Chapter 1: Initial Architecture
 
 In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is vertically sliced - all the code is covered in each process namespace. This way we gain several advantages:
 
@@ -199,7 +199,7 @@ In this chapter we will show you how to start your solution architecture. We sta
 
 Modules communicate with the in-memory queue.
 
-### Chapter 2: Modules Separation
+=== Chapter 2: Modules Separation
 
 This chapter focuses on the second step you can do in your application. After some time, you will realise that your assumptions about modules were wrong - it grows fast, the business logic becomes complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way round - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. 
 
@@ -211,7 +211,7 @@ With this in mind, you can now start splitting your single ```Fitnet``` project 
 
 and so on. The modules still communicate with the in-memory queue (alternatives described in the chapter's own README).
 
-### Chapter 3: Microservice Extraction
+=== Chapter 3: Microservice Extraction
 
 Over time, you may need to extract a microservice from one of your application modules. In this chapter you will recognise the most common disintegrators (decision drivers to extract a microservice). 
 
@@ -219,7 +219,7 @@ We will also add a message queue component to replace the in-memory queue. In th
 
 Here you will learn about various concepts that are important from a microservices architecture perspective.
 
-### Chapter 4: Domain Model
+=== Chapter 4: Domain Model
 
 At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point. We want to show you that it is always possible, no matter where you are today. 
 
@@ -235,13 +235,13 @@ Here we focus mainly on tactical DDD and describe
 
 You will also find some tips for the next steps.
 
-## Repository Structure
+== Repository Structure
 
-### Overview
+=== Overview
 
 We are trying to keep this repository as simple as possible, so that you can read it like a book. It contains chapters, where each chapter is an extension of the previous one, read like a story.
 
-### How To Navigate?
+=== How To Navigate?
 
 In the root folder of this repository you will only find this README, assets (images & diagrams) used in it, and 4 folders containing the content for each chapter.
 
@@ -258,6 +258,6 @@ We do not repeat the information covered in the previous chapter, we just extend
 
 IMPORTANT: If you want to get the most out of this repository, we recommend that you read the first chapter, understand the code and description, and then navigate to another folder. Of course you can go through the folders in your own way but you might miss some concepts.
 
-## Technologies and Tools Used
+== Technologies and Tools Used
 
-## Authors
+== Authors
