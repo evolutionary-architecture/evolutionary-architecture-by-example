@@ -290,4 +290,12 @@ Application:
 - https://github.com/dotnet/efcore[Entity Framework]
 - https://github.com/npgsql/npgsql[Npgsql]
 
+Testing:
+
+- https://github.com/xunit/xunit[xunit]
+- https://github.com/moq/moq[Moq]
+- https://github.com/VerifyTests/Verify[Verify]
+- https://github.com/bchavez/Bogus[Bogus]
+- https://github.com/fluentassertions/fluentassertions[FluentAssertions]
+
 ## Authors
