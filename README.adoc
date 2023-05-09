@@ -278,3 +278,16 @@ https://www.youtube.com/@meaboutsoftware[YouTube]
 https://artofsoftwaredesign.net/[Blog]
 https://www.linkedin.com/in/kamilbaczek/[Linkedin]
 |===
+The entire application is developed using C# and .NET 7.
+
+In each chapter we use libraries and platforms that simplify the development process (no need to create them yourself). We try to keep it to a minimum. The certain disadvantage is that we do not have full control over it (trade-off we accept). Here is the list of the most important ones:
+
+Application:
+
+- https://www.docker.com[Docker]
+- https://github.com/jbogard/MediatR[MediatR]
+- https://github.com/DapperLib/Dapper[Dapper]
+- https://github.com/dotnet/efcore[Entity Framework]
+- https://github.com/npgsql/npgsql[Npgsql]
+
+## Authors
