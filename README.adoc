@@ -258,7 +258,7 @@ We do not repeat the information covered in the previous chapter, we just extend
 
 IMPORTANT: If you want to get the most out of this repository, we recommend that you read the first chapter, understand the code and description, and then navigate to another folder. Of course you can go through the folders in your own way but you might miss some concepts.
 
-== Technologies and Tools Used
+## Libraries and Platforms Used
 
 == Authors
 
