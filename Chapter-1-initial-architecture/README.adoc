@@ -62,7 +62,7 @@ docker run -p 8080:80 --name fitnet-container fitnet
 
 The "8080" is the port number on which the container will be exposed, and "myapp" is the name of the image that you built in the previous step. Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
 
-That's it! You should now be able to run the application using either of the above options. :thumbsup:
+That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
 == How to run Integration Tests?
 To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
