@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 internal static class DatabaseModule
 {
     private const string ConnectionStringName = "Passes";
-    
+
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(ConnectionStringName);
