@@ -296,7 +296,7 @@ Testing:
 - https://github.com/moq/moq[Moq]
 - https://github.com/VerifyTests/Verify[Verify]
 - https://github.com/bchavez/Bogus[Bogus]
-- https://github.com/fluentassertions/fluentassertions[FluentAssertions]
+- https://github.com/fluentassertions/fluentassertions[Fluent Assertions]
 - https://dotnet.testcontainers.org[Test Containers]
 
 ## Authors
