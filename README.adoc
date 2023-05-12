@@ -272,3 +272,9 @@ IMPORTANT: If you want to get the most out of this repository, we recommend that
 https://meaboutsoftware.com/[Blog]
 https://www.linkedin.com/in/jedrzejewski-maciej/[Linkedin]
 https://www.youtube.com/@meaboutsoftware[YouTube]
+
+|.NET Engineer, Software Architect who empowers teams to build better software through solid software architecture, utilizing techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.
+
+https://artofsoftwaredesign.net/[Blog]
+https://www.linkedin.com/in/kamilbaczek/[Linkedin]
+|===
