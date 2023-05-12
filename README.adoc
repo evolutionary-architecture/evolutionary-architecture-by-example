@@ -297,5 +297,6 @@ Testing:
 - https://github.com/VerifyTests/Verify[Verify]
 - https://github.com/bchavez/Bogus[Bogus]
 - https://github.com/fluentassertions/fluentassertions[FluentAssertions]
+- https://dotnet.testcontainers.org[Test Containers]
 
 ## Authors
