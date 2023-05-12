@@ -260,24 +260,6 @@ IMPORTANT: If you want to get the most out of this repository, we recommend that
 
 ## Libraries and Platforms Used
 
-== Authors
-
-[cols=2*,options=header]
-|===
-|Maciej Jedrzejewski
-|Kamil Baczek
-
-|Software architect, tech lead and facilitator of modern software development practices that allow shortening the feedback loop in every area of a lifecycle e.g. trunk-based development, short-living branches, vertical slices, canary releases, CI/CD, and more.
-
-https://meaboutsoftware.com/[Blog]
-https://www.linkedin.com/in/jedrzejewski-maciej/[Linkedin]
-https://www.youtube.com/@meaboutsoftware[YouTube]
-
-|.NET Engineer, Software Architect who empowers teams to build better software through solid software architecture, utilizing techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.
-
-https://artofsoftwaredesign.net/[Blog]
-https://www.linkedin.com/in/kamilbaczek/[Linkedin]
-|===
 The entire application is developed using C# and .NET 7.
 
 In each chapter we use libraries and platforms that simplify the development process (no need to create them yourself). We try to keep it to a minimum. The certain disadvantage is that we do not have full control over it (trade-off we accept). Here is the list of the most important ones:
@@ -299,4 +281,21 @@ Testing:
 - https://github.com/fluentassertions/fluentassertions[Fluent Assertions]
 - https://dotnet.testcontainers.org[Test Containers]
 
-## Authors
+== Authors
+
+[cols=2*,options=header]
+|===
+|Maciej Jedrzejewski
+|Kamil Baczek
+
+|Software architect, tech lead and facilitator of modern software development practices that allow shortening the feedback loop in every area of a lifecycle e.g. trunk-based development, short-living branches, vertical slices, canary releases, CI/CD, and more.
+
+https://meaboutsoftware.com/[Blog]
+https://www.linkedin.com/in/jedrzejewski-maciej/[Linkedin]
+https://www.youtube.com/@meaboutsoftware[YouTube]
+
+|.NET Engineer, Software Architect who empowers teams to build better software through solid software architecture, utilizing techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.
+
+https://artofsoftwaredesign.net/[Blog]
+https://www.linkedin.com/in/kamilbaczek/[Linkedin]
+|===
