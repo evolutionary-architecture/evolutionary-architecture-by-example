@@ -261,3 +261,14 @@ IMPORTANT: If you want to get the most out of this repository, we recommend that
 == Technologies and Tools Used
 
 == Authors
+
+[cols=2*,options=header]
+|===
+|Maciej Jedrzejewski
+|Kamil Baczek
+
+|Software architect, tech lead and facilitator of modern software development practices that allow shortening the feedback loop in every area of a lifecycle e.g. trunk-based development, short-living branches, vertical slices, canary releases, CI/CD, and more.
+
+https://meaboutsoftware.com/[Blog]
+https://www.linkedin.com/in/jedrzejewski-maciej/[Linkedin]
+https://www.youtube.com/@meaboutsoftware[YouTube]
