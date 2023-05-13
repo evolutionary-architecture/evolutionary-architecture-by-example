@@ -298,4 +298,5 @@ https://www.youtube.com/@meaboutsoftware[YouTube]
 
 https://artofsoftwaredesign.net/[Blog]
 https://www.linkedin.com/in/kamilbaczek/[Linkedin]
+https://github.com/kamilbaczek[Github]
 |===
