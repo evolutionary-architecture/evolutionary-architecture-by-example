@@ -2,15 +2,15 @@
 
 Date: 2023-04-15
 
-## Problem
+== Problem
 
 We need a consistent way to manage dependencies, simplify application deployment, and ensure that our application runs consistently across different environments.
 
-## Decision
+== Decision
 
 We decided to use Docker, a containerization platform that enables us to package our application and its dependencies into lightweight, portable containers. Docker containers are self-contained, easily shareable, and provide a consistent environment for our application regardless of the underlying infrastructure.
 
-## Consequences
+== Consequences
 
 - Containers encapsulate the application and its dependencies, making it easier to manage and maintain
 - Docker ensures that our application runs consistently across different environments (development, testing, and production) by packaging it with its runtime environment

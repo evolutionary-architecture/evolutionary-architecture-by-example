@@ -2,11 +2,11 @@
 
 Date: 2023-04-15
 
-## Problem
+== Problem
 
 We need to determine an effective approach for implementing the discovered subdomains in our solution while maintaining modularity and scalability.
 
-## Decision
+== Decision
 
 We decided that, in the initial phase of the project, we will assume that each subdomain corresponds to a single bounded context. Each bounded context will be represented by a module with its own namespace, such as:
 
@@ -17,7 +17,7 @@ We decided that, in the initial phase of the project, we will assume that each s
 
 Modules cannot access other modules by reference, ensuring that each module remains independent and self-contained.
 
-## Consequences
+== Consequences
 
 - Each module encapsulates its processes within its namespace, promoting separation of concerns
 - This approach enhances modularity within our monolithic application, making it easier to manage and maintain

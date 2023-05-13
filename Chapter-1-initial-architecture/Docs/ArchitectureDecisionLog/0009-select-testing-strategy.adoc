@@ -2,11 +2,11 @@
 
 Date: 2023-04-15
 
-## Problem
+== Problem
 
 We need to decide on an effective testing strategy for our backend API to ensure the quality, reliability, and maintainability of our application.
 
-## Decision
+== Decision
 
 We decided to adopt a testing strategy that combines both unit and integration tests for our backend API. This approach will allow us to validate individual components and their interactions within the system.
 
@@ -14,7 +14,7 @@ We decided to adopt a testing strategy that combines both unit and integration t
 
 - We will write integration tests to validate the interactions between different components and subsystems, such as APIs, databases, and external services. These tests will verify that the various parts of our system work together correctly
 
-## Consequences
+== Consequences
 
 - A robust testing strategy ensures that our code meets the desired functionality and adheres to established coding standards
 - Regular testing helps identify and fix issues early in the development process, reducing the likelihood of defects making it to production

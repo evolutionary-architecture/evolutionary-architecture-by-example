@@ -2,11 +2,11 @@
 
 Date: 2023-04-15
 
-## Problem
+== Problem
 
 We need to establish a default access level and inheritance strategy for our classes to improve code maintainability, reduce the risk of unintended inheritance, and encourage proper encapsulation.
 
-## Decision
+== Decision
 
 We decided to use the ```internal sealed``` access level as the default for our classes. By doing this, we ensure that:
 
@@ -15,7 +15,7 @@ We decided to use the ```internal sealed``` access level as the default for our 
 
 When creating a new class, developers should use the ```internal sealed``` access level by default, unless there is a specific reason to allow inheritance or external access.
 
-## Consequences
+== Consequences
 
 - Improved encapsulation - limiting class access to the same assembly helps prevent unintended external usage and reduces the potential for unexpected side effects
 - Sealing classes by default ensures that developers explicitly decide when to allow inheritance, reducing the risk of unintended inheritance and its associated problems
