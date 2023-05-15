@@ -1,0 +1,21 @@
+###
+### Prepare a contract
+# @name prepareContract
+POST {{baseUrl}}/api/contracts
+Content-Type: application/json
+
+{
+  "customerAge": 30,
+  "customerHeight": 180,
+  "preparedAt": "2023-05-04T12:00:00.000Z"
+}
+
+###
+### Sign a contract
+# @name signContract
+PATCH {{baseUrl}}/api/contracts/{{contractId}}
+Content-Type: application/json
+
+{
+  "signedAt": "2023-05-04T14:00:00.000Z"
+}
