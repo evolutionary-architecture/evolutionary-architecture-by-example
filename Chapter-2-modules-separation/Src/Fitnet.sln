@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Reports", "Fitnet.Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Reports.IntegrationTests", "Fitnet.Reports.IntegrationTests\Fitnet.Reports.IntegrationTests.csproj", "{266CAE79-93FD-4D58-A2C2-8FF0BA94F1F3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fitnet.Reports", "Fitnet.Reports", "{7D3193F0-C731-4683-893F-53CE8087D7E2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{7D3193F0-C731-4683-893F-53CE8087D7E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
