@@ -1,9 +1,9 @@
+using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
-using EvolutionaryArchitecture.Fitnet.Contracts;
+using EvolutionaryArchitecture.Fitnet.Contracts.Api;
 using EvolutionaryArchitecture.Fitnet.Offers;
 using EvolutionaryArchitecture.Fitnet.Passes;
 using EvolutionaryArchitecture.Fitnet.Reports;
-using EvolutionaryArchitecture.Fitnet.Shared.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus;
 
 var builder = WebApplication.CreateBuilder(args);
