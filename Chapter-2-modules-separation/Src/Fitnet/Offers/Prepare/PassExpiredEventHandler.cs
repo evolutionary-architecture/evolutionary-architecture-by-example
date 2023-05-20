@@ -1,3 +1,5 @@
+using EvolutionaryArchitecture.Fitnet.ReusableElements.SystemClock;
+
 namespace EvolutionaryArchitecture.Fitnet.Offers.Prepare;
 
 using Data;
@@ -5,7 +7,6 @@ using Data.Database;
 using Passes.MarkPassAsExpired.Events;
 using Shared.Events;
 using Shared.Events.EventBus;
-using Shared.SystemClock;
 
 internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExpiredEvent>
 {

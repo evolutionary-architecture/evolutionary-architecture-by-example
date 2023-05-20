@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared;
+namespace EvolutionaryArchitecture.Fitnet.ReusableElements;
 
 public static class ApiPaths
 {

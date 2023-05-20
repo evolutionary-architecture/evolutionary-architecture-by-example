@@ -1,9 +1,10 @@
+using EvolutionaryArchitecture.Fitnet.ReusableElements.SystemClock;
+
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
 using System.Reflection;
 using Fitnet.Shared.Events.EventBus;
 using Fitnet.Shared.Events.EventBus.InMemory;
-using Fitnet.Shared.SystemClock;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using SystemClock;

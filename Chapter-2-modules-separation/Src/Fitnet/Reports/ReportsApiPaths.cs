@@ -1,3 +1,5 @@
+using EvolutionaryArchitecture.Fitnet.ReusableElements;
+
 namespace EvolutionaryArchitecture.Fitnet.Reports;
 
 using Shared;

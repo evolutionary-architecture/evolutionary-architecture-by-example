@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Shared\Fitnet.Shared.csproj" />
+      <ProjectReference Include="..\Fitnet.ReusableElements\Fitnet.ReusableElements.csproj" />
     </ItemGroup>
     
 </Project>
