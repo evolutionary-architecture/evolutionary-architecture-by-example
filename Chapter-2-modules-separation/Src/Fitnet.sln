@@ -12,9 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Reports.IntegrationT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{7D3193F0-C731-4683-893F-53CE8087D7E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}"
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReusableElements", "ReusableElements", "{8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}"
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{1DD15708-BB12-49FA-A259-F8BC147FD57F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common", "Fitnet.Common\Fitnet.Common.csproj", "{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Api", "Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj", "{B070E263-F998-4086-B16B-BD467652C219}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Application", "Fitnet.Contracts.Application\Fitnet.Contracts.Application.csproj", "{C7048CE6-7C8E-4C73-88A7-7119485ADFA8}"
