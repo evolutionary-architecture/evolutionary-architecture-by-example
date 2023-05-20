@@ -1,7 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
-
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 using System.Reflection;
 using Fitnet.Shared.Events.EventBus;
 using Fitnet.Shared.Events.EventBus.InMemory;

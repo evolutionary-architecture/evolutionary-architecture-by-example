@@ -1,7 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
-
 namespace EvolutionaryArchitecture.Fitnet.Contracts;
 
+using SignContract;
 using PrepareContract;
 
 internal static class ContractsEndpoints

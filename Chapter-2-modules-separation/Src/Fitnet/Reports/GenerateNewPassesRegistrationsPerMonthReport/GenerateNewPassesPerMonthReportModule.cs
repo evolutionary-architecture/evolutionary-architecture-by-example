@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport;
 
 using DataRetriever;
-using EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
+using DataAccess;
 
 internal static class GenerateNewPassesPerMonthReportModule
 {

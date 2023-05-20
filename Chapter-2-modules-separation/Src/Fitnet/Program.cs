@@ -1,4 +1,4 @@
-using EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Offers;
 using EvolutionaryArchitecture.Fitnet.Passes;

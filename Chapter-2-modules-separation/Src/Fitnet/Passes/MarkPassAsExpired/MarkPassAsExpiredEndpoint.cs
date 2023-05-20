@@ -1,9 +1,8 @@
-using EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
-
 namespace EvolutionaryArchitecture.Fitnet.Passes.MarkPassAsExpired;
 
 using Data.Database;
 using Events;
+using Common.Infrastructure.SystemClock;
 using Shared.Events.EventBus;
 
 internal static class MarkPassAsExpiredEndpoint

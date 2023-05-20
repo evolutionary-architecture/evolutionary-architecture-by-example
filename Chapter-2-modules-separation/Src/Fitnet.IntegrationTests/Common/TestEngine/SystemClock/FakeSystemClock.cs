@@ -1,6 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
-
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.SystemClock;
+
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 
 internal sealed class FakeSystemClock : ISystemClock
 {

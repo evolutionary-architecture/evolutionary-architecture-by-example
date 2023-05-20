@@ -1,7 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
-
 namespace EvolutionaryArchitecture.Fitnet.Offers.Prepare;
 
+using Common.Infrastructure.SystemClock;
 using Data;
 using Data.Database;
 using Passes.MarkPassAsExpired.Events;
