@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts;
+using EvolutionaryArchitecture.Fitnet.Common.Api;
 
-using ReusableElements;
+namespace EvolutionaryArchitecture.Fitnet.Contracts;
 
 internal static class ContractsApiPaths
 {

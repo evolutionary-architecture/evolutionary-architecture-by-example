@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.ReusableElements.SystemClock;
+namespace EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
 
 internal sealed class SystemClock : ISystemClock
 {

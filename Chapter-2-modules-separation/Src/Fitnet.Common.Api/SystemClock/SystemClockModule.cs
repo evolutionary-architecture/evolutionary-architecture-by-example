@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.ReusableElements.SystemClock;
-
 using Microsoft.Extensions.DependencyInjection;
+
+namespace EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
 
 public static class SystemClockModule
 {

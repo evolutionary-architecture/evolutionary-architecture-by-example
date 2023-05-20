@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Common\Fitnet.Common.csproj" />
+      <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
     </ItemGroup>
     
 </Project>

@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes;
+using EvolutionaryArchitecture.Fitnet.Common.Api;
 
-using ReusableElements;
+namespace EvolutionaryArchitecture.Fitnet.Passes;
 
 internal static class PassesApiPaths
 {

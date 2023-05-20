@@ -1,8 +1,9 @@
+using EvolutionaryArchitecture.Fitnet.Common.Api.SystemClock;
+
 namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
 
 using Dapper;
 using Dtos;
-using ReusableElements.SystemClock;
 using DataAccess;
 
 internal sealed class NewPassesRegistrationPerMonthReportDataRetriever : INewPassesRegistrationPerMonthReportDataRetriever
