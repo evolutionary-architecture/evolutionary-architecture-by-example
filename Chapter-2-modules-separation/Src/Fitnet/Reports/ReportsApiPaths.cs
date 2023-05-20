@@ -1,6 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Common.Api;
-
 namespace EvolutionaryArchitecture.Fitnet.Reports;
+
+using Common.Api;
 
 internal static class ReportsApiPaths
 {
