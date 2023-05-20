@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet", "Fitnet\Fitnet.csproj", "{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}"
 EndProject
@@ -21,6 +21,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Core", "Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj", "{D929AB99-422E-4024-AC29-9CB89A652F24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Infrastructure", "Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj", "{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Shared", "Fitnet.Shared\Fitnet.Shared.csproj", "{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +68,10 @@ Global
 		{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A6E0883-EE26-4A50-9114-AF1EDD82EB94} = {7D3193F0-C731-4683-893F-53CE8087D7E2}
@@ -72,5 +80,6 @@ Global
 		{C7048CE6-7C8E-4C73-88A7-7119485ADFA8} = {1DD15708-BB12-49FA-A259-F8BC147FD57F}
 		{D929AB99-422E-4024-AC29-9CB89A652F24} = {1DD15708-BB12-49FA-A259-F8BC147FD57F}
 		{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6} = {1DD15708-BB12-49FA-A259-F8BC147FD57F}
+		{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
 	EndGlobalSection
 EndGlobal
