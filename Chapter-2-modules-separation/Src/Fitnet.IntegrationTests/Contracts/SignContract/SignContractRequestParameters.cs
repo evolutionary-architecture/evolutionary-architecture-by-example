@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
 
 using EvolutionaryArchitecture.Fitnet.Contracts;
+using Fitnet.Contracts.Api;
 
 internal record SignContractRequestParameters(string Url, DateTimeOffset SignedAt)
 {
@@ -16,4 +17,3 @@ internal record SignContractRequestParameters(string Url, DateTimeOffset SignedA
     private static string BuildUrl(Guid id) => ContractsApiPaths.Sign.Replace("{id}", id.ToString());
     private static DateTimeOffset GetValidSignedAtDate() => DateTimeOffset.Now.AddDays(1).ToUniversalTime();
 }
-

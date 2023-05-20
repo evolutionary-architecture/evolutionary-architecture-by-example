@@ -1,11 +1,11 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.SignContract;
 
-using EvolutionaryArchitecture.Fitnet.Contracts;
-using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
-using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
 using Common.TestEngine.Configuration;
-using Fitnet.Shared.ErrorHandling;
+using Fitnet.Common.ErrorHandling;
+using Fitnet.Contracts.Api;
+using Fitnet.Contracts.Api.Prepare;
+using Fitnet.Contracts.Api.Sign;
 
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {

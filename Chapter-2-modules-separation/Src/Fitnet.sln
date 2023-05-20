@@ -13,6 +13,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{7D3193F0-C731-4683-893F-53CE8087D7E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{1DD15708-BB12-49FA-A259-F8BC147FD57F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Api", "Fitnet.Common.Api\Fitnet.Common.Api.csproj", "{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC}"
@@ -26,6 +27,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Core", "Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj", "{D929AB99-422E-4024-AC29-9CB89A652F24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Infrastructure", "Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj", "{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.BussinessRules", "Fitnet.Common.BussinessRules\Fitnet.Common.BussinessRules.csproj", "{7BE78BF9-6419-412C-A766-F80ADFF2CF49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.ErrorHandling", "Fitnet.Common.ErrorHandling\Fitnet.Common.ErrorHandling.csproj", "{AF13A817-48EC-43FB-8816-4A6D292E471D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +82,14 @@ Global
 		{2C77D377-30F5-40C9-81CF-43E644427A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C77D377-30F5-40C9-81CF-43E644427A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C77D377-30F5-40C9-81CF-43E644427A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BE78BF9-6419-412C-A766-F80ADFF2CF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE78BF9-6419-412C-A766-F80ADFF2CF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE78BF9-6419-412C-A766-F80ADFF2CF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE78BF9-6419-412C-A766-F80ADFF2CF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF13A817-48EC-43FB-8816-4A6D292E471D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF13A817-48EC-43FB-8816-4A6D292E471D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF13A817-48EC-43FB-8816-4A6D292E471D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF13A817-48EC-43FB-8816-4A6D292E471D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A6E0883-EE26-4A50-9114-AF1EDD82EB94} = {7D3193F0-C731-4683-893F-53CE8087D7E2}
@@ -87,5 +100,7 @@ Global
 		{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6} = {1DD15708-BB12-49FA-A259-F8BC147FD57F}
 		{B1C5A9F4-AE1F-40D5-AA07-3BCC5E7D22AC} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
 		{2C77D377-30F5-40C9-81CF-43E644427A03} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
+		{7BE78BF9-6419-412C-A766-F80ADFF2CF49} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
+		{AF13A817-48EC-43FB-8816-4A6D292E471D} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
 	EndGlobalSection
 EndGlobal

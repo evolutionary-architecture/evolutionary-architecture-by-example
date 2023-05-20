@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
-using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
+using Fitnet.Contracts.Api.Prepare;
 
 internal sealed class PrepareContractRequestFaker : Faker<PrepareContractRequest>
 {

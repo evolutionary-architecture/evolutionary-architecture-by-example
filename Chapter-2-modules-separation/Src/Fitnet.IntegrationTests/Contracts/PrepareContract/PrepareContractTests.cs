@@ -1,10 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.PrepareContract;
 
-using EvolutionaryArchitecture.Fitnet.Contracts;
-using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
-using Fitnet.Shared.ErrorHandling;
+using Fitnet.Common.ErrorHandling;
+using Fitnet.Contracts.Api;
+using Fitnet.Contracts.Api.Prepare;
 
 public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
