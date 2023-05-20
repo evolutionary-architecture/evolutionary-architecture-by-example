@@ -1,5 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports;
 
+using Shared;
+
 internal static class ReportsApiPaths
 {
     private const string Reports = $"{ApiPaths.Root}/reports";

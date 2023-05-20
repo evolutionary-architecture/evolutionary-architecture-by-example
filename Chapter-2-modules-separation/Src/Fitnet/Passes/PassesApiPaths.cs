@@ -1,5 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes;
 
+using Shared;
+
 internal static class PassesApiPaths
 {
     internal const string Register = $"{ApiPaths.Root}/passes";
