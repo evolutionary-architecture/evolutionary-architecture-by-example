@@ -1,2 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.IntegrationTests" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
 </Project>
