@@ -1,3 +1,4 @@
+using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 using EvolutionaryArchitecture.Fitnet.Contracts.Api;
 using EvolutionaryArchitecture.Fitnet.Offers;
