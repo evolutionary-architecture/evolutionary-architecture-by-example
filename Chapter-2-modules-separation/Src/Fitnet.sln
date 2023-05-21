@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Core", "Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Infrastructure", "Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj", "{01B268D3-BBAE-4DA3-B9AB-B04216A2E2D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.BussinessRules", "Fitnet.Common.BussinessRules\Fitnet.Common.BussinessRules.csproj", "{7BE78BF9-6419-412C-A766-F80ADFF2CF49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Core", "Fitnet.Common.Core\Fitnet.Common.Core.csproj", "{7BE78BF9-6419-412C-A766-F80ADFF2CF49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

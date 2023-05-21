@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.UnitTests.Contracts.PrepareContract.BusinessRules;
 
-using Common.BussinessRules;
+using Common.Core.BussinessRules;
 using Fitnet.Contracts.Core.PrepareContract.BusinessRules;
 
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests

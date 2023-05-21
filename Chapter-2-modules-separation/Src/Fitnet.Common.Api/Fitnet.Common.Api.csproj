@@ -4,7 +4,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Common.BussinessRules\Fitnet.Common.BussinessRules.csproj" />
+      <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.BusinessRules;
 
-using Common.BussinessRules;
+using Common.Core.BussinessRules;
 
 internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparation : IBusinessRule
 {

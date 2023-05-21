@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 
 using System.Net;
 using System.Text.Json;
-using BussinessRules;
+using Core.BussinessRules;
 using Microsoft.AspNetCore.Http;
 
 internal sealed class ExceptionMiddleware
