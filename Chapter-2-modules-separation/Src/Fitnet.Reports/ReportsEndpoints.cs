@@ -1,9 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports;
 
+using Microsoft.AspNetCore.Routing;
 using GenerateNewPassesRegistrationsPerMonthReport;
 
-internal static class ReportsEndpoints
+public static class ReportsEndpoints
 {
-    internal static void MapReports(this IEndpointRouteBuilder app) => 
+    public static void MapReports(this IEndpointRouteBuilder app) => 
         app.MapGenerateNewPassesRegistrationsPerMonthReport();
 }
