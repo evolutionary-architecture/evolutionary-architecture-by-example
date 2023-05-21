@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.Core.BussinessRules;
+namespace EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
 public class BusinessRuleValidationException : InvalidOperationException
 {

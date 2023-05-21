@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.PrepareContract.BusinessRules;
 
-using Common.Core.BussinessRules;
+using Common.Core.BusinessRules;
 
 internal sealed class CustomerMustBeSmallerThanMaximumHeightLimitRule : IBusinessRule
 {

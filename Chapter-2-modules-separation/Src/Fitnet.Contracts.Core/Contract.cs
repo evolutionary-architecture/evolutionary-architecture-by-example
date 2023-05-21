@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-using Common.Core.BussinessRules;
+using Common.Core.BusinessRules;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;
 
