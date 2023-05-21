@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
 
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using Npgsql;
 
