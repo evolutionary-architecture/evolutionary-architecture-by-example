@@ -1,4 +1,4 @@
-# 10. Select integration style between passes and offers modules
+= 10. Select integration style between passes and offers modules
 
 Date: 2023-05-13
 
