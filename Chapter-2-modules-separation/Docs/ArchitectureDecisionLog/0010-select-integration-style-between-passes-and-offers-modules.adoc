@@ -10,7 +10,7 @@ There are several integration styles available for implementing this requirement
 
 == Decision
 
-After careful consideration, messaging we chosen as the communication method for the requirement implemenation, because bussiness process did not require simultaneous state changes for pass expiration and propossing new offer.
+After careful consideration, messaging we chosen as the communication method for the requirement implementation, because business process did not require simultaneous state changes for pass expiration and proposing new offer.
 
 Introducing a brief delay between pass expiration and offer processing we deemed beneficial for achieving high maintainability and modularity of the system.
 
