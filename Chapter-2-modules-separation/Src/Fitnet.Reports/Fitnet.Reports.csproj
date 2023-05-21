@@ -6,4 +6,5 @@
       <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
     </ItemGroup>
+      <PackageReference Include="Npgsql" Version="7.0.4" />
 </Project>
