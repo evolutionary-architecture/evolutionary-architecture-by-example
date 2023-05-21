@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Contracts.SignContrac
 
 using PrepareContract;
 using Common.TestEngine.Configuration;
-using Fitnet.Common.ErrorHandling;
+using Fitnet.Common.Api.ErrorHandling;
 using Fitnet.Contracts.Api;
 using Fitnet.Contracts.Api.Prepare;
 using Fitnet.Contracts.Api.Sign;

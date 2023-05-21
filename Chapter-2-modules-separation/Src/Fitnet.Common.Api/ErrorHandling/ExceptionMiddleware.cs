@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
+namespace EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 
 using System.Net;
 using System.Text.Json;

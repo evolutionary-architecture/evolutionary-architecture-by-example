@@ -2,7 +2,6 @@ namespace EvolutionaryArchitecture.Fitnet.UnitTests;
 
 using System.Net;
 using Common.BussinessRules;
-using Common.ErrorHandling;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 

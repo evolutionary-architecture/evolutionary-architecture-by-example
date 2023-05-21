@@ -21,7 +21,6 @@
     
     <ItemGroup>
       <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
-      <ProjectReference Include="..\Fitnet.Common.ErrorHandling\Fitnet.Common.ErrorHandling.csproj" />
       <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
       <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
     </ItemGroup>
