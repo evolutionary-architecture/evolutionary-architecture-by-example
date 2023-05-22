@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
+namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
 
 using Microsoft.EntityFrameworkCore;
 

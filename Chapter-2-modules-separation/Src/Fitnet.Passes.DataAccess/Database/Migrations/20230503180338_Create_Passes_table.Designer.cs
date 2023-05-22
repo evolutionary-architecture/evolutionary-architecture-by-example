@@ -5,11 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
 
 #nullable disable
 
-namespace EvolutionaryArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database
 {
     [DbContext(typeof(PassesPersistence))]
     [Migration("20230321064710_Create_Passes_Tables")]

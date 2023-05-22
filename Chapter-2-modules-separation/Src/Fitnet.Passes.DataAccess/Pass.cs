@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes.Data;
+namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess;
 
 internal sealed class Pass
 {

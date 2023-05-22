@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EvolutionaryArchitecture.Fitnet.Migrations;
+namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
 
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
 public partial class Create_Passes_Tables : Migration
