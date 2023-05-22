@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess;
 
-internal sealed class Pass
+public sealed class Pass
 {
     public Guid Id { get; init; }
     public Guid CustomerId { get; init; }
@@ -15,8 +15,8 @@ internal sealed class Pass
         To = to;
     }
     
-    internal static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) => 
+    public static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) => 
         new(Guid.NewGuid(), customerId, from, to);
     
-    internal void MarkAsExpired(DateTimeOffset nowDateTimeOffset) => To = nowDateTimeOffset;
+    public void MarkAsExpired(DateTimeOffset nowDateTimeOffset) => To = nowDateTimeOffset;
 }

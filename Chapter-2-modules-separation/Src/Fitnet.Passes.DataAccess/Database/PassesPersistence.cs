@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
 
 using Microsoft.EntityFrameworkCore;
 
-internal sealed class PassesPersistence : DbContext
+public sealed class PassesPersistence : DbContext
 {
     private const string Schema = "Passes";
     

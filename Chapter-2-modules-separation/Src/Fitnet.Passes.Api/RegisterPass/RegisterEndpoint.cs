@@ -1,8 +1,10 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes.RegisterPass;
+namespace EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 
-using Data;
-using Data.Database;
-using Shared.Events.EventBus;
+using DataAccess;
+using DataAccess.Database;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 internal static class RegisterEndpoint
 {

@@ -1,9 +1,12 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes.MarkPassAsExpired;
+namespace EvolutionaryArchitecture.Fitnet.Passes.Api.MarkPassAsExpired;
 
-using Data.Database;
-using Events;
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using Common.Infrastructure.SystemClock;
-using Shared.Events.EventBus;
+using DataAccess.Database;
+using Events;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 internal static class MarkPassAsExpiredEndpoint
 {
