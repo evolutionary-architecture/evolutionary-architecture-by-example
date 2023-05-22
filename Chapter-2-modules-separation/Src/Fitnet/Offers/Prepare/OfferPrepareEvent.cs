@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.Prepare;
 
-using Shared.Events;
+using Common.Infrastructure.Events;
 
 internal sealed record OfferPrepareEvent(Guid Id, Guid OfferId, Guid CustomerId, DateTimeOffset OccurredDateTime) : IIntegrationEvent
 {

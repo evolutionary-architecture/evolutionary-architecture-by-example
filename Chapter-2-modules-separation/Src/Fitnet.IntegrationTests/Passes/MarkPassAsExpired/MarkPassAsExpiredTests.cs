@@ -3,8 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.MarkPassAsExpi
 using Fitnet.Passes;
 using RegisterPass;
 using Common.TestEngine.Configuration;
-using Fitnet.Shared.Events;
-using Fitnet.Shared.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Passes.RegisterPass;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>

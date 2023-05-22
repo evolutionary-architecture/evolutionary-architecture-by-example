@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus;
+namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 
-internal interface IEventBus
+public interface IEventBus
 {
     Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
         where TEvent : IIntegrationEvent;

@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.IntegrationEvents.Handlers;
 
-using Fitnet.Shared.Events;
 using MediatR;
 
 internal sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable 

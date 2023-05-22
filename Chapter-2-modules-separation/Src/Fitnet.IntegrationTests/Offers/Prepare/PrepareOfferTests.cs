@@ -4,7 +4,6 @@ using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Offers.Prepare;
 using Fitnet.Passes.MarkPassAsExpired.Events;
-using Fitnet.Shared.Events.EventBus;
 
 public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>

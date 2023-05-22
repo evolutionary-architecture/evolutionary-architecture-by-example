@@ -1,6 +1,7 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus.InMemory;
+namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.InMemory;
 
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 internal static class InMemoryEventBusModule
 {
