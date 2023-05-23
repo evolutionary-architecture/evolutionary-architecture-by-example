@@ -15,7 +15,7 @@ The Clean Architecture approach emphasizes the separation of concerns and the or
 === Layers
 
 - _API_: Responsible for handling external communication like http requests and providing interfaces for interacting with the Contracts module.
-- _Application_: Contains the business logic and use cases specific to the Contracts module.
+- _Application_: Contains use cases specific to the Contracts module.
 - _Infrastructure_: Handles the technical aspects like persistence, configuration, external systems integrations or I/O operations.
 - _Core_: Represents the heart of the Contracts module, containing the domain model and essential business logic.
 
