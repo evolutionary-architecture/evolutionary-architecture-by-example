@@ -1,4 +1,4 @@
-= 10: Applying Clean Architecture Approach to the Contracts Module
+= 11: Applying Clean Architecture Approach to the Contracts Module
 
 == Context
 
@@ -16,7 +16,7 @@ The Clean Architecture approach emphasizes the separation of concerns and the or
 
 - _API_: Responsible for handling external communication like http requests and providing interfaces for interacting with the Contracts module.
 - _Application_: Contains the business logic and use cases specific to the Contracts module.
-- _Infrastructure_: Handles the technical aspects like persistance, configuration, external systems integrations or I/O operations.
+- _Infrastructure_: Handles the technical aspects like persistence, configuration, external systems integrations or I/O operations.
 - _Core_: Represents the heart of the Contracts module, containing the domain model and essential business logic.
 
 The Clean Architecture approach enforces a strict separation of concerns and allows for clear dependencies between the layers.
@@ -25,11 +25,11 @@ The Clean Architecture approach enforces a strict separation of concerns and all
 
 Applying the Clean Architecture approach to the Contracts module will have the following consequences:
 
-- Long-term reduced cognitive load by putting complexity responsibilities into isolated layers
+- Long-term reduced cognitive load by putting complexity responsibilities into isolated layers.
 - Easier reasoning and modification of the Contracts module as the application evolves.
 - Improved overall code quality through independent testing of each layer.
 - Facilitated collaboration between team members due to well-defined responsibilities and interfaces.
 - Enhanced encapsulation and control over visibility: The use of distinct layers allows developers to manipulate what is public and what remains internal implementation details within each layer.
 This improves encapsulation and provides better control over the exposure of functionality and data, promoting information hiding and reducing the risk of unwanted dependencies or modifications from other layers.
 - Higher learning curve for the development team, as it involves understanding and implementing the principles and patterns associated with this architectural style. 
-- Additional effort required to create projects that will become layers
+- Additional effort required to create projects that will become layers.
