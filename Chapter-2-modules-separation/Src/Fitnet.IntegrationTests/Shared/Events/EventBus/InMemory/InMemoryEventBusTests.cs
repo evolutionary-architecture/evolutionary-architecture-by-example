@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Shared.Events.EventBus.InMemory;
 
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using Common.TestEngine.Configuration;
 
 public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>

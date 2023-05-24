@@ -1,5 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Shared.Events.EventBus.InMemory;
 
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events;
+
 internal record FakeEvent(Guid Id, DateTimeOffset OccurredDateTime, bool Consumed) : IIntegrationEvent
 {
     private FakeEvent() : this(Guid.NewGuid(), DateTimeOffset.UtcNow, false)
