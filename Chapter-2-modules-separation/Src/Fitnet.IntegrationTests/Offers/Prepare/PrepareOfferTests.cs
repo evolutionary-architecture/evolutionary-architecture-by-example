@@ -1,6 +1,7 @@
+using EvolutionaryArchitecture.Fitnet.Passes.IntegrationEvents;
+
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
-using EvolutionaryArchitecture.Fitnet.Passes.IntegrationEvents.MarkPassAsExpired;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
