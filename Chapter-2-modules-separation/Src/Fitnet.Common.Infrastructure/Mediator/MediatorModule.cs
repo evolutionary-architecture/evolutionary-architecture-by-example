@@ -11,5 +11,4 @@ public static class MediatorModule
         
         return services;
     }
-    
 }

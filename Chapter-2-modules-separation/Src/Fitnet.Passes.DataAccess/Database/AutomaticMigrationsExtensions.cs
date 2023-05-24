@@ -1,5 +1,3 @@
-
-
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
 
 using Microsoft.EntityFrameworkCore;
