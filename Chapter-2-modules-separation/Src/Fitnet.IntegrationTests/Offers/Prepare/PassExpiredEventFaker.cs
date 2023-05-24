@@ -1,6 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Offers.Prepare.Events;
-
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
+
+using EvolutionaryArchitecture.Fitnet.Passes.IntegrationEvents.MarkPassAsExpired;
 
 internal sealed class PassExpiredEventFaker : Faker<PassExpiredEvent>
 {
@@ -8,6 +8,7 @@ internal sealed class PassExpiredEventFaker : Faker<PassExpiredEvent>
     {
         CustomInstantiator(faker =>
             new PassExpiredEvent(
+                Guid.NewGuid(),
                 Guid.NewGuid(),
                 Guid.NewGuid(),
                 faker.Date.RecentOffset()
