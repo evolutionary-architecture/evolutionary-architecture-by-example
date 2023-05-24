@@ -1,5 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api;
 
+using System.Reflection;
+using Common.Infrastructure.Mediator;
 using Contracts.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +12,7 @@ public static class PassesModule
     public static IServiceCollection AddPasses(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDataAccess(configuration);
+        services.AddMediator(Assembly.GetExecutingAssembly());
         
         return services;
     }

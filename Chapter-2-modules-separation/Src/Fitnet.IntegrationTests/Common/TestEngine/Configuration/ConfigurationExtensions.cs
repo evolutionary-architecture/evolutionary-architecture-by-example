@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.InMemory;
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Mediator;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 using System.Reflection;
@@ -45,6 +45,6 @@ internal static class ConfigurationExtensions
     internal static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
-            services.AddInMemoryEventBus(Assembly.GetExecutingAssembly())));
+            services.AddMediator(Assembly.GetExecutingAssembly())));
 
 }
