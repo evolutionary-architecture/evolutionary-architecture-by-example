@@ -1,8 +1,7 @@
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Offers.Prepare.Events;
-
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Offers.Prepare.Events;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Offers.Prepare;
