@@ -1,6 +1,6 @@
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events;
-
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationEvents;
+
+using Common.Infrastructure.Events;
 
 public record PassExpiredEvent
     (Guid Id, Guid PassId, Guid CustomerId, DateTimeOffset OccurredDateTime) : IIntegrationEvent
