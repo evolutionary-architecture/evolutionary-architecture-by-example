@@ -1,7 +1,7 @@
-namespace EvolutionaryArchitecture.Fitnet.UnitTests.Contracts.PrepareContract.BusinessRules;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
 using Common.Core.BusinessRules;
-using Fitnet.Contracts.Core.PrepareContract.BusinessRules;
+using Core.PrepareContract.BusinessRules;
 
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
 {

@@ -4,6 +4,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.UnitTests" />
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests" />
   </ItemGroup>
+  
 </Project>
