@@ -1,11 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 
 using System.Reflection;
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Mediator;
+using Infrastructure.Events.EventBus;
+using Infrastructure.Mediator;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 using SystemClock;
 
 public static class ConfigurationExtensions

@@ -1,7 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events;
+using Infrastructure.Events;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 internal sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable 
 where TIntegrationEvent : IIntegrationEvent
