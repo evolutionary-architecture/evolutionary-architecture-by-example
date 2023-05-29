@@ -37,6 +37,10 @@ internal sealed class ExceptionMiddleware
                 statusCode = (int)HttpStatusCode.Conflict;
                 message = businessRuleValidationException.Message;
                 break;
+            case ResourceNotFoundException resourceNotFoundException:
+                statusCode = (int)HttpStatusCode.NotFound;
+                message = resourceNotFoundException.Message;
+                break;
             default:
                 statusCode = (int)HttpStatusCode.InternalServerError;
                 message = exception.Message;

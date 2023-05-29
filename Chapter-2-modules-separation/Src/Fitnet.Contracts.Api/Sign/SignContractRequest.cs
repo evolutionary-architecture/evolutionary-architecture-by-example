@@ -1,3 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Sign;
 
-public sealed record SignContractRequest(DateTimeOffset SignedAt);
+using Application.Commands.Sign;
+
+public sealed record SignContractRequest(DateTimeOffset SignedAt)
+{
+    internal SignContractCommand ToCommand(Guid Id) => 
+        new(Id, SignedAt);
+}

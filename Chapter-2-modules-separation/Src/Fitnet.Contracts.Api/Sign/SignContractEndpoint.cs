@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Sign;
 
-using EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database;
+using Application;
+using Application.Commands.Sign;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -9,17 +10,14 @@ internal static class SignContractEndpoint
 {
     internal static void MapSignContract(this IEndpointRouteBuilder app)
     {
-        app.MapPatch(ContractsApiPaths.Sign, async (Guid id, SignContractRequest request,
-            ContractsPersistence persistence, CancellationToken cancellationToken) =>
+        app.MapPatch(ContractsApiPaths.Sign, async (
+            Guid id, 
+            SignContractRequest request,
+            IContractsModule contractsModule, CancellationToken cancellationToken) =>
         {
-            var contract =
-                await persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
-            if (contract is null)
-                return Results.NotFound();
-
-            contract.Sign(request.SignedAt);
-            await persistence.SaveChangesAsync(cancellationToken);
-
+            var command = request.ToCommand(id);
+            await contractsModule.ExecuteCommandAsync(command, cancellationToken);
+            
             return Results.NoContent();
         });
     }
