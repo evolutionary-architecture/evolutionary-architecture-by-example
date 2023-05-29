@@ -15,6 +15,7 @@ internal sealed class SignContractCommandHandler : IRequestHandler<SignContractC
         var contract = await _contractsRepository.GetByIdAsync(command.Id, cancellationToken);
         if (contract is null)
            throw new ResourceNotFoundException(command.Id);
+        
         contract.Sign(command.SignedAt);
         await _contractsRepository.CommitAsync(cancellationToken);
     }

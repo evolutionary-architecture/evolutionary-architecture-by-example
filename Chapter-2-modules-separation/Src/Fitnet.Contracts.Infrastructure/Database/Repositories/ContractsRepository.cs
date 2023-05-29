@@ -11,9 +11,12 @@ internal sealed class ContractsRepository : IContractsRepository
    
     public async Task<Contract?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) => 
         await _persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
-   
-    public async Task AddAsync(Contract contract, CancellationToken cancellationToken = default) => 
+
+    public async Task AddAsync(Contract contract, CancellationToken cancellationToken = default)
+    {
         await _persistence.Contracts.AddAsync(contract, cancellationToken);
+        await _persistence.SaveChangesAsync(cancellationToken);
+    } 
 
     public async Task CommitAsync(CancellationToken cancellationToken = default) => 
         await _persistence.SaveChangesAsync(cancellationToken);

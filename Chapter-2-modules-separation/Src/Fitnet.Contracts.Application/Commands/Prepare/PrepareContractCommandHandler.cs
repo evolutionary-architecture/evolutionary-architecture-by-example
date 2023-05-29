@@ -9,6 +9,7 @@ internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareCon
     
     public PrepareContractCommandHandler(IContractsRepository contractsRepository) => 
         _contractsRepository = contractsRepository;
+    
     public async Task<Guid> Handle(PrepareContractCommand command, CancellationToken cancellationToken)
     {
         var contract = Contract.Prepare(command.CustomerAge, command.CustomerHeight, command.PreparedAt);
