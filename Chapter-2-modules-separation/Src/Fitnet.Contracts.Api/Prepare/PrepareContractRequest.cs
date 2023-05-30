@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Prepare;
 
 using Application.Commands.Prepare;
 
-public sealed record PrepareContractRequest(int CustomerAge, int CustomerHeight, DateTimeOffset PreparedAt)
+internal sealed record PrepareContractRequest(int CustomerAge, int CustomerHeight, DateTimeOffset PreparedAt)
 {
    internal PrepareContractCommand ToCommand() => new(CustomerAge, CustomerHeight, PreparedAt);
 }
