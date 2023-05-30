@@ -2,7 +2,6 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Sign;
 
 using Common.Api.ErrorHandling;
 using Core;
-using MediatR;
 
 internal sealed class SignContractCommandHandler : IRequestHandler<SignContractCommand>
 {

@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Sign;
 
 using Application;
-using Application.Commands.Sign;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;

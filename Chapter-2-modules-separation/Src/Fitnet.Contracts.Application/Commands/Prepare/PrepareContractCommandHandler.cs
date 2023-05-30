@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Prepare;
 
 using Core;
-using MediatR;
 
 internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareContractCommand, Guid>
 {
