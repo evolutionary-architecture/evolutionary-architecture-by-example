@@ -9,6 +9,7 @@ internal sealed class SignContractCommandHandler : IRequestHandler<SignContractC
     
     public SignContractCommandHandler(IContractsRepository contractsRepository) => 
         _contractsRepository = contractsRepository;
+    
     public async Task Handle(SignContractCommand command, CancellationToken cancellationToken)
     {
         var contract = await _contractsRepository.GetByIdAsync(command.Id, cancellationToken);
