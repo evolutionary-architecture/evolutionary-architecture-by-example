@@ -2,7 +2,7 @@
 
 Date: 2023-05-28
 
-== Context
+== Problem
 Based on our findings, we have identified that the contracts module is likely to experience significant growth in business logic. 
 Our estimations indicate that there will be a higher frequency of write operations compared to read operations in this module.
 
