@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet", "Fitnet\Fitnet.csproj", "{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}"
 EndProject
@@ -47,6 +47,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.IntegrationTests", "Fitnet.Contracts.IntegrationTests\Fitnet.Contracts.IntegrationTests.csproj", "{36954CC9-AB53-4106-82C1-657B237BDF60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.IntegrationTests", "Fitnet.Common.IntegrationTests\Fitnet.Common.IntegrationTests.csproj", "{B1F019C3-1CFE-416E-9FB2-E6E262DE6932}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Offers", "Offers", "{8EFEF03A-A6B6-4FC6-A74C-B8D5A6889679}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Offers.DataAccess", "Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj", "{0C2A9E59-8B9B-4DC7-9264-0557737EE8F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +134,10 @@ Global
 		{B1F019C3-1CFE-416E-9FB2-E6E262DE6932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1F019C3-1CFE-416E-9FB2-E6E262DE6932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1F019C3-1CFE-416E-9FB2-E6E262DE6932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2A9E59-8B9B-4DC7-9264-0557737EE8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2A9E59-8B9B-4DC7-9264-0557737EE8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2A9E59-8B9B-4DC7-9264-0557737EE8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2A9E59-8B9B-4DC7-9264-0557737EE8F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A6E0883-EE26-4A50-9114-AF1EDD82EB94} = {7D3193F0-C731-4683-893F-53CE8087D7E2}
@@ -149,5 +157,6 @@ Global
 		{21F04FB0-FF1D-44A6-96F6-DA159C3ACFAF} = {732AD772-11C2-4DCC-B6DC-D59EABEF335B}
 		{36954CC9-AB53-4106-82C1-657B237BDF60} = {40264210-3B90-41C5-AD4E-8F33D29455CF}
 		{B1F019C3-1CFE-416E-9FB2-E6E262DE6932} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
+		{0C2A9E59-8B9B-4DC7-9264-0557737EE8F7} = {8EFEF03A-A6B6-4FC6-A74C-B8D5A6889679}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Offers.Data;
+namespace EvolutionaryArchitecture.Fitnet.Offers.DataAccess;
 
-internal sealed class Offer
+public sealed class Offer
 {
     public Guid Id { get; init; }
     public Guid CustomerId { get; init; }
@@ -19,9 +19,9 @@ internal sealed class Offer
         OfferedFromTo = offeredFromTo;
     }
 
-    internal static Offer PrepareStandardPassExtension(Guid customerId, DateTimeOffset nowDate)
+    public static Offer PrepareStandardPassExtension(Guid customerId, DateTimeOffset nowDate)
     { 
-        var standardDiscount = 0.1m;
+        const decimal standardDiscount = 0.1m;
         var offer = new Offer(
             Guid.NewGuid(), 
             customerId, 
