@@ -1,10 +1,10 @@
-namespace EvolutionaryArchitecture.Fitnet.Offers.Prepare;
+namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Events.EventBus;
 using Common.Infrastructure.SystemClock;
-using Data;
-using Data.Database;
+using DataAccess;
+using DataAccess.Database;
 using Passes.IntegrationEvents;
 
 internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExpiredEvent>
