@@ -1,11 +1,11 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure;
+namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess;
 
-using Passes.DataAccess.Database;
+using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-public static class InfrastructureModule
+public static class DataAccessModule
 {
     public static IServiceCollection AddDataAccess(this IServiceCollection services, IConfiguration configuration)
     {

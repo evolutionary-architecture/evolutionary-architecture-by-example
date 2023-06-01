@@ -1,8 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api;
 
+using DataAccess;
 using System.Reflection;
 using Common.Infrastructure.Mediator;
-using Contracts.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
