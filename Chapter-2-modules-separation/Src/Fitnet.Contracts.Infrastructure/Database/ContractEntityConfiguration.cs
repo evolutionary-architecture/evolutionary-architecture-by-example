@@ -11,5 +11,6 @@ internal sealed class ContractEntityConfiguration : IEntityTypeConfiguration<Con
         builder.ToTable("Contracts");
         builder.HasKey(contract => contract.Id);
         builder.Property(contract => contract.PreparedAt).IsRequired();
+        builder.Property(contract => contract.SignedAt).IsRequired(false);
     }
 }
