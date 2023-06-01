@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess;
+namespace EvolutionaryArchitecture.Fitnet.Offers.DataAccess;
 
 using Database;
 using Microsoft.AspNetCore.Builder;

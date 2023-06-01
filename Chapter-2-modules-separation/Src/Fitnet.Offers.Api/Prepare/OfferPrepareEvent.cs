@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Offers.Prepare;
+namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
 using Common.Infrastructure.Events;
 

@@ -1,26 +1,27 @@
-namespace EvolutionaryArchitecture.Fitnet.Passes.Api;
+using EvolutionaryArchitecture.Fitnet.Offers.DataAccess;
 
-using DataAccess;
-using System.Reflection;
+namespace EvolutionaryArchitecture.Fitnet.Offers.Api;
+
 using Common.Infrastructure.Mediator;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-public static class PassesModule
+public static class OffersModule
 {
-    public static IServiceCollection AddPasses(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddOffers(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDataAccess(configuration);
         services.AddMediator(Assembly.GetExecutingAssembly());
-        
+
         return services;
     }
     
-    public static IApplicationBuilder UsePasses(this IApplicationBuilder applicationBuilder)
+    public static IApplicationBuilder UseOffers(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseDataAccess();
-        
+
         return applicationBuilder;
     }
 }

@@ -1,10 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
+using EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 using EvolutionaryArchitecture.Fitnet.Passes.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
-using Fitnet.Offers.Prepare;
 
 public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>

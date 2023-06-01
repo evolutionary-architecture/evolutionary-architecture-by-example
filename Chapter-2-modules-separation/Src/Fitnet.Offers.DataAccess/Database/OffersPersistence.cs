@@ -1,8 +1,8 @@
-namespace EvolutionaryArchitecture.Fitnet.Offers.Data.Database;
+namespace EvolutionaryArchitecture.Fitnet.Offers.DataAccess.Database;
 
 using Microsoft.EntityFrameworkCore;
 
-internal sealed class OffersPersistence : DbContext
+public sealed class OffersPersistence : DbContext
 {
     private const string Schema = "Offers";
 

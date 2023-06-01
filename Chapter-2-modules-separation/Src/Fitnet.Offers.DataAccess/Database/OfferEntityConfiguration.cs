@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Offers.Data.Database;
+namespace EvolutionaryArchitecture.Fitnet.Offers.DataAccess.Database;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
