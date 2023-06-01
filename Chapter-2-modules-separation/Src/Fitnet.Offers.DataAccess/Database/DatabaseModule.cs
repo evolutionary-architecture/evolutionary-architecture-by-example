@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-public static class DatabaseModule
+internal static class DatabaseModule
 {
     private const string ConnectionStringName = "Offers";
 
-    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(ConnectionStringName);
         services.AddDbContext<OffersPersistence>(options => options.UseNpgsql(connectionString));
@@ -17,7 +17,7 @@ public static class DatabaseModule
         return services;
     }
 
-    public static IApplicationBuilder UseDatabase(this IApplicationBuilder applicationBuilder)
+    internal static IApplicationBuilder UseDatabase(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseAutomaticMigrations();
 
