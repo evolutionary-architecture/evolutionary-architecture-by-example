@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.Contracts.PrepareContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareContract;
 
 using Api.Prepare;
 

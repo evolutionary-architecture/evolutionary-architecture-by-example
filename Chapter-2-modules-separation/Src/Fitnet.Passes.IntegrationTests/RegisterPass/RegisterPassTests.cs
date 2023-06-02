@@ -1,8 +1,9 @@
-namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
+namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.RegisterPass;
 
-using EvolutionaryArchitecture.Fitnet.Passes.Api;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
+using Api;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
-using Common.TestEngine.Configuration;
 
 public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {

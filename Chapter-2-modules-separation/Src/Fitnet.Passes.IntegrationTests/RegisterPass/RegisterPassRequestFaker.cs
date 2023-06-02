@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
+namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.RegisterPass;
 
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 

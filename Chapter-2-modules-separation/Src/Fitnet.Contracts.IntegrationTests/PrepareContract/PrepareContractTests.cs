@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.Contracts.PrepareContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareContract;
 
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;

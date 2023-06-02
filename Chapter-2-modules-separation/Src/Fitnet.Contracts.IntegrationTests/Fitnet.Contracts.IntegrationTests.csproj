@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fitnet.Common.IntegrationTests\Fitnet.Common.IntegrationTests.csproj" />
-    <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
   </ItemGroup>
 
 </Project>
