@@ -12,15 +12,21 @@ internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareCon
     
     public async Task<Guid> Handle(PrepareContractCommand command, CancellationToken cancellationToken)
     {
-        var existingContract = await _contractsRepository.GetNotSignedForCustomerAsync(command.CustomerId, cancellationToken);
-        if (existingContract is not null)
-        {
-            throw new CustomerHasNotSignedContractException(existingContract.CustomerId, existingContract.Id, existingContract.PreparedAt);
-        }
-        
+        await EnsureThatCustomerHasNoUnsignedContract(command.CustomerId, cancellationToken);
+
         var contract = Contract.Prepare(command.CustomerId, command.CustomerAge, command.CustomerHeight, command.PreparedAt);
         await _contractsRepository.AddAsync(contract, cancellationToken);
 
         return contract.Id;
+    }
+    
+    private async Task EnsureThatCustomerHasNoUnsignedContract(Guid customerId, CancellationToken cancellationToken)
+    {
+        var unsignedContract = await _contractsRepository.GetNotSignedForCustomerAsync(customerId, cancellationToken);
+        var hasCustomerUnsignedContract = unsignedContract is not null;
+        if (hasCustomerUnsignedContract)
+        {
+            throw new CustomerHasUnsignedContractException(unsignedContract!.CustomerId, unsignedContract.Id, unsignedContract.PreparedAt);
+        }
     }
 }
