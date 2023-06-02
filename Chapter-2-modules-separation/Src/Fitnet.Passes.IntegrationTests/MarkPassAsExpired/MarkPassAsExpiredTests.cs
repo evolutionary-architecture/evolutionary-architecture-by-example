@@ -1,11 +1,13 @@
-namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.MarkPassAsExpired;
+namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.MarkPassAsExpired;
 
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events;
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Passes.Api;
+using Common.Infrastructure.Events;
+using Common.Infrastructure.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
+using Api;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using RegisterPass;
-using Common.TestEngine.Configuration;
+using Moq;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
