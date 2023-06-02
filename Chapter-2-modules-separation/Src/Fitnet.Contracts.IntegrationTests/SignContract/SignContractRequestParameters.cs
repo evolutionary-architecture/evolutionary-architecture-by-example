@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.Contracts.SignContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
 using Api;
 
