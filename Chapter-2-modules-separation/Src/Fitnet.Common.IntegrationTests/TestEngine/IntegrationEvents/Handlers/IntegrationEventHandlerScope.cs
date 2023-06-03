@@ -4,11 +4,11 @@ using Infrastructure.Events;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-internal sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable 
+public sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable 
 where TIntegrationEvent : IIntegrationEvent
 {
     private readonly IServiceScope _serviceScope;
-    internal readonly IIntegrationEventHandler<TIntegrationEvent> IntegrationEventHandler;
+    public readonly IIntegrationEventHandler<TIntegrationEvent> IntegrationEventHandler;
     
     public IntegrationEventHandlerScope(WebApplicationFactory<Program> applicationInMemoryFactory)
     {
