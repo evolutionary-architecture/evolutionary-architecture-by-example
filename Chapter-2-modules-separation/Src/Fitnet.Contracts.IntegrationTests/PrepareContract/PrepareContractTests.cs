@@ -87,8 +87,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
         responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Customer height must fit maximum limit for gym instruments");
-    }
+        responseMessage?.Message.Should().Contain($"Customer '{customerId}' has unsigned contract");    }
     
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)
     {
