@@ -22,7 +22,7 @@ internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareCon
     
     private async Task EnsureThatCustomerHasNoUnsignedContract(Guid customerId, CancellationToken cancellationToken)
     {
-        var unsignedContract = await _contractsRepository.GetNotSignedForCustomerAsync(customerId, cancellationToken);
+        var unsignedContract = await _contractsRepository.GetUnsignedForCustomerAsync(customerId, cancellationToken);
         var hasCustomerUnsignedContract = unsignedContract is not null;
         if (hasCustomerUnsignedContract)
         {
