@@ -6,7 +6,6 @@ using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configu
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 using Passes.IntegrationEvents;
-using Moq;
 
 public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
