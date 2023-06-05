@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests" />
-    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.IntegrationTests" />
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
   </ItemGroup>
   
   <ItemGroup>
