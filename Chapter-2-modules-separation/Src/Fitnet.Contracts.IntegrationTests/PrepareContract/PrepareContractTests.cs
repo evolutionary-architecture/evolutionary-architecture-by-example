@@ -87,7 +87,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
         responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Contain($"Customer '{customerId}' has unsigned contract");    }
+        responseMessage?.Message.Should().Be($"Previous contract must be signed by the customer");    }
     
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)
     {

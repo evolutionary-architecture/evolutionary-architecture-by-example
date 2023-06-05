@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Prepare.Exceptions;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Preapre.Exceptions;
 
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 

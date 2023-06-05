@@ -13,6 +13,7 @@ public sealed class Contract
     public DateTimeOffset PreparedAt { get; init; }
     
     public DateTimeOffset? SignedAt { get; private set; }
+    public bool Signed => SignedAt is not null;
 
     private Contract(Guid id, 
         Guid customerId, 
@@ -23,11 +24,12 @@ public sealed class Contract
         PreparedAt = preparedAt;
     }
 
-    public static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt)
+    public static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
     {
         BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
-        
+        BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
+
         return new(Guid.NewGuid(), 
             customerId,
             preparedAt);
