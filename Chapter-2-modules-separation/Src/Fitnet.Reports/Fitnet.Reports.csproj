@@ -11,7 +11,7 @@
       <PackageReference Include="Npgsql" Version="7.0.4" />
     </ItemGroup>
     <ItemGroup>
-        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.IntegrationTests" />
+        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
     </ItemGroup>
     
 </Project>
