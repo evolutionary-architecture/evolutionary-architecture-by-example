@@ -4,7 +4,6 @@ using Common.Core.BusinessRules;
 
 internal sealed class PreviousContractHasToBeSignedRule : IBusinessRule
 {
-    
     private readonly bool? _signed;
    
     internal PreviousContractHasToBeSignedRule(bool? signed) => _signed = signed;
