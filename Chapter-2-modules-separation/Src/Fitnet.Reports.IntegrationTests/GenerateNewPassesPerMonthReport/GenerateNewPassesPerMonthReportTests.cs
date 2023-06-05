@@ -1,12 +1,13 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
-using EvolutionaryArchitecture.Fitnet.Passes.Api;
-using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
-using Common.TestEngine.Configuration;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
+using EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesRegistrationsPerMonthReport;
+using EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesRegistrationsPerMonthReport.TestData;
+using Passes.Api;
+using Passes.Api.RegisterPass;
 using Fitnet.Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
-using GenerateNewPassesRegistrationsPerMonthReport;
-using GenerateNewPassesRegistrationsPerMonthReport.TestData;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>

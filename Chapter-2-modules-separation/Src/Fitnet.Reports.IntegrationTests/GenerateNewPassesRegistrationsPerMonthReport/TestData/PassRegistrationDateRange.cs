@@ -1,0 +1,3 @@
+namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesRegistrationsPerMonthReport.TestData;
+
+internal sealed record PassRegistrationDateRange(DateTimeOffset From, DateTimeOffset To);
