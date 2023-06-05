@@ -7,7 +7,6 @@ using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configu
 using Api;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using RegisterPass;
-using Moq;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
