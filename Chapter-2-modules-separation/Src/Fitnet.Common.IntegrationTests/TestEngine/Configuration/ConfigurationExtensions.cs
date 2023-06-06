@@ -43,9 +43,9 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddSingleton(eventBusMock.Object)));
 
-    public static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory)
+    public static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory, Assembly executingAssembly)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
-            services.AddMediator(Assembly.GetCallingAssembly())));
+            services.AddMediator(executingAssembly)));
 
 }

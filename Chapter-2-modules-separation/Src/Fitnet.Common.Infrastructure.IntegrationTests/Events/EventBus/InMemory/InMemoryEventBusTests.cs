@@ -12,7 +12,7 @@ public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<
         DatabaseContainer database) =>
         _applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .WithFakeConsumers();
+            .WithFakeConsumers(Assembly.GetExecutingAssembly());
     
     [Fact]
     public async Task Given_valid_event_published_Then_event_should_be_consumed()
