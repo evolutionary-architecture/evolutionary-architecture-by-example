@@ -5,4 +5,8 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Tests" />
+    </ItemGroup>
+
 </Project>

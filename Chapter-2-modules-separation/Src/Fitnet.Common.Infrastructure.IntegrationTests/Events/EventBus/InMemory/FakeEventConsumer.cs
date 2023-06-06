@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Shared.Events.EventBus.InMemory;
+namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Tests.Events.EventBus.InMemory;
 
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events;
 

@@ -30,4 +30,8 @@
       <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Shared" />
+    </ItemGroup>
+
 </Project>
