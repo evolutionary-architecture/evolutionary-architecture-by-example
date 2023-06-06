@@ -46,6 +46,6 @@ public static class ConfigurationExtensions
     public static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
-            services.AddMediator(Assembly.GetExecutingAssembly())));
+            services.AddMediator(Assembly.GetCallingAssembly())));
 
 }
