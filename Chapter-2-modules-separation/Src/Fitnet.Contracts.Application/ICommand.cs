@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Application;
 
 public interface ICommand<out TResult> : IRequest<TResult>
 { }

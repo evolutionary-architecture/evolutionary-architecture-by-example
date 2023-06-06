@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Sign;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Sign;
 
 using Common.Api.ErrorHandling;
 using Core;

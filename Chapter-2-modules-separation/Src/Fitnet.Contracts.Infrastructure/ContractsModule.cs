@@ -1,7 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure;
 
 using Application;
-using Application.Commands;
 using MediatR;
 
 internal sealed class ContractsModule : IContractsModule

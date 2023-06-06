@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Preapre;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Preapre;
 
-using EvolutionaryArchitecture.Fitnet.Contracts.Core;
+using Core;
 
 internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareContractCommand, Guid>
 {
