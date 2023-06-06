@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Preapre;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Prepare;
 
 using Core;
 
