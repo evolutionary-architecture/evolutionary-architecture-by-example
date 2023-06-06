@@ -2,6 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Prepare;
 
 using Core;
 
+[UsedImplicitly]
 internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareContractCommand, Guid>
 {
     private readonly IContractsRepository _contractsRepository;
