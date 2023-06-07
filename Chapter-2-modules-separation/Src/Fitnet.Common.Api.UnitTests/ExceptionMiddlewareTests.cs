@@ -1,10 +1,7 @@
-namespace EvolutionaryArchitecture.Fitnet.UnitTests;
+namespace EvolutionaryArchitecture.Fitnet.Common.Api.UnitTests;
 
-using System.Net;
-using Common.Api.ErrorHandling;
-using Common.Core.BusinessRules;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+using ErrorHandling;
+using Core.BusinessRules;
 
 public sealed class ExceptionMiddlewareTests
 {
