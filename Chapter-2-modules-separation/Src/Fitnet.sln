@@ -64,6 +64,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1AC3F562
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Infrastructure.IntegrationTests", "Fitnet.Common.Infrastructure.IntegrationTests\Fitnet.Common.Infrastructure.IntegrationTests.csproj", "{D12833F8-9BE9-42A7-A49D-5BF89B57A59D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Core.UnitTests", "Fitnet.Common.Core.UnitTests\Fitnet.Common.Core.UnitTests.csproj", "{B1724E95-BE2D-403A-930A-BCA6F35349B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,10 @@ Global
 		{D12833F8-9BE9-42A7-A49D-5BF89B57A59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D12833F8-9BE9-42A7-A49D-5BF89B57A59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D12833F8-9BE9-42A7-A49D-5BF89B57A59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1724E95-BE2D-403A-930A-BCA6F35349B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1724E95-BE2D-403A-930A-BCA6F35349B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1724E95-BE2D-403A-930A-BCA6F35349B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1724E95-BE2D-403A-930A-BCA6F35349B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A6E0883-EE26-4A50-9114-AF1EDD82EB94} = {7D3193F0-C731-4683-893F-53CE8087D7E2}
@@ -185,5 +191,6 @@ Global
 		{266CAE79-93FD-4D58-A2C2-8FF0BA94F1F3} = {EF30C337-A488-40BB-B774-48D7F0106FB8}
 		{1AC3F562-14E5-4E55-AF39-B049747247E2} = {8ECA26D2-A5A3-4CC5-BED7-F33422EACEAF}
 		{D12833F8-9BE9-42A7-A49D-5BF89B57A59D} = {1AC3F562-14E5-4E55-AF39-B049747247E2}
+		{B1724E95-BE2D-403A-930A-BCA6F35349B4} = {1AC3F562-14E5-4E55-AF39-B049747247E2}
 	EndGlobalSection
 EndGlobal
