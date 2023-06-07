@@ -1,8 +1,9 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Sign;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Sign;
 
 using Common.Api.ErrorHandling;
 using Core;
 
+[UsedImplicitly]
 internal sealed class SignContractCommandHandler : IRequestHandler<SignContractCommand>
 {
     private readonly IContractsRepository _contractsRepository;

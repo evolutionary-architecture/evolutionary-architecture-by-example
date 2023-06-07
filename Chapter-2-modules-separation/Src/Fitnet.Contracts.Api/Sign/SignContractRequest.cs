@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Sign;
 
-using Application.Commands.Sign;
+using Application.Sign;
 
 internal sealed record SignContractRequest(DateTimeOffset SignedAt)
 {

@@ -1,7 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Application;
 
-using Commands;
-
 public interface IContractsModule
 {
     Task ExecuteCommandAsync(ICommand command, CancellationToken cancellationToken = default);

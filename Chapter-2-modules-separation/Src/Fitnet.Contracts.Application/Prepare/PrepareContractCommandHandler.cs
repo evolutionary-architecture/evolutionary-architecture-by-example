@@ -1,7 +1,8 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Commands.Prepare;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Prepare;
 
 using Core;
 
+[UsedImplicitly]
 internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareContractCommand, Guid>
 {
     private readonly IContractsRepository _contractsRepository;
@@ -11,9 +12,11 @@ internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareCon
     
     public async Task<Guid> Handle(PrepareContractCommand command, CancellationToken cancellationToken)
     {
-        var contract = Contract.Prepare(command.CustomerAge, command.CustomerHeight, command.PreparedAt);
+        var previousContract = await _contractsRepository.GetPreviousForCustomerAsync(command.CustomerId, cancellationToken);
+        var contract = Contract.Prepare(command.CustomerId, command.CustomerAge, command.CustomerHeight, command.PreparedAt, previousContract?.Signed);
         await _contractsRepository.AddAsync(contract, cancellationToken);
 
         return contract.Id;
     }
+
 }
