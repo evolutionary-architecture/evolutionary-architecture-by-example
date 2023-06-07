@@ -1,6 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.UnitTests.BusinessRulesEngine;
+namespace EvolutionaryArchitecture.Fitnet.Common.Core.UnitTests.BusinessRulesEngine;
 
-using Common.Core.BusinessRules;
+using BusinessRules;
 
 public sealed class BusinessRuleValidatorTests
 {

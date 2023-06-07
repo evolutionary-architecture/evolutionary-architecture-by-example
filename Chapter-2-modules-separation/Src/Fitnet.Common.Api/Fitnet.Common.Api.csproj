@@ -6,8 +6,13 @@
     <ItemGroup>
       <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Tests" />
+    </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.UnitTests" />
+        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Api.UnitTests" />
     </ItemGroup>
+    
 </Project>
