@@ -18,7 +18,7 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
     {
         _applicationInMemory = applicationInMemoryFactory
             .WithFakeEventBus(_fakeEventBus)
-            .WithContainerDatabaseConfigured(database.ConnectionString!);
+            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!));
 
         _applicationInMemory.CreateClient();
     }

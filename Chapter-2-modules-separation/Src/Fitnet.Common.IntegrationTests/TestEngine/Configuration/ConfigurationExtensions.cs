@@ -11,21 +11,15 @@ using SystemClock;
 
 public static class ConfigurationExtensions
 {
-    public static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(this WebApplicationFactory<T> webApplicationFactory, string connectionString)
+    public static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(
+        this WebApplicationFactory<T> webApplicationFactory, Dictionary<string, string?> settings)
         where T : class
     {
-        var connectionStringsConfiguration = new Dictionary<string, string?>
-        {
-            {ConfigurationKeys.ContractsConnectionString, connectionString},
-            {ConfigurationKeys.OffersConnectionString, connectionString},
-            {ConfigurationKeys.PassesConnectionString, connectionString},
-            {ConfigurationKeys.ReportsConnectionString, connectionString}
-        };
-
-        return webApplicationFactory.UseSettings(connectionStringsConfiguration);
+        return webApplicationFactory.UseSettings(settings);
     }
 
-    private static WebApplicationFactory<T> UseSettings<T>(this WebApplicationFactory<T> webApplicationFactory, Dictionary<string, string?> settings)
+    private static WebApplicationFactory<T> UseSettings<T>(this WebApplicationFactory<T> webApplicationFactory,
+        Dictionary<string, string?> settings)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
         {
@@ -33,19 +27,22 @@ public static class ConfigurationExtensions
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
         });
 
-    public static WebApplicationFactory<T> SetFakeSystemClock<T>(this WebApplicationFactory<T> webApplicationFactory, DateTimeOffset fakeDateTimeOffset)
+    public static WebApplicationFactory<T> SetFakeSystemClock<T>(this WebApplicationFactory<T> webApplicationFactory,
+        DateTimeOffset fakeDateTimeOffset)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
 
-    public static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IMock<IEventBus> eventBusMock)
+    public static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory,
+        IMock<IEventBus> eventBusMock)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddSingleton(eventBusMock.Object)));
 
-    public static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory, Assembly executingAssembly)
+    public static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory,
+        Assembly executingAssembly)
         where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddMediator(executingAssembly)));
 
 }

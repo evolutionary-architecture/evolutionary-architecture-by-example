@@ -1,12 +1,12 @@
-namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
+namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
-using EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesRegistrationsPerMonthReport;
-using EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesRegistrationsPerMonthReport.TestData;
+using GenerateNewPassesRegistrationsPerMonthReport;
+using GenerateNewPassesRegistrationsPerMonthReport.TestData;
 using Passes.Api;
 using Passes.Api.RegisterPass;
-using Fitnet.Reports;
+using Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 
 [UsesVerify]
@@ -17,7 +17,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(database.ConnectionString!)
+            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!))
             .SetFakeSystemClock(ReportTestCases.FakeNowDate)
             .CreateClient();
 

@@ -1,17 +1,14 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests.Events.EventBus.InMemory;
 
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 
-public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _applicationInMemory;
 
-    public InMemoryEventBusTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
+    public InMemoryEventBusTests(WebApplicationFactory<Program> applicationInMemoryFactory) =>
         _applicationInMemory = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(database.ConnectionString!)
             .WithFakeConsumers(Assembly.GetExecutingAssembly());
     
     [Fact]
