@@ -1,3 +1,3 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 
-public sealed record PrepareContractRequest(int CustomerAge, int CustomerHeight, DateTimeOffset PreparedAt);
+public sealed record PrepareContractRequest(Guid CustomerId, int CustomerAge, int CustomerHeight, DateTimeOffset PreparedAt);

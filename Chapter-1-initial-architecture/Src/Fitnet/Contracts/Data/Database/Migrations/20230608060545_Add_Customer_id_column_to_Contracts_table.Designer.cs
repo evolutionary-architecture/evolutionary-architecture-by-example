@@ -3,17 +3,20 @@ using System;
 using EvolutionaryArchitecture.Fitnet.Contracts.Data.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace EvolutionaryArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations
 {
     [DbContext(typeof(ContractsPersistence))]
-    partial class ContractsPersistenceModelSnapshot : ModelSnapshot
+    [Migration("20230608060545_Add_Customer_id_column_to_Contracts_table")]
+    partial class AddCustomeridcolumntoContractstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

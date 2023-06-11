@@ -3,17 +3,20 @@ using System;
 using EvolutionaryArchitecture.Fitnet.Contracts.Data.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace EvolutionaryArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations
 {
     [DbContext(typeof(ContractsPersistence))]
-    partial class ContractsPersistenceModelSnapshot : ModelSnapshot
+    [Migration("20230608060456_Make_Signed_At_column_not_required")]
+    partial class MakeSignedAtcolumnnotrequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +30,6 @@ namespace EvolutionaryArchitecture.Fitnet.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("PreparedAt")

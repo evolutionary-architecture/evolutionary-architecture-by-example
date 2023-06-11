@@ -2,6 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 
 using Data;
 using Data.Database;
+using Microsoft.EntityFrameworkCore;
 
 internal static class PrepareContractEndpoint
 {
@@ -9,11 +10,17 @@ internal static class PrepareContractEndpoint
     {
         app.MapPost(ContractsApiPaths.Prepare, async (PrepareContractRequest request, ContractsPersistence persistence, CancellationToken cancellationToken) =>
         {
-            var contract = Contract.Prepare(request.CustomerAge, request.CustomerHeight, request.PreparedAt);
+            var previousContract = await GetPreviousForCustomerAsync(persistence, request.CustomerId, cancellationToken);
+            var contract = Contract.Prepare(request.CustomerId, request.CustomerAge, request.CustomerHeight, request.PreparedAt, previousContract?.Signed);
             await persistence.Contracts.AddAsync(contract, cancellationToken);
             await persistence.SaveChangesAsync(cancellationToken);
 
             return Results.Created($"/{ContractsApiPaths.Prepare}/{contract.Id}", contract.Id);
         });
     }
+    
+    private static async Task<Contract?> GetPreviousForCustomerAsync(ContractsPersistence persistence, Guid customerId, CancellationToken cancellationToken = default) =>
+        await persistence.Contracts
+            .OrderByDescending(contract => contract.PreparedAt)
+            .SingleOrDefaultAsync(contract => contract.CustomerId == customerId, cancellationToken);
 }
