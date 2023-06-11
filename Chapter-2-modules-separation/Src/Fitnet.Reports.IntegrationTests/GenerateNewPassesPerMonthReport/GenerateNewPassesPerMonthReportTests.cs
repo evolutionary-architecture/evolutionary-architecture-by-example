@@ -17,7 +17,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured( new ReportsDatabaseConfiguration(database.ConnectionString!))
+            .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
             .SetFakeSystemClock(ReportTestCases.FakeNowDate)
             .CreateClient();
 
