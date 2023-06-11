@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class ModuleAvailabilityValidator
 {
-    public static bool IsEnabled(this IServiceCollection services, string module)
+    public static bool IsModuleEnabled(this IServiceCollection services, string module)
     {
         var buildServiceProvider = services.BuildServiceProvider();
         var featureManager = buildServiceProvider.GetRequiredService<IFeatureManager>();
@@ -14,7 +14,7 @@ public static class ModuleAvailabilityValidator
         return featureManager.IsEnabledAsync(module).Result;
     }
 
-    public static bool IsEnabled(this IApplicationBuilder applicationBuilder, string module)
+    public static bool IsModuleEnabled(this IApplicationBuilder applicationBuilder, string module)
     {
         var buildServiceProvider = applicationBuilder.ApplicationServices;
         var featureManager = buildServiceProvider.GetRequiredService<IFeatureManager>();
