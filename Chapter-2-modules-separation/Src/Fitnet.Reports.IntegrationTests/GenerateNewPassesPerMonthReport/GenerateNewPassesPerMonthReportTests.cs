@@ -13,11 +13,11 @@ using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    
+
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!))
+            .WithContainerDatabaseConfigured( new ReportsDatabaseConfiguration(database.ConnectionString!))
             .SetFakeSystemClock(ReportTestCases.FakeNowDate)
             .CreateClient();
 

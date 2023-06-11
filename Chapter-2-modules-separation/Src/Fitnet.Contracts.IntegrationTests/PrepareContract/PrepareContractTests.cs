@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareContract;
 
+using EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
@@ -14,7 +15,7 @@ public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<P
     public PrepareContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!))
+            .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
             .CreateClient();
 
     [Fact]

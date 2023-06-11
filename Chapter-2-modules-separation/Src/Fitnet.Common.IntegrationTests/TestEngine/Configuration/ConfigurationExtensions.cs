@@ -12,10 +12,10 @@ using SystemClock;
 public static class ConfigurationExtensions
 {
     public static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(
-        this WebApplicationFactory<T> webApplicationFactory, Dictionary<string, string?> settings)
+        this WebApplicationFactory<T> webApplicationFactory, IDatabaseConfiguration databaseConfiguration)
         where T : class
     {
-        return webApplicationFactory.UseSettings(settings);
+        return webApplicationFactory.UseSettings(databaseConfiguration.Get());
     }
 
     private static WebApplicationFactory<T> UseSettings<T>(this WebApplicationFactory<T> webApplicationFactory,

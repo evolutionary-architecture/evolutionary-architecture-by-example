@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
+using EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
@@ -15,7 +16,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!))
+            .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
             .CreateClient();
 
     [Fact]

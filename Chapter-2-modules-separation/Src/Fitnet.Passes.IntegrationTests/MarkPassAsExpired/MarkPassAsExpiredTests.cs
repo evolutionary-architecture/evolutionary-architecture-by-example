@@ -18,7 +18,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     public MarkPassAsExpiredTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!))
+            .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
             .WithFakeEventBus(_fakeEventBus)
             .CreateClient();
 

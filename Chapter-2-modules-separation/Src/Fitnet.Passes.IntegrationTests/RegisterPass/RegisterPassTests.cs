@@ -12,7 +12,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
     public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(DatabaseConfiguration.Get(database.ConnectionString!))
+            .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
             .CreateClient();
 
     [Fact]
