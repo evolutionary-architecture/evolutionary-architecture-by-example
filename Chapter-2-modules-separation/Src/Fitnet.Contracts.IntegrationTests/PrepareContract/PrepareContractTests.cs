@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareContract;
 
-using EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;

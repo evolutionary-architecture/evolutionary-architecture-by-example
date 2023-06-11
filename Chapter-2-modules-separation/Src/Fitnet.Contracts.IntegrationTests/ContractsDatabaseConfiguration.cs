@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests;
 
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests;
 
