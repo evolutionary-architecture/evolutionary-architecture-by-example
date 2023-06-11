@@ -8,9 +8,11 @@ using EvolutionaryArchitecture.Fitnet.Reports;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddFeatureManagement();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddSystemClock();
 builder.Services.AddEventBus();
 
