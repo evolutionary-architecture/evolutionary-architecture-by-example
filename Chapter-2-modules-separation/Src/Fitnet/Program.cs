@@ -1,3 +1,4 @@
+using EvolutionaryArchitecture.Fitnet;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
@@ -16,10 +17,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
 builder.Services.AddEventBus();
 
-builder.Services.AddPasses(builder.Configuration);
-builder.Services.AddContracts(builder.Configuration);
-builder.Services.AddOffers(builder.Configuration);
-builder.Services.AddReports();
+builder.Services.AddContracts(builder.Configuration, Modules.Contracts.ToString());
+builder.Services.AddPasses(builder.Configuration, Modules.Passes.ToString());
+builder.Services.AddOffers(builder.Configuration, Modules.Offers.ToString());
+builder.Services.AddReports(Modules.Reports.ToString());
 
 var app = builder.Build();
 
@@ -30,11 +31,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UsePasses();
-app.UseContracts();
-app.UseReports();
-app.UseOffers();
-    
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -43,9 +39,10 @@ app.UseErrorHandling();
 
 app.MapControllers();
 
-app.MapPasses();
-app.MapContracts();
-app.MapReports();
+app.RegisterContracts(Modules.Contracts.ToString());
+app.RegisterPasses(Modules.Passes.ToString());
+app.RegisterOffers(Modules.Offers.ToString());
+app.RegisterReports( Modules.Reports.ToString());
 
 app.Run();
 
