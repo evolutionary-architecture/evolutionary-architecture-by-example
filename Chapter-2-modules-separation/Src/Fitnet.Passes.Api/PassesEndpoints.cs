@@ -4,9 +4,9 @@ using MarkPassAsExpired;
 using RegisterPass;
 using Microsoft.AspNetCore.Routing;
 
-public static class PassesEndpoints
+internal static class PassesEndpoints
 {
-    public static void MapPasses(this IEndpointRouteBuilder app)
+    internal static void MapPasses(this IEndpointRouteBuilder app)
     {   
         app.MapRegisterPass();
         app.MapMarkPassAsExpired();
