@@ -300,3 +300,6 @@ https://artofsoftwaredesign.net/[Blog]
 https://www.linkedin.com/in/kamilbaczek/[Linkedin]
 https://github.com/kamilbaczek[Github]
 |===
+
+== ⭐ Say thanks
+Feel free to give a ⭐ to this repository if you like it. Your support is greatly appreciated!
