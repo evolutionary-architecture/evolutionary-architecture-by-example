@@ -1,18 +1,19 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
 using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.Configuration;
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 using Api.Sign;
 using PrepareContract;
 
-public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
 
-    public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
+    public SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))

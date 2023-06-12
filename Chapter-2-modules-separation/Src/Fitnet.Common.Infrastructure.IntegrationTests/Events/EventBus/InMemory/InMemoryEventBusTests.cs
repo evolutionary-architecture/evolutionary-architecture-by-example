@@ -3,11 +3,11 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 
-public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<Program>>
+public sealed class InMemoryEventBusTests : IClassFixture<FitnetWebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _applicationInMemory;
+    private readonly FitnetWebApplicationFactory<Program> _applicationInMemory;
 
-    public InMemoryEventBusTests(WebApplicationFactory<Program> applicationInMemoryFactory) =>
+    public InMemoryEventBusTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory) =>
         _applicationInMemory = applicationInMemoryFactory
             .WithFakeConsumers(Assembly.GetExecutingAssembly());
     

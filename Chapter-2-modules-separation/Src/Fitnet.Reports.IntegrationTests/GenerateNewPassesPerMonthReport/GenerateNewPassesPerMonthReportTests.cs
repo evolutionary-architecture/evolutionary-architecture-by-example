@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using GenerateNewPassesRegistrationsPerMonthReport;
@@ -10,11 +11,12 @@ using Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 
 [UsesVerify]
-public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
+    IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
 
-    public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
+    public GenerateNewPassesPerMonthReportTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
@@ -23,11 +25,12 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
     [Theory]
     [ClassData(typeof(ReportTestCases))]
-    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
+    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(
+        List<PassRegistrationDateRange> passRegistrationDateRanges)
     {
         // Arrange
         await RegisterPasses(passRegistrationDateRanges);
-        
+
         // Act
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
@@ -36,7 +39,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
         await Verify(reportData);
     }
-    
+
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
     {
         foreach (var passRegistration in reportTestData)
@@ -46,7 +49,8 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
     private async Task RegisterPass(DateTimeOffset from, DateTimeOffset to)
     {
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker(from, to);
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
+        var registerPassResponse =
+            await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
         await registerPassResponse.Content.ReadFromJsonAsync<Guid>();
     }
 }

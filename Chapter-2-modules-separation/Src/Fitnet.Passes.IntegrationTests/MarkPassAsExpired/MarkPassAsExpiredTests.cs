@@ -2,20 +2,22 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.MarkPassAsExpi
 
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using Api;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using RegisterPass;
 
-public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
+    IClassFixture<DatabaseContainer>
 {
     private static readonly StringContent EmptyContent = new(string.Empty);
-    
+
     private readonly HttpClient _applicationHttpClient;
     private readonly Mock<IEventBus> _fakeEventBus = new();
 
-    public MarkPassAsExpiredTests(WebApplicationFactory<Program> applicationInMemoryFactory,
+    public MarkPassAsExpiredTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
@@ -35,7 +37,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         // Assert
         EnsureThatPassExpiredEventWasPublished();
     }
-    
+
     [Fact]
     internal async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
     {
@@ -49,7 +51,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         // Assert
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
-    
+
     [Fact]
     internal async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_not_found()
     {
@@ -67,13 +69,15 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     private async Task<Guid> RegisterPass()
     {
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
+        var registerPassResponse =
+            await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
         var registeredPassId = await registerPassResponse.Content.ReadFromJsonAsync<Guid>();
 
         return registeredPassId;
     }
-    
+
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
 
-    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<IIntegrationEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(
+        eventBus => eventBus.PublishAsync(It.IsAny<IIntegrationEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 }

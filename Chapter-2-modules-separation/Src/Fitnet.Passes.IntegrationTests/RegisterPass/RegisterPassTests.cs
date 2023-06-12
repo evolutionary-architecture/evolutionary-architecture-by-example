@@ -1,15 +1,17 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.RegisterPass;
 
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using Api;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 
-public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
+    IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
 
-    public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory,
+    public RegisterPassTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
@@ -22,7 +24,8 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
 
         // Act
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
+        var registerPassResponse =
+            await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
 
         // Assert
         registerPassResponse.Should().HaveStatusCode(HttpStatusCode.Created);
