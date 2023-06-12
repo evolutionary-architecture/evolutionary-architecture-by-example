@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Con
 using System.Reflection;
 using Infrastructure.Events.EventBus;
 using Infrastructure.Mediator;
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,15 +10,15 @@ using SystemClock;
 
 public static class ConfigurationExtensions
 {
-    public static FitnetWebApplicationFactory<T> WithContainerDatabaseConfigured<T>(
-        this FitnetWebApplicationFactory<T> webApplicationFactory, IDatabaseConfiguration databaseConfiguration)
+    public static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(
+        this WebApplicationFactory<T> webApplicationFactory, IDatabaseConfiguration databaseConfiguration)
         where T : class
     {
         return webApplicationFactory.UseSettings(databaseConfiguration.Get());
     }
 
-    private static FitnetWebApplicationFactory<T> UseSettings<T>(
-        this FitnetWebApplicationFactory<T> webApplicationFactory,
+    private static WebApplicationFactory<T> UseSettings<T>(
+        this WebApplicationFactory<T> webApplicationFactory,
         Dictionary<string, string?> settings)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
@@ -28,24 +27,24 @@ public static class ConfigurationExtensions
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
         });
 
-    public static FitnetWebApplicationFactory<T> SetFakeSystemClock<T>(
-        this FitnetWebApplicationFactory<T> webApplicationFactory,
+    public static WebApplicationFactory<T> SetFakeSystemClock<T>(
+        this WebApplicationFactory<T> webApplicationFactory,
         DateTimeOffset fakeDateTimeOffset)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
 
-    public static FitnetWebApplicationFactory<T> WithFakeEventBus<T>(
-        this FitnetWebApplicationFactory<T> webApplicationFactory,
+    public static WebApplicationFactory<T> WithFakeEventBus<T>(
+        this WebApplicationFactory<T> webApplicationFactory,
         IMock<IEventBus> eventBusMock)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddSingleton(eventBusMock.Object)));
 
-    public static FitnetWebApplicationFactory<T> WithFakeConsumers<T>(
-        this FitnetWebApplicationFactory<T> webApplicationFactory,
+    public static WebApplicationFactory<T> WithFakeConsumers<T>(
+        this WebApplicationFactory<T> webApplicationFactory,
         Assembly executingAssembly)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
