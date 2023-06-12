@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 
-using System.Reflection;
+using Database;
 using Infrastructure.Events.EventBus;
 using Infrastructure.Mediator;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;

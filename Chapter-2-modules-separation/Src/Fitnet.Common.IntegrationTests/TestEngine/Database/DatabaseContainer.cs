@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 
 using Testcontainers.PostgreSql;
 

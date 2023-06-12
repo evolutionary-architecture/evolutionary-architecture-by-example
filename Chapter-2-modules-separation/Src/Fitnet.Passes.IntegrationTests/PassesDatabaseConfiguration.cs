@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests;
 
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 
 internal class PassesDatabaseConfiguration : IDatabaseConfiguration
 {

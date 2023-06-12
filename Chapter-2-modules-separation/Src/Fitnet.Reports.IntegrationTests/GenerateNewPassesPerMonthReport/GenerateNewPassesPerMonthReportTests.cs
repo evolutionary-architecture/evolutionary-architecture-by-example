@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using GenerateNewPassesRegistrationsPerMonthReport;
 using GenerateNewPassesRegistrationsPerMonthReport.TestData;

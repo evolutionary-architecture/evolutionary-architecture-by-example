@@ -42,7 +42,7 @@ app.MapControllers();
 app.RegisterContracts(Modules.Contracts.ToString());
 app.RegisterPasses(Modules.Passes.ToString());
 app.RegisterOffers(Modules.Offers.ToString());
-app.RegisterReports( Modules.Reports.ToString());
+app.RegisterReports(Modules.Reports.ToString());
 
 app.Run();
 

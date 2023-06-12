@@ -1,3 +1,4 @@
+global using System.Reflection;
 global using JetBrains.Annotations;
 global using Xunit;
 global using Microsoft.AspNetCore.Mvc.Testing;

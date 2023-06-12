@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 
 public interface IDatabaseConfiguration
 {

@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests;
 
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 
 internal class OffersDatabaseConfiguration : IDatabaseConfiguration
 {
