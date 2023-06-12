@@ -16,4 +16,11 @@
         <ProjectReference Include="..\Fitnet.Common.IntegrationTests\Fitnet.Common.IntegrationTests.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="appsettings.IntegrationTests.json" />
+      <Content Include="appsettings.IntegrationTests.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
