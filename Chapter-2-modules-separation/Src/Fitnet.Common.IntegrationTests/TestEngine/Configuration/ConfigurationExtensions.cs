@@ -22,7 +22,7 @@ public static class ConfigurationExtensions
         this FitnetWebApplicationFactory<T> webApplicationFactory,
         Dictionary<string, string?> settings)
         where T : class =>
-        (FitnetWebApplicationFactory<T>)webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
         {
             foreach (var setting in settings)
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
@@ -32,7 +32,7 @@ public static class ConfigurationExtensions
         this FitnetWebApplicationFactory<T> webApplicationFactory,
         DateTimeOffset fakeDateTimeOffset)
         where T : class =>
-        (FitnetWebApplicationFactory<T>)webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
 
@@ -40,7 +40,7 @@ public static class ConfigurationExtensions
         this FitnetWebApplicationFactory<T> webApplicationFactory,
         IMock<IEventBus> eventBusMock)
         where T : class =>
-        (FitnetWebApplicationFactory<T>)webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddSingleton(eventBusMock.Object)));
 
@@ -48,8 +48,7 @@ public static class ConfigurationExtensions
         this FitnetWebApplicationFactory<T> webApplicationFactory,
         Assembly executingAssembly)
         where T : class =>
-        (FitnetWebApplicationFactory<T>)webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddMediator(executingAssembly)));
-
 }
