@@ -6,8 +6,6 @@ public class FitnetWebApplicationFactory<T> : WebApplicationFactory<T> where T :
     {
         builder.ConfigureAppConfiguration((_, configBuilder) =>
         {
-            configBuilder.Sources.Clear();
-
             var settingsPath = Path.Combine(
                 Directory.GetCurrentDirectory(),
                 "appsettings.IntegrationTests.json");
