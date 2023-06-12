@@ -5,7 +5,7 @@ using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configu
 
 public sealed class InMemoryEventBusTests : IClassFixture<FitnetWebApplicationFactory<Program>>
 {
-    private readonly FitnetWebApplicationFactory<Program> _applicationInMemory;
+    private readonly WebApplicationFactory<Program> _applicationInMemory;
 
     public InMemoryEventBusTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory) =>
         _applicationInMemory = applicationInMemoryFactory
