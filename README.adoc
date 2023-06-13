@@ -23,13 +23,13 @@ In summary, if you are looking for a journey - not just a single article describ
 === Proposed Solution
 Our solution should be read like a story and is divided into 4 chapters:
 
-**Chapter 1:** Initial architecture
+**Chapter 1:** Initial Architecture: Focus On Simplicity
 
-**Chapter 2:** Modules Separation
+**Chapter 2:** Modules Separation: Focus On Maintainability
 
-**Chapter 3:** Microservice Extraction
+**Chapter 3:** Microservice Extraction: Focus On Scalability
 
-**Chapter 4:** Domain Model
+**Chapter 4:** Applying Tactical Domain-Driven Design: Focus On Complexity
 
 In each chapter we describe the evolution of the architecture of a selected domain:
 
@@ -189,7 +189,7 @@ Other problem is related to selecting too trivial architecture for too long (thi
 
 What we would like to present you in our story is the evolutionary approach that will tackle most of the applications that you work with.
 
-=== Chapter 1: Initial Architecture
+=== Chapter 1: Initial Architecture: Focus On Simplicity
 
 In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is vertically sliced - all the code is covered in each process namespace. This way we gain several advantages:
 
@@ -199,7 +199,7 @@ In this chapter we will show you how to start your solution architecture. We sta
 
 Modules communicate with the in-memory queue.
 
-=== Chapter 2: Modules Separation
+=== Chapter 2: Modules Separation: Focus On Maintainability
 
 This chapter focuses on the second step you can do in your application. After some time, you will realise that your assumptions about modules were wrong - it grows fast, the business logic becomes complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way round - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. 
 
@@ -211,7 +211,7 @@ With this in mind, you can now start splitting your single ```Fitnet``` project 
 
 and so on. The modules still communicate with the in-memory queue (alternatives described in the chapter's own README).
 
-=== Chapter 3: Microservice Extraction
+=== Chapter 3: Microservice Extraction: Focus On Scalability
 
 Over time, you may need to extract a microservice from one of your application modules. In this chapter you will recognise the most common disintegrators (decision drivers to extract a microservice). 
 
@@ -219,7 +219,7 @@ We will also add a message queue component to replace the in-memory queue. In th
 
 Here you will learn about various concepts that are important from a microservices architecture perspective.
 
-=== Chapter 4: Domain Model
+=== Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 
 At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point. We want to show you that it is always possible, no matter where you are today. 
 
