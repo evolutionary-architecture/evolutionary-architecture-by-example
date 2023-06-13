@@ -27,7 +27,7 @@ Our solution should be read like a story and is divided into 4 chapters:
 
 **Chapter 2:** Modules Separation: Focus On Maintainability
 
-**Chapter 3:** Microservice Extraction: Focus On Scalability
+**Chapter 3:** Microservice Extraction: Focus On Growth
 
 **Chapter 4:** Applying Tactical Domain-Driven Design: Focus On Complexity
 
@@ -114,7 +114,7 @@ There are 2 triggers:
 
 This way we are almost ready to start the implementation.
 
-One more thing to mention - in our example, each subdomain is will be a separate _Bounded Context_.
+One more thing to mention - in our example, each subdomain is a separate _Bounded Context_.
 
 IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. An example of this in _Fitness Studio_ domain can be: Assessments, Progress Tracking and Virtual Coaching that creates 1 _Bounded Context_ called _Personalised Training_.
 
@@ -193,9 +193,9 @@ What we want to show you in our story is the evolutionary approach that will tac
 
 === Chapter 1: Initial Architecture: Focus On Simplicity
 
-In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is vertically sliced - all the code is covered in each process namespace. This way we gain several advantages:
+In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is sliced vertically - all the code is covered in each process namespace. This gives us several advantages:
 
-- better productivity - when starting new design, we are not distracted by creating namespaces, renaming, moving things around
+- better productivity - when we start a new design, we are not distracted by creating namespaces, renaming, moving things around
 - all the code for each process is in just one namespace, so there is no need to look around in folders like ```Controllers, Entities, Commands, Queries``` etc. Everything is just in e.g. ```SignContract```
 - deleting or extracting the process is super easy - you just drop or extract a namespace
 
@@ -203,19 +203,19 @@ Modules communicate with the in-memory queue.
 
 === Chapter 2: Modules Separation: Focus On Maintainability
 
-This chapter focuses on the second step you can do in your application. After some time, you will realise that your assumptions about modules were wrong - it grows fast, the business logic becomes complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way round - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. 
+This chapter focuses on the second step you can take in your application. After some time, you will find that your assumptions about modules were wrong - they grow fast, the business logic becomes more complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way around - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. Also, the team has grown and it is quite difficult to work on one project - lots of conflict and merging hell.
 
-With this in mind, you can now start splitting your single ```Fitnet``` project into several:
+With this in mind, you can now start thinking to split your single ```Fitnet``` project into several ones:
 
 - for one module it will be just ```Fitnet.Reports``` - there is only a transaction script, no business logic
-- for another, it will be ```Fitnet.Passes.Api, Fitnet.Passes.Data```
-- for the complex one it will be ```Fitnet.Contracts.Api, Fitnet.Contracts.Application, Fitnet.Contracts.Domain, Fitnet.Contracts.Infrastructure````
+- for another, it will be ```Fitnet.Passes.Api, Fitnet.Passes.DataAccess``` to build around the active record
+- for the complex one it will be ```Fitnet.Contracts.Api, Fitnet.Contracts.Application, Fitnet.Contracts.Core, Fitnet.Contracts.Infrastructure````
 
 and so on. The modules still communicate with the in-memory queue (alternatives described in the chapter's own README).
 
-=== Chapter 3: Microservice Extraction: Focus On Scalability
+=== Chapter 3: Microservice Extraction: Focus On Growth
 
-Over time, you may need to extract a microservice from one of your application modules. In this chapter you will recognise the most common disintegrators (decision drivers to extract a microservice). 
+OOver time, you may need to extract a microservice from one of your application modules. In this chapter, you will identify the most common disintegrators (decision drivers for extracting a microservice). 
 
 We will also add a message queue component to replace the in-memory queue. In this way, we will improve the exchange of messages between the modules themselves and the microservice.
 
@@ -223,11 +223,11 @@ Here you will learn about various concepts that are important from a microservic
 
 === Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 
-At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point. We want to show you that it is always possible, no matter where you are today. 
+At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point.
 
-You do not have to start from scratch if you do not know your business domain. And you do not need to apply all the concepts of Domain Driven Design to get good results. 
+You do not have to start from scratch if you do not know your business domain. And you do not need to apply all the concepts of Domain-Driven Design to get good results. 
 
-Interesting fact - if you have done a proper analysis of your business domain in the beginning (Event Storming, Domain Storytelling, Story Storming or some other method) and have already broken it down into different sub-domains (and combined them into e.g. a module), then you are almost done from a strategic Domain-Driven Design perspective. Cool? Absolutely cool!
+Interesting fact - if you have done a proper analysis of your business domain in the beginning and have already broken it down into different subdomains (and combined them into e.g. a module), then you are almost done from a strategic Domain-Driven Design perspective. Now you just need to make some adjustments and do some tactical DDD. Cool? Absolutely cool!
 
 Here we focus mainly on tactical DDD and describe
 
@@ -245,18 +245,18 @@ We are trying to keep this repository as simple as possible, so that you can rea
 
 === How To Navigate?
 
-In the root folder of this repository you will only find this README, assets (images & diagrams) used in it, and 4 folders containing the content for each chapter.
+In the root folder of this repository you will find only this README, the assets (images & diagrams) used in it, and 4 folders containing the content for each chapter.
 
-In each folder you will find the same root solution but extended:
+In each folder you will find the same root solution, but expanded:
 
 1. Chapter 1 - Initial state of the application
-2. Chapter 2 - Extraction to separate projects
-3. Chapter 3 - Extraction of one module to a microservice and using the message queue
-4. Chapter 4 - Applying a domain model to one of the modules
+2. Chapter 2 - Extraction into separate projects
+3. Chapter 3 - Extracting a module to a microservice and using the message queue
+4. Chapter 4 - Applying Tactical Domain-Driven Design to one of the modules
 
-Another important thing is that the detailed description of each chapter is in its own README folder. There you will find the information on how to run the solution, what solution structure is used and other important things that are only relevant to that particular chapter. 
+Another important thing to note is that the detailed description of each chapter is in its own README folder. There you will find the information on how to run the solution, what solution structure is used, and other important things that are only relevant to that particular chapter. 
 
-We do not repeat the information covered in the previous chapter, we just extend it with the decision we have made.
+We are not repeating the information covered in the previous chapter, we are just extending it with the decision we have made.
 
 IMPORTANT: If you want to get the most out of this repository, we recommend that you read the first chapter, understand the code and description, and then navigate to another folder. Of course you can go through the folders in your own way but you might miss some concepts.
 
