@@ -7,10 +7,10 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
 === Problem
 There are many repositories that describe software and solution architecture in .NET. As there is no single definition of software architecture, they combine several topics:
 
-- Modular Monolith
-- Microservices
+- Deployment strategies like Modular Monolith and Microservices
 - Domain-Driven Design
 - Clean, Onion, Hexagonal Architecture
+- Infrastructure
 
 as if each of the above were the only possible solution. And that is the problem - it is very rare that any single material shows you a concrete decision path or mix of the above approaches.
 
@@ -33,21 +33,21 @@ Our solution should be read like a story and is divided into 4 chapters:
 
 In each chapter we describe the evolution of the architecture of a selected domain:
 
-- Starting with a simple solution architecture that meets early production needs, where modules are separated in their own namespaces and communication is handled by an in-memory queue
+- Starting with a simple solution architecture that meets early production needs, where business processes are separated in namespaces and communication is handled by an in-memory queue
 - Moving to module separation with the structure of multiple projects associated with each module (including CQRS)
 - Continue with the single module extraction to a microservice and add the message queue component
-- Refactoring the architectural pattern of one of the modules to a domain model (using Domain-Driven Design)
+- Tackling the complexity of one of the modules using tactical Domain-Driven Design
 
-We apply everything we have learned over many years of software development - our goal is to help you avoid making the same mistakes we have. This way you can be sure that your architecture will not be too trivial for too long, or too complex from the start. Treat it as a guide, something you can come back to as often as you like.
+We apply everything we have learned over many years of software development - our aim is to help you avoid making the same mistakes we have. This way you can be sure that your architecture will not be too trivial for too long, or too complex from the start. Treat it as a guide, something you can refer to at any time.
 
 What we focus on:
 
 - Selected business domain analysis
-- Split the domain into subdomains (core and supporting)
+- Split the domain into subdomains (Core and Supportive)
 - Choice of architectural pattern
 - Evolution from monolithic to modular
 - Evolution to a mix of modular monolith and microservices
-- Applying Domain-Driven Design to a core module
+- Applying Domain-Driven Design to a Core module
 - Backend (.NET) with minimal API
 - Loose coupling
 - Architecture decision log
@@ -68,7 +68,7 @@ NOTE: Keep in mind that these are our suggestions. In the end you will have to d
 == Domain
 
 === Overview
-The chosen domain for analysis and implementation is the _Fitness Studio_. It is an area that most of people have an idea of how it works. You can:
+The chosen domain for analysis and implementation is a _Fitness Studio_. It is an area that most of people have an idea of how it works. You can:
 
 - Get an offer
 - Request for a contract
