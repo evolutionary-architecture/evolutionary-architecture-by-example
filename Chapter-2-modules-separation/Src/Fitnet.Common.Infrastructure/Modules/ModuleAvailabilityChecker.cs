@@ -4,7 +4,7 @@ using Microsoft.FeatureManagement;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-public static class ModuleAvailabilityValidator
+public static class ModuleAvailabilityChecker
 {
     public static bool IsModuleEnabled(this IServiceCollection services, string module)
     {
