@@ -130,7 +130,7 @@ There is no business logic:
 - in the pass registration process, it is only informed that the contract has been signed
 - In the pass expiry process, it is only informed that the pass expiry date has been reached.
 
-In addition, the potential for new business rules to be applied to the above processes or other actions is rather low. As it looks like a perfect candidate for CRUD operations, we want to mark it as a candidate to become a _Service Layer_ pattern.
+In addition, the potential for new business rules to be applied to the above processes or other actions is rather low. As it looks like a perfect candidate for CRUD operations, we want to mark it as a candidate to become an _Active Record_ pattern.
 
 NOTE: _Active Record_ is an pattern that rationalises the persistence layer in an application. It encapsulates the idea that a database record is an object in the application, with properties that map to the columns of the database table and the behaviour (domain logic) of that object.
 
