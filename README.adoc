@@ -171,11 +171,13 @@ image::Assets/subdomains_architectural_patterns.jpg[]
 
 == Chapters
 
-In the beginning of every greenfield projects we need to make a lot of decisions and we lack of knowledge. It is called _The Project Paradox_:
+In the beginning of every greenfield project we need to make a lot of decisions and we lack of knowledge. It is called _The Project Paradox_:
 
 image::Assets/project_paradox.png[]
 
-Quite often we are biased by confrences, meetups, friends and colleagues. As a result we decide for too complex architecture. This means starting with:
+Quite often we are biased by conferences, meetups, friends and colleagues. As a result we decide for too complex architecture. 
+
+This means starting with:
 
 - microservices (where we do not yet know the traffic, scale and other factors)
 - orchestrators
@@ -183,11 +185,11 @@ Quite often we are biased by confrences, meetups, friends and colleagues. As a r
 - NoSQL
 - cache
 
-and many more. In the end we have a lot of problems that we created and the entry threshold is extremely high for every team member. In fact, after release we do not know if we need this or other block. We are also not optimized from the cost perspective and it is very hard to find bottlenecks.
+and many more. In the end, we have a lot of problems of our own making, and the barrier to entry for any team member is extremely high. In fact, after release, we do not know if we need this or that block. We are also not optimised from a cost perspective and it is very difficult to find bottlenecks.
 
-Other problem is related to selecting too trivial architecture for too long (this happens less times than "overcomplicated" one). This means that we just add code to a monolith, new features flood our codebase and then it becomes a big ball of mud.
+Another problem is choosing an architecture that is too trivial for too long (this happens less often than "overcomplicated"). This means that we just add code to a monolith, new features flood our codebase and then it becomes a big ball of mud.
 
-What we would like to present you in our story is the evolutionary approach that will tackle most of the applications that you work with.
+What we want to show you in our story is the evolutionary approach that will tackle most of the applications you work with.
 
 === Chapter 1: Initial Architecture: Focus On Simplicity
 
