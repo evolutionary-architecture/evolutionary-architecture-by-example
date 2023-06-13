@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests;
 
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 
-internal class ContractsDatabaseConfiguration : IDatabaseConfiguration
+internal sealed class ContractsDatabaseConfiguration : IDatabaseConfiguration
 {
     private readonly string _connectionString;
     
