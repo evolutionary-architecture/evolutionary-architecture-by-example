@@ -6,10 +6,7 @@ internal sealed class OffersDatabaseConfiguration : IDatabaseConfiguration
 {
     private readonly string _connectionString;
     
-    internal OffersDatabaseConfiguration(string connectionString)
-    {
-        _connectionString = connectionString;
-    }
+    internal OffersDatabaseConfiguration(string connectionString) => _connectionString = connectionString;
     
     public Dictionary<string, string?> Get() => new()
     {
