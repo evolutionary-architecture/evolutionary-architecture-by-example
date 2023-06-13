@@ -17,10 +17,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
 builder.Services.AddEventBus();
 
-builder.Services.AddContracts(builder.Configuration, Modules.Contracts.ToString());
-builder.Services.AddPasses(builder.Configuration, Modules.Passes.ToString());
-builder.Services.AddOffers(builder.Configuration, Modules.Offers.ToString());
-builder.Services.AddReports(Modules.Reports.ToString());
+builder.Services.AddContracts(builder.Configuration, Module.Contracts);
+builder.Services.AddPasses(builder.Configuration, Module.Passes);
+builder.Services.AddOffers(builder.Configuration, Module.Offers);
+builder.Services.AddReports(Module.Reports);
 
 var app = builder.Build();
 
@@ -39,10 +39,10 @@ app.UseErrorHandling();
 
 app.MapControllers();
 
-app.RegisterContracts(Modules.Contracts.ToString());
-app.RegisterPasses(Modules.Passes.ToString());
-app.RegisterOffers(Modules.Offers.ToString());
-app.RegisterReports(Modules.Reports.ToString());
+app.RegisterContracts(Module.Contracts);
+app.RegisterPasses(Module.Passes);
+app.RegisterOffers(Module.Offers);
+app.RegisterReports(Module.Reports);
 
 app.Run();
 
