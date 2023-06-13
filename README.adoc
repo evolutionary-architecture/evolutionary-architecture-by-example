@@ -116,9 +116,9 @@ This way we are almost ready to start the implementation.
 
 One more thing to mention - in our example, each subdomain is will be a separate _Bounded Context_.
 
-IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. We will look at this in more detail in Chapter 4, where we introduce a domain model.
+IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. An example of this in _Fitness Studio_ domain can be: Assessments, Progress Tracking and Virtual Coaching that creates 1 _Bounded Context_ called _Personalised Training_.
 
-=== Potential Architectural Patterns
+=== Potential Patterns
 Before you decide to start coding, it is worth to look at your analysis and division one more time and check the complexity of each (it will be mainly defined by the amount of processes and its business rules/policies). Let's take a look at below examples.
 
 ==== Passes
@@ -130,9 +130,9 @@ There is no business logic:
 - in the pass registration process, it is only informed that the contract has been signed
 - In the pass expiry process, it is only informed that the pass expiry date has been reached.
 
-In addition, the potential for new business rules to be applied to the above processes or other actions is rather low. As it looks like a perfect candidate for CRUD operations, we want to mark it as a candidate to become an _Active Record_.
+In addition, the potential for new business rules to be applied to the above processes or other actions is rather low. As it looks like a perfect candidate for CRUD operations, we want to mark it as a candidate to become a _Service Layer_ pattern.
 
-NOTE: _Active Record_ is an architectural pattern that rationalises the persistence layer in an application. It encapsulates the idea that a database record is an object in the application, with properties that map to the columns of the database table. Each instance of an Active Record class represents a particular row in a database table.
+NOTE: _Active Record_ is an pattern that rationalises the persistence layer in an application. It encapsulates the idea that a database record is an object in the application, with properties that map to the columns of the database table and the behaviour (domain logic) of that object.
 
 ==== Offers
 
@@ -151,21 +151,21 @@ This is the place where the fun begins. There are 3 business rules:
 
 In addition, the potential for new business rules being applied to the above processes or other actions is quite high. Here the warning bell should go off - this has a really high potential to become more and more complex, so it might be a good candidate for a _Domain Model_.
 
-NOTE: _Domain Model_ is a widely used architectural pattern in software engineering that encapsulates the concepts and behaviours of a particular problem domain. This representation is designed to mimic the structure and functionality of the real-world system. The domain model pattern is particularly well known for its ability to handle complex business logic by providing a rich, object-oriented representation of the problem domain.
+NOTE: _Domain Model_ is a widely used pattern in software engineering that encapsulates the concepts and behaviours of a particular problem domain. This representation is designed to mimic the structure and functionality of the real-world system. The domain model pattern is particularly well known for its ability to handle complex business logic by providing a rich, object-oriented representation of the problem domain.
 
 ==== Reports
 
 image::Assets/subdomain_reports.jpg[]
 
-In this are the case is really simple. The only thing that we want to do is to get the information about passes that have been registered in each month. 
+This case is really simple. The only thing that we want to achieve is to get the information about new passes that have been registered in each month. 
 
 There is no business logic and there is also no need to have an object representation of the data retrieved. This is a perfect candidate for a _Transaction Script_.
 
-NOTE: _Transaction Script_ is an architectural pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
+NOTE: _Transaction Script_ is a pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
 
 ==== Summary
 
-After deeper thinking about our subdomains, we decided for following architectural patterns that will be applied in one of 4 chapters:
+After deeper thinking about our subdomains, we decided for following patterns that will be applied in one of 4 chapters:
 
 image::Assets/subdomains_architectural_patterns.jpg[]
 
