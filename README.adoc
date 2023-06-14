@@ -201,6 +201,9 @@ In this chapter we will show you how to start your solution architecture. We sta
 
 Modules communicate with the in-memory queue.
 
+==== https://s.icepanel.io/vY0SkvgDs7V83U/wOj3[Interactive diagram]
+image::Assets/ice_panel_black.png[link="https://s.icepanel.io/vY0SkvgDs7V83U/wOj3",width=120,height=50]
+
 === Chapter 2: Modules Separation: Focus On Maintainability
 
 This chapter focuses on the second step you can take in your application. After some time, you will find that your assumptions about modules were wrong - they grow fast, the business logic becomes more complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way around - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. Also, the team has grown and it is quite difficult to work on one project - lots of conflict and merging hell.
