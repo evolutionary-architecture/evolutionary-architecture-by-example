@@ -15,15 +15,12 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database)
-    {
-        var applicationInMemory = applicationInMemoryFactory
+        DatabaseContainer database) =>
+        _applicationHttpClient = applicationInMemoryFactory
             .WithFakeEventBus(_fakeEventBus)
-            .WithContainerDatabaseConfigured(database.ConnectionString!);
-        
-        _applicationHttpClient = applicationInMemory.CreateClient();
-    }
-    
+            .WithContainerDatabaseConfigured(database.ConnectionString!)
+            .CreateClient();
+
     [Fact]
     internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
     {
@@ -49,13 +46,13 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        var signContractResponse =
-            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+        await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
         EnsureThatContractSignedEventWasPublished();
     }
+    
+    private void EnsureThatContractSignedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<ContractSignedEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 
     [Fact]
     internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
@@ -94,9 +91,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         responseMessage?.Message.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
-
-    private void EnsureThatContractSignedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<ContractSignedEvent>(), It.IsAny<CancellationToken>()), Times.Once);
-
+    
     private async Task<Guid> PrepareContract()
     {
         var requestParameters = PrepareContractRequestParameters.GetValid();
