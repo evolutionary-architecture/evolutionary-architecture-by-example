@@ -5,15 +5,19 @@ using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
 using Common.TestEngine.Configuration;
+using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Shared.ErrorHandling;
+using Fitnet.Shared.Events.EventBus;
 
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
+    private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
+            .WithFakeEventBus(_fakeEventBus)
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
 
@@ -33,6 +37,23 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
     
+    [Fact]
+    internal async Task Given_valid_contract_signature_request_Then_contract_signed_event_was_published()
+    {
+        // Arrange
+        var preparedContractId = await PrepareContract();
+        var requestParameters = SignContractRequestParameters.GetValid(preparedContractId);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+
+        // Act
+        await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+
+        // Assert
+        EnsureThatContractSignedEventWasPublished();
+    }
+    
+    private void EnsureThatContractSignedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<ContractSignedEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+
     [Fact]
     internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
     {
@@ -70,7 +91,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         responseMessage?.Message.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
-
+    
     private async Task<Guid> PrepareContract()
     {
         var requestParameters = PrepareContractRequestParameters.GetValid();
