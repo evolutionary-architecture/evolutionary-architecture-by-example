@@ -38,7 +38,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     }
     
     [Fact]
-    internal async Task Given_valid_contract_signature_request_Then_publish_contract_signed_event()
+    internal async Task Given_valid_contract_signature_request_Then_contract_signed_event_was_published()
     {
         // Arrange
         var preparedContractId = await PrepareContract();
