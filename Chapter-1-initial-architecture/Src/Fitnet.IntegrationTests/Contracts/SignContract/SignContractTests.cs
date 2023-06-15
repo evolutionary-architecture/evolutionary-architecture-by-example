@@ -25,7 +25,23 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     }
     
     [Fact]
-    internal async Task Given_valid_contract_signature_request_Then_publish_contract_signed_event_And_should_return_no_content_status_code()
+    internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
+    {
+        // Arrange
+        var preparedContractId = await PrepareContract();
+        var requestParameters = SignContractRequestParameters.GetValid(preparedContractId);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+
+        // Act
+        var signContractResponse =
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+
+        // Assert
+        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+    }
+    
+    [Fact]
+    internal async Task Given_valid_contract_signature_request_Then_publish_contract_signed_event()
     {
         // Arrange
         var preparedContractId = await PrepareContract();
