@@ -5,20 +5,27 @@ using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
 using Common.TestEngine.Configuration;
+using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Shared.ErrorHandling;
+using Fitnet.Shared.Events.EventBus;
 
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
+    private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .CreateClient();
-
+        DatabaseContainer database)
+    {
+        var applicationInMemory = applicationInMemoryFactory
+            .WithFakeEventBus(_fakeEventBus)
+            .WithContainerDatabaseConfigured(database.ConnectionString!);
+        
+        _applicationHttpClient = applicationInMemory.CreateClient();
+    }
+    
     [Fact]
-    internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
+    internal async Task Given_valid_contract_signature_request_Then_publish_contract_signed_event_And_should_return_no_content_status_code()
     {
         // Arrange
         var preparedContractId = await PrepareContract();
@@ -31,8 +38,9 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        EnsureThatContractSignedEventWasPublished();
     }
-    
+
     [Fact]
     internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
     {
@@ -70,6 +78,8 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         responseMessage?.Message.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
+
+    private void EnsureThatContractSignedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<ContractSignedEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 
     private async Task<Guid> PrepareContract()
     {
