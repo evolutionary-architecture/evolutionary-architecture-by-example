@@ -1,9 +1,46 @@
 = Chapter 1: Initial Architecture - Focus On Simplicity
 :toc:
 
+== Case
+
+=== Overview
+
+When starting a new greenfield application, our focus often shifts to frameworks, libraries, architecture and components that we have heard about from our friends, at conferences, workshops and meetups. As a result, we start to create an overly complicated infrastructure and solution architecture, using components that are not relevant in the beginning.
+
+This is how we fall into the trap associated with the project paradox - we make a lot of decisions at a time when we have almost no prior knowledge about our business domain. As a result, our decisions are usually inaccurate or, if we are lucky, they fit our future needs (a rare case). This means that at some point we will have to change the way we have been thinking, or it will simply be too late and too complex.
+
+In the end, we may have:
+
+- a big ball of mud OR
+- big ball of distributed mud
+
+Instead, we should shift our focus and efforts to understanding business processes and preparing the simplest possible solution.
+
+At this point, in the vast majority of cases, you do not need to focus on:
+
+- clean/onion/hexagonal architecture
+- microservices
+- cache
+- tactical Domain-Driven Design
+- data streams
+- orchestrators
+
+Thanks to this approach:
+
+- we make most decisions only when we need them
+- each member of the team has a low entry threshold for the application
+- we add components one at a time, so we can build up the knowledge before adding the next components
+- we minimise the risk of ending up with spaghetti (however it is still possible!)
+
+This is what _Evolutionary Architecture_ is all about.
+
+[quote]
+Always choose architecture based on *your current needs*. *Not a wishful thinking*.
+
 == How to run?
 
 === Requirements
+
 - .NET SDK
 - PostgresSQL
 - Docker
