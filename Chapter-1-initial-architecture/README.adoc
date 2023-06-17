@@ -1,18 +1,57 @@
-= How to Run the "Fitnet" Application?
+= Chapter 1: Initial Architecture - Focus On Simplicity
 :toc:
 
-== Requirements
+== Case
+
+=== Overview
+
+When starting a new greenfield application, our focus often shifts to frameworks, libraries, architecture and components that we have heard about from our friends, at conferences, workshops and meetups. As a result, we start to create an overly complicated infrastructure and solution architecture, using components that are not relevant in the beginning.
+
+This is how we fall into the trap associated with the project paradox - we make a lot of decisions at a time when we have almost no prior knowledge about our business domain. As a result, our decisions are usually inaccurate or, if we are lucky, they fit our future needs (a rare case). This means that at some point we will have to change the way we have been thinking, or it will simply be too late and too complex.
+
+In the end, we may have:
+
+- a big ball of mud OR
+- big ball of distributed mud
+
+Instead, we should shift our focus and efforts to understanding business processes and preparing the simplest possible solution.
+
+At this point, in the vast majority of cases, you do not need to focus on:
+
+- clean/onion/hexagonal architecture
+- microservices
+- cache
+- tactical Domain-Driven Design
+- data streams
+- orchestrators
+
+Thanks to this approach:
+
+- we make most decisions only when we need them
+- each member of the team has a low entry threshold for the application
+- we add components one at a time, so we can build up the knowledge before adding the next components
+- we minimise the risk of ending up with spaghetti (however it is still possible!)
+
+This is what _Evolutionary Architecture_ is all about.
+
+[quote]
+Always choose architecture based on *your current needs*. *Not a wishful thinking*.
+
+== How to run?
+
+=== Requirements
+
 - .NET SDK
 - PostgresSQL
 - Docker
 
-== How to get .NET SDK?
+=== How to get .NET SDK?
 
 To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
 Click link:https://dotnet.microsoft.com/en-us/download[here] 
 to download it from the official Microsoft website.
 
-== How to prepare Postgres?
+=== How to prepare Postgres?
 
 The Fitnet application requires PostgresSQL as a component to work properly. You can either install it directly on your system or launch it using Docker Compose.
 
@@ -26,11 +65,11 @@ To run PostgresSQL using Docker Compose, navigate to the `root` chapter director
 
 This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
 
-== Run the Fitnet Application
+=== Run the Fitnet Application
 
 There are two options to run the Fitnet application:
 
-=== Option 1: Launch the Fitnet application in an IDE
+==== Option 1: Launch the Fitnet application in an IDE
 
 If you have an IDE installed, you can launch the Fitnet application directly from there by following these steps:
 
@@ -43,18 +82,18 @@ Fitnet supports .NET User Secrets to store local secrets like connection strings
 We encourage you to use this feature to securely store the connection string.
 [end]
 
-=== Option 2: Build and run the Fitnet application as a Docker container
+==== Option 2: Build and run the Fitnet application as a Docker container
 
 If you prefer to run the Fitnet application as a Docker container, you can build and run it using the following steps:
 
-1. Build the Docker image:
+- Build the Docker image:
 
 [source,shell]
 ----
 docker build -t fitnet .
 ----
 
-2. Run the Docker container:
+- Run the Docker container:
 [source,shell]
 ----
 docker run -p 8080:80 --name fitnet-container fitnet
@@ -64,7 +103,7 @@ The "8080" is the port number on which the container will be exposed, and "myapp
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
-== How to run Integration Tests?
+=== How to run Integration Tests?
 To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
 [source,shell]
 ----
