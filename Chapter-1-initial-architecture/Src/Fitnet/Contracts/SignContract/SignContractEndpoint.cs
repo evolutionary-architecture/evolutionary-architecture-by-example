@@ -3,14 +3,14 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 using Data.Database;
 using Events;
 using Shared.Events.EventBus;
-using Shared.Events.EventBus.InMemory;
+using Shared.SystemClock;
 
 internal static class SignContractEndpoint
 {
     internal static void MapSignContract(this IEndpointRouteBuilder app)
     {
         app.MapPatch(ContractsApiPaths.Sign, async (Guid id, SignContractRequest request,
-            ContractsPersistence persistence, IEventBus bus, CancellationToken cancellationToken) =>
+            ContractsPersistence persistence, IEventBus bus, ISystemClock systemClock, CancellationToken cancellationToken) =>
         {
             var contract =
                 await persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
@@ -19,7 +19,10 @@ internal static class SignContractEndpoint
 
             contract.Sign(request.SignedAt);
             await persistence.SaveChangesAsync(cancellationToken);
-            var @event = ContractSignedEvent.Create(contract.Id, contract.CustomerId);
+            
+            var validityFrom = systemClock.Now;
+            var validityTo = systemClock.Now.AddYears(1);
+            var @event = ContractSignedEvent.Create(contract.Id, contract.CustomerId, validityFrom, validityTo);
             await bus.PublishAsync(@event, cancellationToken);
             
             return Results.NoContent();

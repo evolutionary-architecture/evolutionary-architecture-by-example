@@ -1,24 +1,31 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
 using Common.TestEngine.Configuration;
+using Common.TestEngine.IntegrationEvents.Handlers;
+using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes;
 using Fitnet.Passes.RegisterPass;
 using Fitnet.Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using GenerateNewPassesRegistrationsPerMonthReport;
 using GenerateNewPassesRegistrationsPerMonthReport.TestData;
+using Passes.RegisterPass;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    
+    private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
+        DatabaseContainer database)
+    {
+        _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .SetFakeSystemClock(ReportTestCases.FakeNowDate)
-            .CreateClient();
+            .SetFakeSystemClock(ReportTestCases.FakeNowDate);
+        
+        _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
+    }
+
 
     [Theory]
     [ClassData(typeof(ReportTestCases))]
@@ -44,8 +51,10 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
     private async Task RegisterPass(DateTimeOffset from, DateTimeOffset to)
     {
-        RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker(from, to);
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
-        await registerPassResponse.Content.ReadFromJsonAsync<Guid>();
+        using var integrationEventHandlerScope =
+            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
+        var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
+        var @event = ContractSignedEventFaker.Create(from, to);
+        await integrationEventHandler.Handle(@event, CancellationToken.None);
     }
 }

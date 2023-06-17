@@ -1,20 +1,34 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.RegisterPass;
 
+using Contracts.SignContract.Events;
 using Data;
 using Data.Database;
+using Events;
+using Shared.Events;
 using Shared.Events.EventBus;
+using Shared.SystemClock;
 
-internal static class RegisterEndpoint
+internal sealed class ContractSignedEventHandler : IIntegrationEventHandler<ContractSignedEvent>
 {
-    internal static void MapRegisterPass(this IEndpointRouteBuilder app)
-    {
-        app.MapPost(PassesApiPaths.Register, async (RegisterPassRequest request, PassesPersistence persistence, CancellationToken cancellationToken) =>
-        {
-            var pass = Pass.Register(request.CustomerId, request.From, request.To);
-            await persistence.Passes.AddAsync(pass, cancellationToken);
-            await persistence.SaveChangesAsync(cancellationToken);
+    private readonly PassesPersistence _persistence;
+    private readonly IEventBus _eventBus;
 
-            return Results.Created($"/{PassesApiPaths.Register}/{pass.Id}", pass.Id);
-        });
+    public ContractSignedEventHandler(
+        PassesPersistence persistence,
+        ISystemClock systemClock,
+        IEventBus eventBus)
+    {
+        _persistence = persistence;
+        _eventBus = eventBus;
+    }
+
+    public async Task Handle(ContractSignedEvent @event, CancellationToken cancellationToken)
+    {
+        var pass = Pass.Register(@event.ContractCustomerId, @event.ValidityFrom, @event.ValidityTo);
+        await _persistence.Passes.AddAsync(pass, cancellationToken);
+        await _persistence.SaveChangesAsync(cancellationToken);
+
+        var passRegisteredEvent = PassRegisteredEvent.Create(pass.Id);
+        await _eventBus.PublishAsync(passRegisteredEvent, cancellationToken);
     }
 }

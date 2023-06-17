@@ -1,29 +1,44 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 
 using Common.TestEngine.Configuration;
-using Fitnet.Passes;
-using Fitnet.Passes.RegisterPass;
+using Common.TestEngine.IntegrationEvents.Handlers;
+using Fitnet.Contracts.SignContract.Events;
+using Fitnet.Passes.RegisterPass.Events;
+using Fitnet.Shared.Events.EventBus;
 
-public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, 
+    IClassFixture<DatabaseContainer>
 {
-    private readonly HttpClient _applicationHttpClient;
+    private readonly WebApplicationFactory<Program> _applicationInMemory;
+    private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .CreateClient();
+        DatabaseContainer database)
+    {
+        _applicationInMemory = applicationInMemoryFactory
+                .WithContainerDatabaseConfigured(database.ConnectionString!)
+                .WithFakeEventBus(_fakeEventBus);
+        _applicationInMemory.CreateClient();
+    }
 
     [Fact]
-    internal async Task Given_valid_pass_registration_request_Then_should_return_created_status_code()
+    internal async Task Given_contract_signed_event_Then_should_register_pass()
     {
         // Arrange
-        RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker();
+        using var integrationEventHandlerScope =
+            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemory);
+        var @event = ContractSignedEventFaker.Create();
 
         // Act
-        var registerPassResponse = await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
+        await integrationEventHandlerScope.Consume(@event);
 
         // Assert
-        registerPassResponse.Should().HaveStatusCode(HttpStatusCode.Created);
+        EnsureThatPassRegisteredEventWasPublished();
     }
+    
+    private void EnsureThatPassRegisteredEventWasPublished() => _fakeEventBus.Verify(
+        eventBus => eventBus.PublishAsync(
+            It.IsAny<PassRegisteredEvent>(), 
+            It.IsAny<CancellationToken>()),
+        Times.Once);
 }

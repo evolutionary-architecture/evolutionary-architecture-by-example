@@ -16,6 +16,9 @@ where TIntegrationEvent : IIntegrationEvent
             .ServiceProvider
             .GetRequiredService<INotificationHandler<TIntegrationEvent>>();
     }
+    
+    public async Task Consume(TIntegrationEvent @event, CancellationToken cancellationToken = default) =>
+        await IntegrationEventHandler.Handle(@event, cancellationToken);
 
     public void Dispose() => 
         _serviceScope.Dispose();

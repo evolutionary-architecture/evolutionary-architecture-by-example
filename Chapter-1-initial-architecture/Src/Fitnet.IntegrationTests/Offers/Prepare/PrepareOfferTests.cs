@@ -9,8 +9,8 @@ using Fitnet.Shared.Events.EventBus;
 public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private readonly Mock<IEventBus> _fakeEventBus = new();
     private readonly WebApplicationFactory<Program> _applicationInMemory;
+    private readonly Mock<IEventBus> _fakeEventBus = new();
 
     public PrepareOfferTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
@@ -37,5 +37,9 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
         EnsureThatOfferPreparedEventWasPublished();
     }
 
-    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<OfferPrepareEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(
+        eventBus => eventBus.PublishAsync(
+            It.IsAny<OfferPrepareEvent>(), 
+            It.IsAny<CancellationToken>()),
+            Times.Once);
 }
