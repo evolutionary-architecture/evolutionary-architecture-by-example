@@ -40,7 +40,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         EnsureThatPassExpiredEventWasPublished();
     }
     
-    [Fact]
+    [Fact(Skip = "Register pass as event cannot return pass id. Get all pass query should be created and used here to make this test pass.")]
     internal async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
     {
         // Arrange
@@ -54,7 +54,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
     
-    [Fact(Skip = "Register pass as event cannot return pass id. Get all pass query should be created and used here to make this test pass.")]
+    [Fact]
     internal async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_not_found()
     {
         // Arrange
