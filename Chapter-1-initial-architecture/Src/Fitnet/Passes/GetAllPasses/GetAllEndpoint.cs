@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 internal static class GetAllEndpoint
 {
     internal static void MapGetAllPasses(this IEndpointRouteBuilder app) =>
-        app.MapPost(PassesApiPaths.GetAll, async (PassesPersistence persistence, CancellationToken cancellationToken) =>
+        app.MapGet(PassesApiPaths.GetAll, async (PassesPersistence persistence, CancellationToken cancellationToken) =>
         {
             var passes = await persistence.Passes
                 .AsNoTracking()

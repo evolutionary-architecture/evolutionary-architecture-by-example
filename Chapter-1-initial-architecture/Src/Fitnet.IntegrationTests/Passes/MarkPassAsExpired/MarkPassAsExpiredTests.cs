@@ -9,6 +9,7 @@ using Fitnet.Shared.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Passes.RegisterPass;
 using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.GetAllPasses;
+using Fitnet.Passes.MarkPassAsExpired.Events;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
@@ -85,12 +86,13 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     {
         var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
         var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
-        var createdPass = response!.Passes.Single(pass => pass.CustomerId == customerId);
+        var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
+        createdPass.Should().NotBeNull();
         
-        return createdPass.Id;
+        return createdPass!.Id;
     }
     
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
 
-    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<IIntegrationEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<PassExpiredEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 }
