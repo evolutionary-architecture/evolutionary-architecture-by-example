@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 internal sealed class ContractEntityConfiguration : IEntityTypeConfiguration<Contract>
