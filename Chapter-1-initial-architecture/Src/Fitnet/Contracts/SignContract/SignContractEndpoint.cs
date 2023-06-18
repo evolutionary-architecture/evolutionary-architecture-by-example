@@ -17,12 +17,10 @@ internal static class SignContractEndpoint
             if (contract is null)
                 return Results.NotFound();
 
-            contract.Sign(request.SignedAt);
+            contract.Sign(request.SignedAt, systemClock);
             await persistence.SaveChangesAsync(cancellationToken);
             
-            var validityFrom = systemClock.Now;
-            var validityTo = systemClock.Now.AddYears(1);
-            var @event = ContractSignedEvent.Create(contract.Id, contract.CustomerId, validityFrom, validityTo);
+            var @event = ContractSignedEvent.Create(contract.Id, contract.CustomerId, contract.SignedAt!.Value, contract.ExpiringAt!.Value);
             await bus.PublishAsync(@event, cancellationToken);
             
             return Results.NoContent();

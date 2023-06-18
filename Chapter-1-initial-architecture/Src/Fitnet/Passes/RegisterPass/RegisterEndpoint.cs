@@ -6,7 +6,6 @@ using Data.Database;
 using Events;
 using Shared.Events;
 using Shared.Events.EventBus;
-using Shared.SystemClock;
 
 internal sealed class ContractSignedEventHandler : IIntegrationEventHandler<ContractSignedEvent>
 {
@@ -15,7 +14,6 @@ internal sealed class ContractSignedEventHandler : IIntegrationEventHandler<Cont
 
     public ContractSignedEventHandler(
         PassesPersistence persistence,
-        ISystemClock systemClock,
         IEventBus eventBus)
     {
         _persistence = persistence;
@@ -24,7 +22,7 @@ internal sealed class ContractSignedEventHandler : IIntegrationEventHandler<Cont
 
     public async Task Handle(ContractSignedEvent @event, CancellationToken cancellationToken)
     {
-        var pass = Pass.Register(@event.ContractCustomerId, @event.ValidityFrom, @event.ValidityTo);
+        var pass = Pass.Register(@event.ContractCustomerId, @event.SignedAt, @event.ExpireAt);
         await _persistence.Passes.AddAsync(pass, cancellationToken);
         await _persistence.SaveChangesAsync(cancellationToken);
 
