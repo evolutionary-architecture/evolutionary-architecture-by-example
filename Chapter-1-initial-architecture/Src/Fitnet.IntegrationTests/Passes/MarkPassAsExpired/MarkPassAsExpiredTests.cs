@@ -8,6 +8,7 @@ using Fitnet.Shared.Events;
 using Fitnet.Shared.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Passes.RegisterPass;
 using Fitnet.Contracts.SignContract.Events;
+using Fitnet.Passes.GetAllPasses;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
@@ -30,7 +31,8 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     internal async Task Given_valid_mark_pass_as_expired_request_Then_should_return_no_content()
     {
         // Arrange
-        var registeredPassId = await RegisterPass();
+        var contractSigned = await RegisterPass();
+        var registeredPassId = await GetCreatedPass(contractSigned.ContractCustomerId);
         var url = BuildUrl(registeredPassId);
 
         // Act
@@ -40,11 +42,12 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         EnsureThatPassExpiredEventWasPublished();
     }
     
-    [Fact(Skip = "Register pass as event cannot return pass id. Get all pass query should be created and used here to make this test pass.")]
+    [Fact]
     internal async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
     {
         // Arrange
-        var registeredPassId = await RegisterPass();
+        var contractSigned = await RegisterPass();
+        var registeredPassId = await GetCreatedPass(contractSigned.ContractCustomerId);
         var url = BuildUrl(registeredPassId);
 
         // Act
@@ -68,14 +71,23 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
     }
 
-    private async Task<Guid> RegisterPass()
+    private async Task<ContractSignedEvent> RegisterPass()
     {
         var @event = ContractSignedEventFaker.Create();
         using var integrationEventHandlerScope =
             new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
         await integrationEventHandlerScope.Consume(@event);
+
+        return @event;
+    }
+    
+    private async Task<Guid> GetCreatedPass(Guid customerId)
+    {
+        var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
+        var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
+        var createdPass = response!.Passes.Single(pass => pass.CustomerId == customerId);
         
-        return Guid.NewGuid();
+        return createdPass.Id;
     }
     
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
