@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
 
-/// <inheritdoc />
+[ExcludeFromCodeCoverage]
 public partial class Contractsaddcolumnstosupportcontractexpiration : Migration
 {
     /// <inheritdoc />
