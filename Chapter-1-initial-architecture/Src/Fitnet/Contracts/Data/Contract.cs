@@ -32,7 +32,7 @@ internal sealed class Contract
         Duration = duration;
     }
 
-    internal static Contract PrepareStandard(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
+    internal static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
     {
         BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));

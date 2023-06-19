@@ -1,10 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.GetAllPasses;
 
-using EvolutionaryArchitecture.Fitnet.Passes;
-using EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
+using Passes;
+using Data.Database;
 using Microsoft.EntityFrameworkCore;
 
-internal static class GetAllEndpoint
+internal static class GetAllPassesEndpoint
 {
     internal static void MapGetAllPasses(this IEndpointRouteBuilder app) =>
         app.MapGet(PassesApiPaths.GetAll, async (PassesPersistence persistence, CancellationToken cancellationToken) =>
