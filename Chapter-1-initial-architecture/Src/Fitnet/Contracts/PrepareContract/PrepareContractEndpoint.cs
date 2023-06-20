@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Data;
 using Data.Database;
 using Microsoft.EntityFrameworkCore;
-using Shared.SystemClock;
 
 internal static class PrepareContractEndpoint
 {

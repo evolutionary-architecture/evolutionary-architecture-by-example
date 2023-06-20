@@ -3,11 +3,8 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPa
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Contracts.SignContract.Events;
-using Fitnet.Passes;
-using Fitnet.Passes.RegisterPass;
 using Fitnet.Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
-using GenerateNewPassesRegistrationsPerMonthReport;
 using GenerateNewPassesRegistrationsPerMonthReport.TestData;
 using Passes.RegisterPass;
 
