@@ -18,6 +18,6 @@ internal sealed class ContractSignedEventFaker : Faker<ContractSignedEvent>
         );
     }
     
-    internal static ContractSignedEvent Create(DateTimeOffset? validityFrom = null, DateTimeOffset? validityTo = null) =>
-        new ContractSignedEventFaker(validityFrom, validityTo);
+    internal static ContractSignedEvent Create(DateTimeOffset? signedAt = null, DateTimeOffset? expiringAt = null) =>
+        new ContractSignedEventFaker(signedAt, expiringAt);
 }
