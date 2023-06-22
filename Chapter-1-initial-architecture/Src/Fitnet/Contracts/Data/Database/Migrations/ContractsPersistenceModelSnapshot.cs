@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
-
 namespace EvolutionaryArchitecture.Fitnet.Migrations
 {
     [DbContext(typeof(ContractsPersistence))]
+    [ExcludeFromCodeCoverage]
     partial class ContractsPersistenceModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
