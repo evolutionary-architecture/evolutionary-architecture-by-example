@@ -96,6 +96,7 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight, customerId);
         var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+       
         return prepareContractResponse;
     }
 }

@@ -5,18 +5,21 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 public sealed class IntegrationEventHandlerScope<TIntegrationEvent> : IDisposable 
-where TIntegrationEvent : IIntegrationEvent
+    where TIntegrationEvent : IIntegrationEvent
 {
     private readonly IServiceScope _serviceScope;
-    public readonly IIntegrationEventHandler<TIntegrationEvent> IntegrationEventHandler;
+    private readonly IIntegrationEventHandler<TIntegrationEvent> _integrationEventHandler;
     
     public IntegrationEventHandlerScope(WebApplicationFactory<Program> applicationInMemoryFactory)
     {
         _serviceScope = applicationInMemoryFactory.Services.CreateScope();
-        IntegrationEventHandler = (IIntegrationEventHandler<TIntegrationEvent>)_serviceScope
+        _integrationEventHandler = (IIntegrationEventHandler<TIntegrationEvent>)_serviceScope
             .ServiceProvider
             .GetRequiredService<INotificationHandler<TIntegrationEvent>>();
     }
+    
+    public async Task Consume(TIntegrationEvent @event, CancellationToken cancellationToken = default) =>
+        await _integrationEventHandler.Handle(@event, cancellationToken);
 
     public void Dispose() => 
         _serviceScope.Dispose();

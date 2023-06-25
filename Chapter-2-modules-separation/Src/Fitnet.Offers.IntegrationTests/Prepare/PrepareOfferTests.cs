@@ -29,11 +29,10 @@ public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactor
     {
         // Arrange
         using var integrationEventHandlerScope = new IntegrationEventHandlerScope<PassExpiredEvent>(_applicationInMemory);
-        var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
         var @event = PassExpiredEventFaker.CreateValid();
 
         // Act
-        await integrationEventHandler.Handle(@event, CancellationToken.None);
+        await integrationEventHandlerScope.Consume(@event, CancellationToken.None);
 
         // Assert
         EnsureThatOfferPreparedEventWasPublished();

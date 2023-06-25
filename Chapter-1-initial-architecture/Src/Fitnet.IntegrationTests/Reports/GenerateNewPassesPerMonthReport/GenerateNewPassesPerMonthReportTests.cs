@@ -13,6 +13,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 {
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
+    
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {

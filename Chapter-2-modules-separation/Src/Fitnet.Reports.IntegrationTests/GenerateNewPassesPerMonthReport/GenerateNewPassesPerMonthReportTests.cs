@@ -1,36 +1,36 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
+using Common.Infrastructure.IntegrationTests;
+using Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
-using GenerateNewPassesRegistrationsPerMonthReport;
-using GenerateNewPassesRegistrationsPerMonthReport.TestData;
-using Passes.Api;
-using Passes.Api.RegisterPass;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
+using Contracts.Application.Sign;
 using Reports;
-using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
+using GenerateNewPassesRegistrationsPerMonthReport.TestData;
+using Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 
 [UsesVerify]
-public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
-    IClassFixture<DatabaseContainer>
+public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-
+    private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
     public GenerateNewPassesPerMonthReportTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
+        DatabaseContainer database)
+    {
+        _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
-            .SetFakeSystemClock(ReportTestCases.FakeNowDate)
-            .CreateClient();
-
+            .SetFakeSystemClock(ReportTestCases.FakeNowDate);
+        
+        _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
+    }
+    
     [Theory]
     [ClassData(typeof(ReportTestCases))]
-    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(
-        List<PassRegistrationDateRange> passRegistrationDateRanges)
+    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
     {
         // Arrange
         await RegisterPasses(passRegistrationDateRanges);
-
+        
         // Act
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
@@ -39,7 +39,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
         await Verify(reportData);
     }
-
+    
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
     {
         foreach (var passRegistration in reportTestData)
@@ -48,9 +48,9 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
 
     private async Task RegisterPass(DateTimeOffset from, DateTimeOffset to)
     {
-        RegisterPassRequest registerPassRequest = new RegisterPassRequestFaker(from, to);
-        var registerPassResponse =
-            await _applicationHttpClient.PostAsJsonAsync(PassesApiPaths.Register, registerPassRequest);
-        await registerPassResponse.Content.ReadFromJsonAsync<Guid>();
+        using var integrationEventHandlerScope =
+            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
+        var @event = ContractSignedEventFaker.Create(from, to);
+        await integrationEventHandlerScope.Consume(@event, CancellationToken.None);
     }
 }

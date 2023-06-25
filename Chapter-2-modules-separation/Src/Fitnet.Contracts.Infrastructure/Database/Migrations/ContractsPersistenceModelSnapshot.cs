@@ -32,6 +32,12 @@ namespace EvolutionaryArchitecture.Fitnet.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("interval");
+
+                    b.Property<DateTimeOffset?>("ExpiringAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<DateTimeOffset>("PreparedAt")
                         .HasColumnType("timestamp with time zone");
 

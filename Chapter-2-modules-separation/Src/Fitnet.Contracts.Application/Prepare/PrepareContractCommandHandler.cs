@@ -18,5 +18,4 @@ internal sealed class PrepareContractCommandHandler : IRequestHandler<PrepareCon
 
         return contract.Id;
     }
-
 }
