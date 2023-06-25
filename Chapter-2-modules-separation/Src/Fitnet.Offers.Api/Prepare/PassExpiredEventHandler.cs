@@ -1,8 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
+using Common.Core.SystemClock;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Events.EventBus;
-using Common.Infrastructure.SystemClock;
 using DataAccess;
 using DataAccess.Database;
 using Passes.IntegrationEvents;

@@ -24,7 +24,6 @@ public static class PassesModule
     {
         if (!services.IsModuleEnabled(module)) return services;
 
-        services.AddInMemoryEventBus();
         services.AddDataAccess(configuration);
         services.AddMediator(Assembly.GetExecutingAssembly());
 

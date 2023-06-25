@@ -1,8 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api.MarkPassAsExpired;
 
+using Common.Core.SystemClock;
 using IntegrationEvents;
 using Common.Infrastructure.Events.EventBus;
-using Common.Infrastructure.SystemClock;
 using DataAccess.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

@@ -1,8 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Sign;
 
 using Common.Api.ErrorHandling;
+using Common.Core.SystemClock;
 using Common.Infrastructure.Events.EventBus;
-using Common.Infrastructure.SystemClock;
 using Core;
 
 [UsedImplicitly]

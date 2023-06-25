@@ -5,6 +5,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
       <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
       <ProjectReference Include="..\Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj" />
       <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />

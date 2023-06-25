@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.SystemClock;
+namespace EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
 
 using Microsoft.Extensions.DependencyInjection;
 

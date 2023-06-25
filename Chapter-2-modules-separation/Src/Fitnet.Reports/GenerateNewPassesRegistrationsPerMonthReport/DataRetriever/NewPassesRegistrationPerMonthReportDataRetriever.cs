@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
 
-using Common.Infrastructure.SystemClock;
+using Common.Core.SystemClock;
 using Dapper;
 using Dtos;
 using DataAccess;
