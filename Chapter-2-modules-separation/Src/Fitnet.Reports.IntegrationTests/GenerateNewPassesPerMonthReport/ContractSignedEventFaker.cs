@@ -4,8 +4,7 @@ using Contracts.IntegrationEvents;
 
 internal sealed class ContractSignedEventFaker : Faker<ContractSignedEvent>
 {
-    private ContractSignedEventFaker(DateTimeOffset? validityFrom, DateTimeOffset? validityTo)
-    {
+    private ContractSignedEventFaker(DateTimeOffset? validityFrom, DateTimeOffset? validityTo) =>
         CustomInstantiator(faker =>
             new ContractSignedEvent(
                 faker.Random.Guid(),
@@ -16,8 +15,7 @@ internal sealed class ContractSignedEventFaker : Faker<ContractSignedEvent>
                 faker.Date.RecentOffset().ToUniversalTime()
             )
         );
-    }
-    
+
     internal static ContractSignedEvent Create(DateTimeOffset? signedAt = null, DateTimeOffset? expiringAt = null) =>
         new ContractSignedEventFaker(signedAt, expiringAt);
 }

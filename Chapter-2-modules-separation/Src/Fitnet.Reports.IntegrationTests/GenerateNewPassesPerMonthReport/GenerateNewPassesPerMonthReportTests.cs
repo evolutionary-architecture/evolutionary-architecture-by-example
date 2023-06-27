@@ -14,6 +14,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
 {
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
+    
     public GenerateNewPassesPerMonthReportTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
