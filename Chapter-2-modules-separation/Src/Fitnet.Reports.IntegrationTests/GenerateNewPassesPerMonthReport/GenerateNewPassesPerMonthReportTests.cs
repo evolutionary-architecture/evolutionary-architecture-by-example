@@ -6,8 +6,8 @@ using Contracts.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Reports;
-using GenerateNewPassesRegistrationsPerMonthReport.TestData;
-using Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
+using GenerateNewPassesRegistrationsPerMonthReport.Dtos;
+using TestData;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
