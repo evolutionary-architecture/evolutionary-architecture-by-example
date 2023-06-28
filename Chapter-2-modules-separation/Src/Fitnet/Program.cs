@@ -1,6 +1,7 @@
 using EvolutionaryArchitecture.Fitnet;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
+using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Contracts.Api;
 using EvolutionaryArchitecture.Fitnet.Offers.Api;
@@ -9,14 +10,13 @@ using EvolutionaryArchitecture.Fitnet.Reports;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddFeatureManagement();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSystemClock();
-builder.Services.AddEventBus();
 
+builder.Services.AddCommonInfrastructure();
 builder.Services.AddContracts(builder.Configuration, Module.Contracts);
 builder.Services.AddPasses(builder.Configuration, Module.Passes);
 builder.Services.AddOffers(builder.Configuration, Module.Offers);
