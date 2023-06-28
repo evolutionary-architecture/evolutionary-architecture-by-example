@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.Api;
 using Common.Infrastructure.Modules;
 using DataAccess;
 using System.Reflection;
-using Common.Infrastructure.Events.EventBus.InMemory;
 using Common.Infrastructure.Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
