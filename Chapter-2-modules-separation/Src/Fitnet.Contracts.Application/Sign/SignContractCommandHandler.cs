@@ -4,6 +4,7 @@ using Common.Api.ErrorHandling;
 using Common.Core.SystemClock;
 using Common.Infrastructure.Events.EventBus;
 using Core;
+using IntegrationEvents;
 
 [UsedImplicitly]
 internal sealed class SignContractCommandHandler : IRequestHandler<SignContractCommand>
