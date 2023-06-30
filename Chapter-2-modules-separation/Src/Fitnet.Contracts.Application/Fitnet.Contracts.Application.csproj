@@ -7,5 +7,6 @@
     <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
     <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.IntegrationEvents\Fitnet.Contracts.IntegrationEvents.csproj" />
   </ItemGroup>
 </Project>

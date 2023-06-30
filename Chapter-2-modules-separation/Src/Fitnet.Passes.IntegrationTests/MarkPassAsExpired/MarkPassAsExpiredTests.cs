@@ -3,11 +3,11 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.MarkPassAsExpi
 using Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
-using Contracts.Application.Sign;
 using Api;
 using Api.GetAllPasses;
 using Common.Infrastructure.IntegrationTests;
 using Common.IntegrationTests.TestEngine.Configuration;
+using Contracts.IntegrationEvents;
 using IntegrationEvents;
 using RegisterPass;
 

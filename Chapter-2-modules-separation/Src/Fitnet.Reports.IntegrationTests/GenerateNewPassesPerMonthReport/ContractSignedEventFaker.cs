@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
-using Contracts.Application.Sign;
+using Contracts.IntegrationEvents;
 
 internal sealed class ContractSignedEventFaker : Faker<ContractSignedEvent>
 {

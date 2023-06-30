@@ -6,7 +6,7 @@ using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using Common.Infrastructure.Events.EventBus;
 using Common.Infrastructure.IntegrationTests;
 using Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
-using Contracts.Application.Sign;
+using Contracts.IntegrationEvents;
 
 public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>, 
     IClassFixture<DatabaseContainer>

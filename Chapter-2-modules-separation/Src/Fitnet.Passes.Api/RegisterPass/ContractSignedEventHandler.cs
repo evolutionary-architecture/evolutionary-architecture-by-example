@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Events.EventBus;
-using Contracts.Application.Sign;
+using Contracts.IntegrationEvents;
 using DataAccess;
 using DataAccess.Database;
 

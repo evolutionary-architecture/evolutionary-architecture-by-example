@@ -2,9 +2,9 @@ namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPa
 
 using Common.Infrastructure.IntegrationTests;
 using Common.IntegrationTests.TestEngine.Configuration;
+using Contracts.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
-using Contracts.Application.Sign;
 using Reports;
 using GenerateNewPassesRegistrationsPerMonthReport.TestData;
 using Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
