@@ -148,6 +148,12 @@ In test projects you will find _GlobalUsings.cs_. You are not required to use it
 NOTE: If you are implementing your own application, you may want to consider contract testing. This means you would have another project called _Fitnet.ContractTests_. There is also another approach you can take, where you can combine contract and integration tests together. This will give you something called _ModuleTests_. If you choose contract testing, we suggest https://docs.pact.io/[Pact]. If you go for module tests, we suggest using Verify (mentioned above) or https://github.com/approvals/ApprovalTests.Net[ApprovalTests], as this makes maintenance easier.
 
 
+==== Miscellaneous
+
+Within _Docs_ you will find the _Architecture Decision Log_. This log contains _Architecture Decision Records_. Each record is immutable and contains an explanation of why we chose one approach over another. If you need to override one of the previous decisions, you need to create a new record. This is one of the easiest ways to keep your architecture documentation up to date. You can read more about this at https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[here].
+
+If you want to test the endpoints, you can find http files in the docs for each module. The only thing you need to configure is the application url in _http-client.env.json_.
+
 == How to run?
 
 === Requirements
