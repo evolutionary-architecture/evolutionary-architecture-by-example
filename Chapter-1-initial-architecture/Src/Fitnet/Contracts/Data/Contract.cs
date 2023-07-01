@@ -44,12 +44,12 @@ internal sealed class Contract
             StandardDuration);
     }
 
-    internal void Sign(DateTimeOffset signedAt, ISystemClock systemClock)
+    internal void Sign(DateTimeOffset signedAt, DateTimeOffset dateNow)
     {
         BusinessRuleValidator.Validate(
             new ContractCanOnlyBeSignedWithin30DaysFromPreparation(PreparedAt, signedAt));
 
         SignedAt = signedAt;
-        ExpiringAt = systemClock.Now.Add(Duration);
+        ExpiringAt = dateNow.Add(Duration);
     }
 }
