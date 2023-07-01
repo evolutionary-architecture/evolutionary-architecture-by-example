@@ -5,8 +5,8 @@ using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
-using GenerateNewPassesRegistrationsPerMonthReport.TestData;
 using Passes.RegisterPass;
+using TestData;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
