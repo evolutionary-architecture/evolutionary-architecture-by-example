@@ -30,5 +30,4 @@
       <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
     </ItemGroup>
 
-
 </Project>
