@@ -135,6 +135,19 @@ Overall, we believe that the benefits of implementing in-memory communication in
 
 NOTE: As this may be a controversial topic for you, you should judge it on your own case. If you can accept some data inconsistency and the application is in its very early stages (e.g. the MVP), you may choose to use in-memory communication. If you prefer to start with a more relevant solution, you can implement an _Outbox_ pattern or integrate an external component like RabbitMQ from day one of your project. The choice is yours.
 
+==== Tests
+
+Here we are. The decision we have made is to have 2 sets of tests in the early stages of our application:
+
+1. _Integration tests_ - here we test the whole business process with different input parameters. We may get a successful response or an exception will be thrown. In some cases we use snapshot testing using the https://github.com/VerifyTests/Verify[Verify] library. Integration tests for all modules and shared logic are located here.
+
+2. _Unit Tests_ - What could be more standard than unit testing? Unit tests for all modules and shared logic can be found here.
+
+In test projects you will find _GlobalUsings.cs_. You are not required to use it in your project, but it does make it easier to manage global usings (each class will contain less code).
+
+NOTE: If you are implementing your own application, you may want to consider contract testing. This means you would have another project called _Fitnet.ContractTests_. There is also another approach you can take, where you can combine contract and integration tests together. This will give you something called _ModuleTests_. If you choose contract testing, we suggest https://docs.pact.io/[Pact]. If you go for module tests, we suggest using Verify (mentioned above) or https://github.com/approvals/ApprovalTests.Net[ApprovalTests], as this makes maintenance easier.
+
+
 == How to run?
 
 === Requirements
