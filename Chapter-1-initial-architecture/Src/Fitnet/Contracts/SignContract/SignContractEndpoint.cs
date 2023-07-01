@@ -17,7 +17,7 @@ internal static class SignContractEndpoint
             if (contract is null)
                 return Results.NotFound();
 
-            contract.Sign(request.SignedAt, systemClock);
+            contract.Sign(request.SignedAt, systemClock.Now);
             await persistence.SaveChangesAsync(cancellationToken);
             
             var @event = ContractSignedEvent.Create(contract.Id, contract.CustomerId, contract.SignedAt!.Value, contract.ExpiringAt!.Value);

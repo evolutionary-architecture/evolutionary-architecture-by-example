@@ -44,12 +44,12 @@ public sealed class Contract
             StandardDuration);
     }
 
-    public void Sign(DateTimeOffset signedAt, DateTimeOffset nowDate)
+    public void Sign(DateTimeOffset signedAt, DateTimeOffset today)
     {
         BusinessRuleValidator.Validate(
             new ContractCanOnlyBeSignedWithin30DaysFromPreparation(PreparedAt, signedAt));
 
         SignedAt = signedAt;
-        ExpiringAt = nowDate.Add(Duration);
+        ExpiringAt = today.Add(Duration);
     }
 }
