@@ -122,6 +122,17 @@ as you can see on the above image:
 
 NOTE: Each module is done in a similar way - own namespace, vertical slices for processes and its own database schema. This way we are able to easily extract module to another project (or set of projects) or microservice. Thanks to vertical slices, the entry threshold for each team member is low because of no need to search in technical folders for events, handlers, queries, controllers, entities and so on. Every piece related to a concrete business process is closed in its own folder.
 
+==== Communication
+
+The topic of communication is often discussed. It was no different in our case. In the end we decided to use our own in-memory event bus. This has several advantages and disadvantages:
+
+1. By implementing an in-memory event bus, our components will be loosely coupled and better able to communicate and interact with each other. This will allow us to develop and deploy our system in a more scalable and flexible way.
+2. One consequence of using it rather than an external message broker is that we cannot retire messages and persist them on the event bus for later retrieval. In an external message broker, messages can be persisted and stored for a period of time so that they can be replayed or reprocessed if necessary. In an in-memory event bus, messages are stored only in memory and are lost when the event bus is stopped or restarted.
+
+Overall, we believe that the benefits of implementing in-memory communication in the early stages of our project outweigh the potential risks and challenges.
+
+NOTE: As this may be a controversial topic for you, you should judge it on your own case. If you can accept some data inconsistency and the application is in its very early stages (e.g. the MVP), you may choose to use in-memory communication. If you prefer to start with a more relevant solution, you can implement an _Outbox_ pattern or integrate an external component like RabbitMQ from day one of your project. The choice is yours.
+
 == How to run?
 
 === Requirements
