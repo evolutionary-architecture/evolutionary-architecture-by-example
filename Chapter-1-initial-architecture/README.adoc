@@ -37,6 +37,18 @@ This is what _Evolutionary Architecture_ is all about.
 [quote]
 Always choose architecture based on *your current needs*. *Not a wishful thinking*.
 
+=== Requirements
+
+Fitness Studio ordered a completely new system that we had to implement from scratch. There are 5 main requirements for the MVP that we need to address:
+
+1. A way to create offers for new and existing customers.
+2. When the offer is accepted by a customer, it is possible to prepare the contract.
+3. The customer can sign the contract.
+4. After signing the contract, a new pass is registered for the customer.
+5. When the pass expires, a new offer is sent to the customer.
+
+Based on the outcome - success or failure of the application, the requirements will be extended or the system will be dropped (yes, we need to consider both scenarios).
+
 == How to run?
 
 === Requirements
