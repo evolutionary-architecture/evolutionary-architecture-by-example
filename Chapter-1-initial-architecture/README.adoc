@@ -120,6 +120,8 @@ as you can see on the above image:
 - there are database migrations and operations for _Contracts_ module
 - there are module registrations for endpoints, database usage and API paths
 
+Integration and unit tests for each module are located in the same project - _Fitnet.IntegrationTests_ and _Fitnet.UnitTests_ and are also divided into module namespaces.
+
 NOTE: Each module is done in a similar way - own namespace, vertical slices for processes and its own database schema. This way we are able to easily extract module to another project (or set of projects) or microservice. Thanks to vertical slices, the entry threshold for each team member is low because of no need to search in technical folders for events, handlers, queries, controllers, entities and so on. Every piece related to a concrete business process is closed in its own folder.
 
 ==== Communication
