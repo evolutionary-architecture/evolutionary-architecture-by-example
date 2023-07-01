@@ -37,6 +37,33 @@ This is what _Evolutionary Architecture_ is all about.
 [quote]
 Always choose architecture based on *your current needs*. *Not a wishful thinking*.
 
+=== Requirements
+
+Fitness Studio ordered a completely new system that we had to implement from scratch. There are 5 main requirements for the MVP that we need to address:
+
+1. A way to create offers for new and existing customers.
+2. When the offer is accepted by a customer, it is possible to prepare the contract.
+3. The customer can sign the contract.
+4. After signing the contract, a new pass is registered for the customer.
+5. When the pass expires, a new offer is sent to the customer.
+
+Based on the outcome - success or failure of the application, the requirements will be extended or the system will be dropped (yes, we need to consider both scenarios).
+
+=== Main assumptions
+
+It is important to remember that most systems we want to build are based on many assumptions, since we do not know how the market will react to our idea (even if, based on surveys, polls, potential customer feedback, everything points to success). Just look at the Project Paradox in the root README.
+
+After discussions with our company, we have several assumptions:
+
+1. Since we want to go global and there are a lot of gyms that claim they want to use our software, we assume that our application will be used by 500 - 5000 people in the beginning.
+2. Each gym has different opening hours (some are open 12 hours, some 16 hours and some 24/7).
+3. We only work in Europe, so the time differences are not big.
+4. Each person creates about 100 requests per day, which gives 5000 people * 1000 req/day = 500 000 req/day for all people. We add 25% of the traffic (to be on the safe side), so it will be 500,000 + 125,000 = 625,000 req/day = 7 req/second. Now we know that we do not need a fancy infrastructure to start with for such a load.
+
+NOTE: We will not cover the topic of infrastructure in this repository. The assumptions are marked here to show you that you should also consider the infrastructure, not just the solution structure. The initial calculation (such as 7 req/sec) is simply to take into account your potential traffic - which may be different during the day and at night - and to design the infrastructure architecture with this in mind. Often this is not thought through and we end up with super complicated infrastructure blocks.
+
+IMPORTANT: Before going live with the application, it is advisable to run performance tests to see where our real limits are. You can do this for example with https://k6.io/[k6].
+
 == How to run?
 
 === Requirements
