@@ -1,8 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Mediation;
 
 using Application;
-using Database;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 internal static class MediationModule
