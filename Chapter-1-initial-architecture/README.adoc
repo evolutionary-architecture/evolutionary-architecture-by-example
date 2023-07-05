@@ -88,9 +88,11 @@ Ok. So, now we are ready to translate the above bounded contexts into our soluti
 
 After creation of our solution, we decided to split the code *into 3 projects*. 
 
-*Yes! It is only be 3 projects* and you can easily follow this path within your greenfield application. No one said that the modules should be split into separate projects. It is a question of accepting a completely different approach, and dividing them into namespaces. It is hard to accept, but worth giving a chance:
+*Yes! It is only 3 projects* and you can easily follow this path within your greenfield application. No one said that the modules should be split into separate projects. It is a question of accepting a completely different approach, and dividing them into namespaces. It is hard to accept, but worth giving a chance:
 
 image::Assets/projects_division.jpg[]
+
+The main advantage of this approach is that you do not have to decide at this stage whether you want to follow a clean, hexagonal, onion or layered architecture, and whether there is a need to apply things like Domain-Driven Design to a particular module or not. In this way, you postpone such decisions until you have enough knowledge to make them.
 
 The first project called _Fitnet_ contains entire production code that is responsible for:
 
