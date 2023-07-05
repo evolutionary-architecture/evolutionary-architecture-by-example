@@ -2,12 +2,9 @@
 
 Date: 2023-06-20
 
-== Status
-Accepted
+== Problem
 
-== Context
-
-The comparison between Microsoft, LaunchDarkly, and Unleash is shown below:
+We have to choose feature management liblary. The comparison between Microsoft, LaunchDarkly, and Unleash is shown below:
 
 [cols="1,1,1,1"]
 |===

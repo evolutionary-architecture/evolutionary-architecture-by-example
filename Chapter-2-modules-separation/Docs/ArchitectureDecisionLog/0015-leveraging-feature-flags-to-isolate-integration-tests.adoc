@@ -2,10 +2,7 @@
 
 Date: 2023-06-20
 
-== Status
-Accepted
-
-== Context
+== Problem
 Currently, our integration tests involve setting up in-memory databases for all modules.
 Managing these databases has become a cumbersome process, and we want to run integration tests in isolation to achieve modularity and ease of testing.
 
