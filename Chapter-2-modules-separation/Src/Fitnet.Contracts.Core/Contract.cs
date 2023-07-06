@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
 using Common.Core.BusinessRules;
-using Common.Core.SystemClock;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;
 

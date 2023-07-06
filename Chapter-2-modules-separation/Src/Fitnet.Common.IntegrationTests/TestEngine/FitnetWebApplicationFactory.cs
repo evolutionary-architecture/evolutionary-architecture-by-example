@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 
 public class FitnetWebApplicationFactory<T> : WebApplicationFactory<T> where T : class
 {

@@ -4,7 +4,7 @@ using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Databas
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using Common.Infrastructure.Events.EventBus;
-using Common.Infrastructure.IntegrationTests;
+using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Contracts.IntegrationEvents;
 
