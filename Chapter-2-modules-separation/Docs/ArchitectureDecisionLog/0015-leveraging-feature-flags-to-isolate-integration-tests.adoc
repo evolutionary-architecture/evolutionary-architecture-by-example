@@ -13,7 +13,7 @@ Only the essential modules required for the functionality being tested will be a
 Additional feature management we can use to deliver code faster even if it is not completed, and scale monolith using feature flag on different instances of the application.
 
 == Consequences
-*Isolated testing:* Each test will involve fewer modules, which will help to isolate failures and simplify debugging.
-*Reduced resource usage:* With fewer active modules, tests will consume fewer system resources, potentially improving test performance.
-*Additional complexity:* We'll have to manage configuration of various module states.
-*Dependency management:* Troubleshooting errors arising due to improper handling of dependent modules can become challenging.
+- *Isolated testing:* Each test will involve fewer modules, which will help to isolate failures and simplify debugging.
+- *Reduced resource usage:* With fewer active modules, tests will consume fewer system resources, potentially improving test performance.
+- *Additional complexity:* We'll have to manage configuration of various module states.
+- *Dependency management:* Troubleshooting errors arising due to improper handling of dependent modules can become challenging.
