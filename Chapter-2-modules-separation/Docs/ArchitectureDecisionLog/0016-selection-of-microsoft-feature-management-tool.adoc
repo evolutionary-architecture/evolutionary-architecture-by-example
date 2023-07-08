@@ -14,8 +14,9 @@ We have to choose feature management liblary. The comparison between Microsoft, 
 |===
 
 == Decision
-After careful consideration of all the available options, we made the decision to use Microsoft's Feature Management tool, primarily available through Azure. This decision was influenced by a number of factors:
+After careful consideration of all the available options, we made the decision to use Microsoft's Feature Management tool.
 
+== Consequences
 - *Cost:* Microsoft's Feature Management tool is free, which aligns with our budget constraints and cost goals. With cost being a significant determining factor, this immediately gave Microsoft's tool an edge over LaunchDarkly, which requires a subscription cost.
 - *Ease of Implementation:* We found that Microsoft's tool was the easiest to implement out of the three options we considered. This allows us to save significant time and resources, allowing us to stay focused on our core functionality rather than on setting up and managing a feature management platform.
 - *Simplicity:* While all three tools boast a rich set of features, for the current scope and requirements of our project, Microsoft's Feature Management toolkit provides a level of simplicity that matches our needs. It provides us with all the essential features we require, without the overhead of unnecessary complexity.
