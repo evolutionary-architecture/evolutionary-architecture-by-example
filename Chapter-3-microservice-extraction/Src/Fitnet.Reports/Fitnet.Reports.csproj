@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
+      <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.123" />
+      <PackageReference Include="Npgsql" Version="7.0.4" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
+    </ItemGroup>
+    
+</Project>
