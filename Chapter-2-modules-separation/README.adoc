@@ -22,6 +22,8 @@ IMPORTANT: To keep the code simple and understandable while comparing it to the 
 
 === Requirements
 
+As mentioned in the overview, the requirements remain unchanged to keep the codebase comparable to the previous step. We will continue to do this throughout the chapters.
+
 === Main assumptions
 
 === Solution
