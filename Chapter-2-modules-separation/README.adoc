@@ -5,6 +5,21 @@
 
 === Overview
 
+After the initial steps - while building the MVP of the application - the codebase starts to get bigger and more complicated.
+
+Imagine that you started developing your application with a similar approach as in the first chapter - with only 1 production code project. It was successful, got more and more traction in the market, and therefore a lot of customers. In addition, together with the development team, you introduce new features and therefore:
+
+1. Each module grows.
+2. Some modules change more often than others.
+3. New teams are created. Now there are 3 different teams working on features within one project. It becomes harder to maintain - teams touch the same areas, there are a lot of conflicts.
+4. You notice that some modules are typical CRUD modules and some are very complex.
+
+It makes sense to start splitting a production project into a set of projects per domain. 
+
+NOTE: This step makes the codebase much larger than before. Think twice before deciding to do this.
+
+IMPORTANT: To keep the code simple and understandable while comparing it to the first chapter, we have not added any new features (business processes). Thanks to this, you can see how complex the code structure is compared to the previous one.
+
 === Requirements
 
 === Main assumptions
