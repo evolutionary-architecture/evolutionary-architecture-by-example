@@ -26,6 +26,14 @@ As mentioned in the overview, the requirements remain unchanged to keep the code
 
 === Main assumptions
 
+Due to changing requirements and the current market situation (here you have to imagine that this is the case, although we do not assume any new requirements), we have to adjust our assumptions:
+
+1. Our application is used by 5000 people (the upper limit of our first assumptions from the MVP). It still makes no sense to extract parts of the application into microservices, so we keep our modular monolith and scale it as a single deployment unit.
+2. A lot of new features will be added to our solution. There are many requests from our customers and after considering them, we usually decide to implement them. We also decide to add some features on our own based on analytics observations.
+3. Parts of the application change extremely quickly - several times a day.
+4. The _Contracts_ module is becoming increasingly complex due to new business logic.
+5. We have several development teams and they start complaining about conflicts they have while working with the code and touching the same areas.
+
 === Solution
 
 ==== Overview
