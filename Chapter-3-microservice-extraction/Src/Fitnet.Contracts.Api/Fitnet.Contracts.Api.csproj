@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
+    <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.Application\Fitnet.Contracts.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

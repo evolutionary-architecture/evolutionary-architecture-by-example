@@ -1,0 +1,50 @@
+name: Chapter 3 workflow
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Chapter-3-microservice-extraction/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'Chapter-3-microservice-extraction/**'
+
+env:
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction'
+
+jobs: 
+  build:
+    defaults:
+      run:
+        working-directory: ${{ env.CHAPTER_DIR }}/Src
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+        
+  test:
+    defaults:
+      run:
+        working-directory: ${{ env.CHAPTER_DIR }}/Src
+    runs-on: ubuntu-latest
+    name: Test
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Test
+        run: dotnet test

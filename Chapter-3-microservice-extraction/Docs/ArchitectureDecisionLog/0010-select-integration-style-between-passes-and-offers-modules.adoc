@@ -1,0 +1,22 @@
+= 10. Select integration style between passes and offers modules
+
+Date: 2023-05-13
+
+== Problem
+
+In a certain business process, there is a requirement for communication between passes and offers.
+For example, when a pass expires, an offer is proposed to the pass owner. 
+There are several integration styles available for implementing this requirement, including synchronous and asynchronous calls.
+
+== Decision
+
+After careful consideration, messaging we chosen as the communication method for the requirement implementation, because business process did not require simultaneous state changes for pass expiration and proposing new offer.
+
+Introducing a brief delay between pass expiration and offer processing we deemed beneficial for achieving high maintainability and modularity of the system.
+
+== Consequences
+
+- By using messaging, the coupling between the passes and offers modules can be reduced, resulting in a more modular system that is easier to maintain.
+- Messaging can improve the maintainability of the system by allowing for flexible and independent updates to each module.
+- However, messaging can introduce a delay between the pass expiry event and the generation of the new offer, due to the time required for message processing.
+- Messaging also introduces additional points of failure, such as message processing failures, which need to be closely managed and monitored to ensure the system functions correctly.

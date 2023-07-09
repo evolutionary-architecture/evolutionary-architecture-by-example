@@ -1,0 +1,17 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>EvolutionaryArchitecture.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <TargetFramework>net7.0</TargetFramework>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    </ItemGroup>
+    
+</Project>
