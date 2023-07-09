@@ -218,7 +218,7 @@ and so on. The modules still communicate with the in-memory queue (alternatives 
 
 === Chapter 3: Microservice Extraction: Focus On Growth
 
-OOver time, you may need to extract a microservice from one of your application modules. In this chapter, you will identify the most common disintegrators (decision drivers for extracting a microservice). 
+Over time, you may need to extract a microservice from one of your application modules. In this chapter, you will identify the most common disintegrators (decision drivers for extracting a microservice). 
 
 We will also add a message queue component to replace the in-memory queue. In this way, we will improve the exchange of messages between the modules themselves and the microservice.
 
