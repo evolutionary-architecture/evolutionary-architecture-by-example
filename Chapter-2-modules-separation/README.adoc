@@ -14,7 +14,7 @@ Imagine that you started developing your application with a similar approach as 
 3. New teams are created. Now there are 3 different teams working on features within one project. It becomes harder to maintain - teams touch the same areas, there are a lot of conflicts.
 4. You notice that some modules are typical CRUD modules and some are very complex.
 
-It makes sense to start splitting a production project into a set of projects per domain. 
+It makes sense now to start splitting a production project into a set of projects per domain. 
 
 NOTE: This step makes the codebase much larger than before. Think twice before deciding to do this.
 
@@ -39,6 +39,33 @@ NOTE: We can utilize load balancer and feature flags to independently scale modu
 === Solution
 
 ==== Overview
+
+The step we decided to take was crucial to our application. We started in a very simple way:
+
+1. Create 3 projects, where 1 is production code and 2 are test related.
+2. Separate the modules by namespace.
+3. Communicate using an in-memory queue.
+
+Over time, however, we have found that it makes sense to divide it up more granularly (see the _Main Assumptions_ chapter). 
+
+Before we look at the technical solution, a few explanations are in order. First, we discussed the complexity of each module and tried to rethink the subdomain types we decided on in the first chapter. After further investigation, we agreed to stick with what we had originally thought:
+
+- _Contracts_ is a _core_ type.
+- The rest of our subdomains are still _supporting_.
+
+image::Assets/subdomain_types.jpg[]
+
+The next step is to focus on the patterns that can be used in our modules - we were not able to make this decision in the first chapter due to lack of knowledge about our business domain and how it will be used by our customers (see _Project Paradox_ we described earlier). Thanks to the knowledge we gained, we decided on the following patterns for our modules:
+
+- In _Contracts_ we will use the _Domain Model_.
+- For _Passes_ and _Offers_ we have chosen the _Active Record_.
+- In _Reports_ we will use _Transaction Script
+
+image::../Assets/subdomains_architectural_patterns.jpg[]
+
+Let's translate all of the above into code.
+
+NOTE: _Domain Model_ and _Transaction Script_ are domain logic patterns and _Active Record_ is a data source architecture pattern. That's why we're grouping them all together under the term _Patterns_. You can see how they are implemented in our solution by looking at the codebase.
 
 ==== Solution structure
 
