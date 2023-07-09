@@ -71,6 +71,14 @@ NOTE: _Domain Model_ and _Transaction Script_ are domain logic patterns and _Act
 
 ==== Communication
 
+We decided to keep the in-memory queue communication (because we plan to replace it in the third chapter), but it makes sense to think about a more reliable component. 
+
+You have several options - e.g. implement an _Outbox_ pattern or integrate a 3rd party component like RabbitMQ. That way, if something goes wrong in the process, you can retry and send the information again.
+
+The change we have already made in this chapter is to create a separate project for each module that sends an integration event. This way the consuming modules can only reference this project and use the integration event from the sending module. The disadvantage of this solution is that we are tightly coupling, for example, the _Passes_ module with a project from the _Contracts_ module.
+
+The above problem of an additional project for the module's integration events can be solved either by extending the in-memory implementation of our queue or by using a third party component, which we will show in the third chapter.
+
 ==== Tests
 
 ==== Miscellaneous
