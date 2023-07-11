@@ -71,7 +71,7 @@ NOTE: _Domain Model_ and _Transaction Script_ are domain logic patterns and _Act
 
 In total there are now over 20 projects. Each module is built using different set of projects (because of the selected pattern). This way:
 
-1. _Contracts_ are built with `Api`, `Application`, `Core` and `Infrastructure` projects. Additionally there are unit and integrations tests and a project responsible for keeping integration events. You can read more about this decision in _Architecture Decision Log_ for this chapter.
+1. _Contracts_ are built with `Api`, `Application`, `Core` and `Infrastructure` projects. Additionally there are unit and integrations tests and a project responsible for keeping integration events. You can read more about this decision in `Architecture Decision Log` for this chapter.
 2. _Offers_ and _Passes_ are built with `Api` and `DataAccess` projects. Additionally there are integration tests and integration events projects. As these are projects with simple or no business logic, we do not need to overcomplicate its structure.
 3. _Reports_ contain only one production code project and integration tests. As this is a transaction script, we do not need to overcomplicate the structure of the code.
 4. We had to extract common logic that is used by different modules and it made no sense to write everything twice (WET). The example of the shared logic is the exception middleware, business rule validation mechanism or event bus.
