@@ -102,6 +102,13 @@ In addition, tests for common code (such as `ExceptionMiddleware`) are located i
 
 ==== Miscellaneous
 
+We have introduced a concept of feature triggers that can enable and disable any module. This is important because:
+
+1. We can set the visibility of each module in the production code. This allows us to turn them on or off based on business needs (or subscription levels).
+2. We can ensure that testing a particular module does not require running the entire application. Instead we can configure it so that for e.g. `Passes.IntegrationTests` we want to set up the environment that will run only Passes (or 2 modules if it requires integration between several).
+
+NOTE: This step is not required in your application, but is highly recommended - it will help make it as flexible as possible and can reduce the cost of resources needed to run the entire application.
+
 == How to Run?
 
 === Requirements
