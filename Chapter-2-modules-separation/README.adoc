@@ -92,7 +92,7 @@ The above problem of an additional project for the module's integration events c
 
 === How to get .NET SDK?
 
-To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
+To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer. 
 Click link:https://dotnet.microsoft.com/en-us/download[here] 
 to download it from the official Microsoft website.
 
@@ -131,14 +131,14 @@ We encourage you to use this feature to securely store the connection string.
 
 If you prefer to run the Fitnet application as a Docker container, you can build and run it using the following steps:
 
-1. Build the Docker image:
+First, build the Docker image:
 
 [source,shell]
 ----
 docker build -t fitnet .
 ----
 
-2. Run the Docker container:
+Then, run the Docker container:
 [source,shell]
 ----
 docker run -p 8080:80 --name fitnet-container fitnet
@@ -149,7 +149,7 @@ The "8080" is the port number on which the container will be exposed, and "myapp
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
 === How to run Integration Tests?
-To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
+To run the integration tests go to a module integration tests (`SelectedModule.IntegrationTests`) and run using either the command:
 [source,shell]
 ----
 dotnet test
