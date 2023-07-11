@@ -57,9 +57,9 @@ image::Assets/subdomain_types.jpg[]
 
 The next step is to focus on the patterns that can be used in our modules - we were not able to make this decision in the first chapter due to lack of knowledge about our business domain and how it will be used by our customers (see _Project Paradox_ we described earlier). Thanks to the knowledge we gained, we decided on the following patterns for our modules:
 
-- In _Contracts_ we will use the _Domain Model_.
-- For _Passes_ and _Offers_ we have chosen the _Active Record_.
-- In _Reports_ we will use _Transaction Script
+- In _Contracts_ we will use the _Domain Model_
+- For _Passes_ and _Offers_ we have chosen the _Active Record_
+- In _Reports_ we will use _Transaction Script_
 
 image::../Assets/subdomains_architectural_patterns.jpg[]
 
