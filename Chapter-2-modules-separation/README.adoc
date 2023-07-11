@@ -93,8 +93,8 @@ The above problem of an additional project for the module's integration events c
 
 Compared to the previous chapter, where we only had 2 projects with tests: `Fitnet.UnitTests` and `Fitnet.IntegrationTests`, we decided to split them into separate projects for each module. This way, each module has the following structure:
 
-- `SelectedModule.UnitTests``
-- `SelectedModule.IntegrationTests``
+- `SelectedModule.UnitTests`
+- `SelectedModule.IntegrationTests`
 
 Tests are located in solution folders: `SelectedModule | Tests | SelectedModule.*Tests`.
 
