@@ -69,6 +69,16 @@ NOTE: _Domain Model_ and _Transaction Script_ are domain logic patterns and _Act
 
 ==== Solution structure
 
+In total there are now over 20 projects. Each module is built using different set of projects (because of the selected pattern). This way:
+
+1. _Contracts_ are built with _Api_, _Application_, _Core_ and _Infrastructure_ projects. Additionally there are unit and integrations tests and a project responsible for keeping integration events. You can read more about this decision in _Architecture Decision Log_ for this chapter.
+2. _Offers_ and _Passes_ are built with _Api_ and _DataAccess_ projects. Additionally there are integration tests and integration events projects. As these are projects with simple or no business logic, we do not need to overcomplicate its structure.
+3. _Reports_ contain only one production code project and integration tests. As this is a transaction script, we do not need to overcomplicate the structure of the code.
+4. We had to extract common logic that is used by different modules and it made no sense to write everything twice (WET). The example of the shared logic is the exception middleware, business rule validation mechanism or event bus.
+5. Additionally, we have one project _Fitnet_ that is responsible for all modules registration and starting our application.
+
+NOTE: You can now see how complex the code get. As an exercise, compare it with a simple structure from the first chapter. In the end, you can ask yourself if it is worth to focus on such division for your application MVP, especially as the requirements will change a lot in the initial phases of development.
+
 ==== Communication
 
 We decided to keep the in-memory queue communication (because we plan to replace it in the third chapter), but it makes sense to think about a more reliable component. 
