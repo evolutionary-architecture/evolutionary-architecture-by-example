@@ -1,4 +1,4 @@
-= Chapter 2: Modules Separation: Focus On Maintainability
+= Chapter 3: Microservice Extraction: Focus On Growth
 :toc:
 
 == Case
