@@ -5,20 +5,19 @@
 
 === Overview
 
-After the initial steps - while building the MVP of the application - the codebase starts to get bigger and more complicated.
+After separating the modules per project in our modular monolith, we were able to handle different areas well:
 
-Imagine that you started developing your application with a similar approach as in the first chapter - with only 1 production code project. It was successful, got more and more traction in the market, and therefore a lot of customers. In addition, together with the development team, you introduce new features and therefore:
+- Synchronisation conflicts - after splitting into multiple projects, there were fewer conflicts when committing to the main branch.
+- Changes were encapsulated in module projects.
+- We applied patterns that fit the needs.
 
-1. Each module grows.
-2. Some modules change more often than others.
-3. New teams are created. Now there are 3 different teams working on features within one project. It becomes harder to maintain - teams touch the same areas, there are a lot of conflicts.
-4. You notice that some modules are typical CRUD modules and some are very complex.
+However, we have now reached the limit of our capacity. New issues have arisen, and we can see that we are on the edge of resource usage. In addition, the cost of scaling the entire application had increased significantly, we have more development teams and security levels are different between modules.
 
-It makes sense to start splitting a production project into a set of projects per domain. 
+It makes sense to analyse our modular monolith and extract the relevant parts to microservices. 
 
-NOTE: This step makes the codebase much larger than before. Think twice before deciding to do this.
+NOTE: This step makes your solution much more complex than before. You have to think about network failures, latency, secure communications and many other things that are often forgotten. Think twice before you decide to do this. Look at our main assumptions - they will help you to understand the reasoning (disintegrator) for a module extraction.
 
-IMPORTANT: To keep the code simple and understandable while comparing it to the first chapter, we have not added any new features (business processes). Thanks to this, you can see how complex the code structure is compared to the previous one.
+IMPORTANT: To keep the code simple and understandable while comparing it to the second chapter, we have not added any new features (business processes).
 
 === Requirements
 
