@@ -26,15 +26,12 @@ As mentioned in the overview, the requirements remain unchanged to keep the code
 
 === Main assumptions
 
-Due to changing requirements and the current market situation (here you have to imagine that this is the case, although we do not assume any new requirements), we have to adjust our assumptions:
+Due to changing requirements and the current market situation (here you have to again imagine that this is the case, although we do not assume any new requirements), we have to adjust our assumptions:
 
-1. Our application is now being used by 5000 people, which is the maximum number of users based on our initial MVP assumptions. It still makes no sense to extract parts of the application into microservices, so we keep our modular monolith and scale it as a single deployment unit.
-2. A lot of new features will be added to our solution. There are many requests from our customers and after considering them, we usually decide to implement them. We also decide to add some features on our own based on analytics observations.
-3. Parts of the application change extremely quickly - several times a day.
-4. The _Contracts_ module is becoming increasingly complex due to new business logic.
-5. We have several development teams and they start complaining about conflicts they have while working with the code and touching the same areas.
-
-NOTE: We can utilize load balancer and feature flags to independently scale modules in our monolith.
+1. Our application is now being used by 500000 people, which exceeds the maximum number of users based on our initial MVP assumptions (5000). One of our modules is used extremely often - _Contracts_ and it leads to a situation where we have to scale entire modular monolith (and it now becomes quite expensive), even though other modules usage is kept low.
+2. _Contracts_ module changes quicker than other modules - the ratio is 10:1, where 10 changes are done daily to _Contracts_ and 1 change to other module like _Offers_.
+3. _Contracts_ module requires higher security standards than other modules as we keep here sensitive data of our customers.
+4. At the moment we have 10 development teams working on the same deployment unit (modular monolith). It leads to more and more issues related to conflicts and syncing.
 
 === Solution
 
