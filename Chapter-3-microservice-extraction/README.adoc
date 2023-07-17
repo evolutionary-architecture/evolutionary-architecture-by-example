@@ -33,6 +33,14 @@ Due to changing requirements and the current market situation (here you have to 
 3. _Contracts_ module requires higher security standards than other modules as we keep here sensitive data of our customers.
 4. At the moment we have 10 development teams working on the same deployment unit (modular monolith). It leads to more and more issues related to conflicts and syncing.
 
+Thanks to above assumptions we have 4 factors that help us to decide to extract _Contracts_ module to a microservice:
+
+- Extreme usage
+- Change frequency
+- Different security level than other modules
+
+IMPORTANT: Often there are also disintegrators related to poor communication between teams or different time zones. As you can see, these are not technical reasons. They are often related to behaviour, geographical location or other areas.
+
 === Solution
 
 ==== Overview
