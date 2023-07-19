@@ -11,7 +11,7 @@ After separating the modules per project in our modular monolith, we were able t
 - Changes were encapsulated in module projects.
 - We applied patterns that fit the needs.
 
-However, we have now reached the limit of our capacity. New issues have arisen, and we can see that we are on the edge of resource usage. In addition, the cost of scaling the entire application had increased significantly, we have more development teams and security levels are different between modules.
+However, we have now reached the limit of our capacity. New issues have arisen, and we can see that we are on the edge of resource usage. In addition, the cost of scaling the entire application had increased significantly, we have more development teams and security levels are different between modules. Another point is the risk of deployment of an entire single unit. We might break something - even when there is a gret automation of everything and we follow continuous deployments, problems can still arise.
 
 It makes sense to analyse our modular monolith and extract the relevant parts to microservices. 
 
