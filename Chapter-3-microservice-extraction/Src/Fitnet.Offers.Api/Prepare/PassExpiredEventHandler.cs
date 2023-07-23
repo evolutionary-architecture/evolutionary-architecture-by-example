@@ -2,19 +2,19 @@ namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
 using Common.Core.SystemClock;
 using Common.Infrastructure.Events;
-using Common.Infrastructure.Events.EventBus;
+using Common.Infrastructure.Events.EventBus.InMemory;
 using DataAccess;
 using DataAccess.Database;
 using Passes.IntegrationEvents;
 
 internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExpiredEvent>
 {
-    private readonly IEventBus _eventBus;
+    private readonly IInMemoryEventBus _eventBus;
     private readonly OffersPersistence _persistence;
     private readonly ISystemClock _systemClock;
 
     public PassExpiredEventHandler(
-        IEventBus eventBus,
+        IInMemoryEventBus eventBus,
         OffersPersistence persistence, 
         ISystemClock systemClock)
     {

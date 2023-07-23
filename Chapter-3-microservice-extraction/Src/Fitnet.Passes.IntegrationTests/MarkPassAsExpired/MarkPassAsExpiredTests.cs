@@ -1,12 +1,14 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.MarkPassAsExpired;
 
-using Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Api;
 using Api.GetAllPasses;
+using Api.RegisterPass;
+using Common.Infrastructure.Events.EventBus.InMemory;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
+using Common.IntegrationTests.TestEngine.EventBus.External;
+using Common.IntegrationTests.TestEngine.EventBus.InMemory;
 using Contracts.IntegrationEvents;
 using IntegrationEvents;
 using RegisterPass;
@@ -16,16 +18,18 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     private static readonly StringContent EmptyContent = new(string.Empty);
     
     private readonly HttpClient _applicationHttpClient;
-    private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
-    private readonly Mock<IEventBus> _fakeEventBus = new();
+    private readonly Mock<IInMemoryEventBus> _testInMemoryEventBus = new();
+    private readonly ITestHarness _testExternalEventBus;
 
     public MarkPassAsExpiredTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
-        _applicationInMemoryFactory = applicationInMemoryFactory
+        var applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
-            .WithFakeEventBus(_fakeEventBus);
-        _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
+            .WithTestInMemoryEventBus(_testInMemoryEventBus)
+            .WithTestExternalEventBus(typeof(ContractSignedEventConsumer));
+        _applicationHttpClient = applicationInMemory.CreateClient();
+        _testExternalEventBus = applicationInMemory.GetTestExternalEventBus();
     }
 
     [Fact]
@@ -75,9 +79,8 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     private async Task<ContractSignedEvent> RegisterPass()
     {
         var @event = ContractSignedEventFaker.Create();
-        using var integrationEventHandlerScope =
-            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
-        await integrationEventHandlerScope.Consume(@event);
+        await _testExternalEventBus.Bus.Publish(@event);
+        await _testExternalEventBus.WaitToConsumeMessageAsync<ContractSignedEvent>();
 
         return @event;
     }
@@ -94,5 +97,5 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
 
-    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<PassExpiredEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatPassExpiredEventWasPublished() => _testInMemoryEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<PassExpiredEvent>(), It.IsAny<CancellationToken>()), Times.Once);
 }

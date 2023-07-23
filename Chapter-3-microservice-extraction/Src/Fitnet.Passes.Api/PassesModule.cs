@@ -25,6 +25,7 @@ public static class PassesModule
 
         services.AddDataAccess(configuration);
         services.AddMediator(Assembly.GetExecutingAssembly());
+        services.AddConsumers();
 
         return services;
     }

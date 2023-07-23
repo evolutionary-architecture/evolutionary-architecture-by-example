@@ -2,8 +2,8 @@ namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Con
 
 using Core.SystemClock;
 using Database;
-using Infrastructure.Events.EventBus;
 using Infrastructure.Mediator;
+using MassTransit;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using SystemClock;
@@ -34,15 +34,7 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
-
-    public static WebApplicationFactory<T> WithFakeEventBus<T>(
-        this WebApplicationFactory<T> webApplicationFactory,
-        IMock<IEventBus> eventBusMock)
-        where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
-            webHostBuilder.ConfigureTestServices(services =>
-                services.AddSingleton(eventBusMock.Object)));
-
+    
     public static WebApplicationFactory<T> WithFakeConsumers<T>(
         this WebApplicationFactory<T> webApplicationFactory,
         Assembly executingAssembly)
@@ -50,4 +42,21 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddMediator(executingAssembly)));
+    
+    public static WebApplicationFactory<T> WithMassTransitTestHarness<T>(
+        this WebApplicationFactory<T> webApplicationFactory,
+        params Type[] types)
+        where T : class
+    {
+        return webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
+        {
+            webHostBuilder.ConfigureServices(services => services.AddMassTransitTestHarness(cfg =>
+            {
+                foreach (var type in types)
+                {
+                    cfg.AddConsumer(type);
+                }
+            }));
+        });
+    }
 }

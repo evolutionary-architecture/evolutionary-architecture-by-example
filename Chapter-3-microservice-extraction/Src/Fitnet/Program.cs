@@ -14,12 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSystemClock();
+builder.Services.AddFeatureManagement();
 
-builder.Services.AddCommonInfrastructure();
 builder.Services.AddContracts(builder.Configuration, Module.Contracts);
 builder.Services.AddPasses(builder.Configuration, Module.Passes);
 builder.Services.AddOffers(builder.Configuration, Module.Offers);
 builder.Services.AddReports(Module.Reports);
+builder.Services.AddCommonInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

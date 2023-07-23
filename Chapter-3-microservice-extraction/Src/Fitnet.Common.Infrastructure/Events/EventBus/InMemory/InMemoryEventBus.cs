@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.
 
 using MediatR;
 
-internal sealed class InMemoryEventBus : IEventBus
+internal sealed class InMemoryEventBus : IInMemoryEventBus
 {
     private readonly IMediator _mediator;
     

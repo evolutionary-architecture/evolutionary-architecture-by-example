@@ -6,21 +6,24 @@ using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 using Api.Sign;
-using Common.Infrastructure.Events.EventBus;
+using Common.Infrastructure.Events.EventBus.InMemory;
 using Common.IntegrationTests.TestEngine;
+using Common.IntegrationTests.TestEngine.EventBus.External;
+using Common.IntegrationTests.TestEngine.EventBus.InMemory;
 using Moq;
 using PrepareContract;
 
 public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly Mock<IEventBus> _eventBus = new();
+    private readonly Mock<IInMemoryEventBus> _testInMemoryEventBus = new();
     
     public SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
-            .WithFakeEventBus(_eventBus)
+            .WithTestInMemoryEventBus(_testInMemoryEventBus)
+            .WithTestExternalEventBus()
             .CreateClient();
 
     [Fact]
@@ -45,7 +48,7 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
         // Arrange
         var requestParameters = SignContractRequestParameters.GetWithNotExistingContractId();
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
-
+        
         // Act
         var signContractResponse =
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);

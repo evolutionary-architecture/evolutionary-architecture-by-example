@@ -6,6 +6,7 @@ using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 using Common.IntegrationTests.TestEngine;
+using Common.IntegrationTests.TestEngine.EventBus.External;
 
 public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
@@ -16,6 +17,7 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
+            .WithTestExternalEventBus()
             .CreateClient();
 
     [Fact]

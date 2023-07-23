@@ -1,28 +1,35 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
+using Common.Infrastructure.Events.EventBus.InMemory;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
+using Common.IntegrationTests.TestEngine.EventBus.External;
+using Common.IntegrationTests.TestEngine.EventBus.InMemory;
 using Contracts.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Reports;
 using GenerateNewPassesRegistrationsPerMonthReport.Dtos;
+using MassTransit.Testing;
+using Passes.Api.RegisterPass;
 using TestData;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
-    
+    private readonly ITestHarness _testExternalEventBus;
+    private readonly Mock<IInMemoryEventBus> _testInMemoryEventBus = new();
+
     public GenerateNewPassesPerMonthReportTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
-        _applicationInMemoryFactory = applicationInMemoryFactory
+        var applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
+            .WithTestInMemoryEventBus(_testInMemoryEventBus)
+            .WithTestExternalEventBus(typeof(ContractSignedEventConsumer))
             .SetFakeSystemClock(ReportTestCases.FakeNowDate);
-        
-        _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
+        _applicationHttpClient = applicationInMemory.CreateClient();
+        _testExternalEventBus = applicationInMemory.GetTestExternalEventBus();
     }
     
     [Theory]
@@ -45,13 +52,13 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
     {
         foreach (var passRegistration in reportTestData)
             await RegisterPass(passRegistration.From, passRegistration.To);
+        
+        await _testExternalEventBus.WaitToConsumeMessagesAllAsync<ContractSignedEvent>(reportTestData.Count);
     }
 
     private async Task RegisterPass(DateTimeOffset from, DateTimeOffset to)
     {
-        using var integrationEventHandlerScope =
-            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
         var @event = ContractSignedEventFaker.Create(from, to);
-        await integrationEventHandlerScope.Consume(@event, CancellationToken.None);
+        await _testExternalEventBus.Bus.Publish(@event);
     }
 }
