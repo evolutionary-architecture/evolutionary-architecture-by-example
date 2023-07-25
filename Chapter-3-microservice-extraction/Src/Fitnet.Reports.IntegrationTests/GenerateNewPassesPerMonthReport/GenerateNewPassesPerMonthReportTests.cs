@@ -1,10 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
-using Common.Infrastructure.Events.EventBus.InMemory;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
-using Common.IntegrationTests.TestEngine.EventBus.External;
-using Common.IntegrationTests.TestEngine.EventBus.InMemory;
+using Common.IntegrationTests.TestEngine.EventBus;
 using Contracts.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using Reports;
@@ -18,15 +16,13 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
 {
     private readonly HttpClient _applicationHttpClient;
     private readonly ITestHarness _testExternalEventBus;
-    private readonly Mock<IInMemoryEventBus> _testInMemoryEventBus = new();
 
     public GenerateNewPassesPerMonthReportTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
         var applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
-            .WithTestInMemoryEventBus(_testInMemoryEventBus)
-            .WithTestExternalEventBus(typeof(ContractSignedEventConsumer))
+            .WithTestEventBus(typeof(ContractSignedEventConsumer))
             .SetFakeSystemClock(ReportTestCases.FakeNowDate);
         _applicationHttpClient = applicationInMemory.CreateClient();
         _testExternalEventBus = applicationInMemory.GetTestExternalEventBus();

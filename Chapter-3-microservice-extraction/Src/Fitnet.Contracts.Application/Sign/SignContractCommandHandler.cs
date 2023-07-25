@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Sign;
 
 using Common.Api.ErrorHandling;
 using Common.Core.SystemClock;
-using Common.Infrastructure.Events.EventBus.External;
+using Common.Infrastructure.Events.EventBus;
 using Core;
 using IntegrationEvents;
 
@@ -11,9 +11,9 @@ internal sealed class SignContractCommandHandler : IRequestHandler<SignContractC
 {
     private readonly IContractsRepository _contractsRepository;
     private readonly ISystemClock _systemClock;
-    private readonly IExternalEventBus _eventBus;
+    private readonly IEventBus _eventBus;
 
-    public SignContractCommandHandler(IContractsRepository contractsRepository, ISystemClock systemClock, IExternalEventBus eventBus)
+    public SignContractCommandHandler(IContractsRepository contractsRepository, ISystemClock systemClock, IEventBus eventBus)
     {
         _contractsRepository = contractsRepository;
         _systemClock = systemClock;

@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.External.Consumers;
+namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.Consumers;
 
 using Microsoft.Extensions.DependencyInjection;
 

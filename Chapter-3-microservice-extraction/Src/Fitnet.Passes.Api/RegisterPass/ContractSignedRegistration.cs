@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 
-using Common.Infrastructure.Events.EventBus.External.Consumers;
+using Common.Infrastructure.Events.EventBus.Consumers;
 using Microsoft.Extensions.DependencyInjection;
 
 internal static class ContractSignedRegistration

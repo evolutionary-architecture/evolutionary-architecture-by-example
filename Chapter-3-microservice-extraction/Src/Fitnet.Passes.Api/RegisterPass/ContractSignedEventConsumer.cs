@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 
-using Common.Infrastructure.Events.EventBus.InMemory;
+using Common.Infrastructure.Events.EventBus;
 using Contracts.IntegrationEvents;
 using DataAccess;
 using DataAccess.Database;
@@ -9,11 +9,11 @@ using MassTransit;
 internal sealed class ContractSignedEventConsumer : IConsumer<ContractSignedEvent>
 {
     private readonly PassesPersistence _persistence;
-    private readonly IInMemoryEventBus _eventBus;
+    private readonly IEventBus _eventBus;
 
     public ContractSignedEventConsumer(
         PassesPersistence persistence,
-        IInMemoryEventBus eventBus)
+        IEventBus eventBus)
     {
         _persistence = persistence;
         _eventBus = eventBus;

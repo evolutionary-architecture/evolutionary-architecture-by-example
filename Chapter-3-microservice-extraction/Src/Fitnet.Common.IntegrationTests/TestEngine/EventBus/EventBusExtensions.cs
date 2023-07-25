@@ -1,18 +1,17 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.EventBus.External;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.EventBus;
 
-using Infrastructure.Events.EventBus.External;
 using MassTransit;
 using MassTransit.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 
-public static class TestExternalEventBusExtensions
+public static class EventBusExtensions
 {
     public static ITestHarness GetTestExternalEventBus<T>(
         this WebApplicationFactory<T> webApplicationFactory) where T : class =>
         webApplicationFactory.Services.GetRequiredService<ITestHarness>();
 
-    public static WebApplicationFactory<T> WithTestExternalEventBus<T>(
+    public static WebApplicationFactory<T> WithTestEventBus<T>(
         this WebApplicationFactory<T> webApplicationFactory,
         params Type[] consumerTypes)
         where T : class =>
@@ -24,8 +23,6 @@ public static class TestExternalEventBusExtensions
                     foreach (var consumerType in consumerTypes)
                         configurator.AddConsumer(consumerType);
                 });
-                var externalEventBusMock = new Mock<IExternalEventBus>();
-                services.AddSingleton(externalEventBusMock.Object);
             }));
 
     public static async Task<IReceivedMessage<TMessage>?> WaitToConsumeMessageAsync<TMessage>(

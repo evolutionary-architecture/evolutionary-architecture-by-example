@@ -1,29 +1,25 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.RegisterPass;
 
-using Common.Infrastructure.Events.EventBus.InMemory;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.EventBus.External;
-using Common.IntegrationTests.TestEngine.EventBus.InMemory;
+using Common.IntegrationTests.TestEngine.EventBus;
 using Contracts.IntegrationEvents;
 
 public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private readonly Mock<IInMemoryEventBus> _testInMemoryEventBus = new();
-    private readonly ITestHarness _testExternalEventBus;
+    private readonly ITestHarness _testEventBus;
     
     public RegisterPassTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
        var applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
-            .WithTestInMemoryEventBus(_testInMemoryEventBus)
-            .WithTestExternalEventBus(typeof(ContractSignedEventConsumer));
+            .WithTestEventBus(typeof(ContractSignedEventConsumer));
         applicationInMemory.CreateClient();
-        _testExternalEventBus = applicationInMemory.GetTestExternalEventBus();
+        _testEventBus = applicationInMemory.GetTestExternalEventBus();
     }
 
     [Fact]
@@ -33,13 +29,16 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
         var @event = ContractSignedEventFaker.Create();
 
         // Act
-        await _testExternalEventBus.Bus.Publish(@event);
+        await _testEventBus.Bus.Publish(@event);
 
         // Assert
-        _testExternalEventBus.EnsureConsumed<ContractSignedEvent>();
-        EnsureThatPassExpiredEventWasPublished();
+        _testEventBus.EnsureConsumed<ContractSignedEvent>();
+        await EnsureThatPassRegistered();
     }
     
-    private void EnsureThatPassExpiredEventWasPublished() => 
-        _testInMemoryEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<PassRegisteredEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private async Task EnsureThatPassRegistered()
+    {
+        var passRegisteredEventPublished = await _testEventBus.Published.Any<PassRegisteredEvent>();
+        passRegisteredEventPublished.Should().BeTrue();
+    }
 }

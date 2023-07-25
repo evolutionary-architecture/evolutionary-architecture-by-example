@@ -6,24 +6,19 @@ using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 using Api.Sign;
-using Common.Infrastructure.Events.EventBus.InMemory;
 using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.EventBus.External;
-using Common.IntegrationTests.TestEngine.EventBus.InMemory;
-using Moq;
+using Common.IntegrationTests.TestEngine.EventBus;
 using PrepareContract;
 
 public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly Mock<IInMemoryEventBus> _testInMemoryEventBus = new();
     
     public SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
-            .WithTestInMemoryEventBus(_testInMemoryEventBus)
-            .WithTestExternalEventBus()
+            .WithTestEventBus()
             .CreateClient();
 
     [Fact]
