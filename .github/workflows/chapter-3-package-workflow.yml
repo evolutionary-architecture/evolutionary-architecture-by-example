@@ -70,3 +70,9 @@ jobs:
         run: dotnet pack Fitnet.Common.Infrastructure/Fitnet.Common.Infrastructure.csproj -c Release
       - name: Prepare packages
         run: dotnet nuget add source --username meaboutsoftware --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/meaboutsoftware/index.json"
+      - name: Publish Common API
+        run: dotnet nuget push "Fitnet.Common.Api.*.nupkg" --source "github"
+      - name: Publish Some Other Project
+        run: dotnet nuget push "Fitnet.Common.Core.*.nupkg" --source "github"
+      - name: Publish Yet Another Project
+        run: dotnet nuget push "Fitnet.Common.Infrastructure.*.nupkg" --source "github"
