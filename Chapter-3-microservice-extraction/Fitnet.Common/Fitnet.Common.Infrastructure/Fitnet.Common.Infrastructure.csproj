@@ -9,9 +9,5 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
         <PackageReference Include="Microsoft.FeatureManagement" Version="2.5.1" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <RepositoryUrl>https://github.com/meaboutsoftware/evolutionary-architecture</RepositoryUrl>
-    </PropertyGroup>
     
 </Project>

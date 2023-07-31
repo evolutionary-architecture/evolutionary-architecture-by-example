@@ -15,9 +15,5 @@
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Api.UnitTests" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <RepositoryUrl>https://github.com/meaboutsoftware/evolutionary-architecture</RepositoryUrl>
-    </PropertyGroup>
     
 </Project>
