@@ -1,17 +1,17 @@
-name: Chapter 3 workflow
+name: Chapter 3 package workflow
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/Src/**'
+      - 'Chapter-3-microservice-extraction/Fitnet.Common/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/Src/**'
+      - 'Chapter-3-microservice-extraction/Fitnet.Common/**'
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Src'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet.Common'
 
 jobs: 
   build:
@@ -48,3 +48,23 @@ jobs:
         run: dotnet restore
       - name: Test
         run: dotnet test
+
+  pack: 
+    defaults:
+      run:
+        working-directory: ${{ env.CHAPTER_DIR }}
+    runs-on: ubuntu-latest
+    name: Pack
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Pack Api
+        run: dotnet pack Fitnet.Common.Api/Fitnet.Common.Api.csproj -c Release
+      - name: Pack Core
+        run: dotnet pack Fitnet.Common.Core/Fitnet.Common.Core.csproj -c Release
+      - name: Pack Infrastructure
+        run: dotnet pack Fitnet.Common.Infrastructure/Fitnet.Common.Infrastructure.csproj -c Release
