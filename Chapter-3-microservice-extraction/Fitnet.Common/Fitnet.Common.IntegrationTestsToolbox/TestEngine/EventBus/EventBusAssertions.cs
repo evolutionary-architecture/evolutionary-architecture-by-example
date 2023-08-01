@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.EventBus;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
 
 using FluentAssertions;
 using MassTransit.Testing;

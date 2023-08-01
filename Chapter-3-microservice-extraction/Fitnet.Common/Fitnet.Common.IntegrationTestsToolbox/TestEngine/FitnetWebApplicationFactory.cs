@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine;
 
 public class FitnetWebApplicationFactory<T> : WebApplicationFactory<T> where T : class
 {
@@ -8,7 +8,7 @@ public class FitnetWebApplicationFactory<T> : WebApplicationFactory<T> where T :
         {
             var settingsPath = Path.Combine(
                 Directory.GetCurrentDirectory(),
-                "appsettings.IntegrationTests.json");
+                "appsettings.IntegrationTestsToolbox.json");
 
             configBuilder.AddJsonFile(settingsPath);
         });
