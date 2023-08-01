@@ -4,20 +4,20 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/**'
+      - 'Chapter-3-microservice-extraction/Src/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/**'
+      - 'Chapter-3-microservice-extraction/Src/**'
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Src'
 
 jobs: 
   build:
     defaults:
       run:
-        working-directory: ${{ env.CHAPTER_DIR }}/Src
+        working-directory: ${{ env.CHAPTER_DIR }}
     runs-on: ubuntu-latest
     name: Build
     steps:
@@ -34,7 +34,7 @@ jobs:
   test:
     defaults:
       run:
-        working-directory: ${{ env.CHAPTER_DIR }}/Src
+        working-directory: ${{ env.CHAPTER_DIR }}
     runs-on: ubuntu-latest
     name: Test
     needs: build
