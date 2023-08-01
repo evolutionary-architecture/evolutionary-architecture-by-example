@@ -69,6 +69,7 @@ jobs:
           dotnet pack Fitnet.Common.Api/Fitnet.Common.Api.csproj -c Release
           dotnet pack Fitnet.Common.Core/Fitnet.Common.Core.csproj -c Release
           dotnet pack Fitnet.Common.Infrastructure/Fitnet.Common.Infrastructure.csproj -c Release
+          dotnet pack Fitnet.Common.IntegrationTests/Fitnet.Common.IntegrationTests.csproj -c Release
 
       - name: Prepare Packages
         run: dotnet nuget add source --username meaboutsoftware --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/meaboutsoftware/index.json"
@@ -78,3 +79,4 @@ jobs:
           dotnet nuget push "Fitnet.Common.Api/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Api.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
           dotnet nuget push "Fitnet.Common.Core/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Core.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
           dotnet nuget push "Fitnet.Common.Infrastructure/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Infrastructure.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.IntegrationTests/bin/Release/EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
