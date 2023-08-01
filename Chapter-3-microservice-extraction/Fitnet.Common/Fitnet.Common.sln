@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Core.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Infrastructure", "Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj", "{8110B4CE-52EC-4830-B7CB-15FE8629774E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.IntegrationTests", "Fitnet.Common.IntegrationTests\Fitnet.Common.IntegrationTests.csproj", "{7730CC34-33C2-404B-A22E-E188FB1D8388}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.IntegrationTestsToolbox", "Fitnet.Common.IntegrationTestsToolbox\Fitnet.Common.IntegrationTestsToolbox.csproj", "{7730CC34-33C2-404B-A22E-E188FB1D8388}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
