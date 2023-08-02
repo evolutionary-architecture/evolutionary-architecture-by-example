@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.SystemClock;
+namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.SystemClock;
 
 using Core.SystemClock;
 
