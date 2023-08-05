@@ -306,5 +306,16 @@ https://www.linkedin.com/in/kamilbaczek/[Linkedin]
 https://github.com/kamilbaczek[Github]
 |===
 
+== Roadmap
+
+[cols=2*, options=header]
+|===
+| Milestone | Date
+
+| Repository Premiere :rocket: | 2023.10
+| Chapter 4: Focus on Complexity :brain: | 2023.12
+| Architecture Tests :gear: | 2024.02
+|===
+
 == ⭐ Say thanks
 Feel free to give a ⭐ to this repository if you like it. Your support is greatly appreciated!
