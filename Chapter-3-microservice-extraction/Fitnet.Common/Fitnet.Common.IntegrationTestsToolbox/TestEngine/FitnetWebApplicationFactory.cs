@@ -8,7 +8,7 @@ public class FitnetWebApplicationFactory<T> : WebApplicationFactory<T> where T :
         {
             var settingsPath = Path.Combine(
                 Directory.GetCurrentDirectory(),
-                "appsettings.IntegrationTestsToolbox.json");
+                "appsettings.IntegrationTests.json");
 
             configBuilder.AddJsonFile(settingsPath);
         });

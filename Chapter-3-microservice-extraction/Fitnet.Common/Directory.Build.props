@@ -9,7 +9,7 @@
         <Nullable>enable</Nullable>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <RepositoryUrl>https://github.com/meaboutsoftware/evolutionary-architecture</RepositoryUrl>
-        <Version>1.1.2</Version>
+        <Version>1.1.3</Version>
     </PropertyGroup>
     
     <ItemGroup>
