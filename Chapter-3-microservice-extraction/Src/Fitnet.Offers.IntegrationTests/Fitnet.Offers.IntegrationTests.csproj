@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
+      <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
     </ItemGroup>
 
 </Project>

@@ -4,8 +4,6 @@ using Common.IntegrationTestsToolbox.TestEngine;
 using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
-using Passes.IntegrationEvents;
 
 public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
