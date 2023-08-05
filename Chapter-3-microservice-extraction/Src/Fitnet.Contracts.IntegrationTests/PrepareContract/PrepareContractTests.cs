@@ -1,12 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareContract;
 
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
-using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.EventBus;
 
 public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>

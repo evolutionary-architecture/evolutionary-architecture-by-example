@@ -1,14 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPassesPerMonthReport;
 
-using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.Configuration;
-using Common.IntegrationTests.TestEngine.EventBus;
-using Contracts.IntegrationEvents;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using Reports;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using GenerateNewPassesRegistrationsPerMonthReport.Dtos;
-using MassTransit.Testing;
 using Passes.Api.RegisterPass;
+using Contracts.IntegrationEvents;
 using TestData;
 
 [UsesVerify]

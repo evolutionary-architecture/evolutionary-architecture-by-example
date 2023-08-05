@@ -5,14 +5,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
-      <ProjectReference Include="..\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
       <ProjectReference Include="..\Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj" />
       <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="evolutionaryarchitecture.fitnet.common.core" Version="1.1.2" />
+      <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="1.1.2" />
     </ItemGroup>
 
 </Project>

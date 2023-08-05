@@ -1,12 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.MarkPassAsExpired;
 
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using Api;
 using Api.GetAllPasses;
 using Api.RegisterPass;
-using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.Configuration;
-using Common.IntegrationTests.TestEngine.EventBus;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Contracts.IntegrationEvents;
 using IntegrationEvents;
 using RegisterPass;

@@ -10,7 +10,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Offers.Api\Fitnet.Offers.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />

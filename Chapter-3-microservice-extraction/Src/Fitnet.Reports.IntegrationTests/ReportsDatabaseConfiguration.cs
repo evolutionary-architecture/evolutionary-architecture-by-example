@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests;
 
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 
 internal sealed class ReportsDatabaseConfiguration : IDatabaseConfiguration
 {

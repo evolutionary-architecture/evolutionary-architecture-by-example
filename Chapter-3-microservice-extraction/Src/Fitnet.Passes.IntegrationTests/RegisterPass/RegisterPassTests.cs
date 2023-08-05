@@ -1,11 +1,11 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.RegisterPass;
 
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
-using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.EventBus;
-using Contracts.IntegrationEvents;
+using EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents;
 
 public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
