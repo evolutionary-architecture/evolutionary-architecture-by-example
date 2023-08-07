@@ -1,19 +1,19 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
 using Common.Core.SystemClock;
-using Common.Infrastructure.Events;
 using Common.Infrastructure.Events.EventBus;
 using DataAccess;
 using DataAccess.Database;
+using MassTransit;
 using Passes.IntegrationEvents;
 
-internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExpiredEvent>
+internal sealed class PassExpiredEventConsumer : IConsumer<PassExpiredEvent>
 {
     private readonly IEventBus _eventBus;
     private readonly OffersPersistence _persistence;
     private readonly ISystemClock _systemClock;
 
-    public PassExpiredEventHandler(
+    public PassExpiredEventConsumer(
         IEventBus eventBus,
         OffersPersistence persistence, 
         ISystemClock systemClock)
@@ -23,13 +23,14 @@ internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExp
         _systemClock = systemClock;
     }
 
-    public async Task Handle(PassExpiredEvent @event, CancellationToken cancellationToken)
+    public async Task Consume(ConsumeContext<PassExpiredEvent> context)
     {
+        var @event = context.Message; 
         var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, _systemClock.Now);
         _persistence.Offers.Add(offer);
-        await _persistence.SaveChangesAsync(cancellationToken);
+        await _persistence.SaveChangesAsync(context.CancellationToken);
         
         var offerPreparedEvent = OfferPrepareEvent.Create(offer.Id, offer.CustomerId);
-        await _eventBus.PublishAsync(offerPreparedEvent, cancellationToken);
+        await _eventBus.PublishAsync(offerPreparedEvent, context.CancellationToken);    
     }
 }
