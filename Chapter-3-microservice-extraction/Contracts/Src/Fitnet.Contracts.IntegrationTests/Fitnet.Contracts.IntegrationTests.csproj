@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\Fitnet.Contracts\Fitnet.Contracts.csproj" />
     <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
-    <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
   </ItemGroup>
 
 </Project>
