@@ -1,5 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="1.1.2" />
-  </ItemGroup>
-</Project>
