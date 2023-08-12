@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
-    <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts\Fitnet.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

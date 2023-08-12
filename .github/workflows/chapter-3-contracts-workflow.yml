@@ -1,17 +1,16 @@
-name: Chapter 3 Modular Monolith workflow
-
+name: Chapter 3 Contracts
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/ModularMonolith/Src/**'
+      - 'Chapter-3-microservice-extraction/Contracts/Src/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/ModularMonolith/Src/**'
+      - 'Chapter-3-microservice-extraction/Contracts/Src/**'
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/ModularMonolith/Src'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Contracts/Src'
 
 jobs: 
   build:

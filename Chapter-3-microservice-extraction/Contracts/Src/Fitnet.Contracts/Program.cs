@@ -1,11 +1,7 @@
-using EvolutionaryArchitecture.Fitnet;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 using EvolutionaryArchitecture.Fitnet.Contracts.Api;
-using EvolutionaryArchitecture.Fitnet.Offers.Api;
-using EvolutionaryArchitecture.Fitnet.Passes.Api;
-using EvolutionaryArchitecture.Fitnet.Reports;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,15 +12,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
 builder.Services.AddFeatureManagement();
 
-builder.Services.AddContracts(builder.Configuration, Module.Contracts);
-builder.Services.AddPasses(builder.Configuration, Module.Passes);
-builder.Services.AddOffers(builder.Configuration, Module.Offers);
-builder.Services.AddReports(Module.Reports);
+builder.Services.AddContractsApi(builder.Configuration);
 builder.Services.AddCommonInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -32,21 +24,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.UseErrorHandling();
-
 app.MapControllers();
-
-app.RegisterContracts(Module.Contracts);
-app.RegisterPasses(Module.Passes);
-app.RegisterOffers(Module.Offers);
-app.RegisterReports(Module.Reports);
+app.RegisterContractsApi();
 
 app.Run();
 
-namespace EvolutionaryArchitecture.Fitnet
+namespace EvolutionaryArchitecture.Fitnet.Contracts
 {
     [UsedImplicitly]
     public sealed class Program

@@ -8,19 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class ContractsModule
 {
-    public static void RegisterContracts(this WebApplication app, string module)
+    public static void RegisterContractsApi(this WebApplication app)
     {
-        if (!app.IsModuleEnabled(module)) return;
-
         app.UseContracts();
         app.MapContracts();
     }
 
-    public static IServiceCollection AddContracts(this IServiceCollection services, IConfiguration configuration,
-        string module)
+    public static IServiceCollection AddContractsApi(this IServiceCollection services, IConfiguration configuration)
     {
-        if (!services.IsModuleEnabled(module)) return services;
-
         services.AddInfrastructure(configuration);
 
         return services;
