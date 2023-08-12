@@ -1,7 +1,10 @@
+using EvolutionaryArchitecture.Fitnet;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
-using EvolutionaryArchitecture.Fitnet.Contracts.Api;
+using EvolutionaryArchitecture.Fitnet.Offers.Api;
+using EvolutionaryArchitecture.Fitnet.Passes.Api;
+using EvolutionaryArchitecture.Fitnet.Reports;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
 builder.Services.AddFeatureManagement();
 
-builder.Services.AddContractsApi(builder.Configuration);
+builder.Services.AddPasses(builder.Configuration, Module.Passes);
+builder.Services.AddOffers(builder.Configuration, Module.Offers);
+builder.Services.AddReports(Module.Reports);
 builder.Services.AddCommonInfrastructure(builder.Configuration);
 
 var app = builder.Build();
@@ -32,11 +37,13 @@ app.UseErrorHandling();
 
 app.MapControllers();
 
-app.RegisterContractsApi();
+app.RegisterPasses(Module.Passes);
+app.RegisterOffers(Module.Offers);
+app.RegisterReports(Module.Reports);
 
 app.Run();
 
-namespace EvolutionaryArchitecture.Fitnet.Contracts
+namespace EvolutionaryArchitecture.Fitnet
 {
     [UsedImplicitly]
     public sealed class Program

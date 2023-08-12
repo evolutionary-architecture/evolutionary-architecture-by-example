@@ -10,8 +10,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Contracts\Src\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
+      <ProjectReference Include="..\Fitnet.Offers.Api\Fitnet.Offers.Api.csproj" />
+      <ProjectReference Include="..\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />
+      <ProjectReference Include="..\Fitnet.Reports\Fitnet.Reports.csproj" />
     </ItemGroup>
     
 </Project>
