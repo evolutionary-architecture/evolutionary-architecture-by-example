@@ -317,8 +317,8 @@ https://github.com/kamilbaczek[Github]
 | Architecture Tests :gear: | 2024.02
 |===
 
-== 💬 Join our Evolutionary Architecture Community
-Join on Discord (https://discord.gg/BGxYkHFCCF) to connect with fellow architects and enthusiasts who are passionate about pushing the boundaries of traditional design and embracing innovation.
+== 💬 Join our Community
+Join on Discord "Evolutionary Architecture Community" (https://discord.gg/BGxYkHFCCF) to connect with fellow architects and enthusiasts who are passionate about pushing the boundaries of traditional design and embracing innovation.
 
 == ⭐ Say thanks
 Feel free to give a ⭐ to this repository if you like it. Your support is greatly appreciated!
