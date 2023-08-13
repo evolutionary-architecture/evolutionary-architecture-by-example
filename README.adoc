@@ -318,8 +318,7 @@ https://github.com/kamilbaczek[Github]
 |===
 
 == 💬 Join our Community
-https://discord.gg/BGxYkHFCCF[Join discord]
-image::Assets/discord.png[link="https://discord.gg/BGxYkHFCCF",width=100,height=28]
+image::Assets/discord.png[link="https://discord.gg/BGxYkHFCCF",width=100,height=250]
 
 Join on Discord "Evolutionary Architecture Community" (https://discord.gg/BGxYkHFCCF) to connect with fellow architects and enthusiasts who are passionate about pushing the boundaries of traditional design and embracing innovation.
 
