@@ -84,12 +84,11 @@ This will start the PostgresSQL service. Once Postgres is up and running, you ca
 There are two options to run the Fitnet ModularMonolith application:
 
 ==== Option 1: Launch the Fitnet ModularMonolith application in an IDE
+If you have an IDE installed, you can launch the Fitnet ModularMonolith application directly from there by following these steps:
 
-If you have JetBrains Rider installed, you can launch the Fitnet ModularMonolith application directly from there following these steps:
-
-. Open the project in JetBrains Rider.
-. Run the project.
-. The Fitnet ModularMonolith application should start running.
+- 1. Open the project in your IDE.
+- 2. Run the project.
+- 3. The Fitnet ModularMonolith application should start running.
 
 [NOTE]
 ====
@@ -118,11 +117,11 @@ Once the container is up and running, you should be able to access the applicati
 
 ==== Option 1: Launch the Fitness.Contracts application in an IDE
 
-To launch the Fitness.Contracts application in JetBrains Rider, follow these steps:
+To launch the Fitness.Contracts application at any IDE, follow these steps:
 
-1. Open the project in JetBrains Rider.
-2. Run the project.
-3. The Fitness.Contracts application should start running.
+- 1. Open the project in your IDE.
+- 2. Run the project.
+- 3. The Fitness.Contracts application should start running.
 
 ==== Option 2: Build and run the Fitness.Contracts application as a Docker container
 
