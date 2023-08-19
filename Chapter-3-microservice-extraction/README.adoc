@@ -143,11 +143,11 @@ Once the container is up and running, you should be able to access the applicati
 
 === Setting up Artifactory and EvolutionaryArchitecture NuGet Packages
 
-1. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
-2. Click the `+` button to add a new package source.
-3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
-4. Click `OK` to confirm the new package source.
-5. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
+- 1. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
+- 2. Click the `+` button to add a new package source.
+- 3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
+- 4. Click `OK` to confirm the new package source.
+- 5. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
 
 You should now be able to restore and download the EvolutionaryArchitecture nuget packages from your Artifactory source within Rider.
 
