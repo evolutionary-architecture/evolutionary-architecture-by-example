@@ -79,46 +79,87 @@ To run PostgresSQL using Docker Compose, navigate to the `root` chapter director
 
 This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
 
-=== Run the Fitnet Application
+== Run the Fitnet ModularMonolith Application
 
-There are two options to run the Fitnet application:
+There are two options to run the Fitnet ModularMonolith application:
 
-==== Option 1: Launch the Fitnet application in an IDE
+=== Option 1: Launch the Fitnet ModularMonolith application in an IDE
 
-If you have an IDE installed, you can launch the Fitnet application directly from there by following these steps:
+If you have JetBrains Rider installed, you can launch the Fitnet ModularMonolith application directly from there following these steps:
 
-1. Open the project in your IDE.
-2. Run the project.
-3. The Fitnet application should start running.
+. Open the project in JetBrains Rider.
+. Run the project.
+. The Fitnet ModularMonolith application should start running.
 
 [NOTE]
-Fitnet supports .NET User Secrets to store local secrets like connection strings on developer machine. 
-We encourage you to use this feature to securely store the connection string.
-[end]
+====
+Fitnet supports .NET User Secrets to store local secrets like connection strings on a developer machine. We encourage you to use this feature to securely store the connection string.
+====
 
-==== Option 2: Build and run the Fitnet application as a Docker container
+=== Option 2: Build and run the Fitnet ModularMonolith application as a Docker container
 
-If you prefer to run the Fitnet application as a Docker container, you can build and run it using the following steps:
-
-1. Build the Docker image:
+. Build the Docker image:
 
 [source,shell]
 ----
-docker build -t fitnet .
+docker build -t fitnet_modularmonolith .
 ----
 
-2. Run the Docker container:
+. Run the Docker container:
+
 [source,shell]
 ----
-docker run -p 8080:80 --name fitnet-container fitnet
+docker run -p 8080:80 --name fitnet_modularmonolith_container fitnet_modularmonolith
 ----
 
-The "8080" is the port number on which the container will be exposed, and "myapp" is the name of the image that you built in the previous step. Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
+Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
 
-That's it! You should now be able to run the application using either one of the above. :thumbsup:
+== Run the Fitness.Contracts Application
+
+=== Option 1: Launch the Fitness.Contracts application in an IDE
+
+To launch the Fitness.Contracts application in JetBrains Rider, follow these steps:
+
+. Open the project in JetBrains Rider.
+. Run the project.
+. The Fitness.Contracts application should start running.
+
+=== Option 2: Build and run the Fitness.Contracts application as a Docker container
+
+. Build the Docker image:
+
+[source,shell]
+----
+docker build -t fitness_contracts .
+----
+
+. Run the Docker container:
+
+[source,shell]
+----
+docker run -p 8081:80 --name fitness_contracts_container fitness_contracts
+----
+
+Once the container is up and running, you should be able to access the application by navigating to http://localhost:8081 in your web browser.
+
+== Setting up Artifactory and EvolutionaryArchitecture NuGet Packages
+
+. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
+. Click the `+` button to add a new package source.
+. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
+. Click `OK` to confirm the new package source.
+. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
+
+You should now be able to restore and download the EvolutionaryArchitecture nuget packages from your Artifactory source within Rider.
+
+[NOTE]
+====
+The provided instruction is primarily intended for JetBrains Rider. However, the procedure for adding a NuGet package source in alternative IDEs like Visual Studio is quite similar.
+====
 
 === How to run Integration Tests?
-To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
+Running integration tests for both the Fitnet ModularMonolith and Fitness.Contracts applications involves similar steps, as the testing setup for both projects.
+To run the integration tests for project, you can use either the command:
 [source,shell]
 ----
 dotnet test
@@ -127,3 +168,5 @@ or the `IDE test Explorer`.
 
 These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing. 
 Therefore, make sure to have `Docker` running before executing the integration tests.
+== Run the Integration Tests
+
