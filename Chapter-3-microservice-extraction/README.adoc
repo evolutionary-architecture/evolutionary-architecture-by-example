@@ -79,11 +79,11 @@ To run PostgresSQL using Docker Compose, navigate to the `root` chapter director
 
 This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
 
-== Run the Fitnet ModularMonolith Application
+=== Run the Fitnet ModularMonolith Application
 
 There are two options to run the Fitnet ModularMonolith application:
 
-=== Option 1: Launch the Fitnet ModularMonolith application in an IDE
+==== Option 1: Launch the Fitnet ModularMonolith application in an IDE
 
 If you have JetBrains Rider installed, you can launch the Fitnet ModularMonolith application directly from there following these steps:
 
@@ -96,16 +96,16 @@ If you have JetBrains Rider installed, you can launch the Fitnet ModularMonolith
 Fitnet supports .NET User Secrets to store local secrets like connection strings on a developer machine. We encourage you to use this feature to securely store the connection string.
 ====
 
-=== Option 2: Build and run the Fitnet ModularMonolith application as a Docker container
+==== Option 2: Build and run the Fitnet ModularMonolith application as a Docker container
 
-. Build the Docker image:
+1. Build the Docker image:
 
 [source,shell]
 ----
 docker build -t fitnet_modularmonolith .
 ----
 
-. Run the Docker container:
+2. Run the Docker container:
 
 [source,shell]
 ----
@@ -114,26 +114,26 @@ docker run -p 8080:80 --name fitnet_modularmonolith_container fitnet_modularmono
 
 Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
 
-== Run the Fitness.Contracts Application
+=== Run the Fitness.Contracts Application
 
-=== Option 1: Launch the Fitness.Contracts application in an IDE
+==== Option 1: Launch the Fitness.Contracts application in an IDE
 
 To launch the Fitness.Contracts application in JetBrains Rider, follow these steps:
 
-. Open the project in JetBrains Rider.
-. Run the project.
-. The Fitness.Contracts application should start running.
+1. Open the project in JetBrains Rider.
+2. Run the project.
+3. The Fitness.Contracts application should start running.
 
-=== Option 2: Build and run the Fitness.Contracts application as a Docker container
+==== Option 2: Build and run the Fitness.Contracts application as a Docker container
 
-. Build the Docker image:
+1. Build the Docker image:
 
 [source,shell]
 ----
 docker build -t fitness_contracts .
 ----
 
-. Run the Docker container:
+2. Run the Docker container:
 
 [source,shell]
 ----
@@ -142,13 +142,13 @@ docker run -p 8081:80 --name fitness_contracts_container fitness_contracts
 
 Once the container is up and running, you should be able to access the application by navigating to http://localhost:8081 in your web browser.
 
-== Setting up Artifactory and EvolutionaryArchitecture NuGet Packages
+=== Setting up Artifactory and EvolutionaryArchitecture NuGet Packages
 
-. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
-. Click the `+` button to add a new package source.
-. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
-. Click `OK` to confirm the new package source.
-. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
+1. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
+2. Click the `+` button to add a new package source.
+3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
+4. Click `OK` to confirm the new package source.
+5. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
 
 You should now be able to restore and download the EvolutionaryArchitecture nuget packages from your Artifactory source within Rider.
 
@@ -168,5 +168,3 @@ or the `IDE test Explorer`.
 
 These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing. 
 Therefore, make sure to have `Docker` running before executing the integration tests.
-== Run the Integration Tests
-
