@@ -89,7 +89,13 @@ IMPORTANT: If you are deploying a separate component like RabbitMQ for productio
 
 ==== Tests
 
+Our test structure has not changed since Chapter 2. The only difference is that they have been moved to a separate solution along with _Fitnet.Common_ and _Fitnet.Contracts_.
+
+The difference in content is that this time we have an additional component that we had to spin up, and that is RabbitMQ with MassTransit.
+
 ==== Miscellaneous
+
+Shared components of _Fitnet.Common_ are published inside main repository and we are using GH Packages for it. We decided to version it with https://semver.org/[Semantic Versioning].
 
 == How to Run?
 
