@@ -12,7 +12,7 @@ using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly Mock<IEventBus> _fakeEventBus = new();
+    private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
@@ -51,8 +51,9 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         // Assert
         EnsureThatContractSignedEventWasPublished();
     }
-    
-    private void EnsureThatContractSignedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<ContractSignedEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+
+    private void EnsureThatContractSignedEventWasPublished() => _fakeEventBus.Received(1)
+        .PublishAsync(Arg.Any<ContractSignedEvent>(), Arg.Any<CancellationToken>());
 
     [Fact]
     internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()

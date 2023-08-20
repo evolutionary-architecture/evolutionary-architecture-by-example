@@ -37,10 +37,10 @@ internal static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
 
-    internal static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IMock<IEventBus> eventBusMock)
+    internal static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IEventBus eventBusMock)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
-            services.AddSingleton(eventBusMock.Object)));
+            services.AddSingleton(eventBusMock)));
 
     internal static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory)
         where T : class =>
