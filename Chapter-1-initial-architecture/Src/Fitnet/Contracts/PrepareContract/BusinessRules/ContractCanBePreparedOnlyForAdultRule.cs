@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract.BusinessRules;
 
-using Shared.BusinessRulesEngine;
+using Common.BusinessRulesEngine;
 
 internal sealed class ContractCanBePreparedOnlyForAdultRule : IBusinessRule
 {

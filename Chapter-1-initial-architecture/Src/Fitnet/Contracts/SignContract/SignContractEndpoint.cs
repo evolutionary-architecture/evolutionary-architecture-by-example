@@ -2,8 +2,8 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 
 using Data.Database;
 using Events;
-using Shared.Events.EventBus;
-using Shared.SystemClock;
+using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
+using Common.SystemClock;
 
 internal static class SignContractEndpoint
 {

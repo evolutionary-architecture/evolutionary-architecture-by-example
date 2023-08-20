@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.MarkPassAsExpired.Events;
 
-using EvolutionaryArchitecture.Fitnet.Shared.Events;
+using EvolutionaryArchitecture.Fitnet.Common.Events;
 
 internal record PassExpiredEvent(Guid Id, Guid PassId, Guid CustomerId, DateTimeOffset OccurredDateTime) : IIntegrationEvent
 {

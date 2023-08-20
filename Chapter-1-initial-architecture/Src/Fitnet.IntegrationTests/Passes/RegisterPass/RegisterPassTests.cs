@@ -4,7 +4,7 @@ using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.RegisterPass.Events;
-using Fitnet.Shared.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
 public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, 
     IClassFixture<DatabaseContainer>

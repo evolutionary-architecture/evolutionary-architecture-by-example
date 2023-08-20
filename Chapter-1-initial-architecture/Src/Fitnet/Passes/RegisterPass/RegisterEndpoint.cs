@@ -4,8 +4,8 @@ using Contracts.SignContract.Events;
 using Data;
 using Data.Database;
 using Events;
-using Shared.Events;
-using Shared.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.Events;
+using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
 internal sealed class ContractSignedEventHandler : IIntegrationEventHandler<ContractSignedEvent>
 {

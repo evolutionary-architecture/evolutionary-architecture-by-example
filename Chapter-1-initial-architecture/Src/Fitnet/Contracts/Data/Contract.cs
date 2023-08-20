@@ -1,9 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data;
 
+using Common.BusinessRulesEngine;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;
-using Shared.BusinessRulesEngine;
-using Shared.SystemClock;
 
 internal sealed class Contract
 {

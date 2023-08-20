@@ -4,7 +4,7 @@ using Fitnet.Passes;
 using RegisterPass;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
-using Fitnet.Shared.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.GetAllPasses;
 using Fitnet.Passes.MarkPassAsExpired.Events;
