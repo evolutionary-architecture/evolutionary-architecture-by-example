@@ -11,7 +11,7 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
     IClassFixture<DatabaseContainer>
 {
     private readonly WebApplicationFactory<Program> _applicationInMemory;
-    private readonly Mock<IEventBus> _fakeEventBus = new();
+    private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 
     public PrepareOfferTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
@@ -27,7 +27,8 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
     internal async Task Given_pass_expired_event_published_Then_new_offer_should_be_prepared()
     {
         // Arrange
-        using var integrationEventHandlerScope = new IntegrationEventHandlerScope<PassExpiredEvent>(_applicationInMemory);
+        using var integrationEventHandlerScope =
+            new IntegrationEventHandlerScope<PassExpiredEvent>(_applicationInMemory);
         var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
         var @event = PassExpiredEventFaker.CreateValid();
 
@@ -38,9 +39,6 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
         EnsureThatOfferPreparedEventWasPublished();
     }
 
-    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(
-        eventBus => eventBus.PublishAsync(
-            It.IsAny<OfferPrepareEvent>(), 
-            It.IsAny<CancellationToken>()),
-            Times.Once);
+    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Received(1)
+        .PublishAsync(Arg.Any<OfferPrepareEvent>(), Arg.Any<CancellationToken>());
 }
