@@ -280,7 +280,7 @@ Application:
 Testing:
 
 - https://github.com/xunit/xunit[xunit]
-- https://github.com/moq/moq[Moq]
+- https://nsubstitute.github.io/[NSubstitute]
 - https://github.com/VerifyTests/Verify[Verify]
 - https://github.com/bchavez/Bogus[Bogus]
 - https://github.com/fluentassertions/fluentassertions[Fluent Assertions]
