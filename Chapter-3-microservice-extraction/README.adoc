@@ -79,36 +79,36 @@ To run PostgresSQL using Docker Compose, navigate to the `root` chapter director
 
 This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
 
-=== Run the Fitnet ModularMonolith Application
+=== Run the Fitnet Modular Monolith Application
 
-There are two options to run the Fitnet ModularMonolith application:
+There are two options to run the Fitnet Modular Monolith application:
 
-==== Option 1: Launch the Fitnet ModularMonolith application in an IDE
-If you have an IDE installed, you can launch the Fitnet ModularMonolith application directly from there by following these steps:
+==== Option 1: Launch the Fitnet Modular Monolith application in an IDE
+If you have an IDE installed, you can launch the Fitnet Modular Monolith application directly from there by following these steps:
 
 - 1. Open the project in your IDE.
 - 2. Run the project.
-- 3. The Fitnet ModularMonolith application should start running.
+- 3. The Fitnet Modular Monolith application should start running.
 
 [NOTE]
 ====
 Fitnet supports .NET User Secrets to store local secrets like connection strings on a developer machine. We encourage you to use this feature to securely store the connection string.
 ====
 
-==== Option 2: Build and run the Fitnet ModularMonolith application as a Docker container
+==== Option 2: Build and run the Fitnet Modular Monolith application as a Docker container
 
 1. Build the Docker image:
 
 [source,shell]
 ----
-docker build -t fitnet_modularmonolith .
+docker build -t fitnet_ModularMonolith .
 ----
 
 2. Run the Docker container:
 
 [source,shell]
 ----
-docker run -p 8080:80 --name fitnet_modularmonolith_container fitnet_modularmonolith
+docker run -p 8080:80 --name fitnet_ModularMonolith_container fitnet_Modular Monolith
 ----
 
 Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
@@ -157,7 +157,7 @@ The provided instruction is primarily intended for JetBrains Rider. However, the
 ====
 
 === How to run Integration Tests?
-Running integration tests for both the Fitnet ModularMonolith and Fitness.Contracts applications involves similar steps, as the testing setup for both projects.
+Running integration tests for both the Fitnet Modular Monolith and Fitness.Contracts applications involves similar steps, as the testing setup for both projects.
 To run the integration tests for project, you can use either the command:
 [source,shell]
 ----
