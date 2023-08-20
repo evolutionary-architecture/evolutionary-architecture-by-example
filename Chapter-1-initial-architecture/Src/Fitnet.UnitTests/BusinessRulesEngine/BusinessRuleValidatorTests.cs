@@ -1,4 +1,4 @@
-using EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
+using EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
 
 namespace EvolutionaryArchitecture.Fitnet.UnitTests.BusinessRulesEngine;
 

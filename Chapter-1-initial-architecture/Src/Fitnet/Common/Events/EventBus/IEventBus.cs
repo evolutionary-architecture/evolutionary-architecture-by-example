@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared.Events.EventBus;
+namespace EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
 internal interface IEventBus
 {

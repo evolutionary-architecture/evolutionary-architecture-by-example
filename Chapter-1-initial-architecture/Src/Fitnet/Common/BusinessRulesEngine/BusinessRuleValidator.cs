@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
+namespace EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
 
 internal static class BusinessRuleValidator
 {

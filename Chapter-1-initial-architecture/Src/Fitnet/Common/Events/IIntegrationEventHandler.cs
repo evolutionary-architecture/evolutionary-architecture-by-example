@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared.Events;
+namespace EvolutionaryArchitecture.Fitnet.Common.Events;
 
 using MediatR;
 

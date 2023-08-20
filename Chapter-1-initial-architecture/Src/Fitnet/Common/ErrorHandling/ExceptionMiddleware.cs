@@ -1,8 +1,8 @@
-namespace EvolutionaryArchitecture.Fitnet.Shared.ErrorHandling;
+namespace EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 
 using System.Net;
 using System.Text.Json;
-using EvolutionaryArchitecture.Fitnet.Shared.BusinessRulesEngine;
+using BusinessRulesEngine;
 
 internal sealed class ExceptionMiddleware
 {

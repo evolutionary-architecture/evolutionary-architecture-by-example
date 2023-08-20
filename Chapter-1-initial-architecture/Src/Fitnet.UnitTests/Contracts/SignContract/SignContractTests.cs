@@ -2,7 +2,6 @@ namespace EvolutionaryArchitecture.Fitnet.UnitTests.Contracts.SignContract;
 
 using Fitnet.Contracts.Data;
 using PrepareContract;
-using Shared.SystemClock;
 
 public class SignContractTests
 {

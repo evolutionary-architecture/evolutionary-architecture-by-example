@@ -6,8 +6,8 @@ using EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 using PrepareContract;
 using Common.TestEngine.Configuration;
 using Fitnet.Contracts.SignContract.Events;
-using Fitnet.Shared.ErrorHandling;
-using Fitnet.Shared.Events.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
+using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {

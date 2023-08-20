@@ -4,7 +4,7 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
-using Fitnet.Shared.ErrorHandling;
+using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 
 public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
