@@ -63,6 +63,18 @@ image::Assets/components.jpg[]
 
 ==== Solution structure
 
+After the changes, our solution was divided into 3 separate solutions:
+
+1. _Fitnet.Contracts_ is a solution that contains our only microservice.
+2. _Fitnet.Common_ is a solution that contains all reusable components (no common business logic, only technical components like exception middleware).
+3. _Fitnet_ is a solution that contains our modular monolith with 3 modules - _Passes_, _Offers_ and _Reports_.
+
+For each solution we have created a separate build in GH Actions. 
+
+Components located in _Fitnet.Common_ are built into packages that are then reused by both - modular monolith and microservice. Whenever you extract another microservice, it is ready to integrate common components inside.
+
+NOTE: As you can see, this is even more complicated than before. That's why you should always think about whether it's worth extracting one of the modules into a microservice, as it will complicate your application. Always try to find reasonable disintegrators. Otherwise, try to postpone this decision as much as possible.
+
 ==== Communication
 
 ==== Tests
