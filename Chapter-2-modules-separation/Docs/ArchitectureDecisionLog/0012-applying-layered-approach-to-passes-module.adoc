@@ -1,6 +1,8 @@
 = 12: Applying layered approach to the Passes module
 
-== Context
+Date: 2023-05-24
+
+== Problem
 The Passes module within our application has been identified as having low technical and business complexity.
 After domain and business analysis, we have recognized this module as a potential candidate to grow with some business logic.
 
