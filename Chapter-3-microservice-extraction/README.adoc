@@ -44,6 +44,23 @@ IMPORTANT: Often there are also disintegrators related to poor communication bet
 
 ==== Overview
 
+The step we take here completely changes the structure of the application. In the previous chapter - where we modularised our solution based on projects (migrating from the namespace-based modular monolith we introduced in Chapter 1) - we made significant changes to our solution, increasing the overall complexity. What happened was
+
+- Extracting the common components (such as exception middleware or business rule validation mechanism to a separate set of projects)
+- Separating each module into its own set of projects
+
+In this way, our solution grew from 3 projects in Chapter 1 to more than 20 in Chapter 2.
+
+In the current chapter, the complexity grows even more, as we had to
+
+- extract contracts into a separate microservice
+- extract shared components into a separate solution and create packages for each component library
+- introduce a reliable message handling - RabbitMQ + MassTransit
+
+This way our application looks like this:
+
+image::Assets/components.jpg[]
+
 ==== Solution structure
 
 ==== Communication
