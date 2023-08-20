@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="evolutionaryarchitecture.fitnet.common.core" Version="1.1.2" />
-      <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="1.1.2" />
+      <PackageReference Include="evolutionaryarchitecture.fitnet.common.core" Version="1.1.4" />
+      <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="1.1.4" />
     </ItemGroup>
 
 </Project>
