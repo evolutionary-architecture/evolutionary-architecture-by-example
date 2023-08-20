@@ -2,7 +2,7 @@
 
 Date: 2023-05-24
 
-== Context
+== Problem
 Modules must communicate with each other in some way. We started our application development with in-memory event bus and would like to continue with it until the need to extract a microservice. When all modules were in one solution, it was easy to define one event and share them between sender and receiver. With modular-monolith we had to decide what to do - should we keep local contracts in each module (and then need to redevelop in-memory event bus or replace it with some message queue) or just create another project for a module which sends the integration event (and that can be referenced by receiver).
 
 == Decision

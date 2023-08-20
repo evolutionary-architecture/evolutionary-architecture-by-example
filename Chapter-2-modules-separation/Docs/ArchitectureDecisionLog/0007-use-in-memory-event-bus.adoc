@@ -1,4 +1,4 @@
-# 7. Use in-memory event bus
+= 7. Use in-memory event bus
 
 Date: 2023-04-15
 

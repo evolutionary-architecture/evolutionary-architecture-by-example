@@ -1,4 +1,4 @@
-# 4. Use separate database schemas
+= 4. Use separate database schemas
 
 Date: 2023-04-15
 

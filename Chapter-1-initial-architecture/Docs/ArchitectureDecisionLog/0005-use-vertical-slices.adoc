@@ -1,4 +1,4 @@
-# 5. Use vertical slices
+= 5. Use vertical slices
 
 Date: 2023-04-15
 
