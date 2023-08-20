@@ -101,14 +101,14 @@ Fitnet supports .NET User Secrets to store local secrets like connection strings
 
 [source,shell]
 ----
-docker build -t fitnet_ModularMonolith .
+docker build -t fitnet_modular_monolith .
 ----
 
 2. Run the Docker container:
 
 [source,shell]
 ----
-docker run -p 8080:80 --name fitnet_ModularMonolith_container fitnet_Modular Monolith
+docker run -p 8080:80 --name fitnet_modular_monolith_container fitnet_modular_monolith
 ----
 
 Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
