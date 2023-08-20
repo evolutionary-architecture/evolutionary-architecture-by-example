@@ -12,7 +12,7 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
     IClassFixture<DatabaseContainer>
 {
     private readonly WebApplicationFactory<Program> _applicationInMemory;
-    private readonly Mock<IEventBus> _fakeEventBus = new();
+    private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 
     public RegisterPassTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
@@ -37,10 +37,7 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
         // Assert
         EnsureThatPassRegisteredEventWasPublished();
     }
-    
-    private void EnsureThatPassRegisteredEventWasPublished() => _fakeEventBus.Verify(
-        eventBus => eventBus.PublishAsync(
-            It.IsAny<PassRegisteredEvent>(), 
-            It.IsAny<CancellationToken>()),
-        Times.Once);
+
+    private void EnsureThatPassRegisteredEventWasPublished() => _fakeEventBus.Received(1)
+        .PublishAsync(Arg.Any<PassRegisteredEvent>(), Arg.Any<CancellationToken>());
 }
