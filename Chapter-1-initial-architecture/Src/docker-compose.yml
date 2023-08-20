@@ -1,6 +1,15 @@
 version: '3.9'
 
 services:
+  web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:14.3
     container_name: postgres

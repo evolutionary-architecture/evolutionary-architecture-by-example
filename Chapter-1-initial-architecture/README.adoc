@@ -155,73 +155,35 @@ If you want to test the endpoints, you can find http files in the docs for each 
 === Requirements
 
 - .NET SDK
-- PostgresSQL
 - Docker
 
 === How to get .NET SDK?
 
 To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
+
 Click link:https://dotnet.microsoft.com/en-us/download[here] 
+
 to download it from the official Microsoft website.
 
-=== How to prepare Postgres?
+=== Run locally
 
-The Fitnet application requires PostgresSQL as a component to work properly. You can either install it directly on your system or launch it using Docker Compose.
+The Fitnet application requires Docker to run properly.
 
-To run PostgresSQL using Docker Compose, navigate to the `root` chapter directory using the Terminal and run the command:
-1. Build the Docker compose:
+There are only 3 steps you need to start the application:
 
-[source,shell]
-----
- docker-compose up
-----
+1. Make sure that you are in `/Src` directory. 
+2. Run `docker-compose build` to build the image of the application.
+3. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
-This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
-
-=== Run the Fitnet Application
-
-There are two options to run the Fitnet application:
-
-==== Option 1: Launch the Fitnet application in an IDE
-
-If you have an IDE installed, you can launch the Fitnet application directly from there by following these steps:
-
-1. Open the project in your IDE.
-2. Run the project.
-3. The Fitnet application should start running.
-
-[NOTE]
-Fitnet supports .NET User Secrets to store local secrets like connection strings on developer machine. 
-We encourage you to use this feature to securely store the connection string.
-[end]
-
-==== Option 2: Build and run the Fitnet application as a Docker container
-
-If you prefer to run the Fitnet application as a Docker container, you can build and run it using the following steps:
-
-- Build the Docker image:
-
-[source,shell]
-----
-docker build -t fitnet .
-----
-
-- Run the Docker container:
-[source,shell]
-----
-docker run -p 8080:80 --name fitnet-container fitnet
-----
-
-The "8080" is the port number on which the container will be exposed, and "myapp" is the name of the image that you built in the previous step. Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
+The application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
 === How to run Integration Tests?
 To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
-[source,shell]
-----
-dotnet test
-----
+
+`dotnet test`
+
 or the `IDE test Explorer`. 
 
 These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing. 
