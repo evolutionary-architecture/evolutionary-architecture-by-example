@@ -37,11 +37,11 @@ public static class ConfigurationExtensions
 
     public static WebApplicationFactory<T> WithFakeEventBus<T>(
         this WebApplicationFactory<T> webApplicationFactory,
-        IMock<IEventBus> eventBusMock)
+        IEventBus eventBusMock)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
-                services.AddSingleton(eventBusMock.Object)));
+                services.AddSingleton(eventBusMock)));
 
     public static WebApplicationFactory<T> WithFakeConsumers<T>(
         this WebApplicationFactory<T> webApplicationFactory,

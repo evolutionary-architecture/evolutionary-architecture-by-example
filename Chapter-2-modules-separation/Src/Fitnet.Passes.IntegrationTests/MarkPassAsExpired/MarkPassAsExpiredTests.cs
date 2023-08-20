@@ -17,7 +17,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
-    private readonly Mock<IEventBus> _fakeEventBus = new();
+    private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 
     public MarkPassAsExpiredTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
@@ -94,5 +94,6 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
 
-    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<PassExpiredEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Received(1)
+        .PublishAsync(Arg.Any<PassExpiredEvent>(), Arg.Any<CancellationToken>());
 }

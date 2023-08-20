@@ -8,13 +8,12 @@ using Api.Prepare;
 using Api.Sign;
 using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
-using Moq;
 using PrepareContract;
 
 public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    private readonly Mock<IEventBus> _eventBus = new();
+    private readonly IEventBus _eventBus = Substitute.For<IEventBus>();
     
     public SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>

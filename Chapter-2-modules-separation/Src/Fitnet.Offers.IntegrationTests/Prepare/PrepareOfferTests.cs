@@ -11,7 +11,7 @@ using Passes.IntegrationEvents;
 public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private readonly Mock<IEventBus> _fakeEventBus = new();
+    private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
     private readonly WebApplicationFactory<Program> _applicationInMemory;
 
     public PrepareOfferTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
@@ -38,5 +38,6 @@ public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactor
         EnsureThatOfferPreparedEventWasPublished();
     }
 
-    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Verify(eventBus => eventBus.PublishAsync(It.IsAny<OfferPrepareEvent>(), It.IsAny<CancellationToken>()), Times.Once);
+    private void EnsureThatOfferPreparedEventWasPublished() => _fakeEventBus.Received(1)
+        .PublishAsync(Arg.Any<OfferPrepareEvent>(), Arg.Any<CancellationToken>());
 }

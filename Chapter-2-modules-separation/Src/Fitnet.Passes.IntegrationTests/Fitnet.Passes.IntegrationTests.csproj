@@ -6,6 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+        <PackageReference Include="NSubstitute" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
