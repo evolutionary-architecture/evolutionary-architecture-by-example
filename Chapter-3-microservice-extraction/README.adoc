@@ -77,6 +77,16 @@ NOTE: As you can see, this is even more complicated than before. That's why you 
 
 ==== Communication
 
+This time we needed to move from our in-memory queue to something that could operate between 2 different instances - our modular monolith and the microservice as separate deployment units.
+
+At this point, our application was already being used by many people, and we wanted something more reliable than before (if you remember, we suggested thinking about introducing another communication mechanism in Chapter 2).
+
+We decided to use RabbitMQ with MassTransit. In doing so, we have created a separate component that now requires additional maintenance. Whenever an integration event arrives in the message queue, the module subscribed to it can receive it and update itself accordingly:
+
+image::Assets/communication.jpg[]
+
+IMPORTANT: If you are deploying a separate component like RabbitMQ for production purposes, it makes sense to create at least 1 other replica (our suggestion is to have 2) - in case the first instance goes down, another instance can handle the message communication. This way you protect your application from random failures (or rather, you reduce the chance of your application going down :)).
+
 ==== Tests
 
 ==== Miscellaneous
