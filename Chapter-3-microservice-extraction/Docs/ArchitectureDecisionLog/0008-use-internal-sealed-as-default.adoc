@@ -1,4 +1,4 @@
-# 8. Use internal sealed as default 
+= 8. Use internal sealed as default 
 
 Date: 2023-04-15
 
