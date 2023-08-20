@@ -7,7 +7,6 @@
     <ItemGroup>
         <PackageReference Include="Bogus" Version="34.0.2" />
         <PackageReference Include="FluentAssertions" Version="6.10.0" />
-        <PackageReference Include="Moq" Version="4.18.4" />
         <PackageReference Include="Verify.Xunit" Version="19.11.2" />
         <PackageReference Include="Testcontainers" Version="3.0.0" />
         <PackageReference Include="Testcontainers.PostgreSql" Version="3.0.0" />
