@@ -1,0 +1,71 @@
+name: Contracts package workflow
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+    - 'Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+    - 'Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
+
+env:
+  CHAPTER_DIR: 'Contracts/Src/Fitnet.Contracts.IntegrationEvents'
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ${{ env.CHAPTER_DIR }}
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+
+  test:
+    defaults:
+      run:
+        working-directory: ${{ env.CHAPTER_DIR }}
+    runs-on: ubuntu-latest
+    name: Test
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Test
+      run: dotnet test
+
+  pack:
+    defaults:
+      run:
+        working-directory: ${{ env.CHAPTER_DIR }}
+    runs-on: ubuntu-latest
+    name: Pack and Publish
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Pack Project
+      run: dotnet pack Fitnet.Contracts.IntegrationEvents.csproj -c Release 
+    - name: Prepare Packages
+      run: dotnet nuget add source --username meaboutsoftware --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/meaboutsoftware/index.json"
+    - name: Publish Packages
+      run: dotnet nuget push "bin/Release/Fitnet.Contracts.IntegrationEvents.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
