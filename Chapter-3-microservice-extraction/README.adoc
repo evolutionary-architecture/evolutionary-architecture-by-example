@@ -44,13 +44,58 @@ IMPORTANT: Often there are also disintegrators related to poor communication bet
 
 ==== Overview
 
+The step we take here completely changes the structure of the application. In the previous chapter - where we modularised our solution based on projects (migrating from the namespace-based modular monolith we introduced in Chapter 1) - we made significant changes to our solution, increasing the overall complexity. What happened was
+
+- Extracting the common components (such as exception middleware or business rule validation mechanism to a separate set of projects)
+- Separating each module into its own set of projects
+
+In this way, our solution grew from 3 projects in Chapter 1 to more than 20 in Chapter 2.
+
+In the current chapter, the complexity grows even more, as we had to
+
+- extract contracts into a separate microservice
+- extract shared components into a separate solution and create packages for each component library
+- introduce a reliable message handling - RabbitMQ + MassTransit
+
+This way our application looks like this:
+
+image::Assets/components.jpg[]
+
 ==== Solution structure
+
+After the changes, our solution was divided into 3 separate solutions:
+
+1. _Fitnet.Contracts_ is a solution that contains our only microservice.
+2. _Fitnet.Common_ is a solution that contains all reusable components (no common business logic, only technical components like exception middleware).
+3. _Fitnet_ is a solution that contains our modular monolith with 3 modules - _Passes_, _Offers_ and _Reports_.
+
+For each solution we have created a separate build in GH Actions. 
+
+Components located in _Fitnet.Common_ are built into packages that are then reused by both - modular monolith and microservice. Whenever you extract another microservice, it is ready to integrate common components inside.
+
+NOTE: As you can see, this is even more complicated than before. That's why you should always think about whether it's worth extracting one of the modules into a microservice, as it will complicate your application. Always try to find reasonable disintegrators. Otherwise, try to postpone this decision as much as possible.
 
 ==== Communication
 
+This time we needed to move from our in-memory queue to something that could operate between 2 different instances - our modular monolith and the microservice as separate deployment units.
+
+At this point, our application was already being used by many people, and we wanted something more reliable than before (if you remember, we suggested thinking about introducing another communication mechanism in Chapter 2).
+
+We decided to use RabbitMQ with MassTransit. In doing so, we have created a separate component that now requires additional maintenance. Whenever an integration event arrives in the message queue, the module subscribed to it can receive it and update itself accordingly:
+
+image::Assets/communication.jpg[]
+
+IMPORTANT: If you are deploying a separate component like RabbitMQ for production purposes, it makes sense to create at least 1 other replica (our suggestion is to have 2) - in case the first instance goes down, another instance can handle the message communication. This way you protect your application from random failures (or rather, you reduce the chance of your application going down :)).
+
 ==== Tests
 
+Our test structure has not changed since Chapter 2. The only difference is that they have been moved to a separate solution along with _Fitnet.Common_ and _Fitnet.Contracts_.
+
+The difference in content is that this time we have an additional component that we had to spin up, and that is RabbitMQ with MassTransit.
+
 ==== Miscellaneous
+
+Shared components of _Fitnet.Common_ are published inside main repository and we are using GH Packages for it. We decided to version it with https://semver.org/[Semantic Versioning].
 
 == How to Run?
 
