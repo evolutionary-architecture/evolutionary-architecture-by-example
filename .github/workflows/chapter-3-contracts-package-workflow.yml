@@ -44,8 +44,6 @@ jobs:
         working-directory: ${{ env.CHAPTER_DIR }}
     runs-on: ubuntu-latest
     name: Pack and Publish
-    needs: build
-    if: github.ref == 'refs/heads/main'
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
