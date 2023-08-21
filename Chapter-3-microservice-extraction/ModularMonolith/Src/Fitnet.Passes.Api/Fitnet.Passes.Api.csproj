@@ -18,5 +18,6 @@
   <ItemGroup>
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="1.1.4" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="1.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
   </ItemGroup>
 </Project>
