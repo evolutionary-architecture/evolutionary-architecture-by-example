@@ -4,14 +4,14 @@ on:
   push:
     branches: [ "main" ]
     paths:
-    - 'Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
+    - 'Chapter-3-microservice-extraction/Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
   pull_request:
     branches: [ "main" ]
     paths:
-    - 'Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
+    - 'Chapter-3-microservice-extraction/Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
 
 env:
-  CHAPTER_DIR: 'Contracts/Src/Fitnet.Contracts.IntegrationEvents'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Contracts/Src/Fitnet.Contracts.IntegrationEvents'
 
 jobs:
   build:
