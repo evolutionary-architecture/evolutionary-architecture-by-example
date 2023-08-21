@@ -21,7 +21,7 @@ internal static class GetAllPassesEndpoint
             })
             .WithOpenApi(operation => new(operation)
             {
-                Summary = "Return all passes that exist in the system",
+                Summary = "Returns all passes that exist in the system",
                 Description =
                     "This endpoint is used to retrieve all existing passes.",
             })
