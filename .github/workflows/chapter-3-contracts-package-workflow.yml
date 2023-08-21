@@ -57,4 +57,4 @@ jobs:
     - name: Prepare Packages
       run: dotnet nuget add source --username meaboutsoftware --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/meaboutsoftware/index.json"
     - name: Publish Packages
-      run: dotnet nuget push "bin/Release/Fitnet.Contracts.IntegrationEvents.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet nuget push "Fitnet.Contracts.IntegrationEvents.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
