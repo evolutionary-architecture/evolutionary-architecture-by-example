@@ -11,7 +11,7 @@ on:
     - 'Chapter-3-microservice-extraction/Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Contracts/Src/Fitnet.Contracts.IntegrationEvents'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Contracts/Src'
 
 jobs:
   build:
