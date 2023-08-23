@@ -53,6 +53,6 @@ jobs:
     - name: Prepare Packages
       run: dotnet nuget add source --username meaboutsoftware --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/meaboutsoftware/index.json"
     - name: Pack Project
-      run: dotnet pack Fitnet.Contracts.IntegrationEvents.csproj -c Release 
+      run: dotnet pack Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj -c Release 
     - name: Publish Packages
       run: dotnet nuget push "Fitnet.Contracts.IntegrationEvents/bin/Release/EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
