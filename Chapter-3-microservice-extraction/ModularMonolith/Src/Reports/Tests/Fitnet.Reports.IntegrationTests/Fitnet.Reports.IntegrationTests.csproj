@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    
+
     <PropertyGroup>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="evolutionaryarchitecture.fitnet.common.api" Version="1.1.4" />
         <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="1.1.4" />
         <PackageReference Include="evolutionaryarchitecture.fitnet.contracts.integrationevents" Version="1.0.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
@@ -19,8 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />
-      <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
+      <ProjectReference Include="..\..\..\Fitnet\Fitnet.csproj" />
+      <ProjectReference Include="..\..\..\Passes\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />
+      <ProjectReference Include="..\..\Fitnet.Reports\Fitnet.Reports.csproj" />
     </ItemGroup>
 
 </Project>

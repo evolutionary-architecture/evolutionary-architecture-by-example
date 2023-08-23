@@ -5,8 +5,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Passes\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
       <ProjectReference Include="..\Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj" />
-      <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
     </ItemGroup>
 
     <ItemGroup>
