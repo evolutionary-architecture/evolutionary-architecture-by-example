@@ -43,6 +43,8 @@ jobs:
       run:
         working-directory: ${{ env.CHAPTER_DIR }}
     runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
     name: Pack and Publish
     steps:
     - uses: actions/checkout@v3
