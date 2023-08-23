@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   
   <ItemGroup>
-    <ProjectReference Include="..\Fitnet.Contracts.IntegrationEvents\Fitnet.Contracts.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Fitnet.Passes.DataAccess\Fitnet.Passes.DataAccess.csproj" />
     <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
   </ItemGroup>
@@ -18,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="1.1.4" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="1.1.4" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
   </ItemGroup>
 </Project>
