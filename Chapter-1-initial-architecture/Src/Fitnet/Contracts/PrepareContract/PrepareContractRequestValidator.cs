@@ -7,7 +7,7 @@ internal sealed class PrepareContractRequestValidator : AbstractValidator<Prepar
     public PrepareContractRequestValidator()
     {
         RuleFor(request => request.CustomerId).NotEmpty();
-        RuleFor(request => request.CustomerAge).NotEmpty();
+        RuleFor(request => request.CustomerAge).GreaterThan(0);
         RuleFor(request => request.CustomerHeight).GreaterThan(0);
         RuleFor(request => request.PreparedAt).NotEmpty();
     }
