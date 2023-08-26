@@ -110,83 +110,27 @@ To run the Fitnet application, you will need to have the recent .NET SDK install
 Click link:https://dotnet.microsoft.com/en-us/download[here] 
 to download it from the official Microsoft website.
 
-=== How to prepare Postgres?
+=== Run locally
 
-The Fitnet application requires PostgresSQL as a component to work properly. You can either install it directly on your system or launch it using Docker Compose.
+The Fitnet application requires Docker to run properly.
 
-To run PostgresSQL using Docker Compose, navigate to the `root` chapter directory using the Terminal and run the command:
-1. Build the Docker compose:
+There are only 5 steps you need to start the application:
 
-[source,shell]
-----
- docker-compose up
-----
+1. Create you own personal access token in Github (it is needed to be able to download our GH Packages for `Common`). Instruction how to do it you can find https://www.educative.io/answers/how-to-create-a-personal-access-token-for-github-access[here]. Your PAT must have only one value of `read:packages`. Note the token somewhere as it won't be possible to read it again.
+2. Go to `Contracts\Src` folder and edit `Dockerfile`. You must change `your_username` and `your_personal_access_token` to your own values (your GH username and PAT that you generated in Step 1). Repeat the step for `ModularMonolith\Src`.
+3. Make sure that you go back to `root` directory of Chapter 3. 
+4. Run `docker-compose build` to build the image of the application.
+5. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
-This will start the PostgresSQL service. Once Postgres is up and running, you can proceed to run the Fitnet application.
+The _Fitnet_ modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
-=== Run the Fitnet Modular Monolith Application
+The _Contracts_ microservice runs on port `:8081`. Please navigate to http://localhost:8081 in your browser or http://localhost:8081/swagger/index.html to explore the API.
 
-There are two options to run the Fitnet Modular Monolith application:
+That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
-==== Option 1: Launch the Fitnet Modular Monolith application in an IDE
-If you have an IDE installed, you can launch the Fitnet Modular Monolith application directly from there by following these steps:
+=== Building and debugging code in Rider IDE
 
-- 1. Open the project in your IDE.
-- 2. Run the project.
-- 3. The Fitnet Modular Monolith application should start running.
-
-[NOTE]
-====
-Fitnet supports .NET User Secrets to store local secrets like connection strings on a developer machine. We encourage you to use this feature to securely store the connection string.
-====
-
-==== Option 2: Build and run the Fitnet Modular Monolith application as a Docker container
-
-1. Build the Docker image:
-
-[source,shell]
-----
-docker build -t fitnet_modular_monolith .
-----
-
-2. Run the Docker container:
-
-[source,shell]
-----
-docker run -p 8080:80 --name fitnet_modular_monolith_container fitnet_modular_monolith
-----
-
-Once the container is up and running, you should be able to access the application by navigating to http://localhost:8080 in your web browser.
-
-=== Run the Fitness.Contracts Application
-
-==== Option 1: Launch the Fitness.Contracts application in an IDE
-
-To launch the Fitness.Contracts application at any IDE, follow these steps:
-
-- 1. Open the project in your IDE.
-- 2. Run the project.
-- 3. The Fitness.Contracts application should start running.
-
-==== Option 2: Build and run the Fitness.Contracts application as a Docker container
-
-1. Build the Docker image:
-
-[source,shell]
-----
-docker build -t fitness_contracts .
-----
-
-2. Run the Docker container:
-
-[source,shell]
-----
-docker run -p 8081:80 --name fitness_contracts_container fitness_contracts
-----
-
-Once the container is up and running, you should be able to access the application by navigating to http://localhost:8081 in your web browser.
-
-=== Setting up Artifactory and EvolutionaryArchitecture NuGet Packages
+Before you build or debug code in Rider environment, you first have to configure artifactory to allow to download packages for _Common_ which is a part of this repository:
 
 - 1. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
 - 2. Click the `+` button to add a new package source.
