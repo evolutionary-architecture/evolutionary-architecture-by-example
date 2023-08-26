@@ -4,6 +4,8 @@ using Data.Database;
 using Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Common.SystemClock;
+using Common.Validation;
+using Common.Validation.Requests;
 
 internal static class SignContractEndpoint
 {
@@ -27,6 +29,7 @@ internal static class SignContractEndpoint
 
                 return Results.NoContent();
             })
+            .ValidateRequest<SignContractRequest>()
             .WithOpenApi(operation => new(operation)
             {
                 Summary = "Signs prepared contract",

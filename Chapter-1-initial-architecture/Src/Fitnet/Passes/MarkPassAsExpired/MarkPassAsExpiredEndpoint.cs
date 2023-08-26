@@ -4,6 +4,7 @@ using Data.Database;
 using Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Common.SystemClock;
+using Common.Validation;
 
 internal static class MarkPassAsExpiredEndpoint
 {
