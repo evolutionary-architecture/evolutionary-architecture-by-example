@@ -7,12 +7,7 @@ internal static class RequestValidationsExtensions
 {
     internal static IServiceCollection AddRequestsValidations(this IServiceCollection services)
     {
-        services.Scan(scan => scan
-            .FromAssembliesOf(typeof(Program))
-            .AddClasses(classes => classes.AssignableTo<IValidator>())
-            .AsImplementedInterfaces()
-            .WithScopedLifetime()
-        );
+        services.AddValidatorsFromAssemblyContaining<Program>();
         services.AddSingleton<IRequestValidationLogger, RequestValidationLogger>();
 
         return services;
