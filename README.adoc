@@ -57,7 +57,6 @@ What we do not focus on:
 
 - Frontend (you can use React, Vue, Angular, Svelte or anything else)
 - Logging (you can use https://serilog.net/[Serilog])
-- Request validation (you can use https://docs.fluentvalidation.net/en/latest[Fluent Validation])
 - Contract testing (you can use https://github.com/pact-foundation/pact-net[Pact Net])
 - Static code analysis (you can use https://github.com/dotnet/roslyn-analyzers[Roslyn Analyzers] and/or https://www.sonarsource.com/products/sonarqube[SonarQube])
 
