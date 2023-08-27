@@ -75,11 +75,11 @@ The chosen domain for analysis and implementation is a _Fitness Studio_. It is a
 - Receive a pass (to be able to enter the fitness studio)
 - Attend to fitness classes
 
-and any more.
+and many more.
 
-However, in order to identify the above processes, you usually need to analyse the domain with _Domain Experts_ and break it down into smaller pieces called _Subdomains_. Otherwise, there is a high risk of falling into a big ball of mud where everything is tightly coupled.
+However, in order to identify the above processes, you usually need to analyse the domain with _Domain Experts_ and break it down into smaller pieces called _Subdomains_. Otherwise, there is a high risk of falling into a big ball of mud (or distributed mud) where everything is tightly coupled.
 
-At first glance, the domain seems small. And problems of oversimplification of initial assumptions usually arise from this interpretation. There are dozens of processes related to expired passes and renewals, discount policies, VIP access, negative cases (e.g. rejection of the access). We often tend to underestimate the problem.
+At first glance, the domain seems small and problems of oversimplification of initial assumptions usually arise from this interpretation. There are dozens of processes related to expired passes and renewals, discount policies, VIP access, negative cases (e.g. rejection of the access). We often tend to underestimate the problem.
 
 IMPORTANT: Remember that what we want to show you in this repository is how to handle a domain split into a few example subdomains, and how to prepare building blocks that will allow you to easily extend them to cover all processes. We are not able to cover the entire _Fitness Studio_ domain, as that would probably take us a year (or more) of work. **Do not worry -  we try to show ideas here that are complex enough to be applied to your application.**
 
@@ -219,7 +219,7 @@ and so on. The modules still communicate with the in-memory queue (alternatives 
 
 Over time, you may need to extract a microservice from one of your application modules. In this chapter, you will identify the most common disintegrators (decision drivers for extracting a microservice). 
 
-We will also add a message queue component to replace the in-memory queue. In this way, we will improve the exchange of messages between the modules themselves and the microservice.
+We will also add a message queue component to replace the in-memory queue. This way, we will improve the exchange of messages between the modules themselves and the microservice.
 
 Here you will learn about various concepts that are important from a microservices architecture perspective.
 
