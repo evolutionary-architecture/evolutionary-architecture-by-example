@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.GetAllPasses;
 
-using EvolutionaryArchitecture.Fitnet.Passes.Data;
+using Data;
 
 internal record GetAllPassesResponse(IReadOnlyCollection<PassDto> Passes)
 {

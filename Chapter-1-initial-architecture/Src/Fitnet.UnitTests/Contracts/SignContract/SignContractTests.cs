@@ -1,6 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.UnitTests.Contracts.SignContract;
 
 using Fitnet.Contracts.Data;
+using Fitnet.Contracts.SignContract;
+using FluentValidation.TestHelper;
 using PrepareContract;
 
 public class SignContractTests

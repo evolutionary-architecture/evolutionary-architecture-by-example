@@ -272,6 +272,7 @@ In each chapter we use libraries and platforms that simplify the development pro
 Application:
 
 - https://www.docker.com[Docker]
+- https://docs.fluentvalidation.net/en/latest/[Fluent Validation]
 - https://github.com/jbogard/MediatR[MediatR]
 - https://github.com/DapperLib/Dapper[Dapper]
 - https://github.com/dotnet/efcore[Entity Framework]
