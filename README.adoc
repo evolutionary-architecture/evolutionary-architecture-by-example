@@ -192,11 +192,11 @@ What we want to show you in our story is the evolutionary approach that will tac
 
 === Chapter 1: Initial Architecture: Focus On Simplicity
 
-In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called ```Fitnet```). Each process that occurs in each module is sliced vertically - all the code is covered in each process namespace. This gives us several advantages:
+In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called `Fitnet`). Each process that occurs in each module is sliced vertically - all the code is covered in each process namespace. This gives us several advantages:
 
 - better productivity - when we start a new design, we are not distracted by creating namespaces, renaming, moving things around
-- all the code for each process is in just one namespace, so there is no need to look around in folders like ```Controllers, Entities, Commands, Queries``` etc. Everything is just in e.g. ```SignContract```
-- deleting or extracting the process is super easy - you just drop or extract a namespace
+- all the code for each process is in just one namespace, so there is no need to look around in folders like `Controllers, Entities, Commands, Queries` etc. Everything is just in e.g. `SignContract`
+- deleting or extracting the process is simple - you just drop or extract a namespace
 
 Modules communicate with the in-memory queue.
 
@@ -207,11 +207,11 @@ image::Assets/ice_panel_black.png[link="https://s.icepanel.io/vY0SkvgDs7V83U/wOj
 
 This chapter focuses on the second step you can take in your application. After some time, you will find that your assumptions about modules were wrong - they grow fast, the business logic becomes more complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way around - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. Also, the team has grown and it is quite difficult to work on one project - lots of conflict and merging hell.
 
-With this in mind, you can now start thinking to split your single ```Fitnet``` project into several ones:
+With this in mind, you can now start thinking to split your single `Fitnet` project into several ones:
 
-- for one module it will be just ```Fitnet.Reports``` - there is only a transaction script, no business logic
-- for another, it will be ```Fitnet.Passes.Api, Fitnet.Passes.DataAccess``` to build around the active record
-- for the complex one it will be ```Fitnet.Contracts.Api, Fitnet.Contracts.Application, Fitnet.Contracts.Core, Fitnet.Contracts.Infrastructure````
+- for one module it will be just `Fitnet.Reports` - there is only a transaction script, no business logic
+- for another, it will be `Fitnet.Passes.Api, Fitnet.Passes.DataAccess` to build around the active record
+- for the complex one it will be `Fitnet.Contracts.Api, Fitnet.Contracts.Application, Fitnet.Contracts.Core, Fitnet.Contracts.Infrastructure`
 
 and so on. The modules still communicate with the in-memory queue (alternatives described in the chapter's own README).
 
