@@ -14,7 +14,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSystemClock();
-
 builder.Services.AddCommonInfrastructure();
 builder.Services.AddContracts(builder.Configuration, Module.Contracts);
 builder.Services.AddPasses(builder.Configuration, Module.Passes);

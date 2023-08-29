@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Prepare;
 
 using Application;
+using Common.Api.Validation.Requests;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -17,6 +18,7 @@ internal static class PrepareContractEndpoint
 
                 return Results.Created($"/{ContractsApiPaths.Prepare}/{contractId}", contractId);
             })
+            .ValidateRequest<PrepareContractRequestValidator>()
             .WithOpenApi(operation => new(operation)
             {
                 Summary = "Triggers preparation of a new contract for new or existing customer",

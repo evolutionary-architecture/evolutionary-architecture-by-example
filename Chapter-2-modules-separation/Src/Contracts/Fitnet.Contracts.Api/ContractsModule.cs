@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api;
 
+using Common.Api.Validation.Requests;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Modules;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -21,6 +22,7 @@ public static class ContractsModule
     {
         if (!services.IsModuleEnabled(module)) return services;
 
+        services.AddRequestsValidations<CurrentAssembly>();
         services.AddInfrastructure(configuration);
 
         return services;
