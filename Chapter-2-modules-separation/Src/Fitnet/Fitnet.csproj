@@ -19,5 +19,5 @@
         <ProjectReference Include="..\Passes\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />
         <ProjectReference Include="..\Reports\Fitnet.Reports\Fitnet.Reports.csproj" />
     </ItemGroup>
-    
+
 </Project>

@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports;
 
+using Common.Api.Validation.Requests;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Common.Infrastructure.Modules;
@@ -19,7 +20,7 @@ public static class ReportsModule
     public static IServiceCollection AddReports(this IServiceCollection services, string module)
     {
         if (!services.IsModuleEnabled(module)) return services;
-        
+
         services.AddDataAccess();
         services.AddNewPassesRegistrationsPerMonthReport();
 

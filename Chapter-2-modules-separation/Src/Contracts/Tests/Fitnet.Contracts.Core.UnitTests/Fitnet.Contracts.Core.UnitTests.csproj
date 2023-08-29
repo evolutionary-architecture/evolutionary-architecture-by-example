@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Common\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
+      <ProjectReference Include="..\..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
       <ProjectReference Include="..\..\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" />
     </ItemGroup>
     
