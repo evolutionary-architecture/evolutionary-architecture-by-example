@@ -72,7 +72,7 @@ jobs:
           dotnet pack Fitnet.Common.IntegrationTestsToolbox/Fitnet.Common.IntegrationTestsToolbox.csproj -c Release
 
       - name: Prepare Packages
-        run: dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
+        run: dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/evolutionary-architecture/index.json"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
