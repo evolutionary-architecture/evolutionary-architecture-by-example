@@ -8,8 +8,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <RepositoryUrl>https://github.com/meaboutsoftware/evolutionary-architecture</RepositoryUrl>
-        <Version>1.1.4</Version>
+        <RepositoryUrl>https://github.com/evolutionary-architecture/evolutionary-architecture-by-example</RepositoryUrl>
+        <Version>1.1.5</Version>
     </PropertyGroup>
     
     <ItemGroup>
