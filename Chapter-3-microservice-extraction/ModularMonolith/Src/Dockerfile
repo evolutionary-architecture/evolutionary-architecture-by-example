@@ -8,7 +8,7 @@ WORKDIR /src
 COPY Directory.Build.props ./
 COPY ["Fitnet/Fitnet.csproj", "Fitnet/"]
 
-RUN dotnet nuget add source --username your_username --password your_personal_access_token --store-password-in-clear-text --name github "https://nuget.pkg.github.com/meaboutsoftware/index.json"
+RUN dotnet nuget add source --username your_username --password your_personal_access_token --store-password-in-clear-text --name github "https://nuget.pkg.github.com/evolutionary-architecture/index.json"
 
 RUN dotnet restore "Fitnet/Fitnet.csproj"
 COPY . .
