@@ -10,7 +10,7 @@ internal static class PassesModule
 
         return services;
     }
-    
+
     internal static IApplicationBuilder UsePasses(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseDatabase();

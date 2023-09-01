@@ -35,7 +35,7 @@ app.UsePasses();
 app.UseContracts();
 app.UseReports();
 app.UseOffers();
-    
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -1,14 +1,13 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Migrations;
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-public partial class Create_Passes_Tables : Migration
+public partial class CreatePassesTable : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,10 +32,7 @@ public partial class Create_Passes_Tables : Migration
     }
 
     /// <inheritdoc />
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.DropTable(
+    protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
             name: "Passes",
             schema: "Passes");
-    }
 }

@@ -20,7 +20,7 @@ public sealed class DatabaseContainer : IAsyncLifetime
             .Build();
 
         await _container!.StartAsync();
-        
+
         ConnectionString = _container.GetConnectionString();
     }
 

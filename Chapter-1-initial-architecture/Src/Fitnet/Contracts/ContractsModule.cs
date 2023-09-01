@@ -10,7 +10,7 @@ internal static class ContractsModule
 
         return services;
     }
-    
+
     internal static IApplicationBuilder UseContracts(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseDatabase();

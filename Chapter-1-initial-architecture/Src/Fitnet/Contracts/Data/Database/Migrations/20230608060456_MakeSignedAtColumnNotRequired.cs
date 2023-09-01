@@ -1,17 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
-public partial class MakeSignedAtcolumnnotrequired : Migration
+public partial class MakeSignedAtColumnNotRequired : Migration
 {
     /// <inheritdoc />
-    protected override void Up(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.AlterColumn<DateTimeOffset>(
+    protected override void Up(MigrationBuilder migrationBuilder) => migrationBuilder.AlterColumn<DateTimeOffset>(
             name: "SignedAt",
             schema: "Contracts",
             table: "Contracts",
@@ -19,12 +16,9 @@ public partial class MakeSignedAtcolumnnotrequired : Migration
             nullable: true,
             oldClrType: typeof(DateTimeOffset),
             oldType: "timestamp with time zone");
-    }
 
     /// <inheritdoc />
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.AlterColumn<DateTimeOffset>(
+    protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.AlterColumn<DateTimeOffset>(
             name: "SignedAt",
             schema: "Contracts",
             table: "Contracts",
@@ -34,5 +28,4 @@ public partial class MakeSignedAtcolumnnotrequired : Migration
             oldClrType: typeof(DateTimeOffset),
             oldType: "timestamp with time zone",
             oldNullable: true);
-    }
 }

@@ -36,7 +36,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
-    
+
     [Fact]
     internal async Task Given_valid_contract_signature_request_Then_contract_signed_event_was_published()
     {
@@ -92,7 +92,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         responseMessage?.Message.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
-    
+
     private async Task<Guid> PrepareContract()
     {
         var requestParameters = PrepareContractRequestParameters.GetValid();

@@ -33,7 +33,7 @@ public class SignContractTests
             prepareContractParameters.MaxAge,
             prepareContractParameters.MaxHeight,
             preparedAt);
-       
+
         return contract;
     }
 }

@@ -7,9 +7,9 @@ public sealed class PrepareContractRequestValidatorTests
 {
     private readonly PrepareContractRequestValidator _validator = new();
     private readonly DateTimeOffset _fakeNow = new Faker().Date.RecentOffset();
-    
+
     [Fact]
-    public void Given_prepare_contract_request_validation_When_request_is_valid_Then_result_should_have_no_errors()
+    internal void Given_prepare_contract_request_validation_When_request_is_valid_Then_result_should_have_no_errors()
     {
         // Arrange
         var validContractParameters = PrepareContractParameters.GetValid();
@@ -24,7 +24,7 @@ public sealed class PrepareContractRequestValidatorTests
 
     [Theory]
     [ClassData(typeof(InvalidPrepareContractRequestTestCases))]
-    public void Given_prepare_contract_request_validation_When_property_is_valid_Then_result_should_have_error(PrepareContractRequest request, string expectedInvalidPropertyName)
+    internal void Given_prepare_contract_request_validation_When_property_is_valid_Then_result_should_have_error(PrepareContractRequest request, string expectedInvalidPropertyName)
     {
         // Act
         var result = _validator.TestValidate(request);

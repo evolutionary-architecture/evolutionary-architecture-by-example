@@ -1,31 +1,41 @@
 ﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
-
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
-public partial class Add_PreparedAtDate_column_to_Contracts_Table : Migration
+public partial class ContractsAddColumnsToSupportContractExpiration : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
     {
+        migrationBuilder.AddColumn<TimeSpan>(
+            name: "Duration",
+            schema: "Contracts",
+            table: "Contracts",
+            type: "interval",
+            nullable: false,
+            defaultValue: new TimeSpan(0, 0, 0, 0, 0));
+
         migrationBuilder.AddColumn<DateTimeOffset>(
-            name: "PreparedAt",
+            name: "ExpiringAt",
             schema: "Contracts",
             table: "Contracts",
             type: "timestamp with time zone",
-            nullable: false,
-            defaultValue: DateTimeOffset.Now);
+            nullable: true);
     }
 
     /// <inheritdoc />
     protected override void Down(MigrationBuilder migrationBuilder)
     {
         migrationBuilder.DropColumn(
-            name: "PreparedAt",
+            name: "Duration",
+            schema: "Contracts",
+            table: "Contracts");
+
+        migrationBuilder.DropColumn(
+            name: "ExpiringAt",
             schema: "Contracts",
             table: "Contracts");
     }

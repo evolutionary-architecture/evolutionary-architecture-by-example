@@ -9,7 +9,7 @@ public sealed class SignContractRequestValidatorTests
     private readonly DateTimeOffset _fakeNow = new Faker().Date.RecentOffset();
 
     [Fact]
-    public void Given_sign_contract_request_validation_When_request_is_valid_Then_result_should_have_no_errors()
+    internal void Given_sign_contract_request_validation_When_request_is_valid_Then_result_should_have_no_errors()
     {
         // Arrange
         var request = new SignContractRequest(_fakeNow);
@@ -22,7 +22,7 @@ public sealed class SignContractRequestValidatorTests
     }
 
     [Fact]
-    public void Given_sign_contract_request_validation_When_signed_at_not_provided_Then_result_should_have_error()
+    internal void Given_sign_contract_request_validation_When_signed_at_not_provided_Then_result_should_have_error()
     {
         // Arrange
         var request = new SignContractRequest(default);

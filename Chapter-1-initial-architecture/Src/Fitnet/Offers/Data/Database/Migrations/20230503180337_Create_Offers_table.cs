@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
 public partial class CreateOfferTable : Migration
@@ -34,10 +33,7 @@ public partial class CreateOfferTable : Migration
     }
 
     /// <inheritdoc />
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.DropTable(
+    protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
             name: "Offers",
             schema: "Offers");
-    }
 }

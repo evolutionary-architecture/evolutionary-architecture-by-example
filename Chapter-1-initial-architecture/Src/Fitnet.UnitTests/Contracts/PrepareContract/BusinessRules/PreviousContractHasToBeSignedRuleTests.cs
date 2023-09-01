@@ -16,7 +16,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         // Assert
         act.Should().NotThrow<BusinessRuleValidationException>();
     }
-    
+
     [Fact]
     internal void Given_previous_contract_not_exists_Then_validation_should_pass()
     {

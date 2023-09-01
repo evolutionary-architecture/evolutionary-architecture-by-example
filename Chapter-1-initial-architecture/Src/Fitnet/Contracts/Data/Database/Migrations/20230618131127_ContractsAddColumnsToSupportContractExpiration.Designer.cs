@@ -13,7 +13,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
 
 [DbContext(typeof(ContractsPersistence))]
 [Migration("20230618131127_Contracts_add_columns_to_support_contract_expiration")]
-partial class Contractsaddcolumnstosupportcontractexpiration
+partial class ContractsAddColumnsToSupportContractExpiration
 {
     /// <inheritdoc />
     protected override void BuildTargetModel(ModelBuilder modelBuilder)
