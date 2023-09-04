@@ -14,9 +14,9 @@ internal sealed class Pass
         From = from;
         To = to;
     }
-    
-    internal static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) => 
+
+    internal static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) =>
         new(Guid.NewGuid(), customerId, from, to);
-    
+
     internal void MarkAsExpired(DateTimeOffset nowDateTimeOffset) => To = nowDateTimeOffset;
 }

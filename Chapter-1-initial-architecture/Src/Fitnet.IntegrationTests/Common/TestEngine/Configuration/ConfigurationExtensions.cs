@@ -29,7 +29,9 @@ internal static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
         {
             foreach (var setting in settings)
+            {
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
+            }
         });
 
     internal static WebApplicationFactory<T> SetFakeSystemClock<T>(this WebApplicationFactory<T> webApplicationFactory, DateTimeOffset fakeDateTimeOffset)
@@ -44,7 +46,7 @@ internal static class ConfigurationExtensions
 
     internal static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory)
         where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services => 
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddInMemoryEventBus(Assembly.GetExecutingAssembly())));
 
 }

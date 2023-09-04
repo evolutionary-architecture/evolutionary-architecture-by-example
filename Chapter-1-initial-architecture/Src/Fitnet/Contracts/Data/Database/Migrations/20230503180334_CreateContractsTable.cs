@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
-public partial class Create_Contracts_Table : Migration
+public partial class CreateContractsTable : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,10 +29,7 @@ public partial class Create_Contracts_Table : Migration
     }
 
     /// <inheritdoc />
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.DropTable(
+    protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
             name: "Contracts",
             schema: "Contracts");
-    }
 }

@@ -4,9 +4,8 @@ using Fitnet.Contracts.SignContract.Events;
 
 internal sealed class ContractSignedEventFaker : Faker<ContractSignedEvent>
 {
-    private ContractSignedEventFaker(DateTimeOffset? validityFrom, DateTimeOffset? validityTo)
-    {
-        CustomInstantiator(faker =>
+    private ContractSignedEventFaker(DateTimeOffset? validityFrom, DateTimeOffset? validityTo) => CustomInstantiator(
+        faker =>
             new ContractSignedEvent(
                 faker.Random.Guid(),
                 faker.Random.Guid(),
@@ -15,9 +14,8 @@ internal sealed class ContractSignedEventFaker : Faker<ContractSignedEvent>
                 validityTo ?? faker.Date.FutureOffset().ToUniversalTime(),
                 faker.Date.RecentOffset().ToUniversalTime()
             )
-        );
-    }
-    
+    );
+
     internal static ContractSignedEvent Create(DateTimeOffset? signedAt = null, DateTimeOffset? expiringAt = null) =>
         new ContractSignedEventFaker(signedAt, expiringAt);
 }

@@ -11,8 +11,8 @@ internal static class ReportsModule
         services.AddNewPassesRegistrationsPerMonthReport();
 
         return services;
-    } 
+    }
 
-    internal static IApplicationBuilder UseReports(this IApplicationBuilder applicationBuilder) => 
+    internal static IApplicationBuilder UseReports(this IApplicationBuilder applicationBuilder) =>
         applicationBuilder;
 }

@@ -10,7 +10,7 @@ internal static class OffersModule
 
         return services;
     }
-    
+
     internal static IApplicationBuilder UseOffers(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseDatabase();

@@ -20,14 +20,14 @@ internal sealed class Offer
     }
 
     internal static Offer PrepareStandardPassExtension(Guid customerId, DateTimeOffset nowDate)
-    { 
-        var standardDiscount = 0.1m;
+    {
+        const decimal standardDiscount = 0.1m;
         var offer = new Offer(
-            Guid.NewGuid(), 
-            customerId, 
+            Guid.NewGuid(),
+            customerId,
             nowDate,
-            standardDiscount, 
-            nowDate, 
+            standardDiscount,
+            nowDate,
             nowDate.AddYears(1));
 
         return offer;

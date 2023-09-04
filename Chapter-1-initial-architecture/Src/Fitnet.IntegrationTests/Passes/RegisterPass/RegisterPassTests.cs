@@ -6,7 +6,7 @@ using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.RegisterPass.Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
-public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, 
+public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
     private readonly WebApplicationFactory<Program> _applicationInMemory;

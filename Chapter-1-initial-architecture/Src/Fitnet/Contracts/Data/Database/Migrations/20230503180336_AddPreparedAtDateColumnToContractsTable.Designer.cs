@@ -12,7 +12,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations
 
     [DbContext(typeof(ContractsPersistence))]
     [Migration("20230407115944_AddPreparedAtDate")]
-    partial class Add_PreparedAtDate_column_to_Contracts_Table
+    partial class AddPreparedAtDateColumnToContractsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

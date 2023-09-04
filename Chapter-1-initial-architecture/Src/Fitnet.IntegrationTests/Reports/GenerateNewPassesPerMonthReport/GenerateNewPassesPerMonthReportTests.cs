@@ -13,14 +13,14 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 {
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
-    
+
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
         _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .SetFakeSystemClock(ReportTestCases.FakeNowDate);
-        
+
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
 
@@ -31,7 +31,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
     {
         // Arrange
         await RegisterPasses(passRegistrationDateRanges);
-        
+
         // Act
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
@@ -40,11 +40,13 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
         await Verify(reportData);
     }
-    
+
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
     {
         foreach (var passRegistration in reportTestData)
+        {
             await RegisterPass(passRegistration.From, passRegistration.To);
+        }
     }
 
     private async Task RegisterPass(DateTimeOffset from, DateTimeOffset to)

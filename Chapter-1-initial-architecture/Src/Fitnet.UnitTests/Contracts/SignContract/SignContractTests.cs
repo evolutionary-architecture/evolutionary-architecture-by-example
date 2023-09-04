@@ -1,8 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.UnitTests.Contracts.SignContract;
 
 using Fitnet.Contracts.Data;
-using Fitnet.Contracts.SignContract;
-using FluentValidation.TestHelper;
 using PrepareContract;
 
 public class SignContractTests
@@ -33,7 +31,7 @@ public class SignContractTests
             prepareContractParameters.MaxAge,
             prepareContractParameters.MaxHeight,
             preparedAt);
-       
+
         return contract;
     }
 }

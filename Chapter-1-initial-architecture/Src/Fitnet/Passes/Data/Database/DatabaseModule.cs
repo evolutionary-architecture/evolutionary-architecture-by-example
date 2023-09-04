@@ -13,7 +13,7 @@ internal static class DatabaseModule
 
         return services;
     }
-    
+
     internal static IApplicationBuilder UseDatabase(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseAutomaticMigrations();

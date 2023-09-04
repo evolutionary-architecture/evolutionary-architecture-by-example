@@ -8,7 +8,7 @@ internal static class InMemoryEventBusModule
     {
         services.AddSingleton<IEventBus, InMemoryEventBus>();
         services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(assembly));
-        
+
         return services;
     }
 }

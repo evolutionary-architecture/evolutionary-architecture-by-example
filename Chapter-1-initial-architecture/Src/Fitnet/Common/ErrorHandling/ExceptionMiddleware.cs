@@ -10,7 +10,7 @@ internal sealed class ExceptionMiddleware
     private readonly RequestDelegate _next;
 
     public ExceptionMiddleware(RequestDelegate next) => _next = next;
-    
+
     public async Task InvokeAsync(HttpContext context)
     {
         try
@@ -22,7 +22,7 @@ internal sealed class ExceptionMiddleware
             await HandleExceptionAsync(context, ex);
         }
     }
-    
+
     private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         context.Response.ContentType = ContentType;
@@ -45,7 +45,7 @@ internal sealed class ExceptionMiddleware
         context.Response.StatusCode = statusCode;
 
         var result = JsonSerializer.Serialize(new ExceptionResponseMessage(statusCode, message));
-        
+
         await context.Response.WriteAsync(result);
     }
 }
