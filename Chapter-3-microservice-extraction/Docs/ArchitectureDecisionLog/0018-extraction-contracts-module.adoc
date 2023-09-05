@@ -1,4 +1,4 @@
-= 17. Extraction of Contract Module as a Separate Microservice
+= 18. Extraction of Contract Module as a Separate Microservice
 
 Date: 2023-07-22
 

@@ -1,4 +1,4 @@
-= 19. Implementing RabbitMQ as the Inter-Service Communication Solution for Microservices
+= 20. Implementing RabbitMQ as the Inter-Service Communication Solution for Microservices
 
 Date: 2023-07-23
 
