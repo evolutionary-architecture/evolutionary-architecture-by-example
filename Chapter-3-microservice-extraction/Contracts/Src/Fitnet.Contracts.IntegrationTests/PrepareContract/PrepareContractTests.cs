@@ -25,10 +25,10 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetValid();
-        
+
         // Act
         var prepareContractResponse = await PrepareCorrectContract(requestParameters);
-        
+
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
     }
@@ -74,7 +74,7 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
         responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
         responseMessage?.Message.Should().Be("Customer height must fit maximum limit for gym instruments");
     }
-    
+
     [Fact]
     internal async Task Given_contract_preparation_request_When_contract_for_customer_was_prepared_earlier_and_was_not_signed_yet_Then_should_return_conflict_status_code()
     {
@@ -90,15 +90,16 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
         responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Previous contract must be signed by the customer");    }
-    
+        responseMessage?.Message.Should().Be("Previous contract must be signed by the customer");
+    }
+
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)
     {
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight, customerId);
         var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
-       
+
         return prepareContractResponse;
     }
 }

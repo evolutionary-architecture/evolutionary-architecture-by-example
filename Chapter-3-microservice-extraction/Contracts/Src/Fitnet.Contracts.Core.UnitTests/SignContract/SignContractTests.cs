@@ -22,7 +22,7 @@ public class SignContractTests
         contract.ExpiringAt.Should().Be(expectedExpirationDate);
     }
 
-    private Contract PrepareContract(DateTimeOffset preparedAt)
+    private static Contract PrepareContract(DateTimeOffset preparedAt)
     {
         var prepareContractParameters = PrepareContractParameters.GetValid();
         var contract = Contract.Prepare(
@@ -30,7 +30,7 @@ public class SignContractTests
             prepareContractParameters.MaxAge,
             prepareContractParameters.MaxHeight,
             preparedAt);
-        
+
         return contract;
     }
 }

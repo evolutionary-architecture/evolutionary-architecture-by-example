@@ -13,7 +13,7 @@ using PrepareContract;
 public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private readonly HttpClient _applicationHttpClient;
-    
+
     public SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
@@ -36,14 +36,14 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
-    
+
     [Fact]
     internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
     {
         // Arrange
         var requestParameters = SignContractRequestParameters.GetWithNotExistingContractId();
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
-        
+
         // Act
         var signContractResponse =
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);

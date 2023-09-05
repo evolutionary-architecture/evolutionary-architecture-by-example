@@ -17,7 +17,7 @@ public static class InfrastructureModule
 
         return services;
     }
-    
+
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseDatabase();

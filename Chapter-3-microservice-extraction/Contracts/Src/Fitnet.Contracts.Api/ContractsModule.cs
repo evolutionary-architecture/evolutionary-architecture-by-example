@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api;
 
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Modules;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;

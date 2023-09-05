@@ -13,7 +13,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
 
 [DbContext(typeof(ContractsPersistence))]
 [Migration("20230601184328_Add_Customer_Id_column")]
-partial class AddCustomerIdcolumn
+partial class AddCustomerIdColumn
 {
     /// <inheritdoc />
     protected override void BuildTargetModel(ModelBuilder modelBuilder)
