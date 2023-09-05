@@ -1,0 +1,21 @@
+= 11. Turn on static code analysis
+
+Date: 2023-09-04
+
+== Problem
+
+We have been experiencing an increasing number of bugs and code quality issues in our project. Manual code reviews are time-consuming and error-prone, and we need a more systematic approach to catch these issues early in the development process.
+
+== Decision
+
+After careful consideration, we have decided to turn on static code analysis for all our software projects. We will leverage automated tools and integrate them into our continuous integration (CI) pipeline to analyze code for potential issues, adherence to coding standards, and security vulnerabilities.
+
+== Consequences
+
+- Static code analysis will help us catch code quality issues, bugs, and security vulnerabilities at an early stage of development, reducing the likelihood of these issues reaching production
+- The tools will enforce coding standards and best practices across all projects, leading to more consistent and maintainable code
+- Developers can focus more on writing code, as the analysis tools will automatically identify issues, reducing the need for manual code reviews
+- Over time, the quality of our codebase is expected to improve, leading to fewer defects and maintenance challenges
+- Identifying and addressing security vulnerabilities early in the development process will enhance the security of our software
+- There may be a learning curve for some team members as they become accustomed to using static code analysis tools. We will provide training and resources to help them adapt
+- Configuring and integrating static code analysis tools into our CI pipeline may require some initial effort, but this investment is expected to pay off in the long run
