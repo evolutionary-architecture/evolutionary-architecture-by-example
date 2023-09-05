@@ -25,14 +25,14 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         _applicationHttpClient = applicationInMemory.CreateClient();
         _testExternalEventBus = applicationInMemory.GetTestExternalEventBus();
     }
-    
+
     [Theory]
     [ClassData(typeof(ReportTestCases))]
     internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
     {
         // Arrange
         await RegisterPasses(passRegistrationDateRanges);
-        
+
         // Act
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
@@ -41,12 +41,14 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
         await Verify(reportData);
     }
-    
+
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
     {
         foreach (var passRegistration in reportTestData)
+        {
             await RegisterPass(passRegistration.From, passRegistration.To);
-        
+        }
+
         await _testExternalEventBus.WaitToConsumeMessagesAllAsync<ContractSignedEvent>(reportTestData.Count);
     }
 

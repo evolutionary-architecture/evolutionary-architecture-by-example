@@ -11,11 +11,11 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
     IClassFixture<DatabaseContainer>
 {
     private readonly ITestHarness _testEventBus;
-    
+
     public RegisterPassTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
-       var applicationInMemory = applicationInMemoryFactory
+        var applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
             .WithTestEventBus(typeof(ContractSignedEventConsumer));
         applicationInMemory.CreateClient();
@@ -35,7 +35,7 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
         _testEventBus.EnsureConsumed<ContractSignedEvent>();
         await EnsureThatPassRegistered();
     }
-    
+
     private async Task EnsureThatPassRegistered()
     {
         var passRegisteredEventPublished = await _testEventBus.Published.Any<PassRegisteredEvent>();

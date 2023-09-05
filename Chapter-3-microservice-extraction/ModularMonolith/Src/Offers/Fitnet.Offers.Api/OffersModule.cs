@@ -12,7 +12,10 @@ public static class OffersModule
 {
     public static void RegisterOffers(this WebApplication app, string module)
     {
-        if (!app.IsModuleEnabled(module)) return;
+        if (!app.IsModuleEnabled(module))
+        {
+            return;
+        }
 
         app.UseOffers();
     }
@@ -20,7 +23,10 @@ public static class OffersModule
     public static IServiceCollection AddOffers(this IServiceCollection services, IConfiguration configuration,
         string module)
     {
-        if (!services.IsModuleEnabled(module)) return services;
+        if (!services.IsModuleEnabled(module))
+        {
+            return services;
+        }
 
         services.AddDataAccess(configuration);
         services.AddMediator(Assembly.GetExecutingAssembly());

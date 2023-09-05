@@ -8,7 +8,7 @@ internal static class ContractSignedRegistration
     internal static IServiceCollection RegisterContractSignedEventConsumer(this IServiceCollection services)
     {
         services.RegisterConsumer(
-            "contracts-signed", 
+            "contracts-signed",
             typeof(ContractSignedEventConsumer));
 
         return services;

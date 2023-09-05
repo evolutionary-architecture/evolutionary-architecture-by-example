@@ -13,7 +13,7 @@ namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
 
 [DbContext(typeof(OffersPersistence))]
 [Migration("20230503180333_Create_Offer_Table")]
-partial class CreateOfferTable
+partial class CreateOffersTable
 {
     /// <inheritdoc />
     protected override void BuildTargetModel(ModelBuilder modelBuilder)

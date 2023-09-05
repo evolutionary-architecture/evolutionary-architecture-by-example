@@ -15,7 +15,7 @@ internal sealed class PassExpiredEventConsumer : IConsumer<PassExpiredEvent>
 
     public PassExpiredEventConsumer(
         IEventBus eventBus,
-        OffersPersistence persistence, 
+        OffersPersistence persistence,
         ISystemClock systemClock)
     {
         _eventBus = eventBus;
@@ -25,12 +25,12 @@ internal sealed class PassExpiredEventConsumer : IConsumer<PassExpiredEvent>
 
     public async Task Consume(ConsumeContext<PassExpiredEvent> context)
     {
-        var @event = context.Message; 
+        var @event = context.Message;
         var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, _systemClock.Now);
         _persistence.Offers.Add(offer);
         await _persistence.SaveChangesAsync(context.CancellationToken);
-        
+
         var offerPreparedEvent = OfferPrepareEvent.Create(offer.Id, offer.CustomerId);
-        await _eventBus.PublishAsync(offerPreparedEvent, context.CancellationToken);    
+        await _eventBus.PublishAsync(offerPreparedEvent, context.CancellationToken);
     }
 }

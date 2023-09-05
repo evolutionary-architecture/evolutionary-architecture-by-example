@@ -13,7 +13,7 @@ public static class DataAccessModule
 
         return services;
     }
-    
+
     public static IApplicationBuilder UseDataAccess(this IApplicationBuilder applicationBuilder)
     {
         applicationBuilder.UseDatabase();
