@@ -1,4 +1,4 @@
-= 20. Transitioning Fully From InMemory to OutOfProcess Event Bus
+= 21. Transitioning Fully From InMemory to OutOfProcess Event Bus
 
 Date: 2023-07-24
 

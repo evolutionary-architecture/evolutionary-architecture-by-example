@@ -1,4 +1,4 @@
-= 11: Applying Clean Architecture approach to the Contracts module
+= 12. Applying Clean Architecture approach to the Contracts module
 
 Date: 2023-04-15
 
