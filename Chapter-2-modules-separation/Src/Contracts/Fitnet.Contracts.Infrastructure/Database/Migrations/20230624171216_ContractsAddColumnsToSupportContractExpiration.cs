@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
-public partial class Contractsaddcolumnstosupportcontractexpiration : Migration
+public partial class ContractsAddColumnsToSupportContractExpiration : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
