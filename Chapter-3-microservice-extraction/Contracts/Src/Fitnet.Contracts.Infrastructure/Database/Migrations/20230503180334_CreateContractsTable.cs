@@ -5,7 +5,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
-public partial class Create_Contracts_Table : Migration
+public partial class CreateContractsTable : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,10 +27,7 @@ public partial class Create_Contracts_Table : Migration
     }
 
     /// <inheritdoc />
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.DropTable(
-            name: "Contracts",
-            schema: "Contracts");
-    }
+    protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
+        name: "Contracts",
+        schema: "Contracts");
 }

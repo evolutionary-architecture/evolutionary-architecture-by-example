@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Integratio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts", "Fitnet.Contracts\Fitnet.Contracts.csproj", "{47457A86-2B57-4212-9DD1-C32CC360D1AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Contracts.Infrastructure", "Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj", "{6B7A0868-E3D4-41C7-AE5C-C6D2FAD24314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{47457A86-2B57-4212-9DD1-C32CC360D1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47457A86-2B57-4212-9DD1-C32CC360D1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47457A86-2B57-4212-9DD1-C32CC360D1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7A0868-E3D4-41C7-AE5C-C6D2FAD24314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7A0868-E3D4-41C7-AE5C-C6D2FAD24314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7A0868-E3D4-41C7-AE5C-C6D2FAD24314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7A0868-E3D4-41C7-AE5C-C6D2FAD24314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{ABC9D0F9-7D4F-4C89-8A68-B2DCB5DF93A8} = {FA67FD7C-D24A-4733-B6A5-FF78713CBFCD}

@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 internal sealed class ContractsRepository : IContractsRepository
 {
     private readonly ContractsPersistence _persistence;
-    
-    public ContractsRepository(ContractsPersistence persistence) => 
+
+    public ContractsRepository(ContractsPersistence persistence) =>
         _persistence = persistence;
-   
-    public async Task<Contract?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) => 
+
+    public async Task<Contract?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
         await _persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
 
     public async Task<Contract?> GetPreviousForCustomerAsync(Guid customerId, CancellationToken cancellationToken = default) =>
@@ -22,8 +22,8 @@ internal sealed class ContractsRepository : IContractsRepository
     {
         await _persistence.Contracts.AddAsync(contract, cancellationToken);
         await _persistence.SaveChangesAsync(cancellationToken);
-    } 
+    }
 
-    public async Task CommitAsync(CancellationToken cancellationToken = default) => 
+    public async Task CommitAsync(CancellationToken cancellationToken = default) =>
         await _persistence.SaveChangesAsync(cancellationToken);
 }
