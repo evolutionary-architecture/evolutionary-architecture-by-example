@@ -103,6 +103,8 @@ csharp_style_unused_value_expression_statement_preference = discard_variable:non
 csharp_style_namespace_declarations = file_scoped
 csharp_using_directive_placement = inside_namespace
 dotnet_style_namespace_match_folder = false
+dotnet_code_quality.ca1711.allowed_suffixes = EventHandler
+dotnet_code_quality.CA1716.analyzed_symbol_kinds = Event
 ###############################
 # C# Formatting Rules         #
 ###############################

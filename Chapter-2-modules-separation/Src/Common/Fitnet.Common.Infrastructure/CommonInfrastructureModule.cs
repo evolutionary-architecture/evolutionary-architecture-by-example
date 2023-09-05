@@ -1,8 +1,8 @@
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
+namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
+
+using Events.EventBus;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
-
-namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 
 public static class CommonInfrastructureModule
 {
