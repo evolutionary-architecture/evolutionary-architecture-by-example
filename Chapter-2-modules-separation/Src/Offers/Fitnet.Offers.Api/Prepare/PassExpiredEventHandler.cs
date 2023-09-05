@@ -15,7 +15,7 @@ internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExp
 
     public PassExpiredEventHandler(
         IEventBus eventBus,
-        OffersPersistence persistence, 
+        OffersPersistence persistence,
         ISystemClock systemClock)
     {
         _eventBus = eventBus;
@@ -28,7 +28,7 @@ internal sealed class PassExpiredEventHandler : IIntegrationEventHandler<PassExp
         var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, _systemClock.Now);
         _persistence.Offers.Add(offer);
         await _persistence.SaveChangesAsync(cancellationToken);
-        
+
         var offerPreparedEvent = OfferPrepareEvent.Create(offer.Id, offer.CustomerId);
         await _eventBus.PublishAsync(offerPreparedEvent, cancellationToken);
     }
