@@ -8,7 +8,7 @@ using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Contracts.IntegrationEvents;
 
-public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>, 
+public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
     private readonly WebApplicationFactory<Program> _applicationInMemory;
