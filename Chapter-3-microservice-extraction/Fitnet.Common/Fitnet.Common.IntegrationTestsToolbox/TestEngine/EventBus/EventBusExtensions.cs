@@ -15,19 +15,21 @@ public static class EventBusExtensions
         this WebApplicationFactory<T> webApplicationFactory,
         params Type[] consumerTypes)
         where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder => 
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
             {
                 services.AddMassTransitTestHarness(configurator =>
                 {
                     foreach (var consumerType in consumerTypes)
+                    {
                         configurator.AddConsumer(consumerType);
+                    }
                 });
             }));
 
     public static async Task<IReceivedMessage<TMessage>?> WaitToConsumeMessageAsync<TMessage>(
         this ITestHarness testHarness,
-        CancellationToken cancellationToken = default)         
+        CancellationToken cancellationToken = default)
         where TMessage : class
     {
         var result = await testHarness.WaitToConsumeMessagesAllAsync<TMessage>(1, cancellationToken: cancellationToken);

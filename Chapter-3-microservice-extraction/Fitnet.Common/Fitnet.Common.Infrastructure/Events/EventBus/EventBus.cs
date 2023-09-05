@@ -5,9 +5,9 @@ using MassTransit;
 internal sealed class EventBus : IEventBus
 {
     private readonly IPublishEndpoint _publishEndpoint;
-    
+
     public EventBus(IPublishEndpoint publishEndpoint) => _publishEndpoint = publishEndpoint;
 
-    public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IIntegrationEvent => 
+    public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IIntegrationEvent =>
         await _publishEndpoint.Publish(@event, cancellationToken);
 }
