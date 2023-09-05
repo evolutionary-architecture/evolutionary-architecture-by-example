@@ -12,10 +12,7 @@ public static class ConfigurationExtensions
 {
     public static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(
         this WebApplicationFactory<T> webApplicationFactory, IDatabaseConfiguration databaseConfiguration)
-        where T : class
-    {
-        return webApplicationFactory.UseSettings(databaseConfiguration.Get());
-    }
+        where T : class => webApplicationFactory.UseSettings(databaseConfiguration.Get());
 
     private static WebApplicationFactory<T> UseSettings<T>(
         this WebApplicationFactory<T> webApplicationFactory,
@@ -24,7 +21,9 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
         {
             foreach (var setting in settings)
+            {
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
+            }
         });
 
     public static WebApplicationFactory<T> SetFakeSystemClock<T>(
@@ -34,7 +33,7 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
-    
+
     public static WebApplicationFactory<T> WithFakeConsumers<T>(
         this WebApplicationFactory<T> webApplicationFactory,
         Assembly executingAssembly)
@@ -42,21 +41,18 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
             webHostBuilder.ConfigureTestServices(services =>
                 services.AddMediator(executingAssembly)));
-    
+
     public static WebApplicationFactory<T> WithMassTransitTestHarness<T>(
         this WebApplicationFactory<T> webApplicationFactory,
         params Type[] types)
-        where T : class
+        where T : class => webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
     {
-        return webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
+        webHostBuilder.ConfigureServices(services => services.AddMassTransitTestHarness(cfg =>
         {
-            webHostBuilder.ConfigureServices(services => services.AddMassTransitTestHarness(cfg =>
+            foreach (var type in types)
             {
-                foreach (var type in types)
-                {
-                    cfg.AddConsumer(type);
-                }
-            }));
-        });
-    }
+                cfg.AddConsumer(type);
+            }
+        }));
+    });
 }

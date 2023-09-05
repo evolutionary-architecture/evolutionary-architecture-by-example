@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 internal static class EventBusModule
 {
     private const string EventBusConfiguration = "EventBus";
-    
+
     internal static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<EventBusOptions>(options => configuration.GetSection(EventBusConfiguration).Bind(options));
@@ -24,9 +24,11 @@ internal static class EventBusModule
             {
                 var options = context.GetRequiredService<IOptions<EventBusOptions>>();
                 var externalEventBusConfigured = options.Value is not null;
-                if(!externalEventBusConfigured)
+                if (!externalEventBusConfigured)
+                {
                     return;
-                
+                }
+
                 ConfigureRabbitMq(options, factoryConfigurator);
                 ConfigureConsumers(endpoints, factoryConfigurator, context);
 
@@ -38,7 +40,7 @@ internal static class EventBusModule
 
         return services;
     }
-    
+
     private static void RegisterConsumers(IEnumerable<ConsumerConfiguration> endpoints, IRegistrationConfigurator configurator)
     {
         foreach (var endpoint in endpoints)
@@ -46,15 +48,15 @@ internal static class EventBusModule
             configurator.AddConsumer(endpoint.ConsumerType);
         }
     }
-    
-    private static void ConfigureRabbitMq(IOptions<EventBusOptions> options, IRabbitMqBusFactoryConfigurator factoryConfigurator)
-    {
-        factoryConfigurator.Host(options.Value.Uri, rabbitMqHostConfigurator =>
+
+    private static void ConfigureRabbitMq(IOptions<EventBusOptions> options,
+        IRabbitMqBusFactoryConfigurator factoryConfigurator) => factoryConfigurator.Host(options.Value.Uri,
+        rabbitMqHostConfigurator =>
         {
             rabbitMqHostConfigurator.Username(options.Value.Username);
             rabbitMqHostConfigurator.Password(options.Value.Password);
         });
-    }
+
     private static void ConfigureConsumers(IEnumerable<ConsumerConfiguration> endpoints, IRabbitMqBusFactoryConfigurator factoryConfigurator, IBusRegistrationContext context)
     {
         foreach (var endpoint in endpoints)

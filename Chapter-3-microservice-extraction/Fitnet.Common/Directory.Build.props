@@ -4,10 +4,13 @@
         <AssemblyName>EvolutionaryArchitecture.$(MSBuildProjectName)</AssemblyName>
         <RootNamespace>$(AssemblyName)</RootNamespace>
         <TargetFramework>net7.0</TargetFramework>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <RepositoryUrl>https://github.com/evolutionary-architecture/evolutionary-architecture-by-example</RepositoryUrl>
         <Version>1.1.5</Version>
     </PropertyGroup>

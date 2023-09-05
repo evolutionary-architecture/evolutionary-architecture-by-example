@@ -9,7 +9,7 @@ public sealed class DatabaseContainer : IAsyncLifetime
     private const string Password = "$3cureP@ssw0rd";
     private const string Database = "fitnet";
     private PostgreSqlContainer? _container;
-    public string? ConnectionString;
+    public string? ConnectionString { get; set; }
 
     public async Task InitializeAsync()
     {
@@ -20,7 +20,7 @@ public sealed class DatabaseContainer : IAsyncLifetime
             .Build();
 
         await _container!.StartAsync();
-        
+
         ConnectionString = _container.GetConnectionString();
     }
 

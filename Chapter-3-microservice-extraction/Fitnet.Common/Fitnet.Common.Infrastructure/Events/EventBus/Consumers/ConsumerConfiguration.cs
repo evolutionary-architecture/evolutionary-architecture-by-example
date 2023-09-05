@@ -14,8 +14,8 @@ internal sealed class ConsumerConfiguration
         QueueName = queueName;
         ConsumerType = consumerType;
     }
-    
-    internal static ConsumerConfiguration Configure(string queueName, Type consumerType) => 
+
+    internal static ConsumerConfiguration Configure(string queueName, Type consumerType) =>
         new(queueName, consumerType);
 
     internal string QueueName { get; }

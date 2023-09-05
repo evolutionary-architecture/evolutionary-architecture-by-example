@@ -8,7 +8,7 @@ public static class ConsumerRegisterExtensions
     {
         var consumerConfiguration = ConsumerConfiguration.Configure(queueName, consumerType);
         serviceCollection.AddSingleton(consumerConfiguration);
-        
+
         return serviceCollection;
     }
 }
