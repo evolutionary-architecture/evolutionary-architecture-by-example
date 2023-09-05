@@ -17,7 +17,7 @@ internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparation : IBusi
     public bool IsMet()
     {
         var timeDifference = _signedAt.Date - _preparedAt.Date;
-        
+
         return timeDifference <= TimeSpan.FromDays(30);
     }
 

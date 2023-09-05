@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests
 
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events;
 
-internal sealed class TestEventConsumer: IIntegrationEventHandler<FakeEvent>
+internal sealed class TestEventConsumer : IIntegrationEventHandler<FakeEvent>
 {
     public Task Handle(FakeEvent @event, CancellationToken cancellationToken)
     {

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [DbContext(typeof(ContractsPersistence))]
-[Migration("20230322141428_Create_Contracts_Table")]
-partial class Create_Contracts_Table
+[Migration("20230407123603_AddSignedAtDate")]
+partial class AddSignedAtDateColumnToContractsTable
 {
     /// <inheritdoc />
     protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,12 @@ partial class Create_Contracts_Table
             b.Property<Guid>("Id")
                 .ValueGeneratedOnAdd()
                 .HasColumnType("uuid");
+
+            b.Property<DateTimeOffset>("PreparedAt")
+                .HasColumnType("timestamp with time zone");
+
+            b.Property<DateTimeOffset>("SignedAt")
+                .HasColumnType("timestamp with time zone");
 
             b.HasKey("Id");
 

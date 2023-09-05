@@ -22,14 +22,13 @@ internal sealed class SignContractCommandHandler : IRequestHandler<SignContractC
 
     public async Task Handle(SignContractCommand command, CancellationToken cancellationToken)
     {
-        var contract = await _contractsRepository.GetByIdAsync(command.Id, cancellationToken);
-        if (contract is null)
-           throw new ResourceNotFoundException(command.Id);
-        
+        var contract = await _contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
+                       throw new ResourceNotFoundException(command.Id);
+
         contract.Sign(command.SignedAt, _systemClock.Now);
         await _contractsRepository.CommitAsync(cancellationToken);
         var @event = ContractSignedEvent.Create(contract.Id,
-                                                        contract.CustomerId, 
+                                                        contract.CustomerId,
                                                         contract.SignedAt!.Value,
                                                         contract.ExpiringAt!.Value);
         await _eventBus.PublishAsync(@event, cancellationToken);

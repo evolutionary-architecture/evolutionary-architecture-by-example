@@ -12,10 +12,7 @@ public static class ConfigurationExtensions
 {
     public static WebApplicationFactory<T> WithContainerDatabaseConfigured<T>(
         this WebApplicationFactory<T> webApplicationFactory, IDatabaseConfiguration databaseConfiguration)
-        where T : class
-    {
-        return webApplicationFactory.UseSettings(databaseConfiguration.Get());
-    }
+        where T : class => webApplicationFactory.UseSettings(databaseConfiguration.Get());
 
     private static WebApplicationFactory<T> UseSettings<T>(
         this WebApplicationFactory<T> webApplicationFactory,
@@ -24,7 +21,9 @@ public static class ConfigurationExtensions
         webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
         {
             foreach (var setting in settings)
+            {
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
+            }
         });
 
     public static WebApplicationFactory<T> SetFakeSystemClock<T>(

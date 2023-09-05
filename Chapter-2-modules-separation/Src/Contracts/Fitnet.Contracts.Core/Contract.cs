@@ -7,9 +7,9 @@ using SignContract.BusinessRules;
 public sealed class Contract
 {
     private static TimeSpan StandardDuration => TimeSpan.FromDays(365);
-    
+
     public Guid Id { get; init; }
-    
+
     public Guid CustomerId { get; init; }
 
     public DateTimeOffset PreparedAt { get; init; }
@@ -18,10 +18,10 @@ public sealed class Contract
     public DateTimeOffset? SignedAt { get; private set; }
     public DateTimeOffset? ExpiringAt { get; private set; }
 
-    public bool Signed => SignedAt.HasValue;
+    public bool IsSigned => SignedAt.HasValue;
 
-    private Contract(Guid id, 
-        Guid customerId, 
+    private Contract(Guid id,
+        Guid customerId,
         DateTimeOffset preparedAt,
         TimeSpan duration)
     {
@@ -36,8 +36,8 @@ public sealed class Contract
         BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
         BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
-        
-        return new(Guid.NewGuid(), 
+
+        return new(Guid.NewGuid(),
             customerId,
             preparedAt,
             StandardDuration);

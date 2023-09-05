@@ -10,7 +10,7 @@ public static class ModuleAvailabilityChecker
     {
         var buildServiceProvider = services.BuildServiceProvider();
         var featureManager = buildServiceProvider.GetRequiredService<IFeatureManager>();
-        
+
         return featureManager.IsEnabledAsync(module).Result;
     }
 
@@ -18,7 +18,7 @@ public static class ModuleAvailabilityChecker
     {
         var buildServiceProvider = applicationBuilder.ApplicationServices;
         var featureManager = buildServiceProvider.GetRequiredService<IFeatureManager>();
-        
+
         return featureManager.IsEnabledAsync(module).Result;
     }
 }

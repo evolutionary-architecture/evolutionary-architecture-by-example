@@ -11,7 +11,7 @@ internal static class AutomaticMigrationsExtensions
         using var scope = applicationBuilder.ApplicationServices.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<ContractsPersistence>();
         context.Database.Migrate();
-        
+
         return applicationBuilder;
     }
 }

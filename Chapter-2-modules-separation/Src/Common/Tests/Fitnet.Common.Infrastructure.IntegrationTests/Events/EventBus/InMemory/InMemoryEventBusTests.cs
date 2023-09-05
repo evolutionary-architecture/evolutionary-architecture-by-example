@@ -11,18 +11,18 @@ public sealed class InMemoryEventBusTests : IClassFixture<FitnetWebApplicationFa
     public InMemoryEventBusTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory) =>
         _applicationInMemory = applicationInMemoryFactory
             .WithFakeConsumers(Assembly.GetExecutingAssembly());
-    
+
     [Fact]
-    public async Task Given_valid_event_published_Then_event_should_be_consumed()
+    internal async Task Given_valid_event_published_Then_event_should_be_consumed()
     {
         // Arrange
         var eventBus = _applicationInMemory.Services.GetRequiredService<IEventBus>();
         var fakeEvent = FakeEvent.Create();
-        
+
         // Act
         await eventBus.PublishAsync(fakeEvent, CancellationToken.None);
-        
+
         // Assert
-        fakeEvent.Consumed.Should().BeTrue();        
+        fakeEvent.Consumed.Should().BeTrue();
     }
 }

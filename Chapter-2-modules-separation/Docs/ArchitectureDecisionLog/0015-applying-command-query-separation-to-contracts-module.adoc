@@ -1,4 +1,4 @@
-= 14: Use command query separation to contracts module
+= 15. Use command query separation to contracts module
 
 Date: 2023-05-28
 

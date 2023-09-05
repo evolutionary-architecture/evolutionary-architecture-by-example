@@ -28,6 +28,6 @@ internal sealed class SignContractTestData : IEnumerable<object[]>
     };
 
     public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
-    
+
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

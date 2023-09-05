@@ -14,7 +14,7 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
 {
     private readonly HttpClient _applicationHttpClient;
     private readonly IEventBus _eventBus = Substitute.For<IEventBus>();
-    
+
     public SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
@@ -37,7 +37,7 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
-    
+
     [Fact]
     internal async Task Given_contract_signature_request_with_not_existing_id_Then_should_return_not_found()
     {

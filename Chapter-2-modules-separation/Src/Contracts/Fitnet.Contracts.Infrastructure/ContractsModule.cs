@@ -10,9 +10,9 @@ internal sealed class ContractsModule : IContractsModule
     public ContractsModule(IMediator mediator) =>
         _mediator = mediator;
 
-    public async Task ExecuteCommandAsync(ICommand command, CancellationToken cancellationToken = default) => 
-        await  _mediator.Send(command, cancellationToken);
-    
-    public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command, CancellationToken cancellationToken = default) => 
+    public async Task ExecuteCommandAsync(ICommand command, CancellationToken cancellationToken = default) =>
+        await _mediator.Send(command, cancellationToken);
+
+    public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command, CancellationToken cancellationToken = default) =>
         await _mediator.Send(command, cancellationToken);
 }
