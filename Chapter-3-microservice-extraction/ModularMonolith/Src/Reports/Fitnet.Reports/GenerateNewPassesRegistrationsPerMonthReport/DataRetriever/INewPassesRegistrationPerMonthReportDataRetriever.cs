@@ -4,5 +4,5 @@ using Dtos;
 
 internal interface INewPassesRegistrationPerMonthReportDataRetriever
 {
-   Task<IReadOnlyCollection<NewPassesRegistrationsPerMonthDto>> GetReportDataAsync(CancellationToken cancellationToken = default);
+    Task<IReadOnlyCollection<NewPassesRegistrationsPerMonthDto>> GetReportDataAsync(CancellationToken cancellationToken = default);
 }

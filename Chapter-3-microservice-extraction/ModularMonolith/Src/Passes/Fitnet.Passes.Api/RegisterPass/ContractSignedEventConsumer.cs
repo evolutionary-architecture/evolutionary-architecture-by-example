@@ -18,7 +18,7 @@ internal sealed class ContractSignedEventConsumer : IConsumer<ContractSignedEven
         _persistence = persistence;
         _eventBus = eventBus;
     }
-    
+
     public async Task Consume(ConsumeContext<ContractSignedEvent> context)
     {
         var @event = context.Message;

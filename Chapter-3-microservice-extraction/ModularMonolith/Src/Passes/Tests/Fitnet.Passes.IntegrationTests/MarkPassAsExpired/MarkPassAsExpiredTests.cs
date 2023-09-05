@@ -14,7 +14,7 @@ using RegisterPass;
 public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private static readonly StringContent EmptyContent = new(string.Empty);
-    
+
     private readonly HttpClient _applicationHttpClient;
     private readonly ITestHarness _testEventBus;
 
@@ -42,7 +42,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         // Assert
         await EnsureThatPassExpiredEventWasPublished();
     }
-    
+
     [Fact]
     internal async Task Given_valid_mark_pass_as_expired_request_Then_should_publish_pass_expired_event()
     {
@@ -57,7 +57,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         // Assert
         markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
-    
+
     [Fact]
     internal async Task Given_mark_pass_as_expired_request_with_not_existing_id_Then_should_return_not_found()
     {
@@ -80,21 +80,22 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
 
         return @event;
     }
-    
+
     private async Task<Guid> GetCreatedPass(Guid customerId)
     {
         var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
         var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
         var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
         createdPass.Should().NotBeNull();
-        
+
         return createdPass!.Id;
     }
-    
+
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
 
     private async Task EnsureThatPassExpiredEventWasPublished()
     {
         var passRegisteredEventPublished = await _testEventBus.Published.Any<PassExpiredEvent>();
         passRegisteredEventPublished.Should().BeTrue();
-    }}
+    }
+}

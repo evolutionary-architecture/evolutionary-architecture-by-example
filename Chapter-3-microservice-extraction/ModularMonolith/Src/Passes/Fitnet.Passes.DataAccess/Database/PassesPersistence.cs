@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 public sealed class PassesPersistence : DbContext
 {
     private const string Schema = "Passes";
-    
+
     public PassesPersistence(DbContextOptions<PassesPersistence> options)
         : base(options)
     {

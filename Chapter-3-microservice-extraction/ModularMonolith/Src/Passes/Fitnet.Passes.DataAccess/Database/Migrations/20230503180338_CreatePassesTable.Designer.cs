@@ -12,7 +12,7 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database
 {
     [DbContext(typeof(PassesPersistence))]
     [Migration("20230321064710_Create_Passes_Tables")]
-    partial class Create_Passes_Tables
+    partial class CreatePassesTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

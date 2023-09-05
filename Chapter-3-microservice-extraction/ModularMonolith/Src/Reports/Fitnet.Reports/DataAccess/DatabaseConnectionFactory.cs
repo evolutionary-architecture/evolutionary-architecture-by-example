@@ -14,7 +14,9 @@ internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
     public IDbConnection Create()
     {
         if (_connection is { State: ConnectionState.Open })
+        {
             return _connection;
+        }
 
         _connection =
             new NpgsqlConnection(_configuration.GetConnectionString("Reports"));
@@ -25,6 +27,9 @@ internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
 
     public void Dispose()
     {
-        if (_connection is { State: ConnectionState.Open }) _connection.Dispose();
+        if (_connection is { State: ConnectionState.Open })
+        {
+            _connection.Dispose();
+        }
     }
 }

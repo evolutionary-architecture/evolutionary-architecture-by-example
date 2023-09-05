@@ -1,14 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
-
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
-public partial class Create_Passes_Tables : Migration
+public partial class CreatePassesTable : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,10 +30,7 @@ public partial class Create_Passes_Tables : Migration
     }
 
     /// <inheritdoc />
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
-        migrationBuilder.DropTable(
-            name: "Passes",
-            schema: "Passes");
-    }
+    protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
+        name: "Passes",
+        schema: "Passes");
 }

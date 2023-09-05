@@ -22,16 +22,16 @@ public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactor
         applicationInMemory.CreateClient();
         _testEventBus = applicationInMemory.GetTestExternalEventBus();
     }
-    
+
     [Fact]
     internal async Task Given_pass_expired_event_published_Then_new_offer_should_be_prepared()
     {
         // Arrange
         var @event = PassExpiredEventFaker.CreateValid();
-        
+
         // Act
         await _testEventBus.Bus.Publish(@event);
-    
+
         // Assert
         await _testEventBus.WaitToConsumeMessageAsync<PassExpiredEvent>();
         await EnsureThatOfferPreparedEventWasPublished();
