@@ -15,7 +15,7 @@ public sealed class Pass
         To = to;
     }
 
-    public static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) => 
+    public static Pass Register(Guid customerId, DateTimeOffset from, DateTimeOffset to) =>
         new(Guid.NewGuid(), customerId, from, to);
 
     public void MarkAsExpired(DateTimeOffset nowDateTimeOffset) => To = nowDateTimeOffset;
