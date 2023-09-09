@@ -134,7 +134,7 @@ Before you build or debug code in Rider environment, you first have to configure
 
 - 1. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
 - 2. Click the `+` button to add a new package source.
-- 3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/meaboutsoftware/index.json`, fill your Github Username and PAT.
+- 3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
 - 4. Click `OK` to confirm the new package source.
 - 5. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
 
