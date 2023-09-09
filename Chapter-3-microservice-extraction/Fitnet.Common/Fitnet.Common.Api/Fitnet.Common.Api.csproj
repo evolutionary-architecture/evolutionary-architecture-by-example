@@ -3,6 +3,10 @@
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.7.1" />
+    </ItemGroup>
     
     <ItemGroup>
       <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
