@@ -4,14 +4,14 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/ModularMonolith/Src/**'
+      - 'Chapter-3-microservice-extraction/Fitnet/Src/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'Chapter-3-microservice-extraction/ModularMonolith/Src/**'
+      - 'Chapter-3-microservice-extraction/Fitnet/Src/**'
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/ModularMonolith/Src'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet/Src'
 
 jobs: 
   build:
