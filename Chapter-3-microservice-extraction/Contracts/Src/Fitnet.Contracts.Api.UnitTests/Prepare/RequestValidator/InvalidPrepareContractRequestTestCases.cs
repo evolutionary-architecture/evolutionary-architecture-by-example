@@ -1,7 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests.RequestValidator;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests.Prepare.RequestValidator;
 
-using System.Collections;
-using Bogus;
+using EvolutionaryArchitecture.Fitnet.Contracts.Api.Prepare;
 
 internal sealed class InvalidPrepareContractRequestTestCases : IEnumerable<object[]>
 {
@@ -10,7 +9,7 @@ internal sealed class InvalidPrepareContractRequestTestCases : IEnumerable<objec
 
     public IEnumerator<object[]> GetEnumerator()
     {
-        var validContractParameters = PrepareContractParameters.GetValid();
+        var validContractParameters = PrepareContractRequestParameters.GetValid();
 
         yield return new object[] { new PrepareContractRequest(Guid.Empty, validContractParameters.MinAge, validContractParameters.MaxHeight, _fakeNow), nameof(PrepareContractRequest.CustomerId) };
         yield return new object[] { new PrepareContractRequest(Guid.NewGuid(), default, validContractParameters.MaxHeight, _fakeNow), nameof(PrepareContractRequest.CustomerAge) };
