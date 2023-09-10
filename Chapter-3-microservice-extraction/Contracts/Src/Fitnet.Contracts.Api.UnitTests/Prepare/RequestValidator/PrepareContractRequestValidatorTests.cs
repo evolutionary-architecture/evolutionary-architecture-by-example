@@ -1,6 +1,7 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests.RequestValidator;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests.Prepare.RequestValidator;
 
-using Bogus;
+using EvolutionaryArchitecture.Fitnet.Contracts.Api.Prepare;
+using FluentValidation.TestHelper;
 
 public sealed class PrepareContractRequestValidatorTests
 {
@@ -11,7 +12,7 @@ public sealed class PrepareContractRequestValidatorTests
     internal void Given_prepare_contract_request_validation_When_request_is_valid_Then_result_should_have_no_errors()
     {
         // Arrange
-        var validContractParameters = PrepareContractParameters.GetValid();
+        var validContractParameters = PrepareContractRequestParameters.GetValid();
         var request = new PrepareContractRequest(Guid.NewGuid(), validContractParameters.MinAge, validContractParameters.MaxHeight, _fakeNow);
 
         // Act
