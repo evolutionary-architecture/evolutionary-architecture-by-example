@@ -19,4 +19,13 @@
   <ItemGroup>
     <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
+  </ItemGroup>
+  
 </Project>
