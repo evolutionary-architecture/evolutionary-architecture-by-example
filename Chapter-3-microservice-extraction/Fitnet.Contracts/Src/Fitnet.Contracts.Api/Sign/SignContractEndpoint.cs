@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Sign;
 
 using Application;
+using Common.Api.Validations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -17,6 +18,7 @@ internal static class SignContractEndpoint
 
             return Results.NoContent();
         })
+        .ValidateRequest<SignContractRequestValidator>()
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Signs prepared contract",
