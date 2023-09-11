@@ -93,9 +93,22 @@ Our test structure has not changed since Chapter 2. The only difference is that 
 
 The difference in content is that this time we have an additional component that we had to spin up, and that is RabbitMQ with MassTransit.
 
-==== Miscellaneous
+==== Packages
 
-Shared components of _Fitnet.Common_ are published inside main repository and we are using GH Packages for it. We decided to version it with https://semver.org/[Semantic Versioning].
+This chapter introduces a new concept called _Packages_. Instead of duplicating some logic in the `Contracts` microservice and modular monolith, we decided to
+
+- extract `Common` projects into a separate solution
+- make the `Contracts.IntegrationEvents` project a package
+
+Both areas are built as packages inside our GH repository (we use GH Packages).
+
+This means the following things:
+
+- every time we change any of the above, we have to raise a package version. In production code, it would be preferable to automate the version bump - in this repo, we decided to do it manually to avoid overcomplicating things. The versioning is done using https://semver.org/[Semantic Versioning] and we recommend you do the same.
+- after a package version upgrade, we need to update it in both - `Contracts` Microservice and Modular Monolith - if we want to use the latest introduced features (or changes)
+- Thanks to the extraction of `IntegrationEvents` from `Contracts`, we can reuse the same events implementation in both - `Contracts` microservice and modular monolith.
+
+IMPORTANT: If you have the packages in the same repository as other production code, at some point you will find that the cognitive complexity is too high - too many things are happening in one repository. This is the moment when you should think about extracting the `Common` or `Contracts` part into separate repositories.
 
 == How to Run?
 
