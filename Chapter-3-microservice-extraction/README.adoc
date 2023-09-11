@@ -27,12 +27,12 @@ As mentioned in the overview, the requirements remain unchanged to keep the code
 
 Due to changing requirements and the current market situation (here you have to again imagine that this is the case, although we do not assume any new requirements), we have to adjust our assumptions:
 
-1. Our application is now being used by 500000 people, which exceeds the maximum number of users based on our initial MVP assumptions (5000). One of our modules is used extremely often - _Contracts_ and it leads to a situation where we have to scale entire modular monolith (and it now becomes quite expensive), even though other modules usage is kept low.
-2. _Contracts_ module changes quicker than other modules - the ratio is 10:1, where 10 changes are done daily to _Contracts_ and 1 change to other module like _Offers_.
-3. _Contracts_ module requires higher security standards than other modules as we keep here sensitive data of our customers.
+1. Our application is now being used by 500000 people, which exceeds the maximum number of users based on our initial MVP assumptions (5000). One of our modules is used extremely often - `Contracts` and it leads to a situation where we have to scale entire modular monolith (and it now becomes quite expensive), even though other modules usage is kept low.
+2. `Contracts` module changes quicker than other modules - the ratio is 10:1, where 10 changes are done daily to `Contracts` and 1 change to other module like `Offers`.
+3. `Contracts` module requires higher security standards than other modules as we keep here sensitive data of our customers.
 4. At the moment we have 10 development teams working on the same deployment unit (modular monolith). It leads to more and more issues related to conflicts and syncing.
 
-Thanks to above assumptions we have 4 factors that help us to decide to extract _Contracts_ module to a microservice:
+Thanks to above assumptions we have 4 factors that help us to decide to extract `Contracts` module to a microservice:
 
 - Extreme usage
 - Change frequency
@@ -55,7 +55,7 @@ In the current chapter, the complexity grows even more, as we had to
 
 - extract contracts into a separate microservice
 - extract shared components into a separate solution and create packages for each component library
-- introduce a reliable message handling - RabbitMQ + MassTransit
+- introduce a reliable message handling - `RabbitMQ` + `MassTransit`
 
 This way our application looks like this:
 
@@ -65,13 +65,13 @@ image::Assets/components.jpg[]
 
 After the changes, our solution was divided into 3 separate solutions:
 
-1. _Fitnet.Contracts_ is a solution that contains our only microservice.
-2. _Fitnet.Common_ is a solution that contains all reusable components (no common business logic, only technical components like exception middleware).
-3. _Fitnet_ is a solution that contains our modular monolith with 3 modules - _Passes_, _Offers_ and _Reports_.
+1. `Fitnet.Contracts` is a solution that contains our only microservice.
+2. `Fitnet.Common` is a solution that contains all reusable components (no common business logic, only technical components like exception middleware).
+3. `Fitnet` is a solution that contains our modular monolith with 3 modules - `Passes`, `Offers` and `Reports`.
 
 For each solution we have created a separate build in GH Actions. 
 
-Components located in _Fitnet.Common_ are built into packages that are then reused by both - modular monolith and microservice. Whenever you extract another microservice, it is ready to integrate common components inside.
+Components located in `Fitnet.Common` are built into packages that are then reused by both - modular monolith and microservice. Whenever you extract another microservice, it is ready to integrate common components inside.
 
 NOTE: As you can see, this is even more complicated than before. That's why you should always think about whether it's worth extracting one of the modules into a microservice, as it will complicate your application. Always try to find reasonable disintegrators. Otherwise, try to postpone this decision as much as possible.
 
@@ -81,21 +81,34 @@ This time we needed to move from our in-memory queue to something that could ope
 
 At this point, our application was already being used by many people, and we wanted something more reliable than before (if you remember, we suggested thinking about introducing another communication mechanism in Chapter 2).
 
-We decided to use RabbitMQ with MassTransit. In doing so, we have created a separate component that now requires additional maintenance. Whenever an integration event arrives in the message queue, the module subscribed to it can receive it and update itself accordingly:
+We decided to use `RabbitMQ` with `MassTransit`. In doing so, we have created a separate component that now requires additional maintenance. Whenever an integration event arrives in the message queue, the module subscribed to it can receive it and update itself accordingly:
 
 image::Assets/communication.jpg[]
 
-IMPORTANT: If you are deploying a separate component like RabbitMQ for production purposes, it makes sense to create at least 1 other replica (our suggestion is to have 2) - in case the first instance goes down, another instance can handle the message communication. This way you protect your application from random failures (or rather, you reduce the chance of your application going down :)).
+IMPORTANT: If you are deploying a separate component like `RabbitMQ` for production purposes, it makes sense to create at least 1 other replica (our suggestion is to have 2) - in case the first instance goes down, another instance can handle the message communication. This way you protect your application from random failures (or rather, you reduce the chance of your application going down :)).
 
 ==== Tests
 
-Our test structure has not changed since Chapter 2. The only difference is that they have been moved to a separate solution along with _Fitnet.Common_ and _Fitnet.Contracts_.
+Our test structure has not changed since Chapter 2. The only difference is that they have been moved to a separate solution along with `Fitnet.Common` and `Fitnet.Contracts`.
 
-The difference in content is that this time we have an additional component that we had to spin up, and that is RabbitMQ with MassTransit.
+The difference in content is that this time we have an additional component that we had to spin up, and that is `RabbitMQ` with `MassTransit`.
 
-==== Miscellaneous
+==== Packages
 
-Shared components of _Fitnet.Common_ are published inside main repository and we are using GH Packages for it. We decided to version it with https://semver.org/[Semantic Versioning].
+This chapter introduces a new concept called _Packages_. Instead of duplicating some logic in the `Contracts` microservice and modular monolith, we decided to
+
+- extract `Common` projects into a separate solution
+- make the `Contracts.IntegrationEvents` project a package
+
+Both areas are built as packages inside our GH repository (we use GH Packages).
+
+This means the following things:
+
+- every time we change any of the above, we have to raise a package version. In production code, it would be preferable to automate the version bump - in this repo, we decided to do it manually to avoid overcomplicating things. The versioning is done using https://semver.org/[Semantic Versioning] and we recommend you do the same.
+- after a package version upgrade, we need to update it in both - `Contracts` Microservice and Modular Monolith - if we want to use the latest introduced features (or changes)
+- Thanks to the extraction of `IntegrationEvents` from `Contracts`, we can reuse the same events implementation in both - `Contracts` microservice and modular monolith.
+
+IMPORTANT: If you have the packages in the same repository as other production code, at some point you will find that the cognitive complexity is too high - too many things are happening in one repository. This is the moment when you should think about extracting the `Common` or `Contracts` part into separate repositories.
 
 == How to Run?
 
@@ -106,13 +119,13 @@ Shared components of _Fitnet.Common_ are published inside main repository and we
 
 === How to get .NET SDK?
 
-To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
+To run the `Fitnet` application, you will need to have the recent `.NET SDK` installed on your computer.
 Click link:https://dotnet.microsoft.com/en-us/download[here] 
 to download it from the official Microsoft website.
 
 === Run locally
 
-The Fitnet application requires Docker to run properly.
+The `Fitnet` application requires `Docker` to run properly.
 
 There are only 5 steps you need to start the application:
 
@@ -122,17 +135,17 @@ There are only 5 steps you need to start the application:
 4. Run `docker-compose build` to build the image of the application.
 5. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
-The _Fitnet_ modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
+The `Fitnet``modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
-The _Contracts_ microservice runs on port `:8081`. Please navigate to http://localhost:8081 in your browser or http://localhost:8081/swagger/index.html to explore the API.
+The `Contracts` microservice runs on port `:8081`. Please navigate to http://localhost:8081 in your browser or http://localhost:8081/swagger/index.html to explore the API.
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
 === Building and debugging code in Rider IDE
 
-Before you build or debug code in Rider environment, you first have to configure artifactory to allow to download packages for _Common_ which is a part of this repository:
+Before you build or debug code in `Rider` environment, you first have to configure artifactory to allow to download packages for `Common` which is a part of this repository:
 
-- 1. Open JetBrains Rider and navigate to `File > Settings > NuGet > Sources`.
+- 1. Open `JetBrains Rider` and navigate to `File > Settings > NuGet > Sources`.
 - 2. Click the `+` button to add a new package source.
 - 3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
 - 4. Click `OK` to confirm the new package source.
@@ -146,7 +159,7 @@ The provided instruction is primarily intended for JetBrains Rider. However, the
 ====
 
 === How to run Integration Tests?
-Running integration tests for both the Fitnet Modular Monolith and Fitness.Contracts applications involves similar steps, as the testing setup for both projects.
+Running integration tests for both the `Fitnet` Modular Monolith and `Fitness.Contracts` applications involves similar steps, as the testing setup for both projects.
 To run the integration tests for project, you can use either the command:
 [source,shell]
 ----
@@ -154,5 +167,5 @@ dotnet test
 ----
 or the `IDE test Explorer`. 
 
-These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing. 
+These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run `PostgresSQL in a Docker` container during testing. 
 Therefore, make sure to have `Docker` running before executing the integration tests.
