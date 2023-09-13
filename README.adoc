@@ -222,6 +222,9 @@ We will also add a message queue component to replace the in-memory queue. This 
 
 Here you will learn about various concepts that are important from a microservices architecture perspective.
 
+==== https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP[Interactive diagram]
+image::Assets/ice_panel_black.png[link="https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP",width=100,height=28]
+
 === Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 
 At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point.
