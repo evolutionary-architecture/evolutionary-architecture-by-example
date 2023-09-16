@@ -7,7 +7,7 @@ on:
       - main
       - 'story/*'
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet.Contracts/Src'
+  CHAPTER_DIR: 'Chapter-3-microservice-extraction'
 
 jobs:
   qodana:
