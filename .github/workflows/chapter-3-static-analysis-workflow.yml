@@ -26,8 +26,6 @@ jobs:
           fetch-depth: 0
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.2
-        with:
-          project: 'Chapter-3-microservice-extraction/Fitnet/Src/Fitnet.sln'
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
 
