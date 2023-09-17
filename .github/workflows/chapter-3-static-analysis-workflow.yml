@@ -28,5 +28,7 @@ jobs:
         uses: JetBrains/qodana-action@v2023.2
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+        with:
+          args: --property, qodana.net.solution=Fitnet.Contracts.sln
 
 
