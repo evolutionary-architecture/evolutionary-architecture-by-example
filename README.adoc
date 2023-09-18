@@ -1,8 +1,9 @@
 = Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
-:toc:
 
 image::Assets/ea_banner.png[]
+:toc:
+
 
 == Objective
 
