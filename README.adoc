@@ -1,5 +1,12 @@
 = Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
+
+++++
+<div style="text-align:center;">
+image::Assets/ea_banner.png[alt="Image Description"]
+</div>
+++++
+
 :toc:
 
 ++++
