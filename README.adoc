@@ -2,7 +2,11 @@
 Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc:
 
-image::Assets/ea_banner.png[width=450,height=450,align="center"]
+++++
+<div style="text-align:center;">
+  <img src="Assets/ea_banner.png" alt="Image Description">
+</div>
+++++
 
 == Objective
 
