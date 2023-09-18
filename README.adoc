@@ -3,7 +3,7 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc:
 
 ++++
-<div style="display: block;
+<div align="center" style="display: block;
   margin: 0 auto;">
   <img src="Assets/ea_banner.png" width="350" align="center" height="350" alt="Image Description" style="display: block;
   margin: 0 auto;">
