@@ -1,4 +1,4 @@
-image::Assets/ea_banner.png[width=350,height=350]
+image::Assets/ea_banner.png[width=450,height=450,align=center]
 
 
 = Evolutionary Architecture
