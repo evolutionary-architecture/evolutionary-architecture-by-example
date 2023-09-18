@@ -2,7 +2,7 @@
 Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc:
 
-image::Assets/ea_banner.png[width=450,height=450,align=center]
+image::Assets/ea_banner.png[width=450,height=450,align="center"]
 
 == Objective
 
