@@ -1,14 +1,14 @@
 = Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
-:toc:
 
 ++++
-<div align="center" style="display: block;
-  margin: 0 auto;">
-  <img src="Assets/ea_banner.png" width="350" align="center" height="350" alt="Image Description" style="display: block;
-  margin: 0 auto;">
+<div style="text-align:center;">
+image::Assets/ea_banner.png[alt="Image Description"]
 </div>
 ++++
+
+:toc:
+
 
 == Objective
 
