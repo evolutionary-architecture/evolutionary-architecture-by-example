@@ -1,6 +1,12 @@
 = Chapter 1: Initial Architecture - Focus On Simplicity
 :toc:
 
+++++
+<div align="center">
+  <img src="Assets/ea_banner.png" width="350" align="center" height="350" alt="ea banner">
+</div>
+++++
+
 == Case
 
 === Overview
