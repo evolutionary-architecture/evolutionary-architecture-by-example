@@ -1,6 +1,15 @@
 = Chapter 1: Initial Architecture - Focus On Simplicity
 :toc:
 
+++++
+<div align="center">
+  <img src="../Assets/ea_banner.png" width="350" align="center" height="350" alt="ea banner">
+</div>
+++++
+
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-1-workflow.yml/badge.svg[Build Status]
+
+
 == Case
 
 === Overview
