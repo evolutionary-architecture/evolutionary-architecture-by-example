@@ -8,14 +8,19 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
 </div>
 ++++
 
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-1-workflow.yml/badge.svg[Build Status]
+image:https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example[realease, alt="realease"]
 
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-2-workflow.yml/badge.svg[Build Status]
+image:https://img.shields.io/github/license/evolutionary-architecture/evolutionary-architecture-by-example[GitHub license, alt="License Badge"]
+image:https://img.shields.io/github/stars/evolutionary-architecture/evolutionary-architecture-by-example[GitHub stars, alt="Stars Badge"]
+image:https://img.shields.io/github/commit-activity/m/evolutionary-architecture/evolutionary-architecture-by-example[GitHub commits, alt="Commits Badge"]
+image:https://img.shields.io/github/last-commit/evolutionary-architecture/evolutionary-architecture-by-example[GitHub last commit, alt="Last Commit Badge"]
+image:https://img.shields.io/github/issues/evolutionary-architecture/evolutionary-architecture-by-example[GitHub issues, alt="Issues Badge"]
+image:https://img.shields.io/github/issues-pr/evolutionary-architecture/evolutionary-architecture-by-example[GitHub pull requests, alt="Pull Requests Badge"]
+image:https://img.shields.io/github/forks/evolutionary-architecture/evolutionary-architecture-by-example[GitHub forks, alt="Forks Badge"]
+image:https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example[GitHub watchers, alt="Watchers Badge"]
 
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-contracts-package-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-contracts-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-package-workflow.yml/badge.svg[Build Status]
+
+
 
 == Objective
 
