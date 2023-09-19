@@ -3,7 +3,7 @@
 
 ++++
 <div align="center">
-  <img src="Assets/ea_banner.png" width="350" align="center" height="350" alt="ea banner">
+  <img src="../Assets/ea_banner.png" width="350" align="center" height="350" alt="ea banner">
 </div>
 ++++
 
