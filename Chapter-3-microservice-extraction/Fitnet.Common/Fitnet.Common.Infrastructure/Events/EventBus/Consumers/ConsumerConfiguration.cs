@@ -2,9 +2,9 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.
 
 using MassTransit;
 
-internal sealed class ConsumerConfiguration
+public sealed class ConsumerConfiguration
 {
-    private ConsumerConfiguration(string queueName, Type consumerType)
+    private ConsumerConfiguration(string queueName, Type consumerType, RetryOptions? retryOptions = null, RedeliveryOptions? redeliveryOptions = null)
     {
         if (consumerType.GetInterface(nameof(IConsumer)) is null)
         {
@@ -15,9 +15,21 @@ internal sealed class ConsumerConfiguration
         ConsumerType = consumerType;
     }
 
-    internal static ConsumerConfiguration Configure(string queueName, Type consumerType) =>
-        new(queueName, consumerType);
+    public static ConsumerConfiguration Configure(string queueName, Type consumerType, RetryOptions? retryOptions = null, RedeliveryOptions? redeliveryOptions = null) =>
+        new(queueName, consumerType, retryOptions ?? RetryOptions.Disabled, redeliveryOptions ?? RedeliveryOptions.Disabled);
 
     internal string QueueName { get; }
     internal Type ConsumerType { get; }
+    internal RetryOptions RetryOptions { get; }
+    internal RedeliveryOptions RedeliveryOptions { get; }
+}
+
+public record struct RetryOptions(bool EnableRetry, int RetryCount, TimeSpan RetryInitialInterval, TimeSpan RetryIntervalIncrement)
+{
+    internal static RetryOptions Disabled => new(false, 0, TimeSpan.Zero, TimeSpan.Zero);
+}
+
+public record struct RedeliveryOptions(bool EnableRedelivery, TimeSpan[] DeliveryIntervals)
+{
+    internal static RedeliveryOptions Disabled => new(false, Array.Empty<TimeSpan>());
 }

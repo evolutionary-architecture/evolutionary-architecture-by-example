@@ -63,6 +63,19 @@ internal static class EventBusModule
         {
             factoryConfigurator.ReceiveEndpoint(endpoint.QueueName, mqReceiveEndpointConfigurator =>
             {
+                if (endpoint.RetryOptions.EnableRetry)
+                {
+                    mqReceiveEndpointConfigurator.UseRetry(retryConfigurator =>
+                    {
+                        retryConfigurator.Incremental(3, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(5));
+                    });
+                }
+
+                if (endpoint.RetryOptions.EnableRetry)
+                {
+                    mqReceiveEndpointConfigurator.UseDelayedRedelivery(redeliveryConfigurator => redeliveryConfigurator.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(30), TimeSpan.FromHours(1)));
+                }
+
                 mqReceiveEndpointConfigurator.ConfigureConsumer(context, endpoint.ConsumerType);
             });
         }
