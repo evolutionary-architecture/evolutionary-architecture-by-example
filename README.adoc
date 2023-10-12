@@ -1,6 +1,7 @@
 = Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
-:toc:
+:toc: preamble
+:toc-title: Architecture Evolution Journey
 
 ++++
 <div align="center">
@@ -18,7 +19,7 @@ image:https://img.shields.io/github/issues/evolutionary-architecture/evolutionar
 image:https://img.shields.io/github/issues-pr/evolutionary-architecture/evolutionary-architecture-by-example[GitHub pull requests, alt="Pull Requests Badge"]
 image:https://img.shields.io/github/forks/evolutionary-architecture/evolutionary-architecture-by-example[GitHub forks, alt="Forks Badge"]
 image:https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example[GitHub watchers, alt="Watchers Badge"]
-image:https://img.shields.io/discord/1140287971367600148[alt="Discord Active"]
+
 
 
 
