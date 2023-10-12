@@ -1,7 +1,7 @@
 = Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc: preamble
-:toc-title: Architecture Evolution Journey
+:toc-title: 🧬 Evolutionary Content 📘
 
 ++++
 <div align="center">
