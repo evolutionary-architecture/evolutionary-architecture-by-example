@@ -13,6 +13,8 @@ public sealed class ConsumerConfiguration
 
         QueueName = queueName;
         ConsumerType = consumerType;
+        RetryOptions = retryOptions ?? RetryOptions.Disabled;
+        RedeliveryOptions = redeliveryOptions ?? RedeliveryOptions.Disabled;
     }
 
     public static ConsumerConfiguration Configure(string queueName, Type consumerType, RetryOptions? retryOptions = null, RedeliveryOptions? redeliveryOptions = null) =>
@@ -24,12 +26,12 @@ public sealed class ConsumerConfiguration
     internal RedeliveryOptions RedeliveryOptions { get; }
 }
 
-public record struct RetryOptions(bool EnableRetry, int RetryCount, TimeSpan RetryInitialInterval, TimeSpan RetryIntervalIncrement)
+public record struct RetryOptions(bool Enabled, int RetryCount, TimeSpan RetryInitialInterval, TimeSpan RetryIntervalIncrement)
 {
     internal static RetryOptions Disabled => new(false, 0, TimeSpan.Zero, TimeSpan.Zero);
 }
 
-public record struct RedeliveryOptions(bool EnableRedelivery, TimeSpan[] DeliveryIntervals)
+public record struct RedeliveryOptions(bool Enabled, TimeSpan[] DeliveryIntervals)
 {
     internal static RedeliveryOptions Disabled => new(false, Array.Empty<TimeSpan>());
 }

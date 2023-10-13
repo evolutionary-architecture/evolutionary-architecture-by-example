@@ -5,6 +5,7 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using RedeliveryOptions = Consumers.RedeliveryOptions;
 
 internal static class EventBusModule
 {
@@ -20,6 +21,7 @@ internal static class EventBusModule
         {
             RegisterConsumers(endpoints, configurator);
 
+            configurator.AddPublishMessageScheduler();
             configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
                 var options = context.GetRequiredService<IOptions<EventBusOptions>>();
@@ -63,21 +65,27 @@ internal static class EventBusModule
         {
             factoryConfigurator.ReceiveEndpoint(endpoint.QueueName, mqReceiveEndpointConfigurator =>
             {
-                if (endpoint.RetryOptions.EnableRetry)
-                {
-                    mqReceiveEndpointConfigurator.UseRetry(retryConfigurator =>
-                    {
-                        retryConfigurator.Incremental(3, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(5));
-                    });
-                }
-
-                if (endpoint.RetryOptions.EnableRetry)
-                {
-                    mqReceiveEndpointConfigurator.UseDelayedRedelivery(redeliveryConfigurator => redeliveryConfigurator.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(30), TimeSpan.FromHours(1)));
-                }
+                ConfigureRetry(endpoint.RetryOptions, mqReceiveEndpointConfigurator);
+                ConfigureRedelivery(endpoint.RedeliveryOptions, mqReceiveEndpointConfigurator);
 
                 mqReceiveEndpointConfigurator.ConfigureConsumer(context, endpoint.ConsumerType);
             });
+        }
+    }
+
+    private static void ConfigureRetry(RetryOptions options, IRabbitMqReceiveEndpointConfigurator mqReceiveEndpointConfigurator)
+    {
+        if (options.Enabled)
+        {
+            mqReceiveEndpointConfigurator.UseRetry(retryConfigurator => retryConfigurator.Incremental(options.RetryCount, options.RetryInitialInterval, options.RetryIntervalIncrement));
+        }
+    }
+
+    private static void ConfigureRedelivery(RedeliveryOptions options, IRabbitMqReceiveEndpointConfigurator mqReceiveEndpointConfigurator)
+    {
+        if (options.Enabled)
+        {
+            mqReceiveEndpointConfigurator.UseDelayedRedelivery(redeliveryConfigurator => redeliveryConfigurator.Intervals(options.DeliveryIntervals));
         }
     }
 }
