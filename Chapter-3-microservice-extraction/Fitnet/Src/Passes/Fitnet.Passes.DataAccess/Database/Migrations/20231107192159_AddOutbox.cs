@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 /// <inheritdoc />
+[ExcludeFromCodeCoverage]
 public partial class AddOutbox : Migration
 {
     /// <inheritdoc />
