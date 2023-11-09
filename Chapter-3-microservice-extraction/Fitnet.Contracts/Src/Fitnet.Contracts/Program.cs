@@ -1,6 +1,5 @@
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 using EvolutionaryArchitecture.Fitnet.Contracts.Api;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +12,6 @@ builder.Services.AddSystemClock();
 builder.Services.AddFeatureManagement();
 
 builder.Services.AddContractsApi(builder.Configuration);
-builder.Services.AddCommonInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

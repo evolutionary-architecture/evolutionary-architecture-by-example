@@ -1,7 +1,6 @@
 using EvolutionaryArchitecture.Fitnet;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
-using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 using EvolutionaryArchitecture.Fitnet.Offers.Api;
 using EvolutionaryArchitecture.Fitnet.Passes.Api;
 using EvolutionaryArchitecture.Fitnet.Reports;
@@ -18,7 +17,6 @@ builder.Services.AddFeatureManagement();
 builder.Services.AddPasses(builder.Configuration, Module.Passes);
 builder.Services.AddOffers(builder.Configuration, Module.Offers);
 builder.Services.AddReports(Module.Reports);
-builder.Services.AddCommonInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
