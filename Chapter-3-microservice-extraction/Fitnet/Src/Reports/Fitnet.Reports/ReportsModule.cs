@@ -1,8 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports;
 
+using Common.Infrastructure.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Common.Infrastructure.Modules;
 using DataAccess;
 using GenerateNewPassesRegistrationsPerMonthReport;
 

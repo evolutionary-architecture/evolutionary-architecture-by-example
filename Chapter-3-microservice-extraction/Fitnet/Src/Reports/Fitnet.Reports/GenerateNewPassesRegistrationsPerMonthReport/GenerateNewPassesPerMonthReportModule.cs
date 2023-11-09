@@ -7,7 +7,9 @@ internal static class GenerateNewPassesPerMonthReportModule
 {
     internal static IServiceCollection AddNewPassesRegistrationsPerMonthReport(this IServiceCollection services)
     {
-        services.AddSingleton<INewPassesRegistrationPerMonthReportDataRetriever, NewPassesRegistrationPerMonthReportDataRetriever>();
+        services
+            .AddSingleton<INewPassesRegistrationPerMonthReportDataRetriever,
+                NewPassesRegistrationPerMonthReportDataRetriever>();
 
         return services;
     }

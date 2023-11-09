@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
 using Common.Core.SystemClock;
-using Common.Infrastructure.Events.EventBus;
 using DataAccess;
 using DataAccess.Database;
 using MassTransit;
@@ -9,12 +8,12 @@ using Passes.IntegrationEvents;
 
 internal sealed class PassExpiredEventConsumer : IConsumer<PassExpiredEvent>
 {
-    private readonly IEventBus _eventBus;
+    private readonly IPublishEndpoint _eventBus;
     private readonly OffersPersistence _persistence;
     private readonly ISystemClock _systemClock;
 
     public PassExpiredEventConsumer(
-        IEventBus eventBus,
+        IPublishEndpoint eventBus,
         OffersPersistence persistence,
         ISystemClock systemClock)
     {
@@ -31,6 +30,6 @@ internal sealed class PassExpiredEventConsumer : IConsumer<PassExpiredEvent>
         await _persistence.SaveChangesAsync(context.CancellationToken);
 
         var offerPreparedEvent = OfferPrepareEvent.Create(offer.Id, offer.CustomerId);
-        await _eventBus.PublishAsync(offerPreparedEvent, context.CancellationToken);
+        await _eventBus.Publish(offerPreparedEvent, context.CancellationToken);
     }
 }
