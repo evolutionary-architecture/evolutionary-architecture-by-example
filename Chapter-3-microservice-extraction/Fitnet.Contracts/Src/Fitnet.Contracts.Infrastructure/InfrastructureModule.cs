@@ -2,6 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure;
 
 using Application;
 using Database;
+using EventBus;
 using Mediation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ public static class InfrastructureModule
     {
         services.AddDatabase(configuration);
         services.AddMediationModule();
+        services.AddEventBus(configuration);
         services.AddScoped<IContractsModule, ContractsModule>();
 
         return services;

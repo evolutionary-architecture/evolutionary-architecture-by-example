@@ -1,9 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api.MarkPassAsExpired;
 
-using Common.Core.SystemClock;
-using Common.Infrastructure.Events.EventBus;
 using IntegrationEvents;
 using DataAccess.Database;
+using Fitnet.Common.Core.SystemClock;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -16,7 +16,7 @@ internal static class MarkPassAsExpiredEndpoint
                 Guid id,
                 PassesPersistence persistence,
                 ISystemClock systemClock,
-                IEventBus eventBus,
+                IPublishEndpoint publishEndpoint,
                 CancellationToken cancellationToken) =>
             {
                 var pass = await persistence.Passes.FindAsync(new object?[] { id }, cancellationToken);
@@ -29,7 +29,7 @@ internal static class MarkPassAsExpiredEndpoint
                 await persistence.SaveChangesAsync(cancellationToken);
 
                 var passExpiredEvent = PassExpiredEvent.Create(pass.Id, pass.CustomerId);
-                await eventBus.PublishAsync(passExpiredEvent, cancellationToken);
+                await publishEndpoint.Publish(passExpiredEvent, cancellationToken);
 
                 return Results.NoContent();
             })

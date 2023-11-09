@@ -22,7 +22,7 @@ internal static class GenerateNewPassesPerMonthReportEndpoint
         {
             Summary = "Returns report of all passes registered in a month",
             Description =
-                "This endpoint is used to retrieve all passes that were registered in a given month.",
+                "This endpoint is used to retrieve all passes that were registered in a given month."
         })
         .Produces<NewPassesRegistrationsPerMonthResponse>()
         .Produces(StatusCodes.Status500InternalServerError);

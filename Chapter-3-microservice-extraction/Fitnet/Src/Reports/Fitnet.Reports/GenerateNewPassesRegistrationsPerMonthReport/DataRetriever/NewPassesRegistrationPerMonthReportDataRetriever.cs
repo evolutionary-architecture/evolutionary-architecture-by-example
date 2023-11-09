@@ -5,18 +5,21 @@ using Dapper;
 using Dtos;
 using DataAccess;
 
-internal sealed class NewPassesRegistrationPerMonthReportDataRetriever : INewPassesRegistrationPerMonthReportDataRetriever
+internal sealed class
+    NewPassesRegistrationPerMonthReportDataRetriever : INewPassesRegistrationPerMonthReportDataRetriever
 {
     private readonly IDatabaseConnectionFactory _databaseConnectionFactory;
     private readonly ISystemClock _clock;
 
-    public NewPassesRegistrationPerMonthReportDataRetriever(IDatabaseConnectionFactory databaseConnectionFactory, ISystemClock clock)
+    public NewPassesRegistrationPerMonthReportDataRetriever(IDatabaseConnectionFactory databaseConnectionFactory,
+        ISystemClock clock)
     {
         _databaseConnectionFactory = databaseConnectionFactory;
         _clock = clock;
     }
 
-    public async Task<IReadOnlyCollection<NewPassesRegistrationsPerMonthDto>> GetReportDataAsync(CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyCollection<NewPassesRegistrationsPerMonthDto>> GetReportDataAsync(
+        CancellationToken cancellationToken = default)
     {
         using var connection = _databaseConnectionFactory.Create();
         var query = $@"
@@ -29,7 +32,8 @@ internal sealed class NewPassesRegistrationPerMonthReportDataRetriever : INewPas
         ORDER BY ""{nameof(NewPassesRegistrationsPerMonthDto.MonthOrder)}""";
 
         var queryDefinition = new CommandDefinition(query, cancellationToken: cancellationToken);
-        var newPassesRegistrationsPerMonthDtos = await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(queryDefinition);
+        var newPassesRegistrationsPerMonthDtos =
+            await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(queryDefinition);
 
         return newPassesRegistrationsPerMonthDtos.ToList();
     }

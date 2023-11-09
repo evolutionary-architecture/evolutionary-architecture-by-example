@@ -1,9 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api;
 
-using Common.Infrastructure.Modules;
 using DataAccess;
 using System.Reflection;
-using Common.Infrastructure.Mediator;
+using Common.EventBus;
+using Fitnet.Common.Infrastructure.Mediator;
+using Fitnet.Common.Infrastructure.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +32,7 @@ public static class PassesModule
 
         services.AddDataAccess(configuration);
         services.AddMediator(Assembly.GetExecutingAssembly());
-        services.AddConsumers();
+        services.AddEventBus(configuration);
 
         return services;
     }
