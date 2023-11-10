@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <ItemGroup>
         <PackageReference Include="MediatR" Version="12.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
@@ -7,6 +6,4 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
         <PackageReference Include="Microsoft.FeatureManagement" Version="2.5.1" />
     </ItemGroup>
-  
-    
 </Project>

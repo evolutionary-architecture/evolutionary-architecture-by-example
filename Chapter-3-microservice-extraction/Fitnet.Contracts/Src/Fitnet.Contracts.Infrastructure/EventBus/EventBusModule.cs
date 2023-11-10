@@ -28,7 +28,6 @@ internal static class EventBusModule
             });
         });
 
-
         return services;
     }
 }
