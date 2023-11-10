@@ -2,7 +2,6 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
 
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 public sealed class PassesPersistence : DbContext
 {
@@ -23,21 +22,4 @@ public sealed class PassesPersistence : DbContext
         modelBuilder.AddOutboxMessageEntity();
         modelBuilder.AddOutboxStateEntity();
     }
-}
-
-public class BloggingContextFactory : IDesignTimeDbContextFactory<PassesPersistence>
-{
-
-    public PassesPersistence CreateDbContext(string[] args)
-
-    {
-
-        var optionsBuilder = new DbContextOptionsBuilder<PassesPersistence>();
-
-        optionsBuilder.UseNpgsql("Host=localhost:5432;Database=sim_inventory;Username=postgres;Password=mysecretpassword");
-
-        return new PassesPersistence(optionsBuilder.Options);
-
-    }
-
 }
