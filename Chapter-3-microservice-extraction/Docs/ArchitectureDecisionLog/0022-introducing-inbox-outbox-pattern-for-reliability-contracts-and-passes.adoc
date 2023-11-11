@@ -1,0 +1,43 @@
+= 22. Introducing Inbox-Outbox Pattern for Reliability and Data Consistency in Communication between Contracts and Passes Module
+
+Date: 2023-11-10
+
+== Problem
+
+In our existing system, the lack of robust mechanisms for asynchronous communication between the 'contracts' and the 'passes' module gives rise to concerns regarding reliability and data consistency. 
+The absence of safeguards against message duplication and loss poses a substantial risk to the overall integrity of the system.
+Given the significant non-functional requirement for high reliability in this integration, any interruption in this process could potentially harm the company's reputation.
+
+== Decision
+
+To address the reliability and data consistency concerns in the communication between `contracts` and the `passes` module, we have decided to implement the Inbox-Outbox pattern.
+
+== Consequences
+
+The decision to implement the Inbox-Outbox pattern brings forth several consequences:
+
+=== Additional Complexity
+
+Introducing the Inbox-Outbox pattern adds a layer of complexity to the communication flow between 'contracts' and 'passes.' Teams involved in development and maintenance will need to understand and adapt to this new pattern, potentially requiring additional training.
+
+=== Reduced Risk of Processing the Same Message Twice
+
+One of the primary advantages of the Inbox-Outbox pattern is the mitigation of risks associated with processing the same message multiple times. By maintaining a clear separation between incoming and outgoing messages, the system is better equipped to handle potential duplicates, reducing the likelihood of unintended processing.
+
+=== Reduced Risk of Message Loss
+
+The Inbox-Outbox pattern helps address concerns related to message loss. By systematically managing incoming and outgoing messages, the system can more effectively track the flow of data, minimizing the risk of messages getting lost in transit.
+
+=== Improved Reliability
+
+Implementing the Inbox-Outbox pattern significantly contributes to the overall reliability of the communication process between 'contracts' and 'passes.' With enhanced mechanisms for handling messages, the system becomes more resilient to interruptions and failures, aligning with the high-reliability requirements of the integration.
+
+=== Enhanced Traceability
+
+The separation of incoming and outgoing messages facilitates better traceability. Teams can easily trace the journey of a message from its arrival in the inbox to its dispatch from the outbox, aiding in debugging, auditing, and monitoring efforts.
+
+=== Potential Performance Overhead
+
+While the Inbox-Outbox pattern offers improved reliability, it may introduce a slight performance overhead due to the additional processing and storage requirements associated with managing two distinct message queues. Teams should carefully assess and optimize performance to ensure that the benefits outweigh any potential drawbacks.
+
+These consequences collectively contribute to the overall effectiveness and robustness of the communication mechanism between 'contracts' and 'passes,' aligning with the organizational goals of maintaining a reliable and consistent system.
