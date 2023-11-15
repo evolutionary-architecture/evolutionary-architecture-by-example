@@ -5,7 +5,7 @@ using DataAccess;
 using DataAccess.Database;
 using MassTransit;
 
-internal sealed class ContractSignedEventConsumer : IConsumer<ContractSignedEvent>
+public sealed class ContractSignedEventConsumer : IConsumer<ContractSignedEvent>
 {
     private readonly PassesPersistence _persistence;
 

@@ -4,7 +4,7 @@ using DataAccess.Database;
 using MassTransit;
 using static TimeSpan;
 
-internal sealed class ContractSignedEventConsumerDefinition : ConsumerDefinition<ContractSignedEventConsumer>
+public sealed class ContractSignedEventConsumerDefinition : ConsumerDefinition<ContractSignedEventConsumer>
 {
     protected override void ConfigureConsumer(IReceiveEndpointConfigurator endpointConfigurator, IConsumerConfigurator<ContractSignedEventConsumer> consumerConfigurator, IRegistrationContext context)
     {
