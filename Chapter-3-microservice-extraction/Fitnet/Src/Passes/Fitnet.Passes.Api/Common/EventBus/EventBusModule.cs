@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.Api.Common.EventBus;
 
+using System.Reflection;
 using DataAccess.Database;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
@@ -15,11 +16,13 @@ internal static class EventBusModule
         services.Configure<EventBusOptions>(options => configuration.GetSection(EventBusConfiguration).Bind(options));
         services.AddMassTransit<IPassesBus>(configurator =>
         {
+            configurator.SetKebabCaseEndpointNameFormatter();
             configurator.AddEntityFrameworkOutbox<PassesPersistence>(o =>
             {
                 o.UsePostgres();
                 o.DuplicateDetectionWindow = TimeSpan.FromSeconds(30);
             });
+            configurator.AddConsumers(Assembly.GetExecutingAssembly());
             configurator.SetKebabCaseEndpointNameFormatter();
             configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
@@ -29,7 +32,6 @@ internal static class EventBusModule
                 {
                     return;
                 }
-
                 factoryConfigurator.ConfigureEndpoints(context);
             });
         });
