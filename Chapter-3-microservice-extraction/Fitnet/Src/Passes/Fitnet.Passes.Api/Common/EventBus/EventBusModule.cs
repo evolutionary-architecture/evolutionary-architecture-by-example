@@ -14,16 +14,16 @@ internal static class EventBusModule
     internal static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<EventBusOptions>(options => configuration.GetSection(EventBusConfiguration).Bind(options));
-        services.AddMassTransit<IPassesBus>(configurator =>
+        services.AddMassTransit(configurator =>
         {
-            configurator.SetKebabCaseEndpointNameFormatter();
             configurator.AddEntityFrameworkOutbox<PassesPersistence>(o =>
             {
                 o.UsePostgres();
+                o.UseBusOutbox();
                 o.DuplicateDetectionWindow = TimeSpan.FromSeconds(30);
             });
             configurator.AddConsumers(Assembly.GetExecutingAssembly());
-            configurator.SetKebabCaseEndpointNameFormatter();
+            configurator.SetSnakeCaseEndpointNameFormatter();
             configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
                 var options = context.GetRequiredService<IOptions<EventBusOptions>>();

@@ -14,7 +14,7 @@ internal static class EventBusModule
         services.Configure<EventBusOptions>(options => configuration.GetSection(EventBusConfiguration).Bind(options));
         services.AddMassTransit(configurator =>
         {
-            configurator.SetKebabCaseEndpointNameFormatter();
+            configurator.SetSnakeCaseEndpointNameFormatter();
             configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
                 var options = context.GetRequiredService<IOptions<EventBusOptions>>();
