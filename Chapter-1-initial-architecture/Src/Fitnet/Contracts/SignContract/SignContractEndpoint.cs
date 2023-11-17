@@ -14,7 +14,7 @@ internal static class SignContractEndpoint
                 CancellationToken cancellationToken) =>
             {
                 var contract =
-                    await persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
+                    await persistence.Contracts.FindAsync(new object[] { id }, cancellationToken: cancellationToken);
 
                 if (contract is null)
                 {
