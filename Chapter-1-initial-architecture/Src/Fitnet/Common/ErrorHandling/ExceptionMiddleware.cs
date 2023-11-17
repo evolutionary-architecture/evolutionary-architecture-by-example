@@ -4,18 +4,15 @@ using System.Net;
 using System.Text.Json;
 using BusinessRulesEngine;
 
-internal sealed class ExceptionMiddleware
+internal sealed class ExceptionMiddleware(RequestDelegate next)
 {
     private const string ContentType = "application/json";
-    private readonly RequestDelegate _next;
-
-    public ExceptionMiddleware(RequestDelegate next) => _next = next;
 
     public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-            await _next(context);
+            await next(context);
         }
         catch (Exception ex)
         {

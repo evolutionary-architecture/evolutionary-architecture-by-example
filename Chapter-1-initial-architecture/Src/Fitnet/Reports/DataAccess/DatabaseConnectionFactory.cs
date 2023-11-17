@@ -3,12 +3,9 @@ namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
 using System.Data;
 using Npgsql;
 
-internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
+internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : IDatabaseConnectionFactory
 {
-    private readonly IConfiguration _configuration;
-    private IDbConnection? _connection;
-
-    public DatabaseConnectionFactory(IConfiguration configuration) => _configuration = configuration;
+    private NpgsqlConnection? _connection;
 
     public IDbConnection Create()
     {
@@ -18,7 +15,7 @@ internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
         }
 
         _connection =
-            new NpgsqlConnection(_configuration.GetConnectionString("Reports"));
+            new NpgsqlConnection(configuration.GetConnectionString("Reports"));
         _connection.Open();
 
         return _connection;

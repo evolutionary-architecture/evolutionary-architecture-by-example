@@ -2,14 +2,9 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
 
-internal sealed class PassesPersistence : DbContext
+internal sealed class PassesPersistence(DbContextOptions<PassesPersistence> options) : DbContext(options)
 {
     private const string Schema = "Passes";
-
-    public PassesPersistence(DbContextOptions<PassesPersistence> options)
-        : base(options)
-    {
-    }
 
     public DbSet<Pass> Passes => Set<Pass>();
 
