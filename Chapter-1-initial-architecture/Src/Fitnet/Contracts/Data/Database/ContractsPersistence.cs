@@ -2,14 +2,9 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
 
-internal sealed class ContractsPersistence : DbContext
+internal sealed class ContractsPersistence(DbContextOptions<ContractsPersistence> options) : DbContext(options)
 {
     private const string Schema = "Contracts";
-
-    public ContractsPersistence(DbContextOptions<ContractsPersistence> options)
-        : base(options)
-    {
-    }
 
     public DbSet<Contract> Contracts => Set<Contract>();
 
