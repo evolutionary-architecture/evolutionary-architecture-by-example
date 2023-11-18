@@ -6,16 +6,14 @@ using Common.TestEngine;
 using Common.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 
-public sealed class PrepareContractTests : IClassFixture<WebApplicationFactory<Program>>,
+public sealed class PrepareContractTests(
+    WebApplicationFactory<Program> applicationInMemoryFactory,
+    DatabaseContainer database) : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private readonly HttpClient _applicationHttpClient;
-
-    public PrepareContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .CreateClient();
+    private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
+        .WithContainerDatabaseConfigured(database.ConnectionString!)
+        .CreateClient();
 
     [Fact]
     internal async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
