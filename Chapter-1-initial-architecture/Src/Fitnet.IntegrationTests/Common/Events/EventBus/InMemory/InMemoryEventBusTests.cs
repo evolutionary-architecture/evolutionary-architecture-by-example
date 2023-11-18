@@ -3,15 +3,13 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.Events.EventBu
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
-public sealed class InMemoryEventBusTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class InMemoryEventBusTests(
+    WebApplicationFactory<Program> applicationInMemoryFactory,
+    DatabaseContainer database) : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
-    private readonly WebApplicationFactory<Program> _applicationInMemory;
-
-    public InMemoryEventBusTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationInMemory = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(database.ConnectionString!)
-            .WithFakeConsumers();
+    private readonly WebApplicationFactory<Program> _applicationInMemory = applicationInMemoryFactory
+        .WithContainerDatabaseConfigured(database.ConnectionString!)
+        .WithFakeConsumers();
 
     [Fact]
     internal async Task Given_valid_event_published_Then_event_should_be_consumed()
