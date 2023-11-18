@@ -7,16 +7,14 @@ using Api;
 using Api.Prepare;
 using Common.IntegrationTests.TestEngine;
 
-public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
+public sealed class PrepareContractTests(
+    FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
+    DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private readonly HttpClient _applicationHttpClient;
-
-    public PrepareContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
-            .CreateClient();
+    private HttpClient ApplicationHttpClient => applicationInMemoryFactory
+        .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
+        .CreateClient();
 
     [Fact]
     internal async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
@@ -42,7 +40,7 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
 
         // Act
         var prepareContractResponse =
-            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+            await ApplicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
@@ -63,7 +61,7 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
 
         // Act
         var prepareContractResponse =
-            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+            await ApplicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
@@ -96,7 +94,7 @@ public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFac
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight, customerId);
         var prepareContractResponse =
-            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+            await ApplicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         return prepareContractResponse;
     }

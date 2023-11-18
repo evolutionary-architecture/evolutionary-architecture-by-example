@@ -1,8 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
-public class BusinessRuleValidationException : InvalidOperationException
+public class BusinessRuleValidationException(string message) : InvalidOperationException(message)
 {
-    public BusinessRuleValidationException(string message) : base(message)
-    {
-    }
 }

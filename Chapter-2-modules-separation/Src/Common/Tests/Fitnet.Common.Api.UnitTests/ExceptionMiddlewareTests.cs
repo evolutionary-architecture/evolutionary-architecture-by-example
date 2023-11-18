@@ -45,8 +45,8 @@ public sealed class ExceptionMiddlewareTests
         responseMessage.Should().Be(exceptionMessage);
     }
 
-    private static HttpContext GetHttpContext() =>
-        new DefaultHttpContext
+    private static DefaultHttpContext GetHttpContext() =>
+        new()
         {
             Response =
             {
