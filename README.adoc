@@ -286,7 +286,7 @@ IMPORTANT: If you want to get the most out of this repository, we recommend that
 
 == Libraries and Platforms Used
 
-The entire application is developed using C# and .NET 7.
+The entire application is developed using C# and .NET 8.
 
 In each chapter we use libraries and platforms that simplify the development process (no need to create them yourself). We try to keep it to a minimum. The certain disadvantage is that we do not have full control over it (trade-off we accept). Here is the list of the most important ones:
 
