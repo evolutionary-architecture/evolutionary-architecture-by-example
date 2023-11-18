@@ -3,6 +3,6 @@
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Fitnet.Common\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
+    <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="1.1.5" />
   </ItemGroup>
 </Project>
