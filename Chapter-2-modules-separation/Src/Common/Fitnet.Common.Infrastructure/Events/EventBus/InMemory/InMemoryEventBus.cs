@@ -2,12 +2,8 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus.
 
 using MediatR;
 
-internal sealed class InMemoryEventBus : IEventBus
+internal sealed class InMemoryEventBus(IPublisher mediator) : IEventBus
 {
-    private readonly IMediator _mediator;
-
-    public InMemoryEventBus(IMediator mediator) => _mediator = mediator;
-
     public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IIntegrationEvent =>
-        await _mediator.Publish(@event, cancellationToken);
+        await mediator.Publish(@event, cancellationToken);
 }

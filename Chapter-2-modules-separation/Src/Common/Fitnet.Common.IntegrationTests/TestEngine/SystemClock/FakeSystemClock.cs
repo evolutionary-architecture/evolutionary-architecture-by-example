@@ -2,9 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Sys
 
 using Core.SystemClock;
 
-internal sealed class FakeSystemClock : ISystemClock
+internal sealed class FakeSystemClock(DateTimeOffset fakeDateTimeOffset) : ISystemClock
 {
-    public FakeSystemClock(DateTimeOffset fakeDateTimeOffset) => Now = fakeDateTimeOffset;
-
-    public DateTimeOffset Now { get; }
+    public DateTimeOffset Now => fakeDateTimeOffset;
 }
