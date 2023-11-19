@@ -7,7 +7,7 @@ using Npgsql;
 internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
 {
     private readonly IConfiguration _configuration;
-    private IDbConnection? _connection;
+    private NpgsqlConnection? _connection;
 
     public DatabaseConnectionFactory(IConfiguration configuration) => _configuration = configuration;
 
