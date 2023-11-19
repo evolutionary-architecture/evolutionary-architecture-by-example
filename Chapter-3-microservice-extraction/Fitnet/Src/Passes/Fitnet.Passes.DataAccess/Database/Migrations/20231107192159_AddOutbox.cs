@@ -9,6 +9,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 [ExcludeFromCodeCoverage]
 public partial class AddOutbox : Migration
 {
+    private static readonly string[] columns = new[] { "InboxMessageId", "InboxConsumerId", "SequenceNumber" };
+    private static readonly string[] columnsArray = new[] { "OutboxId", "SequenceNumber" };
+
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
     {
@@ -108,14 +111,14 @@ public partial class AddOutbox : Migration
             name: "IX_OutboxMessage_InboxMessageId_InboxConsumerId_SequenceNumber",
             schema: "Passes",
             table: "OutboxMessage",
-            columns: new[] { "InboxMessageId", "InboxConsumerId", "SequenceNumber" },
+            columns: columns,
             unique: true);
 
         migrationBuilder.CreateIndex(
             name: "IX_OutboxMessage_OutboxId_SequenceNumber",
             schema: "Passes",
             table: "OutboxMessage",
-            columns: new[] { "OutboxId", "SequenceNumber" },
+            columns: columnsArray,
             unique: true);
 
         migrationBuilder.CreateIndex(
