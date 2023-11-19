@@ -15,3 +15,7 @@ To mitigate these issues, we have decided to discontinue the InMemory Event Bus.
 * *Resilient Pattern Support*: The move to an OutOfProcess implementation will facilitate the application of resilient software design patterns.
 * *Learning Curve*: There may be a learning curve for some team members who were more familiar with the InMemory Event Bus. Resource allocation for training and upskilling may be required.
 * *Migration Effort*: The shift from InMemory to OutOfProcess will require refactoring and code changes.
+
+== References
+* MassTransit Outbox Configuration(https://masstransit.io/documentation/configuration/middleware/outbox)
+* MassTransit Transactional Outbox Explanation(https://masstransit.io/documentation/patterns/transactional-outbox)
