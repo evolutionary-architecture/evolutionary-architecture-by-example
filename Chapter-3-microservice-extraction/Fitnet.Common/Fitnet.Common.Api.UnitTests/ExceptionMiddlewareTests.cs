@@ -5,9 +5,7 @@ using Core.BusinessRules;
 
 public sealed class ExceptionMiddlewareTests
 {
-    private readonly HttpContext _context;
-
-    public ExceptionMiddlewareTests() => _context = GetHttpContext();
+    private readonly HttpContext _context = GetHttpContext();
 
     [Fact]
     internal async Task Given_business_rule_validation_exception_Then_returns_conflict()
@@ -45,8 +43,8 @@ public sealed class ExceptionMiddlewareTests
         responseMessage.Should().Be(exceptionMessage);
     }
 
-    private static HttpContext GetHttpContext() =>
-        new DefaultHttpContext
+    private static DefaultHttpContext GetHttpContext() =>
+        new()
         {
             Response =
             {
