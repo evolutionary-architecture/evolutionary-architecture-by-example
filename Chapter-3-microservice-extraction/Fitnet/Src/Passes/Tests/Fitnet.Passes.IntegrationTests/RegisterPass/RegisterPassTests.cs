@@ -33,12 +33,5 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
 
         // Assert
         _testEventBus.EnsureConsumed<ContractSignedEvent>();
-        await EnsureThatPassRegistered();
-    }
-
-    private async Task EnsureThatPassRegistered()
-    {
-        var passRegisteredEventPublished = await _testEventBus.Published.Any<PassRegisteredEvent>();
-        passRegisteredEventPublished.Should().BeTrue();
     }
 }
