@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="1.1.5" />
