@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 [ExcludeFromCodeCoverage]
 public partial class AddOutbox : Migration
 {
-    private static readonly string[] columns = new[] { "InboxMessageId", "InboxConsumerId", "SequenceNumber" };
-    private static readonly string[] columnsArray = new[] { "OutboxId", "SequenceNumber" };
+    private static readonly string[] columns = ["InboxMessageId", "InboxConsumerId", "SequenceNumber"];
+    private static readonly string[] columnsArray = ["OutboxId", "SequenceNumber"];
 
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)

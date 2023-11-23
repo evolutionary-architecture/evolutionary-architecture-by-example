@@ -4,12 +4,9 @@ using Microsoft.Extensions.Configuration;
 using System.Data;
 using Npgsql;
 
-internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
+internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : IDatabaseConnectionFactory
 {
-    private readonly IConfiguration _configuration;
     private NpgsqlConnection? _connection;
-
-    public DatabaseConnectionFactory(IConfiguration configuration) => _configuration = configuration;
 
     public IDbConnection Create()
     {
@@ -19,7 +16,7 @@ internal sealed class DatabaseConnectionFactory : IDatabaseConnectionFactory
         }
 
         _connection =
-            new NpgsqlConnection(_configuration.GetConnectionString("Reports"));
+            new NpgsqlConnection(configuration.GetConnectionString("Reports"));
         _connection.Open();
 
         return _connection;
