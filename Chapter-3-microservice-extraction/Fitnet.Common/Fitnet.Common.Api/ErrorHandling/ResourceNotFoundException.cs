@@ -1,8 +1,3 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 
-public sealed class ResourceNotFoundException : InvalidOperationException
-{
-    public ResourceNotFoundException(Guid id) : base($"Resource with '{id}' not found ")
-    {
-    }
-}
+public sealed class ResourceNotFoundException(Guid id) : InvalidOperationException($"Resource with '{id}' not found ");
