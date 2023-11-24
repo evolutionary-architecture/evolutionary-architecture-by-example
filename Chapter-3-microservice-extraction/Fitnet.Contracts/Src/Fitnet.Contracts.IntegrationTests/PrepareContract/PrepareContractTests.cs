@@ -8,14 +8,11 @@ using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 
-public sealed class PrepareContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
+public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
+    DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private readonly HttpClient _applicationHttpClient;
-
-    public PrepareContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
-        _applicationHttpClient = applicationInMemoryFactory
+    private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
             .WithTestEventBus()
             .CreateClient();
