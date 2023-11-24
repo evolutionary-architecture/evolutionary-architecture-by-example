@@ -3,27 +3,22 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Repo
 using Core;
 using Microsoft.EntityFrameworkCore;
 
-internal sealed class ContractsRepository : IContractsRepository
+internal sealed class ContractsRepository(ContractsPersistence persistence) : IContractsRepository
 {
-    private readonly ContractsPersistence _persistence;
-
-    public ContractsRepository(ContractsPersistence persistence) =>
-        _persistence = persistence;
-
     public async Task<Contract?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
-        await _persistence.Contracts.FindAsync(new object?[] { id }, cancellationToken);
+        await persistence.Contracts.FindAsync([id], cancellationToken);
 
     public async Task<Contract?> GetPreviousForCustomerAsync(Guid customerId, CancellationToken cancellationToken = default) =>
-        await _persistence.Contracts
+        await persistence.Contracts
             .OrderByDescending(contract => contract.PreparedAt)
             .SingleOrDefaultAsync(contract => contract.CustomerId == customerId, cancellationToken);
 
     public async Task AddAsync(Contract contract, CancellationToken cancellationToken = default)
     {
-        await _persistence.Contracts.AddAsync(contract, cancellationToken);
-        await _persistence.SaveChangesAsync(cancellationToken);
+        await persistence.Contracts.AddAsync(contract, cancellationToken);
+        await persistence.SaveChangesAsync(cancellationToken);
     }
 
     public async Task CommitAsync(CancellationToken cancellationToken = default) =>
-        await _persistence.SaveChangesAsync(cancellationToken);
+        await persistence.SaveChangesAsync(cancellationToken);
 }
