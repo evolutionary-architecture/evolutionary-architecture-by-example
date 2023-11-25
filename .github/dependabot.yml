@@ -3,18 +3,17 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/Chapter-1-initial-architecture/Src"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    open-pull-requests-limit: 5
 updates:
   - package-ecosystem: "nuget"
     directory: "/Chapter-2-modules-separation/Src" 
     schedule:
-      interval: "weekly"
-      day: "wednesday"
+      interval: "daily"
     open-pull-requests-limit: 5
 updates:
   - package-ecosystem: "nuget"
     directory: "/Chapter-3-microservice-extraction" 
     schedule:
-      interval: "weekly"
-      day: "wednesday"
+      interval: "daily"
     open-pull-requests-limit: 5
