@@ -17,3 +17,22 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/Chapter-3-microservice-extraction/Fitnet.Common" 
+    schedule:
+      interval: "daily"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/Chapter-3-microservice-extraction/Fitnet.Contracts" 
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/Chapter-3-microservice-extraction/Fitnet" 
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
