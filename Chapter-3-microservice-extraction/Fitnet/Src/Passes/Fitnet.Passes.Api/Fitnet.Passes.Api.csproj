@@ -15,10 +15,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="1.1.5" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="1.1.5" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.3" />
-    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.1" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="1.1.8" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="1.1.8" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.7" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.2" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
   </ItemGroup>
