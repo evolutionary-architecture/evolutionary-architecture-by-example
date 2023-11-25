@@ -329,16 +329,14 @@ https://www.linkedin.com/in/kamilbaczek/[Linkedin]
 https://github.com/kamilbaczek[Github]
 |===
 
-== Roadmap
-
-[cols=2*, options=header]
+[cols=3*, options=header]
 |===
-| Milestone | Date
+| Milestone | Date | Done
 
-| Repository Premiere :rocket: | 2023.10
-| Migration to .NET 8 :fire: | 2023.11
-| Chapter 4: Focus on Complexity :brain: | 2023.12
-| Fitness Functions :gear: | 2024.02
+| Repository Premiere :rocket: | 2023.10 | ✅
+| Migration to .NET 8 :fire: | 2023.11 | ✅
+| Chapter 4: Focus on Complexity :brain: | 2023.12 | 
+| Fitness Functions :gear: | 2024.02 |
 |===
 
 == 💬 Join our Community
