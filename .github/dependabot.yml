@@ -26,13 +26,13 @@ updates:
     open-pull-requests-limit: 5
 updates:
   - package-ecosystem: "nuget"
-    directory: "/Chapter-3-microservice-extraction/Fitnet.Contracts" 
+    directory: "/Chapter-3-microservice-extraction/Fitnet.Contracts/Src" 
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
 updates:
   - package-ecosystem: "nuget"
-    directory: "/Chapter-3-microservice-extraction/Fitnet" 
+    directory: "/Chapter-3-microservice-extraction/Fitnet/Src" 
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
