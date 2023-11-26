@@ -44,7 +44,5 @@ app.Run();
 namespace EvolutionaryArchitecture.Fitnet
 {
     [UsedImplicitly]
-    public sealed class Program
-    {
-    }
+    public sealed class Program;
 }
