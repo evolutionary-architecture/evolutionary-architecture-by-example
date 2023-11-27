@@ -309,6 +309,18 @@ Testing:
 - https://github.com/fluentassertions/fluentassertions[Fluent Assertions]
 - https://dotnet.testcontainers.org[Test Containers]
 
+== Videos 🎥
+
+You can learn the essentials of Evolutionary Architecture from these videos:
+
+=== Webinar from Architecture Weekly 🇬🇧
+
+In this webinar, Maciej "MJ" Jedrzejewski gives a detailed talk on Evolutionary Architecture. You can watch the recorded webinar link:https://www.architecture-weekly.com/p/webinar-11-maciej-mj-jedrzejewski[here].
+
+=== Presentation at Programistok 2023 Conference 🇵🇱
+
+This is a recorded presentation from the Programistok 2023 Conference, where Evolutionary Architecture was extensively explained. You can watch it on YouTube link:https://www.youtube.com/watch?v=tfCtM8D_DZ4&t=598s[here].
+
 == Authors
 
 [cols=2*,options=header]
