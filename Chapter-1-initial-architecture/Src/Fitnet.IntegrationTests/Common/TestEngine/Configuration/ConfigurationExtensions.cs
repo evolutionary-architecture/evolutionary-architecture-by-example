@@ -3,10 +3,9 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Con
 using System.Reflection;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus.InMemory;
-using EvolutionaryArchitecture.Fitnet.Common.SystemClock;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using SystemClock;
+using Microsoft.Extensions.Time.Testing;
 
 internal static class ConfigurationExtensions
 {
@@ -37,7 +36,7 @@ internal static class ConfigurationExtensions
     internal static WebApplicationFactory<T> SetFakeSystemClock<T>(this WebApplicationFactory<T> webApplicationFactory, DateTimeOffset fakeDateTimeOffset)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
-            services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
+            services.AddSingleton<TimeProvider>(new FakeTimeProvider(fakeDateTimeOffset))));
 
     internal static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IEventBus eventBusMock)
         where T : class =>
@@ -48,5 +47,4 @@ internal static class ConfigurationExtensions
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
             services.AddInMemoryEventBus(Assembly.GetExecutingAssembly())));
-
 }
