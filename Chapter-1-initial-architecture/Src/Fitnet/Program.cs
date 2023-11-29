@@ -1,3 +1,4 @@
+using EvolutionaryArchitecture.Fitnet.Common.Clock;
 using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Validation.Requests;
@@ -13,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEventBus();
 builder.Services.AddRequestsValidations();
-builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddClock();
 
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
