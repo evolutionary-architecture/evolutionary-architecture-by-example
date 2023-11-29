@@ -5,16 +5,16 @@ using Data.Database;
 using Passes.MarkPassAsExpired.Events;
 using Common.Events;
 using Common.Events.EventBus;
-using Common.SystemClock;
 
 internal sealed class PassExpiredEventHandler(
     IEventBus eventBus,
     OffersPersistence persistence,
-    ISystemClock systemClock) : IIntegrationEventHandler<PassExpiredEvent>
+    TimeProvider timeProvider) : IIntegrationEventHandler<PassExpiredEvent>
 {
     public async Task Handle(PassExpiredEvent @event, CancellationToken cancellationToken)
     {
-        var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, systemClock.Now);
+        var nowDate = timeProvider.GetUtcNow();
+        var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, nowDate);
         persistence.Offers.Add(offer);
         await persistence.SaveChangesAsync(cancellationToken);
 

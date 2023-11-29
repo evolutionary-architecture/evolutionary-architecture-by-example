@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.Passes.MarkPassAsExpired;
 using Data.Database;
 using Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
-using Common.SystemClock;
 
 internal static class MarkPassAsExpiredEndpoint
 {
@@ -12,7 +11,7 @@ internal static class MarkPassAsExpiredEndpoint
             async (
                 Guid id,
                 PassesPersistence persistence,
-                ISystemClock systemClock,
+                TimeProvider timeProvider,
                 IEventBus eventBus,
                 CancellationToken cancellationToken) =>
             {
@@ -22,7 +21,8 @@ internal static class MarkPassAsExpiredEndpoint
                     return Results.NotFound();
                 }
 
-                pass.MarkAsExpired(systemClock.Now);
+                var nowDate = timeProvider.GetUtcNow();
+                pass.MarkAsExpired(nowDate);
                 await persistence.SaveChangesAsync(cancellationToken);
                 await eventBus.PublishAsync(PassExpiredEvent.Create(pass.Id, pass.CustomerId), cancellationToken);
 

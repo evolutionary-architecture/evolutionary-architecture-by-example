@@ -1,6 +1,5 @@
 using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Common.SystemClock;
 using EvolutionaryArchitecture.Fitnet.Common.Validation.Requests;
 using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Offers;
@@ -12,9 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSystemClock();
 builder.Services.AddEventBus();
 builder.Services.AddRequestsValidations();
+builder.Services.AddSingleton(TimeProvider.System);
 
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
@@ -52,7 +51,5 @@ app.Run();
 namespace EvolutionaryArchitecture.Fitnet
 {
     [UsedImplicitly]
-    public sealed class Program
-    {
-    }
+    public sealed class Program;
 }
