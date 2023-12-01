@@ -1,13 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.DataRetriever;
 
-using Common.Core.SystemClock;
 using Dapper;
 using Dtos;
 using DataAccess;
 
 internal sealed class NewPassesRegistrationPerMonthReportDataRetriever(
     IDatabaseConnectionFactory databaseConnectionFactory,
-    ISystemClock clock) : INewPassesRegistrationPerMonthReportDataRetriever
+    TimeProvider timeProvider) : INewPassesRegistrationPerMonthReportDataRetriever
 {
     public async Task<IReadOnlyCollection<NewPassesRegistrationsPerMonthDto>> GetReportDataAsync(
         CancellationToken cancellationToken = default)
@@ -18,7 +17,7 @@ internal sealed class NewPassesRegistrationPerMonthReportDataRetriever(
                to_char(""Passes"".""From"", 'Month') AS ""{nameof(NewPassesRegistrationsPerMonthDto.MonthName)}"",
                COUNT(*) AS ""{nameof(NewPassesRegistrationsPerMonthDto.RegisteredPasses)}""
         FROM ""Passes"".""Passes""
-        WHERE EXTRACT(YEAR FROM ""Passes"".""From"") = '{clock.Now.Year}'
+        WHERE EXTRACT(YEAR FROM ""Passes"".""From"") = '{timeProvider.GetUtcNow().Year}'
         GROUP BY ""{nameof(NewPassesRegistrationsPerMonthDto.MonthName)}"", ""{nameof(NewPassesRegistrationsPerMonthDto.MonthOrder)}""
         ORDER BY ""{nameof(NewPassesRegistrationsPerMonthDto.MonthOrder)}""";
 

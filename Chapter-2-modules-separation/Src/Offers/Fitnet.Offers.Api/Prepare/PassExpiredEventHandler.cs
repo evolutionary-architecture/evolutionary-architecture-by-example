@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.Api.Prepare;
 
-using Common.Core.SystemClock;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Events.EventBus;
 using DataAccess;
@@ -10,11 +9,12 @@ using Passes.IntegrationEvents;
 internal sealed class PassExpiredEventHandler(
     IEventBus eventBus,
     OffersPersistence persistence,
-    ISystemClock systemClock) : IIntegrationEventHandler<PassExpiredEvent>
+    TimeProvider timeProvider) : IIntegrationEventHandler<PassExpiredEvent>
 {
     public async Task Handle(PassExpiredEvent @event, CancellationToken cancellationToken)
     {
-        var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, systemClock.Now);
+        var nowDate = timeProvider.GetUtcNow();
+        var offer = Offer.PrepareStandardPassExtension(@event.CustomerId, nowDate);
         persistence.Offers.Add(offer);
         await persistence.SaveChangesAsync(cancellationToken);
 

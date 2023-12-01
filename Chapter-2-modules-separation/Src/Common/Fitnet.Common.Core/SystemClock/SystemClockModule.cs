@@ -6,7 +6,7 @@ public static class SystemClockModule
 {
     public static IServiceCollection AddSystemClock(this IServiceCollection services)
     {
-        services.AddSingleton<ISystemClock, SystemClock>();
+        services.AddSingleton(TimeProvider.System);
 
         return services;
     }
