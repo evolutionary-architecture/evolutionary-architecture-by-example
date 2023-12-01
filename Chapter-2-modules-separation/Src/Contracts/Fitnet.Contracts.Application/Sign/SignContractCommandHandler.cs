@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.Sign;
 
 using Common.Api.ErrorHandling;
-using Common.Core.SystemClock;
 using Common.Infrastructure.Events.EventBus;
 using Core;
 using IntegrationEvents;
@@ -9,7 +8,7 @@ using IntegrationEvents;
 [UsedImplicitly]
 internal sealed class SignContractCommandHandler(
     IContractsRepository contractsRepository,
-    ISystemClock systemClock,
+    TimeProvider timeProvider,
     IEventBus eventBus) : IRequestHandler<SignContractCommand>
 {
     public async Task Handle(SignContractCommand command, CancellationToken cancellationToken)
@@ -17,7 +16,8 @@ internal sealed class SignContractCommandHandler(
         var contract = await contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
 
-        contract.Sign(command.SignedAt, systemClock.Now);
+        var nowDate = timeProvider.GetUtcNow();
+        contract.Sign(command.SignedAt, nowDate);
         await contractsRepository.CommitAsync(cancellationToken);
         var @event = ContractSignedEvent.Create(contract.Id,
             contract.CustomerId,
