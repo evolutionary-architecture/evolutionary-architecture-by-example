@@ -4,6 +4,7 @@ using EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
 using Common.ErrorHandling;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using NSubstitute;
@@ -28,14 +29,14 @@ public sealed class GlobalExceptionHandlerTests
         _context.Response.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Should().Be(exceptionMessage);
+        responseMessage.Title.Should().Be(exceptionMessage);
     }
 
     [Fact]
     internal async Task Given_other_than_business_rule_validation_exception_Then_returns_internal_server_error()
     {
         // Arrange
-        const string exceptionMessage = "Some exception";
+        const string exceptionMessage = "Server Error";
         var middleware =
             new GlobalExceptionHandler(_logger);
 
@@ -46,7 +47,7 @@ public sealed class GlobalExceptionHandlerTests
         _context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Should().Be(exceptionMessage);
+        responseMessage.Title.Should().Be(exceptionMessage);
     }
 
     private static DefaultHttpContext GetHttpContext() =>
@@ -58,13 +59,13 @@ public sealed class GlobalExceptionHandlerTests
             }
         };
 
-    private async Task<string> GetExceptionResponseMessage()
+    private async Task<ProblemDetails> GetExceptionResponseMessage()
     {
         _context.Response.Body.Seek(0, SeekOrigin.Begin);
         using var streamReader = new StreamReader(_context.Response.Body);
         var responseBody = await streamReader.ReadToEndAsync();
-        var responseContent = JsonConvert.DeserializeObject<dynamic>(responseBody);
+        var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(responseBody);
 
-        return responseContent != null ? (string)responseContent.Message : string.Empty;
+        return problemDetails!;
     }
 }
