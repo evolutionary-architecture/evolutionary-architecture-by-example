@@ -10,6 +10,7 @@ using EvolutionaryArchitecture.Fitnet.Reports;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddExceptionHandling();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEventBus();
