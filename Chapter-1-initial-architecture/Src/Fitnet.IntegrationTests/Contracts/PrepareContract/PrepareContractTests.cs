@@ -4,7 +4,7 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
-using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
+using Microsoft.AspNetCore.Mvc;
 
 public sealed class PrepareContractTests(
     WebApplicationFactory<Program> applicationInMemoryFactory,
@@ -44,9 +44,9 @@ public sealed class PrepareContractTests(
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
 
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Contract can not be prepared for a person who is not adult");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should().Be("Contract can not be prepared for a person who is not adult");
     }
 
     [Fact]
@@ -65,9 +65,9 @@ public sealed class PrepareContractTests(
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
 
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Customer height must fit maximum limit for gym instruments");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should().Be("Customer height must fit maximum limit for gym instruments");
     }
 
     [Fact]
@@ -83,9 +83,9 @@ public sealed class PrepareContractTests(
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Previous contract must be signed by the customer");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should().Be("Previous contract must be signed by the customer");
     }
 
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)

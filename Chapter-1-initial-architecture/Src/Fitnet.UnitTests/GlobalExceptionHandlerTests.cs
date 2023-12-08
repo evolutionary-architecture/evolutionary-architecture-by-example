@@ -4,13 +4,14 @@ using EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
 using Common.ErrorHandling;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using NSubstitute;
 
-public sealed class ExceptionMiddlewareTests
+public sealed class GlobalExceptionHandlerTests
 {
-    private readonly HttpContext _context;
-
-    public ExceptionMiddlewareTests() => _context = GetHttpContext();
+    private readonly HttpContext _context = GetHttpContext();
+    private readonly ILogger<GlobalExceptionHandler> _logger = Substitute.For<ILogger<GlobalExceptionHandler>>();
 
     [Fact]
     internal async Task Given_business_rule_validation_exception_Then_returns_conflict()
@@ -18,10 +19,10 @@ public sealed class ExceptionMiddlewareTests
         // Arrange
         const string exceptionMessage = "Business rule not met";
         var middleware =
-            new ExceptionMiddleware(context => throw new BusinessRuleValidationException(exceptionMessage));
+            new GlobalExceptionHandler(_logger);
 
         // Act
-        await middleware.InvokeAsync(_context);
+        await middleware.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
 
         // Assert
         _context.Response.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
@@ -36,10 +37,10 @@ public sealed class ExceptionMiddlewareTests
         // Arrange
         const string exceptionMessage = "Some exception";
         var middleware =
-            new ExceptionMiddleware(context => throw new InvalidOperationException(exceptionMessage));
+            new GlobalExceptionHandler(_logger);
 
         // Act
-        await middleware.InvokeAsync(_context);
+        await middleware.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
 
         // Assert
         _context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
