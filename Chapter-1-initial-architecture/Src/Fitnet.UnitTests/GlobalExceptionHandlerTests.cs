@@ -5,6 +5,7 @@ using Common.ErrorHandling;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 public sealed class GlobalExceptionHandlerTests
 {
@@ -61,8 +62,7 @@ public sealed class GlobalExceptionHandlerTests
         _context.Response.Body.Seek(0, SeekOrigin.Begin);
         using var streamReader = new StreamReader(_context.Response.Body);
         var responseBody = await streamReader.ReadToEndAsync();
-        var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(responseBody);
-
+        var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(responseBody);
         return problemDetails!;
     }
 }
