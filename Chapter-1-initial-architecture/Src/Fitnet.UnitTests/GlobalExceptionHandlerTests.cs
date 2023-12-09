@@ -3,11 +3,8 @@ namespace EvolutionaryArchitecture.Fitnet.UnitTests;
 using EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
 using Common.ErrorHandling;
 using System.Net;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using NSubstitute;
 
 public sealed class GlobalExceptionHandlerTests
 {
@@ -19,11 +16,11 @@ public sealed class GlobalExceptionHandlerTests
     {
         // Arrange
         const string exceptionMessage = "Business rule not met";
-        var middleware =
+        var exceptionHandler =
             new GlobalExceptionHandler(_logger);
 
         // Act
-        await middleware.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
+        await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
 
         // Assert
         _context.Response.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
@@ -37,11 +34,11 @@ public sealed class GlobalExceptionHandlerTests
     {
         // Arrange
         const string exceptionMessage = "Server Error";
-        var middleware =
+        var exceptionHandler =
             new GlobalExceptionHandler(_logger);
 
         // Act
-        await middleware.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
+        await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
 
         // Assert
         _context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
@@ -64,7 +61,7 @@ public sealed class GlobalExceptionHandlerTests
         _context.Response.Body.Seek(0, SeekOrigin.Begin);
         using var streamReader = new StreamReader(_context.Response.Body);
         var responseBody = await streamReader.ReadToEndAsync();
-        var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(responseBody);
+        var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(responseBody);
 
         return problemDetails!;
     }
