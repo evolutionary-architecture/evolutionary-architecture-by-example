@@ -25,5 +25,11 @@
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.IntegrationTests" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\Docs\Contracts\Api\Contracts.http">
+        <Link>Contracts.http</Link>
+      </Content>
+    </ItemGroup>
     
 </Project>

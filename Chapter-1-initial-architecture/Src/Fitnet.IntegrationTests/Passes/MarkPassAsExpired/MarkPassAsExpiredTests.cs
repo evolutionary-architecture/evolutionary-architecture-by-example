@@ -9,7 +9,8 @@ using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.GetAllPasses;
 using Fitnet.Passes.MarkPassAsExpired.Events;
 
-public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>,
+    IClassFixture<DatabaseContainer>
 {
     private static readonly StringContent EmptyContent = new(string.Empty);
 
@@ -82,12 +83,18 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
 
     private async Task<Guid> GetCreatedPass(Guid customerId)
     {
-        var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
-        var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
-        var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
+        var createdPass = await CreatedPass(customerId);
         createdPass.Should().NotBeNull();
 
         return createdPass!.Id;
+    }
+
+    private async Task<PassDto?> CreatedPass(Guid customerId)
+    {
+        var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
+        var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
+        var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
+        return createdPass;
     }
 
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
