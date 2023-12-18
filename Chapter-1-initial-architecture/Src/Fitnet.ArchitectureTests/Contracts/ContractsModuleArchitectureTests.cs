@@ -32,6 +32,6 @@ public class ContractsModuleArchitectureTests
         var validationResult = rules!.GetResult();
 
         // Assert
-        validationResult.IsSuccessful.Should()!.BeTrue();
+        validationResult.FailingTypes.Should()!.BeNull();
     }
 }
