@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.IntegrationTests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.UnitTests", "Fitnet.UnitTests\Fitnet.UnitTests.csproj", "{2AF7D557-C925-4EEE-A935-8FB8D0B1A5C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.ArchitectureTests", "Fitnet.ArchitectureTests\Fitnet.ArchitectureTests.csproj", "{DFBDEF84-0072-4A0B-ABD3-3F14569B3C54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{2AF7D557-C925-4EEE-A935-8FB8D0B1A5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF7D557-C925-4EEE-A935-8FB8D0B1A5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AF7D557-C925-4EEE-A935-8FB8D0B1A5C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFBDEF84-0072-4A0B-ABD3-3F14569B3C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFBDEF84-0072-4A0B-ABD3-3F14569B3C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFBDEF84-0072-4A0B-ABD3-3F14569B3C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFBDEF84-0072-4A0B-ABD3-3F14569B3C54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
