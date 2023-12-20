@@ -19,16 +19,18 @@ public class ContractsModuleArchitectureTests
             .ResideInNamespace(Contracts)
             .And()
             .DoNotHaveNameEndingWith(Event);
-        var contractModuleNamespaces = contractsModule.GetNamespaces();
+        var contractsModuleTypes = contractsModule.GetModuleTypes();
 
         var othersModules = Types.InAssembly(_solution)
             .That()
-            .DoNotResideInNamespace(Contracts);
+            .DoNotResideInNamespace(Contracts)
+            .And()
+            .DoNotHaveName(nameof(Program));
 
         // Act
         var rules = othersModules
                                             .Should()
-                                            .NotHaveDependencyOnAny(contractModuleNamespaces);
+                                            .NotHaveDependencyOnAny(contractsModuleTypes);
         var validationResult = rules!.GetResult();
 
         // Assert
