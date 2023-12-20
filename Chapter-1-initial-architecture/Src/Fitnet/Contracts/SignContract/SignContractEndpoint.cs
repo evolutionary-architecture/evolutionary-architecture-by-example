@@ -9,7 +9,8 @@ internal static class SignContractEndpoint
 {
     internal static void MapSignContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Sign,
             async (Guid id, SignContractRequest request,
-                ContractsPersistence persistence, IEventBus bus,
+                ContractsPersistence persistence,
+                IEventBus bus,
                 TimeProvider timeProvider,
                 CancellationToken cancellationToken) =>
             {
