@@ -4,10 +4,10 @@ using NetArchTest.Rules;
 
 internal static class PredicatesExtensions
 {
-    internal static string[] GetNamespaces(this PredicateList predicates) =>
+    internal static string[] GetModuleTypes(this PredicateList predicates) =>
         predicates
             .GetTypes()
-            .Select(type => type.Namespace)
+            .Select(type => type.FullName)
             .Distinct()
             .ToArray()!;
 }
