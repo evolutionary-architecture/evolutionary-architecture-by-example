@@ -9,6 +9,7 @@
 
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-1-workflow.yml/badge.svg[Build Status]
 
+image:https://codecov.io/gh/evolutionary-architecture/evolutionary-architecture-by-example/branch/main/graph/badge.svg[Codecov, link=https://codecov.io/gh/evolutionary-architecture/evolutionary-architecture-by-example]
 
 == Case
 
