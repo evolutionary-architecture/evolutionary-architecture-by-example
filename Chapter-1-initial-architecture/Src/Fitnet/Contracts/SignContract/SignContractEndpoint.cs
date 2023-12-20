@@ -35,8 +35,7 @@ internal static class SignContractEndpoint
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Signs prepared contract",
-            Description =
-                "This endpoint is used to sign prepared contract by customer.",
+            Description = "This endpoint is used to sign prepared contract by customer."
         })
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
