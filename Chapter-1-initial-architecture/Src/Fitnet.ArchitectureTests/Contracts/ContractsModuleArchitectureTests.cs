@@ -11,7 +11,7 @@ public class ContractsModuleArchitectureTests
     private readonly Assembly _solution = typeof(Program).Assembly;
 
     [Fact]
-    internal void Modules_Should_Only_Communicate_With_Contracts_Module_Via_Events()
+    internal void Modules_Should_Not_Use_Contract_Module_Internals_Rather_Communicate_Via_Events()
     {
         // Arrange
         var contractsModule = Types.InAssembly(_solution)
