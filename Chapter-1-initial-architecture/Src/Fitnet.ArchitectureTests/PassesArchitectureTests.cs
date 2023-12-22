@@ -12,7 +12,7 @@ public class PassesArchitectureTests
     public void PassesShouldNotHaveDependencyOnModule(string moduleName)
     {
         // Arrange
-        var contractsModule = Solution.Types
+        var passesModule = Solution.Types
             .That()
             .ResideInNamespace(Modules.Passes);
 
@@ -22,7 +22,7 @@ public class PassesArchitectureTests
         var forbiddenModuleTypes = forbiddenModule.GetModuleTypes();
 
         // Act
-        var rules = contractsModule
+        var rules = passesModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
         var validationResult = rules!.GetResult();
@@ -35,7 +35,7 @@ public class PassesArchitectureTests
     public void PassesShouldCommunicateWithContractViaEvents()
     {
         // Arrange
-        var contractsModule = Solution.Types
+        var passesModule = Solution.Types
             .That()
             .ResideInNamespace(Modules.Passes);
 
@@ -47,7 +47,7 @@ public class PassesArchitectureTests
         var forbiddenModuleTypes = shouldModule.GetModuleTypes();
 
         // Act
-        var rules = contractsModule
+        var rules = passesModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
         var validationResult = rules!.GetResult();
