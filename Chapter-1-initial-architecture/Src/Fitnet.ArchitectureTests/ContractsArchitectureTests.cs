@@ -2,7 +2,7 @@
 
 using Common;
 
-public class ContractsArchitectureTests
+public sealed class ContractsArchitectureTests
 {
     private readonly Assembly _solution = typeof(Program).Assembly;
 
@@ -10,7 +10,7 @@ public class ContractsArchitectureTests
     [InlineData(Modules.Passes)]
     [InlineData(Modules.Offers)]
     [InlineData(Modules.Reports)]
-    public void ContractsShouldNotHaveDependencyOnModule(string moduleName)
+    internal void Contracts_should_not_have_dependency_on_module(string moduleName)
     {
         // Arrange
         var contractsModule = Types.InAssembly(_solution)
