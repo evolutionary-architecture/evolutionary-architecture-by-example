@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests;
 
 using Common;
 
-public class ReportsArchitectureTests
+public class ReportsArchitectureTestss
 {
     [Theory]
     [InlineData(Modules.Contracts)]
