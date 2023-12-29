@@ -2,14 +2,14 @@ namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests;
 
 using Common;
 
-public class PassesArchitectureTests
+public sealed class PassesArchitectureTests
 {
     private const string Event = "Event";
 
     [Theory]
     [InlineData(Modules.Offers)]
     [InlineData(Modules.Reports)]
-    public void PassesShouldNotHaveDependencyOnModule(string moduleName)
+    internal void Passes_should_not_have_dependency_on_module(string moduleName)
     {
         // Arrange
         var passesModule = Solution.Types
@@ -32,7 +32,7 @@ public class PassesArchitectureTests
     }
 
     [Fact]
-    public void PassesShouldCommunicateWithContractViaEvents()
+    internal void PassesShouldCommunicateWithContractViaEvents()
     {
         // Arrange
         var passesModule = Solution.Types

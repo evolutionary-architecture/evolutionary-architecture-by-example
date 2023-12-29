@@ -2,14 +2,14 @@
 
 using Common;
 
-public class OffersArchitectureTests
+public sealed class OffersArchitectureTests
 {
     private const string Event = "Event";
 
     [Theory]
     [InlineData(Modules.Contracts)]
     [InlineData(Modules.Reports)]
-    public void OffersShouldNotHaveDependencyOnModule(string moduleName)
+    internal void Offers_should_not_have_dependency_on_module(string moduleName)
     {
         // Arrange
         var offersModule = Solution.Types

@@ -5,7 +5,7 @@ using Common;
 public sealed class InterfacesConventionsTests
 {
     [Fact]
-    internal void ShouldStartWithI()
+    internal void Should_start_with_I()
     {
         // Arrange
         var rules = Solution.Types.That()

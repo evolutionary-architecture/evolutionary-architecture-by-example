@@ -7,7 +7,7 @@ public sealed class EndpointsConventionsTests
     private const string Endpoint = "Endpoint";
 
     [Fact]
-    internal void ShouldBeStatic()
+    internal void Should_be_static()
     {
         // Arrange
         var rules = Solution.Types.That()

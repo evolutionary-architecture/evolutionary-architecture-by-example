@@ -2,13 +2,13 @@ namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests;
 
 using Common;
 
-public class ReportsArchitectureTests
+public sealed class ReportsArchitectureTests
 {
     [Theory]
     [InlineData(Modules.Contracts)]
     [InlineData(Modules.Passes)]
     [InlineData(Modules.Offers)]
-    public void ReportsShouldNotHaveDependencyOnModule(string moduleName)
+    internal void Reports_should_not_have_dependency_on_module(string moduleName)
     {
         // Arrange
         var reportsModule = Solution.Types
