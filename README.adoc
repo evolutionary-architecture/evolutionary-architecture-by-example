@@ -347,7 +347,7 @@ https://github.com/kamilbaczek[Github]
 
 | Repository Premiere :rocket: | 2023.10 | ✅
 | Migration to .NET 8 :fire: | 2023.11 | ✅
-| Architecture Tests :wrench: | 2023.12 |
+| Architecture Tests :wrench: | 2023.12 | ✅
 | Chapter 4: Focus on Complexity :brain: | 2024.03 |
 | Fitness Functions :gear: | 2024.05 |
 |===
