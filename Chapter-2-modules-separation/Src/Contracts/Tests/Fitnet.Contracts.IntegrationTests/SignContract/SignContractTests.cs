@@ -2,12 +2,12 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContrac
 
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
-using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 using Api.Sign;
 using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
+using Microsoft.AspNetCore.Mvc;
 using PrepareContract;
 
 public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
@@ -70,9 +70,9 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
 
-        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should()
+        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
 
