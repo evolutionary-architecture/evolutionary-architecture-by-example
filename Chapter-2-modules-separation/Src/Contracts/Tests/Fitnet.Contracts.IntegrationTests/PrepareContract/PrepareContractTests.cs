@@ -2,10 +2,10 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareCont
 
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
-using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
 using Api.Prepare;
 using Common.IntegrationTests.TestEngine;
+using Microsoft.AspNetCore.Mvc;
 
 public sealed class PrepareContractTests(
     FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
@@ -43,11 +43,10 @@ public sealed class PrepareContractTests(
             await ApplicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Contract can not be prepared for a person who is not adult");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should()
+            .Be("Contract can not be prepared for a person who is not adult");
     }
 
     [Fact]
@@ -64,11 +63,10 @@ public sealed class PrepareContractTests(
             await ApplicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Customer height must fit maximum limit for gym instruments");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should()
+            .Be("Customer height must fit maximum limit for gym instruments");
     }
 
     [Fact]
@@ -83,10 +81,10 @@ public sealed class PrepareContractTests(
         var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should().Be("Previous contract must be signed by the customer");
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.Should()
+            .Be("Previous contract must be signed by the customer");
     }
 
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)
