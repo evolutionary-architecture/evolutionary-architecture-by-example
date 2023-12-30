@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSystemClock();
+builder.Services.AddExceptionHandling();
 builder.Services.AddCommonInfrastructure();
 builder.Services.AddContracts(builder.Configuration, Module.Contracts);
 builder.Services.AddPasses(builder.Configuration, Module.Passes);
@@ -22,7 +23,6 @@ builder.Services.AddReports(Module.Reports);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -47,7 +47,5 @@ app.Run();
 namespace EvolutionaryArchitecture.Fitnet
 {
     [UsedImplicitly]
-    public sealed class Program
-    {
-    }
+    public sealed class Program;
 }
