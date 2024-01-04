@@ -20,6 +20,7 @@
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.UnitTests" />
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.IntegrationTests" />
+        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.ArchitectureTests" />
     </ItemGroup>
 
     <ItemGroup>

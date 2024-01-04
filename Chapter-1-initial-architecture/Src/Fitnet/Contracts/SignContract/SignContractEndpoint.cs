@@ -4,6 +4,7 @@ using Data.Database;
 using Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Common.Validation.Requests;
+using PrepareContract.BusinessRules;
 
 internal static class SignContractEndpoint
 {
@@ -14,6 +15,11 @@ internal static class SignContractEndpoint
                 TimeProvider timeProvider,
                 CancellationToken cancellationToken) =>
             {
+                var test = new ContractCanBePreparedOnlyForAdultRule(10);
+#pragma warning disable S1481
+                var _ = test.Error;
+#pragma warning restore S1481
+
                 var contract =
                     await persistence.Contracts.FindAsync(new object[] { id }, cancellationToken: cancellationToken);
 
