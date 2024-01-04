@@ -2,6 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
 
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using Npgsql;
 
 internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : IDatabaseConnectionFactory
@@ -22,6 +23,7 @@ internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : 
         return _connection;
     }
 
+    [ExcludeFromCodeCoverage]
     public void Dispose()
     {
         if (_connection is { State: ConnectionState.Open })
