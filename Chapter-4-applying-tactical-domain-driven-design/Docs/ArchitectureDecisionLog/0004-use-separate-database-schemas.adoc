@@ -1,0 +1,19 @@
+= 4. Use separate database schemas
+
+Date: 2023-04-15
+
+== Problem
+
+We need to determine an effective approach for storing and retrieving data in our application while maintaining modularity and scalability.
+
+== Decision
+
+We decided to use a single relational database, divided into separate schemas for each module. Each module's data will be fully encapsulated within its own schema, preventing any shared data between modules.
+
+== Consequences
+
+- By isolating data within each module's schema, we prevent potential data entanglement between modules, reducing the risk of future complications
+- As each schema can be easily extracted into a separate database if needed, we can scale individual schemas based on their specific requirements without affecting other modules
+- By dividing the database into smaller schemas, developers can focus on a more manageable number of tables within each module (e.g., 25 tables per schema instead of 100 tables in a single schema)
+- Managing separate schemas for each module may result in additional maintenance efforts, such as updating and migrating schemas individually
+- Accessing or aggregating data across multiple modules may become more complex, requiring careful consideration of inter-module communication and data sharing strategies

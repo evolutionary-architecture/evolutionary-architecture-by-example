@@ -1,0 +1,27 @@
+= 3. Use modules
+
+Date: 2023-04-15
+
+== Problem
+
+We need to determine an effective approach for implementing the discovered subdomains in our solution while maintaining modularity and scalability.
+
+== Decision
+
+We decided that, in the initial phase of the project, we will assume that each subdomain corresponds to a single bounded context. Each bounded context will be represented by a module with its own namespace, such as:
+
+- Passes
+- Contracts
+- Offers
+- Reports
+
+Modules cannot access other modules by reference, ensuring that each module remains independent and self-contained.
+
+== Consequences
+
+- Each module encapsulates its processes within its namespace, promoting separation of concerns
+- This approach enhances modularity within our monolithic application, making it easier to manage and maintain
+- If needed, extracting modules into separate projects or microservices becomes straightforward, as each module is represented by a single namespace
+- Developers may need time to learn how to effectively modularize a monolithic application, particularly if they have no prior experience with this approach
+- Managing multiple independent modules may increase complexity, particularly when it comes to communication and data sharing between modules
+- If significant changes need to be made across the entire application, such as implementing a new API or database technology, this approach may result in slower development and deployment times, as changes will need to be made to each module individually

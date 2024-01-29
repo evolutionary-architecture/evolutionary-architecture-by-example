@@ -1,0 +1,18 @@
+= 5. Use vertical slices
+
+Date: 2023-04-15
+
+== Problem
+
+We need to determine an efficient way to structure and organize the application logic in our codebase.
+
+== Decision
+
+We decided to adopt a vertical slices architecture, wherein each business process is represented entirely within its own namespace. This approach eliminates the need for traditional technical folders like Controllers, Entities, Commands, and Queries. Instead, all related code for a specific process is grouped together within the corresponding namespace.
+
+== Consequences
+
+- With all related code organized in a single namespace, it becomes easier to extract or refactor functionalities as needed
+- Understanding the codebase becomes more straightforward when related code is grouped together, as opposed to being spread across multiple namespaces
+- The vertical slices architecture emphasizes business processes rather than technical aspects, ensuring that the codebase remains aligned with the business domain
+- Grouping code by process may result in some code duplication when there is shared functionality across multiple processes

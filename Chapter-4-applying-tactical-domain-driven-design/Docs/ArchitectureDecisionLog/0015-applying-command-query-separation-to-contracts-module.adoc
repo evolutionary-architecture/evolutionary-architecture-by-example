@@ -1,0 +1,23 @@
+= 15. Use command query separation to contracts module
+
+Date: 2023-05-28
+
+== Problem
+Based on our findings, we have identified that the contracts module is likely to experience significant growth in business logic. 
+Our estimations indicate that there will be a higher frequency of write operations compared to read operations in this module.
+
+== Decision
+To address this, our objective is to separate the write and read processes in order to mitigate complexity and streamline the system.
+To implement command query separation (CQS), we have chosen to use the MediatR library, which provides a quick way to introduce this separation. 
+MediatR is a popular library in the .NET ecosystem that helps in implementing the Mediator pattern, which is commonly used to decouple components in an application.
+
+== Consequences
+- Additional layer and reduced complexity.
+- Clear responsibilities for write and read processes.
+- Lays the foundation for a potential future transition to full CQRS architecture.
+- Independent optimization of write and read operations.
+- Ability to leverage different technologies for write and read processes.
+- Clear division of responsibilities promotes smoother collaboration among developers.
+- Simplifies comprehension of code logic and behavior for write and read processes.
+- MediatR introduces some overhead to performance, but it is an acceptable trade-off.
+- The module entry level is increased as a result of applying the new pattern.

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    
+    <PropertyGroup>
+      <UserSecretsId>90cc6bd5-351d-43ab-ba24-41bef6620dc9</UserSecretsId>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Offers\Fitnet.Offers.Api\Fitnet.Offers.Api.csproj" />
+      <ProjectReference Include="..\Passes\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />
+      <ProjectReference Include="..\Reports\Fitnet.Reports\Fitnet.Reports.csproj" />
+    </ItemGroup>
+    
+</Project>

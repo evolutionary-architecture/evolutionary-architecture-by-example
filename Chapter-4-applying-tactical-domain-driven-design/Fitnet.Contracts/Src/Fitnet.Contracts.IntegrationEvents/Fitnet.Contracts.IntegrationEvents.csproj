@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/evolutionary-architecture/evolutionary-architecture-by-example</RepositoryUrl>
+    <Version>1.0.7</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="1.1.8" />
+  </ItemGroup>
+</Project>

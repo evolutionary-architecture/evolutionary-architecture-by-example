@@ -1,0 +1,23 @@
+= 19. Adopt Out-of-Process Message Queue
+
+Date: 2023-07-23
+
+== Problem
+Our application has modularized its monolithic architecture, converting the Contracts module into a separate microservice. Until now, our monolith has been leveraging in-memory queues for internal communication.
+
+== Decision
+Due to the modular shift of the Contracts module towards a microservice orientation, it has become imperative to implement an out-of-process message queue. This approach will facilitate more stable and reliable communication between the monolith and the microservice.
+
+== Consequences
+
+* *Independence*: Each team can work, manage, and deploy their services independently, allowing the contracts team to focus solely on their module's functionality and performance.
+
+* *Reduced Deployment Risk for Monolith*: By separating the contracts module, changes in this area no longer impact the monolithic application, lowering the deployment risk for the rest of the system.
+
+* *Easier Concurrent User Handling*: As the contracts module will be its own microservice, it can be scaled independently, making it easier to handle a large number of concurrent users without affecting other parts of the application.
+
+* *Improved Agility*: Teams can make frequent updates to their respective microservices without the need to coordinate with other teams, enhancing the overall agility of our development process.
+
+* *Increased Complexity*: Introducing microservices adds complexity in terms of deployment, service communication, and data management. Appropriate strategies for handling these challenges should be defined.
+
+* *Operational Overhead*: Each microservice will necessitate its own continuous delivery pipeline, possibly leading to increased operational overhead. However, the benefits of better module management outweigh this drawback.

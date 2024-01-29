@@ -1,0 +1,19 @@
+= 2. Use one project
+
+Date: 2023-04-15
+
+== Problem
+
+We need to determine the most suitable solution structure for the initial phase of our project.
+
+== Decision
+
+We will employ a single project structure for production code, along with two separate test projects for integration and unit tests.
+
+== Consequences
+
+- The straightforward organization enables team members to quickly familiarize themselves with the codebase
+- By simplifying the solution architecture at the outset, the team can prioritize delivering new features over addressing architectural concerns
+- This approach allows us to make architectural pattern decisions for each module as needed, responding to real requirements instead of preemptively committing to specific patterns
+- If not managed properly, the single project structure could become cluttered and disorganized, necessitating timely extraction into separate projects
+- As the project grows, managing and maintaining a single project may become increasingly complex, potentially requiring a transition to a more modular structure
