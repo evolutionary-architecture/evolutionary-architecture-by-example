@@ -1,0 +1,20 @@
+= 6. Use Docker
+
+Date: 2023-04-15
+
+== Problem
+
+We need a consistent way to manage dependencies, simplify application deployment, and ensure that our application runs consistently across different environments.
+
+== Decision
+
+We decided to use Docker, a containerization platform that enables us to package our application and its dependencies into lightweight, portable containers. Docker containers are self-contained, easily shareable, and provide a consistent environment for our application regardless of the underlying infrastructure.
+
+== Consequences
+
+- Containers encapsulate the application and its dependencies, making it easier to manage and maintain
+- Docker ensures that our application runs consistently across different environments (development, testing, and production) by packaging it with its runtime environment
+- Cntainers can be easily deployed to any environment that supports Docker, streamlining the deployment process and reducing potential deployment issues
+- Sharing Docker images or Dockerfiles allows team members to quickly set up their development environment with the correct dependencies and configurations
+- Developers may need time to learn Docker and its best practices
+- Introducing Docker adds another layer of complexity to our application infrastructure, which could potentially result in new challenges and issues

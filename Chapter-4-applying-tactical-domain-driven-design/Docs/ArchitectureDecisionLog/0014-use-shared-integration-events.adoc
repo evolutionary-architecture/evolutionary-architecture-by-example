@@ -1,0 +1,17 @@
+= 14. Use shared integration events
+
+Date: 2023-05-24
+
+== Problem
+Modules must communicate with each other in some way. We started our application development with in-memory event bus and would like to continue with it until the need to extract a microservice. When all modules were in one solution, it was easy to define one event and share them between sender and receiver. With modular-monolith we had to decide what to do - should we keep local contracts in each module (and then need to redevelop in-memory event bus or replace it with some message queue) or just create another project for a module which sends the integration event (and that can be referenced by receiver).
+
+== Decision
+
+After careful consideration, the team has decided to apply the second approach to simplify current development. Module that sends the integration event will have its own project with integration events called Module.IntegrationEvents. This way, the receiving module can reference only this project and reuse the event definition. When there will be a need to replace in-memory queue, we will consider moving to local contracts (each module has its own event definition).
+
+== Consequences
+
+- One contract - if it requires any changes, it is changed in one place
+- Simple implementation over what we have today
+- Receiving module must reference another module (tight coupling) - we need to be very careful here as it might end up with spaghetti
+- Receiving module might not want all the data from the sender's event but has to use the defined contract - data redundancy

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="1.1.8" />
+  </ItemGroup>
+  
+</Project>

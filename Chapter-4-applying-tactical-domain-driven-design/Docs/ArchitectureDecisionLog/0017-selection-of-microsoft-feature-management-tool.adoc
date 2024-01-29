@@ -1,0 +1,25 @@
+= 17. Selection of Microsoft's Feature Management Tool
+
+Date: 2023-06-20
+
+== Problem
+We have to choose feature management liblary. The comparison between Microsoft, LaunchDarkly, and Unleash is shown below:
+
+[cols="1,1,1,1"]
+|===
+| Service | Ease of Implementation | Infrastructure Requirement | Cost | Integration
+| Microsoft | Simple | No separate deployment | Integrated with Azure subscription | Highly compatible with Azure services
+| LaunchDarkly | Complex | Subscription includes management | Subscription required (additional cost) | Supports various platforms but needs setup
+| Unleash | Moderate | Standalone server required (added infrastructure cost) | Open source, but premium options available | Various client SDKs supported, but requires setup
+|===
+
+== Decision
+After careful consideration of all the available options, we made the decision to use Microsoft's Feature Management tool.
+
+== Consequences
+- *Cost:* Microsoft's Feature Management tool is free, which aligns with our budget constraints and cost goals. With cost being a significant determining factor, this immediately gave Microsoft's tool an edge over LaunchDarkly, which requires a subscription cost.
+- *Ease of Implementation:* We found that Microsoft's tool was the easiest to implement out of the three options we considered. This allows us to save significant time and resources, allowing us to stay focused on our core functionality rather than on setting up and managing a feature management platform.
+- *Simplicity:* While all three tools boast a rich set of features, for the current scope and requirements of our project, Microsoft's Feature Management toolkit provides a level of simplicity that matches our needs. It provides us with all the essential features we require, without the overhead of unnecessary complexity.
+- *Configuration:* Microsoft's Feature Management tool allows us to use files for configuration, which simplifies the management and deployment process. This ease of configuration reduces the potential for errors and decreases the time spent in managing configurations. 
+
+Overall, the combination of free cost, easy implementation, sufficient simplicity and straightforward configuration led us to choose Microsoft Azure's Feature Management tool for our project.

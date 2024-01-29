@@ -1,0 +1,21 @@
+= 21. Transitioning Fully From InMemory to OutOfProcess Event Bus
+
+Date: 2023-07-24
+
+== Problem
+We presently support two simultaneous event bus implementations: an InMemory Event Bus and an OutOfProcess Event Bus. Handling both implementations increases the complexity of our system and demands extra work. We also aim to implement resilience patterns such as the Inbox-Outbox pattern which may not be optimally supported by an InMemory Event Bus.
+
+== Decision
+To mitigate these issues, we have decided to discontinue the InMemory Event Bus. All message consumers will be updated to use the OutOfProcess Event Bus, which will be the only functioning event bus post-transition.
+
+== Consequences
+
+* *System Simplification*: Getting rid of the InMemory Event Bus will reduce the complexity of our architecture, creating a more streamlined and maintainable codebase.
+* *Reduced Maintenance*: By focusing on one event bus, we will decrease maintenance efforts, allowing our team to concentrate on optimising the OutOfProcess Event Bus thoroughly.
+* *Resilient Pattern Support*: The move to an OutOfProcess implementation will facilitate the application of resilient software design patterns.
+* *Learning Curve*: There may be a learning curve for some team members who were more familiar with the InMemory Event Bus. Resource allocation for training and upskilling may be required.
+* *Migration Effort*: The shift from InMemory to OutOfProcess will require refactoring and code changes.
+
+== References
+* MassTransit Outbox Configuration(https://masstransit.io/documentation/configuration/middleware/outbox)
+* MassTransit Transactional Outbox Explanation(https://masstransit.io/documentation/patterns/transactional-outbox)

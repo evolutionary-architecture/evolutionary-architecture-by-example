@@ -1,0 +1,16 @@
+###
+### Register a new pass
+# @name registerPass
+POST {{baseUrl}}/api/passes
+Content-Type: application/json
+
+{
+  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "from": "2023-03-26T08:52:27.747Z",
+  "to": "2023-03-26T08:52:27.747Z"
+}
+
+###
+### Mark a pass as expired
+# @name markPassAsExpired
+PATCH {{baseUrl}}/api/passes/{{passId}}

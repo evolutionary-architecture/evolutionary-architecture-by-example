@@ -1,0 +1,25 @@
+= 18. Extraction of Contract Module as a Separate Microservice
+
+Date: 2023-07-22
+
+== Problem
+The contracts module within our monolithic application is subjected to frequent changes. However, due to the monolithic structure, any modifications to this module necessitate redeploying the entire application. Moreover, the application experiences a high volume of concurrent users, making it crucial to ensure smooth and efficient operations for all functionalities.
+
+== Decision
+In light of the challenges posed by the current architecture and the need to address the increasing demand for our application, we have decided to extract the contracts module out of the monolith and develop it as a separate microservice.
+
+== Consequences
+
+* *Independence*: Each team can work, manage, and deploy their services independently, allowing the contracts team to focus solely on their module's functionality and performance.
+
+* *Reduced Deployment Risk for Monolith*: By separating the contracts module, changes in this area no longer impact the monolithic application, lowering the deployment risk for the rest of the system.
+
+* *Easier Concurrent User Handling*: As the contracts module will be its own microservice, it can be scaled independently, making it easier to handle a large number of concurrent users without affecting other parts of the application.
+
+* *Improved Agility*: Teams can make frequent updates to their respective microservices without the need to coordinate with other teams, enhancing the overall agility of our development process.
+
+* *Increased Complexity*: Introducing microservices adds complexity in terms of deployment, service communication, and data management. Appropriate strategies for handling these challenges should be defined.
+
+* *Operational Overhead*: Each microservice will necessitate its own continuous delivery pipeline, possibly leading to increased operational overhead. However, the benefits of better module management outweigh this drawback.
+
+The decision to extract the contracts module as a separate microservice addresses the challenges of deployment risk, concurrent user handling, and team efficiency, while acknowledging the need for careful planning to manage the increased complexity and operational demands.

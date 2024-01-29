@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  fitnet-modular-monolith:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    build: ./ModularMonolith/Src
+    ports:
+      - "8080:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  fitnet-contracts-microservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    build: ./Contracts/Src
+    ports:
+      - "8081:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:14.3
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

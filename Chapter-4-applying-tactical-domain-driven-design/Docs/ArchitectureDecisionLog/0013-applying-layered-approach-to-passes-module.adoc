@@ -1,0 +1,23 @@
+= 13. Applying layered approach to the Passes module
+
+Date: 2023-05-24
+
+== Problem
+The Passes module within our application has been identified as having low technical and business complexity.
+After domain and business analysis, we have recognized this module as a potential candidate to grow with some business logic.
+
+== Decision
+
+After careful consideration, the team has decided to apply the layered approach to the Passes module. It makes no sense to go e.g. with Clean Architecture approach as the cognitive complexity of the module is very low. However, it has potential to contain some simple business logic and that's why we separate API from database via projects division. We were thinking to apply here the same domain logic pattern as in Reports module (transaction script) but decided that for such CRUD modules, our default approach will be handled with 2 projects as default, where one is responsible for communication (easy to replace) and the other one for simple business logic and data handling.
+
+=== Layers
+
+- _API_: Responsible for handling external communication like http requests and providing interfaces for interacting with the Passes module
+- _DataAccess_: Handles the technical aspects like persistence and business logic
+
+== Consequences
+
+Applying the layered approach to the Passes module will have the following consequences:
+
+- Easy to replace any of layers without touching another one
+- A bit more complex structure in comparison to a single project (with API and data access together)

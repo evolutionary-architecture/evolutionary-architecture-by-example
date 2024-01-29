@@ -1,0 +1,19 @@
+= 7. Use in-memory event bus
+
+Date: 2023-04-15
+
+== Problem
+
+Our project is in its early stages and is currently deployed as a single deployment unit. We need a way for components to communicate and interact with each other without tight coupling, while also ensuring high maintability. We want to focus on the bussiness process and interactions not spending time to choose out of process message broker. We can delay this decison in time.
+
+== Decision
+
+After evaluating our options, we have decided to implement an in-memory event bus. This will allow us to manage interactions between components in a flexible.
+
+We have chosen to use the MediatR library to build our in-memory event bus as it is a quick and easy implementation. In addition, we will create an abstraction layer over the event bus to provide flexibility to switch to an external event bus in the future if needed.
+
+== Consequences
+
+- By implementing an in-memory event bus, our components will be loosely coupled and better able to communicate and interact with each other. This will enable us to develop and deploy our system in a more scalable and flexible way.
+- One consequence of using an in-memory event bus as opposed to an external message broker is that we cannot retire messages and persist them in the event bus for later retrieval. In an external message broker, messages can be persisted and stored for a specified period of time, enabling them to be replayed or reprocessed if necessary. However, in an in-memory event bus, messages are stored only in memory and are lost when the event bus is shut down or restarted
+- Overall, we believe that the benefits of implementing an in-memory event bus during the early stages of our project outweigh the potential risks and challenges.

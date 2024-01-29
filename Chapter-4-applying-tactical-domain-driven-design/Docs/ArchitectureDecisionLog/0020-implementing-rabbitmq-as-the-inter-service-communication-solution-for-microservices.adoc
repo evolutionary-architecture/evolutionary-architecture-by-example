@@ -1,0 +1,32 @@
+= 20. Implementing RabbitMQ as the Inter-Service Communication Solution for Microservices
+
+Date: 2023-07-23
+
+== Problem 
+As we transition towards a microservices-oriented architecture, we've opted to use an out-of-process message queue. The next key decision is to identify the ideal message queueing service that aligns with our needs and demands. To inform this decision, we've considered the Azure Service Bus, RabbitMQ, and Amazon Simple Queue Service (SQS), each evaluated according to their programming model, cost implications, compatibility, Team Familiarity, and Performance.
+
+The comparison between Azure Service Bus, RabbitMQ, and Amazon SQS is shown below:
+
+[cols="6*", options="header"]
+|===
+| Service | Programming Model | Cost | Compatibility | Team Familiarity | Performance
+| Azure Service Bus | Full messaging infrastructure, message routing | Pay-per-use, integrated with Azure subscription | Highly compatible with Azure services | Low | Moderate
+| RabbitMQ | Advanced message queuing model with routing, topics, and RPC | Free open-source with enterprise options | Compatible with multi-platform with various language support | High | High
+| Amazon SQS | Basic queue model, delayed messages | Pay-per-use, integrated with AWS subscription | Highly compatible with AWS services | Low | Low
+|===
+
+== Decision 
+After careful consideration of all the available options, we decided to choose RabbitMQ.
+
+== Consequences
+
+* *Independence*: RabbitMQ is open-source and free to use, which aligns with our budget constraints and cost goals.
+
+* *Team Familiarity*: Team members are already familiar with RabbitMQ, which reduces the learning curve.
+
+* *Programming Model*: RabbitMQ provides an advanced messaging model, including features like message routing, topics, and RPC. This offers more flexibility compared to other options.
+
+* *Compatibility*: Being a cross-platform tool with support for various programming languages, RabbitMQ provides high compatibility.
+
+* *Portability*: In case of changing our infrastructure provider, RabbitMQ being a separate entity and not tied to a specific cloud platform like Azure or AWS, can be more portable.
+
