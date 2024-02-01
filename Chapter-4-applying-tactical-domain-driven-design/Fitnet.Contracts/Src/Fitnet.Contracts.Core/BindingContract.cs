@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-internal sealed class BindingContract
+public sealed class BindingContract
 {
     public Guid Id { get; init; }
 
@@ -19,7 +19,7 @@ internal sealed class BindingContract
         ExpiringAt = expiringAt;
     }
 
-    internal static BindingContract Acceptance(Guid id, Guid customerId, TimeSpan duration, DateTimeOffset? expiringAt) =>
+    internal static BindingContract Start(Guid id, Guid customerId, TimeSpan duration, DateTimeOffset? expiringAt) =>
         new(id, customerId, duration, expiringAt);
 
     public DateTimeOffset? ExpiringAt { get; set; }
