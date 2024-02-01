@@ -6,7 +6,7 @@ using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 public sealed class ContractMustNotBeAlreadySignedTests
 {
     [Fact]
-    internal void Given_unsigned_contract_and_attempt_to_sign_When_contract_is_already_signed_Then_validation_should_throw()
+    internal void Given_sign_contract_When_contract_is_already_signed_Then_validation_should_throw()
     {
         // Arrange
         var signed = true;
@@ -21,7 +21,7 @@ public sealed class ContractMustNotBeAlreadySignedTests
     }
 
     [Fact]
-    internal void Given_unsigned_contract_and_attempt_to_sign_Then_pass_validation()
+    internal void Given_sign_contract_When_contract_is_unsigned_Then_pass_validation()
     {
         // Arrange
         var signed = false;
