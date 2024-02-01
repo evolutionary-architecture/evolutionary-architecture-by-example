@@ -43,7 +43,7 @@ public sealed class Contract
             StandardDuration);
     }
 
-    public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset dateNow)
+    public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset today)
     {
         BusinessRuleValidator.Validate(
             new ContractMustNotBeAlreadySigned(IsSigned));
@@ -52,8 +52,8 @@ public sealed class Contract
             new ContractCanOnlyBeSignedWithin30DaysFromPreparation(PreparedAt, signedAt));
 
         SignedAt = signedAt;
-        var expiringAt = dateNow.Add(Duration);
-        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, expiringAt);
+        ExpiringAt = today.Add(Duration);
+        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, ExpiringAt);
 
         return bindingContract;
     }
