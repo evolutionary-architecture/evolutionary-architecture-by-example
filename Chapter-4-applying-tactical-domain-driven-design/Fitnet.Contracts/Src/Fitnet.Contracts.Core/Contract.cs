@@ -43,19 +43,17 @@ public sealed class Contract
             StandardDuration);
     }
 
-    internal BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset dateNow)
+    public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset dateNow)
     {
-        if (IsSigned)
-        {
-            throw new ContractAlreadySignedException();
-        }
+        BusinessRuleValidator.Validate(
+            new ContractMustNotBeAlreadySigned(IsSigned));
 
         BusinessRuleValidator.Validate(
             new ContractCanOnlyBeSignedWithin30DaysFromPreparation(PreparedAt, signedAt));
 
         SignedAt = signedAt;
         var expiringAt = dateNow.Add(Duration);
-        var bindingContract = BindingContract.Acceptance(Id, CustomerId, Duration, expiringAt);
+        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, expiringAt);
 
         return bindingContract;
     }
