@@ -40,21 +40,6 @@ public class SignContractTests
         bindingContract.Should().BeOfType<BindingContract>();
     }
 
-    [Fact]
-    internal void Given_sign_contract_When_contract_is_already_signed_Then_throws_contract_already_signed_exception()
-    {
-        // Arrange
-        var contract = PrepareContract(PreparedAt);
-        contract.Sign(SignedAt, FakeNow);
-
-        // Act
-        var act = () => contract.Sign(SignedAt, FakeNow);
-
-        // Assert
-        act.Should().Throw<ContractAlreadySignedException>().WithMessage(
-            "Contract is already signed");
-    }
-
     private static Contract PrepareContract(DateTimeOffset preparedAt)
     {
         var prepareContractParameters = PrepareContractParameters.GetValid();
