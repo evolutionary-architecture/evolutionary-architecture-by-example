@@ -9,7 +9,7 @@ public sealed class ContractMustNotBeAlreadySignedTests
     internal void Given_unsigned_contract_and_attempt_to_sign_When_contract_is_already_signed_Then_validation_should_throw()
     {
         // Arrange
-        var signed = false;
+        var signed = true;
 
         // Act
         var act = () => BusinessRuleValidator.Validate(new ContractMustNotBeAlreadySigned(signed));
@@ -24,7 +24,7 @@ public sealed class ContractMustNotBeAlreadySignedTests
     internal void Given_unsigned_contract_and_attempt_to_sign_Then_pass_validation()
     {
         // Arrange
-        var signed = true;
+        var signed = false;
 
         // Act
         var act = () =>
