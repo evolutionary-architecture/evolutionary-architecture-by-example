@@ -28,6 +28,17 @@ NOTE: In this step we are going to focus on tactical Domain-Driven Design. As bu
 
 IMPORTANT: It makes no sense to think about the Domain Model in typical CRUD modules or those based on querying, e.g., reports. You do not need to apply the same patterns in all modules - such behavior is a typical anti-pattern. Choose a matching solution based on your needs, not someone else solutions.
 
+=== Requirements
+
+This time our requirements changed. There is another behavior on contracts:
+
+1. Contracts can still be prepared and signed but does not in itself have the force of law.
+2. After the contract is signed there is a new object called _BindingContract_. Such a contract has the force of law and binds the customer to a contract with us.
+3. After 3 months, at anytime, customer can terminate _BindingContract_ without penalty.
+4. It is possible to create an _Annex_ to the existing _BindingContract_. This way, customer can get extend the contract for another year without signing a new _Contract_.
+
+image::Assets/flow.jpg[]
+
 == How to Run?
 
 === Requirements
