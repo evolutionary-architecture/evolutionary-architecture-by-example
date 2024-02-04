@@ -39,6 +39,10 @@ This time our requirements changed. There is another behavior on contracts:
 
 image::Assets/flow.jpg[]
 
+=== Main assumptions
+
+The assumptions remain unchanged to keep the environment comparable to the previous step.
+
 == How to Run?
 
 === Requirements
