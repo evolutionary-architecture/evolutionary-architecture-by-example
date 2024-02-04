@@ -43,6 +43,18 @@ image::Assets/flow.jpg[]
 
 The assumptions remain unchanged to keep the environment comparable to the previous step.
 
+=== Solution
+
+==== Overview
+
+In this step we do not change the project structure of the application. We focus only on refactoring the code of _Contracts_ so modular monolith and building block packages stay as they are.
+
+We introduce elements like:
+
+- aggregates
+- entities
+- value objects
+
 == How to Run?
 
 === Requirements
