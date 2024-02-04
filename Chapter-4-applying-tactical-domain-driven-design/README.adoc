@@ -16,6 +16,18 @@ image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-
 
 === Overview
 
+In chapter 3, we had to find a way to handle the extreme growth of one of our modules - _Contracts_. Based on concrete factors, the decision was to:
+
+- Extract a separate microservice from the modular monolith for _Contracts_
+- Introduce an external component - RabbitMQ - to handle communication between modules and extracted microservice
+- Extract building blocks to a separate solution that is built as a NuGet package and reuse it in both modular monolith and microservice
+
+For several weeks, this solution worked as a charm. Traffic was handled without any issues in the area that had to scale (Contracts). However, at some point, our business came to us and asked us to change how our contracts were signed, and additionally, new requirements appeared. Based on that. we spotted that our _Contracts_ module is becoming more and more complex. That's not a big deal - we thought. In previous chapters, we prepared for it as there was a chance that this area would grow over time. 
+
+NOTE: In this step we are going to focus on tactical Domain-Driven Design. As business logic grows and become more complex, it makes sense to think about Domain Model. Please note, that it requires a change in a way of thinking and might give the impression of something very complicated at first. Nevertheless, in long run, it will make this module easier to extend and maintain without having to deal with spaghetti code.
+
+IMPORTANT: It makes no sense to think about the Domain Model in typical CRUD modules or those based on querying, e.g., reports. You do not need to apply the same patterns in all modules - such behavior is a typical anti-pattern. Choose a matching solution based on your needs, not someone else solutions.
+
 == How to Run?
 
 === Requirements
