@@ -6,7 +6,7 @@
 /// </summary>
 public abstract class Entity
 {
-    private List<IDomainEvent>? _events;
+    private IList<IDomainEvent>? _events;
 
     /// <summary>
     /// Gets the collection of domain events recorded for this entity.
