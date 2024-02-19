@@ -53,7 +53,7 @@ public sealed class Contract
 
         SignedAt = signedAt;
         ExpiringAt = today.Add(Duration);
-        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, ExpiringAt);
+        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, today, ExpiringAt);
 
         return bindingContract;
     }
