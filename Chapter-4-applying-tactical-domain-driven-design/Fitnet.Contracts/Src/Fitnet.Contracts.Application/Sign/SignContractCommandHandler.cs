@@ -9,6 +9,7 @@ using MassTransit;
 [UsedImplicitly]
 internal sealed class SignContractCommandHandler(
     IContractsRepository contractsRepository,
+    IBindingContractsRepository bindingContractsRepository,
     ISystemClock systemClock,
     IPublishEndpoint publishEndpoint) : IRequestHandler<SignContractCommand>
 {
@@ -16,7 +17,8 @@ internal sealed class SignContractCommandHandler(
     {
         var contract = await contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
-        contract.Sign(command.SignedAt, systemClock.Now);
+        var bindingContract = contract.Sign(command.SignedAt, systemClock.Now);
+        await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);
         await contractsRepository.CommitAsync(cancellationToken);
         var @event = ContractSignedEvent.Create(contract.Id,
                                                         contract.CustomerId,
