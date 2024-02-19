@@ -10,9 +10,8 @@ public sealed class BindingContract
     public Guid CustomerId { get; init; }
 
     public TimeSpan Duration { get; init; }
-    public DateTimeOffset TerminationDate { get; private set; }
-    public DateTimeOffset BindingFrom { get; init; }
-
+    public DateTimeOffset TerminatedAt { get; private set; }
+    private DateTimeOffset BindingFrom { get; init; }
 
     private BindingContract(Guid id,
         Guid customerId,
@@ -36,6 +35,6 @@ public sealed class BindingContract
     {
         BusinessRuleValidator.Validate(new TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRule(BindingFrom, terminatedAt));
 
-        TerminationDate = terminatedAt;
+        TerminatedAt = terminatedAt;
     }
 }
