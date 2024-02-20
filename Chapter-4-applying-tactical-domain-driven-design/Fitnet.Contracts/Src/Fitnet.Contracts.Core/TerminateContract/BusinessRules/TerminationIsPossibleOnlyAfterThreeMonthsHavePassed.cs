@@ -21,7 +21,7 @@ internal sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(Da
             var threeMonthsFromSignDate = bindingFrom.AddMonths(ThreeMonths);
             var daysRemaining = (threeMonthsFromSignDate - terminatedAt).Days;
 
-            var error = $"Termination is not possible until three months have elapsed. '{daysRemaining}' days remaining.";
+            var error = $"Termination is not possible until three months have passed. '{daysRemaining}' days remaining.";
 
             return error;
         }
