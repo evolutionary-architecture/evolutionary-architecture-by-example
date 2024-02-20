@@ -2,13 +2,13 @@
 
 using Common.Core.BusinessRules;
 using TerminateContract.BusinessRules;
-using TerminationIsNotPossibleUntilThreeMonthsHave.TestData;
+using TerminationIsPossibleOnlyAfterThreeMonthsHavePassed.TestData;
 
-public sealed class TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRuleTests
+public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
 {
     [Theory]
     [ClassData(typeof(BindingContractThreeMonthsHaveNotElapsedTestData))]
-    internal void Given_terminate_When_three_months_have_not_elapsed_Then_it_is_not_possible_to_terminate(DateTimeOffset bindingFrom,
+    internal void Given_terminate_When_three_months_have_not_passed_Then_it_is_not_possible_to_terminate(DateTimeOffset bindingFrom,
         DateTimeOffset terminatedAt)
     {
         // Arrange
@@ -16,7 +16,7 @@ public sealed class TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRuleTests
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRule(bindingFrom, terminatedAt));
+                new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
         act.Should().Throw<BusinessRuleValidationException>();
@@ -24,7 +24,7 @@ public sealed class TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRuleTests
 
     [Theory]
     [ClassData(typeof(BindingContractThreeMonthsHaveElapsedTestData))]
-    internal void Given_terminate_When_three_months_have_elapsed_Then_it_is_possible_to_terminate(DateTimeOffset bindingFrom,
+    internal void Given_terminate_When_three_months_have_passed_Then_it_is_possible_to_terminate(DateTimeOffset bindingFrom,
         DateTimeOffset terminatedAt)
     {
         // Arrange
@@ -32,7 +32,7 @@ public sealed class TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRuleTests
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRule(bindingFrom, terminatedAt));
+                new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
         act.Should().NotThrow<BusinessRuleValidationException>();

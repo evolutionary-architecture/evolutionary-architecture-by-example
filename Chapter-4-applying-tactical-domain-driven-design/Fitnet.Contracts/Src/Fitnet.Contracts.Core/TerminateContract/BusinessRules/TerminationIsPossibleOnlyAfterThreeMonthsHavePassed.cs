@@ -2,7 +2,7 @@
 
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
-internal sealed class TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRule(DateTimeOffset bindingFrom, DateTimeOffset terminatedAt)
+internal sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(DateTimeOffset bindingFrom, DateTimeOffset terminatedAt)
     : IBusinessRule
 {
     private const int ThreeMonths = 3;

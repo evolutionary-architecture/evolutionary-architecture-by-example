@@ -30,7 +30,7 @@ public sealed class BindingContract
 
     public void Terminate(DateTimeOffset terminatedAt)
     {
-        BusinessRuleValidator.Validate(new TerminationIsNotPossibleUntilThreeMonthsHaveElapsedRule(BindingFrom, terminatedAt));
+        BusinessRuleValidator.Validate(new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
 
         TerminatedAt = terminatedAt;
     }
