@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBindingContract.BusinessRules.TerminationIsNotPossibleUntilThreeMonthsHave.TestData;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBindingContract.BusinessRules.TerminationIsPossibleOnlyAfterThreeMonthsHavePassed.TestData;
 
 internal sealed class BindingContractThreeMonthsHaveNotElapsedTestData : TheoryData<DateTimeOffset, DateTimeOffset>
 {
