@@ -5,8 +5,6 @@ using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
-using Api;
-using Api.Prepare;
 using Api.Sign;
 using PrepareContract;
 
@@ -22,7 +20,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
     internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
     {
         // Arrange
-        var preparedContractId = await PrepareContract();
+        var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var requestParameters = SignContractRequestParameters.GetValid(preparedContractId);
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
@@ -54,7 +52,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict_status_code()
     {
         // Arrange
-        var preparedContractId = await PrepareContract();
+        var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var requestParameters =
             SignContractRequestParameters.GetWithInvalidSignedAtDate(preparedContractId);
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
@@ -70,17 +68,5 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
         responseMessage?.Message.Should()
             .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
-    }
-
-    private async Task<Guid> PrepareContract()
-    {
-        var requestParameters = PrepareContractRequestParameters.GetValid();
-        PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
-            requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
-        var prepareContractResponse =
-            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
-        var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>();
-
-        return preparedContractId;
     }
 }
