@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Routing;
 
 internal static class TerminateContractEndpoint
 {
-    internal static void MapTerminateContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Sign, async (
+    internal static void MapTerminateContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Terminate, async (
             Guid id,
             IContractsModule contractsModule, CancellationToken cancellationToken) =>
         {
@@ -19,8 +19,8 @@ internal static class TerminateContractEndpoint
         })
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Terminate Contract",
-            Description = "This endpoint is used to terminate a contract by invoking a termination command.",
+            Summary = "Terminate Binding Contract",
+            Description = "This endpoint is used to terminate a binding contract by invoking a termination.",
         })
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
