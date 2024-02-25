@@ -48,7 +48,7 @@ public sealed class TerminateContractTests(FitnetWebApplicationFactory<Program> 
     {
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
-        var path = ContractsApiPaths.Terminate.Replace("{{id}}", preparedContractId.ToString());
+        var path = ContractsApiPaths.Terminate.Replace("{id}", preparedContractId.ToString());
         await _applicationHttpClient.SignContractAsync(preparedContractId);
 
         // Act
