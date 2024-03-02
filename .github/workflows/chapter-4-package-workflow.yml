@@ -69,7 +69,7 @@ jobs:
           dotnet pack Fitnet.Common.Api/Fitnet.Common.Api.csproj -c Release
           dotnet pack Fitnet.Common.Core/Fitnet.Common.Core.csproj -c Release
           dotnet pack Fitnet.Common.Core/Fitnet.Common.Core.csproj -c Release
-          dotnet pack Fitnet.DomainDrivenDesign.BuildingBlocks.csproj -c Release
+          dotnet pack Fitnet.DomainDrivenDesign.BuildingBlocks/Fitnet.DomainDrivenDesign.BuildingBlocks.csproj -c Release
           dotnet pack Fitnet.Common.Infrastructure/Fitnet.Common.Infrastructure.csproj -c Release
           dotnet pack Fitnet.Common.IntegrationTestsToolbox/Fitnet.Common.IntegrationTestsToolbox.csproj -c Release
 
