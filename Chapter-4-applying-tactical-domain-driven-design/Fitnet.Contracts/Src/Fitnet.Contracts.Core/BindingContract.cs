@@ -3,14 +3,14 @@
 using Common.Core.BusinessRules;
 using TerminateContract.BusinessRules;
 
-public sealed class BindingContract
+public sealed class BindingContract : Entity
 {
     public Guid Id { get; init; }
-    public Guid CustomerId { get; init; }
-    public TimeSpan Duration { get; init; }
-    public DateTimeOffset TerminatedAt { get; private set; }
+    private Guid CustomerId { get; init; }
+    private TimeSpan Duration { get; init; }
+    private DateTimeOffset TerminatedAt { get; set; }
     private DateTimeOffset BindingFrom { get; init; }
-    public DateTimeOffset? ExpiringAt { get; set; }
+    private DateTimeOffset? ExpiringAt { get; set; }
 
     private BindingContract(Guid id,
         Guid customerId,
@@ -35,3 +35,6 @@ public sealed class BindingContract
         TerminatedAt = terminatedAt;
     }
 }
+
+public record BindinigContractTerminated(DateTimeOffset TerminatedAt);
+public record ContractStartedBinding(DateTimeOffset BindingFrom);
