@@ -5,8 +5,6 @@ using Database;
 using Infrastructure.Mediator;
 using MassTransit;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using SystemClock;
 
 public static class ConfigurationExtensions
 {
