@@ -26,14 +26,6 @@ public static class ConfigurationExtensions
             }
         });
 
-    public static WebApplicationFactory<T> SetFakeSystemClock<T>(
-        this WebApplicationFactory<T> webApplicationFactory,
-        DateTimeOffset fakeDateTimeOffset)
-        where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
-            webHostBuilder.ConfigureTestServices(services =>
-                services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
-
     public static WebApplicationFactory<T> WithFakeConsumers<T>(
         this WebApplicationFactory<T> webApplicationFactory,
         Assembly executingAssembly)
