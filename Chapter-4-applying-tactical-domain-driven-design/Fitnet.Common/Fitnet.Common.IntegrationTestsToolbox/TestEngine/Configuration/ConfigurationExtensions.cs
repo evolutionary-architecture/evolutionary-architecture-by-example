@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
 
-using Core.SystemClock;
 using Database;
 using Infrastructure.Mediator;
 using MassTransit;
