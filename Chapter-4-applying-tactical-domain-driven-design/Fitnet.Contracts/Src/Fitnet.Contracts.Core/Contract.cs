@@ -1,10 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
 using Common.Core.BusinessRules;
+using DomainDrivenDesign.BuildingBlocks;
+using PrepareContract;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;
 
-public sealed class Contract
+public sealed class Contract : Entity
 {
     private static TimeSpan StandardDuration => TimeSpan.FromDays(365);
 
@@ -29,6 +31,9 @@ public sealed class Contract
         CustomerId = customerId;
         PreparedAt = preparedAt;
         Duration = duration;
+
+        var @event = ContractPreparedEvent.Create(customerId, PreparedAt);
+        RecordEvent(@event);
     }
 
     public static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
