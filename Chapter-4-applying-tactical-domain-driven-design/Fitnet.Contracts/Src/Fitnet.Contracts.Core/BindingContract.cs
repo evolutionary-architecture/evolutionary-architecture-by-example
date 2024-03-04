@@ -1,16 +1,19 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
 using Common.Core.BusinessRules;
+using DomainDrivenDesign.BuildingBlocks;
+using SignContract;
+using TerminateContract;
 using TerminateContract.BusinessRules;
 
 public sealed class BindingContract : Entity
 {
     public Guid Id { get; init; }
-    private Guid CustomerId { get; init; }
-    private TimeSpan Duration { get; init; }
-    private DateTimeOffset TerminatedAt { get; set; }
-    private DateTimeOffset BindingFrom { get; init; }
-    private DateTimeOffset? ExpiringAt { get; set; }
+    public Guid CustomerId { get; init; }
+    public TimeSpan Duration { get; init; }
+    public DateTimeOffset TerminatedAt { get; set; }
+    public DateTimeOffset BindingFrom { get; init; }
+    public DateTimeOffset? ExpiringAt { get; set; }
 
     private BindingContract(Guid id,
         Guid customerId,
@@ -23,6 +26,9 @@ public sealed class BindingContract : Entity
         Duration = duration;
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
+
+        var @event = ContractStartedBindingEvent.Create(BindingFrom, ExpiringAt);
+        RecordEvent(@event);
     }
 
     internal static BindingContract Start(Guid id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom, DateTimeOffset? expiringAt) =>
@@ -33,8 +39,8 @@ public sealed class BindingContract : Entity
         BusinessRuleValidator.Validate(new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
 
         TerminatedAt = terminatedAt;
+
+        var @event = BindingContractTerminatedEvent.Create(TerminatedAt);
+        RecordEvent(@event);
     }
 }
-
-public record BindinigContractTerminated(DateTimeOffset TerminatedAt);
-public record ContractStartedBinding(DateTimeOffset BindingFrom);
