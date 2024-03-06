@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="evolutionaryarchitecture.fitnet.common.api" Version="1.1.8" />
+    <PackageReference Include="evolutionaryarchitecture.fitnet.common.api" Version="1.2.1" />
     <PackageReference Include="evolutionaryarchitecture.fitnet.contracts.integrationevents" Version="1.0.7" />
     <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     <PackageReference Include="MassTransit.Abstractions" Version="8.1.3" />
