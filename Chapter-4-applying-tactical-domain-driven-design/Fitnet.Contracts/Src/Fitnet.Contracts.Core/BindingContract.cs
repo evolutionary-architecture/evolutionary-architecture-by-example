@@ -26,13 +26,16 @@ public sealed class BindingContract : Entity
         Duration = duration;
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
-
-        var @event = ContractStartedBindingEvent.Create(BindingFrom, ExpiringAt);
-        RecordEvent(@event);
     }
 
-    internal static BindingContract Start(Guid id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom, DateTimeOffset? expiringAt) =>
-        new(id, customerId, duration, bindingFrom, expiringAt);
+    internal static BindingContract Start(Guid id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom, DateTimeOffset? expiringAt)
+    {
+        var bindingContract = new BindingContract(id, customerId, duration, bindingFrom, expiringAt);
+        var @event = ContractStartedBindingEvent.Raise(bindingFrom, expiringAt);
+        bindingContract.RecordEvent(@event);
+
+        return bindingContract;
+    }
 
     public void Terminate(DateTimeOffset terminatedAt)
     {
@@ -40,7 +43,7 @@ public sealed class BindingContract : Entity
 
         TerminatedAt = terminatedAt;
 
-        var @event = BindingContractTerminatedEvent.Create(TerminatedAt);
+        var @event = BindingContractTerminatedEvent.Raise(TerminatedAt);
         RecordEvent(@event);
     }
 }

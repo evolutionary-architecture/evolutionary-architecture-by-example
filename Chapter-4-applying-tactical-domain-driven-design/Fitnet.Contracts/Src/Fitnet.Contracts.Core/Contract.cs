@@ -32,7 +32,7 @@ public sealed class Contract : Entity
         PreparedAt = preparedAt;
         Duration = duration;
 
-        var @event = ContractPreparedEvent.Create(customerId, PreparedAt);
+        var @event = ContractPreparedEvent.Raise(customerId, PreparedAt);
         RecordEvent(@event);
     }
 
