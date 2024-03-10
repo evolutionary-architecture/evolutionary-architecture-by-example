@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks;
+namespace EvolutionaryArchitecture.Fitnet.DomainModel;
 
 using System;
 

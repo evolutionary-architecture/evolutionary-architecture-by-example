@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.IntegrationTestsToolbox", "Fitnet.Common.IntegrationTestsToolbox\Fitnet.Common.IntegrationTestsToolbox.csproj", "{7730CC34-33C2-404B-A22E-E188FB1D8388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.DomainDrivenDesign.BuildingBlocks", "Fitnet.DomainDrivenDesign.BuildingBlocks\Fitnet.DomainDrivenDesign.BuildingBlocks.csproj", "{9D79E83F-9749-4D33-A676-5E0B483DE8D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.DomainModel", "Fitnet.DomainModel\Fitnet.DomainModel.csproj", "{9D79E83F-9749-4D33-A676-5E0B483DE8D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.DomainModel.UnitTests", "Fitnet.DomainModel.UnitTests\Fitnet.DomainModel.UnitTests.csproj", "{C8E415CD-8E2D-4BE6-9E46-3E70A070F74F}"
 EndProject

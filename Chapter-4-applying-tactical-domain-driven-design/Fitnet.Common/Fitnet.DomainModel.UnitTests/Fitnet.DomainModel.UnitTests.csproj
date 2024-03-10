@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
-    <ProjectReference Include="..\Fitnet.DomainDrivenDesign.BuildingBlocks\Fitnet.DomainDrivenDesign.BuildingBlocks.csproj" />
+    <ProjectReference Include="..\Fitnet.DomainModel\Fitnet.DomainModel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.DomainModel.UnitTests;
 
-using DomainDrivenDesign.BuildingBlocks;
-
 public class EntityIdentifierTests
 {
     [Fact]
