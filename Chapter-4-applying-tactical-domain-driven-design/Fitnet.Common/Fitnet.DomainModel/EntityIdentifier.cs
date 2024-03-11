@@ -3,8 +3,10 @@ namespace EvolutionaryArchitecture.Fitnet.DomainModel;
 using System;
 
 /// <summary>
-/// Base abstract class representing an entity identifier in the domain model.
-/// An entity identifier simplifies identification of objects.
+/// This abstract base class represents an identifier for entities within the domain model.
+/// By employing non-primitive typed entity identifiers, it enhances the clarity and richness of the domain model,
+/// effectively mitigating primitive obsession. Utilizing non-primitive identifiers aligned with domain concepts leads
+/// to improved communication and alignment between code and business requirements.
 /// </summary>
 public abstract class EntityIdentifier<T> : IEquatable<EntityIdentifier<T>>
 {
