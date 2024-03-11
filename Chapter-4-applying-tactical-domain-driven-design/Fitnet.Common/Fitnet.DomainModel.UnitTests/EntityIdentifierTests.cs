@@ -9,7 +9,7 @@ public class EntityIdentifierTests
         var validGuid = Guid.NewGuid();
 
         // Act
-        EntityIdentifier<TestEntity> result = new TestEntity(validGuid);
+        EntityIdentifier<TestEntityId> result = new TestEntityId(validGuid);
 
         // Assert
         result.Value.Should().Be(validGuid);
@@ -22,11 +22,11 @@ public class EntityIdentifierTests
         var emptyGuid = Guid.Empty;
 
         // Act
-        var act = () => new TestEntity(emptyGuid);
+        var act = () => new TestEntityId(emptyGuid);
 
         // Assert
         act.Should().Throw<ArgumentException>()
-            .WithMessage($"{nameof(TestEntity)} cannot be empty. (Parameter '{nameof(TestEntity.Value)}')");
+            .WithMessage($"{nameof(TestEntityId)} cannot be empty. (Parameter '{nameof(TestEntityId.Value)}')");
     }
 
     [Fact]
@@ -34,8 +34,8 @@ public class EntityIdentifierTests
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var entityIdentifier1 = new TestEntity(guid);
-        var entityIdentifier2 = new TestEntity(guid);
+        var entityIdentifier1 = new TestEntityId(guid);
+        var entityIdentifier2 = new TestEntityId(guid);
 
         // Act
         var result = entityIdentifier1.Equals(entityIdentifier2);
@@ -48,8 +48,8 @@ public class EntityIdentifierTests
     internal void Given_two_entities_with_different_identifiers_Then_equals_should_return_false()
     {
         // Arrange
-        var entityIdentifier1 = new TestEntity(Guid.NewGuid());
-        var entityIdentifier2 = new TestEntity(Guid.NewGuid());
+        var entityIdentifier1 = new TestEntityId(Guid.NewGuid());
+        var entityIdentifier2 = new TestEntityId(Guid.NewGuid());
 
         // Act
         var result = entityIdentifier1.Equals(entityIdentifier2);
@@ -62,7 +62,7 @@ public class EntityIdentifierTests
     internal void Given_entity_comparison_with_null_Then_equals_should_return_false()
     {
         // Arrange
-        var entityIdentifier = new TestEntity(Guid.NewGuid());
+        var entityIdentifier = new TestEntityId(Guid.NewGuid());
 
         // Act
         var result = entityIdentifier.Equals(null);
@@ -76,8 +76,8 @@ public class EntityIdentifierTests
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var entityIdentifier1 = new TestEntity(guid);
-        var entityIdentifier2 = new TestEntity(guid);
+        var entityIdentifier1 = new TestEntityId(guid);
+        var entityIdentifier2 = new TestEntityId(guid);
 
         // Act
         var firstHashcode = entityIdentifier1.GetHashCode();
@@ -91,8 +91,8 @@ public class EntityIdentifierTests
     internal void Given_two_entities_with_different_identifiers_Then_should_return_different_hash_codes()
     {
         // Arrange
-        var entityIdentifier1 = new TestEntity(Guid.NewGuid());
-        var entityIdentifier2 = new TestEntity(Guid.NewGuid());
+        var entityIdentifier1 = new TestEntityId(Guid.NewGuid());
+        var entityIdentifier2 = new TestEntityId(Guid.NewGuid());
 
         // Act
         var firstHashcode = entityIdentifier1.GetHashCode();
@@ -107,11 +107,11 @@ public class EntityIdentifierTests
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var entityIdentifier = new TestEntity(guid);
+        var entityIdentifier = new TestEntityId(guid);
 
         // Act & Assert
         guid.ToString().Should().Be(entityIdentifier.ToString());
     }
-}
 
-public class TestEntity(Guid value) : EntityIdentifier<TestEntity>(value);
+    private class TestEntityId(Guid value) : EntityIdentifier<TestEntityId>(value);
+}
