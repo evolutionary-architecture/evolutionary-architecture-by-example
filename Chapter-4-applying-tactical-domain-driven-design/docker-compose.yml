@@ -4,7 +4,7 @@ services:
   fitnet-modular-monolith:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    build: ./ModularMonolith/Src
+    build: ./Fitnet/Src
     ports:
       - "8080:80"
     depends_on:
@@ -16,7 +16,7 @@ services:
   fitnet-contracts-microservice:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    build: ./Contracts/Src
+    build: ./Fitnet.Contracts/Src
     ports:
       - "8081:80"
     depends_on:
