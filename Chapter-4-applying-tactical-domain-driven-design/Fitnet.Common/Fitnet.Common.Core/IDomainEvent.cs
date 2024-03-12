@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks;
+﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core;
 
 /// <summary>
 /// Represents a domain event, which encapsulates a significant occurrence or state change within the domain model.
