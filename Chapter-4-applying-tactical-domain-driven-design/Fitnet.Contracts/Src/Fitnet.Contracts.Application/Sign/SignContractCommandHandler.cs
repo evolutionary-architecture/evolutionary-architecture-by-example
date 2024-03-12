@@ -20,7 +20,7 @@ internal sealed class SignContractCommandHandler(
         var bindingContract = contract.Sign(command.SignedAt, today);
         await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);
         await contractsRepository.CommitAsync(cancellationToken);
-        var @event = ContractSignedEvent.Create(contract.Id,
+        var @event = ContractSignedEvent.Create(contract.Id.Value,
                                                         contract.CustomerId,
                                                         contract.SignedAt!.Value,
                                                         contract.ExpiringAt!.Value);

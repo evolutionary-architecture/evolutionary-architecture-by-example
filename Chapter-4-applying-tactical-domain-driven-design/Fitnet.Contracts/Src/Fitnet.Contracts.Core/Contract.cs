@@ -10,7 +10,7 @@ public sealed class Contract : Entity
 {
     private static TimeSpan StandardDuration => TimeSpan.FromDays(365);
 
-    public Guid Id { get; init; }
+    public ContractId Id { get; }
 
     public Guid CustomerId { get; init; }
 
@@ -22,12 +22,15 @@ public sealed class Contract : Entity
 
     public bool IsSigned => SignedAt.HasValue;
 
+    // EF needs this constructor to create non-primitive types
+    private Contract() { }
+
     private Contract(Guid id,
         Guid customerId,
         DateTimeOffset preparedAt,
         TimeSpan duration)
     {
-        Id = id;
+        Id = new ContractId(id);
         CustomerId = customerId;
         PreparedAt = preparedAt;
         Duration = duration;
@@ -59,7 +62,7 @@ public sealed class Contract : Entity
 
         SignedAt = signedAt;
         ExpiringAt = today.Add(Duration);
-        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, today, ExpiringAt);
+        var bindingContract = BindingContract.Start(Id.Value, CustomerId, Duration, today, ExpiringAt);
 
         return bindingContract;
     }
