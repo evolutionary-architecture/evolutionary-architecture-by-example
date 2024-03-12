@@ -4,7 +4,6 @@ using Data.Database;
 using Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Common.Validation.Requests;
-using PrepareContract.BusinessRules;
 
 internal static class SignContractEndpoint
 {
