@@ -68,8 +68,6 @@ jobs:
         run: |
           dotnet pack Fitnet.Common.Api/Fitnet.Common.Api.csproj -c Release
           dotnet pack Fitnet.Common.Core/Fitnet.Common.Core.csproj -c Release
-          dotnet pack Fitnet.Common.Core/Fitnet.Common.Core.csproj -c Release
-          dotnet pack Fitnet.DomainDrivenDesign.BuildingBlocks/Fitnet.DomainDrivenDesign.BuildingBlocks.csproj -c Release
           dotnet pack Fitnet.Common.Infrastructure/Fitnet.Common.Infrastructure.csproj -c Release
           dotnet pack Fitnet.Common.IntegrationTestsToolbox/Fitnet.Common.IntegrationTestsToolbox.csproj -c Release
 
@@ -85,4 +83,3 @@ jobs:
           dotnet nuget push "Fitnet.Common.Core/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Core.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
           dotnet nuget push "Fitnet.Common.Infrastructure/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Infrastructure.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
           dotnet nuget push "Fitnet.Common.IntegrationTestsToolbox/bin/Release/EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.DomainDrivenDesign.BuildingBlocks/bin/Release/EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
