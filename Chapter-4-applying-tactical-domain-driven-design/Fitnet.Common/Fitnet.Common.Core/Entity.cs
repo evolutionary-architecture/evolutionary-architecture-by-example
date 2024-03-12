@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.DomainModel;
+﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core;
 
 /// <summary>
 /// Base abstract class representing an entity in the domain model.
