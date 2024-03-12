@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 internal sealed class ContractsRepository(ContractsPersistence persistence) : IContractsRepository
 {
     public async Task<Contract?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
-        await persistence.Contracts.FindAsync([id], cancellationToken);
+        await persistence.Contracts.FindAsync([new ContractId(id)], cancellationToken);
 
     public async Task<Contract?> GetPreviousForCustomerAsync(Guid customerId, CancellationToken cancellationToken = default) =>
         await persistence.Contracts
