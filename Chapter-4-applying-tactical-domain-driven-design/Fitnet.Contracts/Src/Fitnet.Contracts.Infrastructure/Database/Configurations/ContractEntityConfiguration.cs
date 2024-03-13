@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Configurations;
 
 using Core;
 using Microsoft.EntityFrameworkCore;
