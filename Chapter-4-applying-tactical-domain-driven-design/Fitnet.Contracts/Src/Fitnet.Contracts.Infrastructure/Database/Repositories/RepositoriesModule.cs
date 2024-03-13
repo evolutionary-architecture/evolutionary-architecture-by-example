@@ -8,7 +8,7 @@ internal static class RepositoriesModule
     internal static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IContractsRepository, ContractsRepository>();
-        services.AddSingleton<IBindingContractsRepository, InMemoryBindingContractsRepository>();
+        services.AddScoped<IBindingContractsRepository, BindingContractsRepository>();
 
         return services;
     }
