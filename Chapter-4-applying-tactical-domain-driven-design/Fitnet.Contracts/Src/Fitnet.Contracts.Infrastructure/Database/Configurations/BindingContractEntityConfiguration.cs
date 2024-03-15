@@ -12,7 +12,15 @@ internal sealed class BindingContractEntityConfiguration : IEntityTypeConfigurat
         builder.HasKey(contract => contract.Id);
         builder
             .Property(contract => contract.Id)
-            .ValueGeneratedNever();
+            .HasConversion(
+                id => id.Value,
+                value => new BindingContractId(value))
+            .ValueGeneratedOnAdd();
+        builder
+            .Property(contract => contract.ContractId)
+            .HasConversion(
+                id => id.Value,
+                value => new ContractId(value));
         builder.Property(contract => contract.ContractId).IsRequired();
         builder.Property(contract => contract.CustomerId).IsRequired();
         builder.Property(contract => contract.Duration).IsRequired();
