@@ -1,8 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract;
 
+using Common;
+using Core.SignContract;
 using PrepareContract;
 
-public class SignContractTests
+public sealed class SignContractTests
 {
     [Theory]
     [ClassData(typeof(SignContractTestData))]
@@ -19,7 +21,8 @@ public class SignContractTests
         var bindingContract = contract.Sign(signedAt, fakeNow);
 
         // Assert
-        bindingContract.ExpiringAt.Should().Be(expectedExpirationDate);
+        var @event = bindingContract.GetPublishedEvent<ContractStartedBindingEvent>();
+        @event?.ExpiringAt.Should().Be(expectedExpirationDate);
     }
 
     private static readonly DateTimeOffset PreparedAt = new(2023, 1, 1, 0, 0, 0, TimeSpan.Zero);
@@ -36,8 +39,8 @@ public class SignContractTests
         var bindingContract = contract.Sign(SignedAt, FakeNow);
 
         // Assert
-        bindingContract.Should().NotBeNull();
-        bindingContract.Should().BeOfType<BindingContract>();
+        var @event = bindingContract.GetPublishedEvent<ContractStartedBindingEvent>();
+        @event?.BindingFrom.Should().Be(SignedAt);
     }
 
     private static Contract PrepareContract(DateTimeOffset preparedAt)
