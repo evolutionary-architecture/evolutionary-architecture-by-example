@@ -15,7 +15,8 @@ public sealed class InMemoryEventBusTests(
     internal async Task Given_valid_event_published_Then_event_should_be_consumed()
     {
         // Arrange
-        var eventBus = _applicationInMemory.Services.GetRequiredService<IEventBus>();
+        var serviceScope = _applicationInMemory.Services.CreateScope();
+        var eventBus = serviceScope.ServiceProvider.GetRequiredService<IEventBus>();
         var fakeEvent = FakeEvent.Create();
 
         // Act

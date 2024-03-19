@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.MarkPassAsExpi
 using Fitnet.Passes;
 using RegisterPass;
 using Common.TestEngine.Configuration;
-using Common.TestEngine.IntegrationEvents.Handlers;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.GetAllPasses;
@@ -74,9 +73,9 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     private async Task<ContractSignedEvent> RegisterPass()
     {
         var @event = ContractSignedEventFaker.Create();
-        using var integrationEventHandlerScope =
-            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
-        await integrationEventHandlerScope.Consume(@event);
+        using var serviceScope = _applicationInMemoryFactory.Services.CreateScope();
+        var eventBus = serviceScope.ServiceProvider.GetRequiredService<IEventBus>();
+        await eventBus.PublishAsync(@event);
 
         return @event;
     }

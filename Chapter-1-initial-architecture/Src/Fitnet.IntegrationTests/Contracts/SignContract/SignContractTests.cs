@@ -17,7 +17,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithFakeEventBus(_fakeEventBus)
+            .WithoutEventHandlers(_fakeEventBus)
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
 

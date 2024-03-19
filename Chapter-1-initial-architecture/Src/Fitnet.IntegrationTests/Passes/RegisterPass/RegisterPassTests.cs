@@ -1,8 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Passes.RegisterPass;
 
 using Common.TestEngine.Configuration;
-using Common.TestEngine.IntegrationEvents.Handlers;
-using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.RegisterPass.Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
@@ -25,12 +23,12 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
     internal async Task Given_contract_signed_event_Then_should_register_pass()
     {
         // Arrange
-        using var integrationEventHandlerScope =
-            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemory);
+        using var serviceScope = _applicationInMemory.Services.CreateScope();
+        var eventBus = serviceScope.ServiceProvider.GetRequiredService<IEventBus>();
         var @event = ContractSignedEventFaker.Create();
 
         // Act
-        await integrationEventHandlerScope.Consume(@event);
+        await eventBus.PublishAsync(@event);
 
         // Assert
         EnsureThatPassRegisteredEventWasPublished();

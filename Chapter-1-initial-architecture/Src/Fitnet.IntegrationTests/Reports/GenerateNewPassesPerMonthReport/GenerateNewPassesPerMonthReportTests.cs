@@ -1,8 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
 using Common.TestEngine.Configuration;
-using Common.TestEngine.IntegrationEvents.Handlers;
-using Fitnet.Contracts.SignContract.Events;
+using Fitnet.Common.Events.EventBus;
 using Fitnet.Reports;
 using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using Passes.RegisterPass;
@@ -51,10 +50,11 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
     private async Task RegisterPass(DateTimeOffset from, DateTimeOffset to)
     {
-        using var integrationEventHandlerScope =
-            new IntegrationEventHandlerScope<ContractSignedEvent>(_applicationInMemoryFactory);
-        var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
+        using var serviceScope = _applicationInMemoryFactory.Services.CreateScope();
+        var eventBus = serviceScope.ServiceProvider.GetRequiredService<IEventBus>();
         var @event = ContractSignedEventFaker.Create(from, to);
-        await integrationEventHandler.Handle(@event, CancellationToken.None);
+
+        // Act
+        await eventBus.PublishAsync(@event);
     }
 }
