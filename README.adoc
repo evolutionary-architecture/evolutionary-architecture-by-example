@@ -321,6 +321,10 @@ In this webinar, Maciej "MJ" Jedrzejewski gives a detailed talk on Evolutionary 
 
 This is a recorded presentation from the Programistok 2023 Conference, where Evolutionary Architecture was extensively explained. You can watch it on YouTube link:https://www.youtube.com/watch?v=tfCtM8D_DZ4&t=598s[here].
 
+=== Evolutionary Architecture Visualized Through NDepend 🇬🇧
+
+Explore Evolutionary Architecture visualized through NDepend, featuring comprehensive dependency and code analysis in the form of an interview led by Ferry de Boer with Kamil. Watch it on YouTube link:https://www.youtube.com/watch?v=Z60SAiVevIM&t=726s[here].
+
 == Authors
 
 [cols=2*,options=header]
