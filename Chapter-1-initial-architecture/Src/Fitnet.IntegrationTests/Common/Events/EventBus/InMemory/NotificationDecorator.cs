@@ -2,9 +2,8 @@
 
 using Fitnet.Common.Events;
 using Fitnet.Common.Events.EventBus;
-using MediatR;
 
-internal class NotificationDecorator<TNotification>(IEventBus eventBus, INotificationHandler<TNotification>? innerHandler)
+internal sealed class NotificationDecorator<TNotification>(IEventBus eventBus, INotificationHandler<TNotification>? innerHandler)
     : INotificationHandler<TNotification>
     where TNotification : INotification
 {

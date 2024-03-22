@@ -4,10 +4,6 @@ using System.Reflection;
 using Events.EventBus.InMemory;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus.InMemory;
-using MediatR;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Time.Testing;
 
 internal static class ConfigurationExtensions
 {
