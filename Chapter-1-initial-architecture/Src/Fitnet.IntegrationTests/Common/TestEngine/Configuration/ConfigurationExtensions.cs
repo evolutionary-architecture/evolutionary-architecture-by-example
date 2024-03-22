@@ -74,6 +74,9 @@ internal static class ConfigurationExtensions
             var serviceType = notificationHandlerService.ServiceType;
             var implementationType = notificationHandlerService.ImplementationType;
 
+            services.Remove(notificationHandlerService);
+            services.AddTransient(implementationType!);
+
             services.AddTransient(serviceType, serviceProvider =>
             {
                 var notificationHandler = hasSingleEventHandling
