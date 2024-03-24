@@ -16,14 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
 builder.Services.AddExceptionHandling();
 builder.Services.AddCommonInfrastructure();
-using (var availabilityChecker = ModuleAvailabilityChecker.Create(builder.Configuration))
-{
-    builder.Services.AddContracts(availabilityChecker, Module.Contracts, builder.Configuration);
-    builder.Services.AddPasses(builder.Configuration, Module.Passes, availabilityChecker);
-    builder.Services.AddOffers(builder.Configuration, Module.Offers, availabilityChecker);
-    builder.Services.AddReports(Module.Reports, availabilityChecker);
-}
 
+RegisterModules(builder);
 
 var app = builder.Build();
 
@@ -47,6 +41,15 @@ app.RegisterOffers(Module.Offers);
 app.RegisterReports(Module.Reports);
 
 app.Run();
+
+static void RegisterModules(WebApplicationBuilder webApplicationBuilder)
+{
+    using var moduleAvailabilityChecker = ModuleAvailabilityChecker.Build(webApplicationBuilder.Configuration);
+    webApplicationBuilder.Services.AddContracts(Module.Contracts, webApplicationBuilder.Configuration, moduleAvailabilityChecker);
+    webApplicationBuilder.Services.AddPasses(Module.Passes, webApplicationBuilder.Configuration, moduleAvailabilityChecker);
+    webApplicationBuilder.Services.AddOffers(Module.Offers, webApplicationBuilder.Configuration, moduleAvailabilityChecker);
+    webApplicationBuilder.Services.AddReports(Module.Reports, moduleAvailabilityChecker);
+}
 
 namespace EvolutionaryArchitecture.Fitnet
 {
