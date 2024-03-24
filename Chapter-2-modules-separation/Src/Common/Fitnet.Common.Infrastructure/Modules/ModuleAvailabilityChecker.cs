@@ -28,7 +28,8 @@ public sealed class ModuleAvailabilityChecker : IDisposable
         return new ModuleAvailabilityChecker(featureManager, featureFlagServiceProvider);
     }
 
-    public bool IsModuleEnabled(string module) => _featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
+    public bool IsModuleEnabled(string module) =>
+        _featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
 
     private void Dispose(bool disposing)
     {
@@ -43,8 +44,6 @@ public sealed class ModuleAvailabilityChecker : IDisposable
         Dispose(true);
         GC.SuppressFinalize(this);
     }
-
-    ~ModuleAvailabilityChecker() => Dispose(false);
 }
 
 public static class ModuleAvailabilityCheckerExtensions
