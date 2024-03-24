@@ -43,7 +43,7 @@ In summary, if you are looking for a journey - not just a single article describ
 === Proposed Solution
 Our solution should be read like a story and is divided into 4 chapters:
 
-**Chapter 1:** Initial Architecture: Focus On Simplicity
+link:Chapter-1-initial-architecture/README.adoc[**Chapter 1:** Initial Architecture: Focus On Simplicity]
 
 **Chapter 2:** Modules Separation: Focus On Maintainability
 
