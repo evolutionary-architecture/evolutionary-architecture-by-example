@@ -21,9 +21,9 @@ public static class OffersModule
     }
 
     public static IServiceCollection AddOffers(this IServiceCollection services, IConfiguration configuration,
-        string module)
+        string module, ModuleAvailabilityChecker moduleAvailabilityChecker)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!moduleAvailabilityChecker.IsModuleEnabled(module))
         {
             return services;
         }

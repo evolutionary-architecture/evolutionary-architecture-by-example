@@ -22,9 +22,9 @@ public static class PassesModule
     }
 
     public static IServiceCollection AddPasses(this IServiceCollection services, IConfiguration configuration,
-        string module)
+        string module, ModuleAvailabilityChecker availabilityChecker)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!availabilityChecker.IsModuleEnabled(module))
         {
             return services;
         }

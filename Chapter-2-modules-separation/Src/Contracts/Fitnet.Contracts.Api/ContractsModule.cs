@@ -23,10 +23,10 @@ public static class ContractsModule
         app.MapContracts();
     }
 
-    public static IServiceCollection AddContracts(this IServiceCollection services, IConfiguration configuration,
-        string module)
+    public static IServiceCollection AddContracts(this IServiceCollection services, ModuleAvailabilityChecker checker,
+        string module, IConfiguration configuration)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!checker.IsModuleEnabled(module))
         {
             return services;
         }
