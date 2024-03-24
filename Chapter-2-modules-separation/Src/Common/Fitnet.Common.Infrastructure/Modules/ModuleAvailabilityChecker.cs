@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-#pragma warning disable S3881
-public class ModuleAvailabilityChecker : IDisposable
-#pragma warning restore S3881
+public sealed class ModuleAvailabilityChecker : IDisposable
 {
     private readonly IFeatureManager _featureManager;
     private readonly ServiceProvider _provider;
@@ -18,28 +16,38 @@ public class ModuleAvailabilityChecker : IDisposable
         _provider = provider;
     }
 
-    public static ModuleAvailabilityChecker Create(IConfiguration configuration)
+    public static ModuleAvailabilityChecker Build(IConfiguration configuration)
     {
-        var provider = new ServiceCollection()
+        var featureFlagServiceProvider = new ServiceCollection()
             .AddSingleton(configuration)
             .AddFeatureManagement()
             .Services
             .BuildServiceProvider();
-        var requiredService = provider.GetRequiredService<IFeatureManager>();
+        var featureManager = featureFlagServiceProvider.GetRequiredService<IFeatureManager>();
 
-        return new ModuleAvailabilityChecker(requiredService, provider);
+        return new ModuleAvailabilityChecker(featureManager, featureFlagServiceProvider);
     }
 
     public bool IsModuleEnabled(string module) => _featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
 
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _provider.Dispose();
+        }
+    }
+
     public void Dispose()
     {
-        _provider.Dispose();
+        Dispose(true);
         GC.SuppressFinalize(this);
     }
+
+    ~ModuleAvailabilityChecker() => Dispose(false);
 }
 
-public static class Test
+public static class ModuleAvailabilityCheckerExtensions
 {
     public static bool IsModuleEnabled(this IApplicationBuilder applicationBuilder, string module)
     {

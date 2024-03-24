@@ -20,8 +20,9 @@ public static class OffersModule
         app.UseOffers();
     }
 
-    public static IServiceCollection AddOffers(this IServiceCollection services, IConfiguration configuration,
-        string module, ModuleAvailabilityChecker moduleAvailabilityChecker)
+    public static IServiceCollection AddOffers(this IServiceCollection services,
+        string module, IConfiguration configuration,
+        ModuleAvailabilityChecker moduleAvailabilityChecker)
     {
         if (!moduleAvailabilityChecker.IsModuleEnabled(module))
         {
