@@ -45,11 +45,11 @@ Our solution should be read like a story and is divided into 4 chapters:
 
 link:/Chapter-1-initial-architecture/README.adoc[**Chapter 1:** Initial Architecture: Focus On Simplicity]
 
-**Chapter 2:** Modules Separation: Focus On Maintainability
+link:/Chapter-2-modules-separation/README.adoc[**Chapter 2:** Modules Separation: Focus On Maintainability]
 
-**Chapter 3:** Microservice Extraction: Focus On Growth
+link:/Chapter-3-microservice-extraction/README.adoc[**Chapter 3:** Microservice Extraction: Focus On Growth]
 
-**Chapter 4:** Applying Tactical Domain-Driven Design: Focus On Complexity
+link:/Chapter-4-applying-tactical-domain-driven-design/README.adoc[**Chapter 4:** Applying Tactical Domain-Driven Design: Focus On Complexity]
 
 In each chapter we describe the evolution of the architecture of a selected domain:
 
