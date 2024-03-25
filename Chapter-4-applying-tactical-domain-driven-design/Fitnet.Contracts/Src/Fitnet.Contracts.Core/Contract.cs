@@ -25,12 +25,12 @@ public sealed class Contract : Entity
     // EF needs this constructor to create non-primitive types
     private Contract() { }
 
-    private Contract(Guid id,
+    private Contract(
         Guid customerId,
         DateTimeOffset preparedAt,
         TimeSpan duration)
     {
-        Id = new ContractId(id);
+        Id = ContractId.Create();
         CustomerId = customerId;
         PreparedAt = preparedAt;
         Duration = duration;
@@ -42,10 +42,7 @@ public sealed class Contract : Entity
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
         BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
 
-        var contract = new Contract(Guid.NewGuid(),
-            customerId,
-            preparedAt,
-            StandardDuration);
+        var contract = new Contract(customerId, preparedAt, StandardDuration);
         var @event = ContractPreparedEvent.Raise(customerId, preparedAt);
         contract.RecordEvent(@event);
 
