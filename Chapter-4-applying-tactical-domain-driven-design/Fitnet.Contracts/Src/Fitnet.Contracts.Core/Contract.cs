@@ -64,3 +64,8 @@ public sealed class Contract : Entity
         return bindingContract;
     }
 }
+
+public readonly record struct ContractId(Guid Value)
+{
+    internal static ContractId Create() => new(Guid.NewGuid());
+}
