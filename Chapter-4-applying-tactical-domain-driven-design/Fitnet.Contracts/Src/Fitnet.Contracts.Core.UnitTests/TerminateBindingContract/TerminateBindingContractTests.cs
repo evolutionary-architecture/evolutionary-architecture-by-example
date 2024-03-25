@@ -1,22 +1,20 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBindingContract;
 
 using Common;
+using Core.TerminateBindingContract;
 using PrepareContract;
-using SignContract;
-using TerminateContract;
 
 public sealed class TerminateBindingContractTests
 {
-    [Theory]
-    [ClassData(typeof(SignContractTestData))]
-    internal void Given_sign_contract_Then_expiration_date_is_set_to_contract_duration_from_now(
-        DateTimeOffset fakeNow,
-        DateTimeOffset signedAt,
-        DateTimeOffset preparedAt)
+    [Fact]
+    internal void Given_terminate_binding_contracts_Then_should_raise_binding_contracts()
     {
+        var preparedAt = new DateTimeOffset(2022, 2, 3, 1, 1, 1, TimeSpan.Zero);
+        var terminatedAt = new DateTimeOffset(2023, 3, 3, 1, 1, 1, TimeSpan.Zero);
+        var fakeToday = new DateTimeOffset(2022, 3, 4, 1, 1, 1, TimeSpan.Zero);
+        var signDay = new DateTimeOffset(2022, 1, 3, 1, 1, 1, TimeSpan.Zero);
         var contract = PrepareContract(preparedAt);
-        var bindingContract = contract.Sign(signedAt, fakeNow);
-        var terminatedAt = DateTimeOffset.Now;
+        var bindingContract = contract.Sign(signDay, fakeToday);
 
         bindingContract.Terminate(terminatedAt);
 
