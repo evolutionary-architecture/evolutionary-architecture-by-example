@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.Events.EventBus.InMemory;
 
-using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
+using Fitnet.Common.Events.EventBus;
 using TestEngine.Configuration;
 
 public sealed class InMemoryEventBusTests(
@@ -15,14 +15,19 @@ public sealed class InMemoryEventBusTests(
     internal async Task Given_valid_event_published_Then_event_should_be_consumed()
     {
         // Arrange
-        var serviceScope = _applicationInMemory.Services.CreateScope();
-        var eventBus = serviceScope.ServiceProvider.GetRequiredService<IEventBus>();
+        var eventBus = GetEventBus();
         var fakeEvent = FakeEvent.Create();
 
         // Act
-        await eventBus.PublishAsync(fakeEvent, CancellationToken.None);
+        await eventBus!.PublishAsync(fakeEvent, CancellationToken.None);
 
         // Assert
         fakeEvent.Consumed.Should().BeTrue();
     }
+
+    private IEventBus GetEventBus() =>
+        _applicationInMemory.Services
+            .CreateScope()
+            .ServiceProvider
+            .GetRequiredService<IEventBus>();
 }
