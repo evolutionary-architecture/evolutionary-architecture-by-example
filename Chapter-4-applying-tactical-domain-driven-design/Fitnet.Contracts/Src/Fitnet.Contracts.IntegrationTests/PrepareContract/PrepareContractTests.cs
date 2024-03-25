@@ -3,7 +3,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareCont
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Api;
-using Api.Prepare;
+using Api.PrepareContract;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
