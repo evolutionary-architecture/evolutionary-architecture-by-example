@@ -1,5 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
+using AddAnex.BusinessRules;
 using Common.Core.BusinessRules;
 using DomainDrivenDesign.BuildingBlocks;
 using SignContract;
@@ -14,14 +15,14 @@ public sealed class BindingContract : Entity
     public TimeSpan Duration { get; init; }
     public DateTimeOffset TerminatedAt { get; set; }
     public DateTimeOffset BindingFrom { get; init; }
-    public DateTimeOffset? ExpiringAt { get; set; }
+    public DateTimeOffset ExpiringAt { get; set; }
 
     private BindingContract(
         ContractId contractId,
         Guid customerId,
         TimeSpan duration,
         DateTimeOffset bindingFrom,
-        DateTimeOffset? expiringAt)
+        DateTimeOffset expiringAt)
     {
         Id = BindingContractId.Create();
         ContractId = contractId;
@@ -40,9 +41,18 @@ public sealed class BindingContract : Entity
         return bindingContract;
     }
 
+    public Annex AddAnnex(DateTimeOffset validFrom)
+    {
+        BusinessRuleValidator.Validate(
+            new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt));
+
+        return Annex.Add(Id, validFrom);
+    }
+
     public void Terminate(DateTimeOffset terminatedAt)
     {
-        BusinessRuleValidator.Validate(new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
+        BusinessRuleValidator.Validate(
+            new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
 
         TerminatedAt = terminatedAt;
 
