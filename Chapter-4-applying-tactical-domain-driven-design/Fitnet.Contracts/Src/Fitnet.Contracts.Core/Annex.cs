@@ -7,35 +7,20 @@ public sealed class Annex : Entity
 {
     public AnnexId Id { get; init; }
     public BindingContractId BindingContractId { get; init; }
-    public TimeSpan Duration { get; init; }
     public DateTimeOffset ValidFrom { get; init; }
-    public DateTimeOffset ExpiringAt { get; set; }
 
-    private Annex(
-        BindingContractId bindingContractId,
-        TimeSpan duration,
-        DateTimeOffset validFrom,
-        DateTimeOffset expiringAt)
+    private Annex(BindingContractId bindingContractId, DateTimeOffset validFrom)
     {
         Id = AnnexId.Create();
         BindingContractId = bindingContractId;
-        Duration = duration;
         ValidFrom = validFrom;
-        ExpiringAt = expiringAt;
+
+        var @event = AnnexAddedToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom);
+        RecordEvent(@event);
     }
 
-    internal static Annex Add(
-        BindingContractId bindingContractId,
-        TimeSpan duration,
-        DateTimeOffset validFrom,
-        DateTimeOffset expiringAt)
-    {
-        var annex = new Annex(bindingContractId, duration, validFrom, expiringAt);
-        var @event = AnnexAddedToBindingContractEvent.Raise(annex.Id, bindingContractId, validFrom, expiringAt);
-        annex.RecordEvent(@event);
-
-        return annex;
-    }
+    internal static Annex Add(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
+        new(bindingContractId, validFrom);
 }
 
 public readonly record struct AnnexId(Guid Value)
