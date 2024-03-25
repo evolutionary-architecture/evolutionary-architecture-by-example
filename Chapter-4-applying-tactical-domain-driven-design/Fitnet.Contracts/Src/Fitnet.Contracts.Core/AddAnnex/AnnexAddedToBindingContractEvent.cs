@@ -7,19 +7,16 @@ public sealed record AnnexAddedToBindingContractEvent(
     AnnexId AnnexId,
     BindingContractId BindingContractId,
     DateTimeOffset ValidFrom,
-    DateTimeOffset ExpiringAt,
     DateTime OccuredAt) : IDomainEvent
 {
     internal static AnnexAddedToBindingContractEvent Raise(
         AnnexId annexId,
         BindingContractId bindingContractId,
-        DateTimeOffset validFrom,
-        DateTimeOffset expiringAt)
+        DateTimeOffset validFrom)
         => new(
             Guid.NewGuid(),
             annexId,
             bindingContractId,
             validFrom,
-            expiringAt,
             DateTime.UtcNow);
 }
