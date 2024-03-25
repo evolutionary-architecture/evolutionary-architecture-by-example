@@ -34,6 +34,9 @@ public sealed class Contract : Entity
         CustomerId = customerId;
         PreparedAt = preparedAt;
         Duration = duration;
+
+        var @event = ContractPreparedEvent.Raise(CustomerId, PreparedAt);
+        RecordEvent(@event);
     }
 
     public static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
@@ -42,11 +45,7 @@ public sealed class Contract : Entity
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
         BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
 
-        var contract = new Contract(customerId, preparedAt, StandardDuration);
-        var @event = ContractPreparedEvent.Raise(customerId, preparedAt);
-        contract.RecordEvent(@event);
-
-        return contract;
+        return new Contract(customerId, preparedAt, StandardDuration);
     }
 
     public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset today)
