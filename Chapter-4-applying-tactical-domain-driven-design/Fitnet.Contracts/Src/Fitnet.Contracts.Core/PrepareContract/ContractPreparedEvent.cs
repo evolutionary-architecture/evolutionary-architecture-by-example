@@ -14,5 +14,5 @@ public sealed record ContractPreparedEvent(
             Guid.NewGuid(),
             customerId,
             preparedAt,
-            DateTime.Now);
+            DateTime.UtcNow);
 }
