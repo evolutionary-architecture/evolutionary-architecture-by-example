@@ -15,7 +15,7 @@ public sealed class BindingContract : Entity
     public TimeSpan Duration { get; init; }
     public DateTimeOffset TerminatedAt { get; set; }
     public DateTimeOffset BindingFrom { get; init; }
-    public DateTimeOffset ExpiringAt { get; set; }
+    public DateTimeOffset ExpiringAt { get; init; }
 
     private BindingContract(
         ContractId contractId,
@@ -30,16 +30,13 @@ public sealed class BindingContract : Entity
         Duration = duration;
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
+
+        var @event = ContractStartedBindingEvent.Raise(BindingFrom, ExpiringAt);
+        RecordEvent(@event);
     }
 
-    internal static BindingContract Start(ContractId id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom, DateTimeOffset expiringAt)
-    {
-        var bindingContract = new BindingContract(id, customerId, duration, bindingFrom, expiringAt);
-        var @event = ContractStartedBindingEvent.Raise(bindingFrom, expiringAt);
-        bindingContract.RecordEvent(@event);
-
-        return bindingContract;
-    }
+    internal static BindingContract Start(ContractId id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom,
+        DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
 
     public Annex AddAnnex(DateTimeOffset validFrom)
     {
