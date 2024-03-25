@@ -1,6 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-public readonly record struct ContractId(Guid Value);
+public readonly record struct ContractId(Guid Value)
+{
+    internal static ContractId Create() => new(Guid.NewGuid());
+}
 
 public readonly record struct BindingContractId(Guid Value)
 {
