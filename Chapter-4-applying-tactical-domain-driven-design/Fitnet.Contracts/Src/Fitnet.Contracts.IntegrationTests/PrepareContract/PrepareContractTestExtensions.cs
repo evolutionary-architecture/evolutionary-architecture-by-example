@@ -1,7 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareContract;
 
 using Api;
-using Api.Prepare;
+using Api.PrepareContract;
 
 internal static class PrepareContractTestExtensions
 {

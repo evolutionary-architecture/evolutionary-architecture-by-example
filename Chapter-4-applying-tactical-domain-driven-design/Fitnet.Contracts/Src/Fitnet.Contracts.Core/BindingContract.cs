@@ -3,8 +3,8 @@
 using Common.Core.BusinessRules;
 using DomainDrivenDesign.BuildingBlocks;
 using SignContract;
-using TerminateContract;
-using TerminateContract.BusinessRules;
+using TerminateBindingContract;
+using TerminateBindingContract.BusinessRules;
 
 public sealed class BindingContract : Entity
 {
