@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.BusinessRu
 
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
-internal sealed class ContractMustNotBeAlreadySigned(bool signed) : IBusinessRule
+internal sealed class ContractMustNotBeAlreadySignedRule(bool signed) : IBusinessRule
 {
     public bool IsMet() => !signed;
 

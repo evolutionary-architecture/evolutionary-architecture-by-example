@@ -3,7 +3,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract.
 using Common.Core.BusinessRules;
 using Core.SignContract.BusinessRules;
 
-public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
+public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
 {
     [Fact]
     internal void Given_signed_at_date_which_is_more_than_30_days_from_prepared_at_date_Then_validation_should_throw()
@@ -13,7 +13,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new ContractCanOnlyBeSignedWithin30DaysFromPreparation(DateTimeOffset.Now,
+                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(31)));
 
         // Assert
@@ -29,7 +29,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new ContractCanOnlyBeSignedWithin30DaysFromPreparation(DateTimeOffset.Now,
+                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(30)));
 
         // Assert
@@ -44,7 +44,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new ContractCanOnlyBeSignedWithin30DaysFromPreparation(DateTimeOffset.Now,
+                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(29)));
 
         // Assert
