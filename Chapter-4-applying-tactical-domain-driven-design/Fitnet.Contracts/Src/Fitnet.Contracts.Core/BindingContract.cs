@@ -40,11 +40,6 @@ public sealed class BindingContract : Entity
         return bindingContract;
     }
 
-    public void AddAnex()
-    {
-        
-    }
-
     public void Terminate(DateTimeOffset terminatedAt)
     {
         BusinessRuleValidator.Validate(new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
