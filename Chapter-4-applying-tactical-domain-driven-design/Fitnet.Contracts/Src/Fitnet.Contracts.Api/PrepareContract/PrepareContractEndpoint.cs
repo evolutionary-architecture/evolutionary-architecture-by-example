@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.PrepareContract;
 
 using EvolutionaryArchitecture.Fitnet.Common.Api.Validations;
-using EvolutionaryArchitecture.Fitnet.Contracts.Application;
+using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;

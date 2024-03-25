@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.TerminateBindingContract;
 
-using EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks;
+using DomainDrivenDesign.BuildingBlocks;
 
 public sealed record BindingContractTerminatedEvent(
     Guid Id,
