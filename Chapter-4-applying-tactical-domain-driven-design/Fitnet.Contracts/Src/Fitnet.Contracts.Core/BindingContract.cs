@@ -40,6 +40,11 @@ public sealed class BindingContract : Entity
         return bindingContract;
     }
 
+    public void AddAnex()
+    {
+        
+    }
+
     public void Terminate(DateTimeOffset terminatedAt)
     {
         BusinessRuleValidator.Validate(new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
@@ -50,3 +55,9 @@ public sealed class BindingContract : Entity
         RecordEvent(@event);
     }
 }
+
+public readonly record struct BindingContractId(Guid Value)
+{
+    internal static BindingContractId Create() => new(Guid.NewGuid());
+}
+
