@@ -1,9 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api;
 
 using Microsoft.AspNetCore.Routing;
-using Prepare;
-using Sign;
-using Terminate;
+using PrepareContract;
+using SignContract;
+using TerminateBindingContract;
 
 internal static class ContractsEndpoints
 {

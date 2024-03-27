@@ -1,10 +1,11 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
+using AddAnex.BusinessRules;
 using Common.Core.BusinessRules;
 using DomainDrivenDesign.BuildingBlocks;
 using SignContract;
-using TerminateContract;
-using TerminateContract.BusinessRules;
+using TerminateBindingContract;
+using TerminateBindingContract.BusinessRules;
 
 public sealed class BindingContract : Entity
 {
@@ -14,14 +15,14 @@ public sealed class BindingContract : Entity
     public TimeSpan Duration { get; init; }
     public DateTimeOffset TerminatedAt { get; set; }
     public DateTimeOffset BindingFrom { get; init; }
-    public DateTimeOffset? ExpiringAt { get; set; }
+    public DateTimeOffset ExpiringAt { get; init; }
 
     private BindingContract(
         ContractId contractId,
         Guid customerId,
         TimeSpan duration,
         DateTimeOffset bindingFrom,
-        DateTimeOffset? expiringAt)
+        DateTimeOffset expiringAt)
     {
         Id = BindingContractId.Create();
         ContractId = contractId;
@@ -29,24 +30,40 @@ public sealed class BindingContract : Entity
         Duration = duration;
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
+
+        var @event = ContractStartedBindingEvent.Raise(BindingFrom, ExpiringAt);
+        RecordEvent(@event);
     }
 
-    internal static BindingContract Start(ContractId id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom, DateTimeOffset expiringAt)
-    {
-        var bindingContract = new BindingContract(id, customerId, duration, bindingFrom, expiringAt);
-        var @event = ContractStartedBindingEvent.Raise(bindingFrom, expiringAt);
-        bindingContract.RecordEvent(@event);
+    internal static BindingContract Start(ContractId id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom,
+        DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
 
-        return bindingContract;
+    public Annex AddAnnex(DateTimeOffset validFrom)
+    {
+        BusinessRuleValidator.Validate(
+            new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt));
+
+        return Annex.Add(Id, validFrom);
     }
 
     public void Terminate(DateTimeOffset terminatedAt)
     {
-        BusinessRuleValidator.Validate(new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
+        BusinessRuleValidator.Validate(
+            new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
 
         TerminatedAt = terminatedAt;
 
         var @event = BindingContractTerminatedEvent.Raise(TerminatedAt);
         RecordEvent(@event);
     }
+}
+
+public record struct ContractId(Guid Value)
+{
+    internal static ContractId Create() => new(Guid.NewGuid());
+}
+
+public readonly record struct BindingContractId(Guid Value)
+{
+    internal static BindingContractId Create() => new(Guid.NewGuid());
 }

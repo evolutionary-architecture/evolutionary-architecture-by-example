@@ -1,8 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
+using Api.SignContract;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
-using Api.Sign;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;

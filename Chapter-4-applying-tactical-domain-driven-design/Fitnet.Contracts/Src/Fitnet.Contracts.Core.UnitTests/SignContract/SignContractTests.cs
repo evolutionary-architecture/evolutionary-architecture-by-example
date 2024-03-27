@@ -1,8 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract;
 
-using PrepareContract;
+using Common;
+using Core.SignContract;
 
-public class SignContractTests
+public sealed class SignContractTests
 {
     [Theory]
     [ClassData(typeof(SignContractTestData))]
@@ -13,13 +14,16 @@ public class SignContractTests
         DateTimeOffset expectedExpirationDate)
     {
         // Arrange
-        var contract = PrepareContract(preparedAt);
+        Contract contract = ContractBuilder
+            .Create()
+            .PreparedAt(preparedAt);
 
         // Act
         var bindingContract = contract.Sign(signedAt, fakeNow);
 
         // Assert
-        bindingContract.ExpiringAt.Should().Be(expectedExpirationDate);
+        var @event = bindingContract.GetPublishedEvent<ContractStartedBindingEvent>();
+        @event?.ExpiringAt.Should().Be(expectedExpirationDate);
     }
 
     private static readonly DateTimeOffset PreparedAt = new(2023, 1, 1, 0, 0, 0, TimeSpan.Zero);
@@ -30,25 +34,15 @@ public class SignContractTests
     internal void Given_sign_contract_Then_contracts_becomes_binding_contract()
     {
         // Arrange
-        var contract = PrepareContract(PreparedAt);
+        Contract contract = ContractBuilder
+            .Create()
+            .PreparedAt(PreparedAt);
 
         // Act
         var bindingContract = contract.Sign(SignedAt, FakeNow);
 
         // Assert
-        bindingContract.Should().NotBeNull();
-        bindingContract.Should().BeOfType<BindingContract>();
-    }
-
-    private static Contract PrepareContract(DateTimeOffset preparedAt)
-    {
-        var prepareContractParameters = PrepareContractParameters.GetValid();
-        var contract = Contract.Prepare(
-            Guid.NewGuid(),
-            prepareContractParameters.MaxAge,
-            prepareContractParameters.MaxHeight,
-            preparedAt);
-
-        return contract;
+        var @event = bindingContract.GetPublishedEvent<ContractStartedBindingEvent>();
+        @event?.BindingFrom.Should().Be(SignedAt);
     }
 }

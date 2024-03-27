@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
-using Api.Sign;
+using Api.SignContract;
 
 internal static class SignContractTestExtensions
 {
