@@ -1,32 +1,33 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Modules;
 
 using Microsoft.FeatureManagement;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 public sealed class ModuleAvailabilityChecker : IDisposable
 {
     private readonly IFeatureManager _featureManager;
-    private readonly ServiceProvider _provider;
+    private readonly ServiceProvider _serviceProvider;
 
-    private ModuleAvailabilityChecker(IFeatureManager featureManager, ServiceProvider provider)
+    private ModuleAvailabilityChecker(IFeatureManager featureManager, ServiceProvider serviceProvider)
     {
         _featureManager = featureManager;
-        _provider = provider;
+        _serviceProvider = serviceProvider;
     }
 
-    public static ModuleAvailabilityChecker Build(IConfiguration configuration)
+    public static ModuleAvailabilityChecker Create(IConfiguration configuration)
     {
-        var featureFlagServiceProvider = new ServiceCollection()
-            .AddSingleton(configuration)
-            .AddFeatureManagement()
-            .Services
-            .BuildServiceProvider();
+        var featureFlagServiceProvider = BuildIsolatedFeatureFlagServiceProvider(configuration);
         var featureManager = featureFlagServiceProvider.GetRequiredService<IFeatureManager>();
 
         return new ModuleAvailabilityChecker(featureManager, featureFlagServiceProvider);
     }
+
+    private static ServiceProvider BuildIsolatedFeatureFlagServiceProvider(IConfiguration configuration) => new ServiceCollection()
+            .AddSingleton(configuration)
+            .AddFeatureManagement()
+            .Services
+            .BuildServiceProvider();
 
     public bool IsModuleEnabled(string module) =>
         _featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
@@ -35,7 +36,7 @@ public sealed class ModuleAvailabilityChecker : IDisposable
     {
         if (disposing)
         {
-            _provider.Dispose();
+            _serviceProvider.Dispose();
         }
     }
 
@@ -43,18 +44,5 @@ public sealed class ModuleAvailabilityChecker : IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
-    }
-}
-
-public static class ModuleAvailabilityCheckerExtensions
-{
-    public static bool IsModuleEnabled(this IApplicationBuilder applicationBuilder, string module)
-    {
-        using var scope = applicationBuilder.ApplicationServices.CreateScope();
-        var featureManager = scope.ServiceProvider.GetRequiredService<IFeatureManager>();
-
-        var enabled = featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
-
-        return enabled;
     }
 }
