@@ -6,11 +6,11 @@ using Offers.Api;
 using Passes.Api;
 using Reports;
 
-internal static class ModuleRegistry
+internal static class ModulesRegistry
 {
     internal static void AddModules(this IServiceCollection services, IConfiguration configuration)
     {
-        using var moduleAvailabilityChecker = ModuleAvailabilityChecker.Build(configuration);
+        using var moduleAvailabilityChecker = ModuleAvailabilityChecker.Create(configuration);
         services.AddContracts(Module.Contracts, configuration, moduleAvailabilityChecker);
         services.AddPasses(Module.Passes, configuration, moduleAvailabilityChecker);
         services.AddOffers(Module.Offers, configuration, moduleAvailabilityChecker);
