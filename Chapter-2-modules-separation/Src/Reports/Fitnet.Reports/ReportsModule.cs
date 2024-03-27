@@ -19,9 +19,9 @@ public static class ReportsModule
         app.MapReports();
     }
 
-    public static IServiceCollection AddReports(this IServiceCollection services, string module)
+    public static IServiceCollection AddReports(this IServiceCollection services, string module, ModuleAvailabilityChecker availabilityChecker)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!availabilityChecker.IsModuleEnabled(module))
         {
             return services;
         }
