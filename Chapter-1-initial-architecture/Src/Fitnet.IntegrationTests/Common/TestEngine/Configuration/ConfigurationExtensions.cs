@@ -1,11 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Configuration;
 
 using System.Reflection;
+using Events.EventBus.InMemory;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus.InMemory;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Time.Testing;
 
 internal static class ConfigurationExtensions
 {
@@ -41,10 +39,73 @@ internal static class ConfigurationExtensions
     internal static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IEventBus eventBusMock)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
-            services.AddSingleton(eventBusMock)));
+        {
+            AddNotificationDecorator(eventBusMock, services, true);
+        }));
+
+    internal static WebApplicationFactory<T> WithoutEventHandlers<T>(this WebApplicationFactory<T> webApplicationFactory, IEventBus eventBusMock)
+        where T : class =>
+        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
+        {
+            AddNotificationDecorator(eventBusMock, services, false);
+        }));
 
     internal static WebApplicationFactory<T> WithFakeConsumers<T>(this WebApplicationFactory<T> webApplicationFactory)
         where T : class =>
         webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
-            services.AddInMemoryEventBus(Assembly.GetExecutingAssembly())));
+        {
+            services.AddInMemoryEventBus(Assembly.GetExecutingAssembly());
+            var decorator = services.FirstOrDefault(s => s.ImplementationType == typeof(NotificationDecorator<>));
+            if (decorator is not null)
+            {
+                services.Remove(decorator);
+            }
+        }));
+
+    private static void AddNotificationDecorator(IEventBus eventBusMock, IServiceCollection services, bool hasSingleEventHandling)
+    {
+        var notificationHandlerServices = services.Where(s =>
+                s.ServiceType.IsGenericType &&
+                s.ServiceType.GetGenericTypeDefinition() == typeof(INotificationHandler<>))
+            .ToList();
+
+        foreach (var notificationHandlerService in notificationHandlerServices)
+        {
+            var serviceType = notificationHandlerService.ServiceType;
+            var implementationType = notificationHandlerService.ImplementationType;
+
+            services.Remove(notificationHandlerService);
+            services.AddTransient(implementationType!);
+
+            services.AddTransient(serviceType, serviceProvider =>
+            {
+                var notificationHandler = hasSingleEventHandling
+                    ? NotificationHandlerWithFakeEventBus(eventBusMock, implementationType, serviceProvider)
+                    : null;
+
+                var decoratorType = typeof(NotificationDecorator<>).MakeGenericType(serviceType.GenericTypeArguments[0]);
+                return Activator.CreateInstance(decoratorType, eventBusMock, notificationHandler)!;
+            });
+        }
+    }
+
+    private static object NotificationHandlerWithFakeEventBus(IEventBus eventBusMock, Type? implementationType,
+        IServiceProvider serviceProvider)
+    {
+        var constructor = implementationType!.GetConstructors().FirstOrDefault()!;
+        var parameters = constructor.GetParameters();
+        var handlerDependencies = new object[parameters.Length];
+        for (var i = 0; i < parameters.Length; i++)
+        {
+            if (parameters[i].ParameterType == typeof(IEventBus))
+            {
+                handlerDependencies[i] = eventBusMock;
+                continue;
+            }
+            handlerDependencies[i] = serviceProvider.GetService(parameters[i]!.ParameterType)!;
+        }
+
+        var notificationHandler = Activator.CreateInstance(implementationType, handlerDependencies)!;
+        return notificationHandler;
+    }
 }

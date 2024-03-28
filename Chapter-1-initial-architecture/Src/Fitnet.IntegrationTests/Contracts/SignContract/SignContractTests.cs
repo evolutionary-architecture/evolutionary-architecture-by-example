@@ -7,7 +7,6 @@ using PrepareContract;
 using Common.TestEngine.Configuration;
 using Fitnet.Contracts.SignContract.Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
-using Microsoft.AspNetCore.Mvc;
 
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
@@ -17,7 +16,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database) =>
         _applicationHttpClient = applicationInMemoryFactory
-            .WithFakeEventBus(_fakeEventBus)
+            .WithoutEventHandlers(_fakeEventBus)
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
 
