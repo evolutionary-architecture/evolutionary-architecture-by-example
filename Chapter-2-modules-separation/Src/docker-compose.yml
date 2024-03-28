@@ -13,9 +13,9 @@ services:
 
   postgres:
     image: postgres:14.3
-    container_name: postgres_fitnet_2
+    container_name: postgres
     ports:
-      - 7432:5432
+      - 5432:5432
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
     healthcheck:
