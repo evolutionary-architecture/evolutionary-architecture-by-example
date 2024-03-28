@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.Common.Time;
 
-public sealed class FakeSystemTimeProvider : TimeProvider
+public sealed class FakeTimeProvider : TimeProvider
 {
     private DateTimeOffset TimeNowOffset { get; set; } = new Faker().Date.RecentOffset().UtcDateTime;
 
