@@ -19,4 +19,3 @@ internal sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule 
 
     public string Error => "Annex can only be added to active binding contract";
 }
-
