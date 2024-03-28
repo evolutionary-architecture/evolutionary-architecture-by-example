@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-using AddAnex.BusinessRules;
+using AddAnnex.BusinessRules;
 using Common.Core.BusinessRules;
 using DomainDrivenDesign.BuildingBlocks;
 using SignContract;
