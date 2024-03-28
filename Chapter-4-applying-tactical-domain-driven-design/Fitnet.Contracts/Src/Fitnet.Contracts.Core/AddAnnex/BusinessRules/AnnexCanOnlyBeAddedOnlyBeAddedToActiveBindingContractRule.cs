@@ -1,6 +1,6 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AddAnex.BusinessRules;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AddAnnex.BusinessRules;
 
-using Common.Core.BusinessRules;
+using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
 internal sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule : IBusinessRule
 {
