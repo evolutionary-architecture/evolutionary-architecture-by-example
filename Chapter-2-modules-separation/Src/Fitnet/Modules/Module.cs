@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet;
+namespace EvolutionaryArchitecture.Fitnet.Modules;
 
 internal record Module(string Value)
 {

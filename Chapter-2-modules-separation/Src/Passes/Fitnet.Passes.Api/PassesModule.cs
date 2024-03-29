@@ -21,10 +21,11 @@ public static class PassesModule
         app.MapPasses();
     }
 
-    public static IServiceCollection AddPasses(this IServiceCollection services, IConfiguration configuration,
-        string module)
+    public static IServiceCollection AddPasses(this IServiceCollection services,
+        string module, IConfiguration configuration,
+        ModuleAvailabilityChecker availabilityChecker)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!availabilityChecker.IsModuleEnabled(module))
         {
             return services;
         }

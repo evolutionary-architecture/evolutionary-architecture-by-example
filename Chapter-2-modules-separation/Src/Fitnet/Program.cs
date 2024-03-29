@@ -1,14 +1,9 @@
-using EvolutionaryArchitecture.Fitnet;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Core.SystemClock;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
-using EvolutionaryArchitecture.Fitnet.Contracts.Api;
-using EvolutionaryArchitecture.Fitnet.Offers.Api;
-using EvolutionaryArchitecture.Fitnet.Passes.Api;
-using EvolutionaryArchitecture.Fitnet.Reports;
+using EvolutionaryArchitecture.Fitnet.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,10 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSystemClock();
 builder.Services.AddExceptionHandling();
 builder.Services.AddCommonInfrastructure();
-builder.Services.AddContracts(builder.Configuration, Module.Contracts);
-builder.Services.AddPasses(builder.Configuration, Module.Passes);
-builder.Services.AddOffers(builder.Configuration, Module.Offers);
-builder.Services.AddReports(Module.Reports);
+builder.Services.AddModules(builder.Configuration);
 
 var app = builder.Build();
 
@@ -37,12 +29,10 @@ app.UseErrorHandling();
 
 app.MapControllers();
 
-app.RegisterContracts(Module.Contracts);
-app.RegisterPasses(Module.Passes);
-app.RegisterOffers(Module.Offers);
-app.RegisterReports(Module.Reports);
+app.RegisterModules();
 
 app.Run();
+
 
 namespace EvolutionaryArchitecture.Fitnet
 {

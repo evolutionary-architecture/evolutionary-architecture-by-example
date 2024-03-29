@@ -38,7 +38,6 @@ public sealed class OffersArchitectureTests
         var offersModule = Solution.Types
             .That()
             .ResideInNamespace(Modules.Offers);
-
         var shouldModule = Solution.Types
             .That()
             .ResideInNamespace(Modules.Passes)
