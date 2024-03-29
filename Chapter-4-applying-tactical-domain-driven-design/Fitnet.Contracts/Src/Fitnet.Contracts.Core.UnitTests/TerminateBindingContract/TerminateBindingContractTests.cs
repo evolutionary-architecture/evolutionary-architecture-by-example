@@ -2,24 +2,21 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBind
 
 using Common;
 using Core.TerminateBindingContract;
-using SignContract;
+using PrepareContract;
 
 public sealed class TerminateBindingContractTests
 {
-    private readonly DateTimeOffset _preparedAt = new(2022, 2, 3, 1, 1, 1, TimeSpan.Zero);
     private readonly DateTimeOffset _terminatedAt = new(2023, 3, 3, 1, 1, 1, TimeSpan.Zero);
     private readonly DateTimeOffset _fakeToday = new(2022, 3, 4, 1, 1, 1, TimeSpan.Zero);
-    private readonly DateTimeOffset _signDay = new(2022, 1, 3, 1, 1, 1, TimeSpan.Zero);
 
     [Fact]
     internal void Given_terminate_binding_contracts_Then_should_raise_binding_contracts()
     {
-
         BindingContract bindingContract = ContractBuilder
             .Create()
-                .PreparedAt(_preparedAt)
+                .PreparedAt(FakeContractDates.PreparedAt)
             .Prepared()
-                .SignedOn(_signDay, _fakeToday);
+                .SignedOn(FakeContractDates.SignDay, _fakeToday);
 
         bindingContract.Terminate(_terminatedAt);
 
