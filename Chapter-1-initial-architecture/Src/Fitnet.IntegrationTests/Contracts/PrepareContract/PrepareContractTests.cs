@@ -4,7 +4,6 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
-using Microsoft.AspNetCore.Mvc;
 
 public sealed class PrepareContractTests(
     WebApplicationFactory<Program> applicationInMemoryFactory,

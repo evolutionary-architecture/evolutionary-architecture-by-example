@@ -1,11 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Offers.Prepare;
 
 using Common.TestEngine.Configuration;
-using Common.TestEngine.IntegrationEvents.Handlers;
 using Fitnet.Offers.Prepare;
-using Fitnet.Passes.MarkPassAsExpired.Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
-
 
 public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
@@ -27,13 +24,11 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
     internal async Task Given_pass_expired_event_published_Then_new_offer_should_be_prepared()
     {
         // Arrange
-        using var integrationEventHandlerScope =
-            new IntegrationEventHandlerScope<PassExpiredEvent>(_applicationInMemory);
-        var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
+        using var serviceScope = _applicationInMemory.Services.CreateScope();
+        var eventBus = serviceScope.ServiceProvider.GetRequiredService<IEventBus>();
         var @event = PassExpiredEventFaker.CreateValid();
-
         // Act
-        await integrationEventHandler.Handle(@event, CancellationToken.None);
+        await eventBus.PublishAsync(@event);
 
         // Assert
         EnsureThatOfferPreparedEventWasPublished();
