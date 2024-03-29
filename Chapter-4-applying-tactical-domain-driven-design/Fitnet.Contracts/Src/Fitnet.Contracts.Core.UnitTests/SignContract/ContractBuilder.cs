@@ -2,7 +2,7 @@
 
 using PrepareContract;
 
-public class ContractBuilder
+internal sealed class ContractBuilder
 {
     public static ContractBuilder Create() => new();
 
