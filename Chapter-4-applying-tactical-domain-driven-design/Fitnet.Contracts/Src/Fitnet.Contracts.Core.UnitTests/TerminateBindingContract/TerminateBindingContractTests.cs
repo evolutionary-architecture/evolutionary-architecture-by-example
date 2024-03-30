@@ -14,8 +14,7 @@ public sealed class TerminateBindingContractTests
     {
         BindingContract bindingContract = ContractBuilder
             .Create()
-                .PreparedAt(FakeContractDates.PreparedAt)
-            .Prepared()
+            .Sign()
                 .SignedOn(FakeContractDates.SignDay, _fakeToday);
 
         bindingContract.Terminate(_terminatedAt);

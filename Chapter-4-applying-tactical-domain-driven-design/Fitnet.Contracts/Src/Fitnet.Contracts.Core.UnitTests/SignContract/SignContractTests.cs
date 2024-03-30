@@ -30,14 +30,12 @@ public sealed class SignContractTests
     private static readonly DateTimeOffset FakeNow = FakeContractDates.PreparedAt.AddDays(1);
     private static readonly DateTimeOffset SignedAt = FakeContractDates.PreparedAt.AddDays(1);
 
-
     [Fact]
     internal void Given_sign_contract_Then_contracts_becomes_binding_contract()
     {
         // Arrange
         Contract contract = ContractBuilder
-            .Create()
-            .PreparedAt(FakeContractDates.PreparedAt);
+            .Create();
 
         // Act
         var bindingContract = contract.Sign(SignedAt, FakeNow);
