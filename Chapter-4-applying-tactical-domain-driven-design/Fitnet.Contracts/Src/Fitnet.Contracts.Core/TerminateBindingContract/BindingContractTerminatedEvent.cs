@@ -8,5 +8,5 @@ public sealed record BindingContractTerminatedEvent(
     DateTime OccuredAt) : IDomainEvent
 {
     internal static BindingContractTerminatedEvent Raise(DateTimeOffset terminatedAt)
-        => new(Guid.NewGuid(), terminatedAt, DateTime.Now);
+        => new(Guid.NewGuid(), terminatedAt, terminatedAt.DateTime);
 }
