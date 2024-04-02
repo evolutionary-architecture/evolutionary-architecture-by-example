@@ -13,11 +13,11 @@ public sealed record AnnexAddedToBindingContractEvent(
         AnnexId annexId,
         BindingContractId bindingContractId,
         DateTimeOffset validFrom,
-        DateTimeOffset now)
+        DateTimeOffset occuredAt)
         => new(
             Guid.NewGuid(),
             annexId,
             bindingContractId,
             validFrom,
-            now.DateTime);
+            occuredAt.DateTime);
 }

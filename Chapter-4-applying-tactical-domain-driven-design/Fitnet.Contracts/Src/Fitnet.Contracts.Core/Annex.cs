@@ -9,18 +9,18 @@ public sealed class Annex : Entity
     public BindingContractId BindingContractId { get; init; }
     public DateTimeOffset ValidFrom { get; init; }
 
-    private Annex(BindingContractId bindingContractId, DateTimeOffset validFrom, DateTimeOffset now)
+    private Annex(BindingContractId bindingContractId, DateTimeOffset validFrom, DateTimeOffset occuredAt)
     {
         Id = AnnexId.Create();
         BindingContractId = bindingContractId;
         ValidFrom = validFrom;
 
-        var @event = AnnexAddedToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom, now);
+        var @event = AnnexAddedToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom, occuredAt);
         RecordEvent(@event);
     }
 
-    internal static Annex Add(BindingContractId bindingContractId, DateTimeOffset validFrom, DateTimeOffset now) =>
-        new(bindingContractId, validFrom, now);
+    internal static Annex Add(BindingContractId bindingContractId, DateTimeOffset validFrom, DateTimeOffset occuredAt) =>
+        new(bindingContractId, validFrom, occuredAt);
 }
 
 public readonly record struct AnnexId(Guid Value)
