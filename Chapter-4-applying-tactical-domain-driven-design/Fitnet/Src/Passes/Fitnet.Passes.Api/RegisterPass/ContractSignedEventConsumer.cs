@@ -5,7 +5,9 @@ using DataAccess;
 using DataAccess.Database;
 using MassTransit;
 
-public sealed class ContractSignedEventConsumer(PassesPersistence persistence) : IConsumer<ContractSignedEvent>
+public sealed class ContractSignedEventConsumer(
+    PassesPersistence persistence,
+    TimeProvider timeProvider) : IConsumer<ContractSignedEvent>
 {
     public async Task Consume(ConsumeContext<ContractSignedEvent> context)
     {
@@ -14,7 +16,7 @@ public sealed class ContractSignedEventConsumer(PassesPersistence persistence) :
         await persistence.Passes.AddAsync(pass, context.CancellationToken);
         await persistence.SaveChangesAsync(context.CancellationToken);
 
-        var passRegisteredEvent = PassRegisteredEvent.Create(pass.Id);
+        var passRegisteredEvent = PassRegisteredEvent.Create(pass.Id, timeProvider.GetUtcNow());
         await context.Publish(passRegisteredEvent, context.CancellationToken);
     }
 }
