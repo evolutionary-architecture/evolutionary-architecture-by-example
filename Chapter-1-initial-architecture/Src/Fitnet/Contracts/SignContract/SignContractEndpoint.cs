@@ -26,8 +26,12 @@ internal static class SignContractEndpoint
                 contract.Sign(request.SignedAt, dateNow);
                 await persistence.SaveChangesAsync(cancellationToken);
 
-                var @event = ContractSignedEvent.Create(contract.Id, contract.CustomerId, contract.SignedAt!.Value,
-                    contract.ExpiringAt!.Value);
+                var @event = ContractSignedEvent.Create(
+                    contract.Id,
+                    contract.CustomerId,
+                    contract.SignedAt!.Value,
+                    contract.ExpiringAt!.Value,
+                    timeProvider.GetUtcNow());
                 await bus.PublishAsync(@event, cancellationToken);
 
                 return Results.NoContent();
