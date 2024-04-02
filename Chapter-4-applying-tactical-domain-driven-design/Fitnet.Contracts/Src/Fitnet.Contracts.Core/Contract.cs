@@ -65,7 +65,7 @@ public sealed class Contract : Entity
 
         SignedAt = signedAt;
         ExpiringAt = now.Add(Duration);
-        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value, now);
+        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value);
 
         return bindingContract;
     }
