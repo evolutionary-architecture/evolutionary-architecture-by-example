@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPa
 
 internal sealed class ReportTestCases : IEnumerable<object[]>
 {
-    internal static DateTimeOffset FakeNowDate = new(2021, 1, 1, 0, 0, 0, TimeSpan.Zero);
+    internal static DateTimeOffset FakeNowDate = new(DateTimeOffset.UtcNow.Year, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
     public IEnumerator<object[]> GetEnumerator()
     {
