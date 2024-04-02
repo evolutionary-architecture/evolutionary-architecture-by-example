@@ -11,8 +11,13 @@ internal sealed class PrepareContractCommandHandler(IContractsRepository contrac
         var previousContract =
             await contractsRepository.GetPreviousForCustomerAsync(command.CustomerId, cancellationToken);
         var occuredAt = timeProvider.GetUtcNow();
-        var contract = Contract.Prepare(command.CustomerId, command.CustomerAge, command.CustomerHeight,
-            command.PreparedAt, occuredAt, previousContract?.IsSigned);
+        var contract = Contract.Prepare(
+            command.CustomerId,
+            command.CustomerAge,
+            command.CustomerHeight,
+            command.PreparedAt,
+            occuredAt,
+            previousContract?.IsSigned);
         await contractsRepository.AddAsync(contract, cancellationToken);
 
         return contract.Id.Value;
