@@ -28,6 +28,7 @@ public sealed class Contract : Entity
     private Contract(
         Guid customerId,
         DateTimeOffset preparedAt,
+        DateTimeOffset occuredAt,
         TimeSpan duration)
     {
         Id = ContractId.Create();
@@ -35,17 +36,23 @@ public sealed class Contract : Entity
         PreparedAt = preparedAt;
         Duration = duration;
 
-        var @event = ContractPreparedEvent.Raise(CustomerId, PreparedAt);
+        var @event = ContractPreparedEvent.Raise(CustomerId, PreparedAt, occuredAt);
         RecordEvent(@event);
     }
 
-    public static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
+    public static Contract Prepare(
+        Guid customerId,
+        int customerAge,
+        int customerHeight,
+        DateTimeOffset preparedAt,
+        DateTimeOffset occuredAt,
+        bool? isPreviousContractSigned = null)
     {
         BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
         BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
         BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
 
-        return new Contract(customerId, preparedAt, StandardDuration);
+        return new Contract(customerId, preparedAt, occuredAt, StandardDuration);
     }
 
     public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset today)
