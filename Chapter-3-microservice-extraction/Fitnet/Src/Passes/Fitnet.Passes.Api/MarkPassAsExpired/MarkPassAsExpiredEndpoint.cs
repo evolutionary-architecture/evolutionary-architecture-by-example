@@ -15,7 +15,7 @@ internal static class MarkPassAsExpiredEndpoint
             async (
                 Guid id,
                 PassesPersistence persistence,
-                ISystemClock systemClock,
+                TimeProvider timeProvider,
                 IPublishEndpoint publishEndpoint,
                 CancellationToken cancellationToken) =>
             {
@@ -25,7 +25,7 @@ internal static class MarkPassAsExpiredEndpoint
                     return Results.NotFound();
                 }
 
-                pass.MarkAsExpired(systemClock.Now);
+                pass.MarkAsExpired(timeProvider.GetUtcNow());
                 await persistence.SaveChangesAsync(cancellationToken);
 
                 var passExpiredEvent = PassExpiredEvent.Create(pass.Id, pass.CustomerId);
