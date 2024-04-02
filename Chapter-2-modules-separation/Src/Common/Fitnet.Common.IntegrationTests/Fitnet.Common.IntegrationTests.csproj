@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="34.0.2" />
         <PackageReference Include="FluentAssertions" Version="6.10.0" />
         <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="8.0.0" />
         <PackageReference Include="Verify.Xunit" Version="19.11.2" />

@@ -2,19 +2,16 @@ namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPa
 
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
-using Common.IntegrationTests.TestEngine.Time;
 using Contracts.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Reports;
 using GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using TestData;
-using FakeTimeProvider = Common.IntegrationTests.TestEngine.Time.FakeTimeProvider;
 
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
-    private static readonly FakeTimeProvider FakeTimeProvider = new();
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
 
@@ -22,8 +19,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         DatabaseContainer database)
     {
         _applicationInMemoryFactory = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
-            .WithTime(FakeTimeProvider);
+            .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!));
 
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
