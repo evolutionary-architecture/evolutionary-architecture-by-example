@@ -3,9 +3,9 @@ namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Tim
 using Bogus;
 
 [UsedImplicitly]
-public sealed class FakeTimeProvider : TimeProvider
+public sealed class FakeTimeProvider(DateTimeOffset? now = null) : TimeProvider
 {
-    private DateTimeOffset TimeNowOffset { get; set; } = new Faker().Date.RecentOffset().UtcDateTime;
+    private DateTimeOffset TimeNowOffset { get; set; } = now ?? new Faker().Date.RecentOffset().UtcDateTime;
 
     public override DateTimeOffset GetUtcNow() => TimeNowOffset;
 }
