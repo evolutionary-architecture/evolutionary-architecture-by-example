@@ -8,6 +8,7 @@ using DataAccess.Database;
 
 internal sealed class ContractSignedEventHandler(
     PassesPersistence persistence,
+    TimeProvider timeProvider,
     IEventBus eventBus) : IIntegrationEventHandler<ContractSignedEvent>
 {
     public async Task Handle(ContractSignedEvent @event, CancellationToken cancellationToken)
@@ -16,7 +17,7 @@ internal sealed class ContractSignedEventHandler(
         await persistence.Passes.AddAsync(pass, cancellationToken);
         await persistence.SaveChangesAsync(cancellationToken);
 
-        var passRegisteredEvent = PassRegisteredEvent.Create(pass.Id);
+        var passRegisteredEvent = PassRegisteredEvent.Create(pass.Id, timeProvider.GetUtcNow());
         await eventBus.PublishAsync(passRegisteredEvent, cancellationToken);
     }
 }
