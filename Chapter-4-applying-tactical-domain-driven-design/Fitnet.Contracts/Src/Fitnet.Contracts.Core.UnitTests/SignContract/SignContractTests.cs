@@ -47,8 +47,7 @@ public class SignContractTests
             Guid.NewGuid(),
             prepareContractParameters.MaxAge,
             prepareContractParameters.MaxHeight,
-            preparedAt,
-            FakeNow);
+            preparedAt);
 
         return contract;
     }
