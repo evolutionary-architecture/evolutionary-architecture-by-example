@@ -11,5 +11,5 @@ public sealed record BindingContractStartedEvent(
     internal static BindingContractStartedEvent Raise(
         DateTimeOffset bindingFrom,
         DateTimeOffset? expiringAt)
-        => new(Guid.NewGuid(), bindingFrom, expiringAt, bindingFrom.DateTime);
+        => new(Guid.NewGuid(), bindingFrom, expiringAt, DateTime.UtcNow);
 }

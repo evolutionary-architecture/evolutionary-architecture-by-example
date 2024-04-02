@@ -10,11 +10,10 @@ public sealed record ContractPreparedEvent(
 {
     internal static ContractPreparedEvent Raise(
         Guid customerId,
-        DateTimeOffset preparedAt,
-        DateTimeOffset occuredAt)
+        DateTimeOffset preparedAt)
         => new(
             Guid.NewGuid(),
             customerId,
             preparedAt,
-            occuredAt.DateTime);
+            DateTime.UtcNow);
 }
