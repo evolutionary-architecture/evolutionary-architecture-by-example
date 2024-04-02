@@ -6,11 +6,13 @@ using EvolutionaryArchitecture.Fitnet.Passes.Api.RegisterPass;
 using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
+using Common.IntegrationTests.TestEngine.Time;
 using Contracts.IntegrationEvents;
 
 public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
+    private static readonly FakeTimeProvider FakeTimeProvider = new();
     private readonly WebApplicationFactory<Program> _applicationInMemory;
     private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 
@@ -19,7 +21,8 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
     {
         _applicationInMemory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
-            .WithFakeEventBus(_fakeEventBus);
+            .WithFakeEventBus(_fakeEventBus)
+            .WithTime(FakeTimeProvider);
         _applicationInMemory.CreateClient();
     }
 

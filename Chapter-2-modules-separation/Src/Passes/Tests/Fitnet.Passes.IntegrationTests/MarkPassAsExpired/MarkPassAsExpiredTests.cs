@@ -7,6 +7,7 @@ using Api;
 using Api.GetAllPasses;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
+using Common.IntegrationTests.TestEngine.Time;
 using Contracts.IntegrationEvents;
 using IntegrationEvents;
 using RegisterPass;
@@ -14,6 +15,7 @@ using RegisterPass;
 public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private static readonly StringContent EmptyContent = new(string.Empty);
+    private static readonly FakeTimeProvider FakeTimeProvider = new();
 
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
@@ -24,7 +26,8 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     {
         _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new PassesDatabaseConfiguration(database.ConnectionString!))
-            .WithFakeEventBus(_fakeEventBus);
+            .WithFakeEventBus(_fakeEventBus)
+            .WithTime(FakeTimeProvider);
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
 
