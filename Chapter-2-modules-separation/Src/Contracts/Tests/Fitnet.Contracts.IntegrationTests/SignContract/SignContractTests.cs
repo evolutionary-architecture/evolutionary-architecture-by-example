@@ -7,11 +7,13 @@ using Api.Prepare;
 using Api.Sign;
 using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
+using Common.IntegrationTests.TestEngine.Time;
 using Microsoft.AspNetCore.Mvc;
 using PrepareContract;
 
 public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
+    private static readonly FakeTimeProvider FakeTimeProvider = new();
     private readonly HttpClient _applicationHttpClient;
     private readonly IEventBus _eventBus = Substitute.For<IEventBus>();
 
@@ -20,6 +22,7 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
         _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
             .WithFakeEventBus(_eventBus)
+            .WithTime(FakeTimeProvider)
             .CreateClient();
 
     [Fact]

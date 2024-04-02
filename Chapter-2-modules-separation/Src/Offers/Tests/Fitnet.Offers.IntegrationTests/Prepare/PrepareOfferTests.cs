@@ -2,6 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests.Prepare;
 
 using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
+using Common.IntegrationTests.TestEngine.Time;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
@@ -11,6 +12,7 @@ using Passes.IntegrationEvents;
 public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
+    private static readonly FakeTimeProvider FakeTimeProvider = new();
     private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
     private readonly WebApplicationFactory<Program> _applicationInMemory;
 
@@ -19,6 +21,7 @@ public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactor
     {
         _applicationInMemory = applicationInMemoryFactory
             .WithFakeEventBus(_fakeEventBus)
+            .WithTime(FakeTimeProvider)
             .WithContainerDatabaseConfigured(new OffersDatabaseConfiguration(database.ConnectionString!));
 
         _applicationInMemory.CreateClient();
