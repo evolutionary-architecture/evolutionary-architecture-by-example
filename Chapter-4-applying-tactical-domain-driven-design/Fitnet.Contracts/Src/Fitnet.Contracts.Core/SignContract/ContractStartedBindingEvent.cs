@@ -8,7 +8,9 @@ public sealed record ContractStartedBindingEvent(
     DateTimeOffset? ExpiringAt,
     DateTime OccuredAt) : IDomainEvent
 {
-    internal static ContractStartedBindingEvent Raise(DateTimeOffset bindingFrom,
-        DateTimeOffset? expiringAt)
-        => new(Guid.NewGuid(), bindingFrom, expiringAt, DateTime.UtcNow);
+    internal static ContractStartedBindingEvent Raise(
+        DateTimeOffset bindingFrom,
+        DateTimeOffset? expiringAt,
+        DateTimeOffset occuredAt)
+        => new(Guid.NewGuid(), bindingFrom, expiringAt, occuredAt.DateTime);
 }

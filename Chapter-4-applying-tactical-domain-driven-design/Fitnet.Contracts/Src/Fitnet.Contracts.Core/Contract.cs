@@ -55,7 +55,7 @@ public sealed class Contract : Entity
         return new Contract(customerId, preparedAt, occuredAt, StandardDuration);
     }
 
-    public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset today)
+    public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset now)
     {
         BusinessRuleValidator.Validate(
             new ContractMustNotBeAlreadySignedRule(IsSigned));
@@ -64,8 +64,8 @@ public sealed class Contract : Entity
             new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signedAt));
 
         SignedAt = signedAt;
-        ExpiringAt = today.Add(Duration);
-        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, today, ExpiringAt.Value);
+        ExpiringAt = now.Add(Duration);
+        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value, now);
 
         return bindingContract;
     }
