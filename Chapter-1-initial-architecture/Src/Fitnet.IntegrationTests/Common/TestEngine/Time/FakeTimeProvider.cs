@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Common.TestEngine.Time;
 
 [UsedImplicitly]
-public sealed class FakeTimeProvider(DateTimeOffset? now = null) : TimeProvider
+internal sealed class FakeTimeProvider(DateTimeOffset? now = null) : TimeProvider
 {
     private DateTimeOffset TimeNowOffset { get; set; } = now ?? new Faker().Date.RecentOffset().UtcDateTime;
 
