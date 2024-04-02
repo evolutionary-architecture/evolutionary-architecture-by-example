@@ -22,7 +22,8 @@ public sealed class BindingContract : Entity
         Guid customerId,
         TimeSpan duration,
         DateTimeOffset bindingFrom,
-        DateTimeOffset expiringAt)
+        DateTimeOffset expiringAt,
+        DateTimeOffset occuredAt)
     {
         Id = BindingContractId.Create();
         ContractId = contractId;
@@ -31,12 +32,17 @@ public sealed class BindingContract : Entity
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
 
-        var @event = ContractStartedBindingEvent.Raise(BindingFrom, ExpiringAt);
+        var @event = ContractStartedBindingEvent.Raise(BindingFrom, ExpiringAt, occuredAt);
         RecordEvent(@event);
     }
 
-    internal static BindingContract Start(ContractId id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom,
-        DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
+    internal static BindingContract Start(
+        ContractId id,
+        Guid customerId,
+        TimeSpan duration,
+        DateTimeOffset bindingFrom,
+        DateTimeOffset expiringAt,
+        DateTimeOffset occuredAt) => new(id, customerId, duration, bindingFrom, expiringAt, occuredAt);
 
     public Annex AddAnnex(DateTimeOffset validFrom, DateTimeOffset now)
     {
