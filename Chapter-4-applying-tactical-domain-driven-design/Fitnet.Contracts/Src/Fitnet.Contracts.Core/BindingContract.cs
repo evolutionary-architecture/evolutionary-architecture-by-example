@@ -43,7 +43,7 @@ public sealed class BindingContract : Entity
         BusinessRuleValidator.Validate(
             new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
 
-        return Annex.Add(Id, validFrom);
+        return Annex.Add(Id, validFrom, now);
     }
 
     public void Terminate(DateTimeOffset terminatedAt)
