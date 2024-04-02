@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests.Events.EventBus.InMemory;
 
 using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.Time;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
 
@@ -9,9 +8,7 @@ public sealed class InMemoryEventBusTests(
     FitnetWebApplicationFactory<Program> applicationInMemoryFactory) : IClassFixture<
     FitnetWebApplicationFactory<Program>>
 {
-    private static readonly FakeTimeProvider FakeTimeProvider = new();
     private WebApplicationFactory<Program> ApplicationInMemory => applicationInMemoryFactory
-        .WithTime(FakeTimeProvider)
         .WithFakeConsumers(Assembly.GetExecutingAssembly());
 
     [Fact]

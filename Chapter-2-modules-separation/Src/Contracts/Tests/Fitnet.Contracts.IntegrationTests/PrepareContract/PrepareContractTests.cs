@@ -5,7 +5,6 @@ using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configu
 using Api;
 using Api.Prepare;
 using Common.IntegrationTests.TestEngine;
-using Common.IntegrationTests.TestEngine.Time;
 using Microsoft.AspNetCore.Mvc;
 
 public sealed class PrepareContractTests(
@@ -13,10 +12,8 @@ public sealed class PrepareContractTests(
     DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
-    private static readonly FakeTimeProvider FakeTimeProvider = new();
     private HttpClient ApplicationHttpClient => applicationInMemoryFactory
         .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
-        .WithTime(FakeTimeProvider)
         .CreateClient();
 
     [Fact]
