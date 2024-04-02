@@ -32,7 +32,7 @@ public sealed class BindingContract : Entity
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
 
-        var @event = ContractStartedBindingEvent.Raise(BindingFrom, ExpiringAt, occuredAt);
+        var @event = BindingContractStartedEvent.Raise(BindingFrom, ExpiringAt, occuredAt);
         RecordEvent(@event);
     }
 
