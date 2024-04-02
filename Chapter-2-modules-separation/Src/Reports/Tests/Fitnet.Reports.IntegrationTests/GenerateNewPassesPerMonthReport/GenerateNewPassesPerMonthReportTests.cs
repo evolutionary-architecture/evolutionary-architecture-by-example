@@ -22,8 +22,8 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         DatabaseContainer database)
     {
         _applicationInMemoryFactory = applicationInMemoryFactory
-            .WithTime(FakeTimeProvider)
-            .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!));
+            .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
+            .WithTime(FakeTimeProvider);
 
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
