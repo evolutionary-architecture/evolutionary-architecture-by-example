@@ -6,16 +6,19 @@ internal sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule 
 {
     private readonly DateTimeOffset? _terminatedAt;
     private readonly DateTimeOffset _expiringAt;
+    private readonly DateTimeOffset? _now;
 
     internal AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(
         DateTimeOffset? terminatedAt,
-        DateTimeOffset expiringAt)
+        DateTimeOffset expiringAt,
+        DateTimeOffset now)
     {
         _terminatedAt = terminatedAt;
         _expiringAt = expiringAt;
+        _now = now;
     }
 
-    public bool IsMet() => !_terminatedAt.HasValue && _expiringAt > DateTimeOffset.UtcNow;
+    public bool IsMet() => !_terminatedAt.HasValue && _expiringAt > _now;
 
     public string Error => "Annex can only be added to active binding contract";
 }

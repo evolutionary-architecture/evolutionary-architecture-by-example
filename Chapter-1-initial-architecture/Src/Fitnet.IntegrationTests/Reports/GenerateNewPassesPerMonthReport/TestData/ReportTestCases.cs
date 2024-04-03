@@ -6,8 +6,8 @@ internal sealed class ReportTestCases : IEnumerable<object[]>
 
     public IEnumerator<object[]> GetEnumerator()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new List<PassRegistrationDateRange>
             {
                 new(new DateTimeOffset(FakeNowDate.Year, 1, 3, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 1, 10 ,1, 1, 1,1, TimeSpan.Zero)),
@@ -24,7 +24,7 @@ internal sealed class ReportTestCases : IEnumerable<object[]>
                 new(new DateTimeOffset(FakeNowDate.Year, 11, 1, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 11, 30 ,1, 1, 1,1, TimeSpan.Zero)),
                 new(new DateTimeOffset(FakeNowDate.Year, 12, 1, 1, 1,1, TimeSpan.Zero), new DateTimeOffset(FakeNowDate.Year, 12, 31 ,1, 1, 1,1, TimeSpan.Zero))
             }
-        };
+        ];
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

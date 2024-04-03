@@ -31,17 +31,21 @@ public sealed class BindingContract : Entity
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
 
-        var @event = ContractStartedBindingEvent.Raise(BindingFrom, ExpiringAt);
+        var @event = BindingContractStartedEvent.Raise(BindingFrom, ExpiringAt);
         RecordEvent(@event);
     }
 
-    internal static BindingContract Start(ContractId id, Guid customerId, TimeSpan duration, DateTimeOffset bindingFrom,
+    internal static BindingContract Start(
+        ContractId id,
+        Guid customerId,
+        TimeSpan duration,
+        DateTimeOffset bindingFrom,
         DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
 
-    public Annex AddAnnex(DateTimeOffset validFrom)
+    public Annex AddAnnex(DateTimeOffset validFrom, DateTimeOffset now)
     {
         BusinessRuleValidator.Validate(
-            new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt));
+            new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
 
         return Annex.Add(Id, validFrom);
     }

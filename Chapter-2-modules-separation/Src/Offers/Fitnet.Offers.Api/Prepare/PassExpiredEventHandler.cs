@@ -18,7 +18,7 @@ internal sealed class PassExpiredEventHandler(
         persistence.Offers.Add(offer);
         await persistence.SaveChangesAsync(cancellationToken);
 
-        var offerPreparedEvent = OfferPrepareEvent.Create(offer.Id, offer.CustomerId);
+        var offerPreparedEvent = OfferPrepareEvent.Create(offer.Id, offer.CustomerId, timeProvider.GetUtcNow());
         await eventBus.PublishAsync(offerPreparedEvent, cancellationToken);
     }
 }

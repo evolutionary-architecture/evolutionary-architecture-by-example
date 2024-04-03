@@ -24,7 +24,9 @@ internal static class MarkPassAsExpiredEndpoint
                 var nowDate = timeProvider.GetUtcNow();
                 pass.MarkAsExpired(nowDate);
                 await persistence.SaveChangesAsync(cancellationToken);
-                await eventBus.PublishAsync(PassExpiredEvent.Create(pass.Id, pass.CustomerId), cancellationToken);
+                await eventBus.PublishAsync(
+                    PassExpiredEvent.Create(pass.Id, pass.CustomerId, timeProvider.GetUtcNow()),
+                    cancellationToken);
 
                 return Results.NoContent();
             })
