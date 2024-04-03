@@ -3,7 +3,7 @@ namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPa
 using Common.IntegrationTestsToolbox.TestEngine;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Common.IntegrationTestsToolbox.TestEngine.EventBus;
-using Common.IntegrationTestsToolbox.TestEngine.SystemClock;
+using Common.IntegrationTestsToolbox.TestEngine.Time;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using Passes.Api.RegisterPass;
@@ -13,7 +13,7 @@ using TestData;
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
-    private static readonly FakeSystemTimeProvider FakeTimeProvider = new();
+    private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
     private readonly HttpClient _applicationHttpClient;
     private readonly ITestHarness _testExternalEventBus;
 
