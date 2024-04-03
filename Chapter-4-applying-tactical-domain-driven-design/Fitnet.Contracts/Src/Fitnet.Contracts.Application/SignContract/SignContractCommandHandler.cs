@@ -16,8 +16,8 @@ internal sealed class SignContractCommandHandler(
     {
         var contract = await contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
-        var today = timeProvider.GetUtcNow();
-        var bindingContract = contract.Sign(command.SignedAt, today);
+        var now = timeProvider.GetUtcNow();
+        var bindingContract = contract.Sign(command.SignedAt, now);
         await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);
         await contractsRepository.CommitAsync(cancellationToken);
         var @event = ContractSignedEvent.Create(contract.Id.Value,

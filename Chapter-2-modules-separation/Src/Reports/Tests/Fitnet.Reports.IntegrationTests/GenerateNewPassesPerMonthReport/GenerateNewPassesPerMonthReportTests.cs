@@ -2,6 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests.GenerateNewPa
 
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
+using Common.IntegrationTests.TestEngine.Time;
 using Contracts.IntegrationEvents;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
@@ -12,6 +13,7 @@ using TestData;
 [UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
+    private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
     private readonly HttpClient _applicationHttpClient;
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
 
@@ -20,7 +22,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
     {
         _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ReportsDatabaseConfiguration(database.ConnectionString!))
-            .SetFakeSystemClock(ReportTestCases.FakeNowDate);
+            .WithTime(FakeTimeProvider);
 
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }

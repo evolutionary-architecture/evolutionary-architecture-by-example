@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    
+
+    <PropertyGroup>
+      <IsPackable>false</IsPackable>
+      <NoWarn>$(NoWarn);S3604</NoWarn>
+    </PropertyGroup>
+  
     <ItemGroup>
         <PackageReference Include="Bogus" Version="34.0.2" />
         <PackageReference Include="FluentAssertions" Version="6.10.0" />

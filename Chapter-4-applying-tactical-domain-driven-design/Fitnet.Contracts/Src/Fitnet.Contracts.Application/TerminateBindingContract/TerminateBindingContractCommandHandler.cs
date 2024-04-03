@@ -12,8 +12,8 @@ internal sealed class TerminateBindingContractCommandHandler(
     {
         var contract = await bindingContractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
-        var now = timeProvider.GetUtcNow();
-        contract.Terminate(now);
+        var terminatedAt = timeProvider.GetUtcNow();
+        contract.Terminate(terminatedAt);
         await bindingContractsRepository.CommitAsync(cancellationToken);
     }
 }

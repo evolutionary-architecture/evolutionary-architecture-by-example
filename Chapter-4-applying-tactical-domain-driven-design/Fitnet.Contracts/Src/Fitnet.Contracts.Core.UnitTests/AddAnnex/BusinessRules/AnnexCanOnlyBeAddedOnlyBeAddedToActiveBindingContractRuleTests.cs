@@ -16,7 +16,7 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(terminatedAt, expiringAt)));
+                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(null, expiringAt)));
+                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(null, expiringAt, now)));
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(terminatedAt, expiringAt)));
+                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
     }
 
     [Fact]
@@ -56,7 +56,7 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(null, expiringAt));
+                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(null, expiringAt, now));
 
         // Assert
         act.Should().NotThrow();

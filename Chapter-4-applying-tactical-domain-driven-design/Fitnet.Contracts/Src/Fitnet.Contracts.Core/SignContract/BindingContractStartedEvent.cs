@@ -2,13 +2,14 @@
 
 using DomainDrivenDesign.BuildingBlocks;
 
-public sealed record ContractStartedBindingEvent(
+public sealed record BindingContractStartedEvent(
     Guid Id,
     DateTimeOffset BindingFrom,
     DateTimeOffset? ExpiringAt,
     DateTime OccuredAt) : IDomainEvent
 {
-    internal static ContractStartedBindingEvent Raise(DateTimeOffset bindingFrom,
+    internal static BindingContractStartedEvent Raise(
+        DateTimeOffset bindingFrom,
         DateTimeOffset? expiringAt)
         => new(Guid.NewGuid(), bindingFrom, expiringAt, DateTime.UtcNow);
 }

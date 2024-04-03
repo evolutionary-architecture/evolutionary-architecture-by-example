@@ -22,7 +22,8 @@ internal sealed class SignContractCommandHandler(
         var @event = ContractSignedEvent.Create(contract.Id,
             contract.CustomerId,
             contract.SignedAt!.Value,
-            contract.ExpiringAt!.Value);
+            contract.ExpiringAt!.Value,
+            timeProvider.GetUtcNow());
         await eventBus.PublishAsync(@event, cancellationToken);
     }
 }

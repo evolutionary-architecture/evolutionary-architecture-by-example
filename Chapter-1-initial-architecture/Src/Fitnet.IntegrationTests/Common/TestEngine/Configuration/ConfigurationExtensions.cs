@@ -5,7 +5,6 @@ using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus.InMemory;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Time.Testing;
 
 internal static class ConfigurationExtensions
 {
@@ -32,11 +31,6 @@ internal static class ConfigurationExtensions
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
             }
         });
-
-    internal static WebApplicationFactory<T> SetFakeSystemClock<T>(this WebApplicationFactory<T> webApplicationFactory, DateTimeOffset fakeDateTimeOffset)
-        where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder => webHostBuilder.ConfigureTestServices(services =>
-            services.AddSingleton<TimeProvider>(new FakeTimeProvider(fakeDateTimeOffset))));
 
     internal static WebApplicationFactory<T> WithFakeEventBus<T>(this WebApplicationFactory<T> webApplicationFactory, IEventBus eventBusMock)
         where T : class =>
