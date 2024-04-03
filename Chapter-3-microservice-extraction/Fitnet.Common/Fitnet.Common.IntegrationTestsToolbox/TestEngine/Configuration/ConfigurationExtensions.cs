@@ -1,12 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
 
-using Core.SystemClock;
 using Database;
 using Infrastructure.Mediator;
 using MassTransit;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using SystemClock;
 
 public static class ConfigurationExtensions
 {
@@ -25,14 +22,6 @@ public static class ConfigurationExtensions
                 webHostBuilder.UseSetting(setting.Key, setting.Value);
             }
         });
-
-    public static WebApplicationFactory<T> SetFakeSystemClock<T>(
-        this WebApplicationFactory<T> webApplicationFactory,
-        DateTimeOffset fakeDateTimeOffset)
-        where T : class =>
-        webApplicationFactory.WithWebHostBuilder(webHostBuilder =>
-            webHostBuilder.ConfigureTestServices(services =>
-                services.AddSingleton<ISystemClock>(new FakeSystemClock(fakeDateTimeOffset))));
 
     public static WebApplicationFactory<T> WithFakeConsumers<T>(
         this WebApplicationFactory<T> webApplicationFactory,
