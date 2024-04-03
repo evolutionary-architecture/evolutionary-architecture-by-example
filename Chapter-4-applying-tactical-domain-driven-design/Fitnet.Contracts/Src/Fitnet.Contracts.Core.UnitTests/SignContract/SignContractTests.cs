@@ -16,7 +16,7 @@ public sealed class SignContractTests
     {
         // Arrange
         Contract contract = ContractBuilder
-            .Create()
+            .Prepared()
             .PreparedAt(preparedAt);
 
         // Act
@@ -35,7 +35,7 @@ public sealed class SignContractTests
     {
         // Arrange
         Contract contract = ContractBuilder
-            .Create();
+            .Prepared();
 
         // Act
         var bindingContract = contract.Sign(SignedAt, FakeNow);

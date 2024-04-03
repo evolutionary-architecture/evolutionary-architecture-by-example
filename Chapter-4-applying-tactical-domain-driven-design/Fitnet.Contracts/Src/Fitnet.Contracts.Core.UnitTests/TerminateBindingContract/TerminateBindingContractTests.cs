@@ -7,15 +7,13 @@ using PrepareContract;
 public sealed class TerminateBindingContractTests
 {
     private readonly DateTimeOffset _terminatedAt = new(2023, 3, 3, 1, 1, 1, TimeSpan.Zero);
-    private readonly DateTimeOffset _fakeToday = new(2022, 3, 4, 1, 1, 1, TimeSpan.Zero);
 
     [Fact]
     internal void Given_terminate_binding_contracts_Then_should_raise_binding_contracts()
     {
         BindingContract bindingContract = ContractBuilder
-            .Create()
-            .Sign()
-                .SignedOn(FakeContractDates.SignDay, _fakeToday);
+            .Prepared()
+            .Signed();
 
         bindingContract.Terminate(_terminatedAt);
 
