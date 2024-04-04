@@ -5,8 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="34.0.2" />
-        <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="1.1.8" />
+        <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="4.1.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     </ItemGroup>
 
