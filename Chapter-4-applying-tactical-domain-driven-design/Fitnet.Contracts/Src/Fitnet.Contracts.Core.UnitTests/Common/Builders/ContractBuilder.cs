@@ -5,7 +5,7 @@ using SignContract;
 
 internal sealed class ContractBuilder
 {
-    public static ContractBuilder Create() => new();
+    internal static ContractBuilder Prepared() => new();
 
     private DateTimeOffset? _preparedAt;
 
@@ -15,9 +15,9 @@ internal sealed class ContractBuilder
         return this;
     }
 
-    public SignContractBuilder Sign() => new(Build());
+    public SignedContractBuilder Signed() => new(Prepare());
 
-    private Contract Build()
+    private Contract Prepare()
     {
         var preparedAt = _preparedAt ?? FakeContractDates.PreparedAt;
         var prepareContractParameters = PrepareContractParameters.GetValid();
@@ -30,5 +30,5 @@ internal sealed class ContractBuilder
         return contract;
     }
 
-    public static implicit operator Contract(ContractBuilder builder) => builder.Build();
+    public static implicit operator Contract(ContractBuilder builder) => builder.Prepare();
 }

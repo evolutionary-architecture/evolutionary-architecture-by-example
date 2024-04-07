@@ -15,14 +15,14 @@ public sealed class SignContractTests
     {
         // Arrange
         Contract contract = ContractBuilder
-            .Create()
+            .Prepared()
             .PreparedAt(preparedAt);
 
         // Act
         var bindingContract = contract.Sign(signedAt, fakeNow);
 
         // Assert
-        var @event = bindingContract.GetPublishedEvent<ContractStartedBindingEvent>();
+        var @event = bindingContract.GetPublishedEvent<BindingContractStartedEvent>();
         @event?.ExpiringAt.Should().Be(expectedExpirationDate);
     }
 
@@ -34,13 +34,13 @@ public sealed class SignContractTests
     {
         // Arrange
         Contract contract = ContractBuilder
-            .Create();
+            .Prepared();
 
         // Act
         var bindingContract = contract.Sign(SignedAt, FakeNow);
 
         // Assert
-        var @event = bindingContract.GetPublishedEvent<ContractStartedBindingEvent>();
+        var @event = bindingContract.GetPublishedEvent<BindingContractStartedEvent>();
         @event?.BindingFrom.Should().Be(SignedAt);
     }
 }
