@@ -88,13 +88,38 @@ That's it! You should now be able to run the application using either one of the
 
 === Building and debugging code in Rider IDE
 
-Before you build or debug code in `Rider` environment, you first have to configure artifactory to allow to download packages for `Common` which is a part of this repository:
+Before you build or debug code in `Rider` or `Visual Studio` IDE, you first have to provide your user name and previously generated PAT for artifactory to download packages for `Common` which is a part of this repository. When you load the solution, your IDE should request the credentials:  
 
-- 1. Open `JetBrains Rider` and navigate to `File > Settings > NuGet > Sources`.
-- 2. Click the `+` button to add a new package source.
-- 3. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
-- 4. Click `OK` to confirm the new package source.
-- 5. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
+ - `Rider`: 
+++++
+<div>
+<img src="../Assets/nuget_feed_credentials_rider.png" width="464" align="center" height="195" alt="rider nuget feed credentials request">  
+</div>
+++++
+ - `Visual Studio`: 
+++++
+<div>
+<img src="../Assets/nuget_feed_credentials_vs.png" width="322" align="center" height="289" alt="vs nuget feed credentials request">  
+</div>
+++++
+
+In case of any issues, you can add nuget feed manually:
+
+- `Rider`
+   1. Open `JetBrains Rider`, right click on the solution in the solution explorer and click `Manage NuGet Packages`.
+   1. Click on the `Sources` tab.
+   1. Click the `+` button to add a new package source.
+   1. In the `Add Package Source` window, provide Artifactory URL in the `https://nuget.pkg.github.com/evolutionary-architecture/index.json`, fill your Github Username and PAT.
+   1. Click `OK` to confirm the new package source.
+   1. Make sure your new package source is enabled and then click `OK` to close the `Settings` window.
+   1. You sould be promted for user name and password (PAT).
+- `Visual Studio`
+   1. Open `Microsoft Visual Studio`, right click on the solution in the solution explorer and click `Manage NuGet Packages for Solution`.
+   1. Click on the `gears` icon.
+   1. Click the `+` button to add a new package source.
+   1. Set the package name and se the source to Artifactory URL `https://nuget.pkg.github.com/evolutionary-architecture/index.json`.
+   1. You sould be promted for user name and password (PAT).
+   1. Click `OK` to confirm the new package source.
 
 You should now be able to restore and download the EvolutionaryArchitecture nuget packages from your Artifactory source within Rider.
 
