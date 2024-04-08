@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Repositories;
 
-using Core;
+using Application;
 using Microsoft.Extensions.DependencyInjection;
 
 internal static class RepositoriesModule
