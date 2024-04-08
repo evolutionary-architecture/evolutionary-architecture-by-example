@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.TerminateBindingContract;
 
 using Common.Api.ErrorHandling;
-using Core;
 
 [UsedImplicitly]
 internal sealed class TerminateBindingContractCommandHandler(
