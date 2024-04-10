@@ -18,25 +18,27 @@ jobs:
       run:
         working-directory: ${{ env.CHAPTER_DIR }}
     runs-on: ubuntu-latest
-  
+    
     name: Build
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.0.x
-      - name: Add GitHub NuGet Source
-        run: |
-          dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-          dotnet nuget list source
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
-      - name: Restore dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet build --no-restore
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Remove evolutionaryArchitecture NuGet Source
+      run: dotnet nuget remove source evolutionaryArchitecture
+    - name: Add GitHub NuGet Source
+      run: |
+        dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name evolutionaryArchitecture "https://nuget.pkg.github.com/$OWNER/index.json"
+        dotnet nuget list source
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        OWNER: ${{ github.repository_owner }}
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
         
   test:
     defaults:
