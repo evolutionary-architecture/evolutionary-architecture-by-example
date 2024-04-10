@@ -27,7 +27,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Add Evolutionary Architecture Nuget Source
-      uses: evolutionary-architecture/evolutionary-architecture-by-example@v1      
+      uses: evolutionary-architecture/evolutionary-architecture-by-example@feature/nuget_config     
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         owner: ${{ github.repository_owner }}
