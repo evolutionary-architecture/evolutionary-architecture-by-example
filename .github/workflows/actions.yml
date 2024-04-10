@@ -1,0 +1,18 @@
+name: 'Add Evolutionary Architecture Nuget Source'
+description: 'Remove a specific NuGet source and add GitHub NuGet source'
+inputs:
+  github-token:
+    description: 'GitHub token'
+    required: true
+  owner:
+    description: 'Repository owner'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: dotnet nuget remove source evolutionaryArchitecture
+      shell: bash
+    - run: |
+        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
+        dotnet nuget list source
+      shell: bash
