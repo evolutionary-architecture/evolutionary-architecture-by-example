@@ -26,9 +26,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    - name: Remove evolutionaryArchitecture NuGet Source
+    - name: Clear Configuration Evolutionary Architecture Nuget Source
       run: dotnet nuget remove source evolutionaryArchitecture
-    - name: Add GitHub NuGet Source
+    - name: Add Evolutionary Architecture Nuget Source
       run: |
         dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name evolutionaryArchitecture "https://nuget.pkg.github.com/$OWNER/index.json"
         dotnet nuget list source
@@ -53,7 +53,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Add GitHub NuGet Source
+      - name: Clear Configuration Evolutionary Architecture Nuget Source
+        run: dotnet nuget remove source evolutionaryArchitecture
+      - name: Add Evolutionary Architecture Nuget Source
         run: |
           dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
           dotnet nuget list source
