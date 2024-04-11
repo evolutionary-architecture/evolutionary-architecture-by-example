@@ -49,15 +49,11 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Clear Configuration Evolutionary Architecture Nuget Source
-        run: dotnet nuget remove source evolutionaryArchitecture
       - name: Add Evolutionary Architecture Nuget Source
-        run: |
-          dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-          dotnet nuget list source
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config    
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
