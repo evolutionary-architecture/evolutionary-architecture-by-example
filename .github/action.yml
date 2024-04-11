@@ -16,8 +16,6 @@ runs:
     - name: Set up working directory
       run: cd ${{ github.workspace }}/${{ inputs.path }}
       shell: bash
-    - run: dotnet nuget remove source evolutionaryArchitecture
-      shell: bash
     - run: |
         dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
         dotnet nuget list source
