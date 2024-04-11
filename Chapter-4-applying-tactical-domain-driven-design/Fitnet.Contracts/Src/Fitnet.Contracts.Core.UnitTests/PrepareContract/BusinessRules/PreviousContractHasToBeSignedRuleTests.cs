@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
-using Common.Core.BusinessRules;
 using Core.PrepareContract.BusinessRules;
+using Fitnet.Common.Core.BusinessRules;
 
 public sealed class PreviousContractHasToBeSignedRuleTests
 {

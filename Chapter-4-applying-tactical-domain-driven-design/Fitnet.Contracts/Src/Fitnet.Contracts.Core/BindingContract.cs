@@ -62,8 +62,12 @@ public sealed class BindingContract : Entity
     }
 }
 
+public record struct ContractId(Guid Value)
+{
+    internal static ContractId Create() => new(Guid.NewGuid());
+}
+
 public readonly record struct BindingContractId(Guid Value)
 {
     internal static BindingContractId Create() => new(Guid.NewGuid());
 }
-
