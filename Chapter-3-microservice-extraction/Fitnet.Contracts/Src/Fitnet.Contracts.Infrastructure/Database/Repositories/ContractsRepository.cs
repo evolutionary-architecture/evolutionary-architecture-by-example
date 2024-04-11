@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Repositories;
 
+using Application;
 using Core;
 using Microsoft.EntityFrameworkCore;
 
