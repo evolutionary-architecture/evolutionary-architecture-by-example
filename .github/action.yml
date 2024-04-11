@@ -1,15 +1,21 @@
-name: 'Add Evolutionary Architecture Nuget Source'
-description: 'Remove a specific NuGet source and add GitHub NuGet source'
+name: Add Evolutionary Architecture Nuget Source
+description: Remove a specific NuGet source and add GitHub NuGet source
 inputs:
   github-token:
-    description: 'GitHub token'
+    description: GitHub token
     required: true
   owner:
-    description: 'Repository owner'
+    description: Repository owner
+    required: true
+  path:
+    description: 'Path to the directory'
     required: true
 runs:
   using: 'composite'
   steps:
+    - name: Set up working directory
+      run: cd ${{ github.workspace }}/${{ inputs.path }}
+      shell: bash
     - run: dotnet nuget remove source evolutionaryArchitecture
       shell: bash
     - run: |
