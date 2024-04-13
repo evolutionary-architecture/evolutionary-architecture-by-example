@@ -16,7 +16,7 @@ public sealed class BindingContract : Entity
     public DateTimeOffset TerminatedAt { get; set; }
     public DateTimeOffset BindingFrom { get; init; }
     public DateTimeOffset ExpiringAt { get; init; }
-    public ICollection<Annex> RegisteredAnnexes { get; }
+    public ICollection<Annex> AttachedAnnexes { get; }
 
     private BindingContract(
         ContractId contractId,
@@ -31,7 +31,7 @@ public sealed class BindingContract : Entity
         Duration = duration;
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
-        RegisteredAnnexes = [];
+        AttachedAnnexes = [];
 
         var @event = BindingContractStartedEvent.Raise(BindingFrom, ExpiringAt);
         RecordEvent(@event);
@@ -49,7 +49,7 @@ public sealed class BindingContract : Entity
         BusinessRuleValidator.Validate(
             new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
 
-        RegisteredAnnexes.Add(Annex.Attach(Id, validFrom));
+        AttachedAnnexes.Add(Annex.Attach(Id, validFrom));
     }
 
     public void Terminate(DateTimeOffset terminatedAt)
