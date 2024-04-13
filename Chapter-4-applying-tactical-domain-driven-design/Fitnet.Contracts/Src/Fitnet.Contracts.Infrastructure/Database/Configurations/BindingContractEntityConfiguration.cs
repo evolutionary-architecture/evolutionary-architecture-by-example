@@ -28,25 +28,6 @@ internal sealed class BindingContractEntityConfiguration : IEntityTypeConfigurat
         builder.Property(contract => contract.BindingFrom).IsRequired();
         builder.Property(contract => contract.ExpiringAt).IsRequired();
 
-        ConfigureAttachedAnnexes(builder);
+        builder.RegisterAnnexes();
     }
-
-    private static void ConfigureAttachedAnnexes(EntityTypeBuilder<BindingContract> builder) =>
-        builder.OwnsMany<Annex>(nameof(BindingContract.AttachedAnnexes), annex =>
-        {
-            annex.WithOwner().HasForeignKey(a => a.BindingContractId);
-            annex.ToTable("Annexes");
-            annex
-                .Property(annex => annex.Id)
-                .HasConversion(
-                    id => id.Value,
-                    value => new AnnexId(value));
-            annex.Property(annex => annex.Id).IsRequired();
-            annex.Property(annex => annex.BindingContractId)
-                .HasConversion(
-                    id => id.Value,
-                    value => new BindingContractId(value));
-            annex.Property(annex => annex.BindingContractId).IsRequired();
-            annex.Property(annex => annex.ValidFrom).IsRequired();
-        });
 }
