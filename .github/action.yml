@@ -13,13 +13,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: nuget list source
-      run: dotnet nuget list source
-      shell: bash
-    - run: |
+    - name: Configure Evolutionary Architecture Nuget Source
+      run: |
         cd ${{ github.workspace }}/${{ inputs.path }}
-        ls
-        dotnet nuget list source
-        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
+        dotnet nuget remove source evolutionaryArchitecture
+        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name evolutionaryArchitecture "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
         dotnet nuget list source
       shell: bash
