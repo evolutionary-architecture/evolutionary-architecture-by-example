@@ -22,7 +22,7 @@ public sealed class Annex : Entity
         RecordEvent(@event);
     }
 
-    internal static Annex Add(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
+    internal static Annex Attach(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
         new(bindingContractId, validFrom);
 }
 
