@@ -1,5 +1,5 @@
 name: Add Evolutionary Architecture Nuget Source
-description: Remove a specific NuGet source and add GitHub NuGet source
+description: Remove a default Evolutionary Architecture nuget source and add with credentials
 inputs:
   github-token:
     description: GitHub token
@@ -13,7 +13,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Configure Evolutionary Architecture Nuget Source
+    - name: Add Authorized Evolutionary Architecture Nuget Source
       run: |
         cd ${{ github.workspace }}/${{ inputs.path }}
         dotnet nuget remove source evolutionaryArchitecture
