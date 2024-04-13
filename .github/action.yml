@@ -4,6 +4,9 @@ inputs:
   github-token:
     description: GitHub token
     required: true
+  owner:
+    description: Repository owner
+    required: true
   path:
     description: "Path to the directory"
     required: true

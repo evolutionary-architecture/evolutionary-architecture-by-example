@@ -30,6 +30,7 @@ jobs:
         uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
       - name: Restore dependencies
         run: dotnet restore
@@ -53,6 +54,7 @@ jobs:
         uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
       - name: Restore dependencies
         run: dotnet restore
