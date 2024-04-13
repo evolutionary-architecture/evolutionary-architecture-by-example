@@ -28,7 +28,7 @@ internal sealed class BindingContractEntityConfiguration : IEntityTypeConfigurat
         builder.Property(contract => contract.BindingFrom).IsRequired();
         builder.Property(contract => contract.ExpiringAt).IsRequired();
 
-        builder.OwnsMany<Annex>(nameof(BindingContract.RegisteredAnnexes), annex =>
+        builder.OwnsMany<Annex>(nameof(BindingContract.AttachedAnnexes), annex =>
         {
             annex.WithOwner().HasForeignKey(a => a.BindingContractId);
             annex.ToTable("Annexes");

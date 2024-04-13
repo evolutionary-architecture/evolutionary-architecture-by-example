@@ -83,7 +83,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migr
 
             modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Contracts.Core.BindingContract", b =>
                 {
-                    b.OwnsMany("EvolutionaryArchitecture.Fitnet.Contracts.Core.Annex", "RegisteredAnnexes", b1 =>
+                    b.OwnsMany("EvolutionaryArchitecture.Fitnet.Contracts.Core.Annex", "AttachedAnnexes", b1 =>
                         {
                             b1.Property<Guid>("BindingContractId")
                                 .HasColumnType("uuid");
@@ -102,7 +102,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migr
                                 .HasForeignKey("BindingContractId");
                         });
 
-                    b.Navigation("RegisteredAnnexes");
+                    b.Navigation("AttachedAnnexes");
                 });
 #pragma warning restore 612, 618
         }
