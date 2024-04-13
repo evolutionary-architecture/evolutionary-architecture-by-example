@@ -14,5 +14,15 @@ runs:
   using: "composite"
   steps:
     - name: Set up working directory
-      run: cd ${{ github.workspace }}/${{ inputs.path }} | pwd | dotnet nuget list source
+      run: cd ${{ github.workspace }}/${{ inputs.path }}
+      shell: bash
+    - name: ls
+      run: ls
+      shell: bash
+    - name: nuget list source
+      run: dotnet nuget list source
+      shell: bash
+    - run: |
+        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
+        dotnet nuget list source
       shell: bash
