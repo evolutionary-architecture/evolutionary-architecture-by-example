@@ -16,7 +16,8 @@ runs:
     - name: Add Authorized Evolutionary Architecture Nuget Source
       run: |
         cd ${{ github.workspace }}/${{ inputs.path }}
-        dotnet nuget remove source evolutionaryArchitecture
-        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name evolutionaryArchitecture "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
+        NugetSourceName="evolutionaryArchitecture"
+        dotnet nuget remove source $NugetSourceName
+        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name $NugetSourceName "https://nuget.pkg.github.com/${{ inputs.owner }}/index.json"
         dotnet nuget list source
       shell: bash
