@@ -1,0 +1,23 @@
+name: Add Evolutionary Architecture Nuget Source
+description: Remove a default Evolutionary Architecture nuget source and add with credentials
+inputs:
+  github-token:
+    description: GitHub token
+    required: true
+  owner:
+    description: Repository owner
+    required: true
+  path:
+    description: "Path to the directory"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Add Authorized Evolutionary Architecture Nuget Source
+      run: |
+        cd ${{ github.workspace }}/${{ inputs.path }}
+        NugetSourceName="evolutionaryArchitecture"
+        dotnet nuget remove source $NugetSourceName
+        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name $NugetSourceName "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+        dotnet nuget list source
+      shell: bash
