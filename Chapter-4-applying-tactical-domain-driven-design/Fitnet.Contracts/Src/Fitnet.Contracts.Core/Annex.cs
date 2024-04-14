@@ -18,7 +18,7 @@ public sealed class Annex : Entity
         BindingContractId = bindingContractId;
         ValidFrom = validFrom;
 
-        var @event = AnnexAddedToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom);
+        var @event = AttachedAnnexToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom);
         RecordEvent(@event);
     }
 
