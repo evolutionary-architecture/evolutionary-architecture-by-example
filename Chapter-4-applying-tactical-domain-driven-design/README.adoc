@@ -90,16 +90,16 @@ That's it! You should now be able to run the application using either one of the
 
 Before you build or debug code in `Rider` or `Visual Studio` IDE, you first have to provide your user name and previously generated PAT for artifactory to download packages for `Common` which is a part of this repository. When you load the solution, your IDE should request the credentials:  
 
- - `Rider`: 
+ - Rider: 
 ++++
 <div>
 <img src="../Assets/nuget_feed_credentials_rider.png" width="464" align="center" height="195" alt="rider nuget feed credentials request">  
 </div>
 ++++
- - `Visual Studio`: 
+ - Visual Studio: 
 ++++
 <div>
-<img src="../Assets/nuget_feed_credentials_vs.png" width="322" align="center" height="289" alt="vs nuget feed credentials request">  
+<img src="../Assets/nuget-feed-credentials-vs.png" width="322" align="center" height="289" alt="vs nuget feed credentials request">  
 </div>
 ++++
 
