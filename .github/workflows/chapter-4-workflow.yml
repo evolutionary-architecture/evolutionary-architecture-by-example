@@ -28,7 +28,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Add Evolutionary Architecture Nuget Source
-        uses: anddrzejb/evolutionary-architecture-by-example/.github@feature/add-github-nuget-feed-as-part-of-solution
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
@@ -52,7 +52,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Add Evolutionary Architecture Nuget Source
-        uses: anddrzejb/evolutionary-architecture-by-example/.github@feature/add-github-nuget-feed-as-part-of-solution
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
