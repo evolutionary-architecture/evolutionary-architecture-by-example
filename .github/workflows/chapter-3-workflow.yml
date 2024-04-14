@@ -2,16 +2,16 @@ name: Chapter 3 Modular Monolith workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-3-microservice-extraction/Fitnet/Src/**'
+      - "Chapter-3-microservice-extraction/Fitnet/Src/**"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-3-microservice-extraction/Fitnet/Src/**'
+      - "Chapter-3-microservice-extraction/Fitnet/Src/**"
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet/Src'
+  CHAPTER_DIR: "Chapter-3-microservice-extraction/Fitnet/Src"
 
 jobs: 
   build:
@@ -27,13 +27,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Add GitHub NuGet Source
-        run: |
-          dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-          dotnet nuget list source
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: anddrzejb/evolutionary-architecture-by-example/.github@feature/add-github-nuget-feed-as-part-of-solution
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          path: ${{ env.CHAPTER_DIR }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -52,13 +51,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Add GitHub NuGet Source
-        run: |
-          dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-          dotnet nuget list source
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: anddrzejb/evolutionary-architecture-by-example/.github@feature/add-github-nuget-feed-as-part-of-solution
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          path: ${{ env.CHAPTER_DIR }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
