@@ -16,6 +16,7 @@ public sealed class BindingContract : Entity
     public DateTimeOffset TerminatedAt { get; set; }
     public DateTimeOffset BindingFrom { get; init; }
     public DateTimeOffset ExpiringAt { get; init; }
+    public ICollection<Annex> AttachedAnnexes { get; }
 
     private BindingContract(
         ContractId contractId,
@@ -30,6 +31,7 @@ public sealed class BindingContract : Entity
         Duration = duration;
         ExpiringAt = expiringAt;
         BindingFrom = bindingFrom;
+        AttachedAnnexes = [];
 
         var @event = BindingContractStartedEvent.Raise(BindingFrom, ExpiringAt);
         RecordEvent(@event);
@@ -42,12 +44,12 @@ public sealed class BindingContract : Entity
         DateTimeOffset bindingFrom,
         DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
 
-    public Annex AddAnnex(DateTimeOffset validFrom, DateTimeOffset now)
+    public void AttachAnnex(DateTimeOffset validFrom, DateTimeOffset now)
     {
         BusinessRuleValidator.Validate(
             new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
 
-        return Annex.Add(Id, validFrom);
+        AttachedAnnexes.Add(Annex.Attach(Id, validFrom));
     }
 
     public void Terminate(DateTimeOffset terminatedAt)
@@ -62,8 +64,12 @@ public sealed class BindingContract : Entity
     }
 }
 
+public record struct ContractId(Guid Value)
+{
+    internal static ContractId Create() => new(Guid.NewGuid());
+}
+
 public readonly record struct BindingContractId(Guid Value)
 {
     internal static BindingContractId Create() => new(Guid.NewGuid());
 }
-

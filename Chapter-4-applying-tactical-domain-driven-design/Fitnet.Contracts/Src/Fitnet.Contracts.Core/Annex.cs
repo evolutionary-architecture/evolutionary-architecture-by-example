@@ -9,6 +9,9 @@ public sealed class Annex : Entity
     public BindingContractId BindingContractId { get; init; }
     public DateTimeOffset ValidFrom { get; init; }
 
+    // EF needs this constructor to create non-primitive types
+    private Annex() { }
+
     private Annex(BindingContractId bindingContractId, DateTimeOffset validFrom)
     {
         Id = AnnexId.Create();
@@ -19,7 +22,7 @@ public sealed class Annex : Entity
         RecordEvent(@event);
     }
 
-    internal static Annex Add(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
+    internal static Annex Attach(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
         new(bindingContractId, validFrom);
 }
 

@@ -1,4 +1,6 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Application;
+
+using Core;
 
 public interface IContractsRepository
 {

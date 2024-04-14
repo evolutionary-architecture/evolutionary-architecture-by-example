@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.SignContract;
 
 using Common.Api.ErrorHandling;
-using Core;
 using IntegrationEvents;
 using MassTransit;
 
