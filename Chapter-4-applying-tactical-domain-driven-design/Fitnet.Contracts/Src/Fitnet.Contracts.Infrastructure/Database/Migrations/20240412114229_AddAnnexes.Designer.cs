@@ -3,17 +3,20 @@ using System;
 using EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace EvolutionaryArchitecture.Fitnet.Migrations
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(ContractsPersistence))]
-    partial class ContractsPersistenceModelSnapshot : ModelSnapshot
+    [Migration("20240412114229_AddAnnexes")]
+    partial class AddAnnexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,7 +83,7 @@ namespace EvolutionaryArchitecture.Fitnet.Migrations
 
             modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Contracts.Core.BindingContract", b =>
                 {
-                    b.OwnsMany("EvolutionaryArchitecture.Fitnet.Contracts.Core.Annex", "RegisteredAnnexes", b1 =>
+                    b.OwnsMany("EvolutionaryArchitecture.Fitnet.Contracts.Core.Annex", "AttachedAnnexes", b1 =>
                         {
                             b1.Property<Guid>("BindingContractId")
                                 .HasColumnType("uuid");
@@ -99,7 +102,7 @@ namespace EvolutionaryArchitecture.Fitnet.Migrations
                                 .HasForeignKey("BindingContractId");
                         });
 
-                    b.Navigation("RegisteredAnnexes");
+                    b.Navigation("AttachedAnnexes");
                 });
 #pragma warning restore 612, 618
         }
