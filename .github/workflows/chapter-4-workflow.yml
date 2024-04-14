@@ -2,16 +2,16 @@ name: Chapter 4 Modular Monolith workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src/**'
+      - "Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src/**"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src/**'
+      - "Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src/**"
 
 env:
-  CHAPTER_DIR: 'Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src'
+  CHAPTER_DIR: "Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src"
 
 jobs: 
   build:
@@ -27,13 +27,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Add GitHub NuGet Source
-        run: |
-          dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-          dotnet nuget list source
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          path: ${{ env.CHAPTER_DIR }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -52,13 +51,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Add GitHub NuGet Source
-        run: |
-          dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-          dotnet nuget list source
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          path: ${{ env.CHAPTER_DIR }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
