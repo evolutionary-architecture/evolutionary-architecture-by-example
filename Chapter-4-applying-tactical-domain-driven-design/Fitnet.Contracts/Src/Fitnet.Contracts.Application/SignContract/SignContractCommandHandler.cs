@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.SignContract;
 
 using Common.Api.ErrorHandling;
+using ErrorOr;
 using IntegrationEvents;
 using MassTransit;
 
@@ -9,15 +10,20 @@ internal sealed class SignContractCommandHandler(
     IContractsRepository contractsRepository,
     IBindingContractsRepository bindingContractsRepository,
     TimeProvider timeProvider,
-    IPublishEndpoint publishEndpoint) : IRequestHandler<SignContractCommand, Guid>
+    IPublishEndpoint publishEndpoint) : IRequestHandler<SignContractCommand, ErrorOr<Unit>>
 {
-    public async Task<Guid> Handle(SignContractCommand command, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Unit>> Handle(SignContractCommand command, CancellationToken cancellationToken)
     {
         var contract = await contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
         var now = timeProvider.GetUtcNow();
-        var bindingContract = contract.Sign(command.SignedAt, now);
-        await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);
+        var signResult = contract.Sign(command.SignedAt, now);
+        if (signResult.IsError)
+        {
+            return ErrorOr<Unit>.From(signResult.Errors);
+        }
+
+        await bindingContractsRepository.AddAsync(signResult.Value, cancellationToken);
         await contractsRepository.CommitAsync(cancellationToken);
         var @event = ContractSignedEvent.Create(contract.Id.Value,
                                                         contract.CustomerId,
@@ -25,6 +31,6 @@ internal sealed class SignContractCommandHandler(
                                                         contract.ExpiringAt!.Value);
         await publishEndpoint.Publish(@event, cancellationToken);
 
-        return bindingContract.Id.Value;
+        return Unit.Value;
     }
 }
