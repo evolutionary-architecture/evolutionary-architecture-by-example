@@ -2,14 +2,14 @@
 
 using DomainDrivenDesign.BuildingBlocks;
 
-public sealed record AttachedAnnexToBindingContractEvent(
+public sealed record AnnexAttachedToBindingContractEvent(
     Guid Id,
     AnnexId AnnexId,
     BindingContractId BindingContractId,
     DateTimeOffset ValidFrom,
     DateTime OccuredAt) : IDomainEvent
 {
-    internal static AttachedAnnexToBindingContractEvent Raise(
+    internal static AnnexAttachedToBindingContractEvent Raise(
         AnnexId annexId,
         BindingContractId bindingContractId,
         DateTimeOffset validFrom)
