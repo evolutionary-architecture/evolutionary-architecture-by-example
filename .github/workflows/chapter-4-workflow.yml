@@ -13,13 +13,13 @@ on:
 env:
   CHAPTER_DIR: "Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src"
 
-jobs: 
+jobs:
   build:
     defaults:
       run:
         working-directory: ${{ env.CHAPTER_DIR }}
     runs-on: ubuntu-latest
-  
+
     name: Build
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Add Evolutionary Architecture Nuget Source
-        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
@@ -37,7 +37,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-        
+
   test:
     defaults:
       run:
@@ -52,7 +52,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Add Evolutionary Architecture Nuget Source
-        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
