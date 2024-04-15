@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-using Common.Core.BusinessRules;
 using DomainDrivenDesign.BuildingBlocks;
+using ErrorOr;
 using PrepareContract;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;
@@ -53,13 +53,16 @@ public sealed class Contract : Entity
         return new Contract(customerId, preparedAt, StandardDuration);
     }
 
-    public BindingContract Sign(DateTimeOffset signedAt, DateTimeOffset now)
+    public ErrorOr<BindingContract> Sign(DateTimeOffset signedAt, DateTimeOffset now)
     {
-        BusinessRuleValidator.Validate(
-            new ContractMustNotBeAlreadySignedRule(IsSigned));
-
-        BusinessRuleValidator.Validate(
+        var errors = BusinessRuleValidator.Validate(
+            new ContractMustNotBeAlreadySignedRule(IsSigned),
             new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signedAt));
+
+        if (errors.Count != 0)
+        {
+            return ErrorOr<BindingContract>.From(errors);
+        }
 
         SignedAt = signedAt;
         ExpiringAt = now.Add(Duration);
