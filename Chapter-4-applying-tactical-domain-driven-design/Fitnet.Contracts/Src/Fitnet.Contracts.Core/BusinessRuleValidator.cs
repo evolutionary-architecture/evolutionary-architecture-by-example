@@ -12,7 +12,7 @@ public static class BusinessRuleValidator
         {
             if (!rule.IsMet())
             {
-                errors.Add(Error.Validation(rule.Error));
+                errors.Add(Error.Validation(nameof(rule), rule.Error));
             }
         }
 
