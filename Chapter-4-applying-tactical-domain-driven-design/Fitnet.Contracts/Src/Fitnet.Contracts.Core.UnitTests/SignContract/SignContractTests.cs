@@ -23,7 +23,7 @@ public sealed class SignContractTests
         var bindingContract = contract.Sign(signedAt, fakeNow);
 
         // Assert
-        var @event = bindingContract.GetPublishedEvent<BindingContractStartedEvent>();
+        var @event = bindingContract.Value.GetPublishedEvent<BindingContractStartedEvent>();
         @event?.ExpiringAt.Should().Be(expectedExpirationDate);
     }
 
@@ -41,7 +41,7 @@ public sealed class SignContractTests
         var bindingContract = contract.Sign(SignedAt, FakeNow);
 
         // Assert
-        var @event = bindingContract.GetPublishedEvent<BindingContractStartedEvent>();
+        var @event = bindingContract.Value.GetPublishedEvent<BindingContractStartedEvent>();
         @event?.BindingFrom.Should().Be(SignedAt);
     }
 }

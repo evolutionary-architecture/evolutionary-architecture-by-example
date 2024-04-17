@@ -17,7 +17,7 @@ internal sealed class SignContractBuilder(Contract parentBuilder)
     {
         var bindingContract = parentBuilder.Sign(_signDay, _fakeToday);
 
-        return bindingContract;
+        return bindingContract.Value;
     }
 
     public static implicit operator BindingContract(SignContractBuilder builder) => builder.Build();

@@ -19,7 +19,7 @@ internal sealed class SignedContractBuilder(Contract parentBuilder)
     {
         var signDay = _signDay ?? FakeContractDates.SignDay;
         var fakeToday = _fakeToday ?? FakeContractDates.SignDay;
-        var bindingContract = parentBuilder.Sign(signDay, fakeToday);
+        var bindingContract = parentBuilder.Sign(signDay, fakeToday).Value;
 
         return bindingContract;
     }
