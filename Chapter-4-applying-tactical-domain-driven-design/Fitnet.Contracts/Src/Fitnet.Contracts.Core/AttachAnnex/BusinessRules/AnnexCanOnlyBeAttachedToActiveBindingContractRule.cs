@@ -2,13 +2,13 @@
 
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
-internal sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule : IBusinessRule
+internal sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRule : IBusinessRule
 {
     private readonly DateTimeOffset? _terminatedAt;
     private readonly DateTimeOffset _expiringAt;
     private readonly DateTimeOffset? _now;
 
-    internal AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(
+    internal AnnexCanOnlyBeAttachedToActiveBindingContractRule(
         DateTimeOffset? terminatedAt,
         DateTimeOffset expiringAt,
         DateTimeOffset now)
@@ -20,5 +20,5 @@ internal sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule 
 
     public bool IsMet() => !_terminatedAt.HasValue && _expiringAt > _now;
 
-    public string Error => "Annex can only be added to active binding contract";
+    public string Error => "Annex can only be attached to active binding contract";
 }

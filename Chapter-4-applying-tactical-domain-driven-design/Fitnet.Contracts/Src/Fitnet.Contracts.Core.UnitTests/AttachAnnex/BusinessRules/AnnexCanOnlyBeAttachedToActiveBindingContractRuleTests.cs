@@ -3,10 +3,10 @@
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 using EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnex.BusinessRules;
 
-public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTests
+public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
 {
     [Fact]
-    internal void Given_add_annex_When_binding_contract_terminated_Then_it_is_not_possible_to_add()
+    internal void Given_attach_annex_When_binding_contract_terminated_Then_it_is_not_possible_to_attach()
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
@@ -16,11 +16,11 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
     }
 
     [Fact]
-    internal void Given_add_annex_When_binding_contract_expired_Then_it_is_not_possible_to_add()
+    internal void Given_attach_annex_When_binding_contract_expired_Then_it_is_not_possible_to_attach()
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
@@ -29,11 +29,11 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(null, expiringAt, now)));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(null, expiringAt, now)));
     }
 
     [Fact]
-    internal void Given_add_annex_When_binding_contract_expired_and_terminated_Then_it_is_not_possible_to_add()
+    internal void Given_attach_annex_When_binding_contract_expired_and_terminated_Then_it_is_not_possible_to_attach()
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
@@ -43,11 +43,11 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
     }
 
     [Fact]
-    internal void Given_add_annex_When_binding_contract_is_not_expired_and_is_not_terminated_Then_it_is_possible_to_add()
+    internal void Given_attach_annex_When_binding_contract_is_not_expired_and_is_not_terminated_Then_it_is_possible_to_attach()
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
@@ -56,7 +56,7 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(null, expiringAt, now));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(null, expiringAt, now));
 
         // Assert
         act.Should().NotThrow();
@@ -64,5 +64,5 @@ public sealed class AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRuleTes
 
     private static void ShouldThrowException(Action act) =>
         act.Should().Throw<BusinessRuleValidationException>()
-            .WithMessage("Annex can only be added to active binding contract");
+            .WithMessage("Annex can only be attached to active binding contract");
 }
