@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-using AddAnnex;
+using AttachAnnex;
 using DomainDrivenDesign.BuildingBlocks;
 
 public sealed class Annex : Entity

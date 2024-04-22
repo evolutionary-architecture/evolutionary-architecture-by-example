@@ -1,6 +1,7 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Builders;
 
-using Common;
+using EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common;
+using PrepareContract;
 using SignContract;
 
 internal sealed class ContractBuilder
