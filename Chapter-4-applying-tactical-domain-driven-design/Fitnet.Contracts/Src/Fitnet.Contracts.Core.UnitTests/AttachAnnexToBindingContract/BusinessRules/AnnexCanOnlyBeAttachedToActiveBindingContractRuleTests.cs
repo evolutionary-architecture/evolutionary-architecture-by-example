@@ -1,7 +1,7 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnex.BusinessRules;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnexToBindingContract.BusinessRules;
 
+using Core.AttachAnnexToBindingContract.BusinessRules;
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
-using EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnex.BusinessRules;
 
 public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
 {

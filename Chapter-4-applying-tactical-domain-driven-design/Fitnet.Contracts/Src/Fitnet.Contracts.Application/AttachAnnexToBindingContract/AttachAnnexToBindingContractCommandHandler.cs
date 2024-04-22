@@ -1,6 +1,6 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.AttachAnnex;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.AttachAnnexToBindingContract;
 
-using Common.Api.ErrorHandling;
+using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 
 [UsedImplicitly]
 internal sealed class AttachAnnexToBindingContractCommandHandler(
