@@ -10,13 +10,16 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
-        var terminatedAt = now.AddDays(-1);
-        var expiringAt = now.AddYears(1);
+        var bindingContractTerminatedAt = now.AddDays(-1);
+        var bindingContractExpiringAt = now.AddYears(1);
 
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
+                    bindingContractTerminatedAt,
+                    bindingContractExpiringAt,
+                    now)));
     }
 
     [Fact]
@@ -24,12 +27,15 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
-        var expiringAt = now.AddDays(-1);
+        var bindingContractExpiringAt = now.AddDays(-1);
 
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(null, expiringAt, now)));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
+                    null,
+                    bindingContractExpiringAt,
+                    now)));
     }
 
     [Fact]
@@ -37,13 +43,16 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
-        var terminatedAt = now.AddDays(-1);
-        var expiringAt = now.AddDays(-1);
+        var bindingContractTerminatedAt = now.AddDays(-1);
+        var bindingContractExpiringAt = now.AddDays(-1);
 
         // Act && Assert
         ShouldThrowException(() =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(terminatedAt, expiringAt, now)));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
+                    bindingContractTerminatedAt,
+                    bindingContractExpiringAt,
+                    now)));
     }
 
     [Fact]
@@ -51,12 +60,15 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
     {
         // Arrange
         var now = DateTimeOffset.UtcNow;
-        var expiringAt = now.AddYears(1);
+        var bindingContractExpiringAt = now.AddYears(1);
 
         // Act
         var act = () =>
             BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(null, expiringAt, now));
+                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
+                    null,
+                    bindingContractExpiringAt,
+                    now));
 
         // Assert
         act.Should().NotThrow();

@@ -4,21 +4,21 @@ using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
 internal sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRule : IBusinessRule
 {
-    private readonly DateTimeOffset? _terminatedAt;
-    private readonly DateTimeOffset _expiringAt;
-    private readonly DateTimeOffset? _now;
+    private readonly DateTimeOffset? _bindingContractTerminatedAt;
+    private readonly DateTimeOffset _bindingContractExpiringAt;
+    private readonly DateTimeOffset _annexValidFrom;
 
     internal AnnexCanOnlyBeAttachedToActiveBindingContractRule(
-        DateTimeOffset? terminatedAt,
-        DateTimeOffset expiringAt,
-        DateTimeOffset now)
+        DateTimeOffset? bindingContractTerminatedAt,
+        DateTimeOffset bindingContractExpiringAt,
+        DateTimeOffset annexValidFrom)
     {
-        _terminatedAt = terminatedAt;
-        _expiringAt = expiringAt;
-        _now = now;
+        _bindingContractTerminatedAt = bindingContractTerminatedAt;
+        _bindingContractExpiringAt = bindingContractExpiringAt;
+        _annexValidFrom = annexValidFrom;
     }
 
-    public bool IsMet() => !_terminatedAt.HasValue && _expiringAt > _now;
+    public bool IsMet() => !_bindingContractTerminatedAt.HasValue && _bindingContractExpiringAt > _annexValidFrom;
 
     public string Error => "Annex can only be attached to active binding contract";
 }
