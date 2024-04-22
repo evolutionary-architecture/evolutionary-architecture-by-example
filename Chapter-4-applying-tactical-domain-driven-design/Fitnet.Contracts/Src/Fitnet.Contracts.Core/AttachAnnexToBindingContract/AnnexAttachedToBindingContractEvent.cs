@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnex;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnexToBindingContract;
 
 using EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks;
 

@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnex.BusinessRules;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnexToBindingContract.BusinessRules;
 
 using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
