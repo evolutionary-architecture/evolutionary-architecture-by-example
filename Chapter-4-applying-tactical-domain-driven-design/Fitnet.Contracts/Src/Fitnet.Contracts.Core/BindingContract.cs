@@ -47,7 +47,7 @@ public sealed class BindingContract : Entity
     public void AttachAnnex(DateTimeOffset validFrom, DateTimeOffset now)
     {
         BusinessRuleValidator.Validate(
-            new AnnexCanOnlyBeAddedOnlyBeAddedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
+            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
 
         AttachedAnnexes.Add(Annex.Attach(Id, validFrom));
     }
