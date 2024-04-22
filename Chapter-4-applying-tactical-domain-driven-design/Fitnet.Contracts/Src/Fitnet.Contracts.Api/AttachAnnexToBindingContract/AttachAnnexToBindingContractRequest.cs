@@ -1,0 +1,3 @@
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.AttachAnnexToBindingContract;
+
+internal sealed record AttachAnnexToBindingContractRequest(Guid BindingContractId, DateTimeOffset ValidFrom);
