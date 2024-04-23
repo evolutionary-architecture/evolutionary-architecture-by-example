@@ -20,7 +20,7 @@ internal sealed class SignContractCommandHandler(
         var signResult = contract.Sign(command.SignedAt, now);
         if (signResult.IsError)
         {
-            return ErrorOr<Unit>.From(signResult.Errors);
+            return signResult.Errors;
         }
 
         await bindingContractsRepository.AddAsync(signResult.Value, cancellationToken);

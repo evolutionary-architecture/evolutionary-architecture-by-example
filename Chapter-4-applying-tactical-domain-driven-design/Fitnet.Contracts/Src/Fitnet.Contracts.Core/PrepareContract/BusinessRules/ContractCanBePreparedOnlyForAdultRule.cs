@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.PrepareContract.BusinessRules;
 
-using Common.Core.BusinessRules;
+using ErrorOr;
 
 internal sealed class ContractCanBePreparedOnlyForAdultRule : IBusinessRule
 {
@@ -10,5 +10,5 @@ internal sealed class ContractCanBePreparedOnlyForAdultRule : IBusinessRule
 
     public bool IsMet() => _age >= 18;
 
-    public string Error => "Contract can not be prepared for a person who is not adult";
+    public static Error Error => new();
 }

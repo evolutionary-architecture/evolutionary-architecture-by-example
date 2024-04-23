@@ -39,29 +39,40 @@ public sealed class Contract : Entity
         RecordEvent(@event);
     }
 
-    public static Contract Prepare(
+    public static ErrorOr<Contract> Prepare(
         Guid customerId,
         int customerAge,
         int customerHeight,
         DateTimeOffset preparedAt,
         bool? isPreviousContractSigned = null)
     {
-        BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
-        BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
-        BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
+        if (!new ContractCanBePreparedOnlyForAdultRule(customerAge).IsMet())
+        {
+            return ContractCanBePreparedOnlyForAdultRule.Error;
+        }
+
+        if (!new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight).IsMet())
+        {
+            return CustomerMustBeSmallerThanMaximumHeightLimitRule.Error;
+        }
+
+        if (!new PreviousContractHasToBeSignedRule(isPreviousContractSigned).IsMet())
+        {
+            return PreviousContractHasToBeSignedRule.Error;
+        }
 
         return new Contract(customerId, preparedAt, StandardDuration);
     }
 
     public ErrorOr<BindingContract> Sign(DateTimeOffset signedAt, DateTimeOffset now)
     {
-        var errors = BusinessRuleValidator.Validate(
+        var businessRulesValidationResult = BusinessRuleValidator.Validate<BindingContract>(
             new ContractMustNotBeAlreadySignedRule(IsSigned),
             new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signedAt));
 
-        if (errors.Count != 0)
+        if (businessRulesValidationResult.IsError)
         {
-            return ErrorOr<BindingContract>.From(errors);
+            return businessRulesValidationResult;
         }
 
         SignedAt = signedAt;

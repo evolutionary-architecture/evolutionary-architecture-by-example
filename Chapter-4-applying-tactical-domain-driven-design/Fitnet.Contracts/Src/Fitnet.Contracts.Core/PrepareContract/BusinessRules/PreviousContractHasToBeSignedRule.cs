@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.PrepareContract.BusinessRules;
 
-using Common.Core.BusinessRules;
+using ErrorOr;
 
 internal sealed class PreviousContractHasToBeSignedRule : IBusinessRule
 {
@@ -10,5 +10,5 @@ internal sealed class PreviousContractHasToBeSignedRule : IBusinessRule
 
     public bool IsMet() => _signed is true or null;
 
-    public string Error => "Previous contract must be signed by the customer";
+    public static Error Error => new();
 }
