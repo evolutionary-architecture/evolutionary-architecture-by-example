@@ -5,13 +5,14 @@ using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
 public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
 {
+    private readonly DateTimeOffset _now = DateTimeOffset.UtcNow;
+
     [Fact]
     internal void Given_attach_annex_When_binding_contract_terminated_Then_it_is_not_possible_to_attach()
     {
         // Arrange
-        var now = DateTimeOffset.UtcNow;
-        var bindingContractTerminatedAt = now.AddDays(-1);
-        var bindingContractExpiringAt = now.AddYears(1);
+        var bindingContractTerminatedAt = _now.AddDays(-1);
+        var bindingContractExpiringAt = _now.AddYears(1);
 
         // Act && Assert
         ShouldThrowException(() =>
@@ -19,15 +20,14 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
                     bindingContractTerminatedAt,
                     bindingContractExpiringAt,
-                    now)));
+                    _now)));
     }
 
     [Fact]
     internal void Given_attach_annex_When_binding_contract_expired_Then_it_is_not_possible_to_attach()
     {
         // Arrange
-        var now = DateTimeOffset.UtcNow;
-        var bindingContractExpiringAt = now.AddDays(-1);
+        var bindingContractExpiringAt = _now.AddDays(-1);
 
         // Act && Assert
         ShouldThrowException(() =>
@@ -35,16 +35,15 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
                     null,
                     bindingContractExpiringAt,
-                    now)));
+                    _now)));
     }
 
     [Fact]
     internal void Given_attach_annex_When_binding_contract_expired_and_terminated_Then_it_is_not_possible_to_attach()
     {
         // Arrange
-        var now = DateTimeOffset.UtcNow;
-        var bindingContractTerminatedAt = now.AddDays(-1);
-        var bindingContractExpiringAt = now.AddDays(-1);
+        var bindingContractTerminatedAt = _now.AddDays(-1);
+        var bindingContractExpiringAt = _now.AddDays(-1);
 
         // Act && Assert
         ShouldThrowException(() =>
@@ -52,15 +51,14 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
                     bindingContractTerminatedAt,
                     bindingContractExpiringAt,
-                    now)));
+                    _now)));
     }
 
     [Fact]
     internal void Given_attach_annex_When_binding_contract_is_not_expired_and_is_not_terminated_Then_it_is_possible_to_attach()
     {
         // Arrange
-        var now = DateTimeOffset.UtcNow;
-        var bindingContractExpiringAt = now.AddYears(1);
+        var bindingContractExpiringAt = _now.AddYears(1);
 
         // Act
         var act = () =>
@@ -68,7 +66,7 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
                     null,
                     bindingContractExpiringAt,
-                    now));
+                    _now));
 
         // Assert
         act.Should().NotThrow();
