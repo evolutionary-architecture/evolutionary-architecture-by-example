@@ -50,7 +50,7 @@ public sealed class BindingContract : Entity
             new AnnexCanOnlyBeAttachedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
 
         BusinessRuleValidator.Validate(
-            new AnnexCanOnlyStartAfterBindingContractExpirationRule(ExpiringAt, validFrom));
+            new AnnexCanOnlyStartDuringBindingContractPeriodRule(ExpiringAt, validFrom));
 
         AttachedAnnexes.Add(Annex.Attach(Id, validFrom));
     }

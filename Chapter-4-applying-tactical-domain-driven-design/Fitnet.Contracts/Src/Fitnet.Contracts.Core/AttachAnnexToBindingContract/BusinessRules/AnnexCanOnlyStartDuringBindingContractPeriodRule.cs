@@ -2,12 +2,12 @@
 
 using Common.Core.BusinessRules;
 
-internal sealed class AnnexCanOnlyStartAfterBindingContractExpirationRule : IBusinessRule
+internal sealed class AnnexCanOnlyStartDuringBindingContractPeriodRule : IBusinessRule
 {
     private readonly DateTimeOffset _bindingContractExpiringAt;
     private readonly DateTimeOffset _annexValidFrom;
 
-    internal AnnexCanOnlyStartAfterBindingContractExpirationRule(
+    internal AnnexCanOnlyStartDuringBindingContractPeriodRule(
         DateTimeOffset bindingContractExpiringAt,
         DateTimeOffset annexValidFrom)
     {
@@ -15,7 +15,7 @@ internal sealed class AnnexCanOnlyStartAfterBindingContractExpirationRule : IBus
         _annexValidFrom = annexValidFrom;
     }
 
-    public bool IsMet() => _annexValidFrom > _bindingContractExpiringAt;
+    public bool IsMet() => _annexValidFrom <= _bindingContractExpiringAt;
 
-    public string Error => "Annex can only start after binding contract expiration";
+    public string Error => "Annex can only start during binding contract period";
 }
