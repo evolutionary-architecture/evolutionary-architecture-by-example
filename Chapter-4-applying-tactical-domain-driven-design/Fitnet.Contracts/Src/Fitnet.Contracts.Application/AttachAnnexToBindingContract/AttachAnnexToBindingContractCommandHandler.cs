@@ -8,10 +8,10 @@ internal sealed class AttachAnnexToBindingContractCommandHandler(
 {
     public async Task Handle(AttachAnnexToBindingContractCommand command, CancellationToken cancellationToken)
     {
-        var contract =
+        var bindingContract =
             await bindingContractsRepository.GetByContractIdAsync(command.BindingContractId, cancellationToken) ??
             throw new ResourceNotFoundException(command.BindingContractId);
-        contract.AttachAnnex(command.ValidFrom);
+        bindingContract.AttachAnnex(command.ValidFrom);
         await bindingContractsRepository.CommitAsync(cancellationToken);
     }
 }
