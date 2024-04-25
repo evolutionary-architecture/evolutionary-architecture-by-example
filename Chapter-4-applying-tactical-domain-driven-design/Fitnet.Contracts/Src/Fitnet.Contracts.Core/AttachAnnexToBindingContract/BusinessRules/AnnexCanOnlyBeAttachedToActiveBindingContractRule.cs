@@ -6,19 +6,19 @@ internal sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRule : IBusin
 {
     private readonly DateTimeOffset? _bindingContractTerminatedAt;
     private readonly DateTimeOffset _bindingContractExpiringAt;
-    private readonly DateTimeOffset _annexValidFrom;
+    private readonly DateTimeOffset _now;
 
     internal AnnexCanOnlyBeAttachedToActiveBindingContractRule(
         DateTimeOffset? bindingContractTerminatedAt,
         DateTimeOffset bindingContractExpiringAt,
-        DateTimeOffset annexValidFrom)
+        DateTimeOffset now)
     {
         _bindingContractTerminatedAt = bindingContractTerminatedAt;
         _bindingContractExpiringAt = bindingContractExpiringAt;
-        _annexValidFrom = annexValidFrom;
+        _now = now;
     }
 
-    public bool IsMet() => !_bindingContractTerminatedAt.HasValue && _bindingContractExpiringAt > _annexValidFrom;
+    public bool IsMet() => !_bindingContractTerminatedAt.HasValue && _bindingContractExpiringAt > _now;
 
     public string Error => "Annex can only be attached to active binding contract";
 }
