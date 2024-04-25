@@ -44,10 +44,13 @@ public sealed class BindingContract : Entity
         DateTimeOffset bindingFrom,
         DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
 
-    public void AttachAnnex(DateTimeOffset validFrom)
+    public void AttachAnnex(DateTimeOffset validFrom, DateTimeOffset now)
     {
         BusinessRuleValidator.Validate(
-            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(TerminatedAt, ExpiringAt, validFrom));
+            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
+
+        BusinessRuleValidator.Validate(
+            new AnnexCanOnlyStartAfterBindingContractExpirationRule(ExpiringAt, validFrom));
 
         AttachedAnnexes.Add(Annex.Attach(Id, validFrom));
     }
