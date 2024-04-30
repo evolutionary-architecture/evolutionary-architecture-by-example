@@ -19,8 +19,8 @@ internal static class TerminateContractEndpoint
         })
         .WithOpenApi(operation => new(operation)
         {
-            Summary = "Terminate Binding Contract",
-            Description = "This endpoint is used to terminate a binding contract by invoking a termination.",
+            Summary = "Terminates binding contract",
+            Description = "This endpoint is used to terminate an existing binding contract."
         })
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
