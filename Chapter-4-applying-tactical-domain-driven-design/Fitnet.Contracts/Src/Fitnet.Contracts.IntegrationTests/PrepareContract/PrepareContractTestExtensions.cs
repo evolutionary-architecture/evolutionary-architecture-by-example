@@ -5,7 +5,7 @@ using Api.PrepareContract;
 
 internal static class PrepareContractTestExtensions
 {
-    public static async Task<Guid> PrepareContractAsync(this HttpClient httpClient)
+    internal static async Task<Guid> PrepareContractAsync(this HttpClient httpClient)
     {
         var requestParameters = PrepareContractRequestParameters.GetValid();
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
