@@ -1,17 +1,17 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.TerminateBindingContract;
 
 using Api;
-using Common.Time;
+using Common.IntegrationTestsToolbox.TestEngine.Time;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using PrepareContract;
 using SignContract;
 
 public sealed class TerminateBindingContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory, DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
-    private static readonly FakeTimeProvider FakeSystemTimeProvider = new();
+    private static readonly FakeTimeProvider FakeSystemTimeProvider = new(null);
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
             .WithTestEventBus()
