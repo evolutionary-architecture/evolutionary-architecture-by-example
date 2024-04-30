@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-internal static class TerminateContractEndpoint
+internal static class TerminateBindingContractEndpoint
 {
-    internal static void MapTerminateContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Terminate, async (
-            Guid id,
-            IContractsModule contractsModule, CancellationToken cancellationToken) =>
-        {
-            var command = new TerminateBindingContractCommand(id);
-            await contractsModule.ExecuteCommandAsync(command, cancellationToken);
+    internal static void MapTerminateBindingContract(this IEndpointRouteBuilder app) => app.MapPatch(
+            ContractsApiPaths.Terminate, async (
+                Guid id,
+                IContractsModule contractsModule, CancellationToken cancellationToken) =>
+            {
+                var command = new TerminateBindingContractCommand(id);
+                await contractsModule.ExecuteCommandAsync(command, cancellationToken);
 
-            return Results.NoContent();
-        })
+                return Results.NoContent();
+            })
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Terminates binding contract",
