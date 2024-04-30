@@ -2,14 +2,12 @@
 
 using Application;
 using Core;
-using Microsoft.EntityFrameworkCore;
 
 internal sealed class BindingContractsRepository(ContractsPersistence persistence) : IBindingContractsRepository
 {
-    public async Task<BindingContract?> GetByContractIdAsync(Guid contractId,
+    public async Task<BindingContract?> GetByIdAsync(Guid bindingContractId,
         CancellationToken cancellationToken = default) =>
-        await persistence.BindingContracts.Where(bc => bc.ContractId == new ContractId(contractId))
-            .SingleOrDefaultAsync(cancellationToken: cancellationToken);
+        await persistence.BindingContracts.FindAsync([new BindingContractId(bindingContractId)], cancellationToken);
 
     public async Task AddAsync(BindingContract bindingContract, CancellationToken cancellationToken = default)
     {
