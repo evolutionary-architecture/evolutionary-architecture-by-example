@@ -14,9 +14,9 @@ internal static class SignContractEndpoint
             IContractsModule contractsModule, CancellationToken cancellationToken) =>
         {
             var command = request.ToCommand(id);
-            await contractsModule.ExecuteCommandAsync(command, cancellationToken);
+            var bindingContractId = await contractsModule.ExecuteCommandAsync(command, cancellationToken);
 
-            return Results.NoContent();
+            return Results.Ok(bindingContractId);
         })
         .ValidateRequest<SignContractRequestValidator>()
         .WithOpenApi(operation => new(operation)
@@ -25,7 +25,7 @@ internal static class SignContractEndpoint
             Description =
                 "This endpoint is used to sign prepared contract by customer.",
         })
-        .Produces(StatusCodes.Status204NoContent)
+        .Produces(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status409Conflict)
         .Produces(StatusCodes.Status500InternalServerError);

@@ -17,7 +17,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             .CreateClient();
 
     [Fact]
-    internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()
+    internal async Task Given_valid_contract_signature_request_Then_should_return_ok_status_code()
     {
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
@@ -29,7 +29,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        signContractResponse.Should().HaveStatusCode(HttpStatusCode.OK);
     }
 
     [Fact]
