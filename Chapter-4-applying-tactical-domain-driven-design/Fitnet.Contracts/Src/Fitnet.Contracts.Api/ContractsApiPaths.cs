@@ -5,7 +5,7 @@ using Common.Api;
 internal static class ContractsApiPaths
 {
     private const string ContractsRootApi = $"{ApiPaths.Root}/contracts";
-    private const string BindingContractsApi = $"{ContractsRootApi}/binding";
+    private const string BindingContractsApi = $"{ApiPaths.Root}/bindingContracts";
 
     internal const string Terminate = $"{BindingContractsApi}/{{id}}/terminate";
     internal const string Prepare = ContractsRootApi;
