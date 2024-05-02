@@ -9,23 +9,27 @@ using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using PrepareContract;
 using SignContract;
 
-public sealed class TerminateBindingContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory, DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class TerminateBindingContractTests(
+    FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
+    DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private static readonly FakeTimeProvider FakeSystemTimeProvider = new(null);
+
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
-            .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
-            .WithTestEventBus()
-            .WithTime(FakeSystemTimeProvider)
-            .CreateClient();
+        .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
+        .WithTestEventBus()
+        .WithTime(FakeSystemTimeProvider)
+        .CreateClient();
 
     private const int TimeSkip = 120;
 
     [Fact]
-    internal async Task Given_termination_request_for_non_existing_contract_Then_should_return_not_found()
+    internal async Task
+        Given_binding_contract_termination_request_When_binding_contract_does_not_exist_Then_should_return_not_found()
     {
         // Arrange
-        var nonExistingContractId = Guid.NewGuid();
-        var path = GetUrl(nonExistingContractId);
+        var nonExistingBindingContractId = Guid.NewGuid();
+        var path = GetUrl(nonExistingBindingContractId);
 
         // Act
         var response = await _applicationHttpClient.PatchAsync(path, content: null);
@@ -35,28 +39,13 @@ public sealed class TerminateBindingContractTests(FitnetWebApplicationFactory<Pr
     }
 
     [Fact]
-    internal async Task Given_contract_termination_request_When_business_rule_is_broken_Then_should_return_conflict()
+    internal async Task
+        Given_binding_contract_termination_request_When_binding_contract_exists_Then_should_return_no_content()
     {
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
-        var path = GetUrl(preparedContractId);
-        await _applicationHttpClient.SignContractAsync(preparedContractId);
-
-        // Act
-        var terminateContractResponse =
-            await _applicationHttpClient.PatchAsync(path, null);
-
-        // Assert
-        terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-    }
-
-    [Fact]
-    internal async Task Given_valid_contract_termination_request_Then_should_return_no_content_status_code()
-    {
-        // Arrange
-        var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
-        var path = GetUrl(preparedContractId);
-        await _applicationHttpClient.SignContractAsync(preparedContractId);
+        var bindingContractId = await _applicationHttpClient.SignContractAsync(preparedContractId);
+        var path = GetUrl(bindingContractId);
         FakeSystemTimeProvider.SimulateTimeSkip(TimeSkip);
 
         // Act
@@ -67,5 +56,23 @@ public sealed class TerminateBindingContractTests(FitnetWebApplicationFactory<Pr
         terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
     }
 
-    private static string GetUrl(Guid bindingContractId) => ContractsApiPaths.Terminate.Replace("{id}", bindingContractId.ToString());
+    [Fact]
+    internal async Task
+        Given_binding_contract_termination_request_When_three_months_from_contract_signing_passed_Then_should_return_conflict()
+    {
+        // Arrange
+        var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
+        var bindingContractId = await _applicationHttpClient.SignContractAsync(preparedContractId);
+        var path = GetUrl(bindingContractId);
+
+        // Act
+        var terminateContractResponse =
+            await _applicationHttpClient.PatchAsync(path, null);
+
+        // Assert
+        terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+    }
+
+    private static string GetUrl(Guid bindingContractId) =>
+        ContractsApiPaths.Terminate.Replace("{id}", bindingContractId.ToString());
 }
