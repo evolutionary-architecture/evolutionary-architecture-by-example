@@ -16,26 +16,34 @@ image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-
 
 === Overview
 
-In chapter 3, we had to find a way to handle the extreme growth of one of our modules - _Contracts_. Based on concrete factors, the decision was to:
+In Chapter 3, we had to find a way to handle the extreme growth of one of our modules - _Contracts_. Based on concrete factors, the decision was to:
 
 - Extract a separate microservice from the modular monolith for _Contracts_
 - Introduce an external component - RabbitMQ - to handle communication between modules and extracted microservice
 - Extract building blocks to a separate solution that is built as a NuGet package and reuse it in both modular monolith and microservice
 
-For several weeks, this solution worked as a charm. Traffic was handled without any issues in the area that had to scale (Contracts). However, at some point, our business came to us and asked us to change how our contracts were signed, and additionally, new requirements appeared. Based on that. we spotted that our _Contracts_ module is becoming more and more complex. That's not a big deal - we thought. In previous chapters, we prepared for it as there was a chance that this area would grow over time. 
+For several weeks, this solution worked as a charm.
 
-NOTE: In this step we are going to focus on tactical Domain-Driven Design. As business logic grows and become more complex, it makes sense to think about Domain Model. Please note, that it requires a change in a way of thinking and might give the impression of something very complicated at first. Nevertheless, in long run, it will make this module easier to extend and maintain without having to deal with spaghetti code.
+However, new requirements appear. The way we signed contracts changed. Additionally, there are new possible actions:
 
-IMPORTANT: It makes no sense to think about the Domain Model in typical CRUD modules or those based on querying, e.g., reports. You do not need to apply the same patterns in all modules - such behavior is a typical anti-pattern. Choose a matching solution based on your needs, not someone else solutions.
+- Termination of the contract
+- Adding annex to the existing contract
+
+We already know that there is a plan to complicate _Contracts_ even more in the upcoming weeks and months. _Contracts_ module becomes increasingly complex.
+
+NOTE: In this step, we will focus on tactical Domain-Driven Design. As business logic grows and becomes more complex, we consider applying the Domain Model in the _Contracts_ microservice. It requires a change in thinking and might initially give the impression of something complicated. Nevertheless, it will make this module more straightforward to extend and maintain without dealing with spaghetti code in the long run.
+
+IMPORTANT: It makes no sense to consider the Domain Model in typical CRUD modules or those based on querying, e.g., _Reports_. You do not need to apply the same patterns in all modules—such behavior is a typical anti-pattern. Choose a matching solution based on your needs!
 
 === Requirements
 
-This time our requirements changed. There is another behavior on contracts:
+Business requirements changed a lot in comparison to Chapter 3:
 
-1. Contracts can still be prepared and signed but does not in itself have the force of law.
-2. After the contract is signed there is a new object called _BindingContract_. Such a contract has the force of law and binds the customer to a contract with us.
-3. After 3 months, at anytime, customer can terminate _BindingContract_ without penalty.
-4. It is possible to create an _Annex_ to the existing _BindingContract_. This way, customer can get extend the contract for another year without signing a new _Contract_.
+1. _Contract_ can still be prepared but does not have the force of law - we treat it as a draft.
+2. After the _Contract_ is signed, _Binding Contract_ is created. It has the force of law and binds the customer with us.
+3. After three months, at any time, the customer can terminate _Binding Contract_ without any penalty.
+4. It is possible to attach an _Annex_ to the existing _Binding Contract_. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
+5. Annex can only be attached if _Binding Contract_ is active - has not yet expired or was not terminated.
 
 image::Assets/flow.jpg[]
 
@@ -47,13 +55,13 @@ The assumptions remain unchanged to keep the environment comparable to the previ
 
 ==== Overview
 
-In this step we do not change the project structure of the application. We focus only on refactoring the code of _Contracts_ so modular monolith and building block packages stay as they are.
+In this step we do not change the project structure of the application. We focus only on refactoring the code of _Contracts_ microservice.
 
 We introduce elements like:
 
-- aggregates
-- entities
-- value objects
+- Aggregates
+- Entities
+- Value Objects
 
 == How to Run?
 
