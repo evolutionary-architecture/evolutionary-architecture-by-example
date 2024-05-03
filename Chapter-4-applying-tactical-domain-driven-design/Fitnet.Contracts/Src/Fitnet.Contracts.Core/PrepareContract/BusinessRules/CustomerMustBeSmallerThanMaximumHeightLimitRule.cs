@@ -12,6 +12,6 @@ internal sealed class CustomerMustBeSmallerThanMaximumHeightLimitRule : IBusines
 
     public bool IsMet() => _height <= MaximumHeight;
 
-    public static Error Error => new();
+    public Error Error => new();
 
 }

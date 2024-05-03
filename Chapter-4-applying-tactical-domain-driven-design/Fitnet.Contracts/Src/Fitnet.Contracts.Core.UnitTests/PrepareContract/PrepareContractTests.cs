@@ -13,8 +13,12 @@ public sealed class PrepareContractTests
     [Fact]
     internal void Given_prepare_contract_Then_should_raise_contract_prepared_event()
     {
-        var contract = Contract.Prepare(_customerId, CustomerAge, CustomerHeight, _preparedAt);
+        // Act
+        var preparationResult = Contract.Prepare(_customerId, CustomerAge, CustomerHeight, _preparedAt);
 
+        // Assert
+        preparationResult.IsError.Should().BeFalse();
+        var contract = preparationResult.Value;
         var @event = contract.GetPublishedEvent<ContractPreparedEvent>();
         @event?.CustomerId.Should().Be(_customerId);
         @event?.PreparedAt.Should().Be(_preparedAt);

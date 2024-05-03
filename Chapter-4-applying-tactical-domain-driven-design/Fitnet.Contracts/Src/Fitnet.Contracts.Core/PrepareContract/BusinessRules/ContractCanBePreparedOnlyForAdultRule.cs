@@ -10,5 +10,5 @@ internal sealed class ContractCanBePreparedOnlyForAdultRule : IBusinessRule
 
     public bool IsMet() => _age >= 18;
 
-    public static Error Error => new();
+    public Error Error => new();
 }

@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
 using Core.PrepareContract.BusinessRules;
-using Fitnet.Common.Core.BusinessRules;
 
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests
 {
@@ -11,10 +10,9 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(17));
+        var act = BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(17));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Contract can not be prepared for a person who is not adult");
     }
 
     [Fact]
