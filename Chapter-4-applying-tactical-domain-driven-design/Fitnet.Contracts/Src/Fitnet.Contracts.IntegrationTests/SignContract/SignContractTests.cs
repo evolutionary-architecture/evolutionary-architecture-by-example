@@ -3,9 +3,9 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContrac
 using Api.SignContract;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using PrepareContract;
 
 public sealed class SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
@@ -29,7 +29,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.OK);
+        signContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
     }
 
     [Fact]
