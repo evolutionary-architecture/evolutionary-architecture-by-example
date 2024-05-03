@@ -10,5 +10,5 @@ internal sealed class PreviousContractHasToBeSignedRule : IBusinessRule
 
     public bool IsMet() => _signed is true or null;
 
-    public static Error Error => new();
+    public Error Error => new();
 }

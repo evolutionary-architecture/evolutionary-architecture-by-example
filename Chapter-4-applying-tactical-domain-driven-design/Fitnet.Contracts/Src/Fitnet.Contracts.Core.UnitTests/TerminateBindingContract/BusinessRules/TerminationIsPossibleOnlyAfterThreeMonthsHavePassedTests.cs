@@ -1,7 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBindingContract.BusinessRules;
 
 using Core.TerminateBindingContract.BusinessRules;
-using Fitnet.Common.Core.BusinessRules;
+using ErrorOr;
 using TerminationIsPossibleOnlyAfterThreeMonthsHavePassed.TestData;
 
 public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
@@ -14,12 +14,13 @@ public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
         // Arrange
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>();
+        result.Should().BeEquivalentTo(Error.Validation(nameof(TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule),
+            "Termination is not possible until three months have passed. '90' days remaining."));
     }
 
     [Theory]
@@ -30,11 +31,11 @@ public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
         // Arrange
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.IsError.Should().BeFalse();
     }
 }

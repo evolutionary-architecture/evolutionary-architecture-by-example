@@ -4,13 +4,16 @@ using ErrorOr;
 
 public static class BusinessRuleValidator
 {
-    public static bool Validate(this IBusinessRule rule) =>
-        rule.IsMet();
+    public static ErrorOr<Success> Validate(params IBusinessRule[] rules) =>
+        rules
+            .Where(rule => !rule.IsMet())
+            .Select(rule => rule.Error)
+            .ToList();
 }
 
 public interface IBusinessRule
 {
     bool IsMet();
 
-    static Error Error { get; }
+    Error Error { get; }
 }

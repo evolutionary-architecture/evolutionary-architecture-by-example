@@ -28,7 +28,7 @@ internal sealed class ContractBuilder
             prepareContractParameters.MaxHeight,
             preparedAt);
 
-        return contract;
+        return contract.Value;
     }
 
     public static implicit operator Contract(ContractBuilder builder) => builder.Prepare();

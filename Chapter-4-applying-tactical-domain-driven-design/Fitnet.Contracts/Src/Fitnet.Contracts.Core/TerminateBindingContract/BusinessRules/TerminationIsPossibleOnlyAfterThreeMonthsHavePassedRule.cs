@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.TerminateBindingContract.BusinessRules;
 
-using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
+using ErrorOr;
 
 internal sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(DateTimeOffset bindingFrom, DateTimeOffset terminatedAt)
     : IBusinessRule
@@ -14,7 +14,7 @@ internal sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(Da
         return terminatedAt >= threeMonthsFromBinding;
     }
 
-    public string Error
+    public Error Error
     {
         get
         {
@@ -23,7 +23,7 @@ internal sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(Da
 
             var error = $"Termination is not possible until three months have passed. '{daysRemaining}' days remaining.";
 
-            return error;
+            return Error.Validation(nameof(TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule), error);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnexToBindingContract.BusinessRules;
 
-using Common.Core.BusinessRules;
+using ErrorOr;
 
 internal sealed class AnnexCanOnlyStartDuringBindingContractPeriodRule : IBusinessRule
 {
@@ -17,5 +17,5 @@ internal sealed class AnnexCanOnlyStartDuringBindingContractPeriodRule : IBusine
 
     public bool IsMet() => _annexValidFrom <= _bindingContractExpiringAt;
 
-    public string Error => "Annex can only start during binding contract period";
+    public Error Error => Error.Validation(nameof(AnnexCanOnlyStartDuringBindingContractPeriodRule), "Annex can only start during binding contract period");
 }

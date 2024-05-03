@@ -44,41 +44,23 @@ public sealed class Contract : Entity
         int customerAge,
         int customerHeight,
         DateTimeOffset preparedAt,
-        bool? isPreviousContractSigned = null)
-    {
-        if (!new ContractCanBePreparedOnlyForAdultRule(customerAge).IsMet())
-        {
-            return ContractCanBePreparedOnlyForAdultRule.Error;
-        }
+        bool? isPreviousContractSigned = null) =>
+        BusinessRuleValidator.Validate(
+            new ContractCanBePreparedOnlyForAdultRule(customerAge),
+            new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight),
+            new PreviousContractHasToBeSignedRule(isPreviousContractSigned))
+            .Then<Contract>(_ => new Contract(customerId, preparedAt, StandardDuration));
 
-        if (!new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight).IsMet())
-        {
-            return CustomerMustBeSmallerThanMaximumHeightLimitRule.Error;
-        }
+    public ErrorOr<BindingContract> Sign(DateTimeOffset signedAt, DateTimeOffset now) =>
+        BusinessRuleValidator.Validate(
+                new ContractMustNotBeAlreadySignedRule(IsSigned),
+                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signedAt))
+            .Then(_ =>
+            {
+                SignedAt = signedAt;
+                ExpiringAt = now.Add(Duration);
+                var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value);
 
-        if (!new PreviousContractHasToBeSignedRule(isPreviousContractSigned).IsMet())
-        {
-            return PreviousContractHasToBeSignedRule.Error;
-        }
-
-        return new Contract(customerId, preparedAt, StandardDuration);
-    }
-
-    public ErrorOr<BindingContract> Sign(DateTimeOffset signedAt, DateTimeOffset now)
-    {
-        var businessRulesValidationResult = BusinessRuleValidator.Validate<BindingContract>(
-            new ContractMustNotBeAlreadySignedRule(IsSigned),
-            new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signedAt));
-
-        if (businessRulesValidationResult.IsError)
-        {
-            return businessRulesValidationResult;
-        }
-
-        SignedAt = signedAt;
-        ExpiringAt = now.Add(Duration);
-        var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value);
-
-        return bindingContract;
-    }
+                return bindingContract;
+            });
 }
