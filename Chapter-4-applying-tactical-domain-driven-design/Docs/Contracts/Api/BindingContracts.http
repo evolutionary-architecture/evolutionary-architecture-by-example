@@ -1,0 +1,4 @@
+###
+### Terminate a binding contract
+# @name terminateBindingContract
+PATCH {{baseUrl}}/api/binding-contracts/{{bindingContractId}}
