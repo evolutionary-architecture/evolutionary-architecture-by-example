@@ -62,6 +62,7 @@ We introduce elements like:
 - Aggregates
 - Entities
 - Value Objects
+- Domain Events
 
 == How to Run?
 
