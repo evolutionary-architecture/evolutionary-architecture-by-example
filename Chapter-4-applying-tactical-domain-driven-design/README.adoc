@@ -26,8 +26,8 @@ For several weeks, this solution worked as a charm.
 
 However, new requirements appear. The way we signed contracts changed. Additionally, there are new possible actions:
 
-- Termination of the contract
-- Adding annex to the existing contract
+- Termination of the existing binding contract
+- Attaching annex to the existing binding contract
 
 We already know that there is a plan to complicate _Contracts_ even more in the upcoming weeks and months. _Contracts_ module becomes increasingly complex.
 
