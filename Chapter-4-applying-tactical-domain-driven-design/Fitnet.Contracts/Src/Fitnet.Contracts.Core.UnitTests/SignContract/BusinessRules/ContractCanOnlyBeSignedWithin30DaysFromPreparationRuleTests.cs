@@ -1,24 +1,30 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract.BusinessRules;
 
+using AttachAnnexToBindingContract.BusinessRules;
 using Core.SignContract.BusinessRules;
-using Fitnet.Common.Core.BusinessRules;
 
 public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
 {
     [Fact]
-    internal void Given_signed_at_date_which_is_more_than_30_days_from_prepared_at_date_Then_validation_should_throw()
+    internal void Given_signed_at_date_which_is_more_than_30_days_from_prepared_at_date_Then_should_have_error()
     {
         // Arrange
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(31)));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage(
-            "Contract can not be signed because more than 30 days have passed from the contract preparation");
+        var error = Error.Validation(nameof(ContractCanOnlyBeSignedWithin30DaysFromPreparationRule),
+            "Contract can only be signed within 30 days from preparation");
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(error);
     }
 
     [Fact]
@@ -27,13 +33,13 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
         // Arrange
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(30)));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 
     [Fact]
@@ -42,12 +48,12 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
         // Arrange
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(DateTimeOffset.Now,
                     DateTimeOffset.Now.AddDays(29)));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 }

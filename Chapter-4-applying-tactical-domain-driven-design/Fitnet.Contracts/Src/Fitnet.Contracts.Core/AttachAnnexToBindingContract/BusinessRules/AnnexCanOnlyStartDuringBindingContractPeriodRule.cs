@@ -1,7 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnexToBindingContract.BusinessRules;
 
-using ErrorOr;
-
 internal sealed class AnnexCanOnlyStartDuringBindingContractPeriodRule : IBusinessRule
 {
     private readonly DateTimeOffset _bindingContractExpiringAt;

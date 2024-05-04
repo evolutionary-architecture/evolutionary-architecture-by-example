@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
+using AttachAnnexToBindingContract.BusinessRules;
 using Core.PrepareContract.BusinessRules;
 
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests
@@ -10,9 +11,17 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         // Arrange
 
         // Act
-        var act = BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(17));
+        var result = BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(17));
 
         // Assert
+        var error = Error.Validation(nameof(ContractCanBePreparedOnlyForAdultRule),
+            "Contract can not be prepared for a person who is not adult");
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(error);
     }
 
     [Fact]
@@ -21,10 +30,10 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(18));
+        var result = BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(18));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 
     [Fact]
@@ -33,9 +42,9 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(19));
+        var result = BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(19));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 }

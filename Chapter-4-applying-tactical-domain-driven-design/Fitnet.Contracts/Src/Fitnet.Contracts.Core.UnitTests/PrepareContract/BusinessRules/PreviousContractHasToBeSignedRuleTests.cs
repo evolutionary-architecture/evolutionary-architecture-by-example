@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
+using AttachAnnexToBindingContract.BusinessRules;
 using Core.PrepareContract.BusinessRules;
-using Fitnet.Common.Core.BusinessRules;
 
 public sealed class PreviousContractHasToBeSignedRuleTests
 {
@@ -11,10 +11,10 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(true));
+        var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(true));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 
     [Fact]
@@ -23,22 +23,28 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(null));
+        var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(null));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 
 
     [Fact]
-    internal void Given_previous_contract_unsigned_Then_validation_should_throw()
+    internal void Given_previous_contract_unsigned_Then_should_have_error()
     {
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false));
+        var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Previous contract must be signed by the customer");
+        var error = Error.Validation(nameof(PreviousContractHasToBeSignedRule), "Previous contract has to be signed");
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(error);
     }
 }

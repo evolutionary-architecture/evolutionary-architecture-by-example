@@ -1,7 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract.BusinessRules;
 
+using AttachAnnexToBindingContract.BusinessRules;
 using Core.SignContract.BusinessRules;
-using Fitnet.Common.Core.BusinessRules;
 
 public sealed class ContractMustNotBeAlreadySignedRuleTests
 {
@@ -12,12 +12,17 @@ public sealed class ContractMustNotBeAlreadySignedRuleTests
         const bool signed = true;
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new ContractMustNotBeAlreadySignedRule(signed));
+        var result = BusinessRuleValidator.Validate(new ContractMustNotBeAlreadySignedRule(signed));
 
         // Assert
-        act.Should()
-            .Throw<BusinessRuleValidationException>()
-            .WithMessage("Contract is already signed");
+        var error = Error.Validation(nameof(ContractMustNotBeAlreadySignedRule),
+            "Contract must not be already signed");
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(error);
     }
 
     [Fact]
@@ -27,11 +32,11 @@ public sealed class ContractMustNotBeAlreadySignedRuleTests
         const bool signed = false;
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new ContractMustNotBeAlreadySignedRule(signed));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 }
