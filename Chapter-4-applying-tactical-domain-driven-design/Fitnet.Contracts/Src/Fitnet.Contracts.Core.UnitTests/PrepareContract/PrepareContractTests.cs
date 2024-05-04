@@ -17,7 +17,7 @@ public sealed class PrepareContractTests
         var preparationResult = Contract.Prepare(_customerId, CustomerAge, CustomerHeight, _preparedAt);
 
         // Assert
-        preparationResult.IsError.Should().BeFalse();
+        preparationResult.Errors.Should().BeEmpty();
         var contract = preparationResult.Value;
         var @event = contract.GetPublishedEvent<ContractPreparedEvent>();
         @event?.CustomerId.Should().Be(_customerId);

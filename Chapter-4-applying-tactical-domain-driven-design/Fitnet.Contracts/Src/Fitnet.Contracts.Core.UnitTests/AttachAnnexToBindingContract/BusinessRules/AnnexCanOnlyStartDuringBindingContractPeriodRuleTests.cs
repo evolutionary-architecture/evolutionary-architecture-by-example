@@ -1,7 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnexToBindingContract.BusinessRules;
 
 using Core.AttachAnnexToBindingContract.BusinessRules;
-using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
+using FluentAssertions.Execution;
 
 public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
 {
@@ -14,12 +14,21 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
         // Arrange
         var bindingContractExpiringAt = _now.AddDays(-1);
 
-        // Act && Assert
-        ShouldThrowException(() =>
-            BusinessRuleValidator.Validate(
-                new AnnexCanOnlyStartDuringBindingContractPeriodRule(
-                    bindingContractExpiringAt,
-                    _now)));
+        // Act
+        var result = BusinessRuleValidator.Validate(
+            new AnnexCanOnlyStartDuringBindingContractPeriodRule(
+                bindingContractExpiringAt,
+                _now));
+
+        // Assert
+        var error = Error.Validation(nameof(AnnexCanOnlyStartDuringBindingContractPeriodRule),
+            "Annex can only start during binding contract period");
+        result.Errors
+            .Should()
+                .ContainSingle()
+            .Which
+            .Should()
+                .BeEquivalentTo(error);
     }
 
     [Fact]
@@ -30,14 +39,14 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
         var bindingContractExpiringAt = _now;
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new AnnexCanOnlyStartDuringBindingContractPeriodRule(
                     bindingContractExpiringAt,
                     _now.AddDays(-1)));
 
         // Assert
-        act.Should().NotThrow();
+        result.ShouldBeSuccess();
     }
 
     [Fact]
@@ -48,17 +57,31 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
         var bindingContractExpiringAt = _now;
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new AnnexCanOnlyStartDuringBindingContractPeriodRule(
                     bindingContractExpiringAt,
                     _now.AddDays(-1)));
 
         // Assert
-        act.Should().NotThrow();
+        result.ShouldBeSuccess();
     }
+}
 
-    private static void ShouldThrowException(Action act) =>
-        act.Should().Throw<BusinessRuleValidationException>()
-            .WithMessage("Annex can only start during binding contract period");
+public static class ErrorOrAssertions
+{
+    public static AndConstraint<ErrorOr<Success>> ShouldBeSuccess(this ErrorOr<Success> actual)
+    {
+        var errors = actual
+            .Errors
+            .Select(error => error.Description)
+            .ToArray();
+        var errorsString = string.Join(", ", errors);
+
+        Execute.Assertion
+            .ForCondition(actual.Value == new Success() && actual.Errors.Count == 0)
+            .FailWith($"Expected Success, but found Error. {errorsString}.");
+
+        return new AndConstraint<ErrorOr<Success>>(actual);
+    }
 }

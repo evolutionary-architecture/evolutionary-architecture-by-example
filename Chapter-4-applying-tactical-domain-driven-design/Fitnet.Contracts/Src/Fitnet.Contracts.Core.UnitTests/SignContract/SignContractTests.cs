@@ -20,10 +20,10 @@ public sealed class SignContractTests
             .PreparedAt(preparedAt);
 
         // Act
-        var bindingContract = contract.Sign(signedAt, fakeNow);
+        var signResult = contract.Sign(signedAt, fakeNow);
 
         // Assert
-        var @event = bindingContract.Value.GetPublishedEvent<BindingContractStartedEvent>();
+        var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();
         @event?.ExpiringAt.Should().Be(expectedExpirationDate);
     }
 

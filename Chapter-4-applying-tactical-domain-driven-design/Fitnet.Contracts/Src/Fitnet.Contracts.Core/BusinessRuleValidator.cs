@@ -1,7 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
-using ErrorOr;
-
 public static class BusinessRuleValidator
 {
     public static ErrorOr<Success> Validate(params IBusinessRule[] rules) =>

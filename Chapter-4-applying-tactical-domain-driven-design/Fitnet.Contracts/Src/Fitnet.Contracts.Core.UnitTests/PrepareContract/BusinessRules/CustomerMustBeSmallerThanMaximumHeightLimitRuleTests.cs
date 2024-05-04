@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
+using AttachAnnexToBindingContract.BusinessRules;
 using Core.PrepareContract.BusinessRules;
-using Fitnet.Common.Core.BusinessRules;
 
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
 {
@@ -12,10 +12,16 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         const int height = 211;
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
+        var result = BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Customer height must fit maximum limit for gym instruments");
+        var error = Error.Validation(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments");
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(error);
     }
 
     [Fact]
@@ -25,10 +31,13 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         const int height = 210;
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
+        var result = BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.Should()
+            .NotBeNull()
+            .And
+            .NotBe(Error.Validation(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments"));
     }
 
     [Fact]
@@ -38,9 +47,9 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         const int height = 209;
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
+        var result = BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        result.ShouldBeSuccess();
     }
 }

@@ -1,7 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.BusinessRules;
 
-using ErrorOr;
-
 internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRule : IBusinessRule
 {
     private readonly DateTimeOffset _preparedAt;

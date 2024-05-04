@@ -1,7 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.TerminateBindingContract.BusinessRules;
 
-using ErrorOr;
-
 internal sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(DateTimeOffset bindingFrom, DateTimeOffset terminatedAt)
     : IBusinessRule
 {

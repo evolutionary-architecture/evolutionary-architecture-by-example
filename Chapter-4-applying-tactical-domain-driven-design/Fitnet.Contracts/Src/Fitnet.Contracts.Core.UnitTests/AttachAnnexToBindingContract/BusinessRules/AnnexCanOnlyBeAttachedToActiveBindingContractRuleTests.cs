@@ -1,7 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnexToBindingContract.BusinessRules;
 
 using Core.AttachAnnexToBindingContract.BusinessRules;
-using EvolutionaryArchitecture.Fitnet.Common.Core.BusinessRules;
 
 public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
 {
@@ -14,13 +13,21 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
         var bindingContractTerminatedAt = _now.AddDays(-1);
         var bindingContractExpiringAt = _now.AddYears(1);
 
-        // Act && Assert
-        ShouldThrowException(() =>
-            BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
-                    bindingContractTerminatedAt,
-                    bindingContractExpiringAt,
-                    _now)));
+        // Act
+        var result = BusinessRuleValidator.Validate(
+            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
+                bindingContractTerminatedAt,
+                bindingContractExpiringAt,
+                _now));
+
+        // Assert
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+                "Annex can only be attached to active binding contract"));
     }
 
     [Fact]
@@ -29,13 +36,21 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
         // Arrange
         var bindingContractExpiringAt = _now.AddDays(-1);
 
-        // Act && Assert
-        ShouldThrowException(() =>
-            BusinessRuleValidator.Validate(
-                new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
-                    null,
-                    bindingContractExpiringAt,
-                    _now)));
+        // Act
+        var result = BusinessRuleValidator.Validate(
+            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
+                null,
+                bindingContractExpiringAt,
+                _now));
+
+        // Assert
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+                "Annex can only be attached to active binding contract"));
     }
 
     [Fact]
@@ -46,12 +61,19 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
         var bindingContractExpiringAt = _now.AddDays(-1);
 
         // Act && Assert
-        ShouldThrowException(() =>
-            BusinessRuleValidator.Validate(
+        var result = BusinessRuleValidator.Validate(
                 new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
                     bindingContractTerminatedAt,
                     bindingContractExpiringAt,
-                    _now)));
+                    _now));
+
+        result.Errors
+            .Should()
+            .ContainSingle()
+            .Which
+            .Should()
+            .BeEquivalentTo(Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+                "Annex can only be attached to active binding contract"));
     }
 
     [Fact]
@@ -61,7 +83,7 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
         var bindingContractExpiringAt = _now.AddYears(1);
 
         // Act
-        var act = () =>
+        var result =
             BusinessRuleValidator.Validate(
                 new AnnexCanOnlyBeAttachedToActiveBindingContractRule(
                     null,
@@ -69,10 +91,6 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                     _now));
 
         // Assert
-        act.Should().NotThrow();
+        result.ShouldBeSuccess();
     }
-
-    private static void ShouldThrowException(Action act) =>
-        act.Should().Throw<BusinessRuleValidationException>()
-            .WithMessage("Annex can only be attached to active binding contract");
 }
