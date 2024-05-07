@@ -12,7 +12,7 @@ public sealed class AttachAnnexToBindingContractRequestValidatorTests
     internal void Given_attach_annex_request_validation_When_request_is_valid_Then_result_should_have_no_errors()
     {
         // Arrange
-        var request = new AttachAnnexToBindingContractRequest(Guid.NewGuid(), _fakeNow);
+        var request = new AttachAnnexToBindingContractRequest(_fakeNow);
 
         // Act
         var result = _validator.TestValidate(request);
@@ -22,23 +22,10 @@ public sealed class AttachAnnexToBindingContractRequestValidatorTests
     }
 
     [Fact]
-    internal void Given_attach_annex_request_validation_When_binding_contract_id_is_invalid_Then_result_should_have_error()
-    {
-        // Arrange
-        var request = new AttachAnnexToBindingContractRequest(Guid.Empty, _fakeNow);
-
-        // Act
-        var result = _validator.TestValidate(request);
-
-        // Assert
-        result.ShouldHaveValidationErrorFor(r => r.BindingContractId);
-    }
-
-    [Fact]
     internal void Given_attach_annex_request_validation_When_valid_from_is_invalid_Then_result_should_have_error()
     {
         // Arrange
-        var request = new AttachAnnexToBindingContractRequest(Guid.Empty, default);
+        var request = new AttachAnnexToBindingContractRequest(default);
 
         // Act
         var result = _validator.TestValidate(request);
