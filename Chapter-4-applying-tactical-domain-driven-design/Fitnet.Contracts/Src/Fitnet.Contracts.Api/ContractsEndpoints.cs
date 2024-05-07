@@ -12,5 +12,6 @@ internal static class ContractsEndpoints
         app.MapPrepareContract();
         app.MapSignContract();
         app.MapTerminateBindingContract();
+        app.MapAttachAnnexToBindingContract();
     }
 }
