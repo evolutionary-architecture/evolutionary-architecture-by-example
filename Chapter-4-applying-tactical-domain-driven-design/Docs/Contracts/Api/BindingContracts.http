@@ -2,3 +2,14 @@
 ### Terminate a binding contract
 # @name terminateBindingContract
 PATCH {{baseUrl}}/api/binding-contracts/{{bindingContractId}}
+
+###
+### Attach an annex
+# @name attachAnnex
+POST {{baseUrl}}/api/binding-contracts/{{bindingContractId}}/annexes
+
+Content-Type: application/json
+
+{
+  "validFrom": "2023-05-04T12:00:00.000Z"
+}
