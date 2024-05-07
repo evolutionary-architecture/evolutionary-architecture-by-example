@@ -16,7 +16,7 @@ internal static class ErrorResults
         var statusCode = error.Type switch
         {
             ErrorType.Conflict => StatusCodes.Status409Conflict,
-            ErrorType.Validation => StatusCodes.Status400BadRequest,
+            ErrorType.Validation => StatusCodes.Status409Conflict,
             ErrorType.NotFound => StatusCodes.Status404NotFound,
             ErrorType.Failure => StatusCodes.Status500InternalServerError,
             ErrorType.Unexpected => StatusCodes.Status500InternalServerError,

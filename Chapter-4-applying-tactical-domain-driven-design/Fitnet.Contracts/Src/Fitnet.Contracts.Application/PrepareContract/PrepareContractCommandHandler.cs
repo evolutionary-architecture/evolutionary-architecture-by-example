@@ -21,6 +21,7 @@ internal sealed class PrepareContractCommandHandler(IContractsRepository contrac
             {
                 await contractsRepository.AddAsync(contract, cancellationToken);
                 await contractsRepository.CommitAsync(cancellationToken);
+
                 return contract.Id.Value;
             });
     }
