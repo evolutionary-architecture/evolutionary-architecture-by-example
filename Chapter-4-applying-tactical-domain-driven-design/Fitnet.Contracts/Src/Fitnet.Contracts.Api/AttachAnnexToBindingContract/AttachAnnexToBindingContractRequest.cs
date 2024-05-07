@@ -1,3 +1,9 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.AttachAnnexToBindingContract;
 
-internal sealed record AttachAnnexToBindingContractRequest(Guid BindingContractId, DateTimeOffset ValidFrom);
+using Application.AttachAnnexToBindingContract;
+
+internal sealed record AttachAnnexToBindingContractRequest(DateTimeOffset ValidFrom)
+{
+    internal AttachAnnexToBindingContractCommand ToCommand(Guid bindingContractId) =>
+        new(bindingContractId, ValidFrom);
+}
