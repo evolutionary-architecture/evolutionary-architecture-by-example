@@ -1,5 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnexToBindingContract.BusinessRules;
 
+using Common.Assertions;
 using Core.AttachAnnexToBindingContract.BusinessRules;
 
 public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
@@ -21,13 +22,9 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 _now));
 
         // Assert
-        result.Errors
-            .Should()
-            .ContainSingle()
-            .Which
-            .Should()
-            .BeEquivalentTo(Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
-                "Annex can only be attached to active binding contract"));
+        var expectedError = Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+            "Annex can only be attached to active binding contract");
+        result.Should().ContainError(expectedError);
     }
 
     [Fact]
@@ -44,13 +41,9 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 _now));
 
         // Assert
-        result.Errors
-            .Should()
-            .ContainSingle()
-            .Which
-            .Should()
-            .BeEquivalentTo(Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
-                "Annex can only be attached to active binding contract"));
+        var expectedError = Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+            "Annex can only be attached to active binding contract");
+        result.Should().ContainError(expectedError);
     }
 
     [Fact]
@@ -67,13 +60,9 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                     bindingContractExpiringAt,
                     _now));
 
-        result.Errors
-            .Should()
-            .ContainSingle()
-            .Which
-            .Should()
-            .BeEquivalentTo(Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
-                "Annex can only be attached to active binding contract"));
+        var expectedError = Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+            "Annex can only be attached to active binding contract");
+        result.Should().ContainError(expectedError);
     }
 
     [Fact]
@@ -91,6 +80,6 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                     _now));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 }

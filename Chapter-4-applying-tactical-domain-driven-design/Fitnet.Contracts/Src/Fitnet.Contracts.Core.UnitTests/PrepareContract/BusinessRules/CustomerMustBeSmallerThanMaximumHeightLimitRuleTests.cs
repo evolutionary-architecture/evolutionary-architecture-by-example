@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
-using AttachAnnexToBindingContract.BusinessRules;
+using Common.Assertions;
 using Core.PrepareContract.BusinessRules;
 
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
@@ -15,13 +15,8 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         var result = BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        var error = Error.Validation(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments");
-        result.Errors
-            .Should()
-            .ContainSingle()
-            .Which
-            .Should()
-            .BeEquivalentTo(error);
+        var expectedError = Error.Validation(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments");
+        result.Should().ContainError(expectedError);
     }
 
     [Fact]
@@ -34,10 +29,7 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         var result = BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        result.Should()
-            .NotBeNull()
-            .And
-            .NotBe(Error.Validation(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments"));
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -50,6 +42,6 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         var result = BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 }

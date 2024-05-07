@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract.BusinessRules;
 
-using AttachAnnexToBindingContract.BusinessRules;
+using Common.Assertions;
 using Core.SignContract.BusinessRules;
 
 public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
@@ -17,14 +17,9 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
                     DateTimeOffset.Now.AddDays(31)));
 
         // Assert
-        var error = Error.Validation(nameof(ContractCanOnlyBeSignedWithin30DaysFromPreparationRule),
+        var expectedError = Error.Validation(nameof(ContractCanOnlyBeSignedWithin30DaysFromPreparationRule),
             "Contract can only be signed within 30 days from preparation");
-        result.Errors
-            .Should()
-            .ContainSingle()
-            .Which
-            .Should()
-            .BeEquivalentTo(error);
+        result.Should().ContainError(expectedError);
     }
 
     [Fact]
@@ -39,7 +34,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
                     DateTimeOffset.Now.AddDays(30)));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -54,6 +49,6 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
                     DateTimeOffset.Now.AddDays(29)));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 }

@@ -1,7 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Application;
 
-using ErrorOr;
-
 public interface ICommand<out TResult> : IRequest<TResult>
 { }
 
