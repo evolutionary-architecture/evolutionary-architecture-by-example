@@ -1,15 +1,11 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.TerminateBindingContract;
 
-using Api;
-
 internal static class TerminateBindingContractTestExtensions
 {
-    internal static async Task TerminateBindingContractAsync(this HttpClient httpClient, Guid contractId)
+    internal static async Task TerminateBindingContractAsync(this HttpClient httpClient, Guid bindingContractId)
     {
-        var response = await httpClient.PatchAsync(GetUrl(contractId), null);
+        var request = TerminateBindingContractRequestParameters.GetValid(bindingContractId);
+        var response = await httpClient.PatchAsync(request.Url, null);
         response.EnsureSuccessStatusCode();
     }
-
-    internal static string GetUrl(Guid bindingContractId) =>
-        ContractsApiPaths.Terminate.Replace("{id}", bindingContractId.ToString());
 }
