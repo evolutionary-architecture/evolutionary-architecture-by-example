@@ -18,7 +18,7 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
             .CreateClient();
 
     [Fact]
-    internal async Task Given_valid_contract_preparation_request_Then_should_return_created_status_code()
+    internal async Task Given_valid_contract_preparation_request_Then_should_return_created()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetValid();
@@ -31,7 +31,7 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
     }
 
     [Fact]
-    internal async Task Given_contract_preparation_request_with_invalid_age_Then_should_return_conflict_status_code()
+    internal async Task Given_contract_preparation_request_with_invalid_age_Then_should_return_conflict()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetWithInvalidAge();
@@ -52,7 +52,7 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
     }
 
     [Fact]
-    internal async Task Given_contract_preparation_request_with_invalid_height_Then_should_return_conflict_status_code()
+    internal async Task Given_contract_preparation_request_with_invalid_height_Then_should_return_conflict()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetWithInvalidHeight();
@@ -73,7 +73,8 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
     }
 
     [Fact]
-    internal async Task Given_contract_preparation_request_When_contract_for_customer_was_prepared_earlier_and_was_not_signed_yet_Then_should_return_conflict_status_code()
+    internal async Task
+        Given_contract_preparation_request_When_contract_for_customer_was_prepared_earlier_and_was_not_signed_yet_Then_should_return_conflict()
     {
         // Arrange
         var requestParameters = PrepareContractRequestParameters.GetValid();
