@@ -28,10 +28,10 @@ public sealed class TerminateBindingContractTests(
     {
         // Arrange
         var nonExistingBindingContractId = Guid.NewGuid();
-        var path = TerminateBindingContractTestExtensions.GetUrl(nonExistingBindingContractId);
+        var request = TerminateBindingContractRequestParameters.GetValid(nonExistingBindingContractId);
 
         // Act
-        var response = await _applicationHttpClient.PatchAsync(path, content: null);
+        var response = await _applicationHttpClient.PatchAsync(request.Url, content: null);
 
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.NotFound);
@@ -44,12 +44,12 @@ public sealed class TerminateBindingContractTests(
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(preparedContractId);
-        var path = TerminateBindingContractTestExtensions.GetUrl(bindingContractId);
+        var request = TerminateBindingContractRequestParameters.GetValid(bindingContractId);
         FakeSystemTimeProvider.SimulateTimeSkip(TimeSkip);
 
         // Act
         var terminateContractResponse =
-            await _applicationHttpClient.PatchAsync(path, null);
+            await _applicationHttpClient.PatchAsync(request.Url, null);
 
         // Assert
         terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
@@ -62,11 +62,11 @@ public sealed class TerminateBindingContractTests(
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(preparedContractId);
-        var path = TerminateBindingContractTestExtensions.GetUrl(bindingContractId);
+        var request = TerminateBindingContractRequestParameters.GetValid(bindingContractId);
 
         // Act
         var terminateContractResponse =
-            await _applicationHttpClient.PatchAsync(path, null);
+            await _applicationHttpClient.PatchAsync(request.Url, null);
 
         // Assert
         terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
