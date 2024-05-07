@@ -1,7 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnexToBindingContract.BusinessRules;
 
 using Core.AttachAnnexToBindingContract.BusinessRules;
-using FluentAssertions.Execution;
 
 public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
 {
@@ -65,23 +64,5 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
 
         // Assert
         result.ShouldBeSuccess();
-    }
-}
-
-public static class ErrorOrAssertions
-{
-    public static AndConstraint<ErrorOr<Success>> ShouldBeSuccess(this ErrorOr<Success> actual)
-    {
-        var errors = actual
-            .Errors
-            .Select(error => error.Description)
-            .ToArray();
-        var errorsString = string.Join(", ", errors);
-
-        Execute.Assertion
-            .ForCondition(actual.Value == new Success() && actual.Errors.Count == 0)
-            .FailWith($"Expected Success, but found Error. {errorsString}.");
-
-        return new AndConstraint<ErrorOr<Success>>(actual);
     }
 }
