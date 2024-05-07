@@ -1,6 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.TerminateBindingContract;
 
-using Api;
 using Common.IntegrationTestsToolbox.TestEngine.Time;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Common.IntegrationTestsToolbox.TestEngine;
@@ -29,7 +28,7 @@ public sealed class TerminateBindingContractTests(
     {
         // Arrange
         var nonExistingBindingContractId = Guid.NewGuid();
-        var path = GetUrl(nonExistingBindingContractId);
+        var path = TerminateBindingContractTestExtensions.GetUrl(nonExistingBindingContractId);
 
         // Act
         var response = await _applicationHttpClient.PatchAsync(path, content: null);
@@ -45,7 +44,7 @@ public sealed class TerminateBindingContractTests(
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(preparedContractId);
-        var path = GetUrl(bindingContractId);
+        var path = TerminateBindingContractTestExtensions.GetUrl(bindingContractId);
         FakeSystemTimeProvider.SimulateTimeSkip(TimeSkip);
 
         // Act
@@ -63,7 +62,7 @@ public sealed class TerminateBindingContractTests(
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(preparedContractId);
-        var path = GetUrl(bindingContractId);
+        var path = TerminateBindingContractTestExtensions.GetUrl(bindingContractId);
 
         // Act
         var terminateContractResponse =
@@ -72,7 +71,4 @@ public sealed class TerminateBindingContractTests(
         // Assert
         terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
     }
-
-    private static string GetUrl(Guid bindingContractId) =>
-        ContractsApiPaths.Terminate.Replace("{id}", bindingContractId.ToString());
 }
