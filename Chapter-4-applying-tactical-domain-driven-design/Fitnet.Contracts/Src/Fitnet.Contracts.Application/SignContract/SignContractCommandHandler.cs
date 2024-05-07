@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.SignContract;
 
 using Common.Api.ErrorHandling;
-using ErrorOr;
 using IntegrationEvents;
 using MassTransit;
 
@@ -17,20 +16,18 @@ internal sealed class SignContractCommandHandler(
         var contract = await contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
         var now = timeProvider.GetUtcNow();
-        var signResult = contract.Sign(command.SignedAt, now);
-        if (signResult.IsError)
-        {
-            return signResult.Errors;
-        }
+        return await contract.Sign(command.SignedAt, now)
+            .ThenAsync(async bindingContract =>
+            {
+                await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);
+                await contractsRepository.CommitAsync(cancellationToken);
+                var @event = ContractSignedEvent.Create(contract.Id.Value,
+                    contract.CustomerId,
+                    contract.SignedAt!.Value,
+                    contract.ExpiringAt!.Value);
+                await publishEndpoint.Publish(@event, cancellationToken);
 
-        await bindingContractsRepository.AddAsync(signResult.Value, cancellationToken);
-        await contractsRepository.CommitAsync(cancellationToken);
-        var @event = ContractSignedEvent.Create(contract.Id.Value,
-                                                        contract.CustomerId,
-                                                        contract.SignedAt!.Value,
-                                                        contract.ExpiringAt!.Value);
-        await publishEndpoint.Publish(@event, cancellationToken);
-
-        return Unit.Value;
+                return Unit.Value;
+            });
     }
 }

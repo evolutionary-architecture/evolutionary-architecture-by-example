@@ -1,5 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.AttachAnnexToBindingContract.BusinessRules;
 
+using Common.Assertions;
 using Core.AttachAnnexToBindingContract.BusinessRules;
 
 public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
@@ -20,14 +21,9 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
                 _now));
 
         // Assert
-        var error = Error.Validation(nameof(AnnexCanOnlyStartDuringBindingContractPeriodRule),
+        var expectedError = Error.Validation(nameof(AnnexCanOnlyStartDuringBindingContractPeriodRule),
             "Annex can only start during binding contract period");
-        result.Errors
-            .Should()
-                .ContainSingle()
-            .Which
-            .Should()
-                .BeEquivalentTo(error);
+        result.Should().ContainError(expectedError);
     }
 
     [Fact]
@@ -45,7 +41,7 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
                     _now.AddDays(-1)));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -63,6 +59,6 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
                     _now.AddDays(-1)));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 }

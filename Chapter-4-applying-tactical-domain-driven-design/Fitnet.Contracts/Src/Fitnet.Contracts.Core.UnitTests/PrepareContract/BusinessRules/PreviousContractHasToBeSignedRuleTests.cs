@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
-using AttachAnnexToBindingContract.BusinessRules;
+using Common.Assertions;
 using Core.PrepareContract.BusinessRules;
 
 public sealed class PreviousContractHasToBeSignedRuleTests
@@ -14,7 +14,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(true));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -26,7 +26,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(null));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 
 
@@ -39,12 +39,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false));
 
         // Assert
-        var error = Error.Validation(nameof(PreviousContractHasToBeSignedRule), "Previous contract has to be signed");
-        result.Errors
-            .Should()
-            .ContainSingle()
-            .Which
-            .Should()
-            .BeEquivalentTo(error);
+        var expectedError = Error.Validation(nameof(PreviousContractHasToBeSignedRule), "Previous contract has to be signed");
+        result.Should().ContainError(expectedError);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBindingContract.BusinessRules;
 
-using AttachAnnexToBindingContract.BusinessRules;
+using Common.Assertions;
 using Core.TerminateBindingContract.BusinessRules;
 using TerminationIsPossibleOnlyAfterThreeMonthsHavePassed.TestData;
 
@@ -37,6 +37,6 @@ public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
                 new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
-        result.ShouldBeSuccess();
+        result.Should().BeSuccessful();
     }
 }

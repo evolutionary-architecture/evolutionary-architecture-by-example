@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.PrepareContract;
 
 using Core;
-using ErrorOr;
 
 [UsedImplicitly]
 internal sealed class PrepareContractCommandHandler(IContractsRepository contractsRepository)
