@@ -17,7 +17,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             .CreateClient();
 
     [Fact]
-    internal async Task Given_valid_contract_signature_request_Then_should_return_ok_status_code()
+    internal async Task Given_valid_contract_signature_request_Then_should_return_ok()
     {
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
@@ -49,7 +49,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
 
     [Fact]
     internal async Task
-        Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict_status_code()
+        Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict()
     {
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
