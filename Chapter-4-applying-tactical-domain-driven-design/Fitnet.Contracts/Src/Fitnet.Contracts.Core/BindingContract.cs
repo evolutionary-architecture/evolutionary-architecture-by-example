@@ -13,7 +13,7 @@ public sealed class BindingContract : Entity
     public ContractId ContractId { get; init; }
     public Guid CustomerId { get; init; }
     public TimeSpan Duration { get; init; }
-    public DateTimeOffset TerminatedAt { get; set; }
+    public DateTimeOffset? TerminatedAt { get; set; }
     public DateTimeOffset BindingFrom { get; init; }
     public DateTimeOffset ExpiringAt { get; init; }
     public ICollection<Annex> AttachedAnnexes { get; }
@@ -66,7 +66,7 @@ public sealed class BindingContract : Entity
 
         TerminatedAt = terminatedAt;
 
-        var @event = BindingContractTerminatedEvent.Raise(TerminatedAt);
+        var @event = BindingContractTerminatedEvent.Raise(terminatedAt);
         RecordEvent(@event);
     }
 }

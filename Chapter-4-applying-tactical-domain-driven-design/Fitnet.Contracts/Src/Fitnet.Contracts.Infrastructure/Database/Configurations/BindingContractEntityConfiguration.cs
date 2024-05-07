@@ -24,7 +24,7 @@ internal sealed class BindingContractEntityConfiguration : IEntityTypeConfigurat
         builder.Property(contract => contract.ContractId).IsRequired();
         builder.Property(contract => contract.CustomerId).IsRequired();
         builder.Property(contract => contract.Duration).IsRequired();
-        builder.Property(contract => contract.TerminatedAt).IsRequired();
+        builder.Property(contract => contract.TerminatedAt);
         builder.Property(contract => contract.BindingFrom).IsRequired();
         builder.Property(contract => contract.ExpiringAt).IsRequired();
 
