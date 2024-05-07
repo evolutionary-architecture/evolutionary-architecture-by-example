@@ -6,8 +6,9 @@ internal static class ContractsApiPaths
 {
     private const string ContractsRootApi = $"{ApiPaths.Root}/contracts";
     private const string BindingContractsApi = $"{ApiPaths.Root}/binding-contracts";
+    private const string AnnexesApi = $"{BindingContractsApi}/{{id}}/annexes";
 
-    internal const string AttachAnnex = $"{BindingContractsApi}/{{id}}/attachAnnex";
+    internal const string AttachAnnex = AnnexesApi;
     internal const string Terminate = $"{BindingContractsApi}/{{id}}/terminate";
     internal const string Prepare = ContractsRootApi;
     internal const string Sign = $"{ContractsRootApi}/{{id}}";
