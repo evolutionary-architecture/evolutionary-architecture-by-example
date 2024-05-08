@@ -4,16 +4,17 @@ using Application;
 using EvolutionaryArchitecture.Fitnet.Contracts.Application.TerminateBindingContract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 internal static class TerminateBindingContractEndpoint
 {
     internal static void MapTerminateBindingContract(this IEndpointRouteBuilder app) => app.MapPatch(
             ContractsApiPaths.Terminate, async (
-                Guid id,
+                [FromRoute(Name = "id")] Guid bindingContractId,
                 IContractsModule contractsModule, CancellationToken cancellationToken) =>
             {
-                var command = new TerminateBindingContractCommand(id);
+                var command = new TerminateBindingContractCommand(bindingContractId);
                 await contractsModule.ExecuteCommandAsync(command, cancellationToken);
 
                 return Results.NoContent();
