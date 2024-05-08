@@ -13,4 +13,6 @@ internal static class ContractsApiPaths
     internal const string Prepare = ContractsRootApi;
     internal const string Sign = $"{ContractsRootApi}/{{id}}";
     internal const string BindingContracts = BindingContractsApi;
+
+    internal static string GetAnnexesPath(string bindingContractId) => AnnexesApi.Replace("{id}", bindingContractId);
 }
