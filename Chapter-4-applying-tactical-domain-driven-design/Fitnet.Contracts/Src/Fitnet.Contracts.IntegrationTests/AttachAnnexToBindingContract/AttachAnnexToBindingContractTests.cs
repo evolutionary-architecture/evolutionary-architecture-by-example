@@ -11,9 +11,12 @@ using PrepareContract;
 using SignContract;
 using TerminateBindingContract;
 
-public class AttachAnnexToBindingContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory, DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public class AttachAnnexToBindingContractTests(
+    FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
+    DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private static readonly FakeTimeProvider FakeSystemTimeProvider = new(null);
+
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
         .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
         .WithTestEventBus()
@@ -26,12 +29,12 @@ public class AttachAnnexToBindingContractTests(FitnetWebApplicationFactory<Progr
         // Arrange
         var contractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(contractId);
-        var path = GetUrl(bindingContractId);
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
         // Act
-        var response = await _applicationHttpClient.PostAsJsonAsync(path, request);
+        var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.Created);
@@ -42,12 +45,12 @@ public class AttachAnnexToBindingContractTests(FitnetWebApplicationFactory<Progr
     {
         // Arrange
         var nonExistingBindingContractId = Guid.NewGuid();
-        var path = GetUrl(nonExistingBindingContractId);
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(nonExistingBindingContractId.ToString());
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
         // Act
-        var response = await _applicationHttpClient.PostAsJsonAsync(path, request);
+        var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.NotFound);
@@ -62,12 +65,12 @@ public class AttachAnnexToBindingContractTests(FitnetWebApplicationFactory<Progr
         const int timeSkip = 120;
         FakeSystemTimeProvider.SimulateTimeSkip(timeSkip);
         await _applicationHttpClient.TerminateBindingContractAsync(bindingContractId);
-        var path = GetUrl(bindingContractId);
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
         // Act
-        var response = await _applicationHttpClient.PostAsJsonAsync(path, request);
+        var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.Conflict);
@@ -79,19 +82,16 @@ public class AttachAnnexToBindingContractTests(FitnetWebApplicationFactory<Progr
         // Arrange
         var contractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(contractId);
-        var path = GetUrl(bindingContractId);
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
         const int timeSkip = 367;
         FakeSystemTimeProvider.SimulateTimeSkip(timeSkip);
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
         // Act
-        var response = await _applicationHttpClient.PostAsJsonAsync(path, request);
+        var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.Conflict);
     }
-
-    private static string GetUrl(Guid bindingContractId) =>
-        ContractsApiPaths.AttachAnnex.Replace("{id}", bindingContractId.ToString());
 }

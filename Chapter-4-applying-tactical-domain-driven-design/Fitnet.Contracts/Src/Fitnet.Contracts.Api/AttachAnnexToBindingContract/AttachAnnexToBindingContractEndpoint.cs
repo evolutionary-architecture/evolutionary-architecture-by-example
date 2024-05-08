@@ -32,7 +32,7 @@ internal static class AttachAnnexToBindingContractEndpoint
 
     private static string BuildUrl(Guid bindingContractId, Guid annexId)
     {
-        var annexesPath = ContractsApiPaths.AttachAnnex.Replace("{id}", bindingContractId.ToString());
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
 
         return Path.Combine(annexesPath, annexId.ToString());
     }
