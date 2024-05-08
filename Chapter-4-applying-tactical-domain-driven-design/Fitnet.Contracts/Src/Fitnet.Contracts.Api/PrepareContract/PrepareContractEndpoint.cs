@@ -15,7 +15,7 @@ internal static class PrepareContractEndpoint
                 var command = request.ToCommand();
                 var contractId = await contractsModule.ExecuteCommandAsync(command, cancellationToken);
 
-                return Results.Created($"/{ContractsApiPaths.Prepare}/{contractId}", contractId);
+                return Results.Created(ContractsApiPaths.GetPreparedContractPath(contractId), contractId);
             })
         .ValidateRequest<PrepareContractRequest>()
         .WithOpenApi(operation => new(operation)

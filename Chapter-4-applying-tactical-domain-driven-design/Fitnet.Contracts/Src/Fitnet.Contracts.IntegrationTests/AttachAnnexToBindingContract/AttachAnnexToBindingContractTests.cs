@@ -29,7 +29,7 @@ public class AttachAnnexToBindingContractTests(
         // Arrange
         var contractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(contractId);
-        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId);
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
@@ -45,7 +45,7 @@ public class AttachAnnexToBindingContractTests(
     {
         // Arrange
         var nonExistingBindingContractId = Guid.NewGuid();
-        var annexesPath = ContractsApiPaths.GetAnnexesPath(nonExistingBindingContractId.ToString());
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(nonExistingBindingContractId);
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
@@ -65,7 +65,7 @@ public class AttachAnnexToBindingContractTests(
         const int timeSkip = 120;
         FakeSystemTimeProvider.SimulateTimeSkip(timeSkip);
         await _applicationHttpClient.TerminateBindingContractAsync(bindingContractId);
-        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId);
         AttachAnnexToBindingContractRequest request =
             new AttachAnnexToBindingContractRequestFaker(FakeSystemTimeProvider.GetUtcNow());
 
@@ -82,7 +82,7 @@ public class AttachAnnexToBindingContractTests(
         // Arrange
         var contractId = await _applicationHttpClient.PrepareContractAsync();
         var bindingContractId = await _applicationHttpClient.SignContractAsync(contractId);
-        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId.ToString());
+        var annexesPath = ContractsApiPaths.GetAnnexesPath(bindingContractId);
         const int timeSkip = 367;
         FakeSystemTimeProvider.SimulateTimeSkip(timeSkip);
         AttachAnnexToBindingContractRequest request =
