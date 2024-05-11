@@ -2,6 +2,7 @@
 
 using Common.Assertions;
 using Core.AttachAnnexToBindingContract.BusinessRules;
+using Core.Common.BussinessRules;
 
 public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
 {
@@ -21,7 +22,7 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
                 _now));
 
         // Assert
-        var expectedError = Error.Validation(nameof(AnnexCanOnlyStartDuringBindingContractPeriodRule),
+        var expectedError = BusinessRuleError.Create(nameof(AnnexCanOnlyStartDuringBindingContractPeriodRule),
             "Annex can only start during binding contract period");
         result.Should().ContainError(expectedError);
     }

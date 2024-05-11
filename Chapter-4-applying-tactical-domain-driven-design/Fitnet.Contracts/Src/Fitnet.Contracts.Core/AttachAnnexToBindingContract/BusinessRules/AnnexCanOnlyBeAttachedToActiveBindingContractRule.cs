@@ -1,5 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnexToBindingContract.BusinessRules;
 
+using Common.BussinessRules;
+
 internal sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRule : IBusinessRule
 {
     private readonly DateTimeOffset? _bindingContractTerminatedAt;
@@ -18,5 +20,6 @@ internal sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRule : IBusin
 
     public bool IsMet() => !_bindingContractTerminatedAt.HasValue && _bindingContractExpiringAt > _now;
 
-    public Error Error => Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule), "Annex can only be attached to active binding contract");
+    public Error Error => BusinessRuleError.Create(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+        "Annex can only be attached to active binding contract");
 }

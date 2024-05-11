@@ -1,5 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.PrepareContract.BusinessRules;
 
+using Common.BussinessRules;
+
 internal sealed class CustomerMustBeSmallerThanMaximumHeightLimitRule : IBusinessRule
 {
     private const int MaximumHeight = 210;
@@ -10,6 +12,5 @@ internal sealed class CustomerMustBeSmallerThanMaximumHeightLimitRule : IBusines
 
     public bool IsMet() => _height <= MaximumHeight;
 
-    public Error Error => Error.Validation(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments");
-
+    public Error Error => BusinessRuleError.Create(nameof(CustomerMustBeSmallerThanMaximumHeightLimitRule), "Customer height must fit maximum limit for gym instruments");
 }

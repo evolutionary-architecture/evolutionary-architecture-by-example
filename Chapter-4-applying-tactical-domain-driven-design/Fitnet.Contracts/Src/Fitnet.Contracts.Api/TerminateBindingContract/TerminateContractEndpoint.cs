@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.TerminateBindingContract;
 
 using Application;
-using Common;
+using Common.Errors;
 using EvolutionaryArchitecture.Fitnet.Contracts.Application.TerminateBindingContract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

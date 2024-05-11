@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.Common.BussinessRules;
 
 public static class BusinessRuleValidator
 {
@@ -11,11 +11,4 @@ public static class BusinessRuleValidator
 
         return errors.Count != 0 ? (ErrorOr<Success>)errors : (ErrorOr<Success>)new Success();
     }
-}
-
-public interface IBusinessRule
-{
-    bool IsMet();
-
-    Error Error { get; }
 }
