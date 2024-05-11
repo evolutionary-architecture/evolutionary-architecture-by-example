@@ -1,5 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.BusinessRules;
 
+using Common.BussinessRules;
+
 internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRule : IBusinessRule
 {
     private readonly DateTimeOffset _preparedAt;
@@ -19,6 +21,6 @@ internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRule : I
         return timeDifference <= TimeSpan.FromDays(30);
     }
 
-    public Error Error => Error.Validation(nameof(ContractCanOnlyBeSignedWithin30DaysFromPreparationRule),
+    public Error Error => BusinessRuleError.Create(nameof(ContractCanOnlyBeSignedWithin30DaysFromPreparationRule),
         "Contract can only be signed within 30 days from preparation");
 }

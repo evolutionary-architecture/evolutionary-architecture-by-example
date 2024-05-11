@@ -2,7 +2,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.SignContract;
 
 using EvolutionaryArchitecture.Fitnet.Common.Api.Validations;
 using Application;
-using Common;
+using Common.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;

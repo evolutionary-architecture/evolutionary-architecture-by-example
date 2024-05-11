@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.AttachAnnexToBindingContract;
 
-using EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks;
+using DomainDrivenDesign.BuildingBlocks;
 
 public sealed record AnnexAttachedToBindingContractEvent(
     Guid Id,

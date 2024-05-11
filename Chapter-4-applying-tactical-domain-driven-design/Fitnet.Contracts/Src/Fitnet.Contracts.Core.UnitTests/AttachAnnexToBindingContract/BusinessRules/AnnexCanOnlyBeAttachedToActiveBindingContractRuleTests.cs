@@ -2,6 +2,7 @@
 
 using Common.Assertions;
 using Core.AttachAnnexToBindingContract.BusinessRules;
+using Core.Common.BussinessRules;
 
 public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
 {
@@ -22,7 +23,7 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 _now));
 
         // Assert
-        var expectedError = Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+        var expectedError = BusinessRuleError.Create(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
             "Annex can only be attached to active binding contract");
         result.Should().ContainError(expectedError);
     }
@@ -41,7 +42,7 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                 _now));
 
         // Assert
-        var expectedError = Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+        var expectedError = BusinessRuleError.Create(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
             "Annex can only be attached to active binding contract");
         result.Should().ContainError(expectedError);
     }
@@ -60,7 +61,7 @@ public sealed class AnnexCanOnlyBeAttachedToActiveBindingContractRuleTests
                     bindingContractExpiringAt,
                     _now));
 
-        var expectedError = Error.Validation(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
+        var expectedError = BusinessRuleError.Create(nameof(AnnexCanOnlyBeAttachedToActiveBindingContractRule),
             "Annex can only be attached to active binding contract");
         result.Should().ContainError(expectedError);
     }
