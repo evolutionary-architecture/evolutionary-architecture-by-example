@@ -2,24 +2,23 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.TerminateBindingContract
 
 using Application;
 using AttachAnnexToBindingContract;
+using Common.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using ErrorOr;
 
 internal static class AttachAnnexToBindingContractEndpoint
 {
     internal static void MapAttachAnnexToBindingContract(this IEndpointRouteBuilder app) => app.MapPost(
             ContractsApiPaths.AttachAnnex, async (
-                Guid id,
-                AttachAnnexToBindingContractRequest request,
-                IContractsModule contractsModule,
-                CancellationToken cancellationToken) =>
-            {
-                var command = request.ToCommand(id);
-                var annexId = await contractsModule.ExecuteCommandAsync(command, cancellationToken);
-
-                return Results.Created($"/{BuildUrl(id, annexId)}", annexId);
-            })
+                    Guid id,
+                    AttachAnnexToBindingContractRequest request,
+                    IContractsModule contractsModule,
+                    CancellationToken cancellationToken) =>
+                await contractsModule.ExecuteCommandAsync(request.ToCommand(id), cancellationToken)
+                    .Match(annexId => Results.Created(BuildUrl(id, annexId), annexId),
+                        errors => errors.ToProblem()))
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Attach annex to existing binding contract",

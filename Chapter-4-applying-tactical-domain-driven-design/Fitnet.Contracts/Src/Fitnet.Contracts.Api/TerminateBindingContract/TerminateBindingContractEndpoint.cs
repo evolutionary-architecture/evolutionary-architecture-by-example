@@ -1,6 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.TerminateBindingContract;
 
 using Application;
+using Common.Errors;
+using ErrorOr;
 using EvolutionaryArchitecture.Fitnet.Contracts.Application.TerminateBindingContract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -11,14 +13,13 @@ internal static class TerminateBindingContractEndpoint
 {
     internal static void MapTerminateBindingContract(this IEndpointRouteBuilder app) => app.MapPatch(
             ContractsApiPaths.Terminate, async (
-                [FromRoute(Name = "id")] Guid bindingContractId,
-                IContractsModule contractsModule, CancellationToken cancellationToken) =>
-            {
-                var command = new TerminateBindingContractCommand(bindingContractId);
-                await contractsModule.ExecuteCommandAsync(command, cancellationToken);
-
-                return Results.NoContent();
-            })
+                    [FromRoute(Name = "id")] Guid bindingContractId,
+                    IContractsModule contractsModule, CancellationToken cancellationToken) =>
+                await contractsModule.ExecuteCommandAsync(new TerminateBindingContractCommand(bindingContractId),
+                        cancellationToken)
+                    .Match(
+                        _ => Results.NoContent(),
+                        errors => errors.ToProblem()))
         .WithOpenApi(operation => new(operation)
         {
             Summary = "Terminates binding contract",
