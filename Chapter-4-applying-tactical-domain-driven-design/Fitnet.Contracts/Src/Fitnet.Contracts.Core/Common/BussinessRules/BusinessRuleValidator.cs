@@ -9,6 +9,6 @@ public static class BusinessRuleValidator
             .Select(rule => rule.Error)
             .ToList();
 
-        return errors.Count != 0 ? (ErrorOr<Success>)errors : (ErrorOr<Success>)new Success();
+        return errors.Count != 0 ? (ErrorOr<Success>)errors : new Success();
     }
 }

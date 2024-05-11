@@ -9,9 +9,9 @@ internal sealed class SignContractCommandHandler(
     IContractsRepository contractsRepository,
     IBindingContractsRepository bindingContractsRepository,
     TimeProvider timeProvider,
-    IPublishEndpoint publishEndpoint) : IRequestHandler<SignContractCommand, ErrorOr<Unit>>
+    IPublishEndpoint publishEndpoint) : IRequestHandler<SignContractCommand, ErrorOr<Guid>>
 {
-    public async Task<ErrorOr<Unit>> Handle(SignContractCommand command, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Guid>> Handle(SignContractCommand command, CancellationToken cancellationToken)
     {
         var contract = await contractsRepository.GetByIdAsync(command.Id, cancellationToken) ??
                        throw new ResourceNotFoundException(command.Id);
@@ -26,7 +26,7 @@ internal sealed class SignContractCommandHandler(
                     contract.ExpiringAt!.Value);
                 await publishEndpoint.Publish(@event, cancellationToken);
 
-                return Unit.Value;
+                return bindingContract.Id.Value;
             });
     }
 }
