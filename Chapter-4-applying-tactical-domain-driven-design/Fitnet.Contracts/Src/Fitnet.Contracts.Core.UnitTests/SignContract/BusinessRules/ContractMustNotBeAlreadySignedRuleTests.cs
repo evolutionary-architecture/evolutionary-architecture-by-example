@@ -7,7 +7,7 @@ using Core.SignContract.BusinessRules;
 public sealed class ContractMustNotBeAlreadySignedRuleTests
 {
     [Fact]
-    internal void Given_sign_contract_When_contract_is_already_signed_Then_validation_should_throw()
+    internal void Given_sign_contract_When_contract_is_already_signed_Then_validation_should_have_error()
     {
         // Arrange
         const bool signed = true;
