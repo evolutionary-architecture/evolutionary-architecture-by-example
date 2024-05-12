@@ -1,6 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Assertions;
-
-using ErrorOr;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Assertions.ErrorOr;
 
 internal static class ErrorOrExtensions
 {

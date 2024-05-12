@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract.BusinessRules;
 
-using Common.Assertions;
+using Common.Assertions.ErrorOr;
 using Core.Common.BussinessRules;
 using Core.SignContract.BusinessRules;
 
