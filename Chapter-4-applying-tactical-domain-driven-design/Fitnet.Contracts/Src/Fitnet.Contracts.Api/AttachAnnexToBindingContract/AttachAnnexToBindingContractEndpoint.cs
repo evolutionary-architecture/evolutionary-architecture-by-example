@@ -1,12 +1,11 @@
-namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.TerminateBindingContract;
+namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.AttachAnnexToBindingContract;
 
-using Application;
-using AttachAnnexToBindingContract;
+using ErrorOr;
 using Common.Errors;
+using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using ErrorOr;
 
 internal static class AttachAnnexToBindingContractEndpoint
 {

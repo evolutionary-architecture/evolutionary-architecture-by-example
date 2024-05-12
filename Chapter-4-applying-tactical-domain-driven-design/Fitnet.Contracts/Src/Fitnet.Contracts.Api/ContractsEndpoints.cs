@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api;
 
+using AttachAnnexToBindingContract;
 using Microsoft.AspNetCore.Routing;
 using PrepareContract;
 using SignContract;
