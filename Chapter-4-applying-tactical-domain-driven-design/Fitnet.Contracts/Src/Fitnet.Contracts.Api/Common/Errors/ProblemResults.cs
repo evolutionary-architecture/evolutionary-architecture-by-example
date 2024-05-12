@@ -2,19 +2,13 @@
 
 using Core.Common.BussinessRules;
 using Microsoft.AspNetCore.Http;
-using static ErrorOr.ErrorType;
+using static ErrorType;
 
 internal static class ProblemResults
 {
     internal static IResult ToProblem(this IReadOnlyCollection<Error> errors)
     {
         var error = errors.First();
-
-        return error.ToProblem();
-    }
-
-    private static IResult ToProblem(this Error error)
-    {
         var statusCode = error.NumericType switch
         {
             BusinessRuleError.Type => StatusCodes.Status409Conflict,
@@ -28,6 +22,12 @@ internal static class ProblemResults
             _ => StatusCodes.Status500InternalServerError
         };
 
-        return Results.Problem(error.Description, statusCode: statusCode);
+        var errorMessage = GetErrorMessage(errors);
+        var results = Results.Problem(errorMessage, statusCode: statusCode);
+
+        return results;
     }
+
+    private const string? Separator = ", ";
+    private static string GetErrorMessage(IReadOnlyCollection<Error> errors) => string.Join(Separator, errors.Select(error => error.Description));
 }
