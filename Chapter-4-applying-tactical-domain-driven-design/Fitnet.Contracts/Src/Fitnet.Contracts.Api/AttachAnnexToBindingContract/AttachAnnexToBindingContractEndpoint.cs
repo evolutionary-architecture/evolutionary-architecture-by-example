@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.AttachAnnexToBindingContract;
 
-using ErrorOr;
 using Common.Errors;
 using Application;
 using Microsoft.AspNetCore.Builder;
