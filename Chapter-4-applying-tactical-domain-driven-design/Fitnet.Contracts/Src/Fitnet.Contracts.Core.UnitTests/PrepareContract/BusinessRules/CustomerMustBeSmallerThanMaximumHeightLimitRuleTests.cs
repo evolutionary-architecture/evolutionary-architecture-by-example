@@ -7,7 +7,7 @@ using Core.PrepareContract.BusinessRules;
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
 {
     [Fact]
-    internal void Given_customer_height_which_is_greater_than_maximum_height_limit_Then_validation_should_throw()
+    internal void Given_customer_height_which_is_greater_than_maximum_height_limit_Then_validation_should_have_error()
     {
         // Arrange
         const int height = 211;

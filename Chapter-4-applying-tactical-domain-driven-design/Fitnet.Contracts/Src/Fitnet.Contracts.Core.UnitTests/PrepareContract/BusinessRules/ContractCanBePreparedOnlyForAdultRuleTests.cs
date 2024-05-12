@@ -7,7 +7,7 @@ using Core.PrepareContract.BusinessRules;
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests
 {
     [Fact]
-    internal void Given_customer_age_which_is_less_than_18_Then_validation_should_throw()
+    internal void Given_customer_age_which_is_less_than_18_Then_validation_should_have_error()
     {
         // Arrange
 
