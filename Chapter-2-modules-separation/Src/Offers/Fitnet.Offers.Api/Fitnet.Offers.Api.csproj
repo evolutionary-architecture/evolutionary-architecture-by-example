@@ -15,4 +15,8 @@
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Update="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
+    </ItemGroup>
+
 </Project>

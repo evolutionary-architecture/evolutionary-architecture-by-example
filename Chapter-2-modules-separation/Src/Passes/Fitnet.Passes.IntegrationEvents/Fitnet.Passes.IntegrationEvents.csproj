@@ -2,4 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
+  </ItemGroup>
 </Project>
