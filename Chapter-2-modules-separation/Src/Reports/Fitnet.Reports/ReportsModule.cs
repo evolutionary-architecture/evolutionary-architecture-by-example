@@ -5,12 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Common.Infrastructure.Modules;
 using DataAccess;
 using GenerateNewPassesRegistrationsPerMonthReport;
+using Microsoft.Extensions.Configuration;
 
 public static class ReportsModule
 {
     public static void RegisterReports(this WebApplication app, string module)
     {
-        if (!app.IsModuleEnabled(module))
+        if (!app.Configuration.IsModuleEnabled(module))
         {
             return;
         }
@@ -19,9 +20,9 @@ public static class ReportsModule
         app.MapReports();
     }
 
-    public static IServiceCollection AddReports(this IServiceCollection services, string module, ModuleAvailabilityChecker availabilityChecker)
+    public static IServiceCollection AddReports(this IServiceCollection services, string module, IConfiguration configuration)
     {
-        if (!availabilityChecker.IsModuleEnabled(module))
+        if (!configuration.IsModuleEnabled(module))
         {
             return services;
         }

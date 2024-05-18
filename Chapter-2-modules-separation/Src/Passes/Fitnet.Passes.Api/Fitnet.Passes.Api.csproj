@@ -18,6 +18,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ internal sealed class ReportsDatabaseConfiguration : IDatabaseConfiguration
 
     public Dictionary<string, string?> Get() => new()
     {
-        { "ConnectionStrings:Passes", _connectionString },
-        { "ConnectionStrings:Reports", _connectionString }
+        { "Modules:Passes:ConnectionStrings:Primary", _connectionString },
+        { "Modules:Reports:ConnectionStrings:Primary", _connectionString }
     };
 }
