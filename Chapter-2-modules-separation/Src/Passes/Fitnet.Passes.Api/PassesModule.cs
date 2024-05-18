@@ -12,7 +12,7 @@ public static class PassesModule
 {
     public static void RegisterPasses(this WebApplication app, string module)
     {
-        if (!app.IsModuleEnabled(module))
+        if (!app.Configuration.IsModuleEnabled(module))
         {
             return;
         }
@@ -22,10 +22,9 @@ public static class PassesModule
     }
 
     public static IServiceCollection AddPasses(this IServiceCollection services,
-        string module, IConfiguration configuration,
-        ModuleAvailabilityChecker availabilityChecker)
+        string module, IConfiguration configuration)
     {
-        if (!availabilityChecker.IsModuleEnabled(module))
+        if (!configuration.IsModuleEnabled(module))
         {
             return services;
         }

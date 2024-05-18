@@ -10,6 +10,6 @@ internal sealed class PassesDatabaseConfiguration : IDatabaseConfiguration
 
     public Dictionary<string, string?> Get() => new()
     {
-        { "ConnectionStrings:Passes", _connectionString }
+        { "Modules:Passes:ConnectionStrings:Primary", _connectionString }
     };
 }

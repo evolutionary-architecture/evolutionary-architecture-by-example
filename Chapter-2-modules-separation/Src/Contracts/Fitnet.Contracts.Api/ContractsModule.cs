@@ -14,7 +14,7 @@ public static class ContractsModule
     private static Assembly CurrentModule => typeof(SignContractRequest).Assembly;
     public static void RegisterContracts(this WebApplication app, string module)
     {
-        if (!app.IsModuleEnabled(module))
+        if (!app.Configuration.IsModuleEnabled(module))
         {
             return;
         }
@@ -24,9 +24,9 @@ public static class ContractsModule
     }
 
     public static IServiceCollection AddContracts(this IServiceCollection services,
-        string module, IConfiguration configuration, ModuleAvailabilityChecker checker)
+        string module, IConfiguration configuration)
     {
-        if (!checker.IsModuleEnabled(module))
+        if (!configuration.IsModuleEnabled(module))
         {
             return services;
         }

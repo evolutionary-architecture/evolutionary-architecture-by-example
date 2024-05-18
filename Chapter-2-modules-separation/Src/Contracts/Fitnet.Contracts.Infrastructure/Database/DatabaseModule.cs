@@ -8,11 +8,11 @@ using Repositories;
 
 internal static class DatabaseModule
 {
-    private const string ConnectionStringName = "Contracts";
+    private const string ConnectionStringConfigurationSection = "Modules:Contracts:ConnectionStrings:Primary";
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString(ConnectionStringName);
+        var connectionString = configuration.GetSection(ConnectionStringConfigurationSection).Value;
         services.AddDbContext<ContractsPersistence>(options => options.UseNpgsql(connectionString));
         services.AddRepositories();
 

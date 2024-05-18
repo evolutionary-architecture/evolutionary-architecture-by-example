@@ -7,11 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 internal static class DatabaseModule
 {
-    private const string ConnectionStringName = "Offers";
+    private const string ConnectionStringConfigurationSection = "Modules:Offers:ConnectionStrings:Primary";
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString(ConnectionStringName);
+        var connectionString = configuration.GetSection(ConnectionStringConfigurationSection).Value;
         services.AddDbContext<OffersPersistence>(options => options.UseNpgsql(connectionString));
 
         return services;

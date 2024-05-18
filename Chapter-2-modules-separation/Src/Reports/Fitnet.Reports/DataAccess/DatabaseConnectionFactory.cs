@@ -7,6 +7,7 @@ using Npgsql;
 
 internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : IDatabaseConnectionFactory
 {
+    private const string ConnectionStringConfigurationSection = "Modules:Reports:ConnectionStrings:Primary";
     private NpgsqlConnection? _connection;
 
     public IDbConnection Create()
@@ -16,8 +17,9 @@ internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : 
             return _connection;
         }
 
+        var connectionString = configuration.GetRequiredSection(ConnectionStringConfigurationSection).Value;
         _connection =
-            new NpgsqlConnection(configuration.GetConnectionString("Reports"));
+            new NpgsqlConnection(connectionString);
         _connection.Open();
 
         return _connection;

@@ -29,7 +29,7 @@ app.MapControllers();
 
 app.RegisterModules();
 
-app.Run();
+await app.RunAsync();
 
 
 namespace EvolutionaryArchitecture.Fitnet

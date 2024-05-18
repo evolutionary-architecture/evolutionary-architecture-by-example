@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine;
 
+[UsedImplicitly]
 public class FitnetWebApplicationFactory<T> : WebApplicationFactory<T> where T : class
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder) => builder.ConfigureAppConfiguration(
