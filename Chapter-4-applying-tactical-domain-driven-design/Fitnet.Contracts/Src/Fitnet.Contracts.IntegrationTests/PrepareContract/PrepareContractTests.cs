@@ -45,7 +45,6 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
 
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
-
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
         responseMessage?.Detail.Should().Be("Contract can not be prepared for a person who is not adult");
     }

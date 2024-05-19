@@ -29,5 +29,6 @@ internal static class ProblemResults
     }
 
     private const string? Separator = ", ";
-    private static string GetErrorMessage(IReadOnlyCollection<Error> errors) => string.Join(Separator, errors.Select(error => error.Description));
+    private static string GetErrorMessage(IEnumerable<Error> errors) =>
+        string.Join(Separator, errors.Select(error => error.Description));
 }

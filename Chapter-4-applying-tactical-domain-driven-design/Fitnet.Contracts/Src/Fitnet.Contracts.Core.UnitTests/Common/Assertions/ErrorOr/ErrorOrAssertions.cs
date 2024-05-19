@@ -1,6 +1,5 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Assertions.ErrorOr;
 
-using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
@@ -26,6 +25,7 @@ internal sealed class ErrorOrSuccessAssertions(ErrorOr<Success> subject)
             .ForCondition(Subject.IsError && Subject.Errors.Contains(error))
             .BecauseOf(because, becauseArgs)
             .FailWith("Expected to contain error '{0}' but found errors: {1}", string.Join(", ", Subject.Errors.Select(x => x.Description)), error.Description);
+
         return new AndConstraint<ErrorOr<Success>>(Subject);
     }
 }
