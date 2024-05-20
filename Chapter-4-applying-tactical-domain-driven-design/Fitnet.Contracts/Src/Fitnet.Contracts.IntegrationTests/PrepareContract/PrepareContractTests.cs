@@ -84,7 +84,7 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
         // Assert
         prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Detail.Should().Be("Previous contract has to be signed");
+        responseMessage?.Detail.Should().Be("Previous contract must be signed by the customer");
     }
 
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)

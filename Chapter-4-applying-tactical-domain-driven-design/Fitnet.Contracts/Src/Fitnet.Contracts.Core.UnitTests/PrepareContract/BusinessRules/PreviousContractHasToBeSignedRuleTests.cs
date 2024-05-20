@@ -40,7 +40,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var result = BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false));
 
         // Assert
-        var expectedError = BusinessRuleError.Create(nameof(PreviousContractHasToBeSignedRule), "Previous contract has to be signed");
+        var expectedError = BusinessRuleError.Create(nameof(PreviousContractHasToBeSignedRule), "Previous contract must be signed by the customer");
         result.Should().ContainError(expectedError);
     }
 }
