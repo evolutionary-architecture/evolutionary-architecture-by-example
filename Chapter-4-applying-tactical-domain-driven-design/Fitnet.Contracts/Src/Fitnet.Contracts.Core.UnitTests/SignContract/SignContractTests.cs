@@ -38,10 +38,10 @@ public sealed class SignContractTests
             .Prepared();
 
         // Act
-        var bindingContract = contract.Sign(SignedAt, FakeNow);
+        var signResult = contract.Sign(SignedAt, FakeNow);
 
         // Assert
-        var @event = bindingContract.Value.GetPublishedEvent<BindingContractStartedEvent>();
+        var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();
         @event?.BindingFrom.Should().Be(SignedAt);
     }
 }
