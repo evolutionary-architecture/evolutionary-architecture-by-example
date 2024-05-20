@@ -22,5 +22,5 @@ internal sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRule : I
     }
 
     public Error Error => BusinessRuleError.Create(nameof(ContractCanOnlyBeSignedWithin30DaysFromPreparationRule),
-        "Contract can not be signed because more than 30 days have passed from the contract preparation");
+        "Contract can only be signed within 30 days from preparation");
 }
