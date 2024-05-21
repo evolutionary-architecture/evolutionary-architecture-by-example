@@ -1,0 +1,15 @@
+= 16. Leveraging Module Disabling via Configuration to Isolate Integration Tests
+
+Date: 2023-06-20
+
+== Problem 
+Currently, our integration tests involve setting up in-memory databases for all modules. Managing these databases has become a cumbersome process, and we want to run integration tests in isolation to achieve modularity and ease of testing.
+
+== Decision
+We have decided to leverage configuration. This will provide the means to disable certain modules during the execution of integration tests. Only the essential modules required for the functionality being tested will be active, reducing the complexity of each test scenario. Additional configuration can be used to deliver code faster even if it is not completed, and scale monolith using feature flag on different instances of the application.
+
+== Consequences
+- Isolated testing: Each test will involve fewer modules, which will help to isolate failures and simplify debugging.
+- Reduced resource usage: With fewer active modules, tests will consume fewer system resources, potentially improving test performance.
+- Additional complexity: We'll have to manage configuration of various module states.
+- Dependency management: Troubleshooting errors arising due to improper handling of dependent modules can become challenging.
