@@ -1,7 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
 using AttachAnnexToBindingContract.BusinessRules;
-using Common.Core.BusinessRules;
+using Common.BussinessRules;
 using DomainDrivenDesign.BuildingBlocks;
 using SignContract;
 using TerminateBindingContract;
@@ -44,31 +44,30 @@ public sealed class BindingContract : Entity
         DateTimeOffset bindingFrom,
         DateTimeOffset expiringAt) => new(id, customerId, duration, bindingFrom, expiringAt);
 
-    public AnnexId AttachAnnex(DateTimeOffset validFrom, DateTimeOffset now)
-    {
-        BusinessRuleValidator.Validate(
-            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now));
+    public ErrorOr<AnnexId> AttachAnnex(DateTimeOffset validFrom, DateTimeOffset now) => BusinessRuleValidator.Validate(
+            new AnnexCanOnlyBeAttachedToActiveBindingContractRule(TerminatedAt, ExpiringAt, now),
+            new AnnexCanOnlyStartDuringBindingContractPeriodRule(ExpiringAt, validFrom))
+        .Then(_ =>
+        {
+            var annex = Annex.Attach(Id, validFrom);
 
-        BusinessRuleValidator.Validate(
-            new AnnexCanOnlyStartDuringBindingContractPeriodRule(ExpiringAt, validFrom));
+            AttachedAnnexes.Add(annex);
 
-        var annex = Annex.Attach(Id, validFrom);
+            return annex.Id;
+        });
 
-        AttachedAnnexes.Add(annex);
 
-        return annex.Id;
-    }
+    public ErrorOr<Success> Terminate(DateTimeOffset terminatedAt) => BusinessRuleValidator.Validate(
+                new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt))
+            .Then(_ =>
+            {
+                TerminatedAt = terminatedAt;
 
-    public void Terminate(DateTimeOffset terminatedAt)
-    {
-        BusinessRuleValidator.Validate(
-            new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(BindingFrom, terminatedAt));
+                var @event = BindingContractTerminatedEvent.Raise(terminatedAt);
+                RecordEvent(@event);
 
-        TerminatedAt = terminatedAt;
-
-        var @event = BindingContractTerminatedEvent.Raise(terminatedAt);
-        RecordEvent(@event);
-    }
+                return new Success();
+            });
 }
 
 public record struct ContractId(Guid Value)
