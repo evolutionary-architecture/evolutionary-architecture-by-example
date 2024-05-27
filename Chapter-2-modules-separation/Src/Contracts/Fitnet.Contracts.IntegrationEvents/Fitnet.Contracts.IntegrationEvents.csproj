@@ -3,5 +3,4 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Common\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
     </ItemGroup>
-  
 </Project>
