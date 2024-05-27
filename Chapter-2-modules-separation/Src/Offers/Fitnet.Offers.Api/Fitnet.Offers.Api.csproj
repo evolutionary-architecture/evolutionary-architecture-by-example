@@ -14,9 +14,4 @@
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests" />
     </ItemGroup>
-
-    <ItemGroup>
-  
-    </ItemGroup>
-
 </Project>
