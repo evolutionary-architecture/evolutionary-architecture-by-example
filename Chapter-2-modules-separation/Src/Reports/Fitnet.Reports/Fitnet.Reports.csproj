@@ -10,11 +10,9 @@
       <PackageReference Include="Dapper" Version="2.1.35" />
       <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
       <PackageReference Include="Npgsql" Version="8.0.3" />
-  
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
     </ItemGroup>
     
 </Project>
- 
