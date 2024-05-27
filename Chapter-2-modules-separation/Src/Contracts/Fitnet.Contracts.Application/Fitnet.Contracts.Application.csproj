@@ -2,7 +2,7 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
-    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
+
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
