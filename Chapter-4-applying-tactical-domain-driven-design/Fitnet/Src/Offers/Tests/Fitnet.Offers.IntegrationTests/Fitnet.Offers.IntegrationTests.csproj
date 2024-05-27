@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="4.1.0" />
+        <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="4.1.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     </ItemGroup>
 
