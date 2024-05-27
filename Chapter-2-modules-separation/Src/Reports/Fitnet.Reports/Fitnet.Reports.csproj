@@ -10,7 +10,7 @@
       <PackageReference Include="Dapper" Version="2.1.35" />
       <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
       <PackageReference Include="Npgsql" Version="8.0.3" />
-      <PackageReference Update="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
+  
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />

@@ -6,7 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
-
+    
     </ItemGroup>
 
     <ItemGroup>
