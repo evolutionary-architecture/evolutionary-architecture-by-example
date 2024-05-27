@@ -12,7 +12,7 @@ public sealed class TerminateBindingContractTests(
     FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
     DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
-    private static readonly FakeTimeProvider FakeSystemTimeProvider = new(null);
+    private static readonly FakeTimeProvider FakeSystemTimeProvider = new();
 
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
         .WithContainerDatabaseConfigured(new ContractsDatabaseConfiguration(database.ConnectionString!))
