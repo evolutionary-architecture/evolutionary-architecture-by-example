@@ -18,7 +18,6 @@
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="11.9.1" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1" />
-        <PackageReference Update="SonarAnalyzer.CSharp" Version="9.25.0.90414" />
     </ItemGroup>
     
 </Project>

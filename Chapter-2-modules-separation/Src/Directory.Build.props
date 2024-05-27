@@ -12,15 +12,15 @@
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference 
             Include="SonarAnalyzer.CSharp" 
-            Version="9.7.0.75501" 
+            Version="9.25.0.90414" 
             PrivateAssets="all"
             Condition="$(MSBuildProjectExtension) == '.csproj'"
         />
