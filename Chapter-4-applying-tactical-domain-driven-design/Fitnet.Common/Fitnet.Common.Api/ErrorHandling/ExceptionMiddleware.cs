@@ -2,7 +2,6 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 
 using System.Net;
 using System.Text.Json;
-using Core.BusinessRules;
 using Microsoft.AspNetCore.Http;
 
 internal sealed class ExceptionMiddleware(RequestDelegate next)
@@ -30,10 +29,6 @@ internal sealed class ExceptionMiddleware(RequestDelegate next)
 
         switch (exception)
         {
-            case BusinessRuleValidationException businessRuleValidationException:
-                statusCode = (int)HttpStatusCode.Conflict;
-                message = businessRuleValidationException.Message;
-                break;
             case ResourceNotFoundException resourceNotFoundException:
                 statusCode = (int)HttpStatusCode.NotFound;
                 message = resourceNotFoundException.Message;
