@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.IntegrationTestsToolbox", "Fitnet.Common.IntegrationTestsToolbox\Fitnet.Common.IntegrationTestsToolbox.csproj", "{7730CC34-33C2-404B-A22E-E188FB1D8388}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.Common.UnitTesting", "Fitnet.Common.UnitTesting\Fitnet.Common.UnitTesting.csproj", "{885FE937-0E7E-47B7-8160-7C9CE605562F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7730CC34-33C2-404B-A22E-E188FB1D8388}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7730CC34-33C2-404B-A22E-E188FB1D8388}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7730CC34-33C2-404B-A22E-E188FB1D8388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885FE937-0E7E-47B7-8160-7C9CE605562F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{885FE937-0E7E-47B7-8160-7C9CE605562F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{885FE937-0E7E-47B7-8160-7C9CE605562F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{885FE937-0E7E-47B7-8160-7C9CE605562F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Common.Api.BussinessRules;
-
-using ErrorOr;
+﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core.BussinessRules;
 
 public static class BusinessRuleValidator
 {

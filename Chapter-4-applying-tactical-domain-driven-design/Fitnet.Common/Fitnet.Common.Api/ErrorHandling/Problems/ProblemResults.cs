@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling.Problems;
 
-using BussinessRules;
+using Core.BussinessRules;
 using ErrorOr;
 using Microsoft.AspNetCore.Http;
 
