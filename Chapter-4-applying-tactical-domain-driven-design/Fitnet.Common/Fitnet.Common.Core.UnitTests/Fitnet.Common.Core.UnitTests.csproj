@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
       <ProjectReference Include="..\Fitnet.Common.UnitTesting\Fitnet.Common.UnitTesting.csproj" />
     </ItemGroup>
@@ -19,9 +18,4 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Common\" />
-    </ItemGroup>
-
 </Project>
