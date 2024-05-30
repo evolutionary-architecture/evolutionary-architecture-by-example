@@ -11,5 +11,5 @@ internal sealed class FakeBusinessRule : IBusinessRule
         _someNumber = someNumber;
 
     public bool IsMet() => _someNumber > 10;
-    public Error Error => Error.Custom(1, "", "Fake business rule was not met");
+    public Error Error => Error.Custom(1, "test code", "Fake business rule was not met");
 }
