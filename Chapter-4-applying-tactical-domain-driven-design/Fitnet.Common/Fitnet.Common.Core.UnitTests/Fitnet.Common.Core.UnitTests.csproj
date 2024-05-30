@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Fitnet.Common.Api\Fitnet.Common.Api.csproj" />
       <ProjectReference Include="..\Fitnet.Common.Core\Fitnet.Common.Core.csproj" />
     </ItemGroup>
 

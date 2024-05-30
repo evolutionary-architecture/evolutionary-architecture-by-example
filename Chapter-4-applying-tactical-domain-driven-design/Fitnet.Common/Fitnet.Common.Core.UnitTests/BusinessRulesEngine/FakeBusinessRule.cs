@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Core.UnitTests.BusinessRulesEngine;
 
-using BusinessRules;
+using BussinessRules;
+using ErrorOr;
 
 internal sealed class FakeBusinessRule : IBusinessRule
 {
@@ -10,6 +11,5 @@ internal sealed class FakeBusinessRule : IBusinessRule
         _someNumber = someNumber;
 
     public bool IsMet() => _someNumber > 10;
-
-    public string Error => "Fake business rule was not met";
+    public Error Error => Error.Custom(1, "", "Fake business rule was not met");
 }
