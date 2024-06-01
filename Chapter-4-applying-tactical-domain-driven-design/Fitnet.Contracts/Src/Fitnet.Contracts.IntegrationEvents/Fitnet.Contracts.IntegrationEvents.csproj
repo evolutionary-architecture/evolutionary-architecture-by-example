@@ -4,6 +4,6 @@
     <Version>1.0.7</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="4.1.1" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="4.1.2" />
   </ItemGroup>
 </Project>
