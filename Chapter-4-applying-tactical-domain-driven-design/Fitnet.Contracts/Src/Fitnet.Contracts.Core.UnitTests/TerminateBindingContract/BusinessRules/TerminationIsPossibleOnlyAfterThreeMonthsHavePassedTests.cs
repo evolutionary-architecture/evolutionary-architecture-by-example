@@ -1,8 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBindingContract.BusinessRules;
 
-using Common.Assertions.ErrorOr;
-using Core.Common.BussinessRules;
 using Core.TerminateBindingContract.BusinessRules;
+using Fitnet.Common.Core.BussinessRules;
 using TerminationIsPossibleOnlyAfterThreeMonthsHavePassed.TestData;
 
 public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests

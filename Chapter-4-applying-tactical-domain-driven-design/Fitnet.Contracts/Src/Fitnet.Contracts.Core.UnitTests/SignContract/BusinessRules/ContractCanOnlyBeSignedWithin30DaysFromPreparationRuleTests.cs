@@ -1,8 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract.BusinessRules;
 
-using Common.Assertions.ErrorOr;
-using Core.Common.BussinessRules;
 using Core.SignContract.BusinessRules;
+using Fitnet.Common.Core.BussinessRules;
 
 public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationRuleTests
 {

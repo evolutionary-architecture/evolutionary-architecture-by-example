@@ -1,9 +1,8 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.PrepareContract.BusinessRules;
 
-using Common.Assertions.ErrorOr;
-using Core.Common.BussinessRules;
 using Core.PrepareContract.BusinessRules;
-
+using Fitnet.Common.Core.BussinessRules;
+using EvolutionaryArchitecture.Fitnet.Common.UnitTesting.Assertions.ErrorOr;
 public sealed class ContractCanBePreparedOnlyForAdultRuleTests
 {
     [Fact]

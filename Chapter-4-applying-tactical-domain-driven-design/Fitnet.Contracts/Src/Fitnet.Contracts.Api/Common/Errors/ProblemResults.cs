@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.Common.Errors;
 
-using Core.Common.BussinessRules;
+using Fitnet.Common.Core.BussinessRules;
 using Microsoft.AspNetCore.Http;
 using static ErrorType;
 
