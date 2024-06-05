@@ -23,9 +23,7 @@ public sealed class PrepareContractRequestValidatorTests
     }
 
     [Theory]
-#pragma warning disable xUnit1044
     [ClassData(typeof(InvalidPrepareContractRequestTestCases))]
-#pragma warning restore xUnit1044
     internal void Given_prepare_contract_request_validation_When_property_is_valid_Then_result_should_have_error(PrepareContractRequest request, string expectedInvalidPropertyName)
     {
         // Act
