@@ -1,16 +1,17 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports;
 
-using Common.Infrastructure.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using DataAccess;
 using GenerateNewPassesRegistrationsPerMonthReport;
+using Microsoft.Extensions.Configuration;
+using Common.Infrastructure.Modules;
 
 public static class ReportsModule
 {
     public static void RegisterReports(this WebApplication app, string module)
     {
-        if (!app.IsModuleEnabled(module))
+        if (!app.Configuration.IsModuleEnabled(module))
         {
             return;
         }
@@ -19,9 +20,9 @@ public static class ReportsModule
         app.MapReports();
     }
 
-    public static IServiceCollection AddReports(this IServiceCollection services, string module)
+    public static IServiceCollection AddReports(this IServiceCollection services, IConfiguration configuration, string module)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!configuration.IsModuleEnabled(module))
         {
             return services;
         }

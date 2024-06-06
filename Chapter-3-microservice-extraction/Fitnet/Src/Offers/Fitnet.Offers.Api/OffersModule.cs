@@ -12,7 +12,7 @@ public static class OffersModule
 {
     public static void RegisterOffers(this WebApplication app, string module)
     {
-        if (!app.IsModuleEnabled(module))
+        if (!app.Configuration.IsModuleEnabled(module))
         {
             return;
         }
@@ -23,7 +23,7 @@ public static class OffersModule
     public static IServiceCollection AddOffers(this IServiceCollection services, IConfiguration configuration,
         string module)
     {
-        if (!services.IsModuleEnabled(module))
+        if (!configuration.IsModuleEnabled(module))
         {
             return services;
         }
