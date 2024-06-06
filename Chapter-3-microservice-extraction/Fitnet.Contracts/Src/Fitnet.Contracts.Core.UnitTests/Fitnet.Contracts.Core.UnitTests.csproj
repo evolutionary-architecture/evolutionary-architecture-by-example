@@ -5,18 +5,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="35.0.1" />
-        <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.1.0" />
+        <PackageReference Include="Bogus" Version="35.5.1" />
+        <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.1.1" />
         <PackageReference Include="FluentAssertions" Version="6.12.0" />
-        <PackageReference Include="xunit" Version="2.6.4" />
-        <PackageReference Include="xunit.analyzers" Version="1.8.0" />
+        <PackageReference Include="xunit" Version="2.6.6" />
+        <PackageReference Include="xunit.analyzers" Version="1.14.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="xunit.categories" Version="2.0.8" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.6">
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-        <PackageReference Include="coverlet.collector" Version="6.0.0">
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+        <PackageReference Include="coverlet.collector" Version="6.0.2">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>

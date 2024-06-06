@@ -8,8 +8,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddFeatureManagement();
-
 builder.Services.AddContractsApi(builder.Configuration);
 
 builder.Services.AddClock();
@@ -33,7 +31,5 @@ app.Run();
 namespace EvolutionaryArchitecture.Fitnet.Contracts
 {
     [UsedImplicitly]
-    public sealed class Program
-    {
-    }
+    public sealed class Program;
 }

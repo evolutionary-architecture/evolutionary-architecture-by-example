@@ -11,13 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddFeatureManagement();
-
 builder.Services.AddClock();
 
 builder.Services.AddPasses(builder.Configuration, Module.Passes);
 builder.Services.AddOffers(builder.Configuration, Module.Offers);
-builder.Services.AddReports(Module.Reports);
+builder.Services.AddReports(builder.Configuration, Module.Reports);
 
 var app = builder.Build();
 
