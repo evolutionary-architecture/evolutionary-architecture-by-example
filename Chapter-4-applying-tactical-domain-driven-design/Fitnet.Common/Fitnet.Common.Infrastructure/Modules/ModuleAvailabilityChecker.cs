@@ -1,24 +1,15 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Modules;
 
-using Microsoft.FeatureManagement;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 public static class ModuleAvailabilityChecker
 {
-    public static bool IsModuleEnabled(this IServiceCollection services, string module)
-    {
-        var buildServiceProvider = services.BuildServiceProvider();
-        var featureManager = buildServiceProvider.GetRequiredService<IFeatureManager>();
+    private const string AvailabilityConfigKeyName = "Enabled";
 
-        return featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
-    }
+    public static bool IsModuleEnabled(this IConfiguration configuration, string module) =>
+        configuration.GetSection(
+                GetModuleConfiguration(module))
+            .GetValue<bool>(AvailabilityConfigKeyName);
 
-    public static bool IsModuleEnabled(this IApplicationBuilder applicationBuilder, string module)
-    {
-        var buildServiceProvider = applicationBuilder.ApplicationServices;
-        var featureManager = buildServiceProvider.GetRequiredService<IFeatureManager>();
-
-        return featureManager.IsEnabledAsync(module).GetAwaiter().GetResult();
-    }
+    private static string GetModuleConfiguration(string module) => $"Modules:{module}";
 }
