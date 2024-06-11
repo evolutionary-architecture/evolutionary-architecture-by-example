@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="ErrorOr" Version="2.0.1" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.1.2" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.1.6" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.DomainDrivenDesign.BuildingBlocks" Version="1.2.1" />
   </ItemGroup>
   

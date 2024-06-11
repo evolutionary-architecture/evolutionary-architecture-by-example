@@ -8,7 +8,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(TimeProvider.System);
-builder.Services.AddFeatureManagement();
 builder.Services.AddClock();
 
 builder.Services.AddContractsApi(builder.Configuration);
