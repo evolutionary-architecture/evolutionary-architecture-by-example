@@ -72,11 +72,12 @@ jobs:
           dotnet pack Fitnet.Common.IntegrationTestsToolbox/Fitnet.Common.IntegrationTestsToolbox.csproj -c Release
           dotnet pack Fitnet.Common.UnitTesting/Fitnet.Common.UnitTesting.csproj -c Release
 
-      - name: Prepare Packages
-        run: dotnet nuget add source --username $OWNER --password $GITHUB_TOKEN --store-password-in-clear-text --name github "https://nuget.pkg.github.com/$OWNER/index.json"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          path: ${{ env.CHAPTER_DIR }}
           
       - name: Publish Packages
         run: |
