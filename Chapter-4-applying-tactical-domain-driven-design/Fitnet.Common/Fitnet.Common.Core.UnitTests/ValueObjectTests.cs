@@ -63,6 +63,47 @@ public class ValueObjectTests
         (firstObject != secondObject).Should().BeTrue();
     }
 
+    [Fact]
+    internal void Given_multiple_objects_When_looking_for_specific_one_Then_should_return_only_the_matching_ones()
+    {
+        // Arrange
+        var valueObjects = new List<FakeValueObject>
+        {
+            new(),
+            new(),
+            new(2)
+        };
+
+        var targetValueObject = new FakeValueObject();
+
+        // Act
+        var result = valueObjects.Where(vo => vo == targetValueObject).ToList();
+
+        // Assert
+        result.Should().HaveCount(2);
+        result.Should().AllBeEquivalentTo(targetValueObject);
+    }
+
+    [Fact]
+    internal void Given_multiple_objects_When_looking_for_non_existing_one_Then_should_return_empty_result()
+    {
+        // Arrange
+        var valueObjects = new List<FakeValueObject>
+        {
+            new(),
+            new(),
+            new(2)
+        };
+
+        var targetValueObject = new FakeValueObject(3);
+
+        // Act
+        var result = valueObjects.Where(vo => vo == targetValueObject).ToList();
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
     private class FakeValueObject(int property1 = DefaultIntProperty, string property2 = DefaultStringProperty) : ValueObject
     {
         private int Property1 { get; } = property1;
