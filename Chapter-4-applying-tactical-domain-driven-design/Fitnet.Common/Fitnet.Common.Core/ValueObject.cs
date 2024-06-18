@@ -1,4 +1,4 @@
-namespace EvolutionaryArchitecture.Fitnet.Common.Core;
+﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {
@@ -7,17 +7,8 @@ public abstract class ValueObject : IEquatable<ValueObject>
     public bool Equals(ValueObject? other) =>
         other is not null && GetType() == other.GetType() && IsSequenceEqual(other);
 
-    public override bool Equals(object? obj)
-    {
-        if (obj is null || obj.GetType() != GetType())
-        {
-            return false;
-        }
-
-        var other = (ValueObject)obj;
-
-        return IsSequenceEqual(other);
-    }
+    public override bool Equals(object? obj) =>
+        obj is ValueObject valueObject && Equals(valueObject);
 
     public override int GetHashCode() => GetEqualityComponents()
         .Aggregate(default(int), (current, obj) => HashCode.Combine(current, obj.GetHashCode()));
