@@ -1,8 +1,10 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core;
 
-public abstract class ValueObject
+public abstract class ValueObject : IEquatable<ValueObject>
 {
     protected abstract IEnumerable<object> GetEqualityComponents();
+
+    public bool Equals(ValueObject? other) => other is not null && IsSequenceEqual(other);
 
     public override bool Equals(object? obj)
     {
@@ -13,7 +15,7 @@ public abstract class ValueObject
 
         var other = (ValueObject)obj;
 
-        return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+        return IsSequenceEqual(other);
     }
 
     public override int GetHashCode() => GetEqualityComponents()
@@ -22,5 +24,7 @@ public abstract class ValueObject
     public static bool operator ==(ValueObject left, ValueObject right) => left.Equals(right);
 
     public static bool operator !=(ValueObject left, ValueObject right) => !(left == right);
+
+    private bool IsSequenceEqual(ValueObject other) => GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
 }
 
