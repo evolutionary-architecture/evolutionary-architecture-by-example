@@ -4,7 +4,8 @@ public abstract class ValueObject : IEquatable<ValueObject>
 {
     protected abstract IEnumerable<object> GetEqualityComponents();
 
-    public bool Equals(ValueObject? other) => other is not null && IsSequenceEqual(other);
+    public bool Equals(ValueObject? other) =>
+        other is not null && GetType() == other.GetType() && IsSequenceEqual(other);
 
     public override bool Equals(object? obj)
     {
