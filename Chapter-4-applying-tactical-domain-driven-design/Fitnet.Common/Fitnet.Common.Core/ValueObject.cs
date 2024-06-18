@@ -1,4 +1,4 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core;
+namespace EvolutionaryArchitecture.Fitnet.Common.Core;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {
@@ -19,7 +19,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
     }
 
     public override int GetHashCode() => GetEqualityComponents()
-            .Aggregate(0, (current, obj) => current ^ (obj?.GetHashCode() ?? 0));
+        .Aggregate(default(int), (current, obj) => HashCode.Combine(current, obj.GetHashCode()));
 
     public static bool operator ==(ValueObject left, ValueObject right) => left.Equals(right);
 
