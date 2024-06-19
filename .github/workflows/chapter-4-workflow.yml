@@ -1,6 +1,7 @@
 name: Chapter 4 Modular Monolith workflow
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
     paths:
