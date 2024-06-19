@@ -356,9 +356,7 @@ https://github.com/kamilbaczek[Github]
 | Fitness Functions :gear: | 2024.05 |
 |===
 
-= Opinions
-
-== What Software Engeeniers Say
+== 👩‍💻👨‍💻 What Software Engeeniers Say
 
 [quote, Chief Software Architect]
 ____
