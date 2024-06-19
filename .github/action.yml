@@ -10,13 +10,15 @@ inputs:
   path:
     description: "Path to the directory"
     required: true
+  nuget-source-name:
+    description: "Name of the Nuget source"
+    required: true
 runs:
   using: "composite"
   steps:
     - name: Add Authorized Evolutionary Architecture Nuget Source
       run: |
         cd ${{ github.workspace }}/${{ inputs.path }}
-        NugetSourceName="evolutionaryArchitecture"
         
         if dotnet nuget list source | grep -q $NugetSourceName; then
           echo "Removing existing nuget source: $NugetSourceName"
@@ -25,6 +27,6 @@ runs:
           echo "Nuget source $NugetSourceName does not exist. Skipping removal."
         fi
 
-        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name $NugetSourceName "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+        dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name ${{ inputs.nuget-source-name }} "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
         dotnet nuget list source
       shell: bash
