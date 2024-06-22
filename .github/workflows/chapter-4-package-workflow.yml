@@ -1,19 +1,21 @@
 name: Chapter 4 package workflow
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-4-applying-tactical-domain-driven-design/Fitnet.Common/**'
+      - "Chapter-4-applying-tactical-domain-driven-design/Fitnet.Common/**"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-4-applying-tactical-domain-driven-design/Fitnet.Common/**'
+      - "Chapter-4-applying-tactical-domain-driven-design/Fitnet.Common/**"
 
 env:
-  CHAPTER_DIR: 'Chapter-4-applying-tactical-domain-driven-design/Fitnet.Common'
+  CHAPTER_DIR: "Chapter-4-applying-tactical-domain-driven-design/Fitnet.Common"
+  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
 
-jobs: 
+jobs:
   build:
     defaults:
       run:
@@ -30,7 +32,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-        
+
   test:
     defaults:
       run:
@@ -49,7 +51,7 @@ jobs:
       - name: Test
         run: dotnet test
 
-  pack: 
+  pack:
     defaults:
       run:
         working-directory: ${{ env.CHAPTER_DIR }}
@@ -63,7 +65,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      
+
       - name: Pack Projects
         run: |
           dotnet pack Fitnet.Common.Api/Fitnet.Common.Api.csproj -c Release
@@ -78,11 +80,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
-          
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
+
       - name: Publish Packages
         run: |
-          dotnet nuget push "Fitnet.Common.Api/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Api.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.Common.Core/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Core.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.Common.Infrastructure/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Infrastructure.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.Common.IntegrationTestsToolbox/bin/Release/EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.Common.UnitTesting/bin/Release/EvolutionaryArchitecture.Fitnet.Common.UnitTesting.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.Api/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Api.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.Core/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Core.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.Infrastructure/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Infrastructure.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.IntegrationTestsToolbox/bin/Release/EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.UnitTesting/bin/Release/EvolutionaryArchitecture.Fitnet.Common.UnitTesting.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}

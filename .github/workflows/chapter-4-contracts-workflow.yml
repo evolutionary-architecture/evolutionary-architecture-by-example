@@ -1,5 +1,6 @@
 name: Chapter 4 Contracts
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
     paths:
@@ -11,6 +12,7 @@ on:
 
 env:
   CHAPTER_DIR: "Chapter-4-applying-tactical-domain-driven-design/Fitnet.Contracts/Src"
+  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
 
 jobs:
   build:
@@ -32,6 +34,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -56,6 +59,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
