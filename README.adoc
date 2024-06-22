@@ -358,21 +358,21 @@ https://github.com/kamilbaczek[Github]
 
 == 👩‍💻👨‍💻 What Software Engeeniers Say
 
-[quote, Chief Software Architect, 👨‍💻]
+== 👨‍💼 Chief Software Architect
 ____
 Really appreciate the repository and the content you are sharing. I think it is really valuable to see the evolutionary approach in practice, and focus on simplicity and pragmatic reasoning and making decisions in software design.
 ____
 
-[quote, .NET Developer, 👨‍💻]
+== 👨‍💻 .NET Developer
 ____
 Your work has been super helpful as I dive deeper into this field. Evolutionary Architecture, in particular, is incredible and has really clicked for me thanks to your examples and insights.
 ____
 
-[quote, .NET Developer, 👨‍💻]
+== 👨‍💻 .NET Developer
 ____
-I was always concerned about what architecture to use on a project. Sometimes, spending time on researching what's right affects my motivation. 
-Your approach which focuses on creating a project with an architecture that evolves resonates perfectly with me. Your efforts in creating such a wonderful resource is greatly appreciated.
+I was always concerned about what architecture to use on a project. Sometimes, spending time on researching what's right affects my motivation. Your approach which focuses on creating a project with an architecture that evolves resonates perfectly with me. Your efforts in creating such a wonderful resource is greatly appreciated.
 ____
+
 
 == 💬 Join our Community
 Join the "Evolutionary Architecture Community" on Discord (https://discord.gg/BGxYkHFCCF) to engage with fellow architects and enthusiasts who share a fervor for pushing boundaries and crafting high-quality software systems. Whether you have questions, suggestions, or feedback for our repository, we're excited to hear from you and collaborate towards continuous improvement.
