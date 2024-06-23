@@ -53,9 +53,9 @@ The assumptions remain unchanged to keep the environment comparable to the previ
 
 === Solution
 
-==== Overview
+== Overview
 
-In this step we do not change the project structure of the application. We focus only on refactoring the code of _Contracts_ microservice.
+In this step, we do not change the project structure of the application. We focus only on implementing new features and refactoring the code of the _Contracts_ microservice.
 
 We introduce elements like:
 
@@ -63,6 +63,39 @@ We introduce elements like:
 - Entities
 - Value Objects
 - Domain Events
+
+=== What is Domain-Driven Design?
+
+Domain-Driven Design (DDD) is a set of techniques and methods that help developers tackle complex systems full of business language that is not easy to understand for people not familiar with the business area or processes. DDD is particularly useful in handling business complexity. However, it is not recommended for trivial business cases, such as when the complexity lies only in the technology itself, or the application is just CRUD-based and can be designed as simple UI mockups.
+
+=== Domain-Driven Design: Tactical vs. Strategic
+
+Domain-Driven Design techniques are split into two categories: strategic and tactical.
+
+Strategic techniques help you explore, analyse, and understand the problem space. They provide insights into how the company operates, how communication flows, and help build a shared understanding between the development team and the business. Strategic techniques emphasise building a ubiquitous language.
+
+Examples of strategic techniques include:
+
+- Business Model Canvas
+- Wardley Maps
+- Event Storming 
+- Domain Storytelling
+- Domain Categorization
+- Context Mapping
+
+TODO: Image Domain-Driven Whirlpool image
+
+The second category is tactical, focusing on implementing solutions that we already understand in a way that is easy to maintain, explicit, and uses a ubiquitous language. Tactical techniques enforce business rules that match real business needs.
+
+[NOTE]
+====
+We are using Tactical Domain-Driven Design from the start to understand and model the problem. Tactical patterns are used only in the _Contracts_ microservice due to its complexity.
+====
+
+[IMPORTANT]
+====
+Use tactical patterns where business complexity is high. Typically, only about 20% of your application will be complex. Implementing these patterns in less complex areas can lead to over-engineering and slow down development.
+====
 
 == How to Run?
 
