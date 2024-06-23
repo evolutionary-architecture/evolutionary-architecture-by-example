@@ -1,4 +1,4 @@
-= Chapter 4: Applying Tacical Domain-Driven Design: Focus On Complexity
+= Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 :toc:
 
 ++++
