@@ -14,7 +14,7 @@ image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-
 
 == Case
 
-=== Overview
+==== Overview
 
 In Chapter 3, we had to find a way to handle the extreme growth of one of our modules - _Contracts_. Based on concrete factors, the decision was to:
 
