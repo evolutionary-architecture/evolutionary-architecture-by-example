@@ -101,6 +101,18 @@ We are using Tactical Domain-Driven Design from the start to understand and mode
 Use tactical patterns where business complexity is high. Typically, only about 20% of your application will be complex. Implementing these patterns in less complex areas can lead to over-engineering and slow down development.
 ====
 
+=== Event Storming Design Level - Workshop
+We did Event Storming Design Level to understand logic and bussiness rules and their connections.
+TODO: Image
+
+=== Annexes rules and constraints
+TODO describe it rules and challanges show solution
+
+=== Rich bussiness languges
+TODO
+
+=== 
+
 == How to Run?
 
 === Requirements
