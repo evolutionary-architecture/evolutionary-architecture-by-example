@@ -7,10 +7,10 @@
 </div>
 ++++
 
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-contracts-package-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-contracts-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-package-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-package-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-package-workflow.yml/badge.svg[Build Status]
 
 == Case
 
