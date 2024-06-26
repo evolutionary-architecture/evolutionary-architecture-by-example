@@ -105,11 +105,27 @@ Use tactical patterns where business complexity is high. Typically, only about 2
 We did Event Storming Design Level to understand logic and bussiness rules and their connections.
 TODO: Image
 
-=== Annexes rules and constraints
+=== Annexes Tactical Design Analysys
 TODO describe it rules and challanges show solution
 
-=== Rich bussiness languges
-TODO
+Rules:
+Annex Can Only Start During Binding Contract Period
+Annex Can Only Be Attached To Active
+Previous Annex has to be signed
+
+"Previous Annex has to be signed" - this role is connected with reltion ship between new and previes annex.
+We need way to protect this invariant. In concurrent environment. Breaking this rule could make that inconsitent.
+
+That why binding contract enity has to become Aggregate Root 
+that will guard annexes invariants.
+
+=== Patterns:
+Entity - Definition.
+Guidelines:
+
+
+Aggregate Root - Definition.
+Guidelines:
 
 === 
 
