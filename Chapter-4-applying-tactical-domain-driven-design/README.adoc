@@ -105,29 +105,44 @@ Use tactical patterns where business complexity is high. Typically, only about 2
 We did Event Storming Design Level to understand logic and bussiness rules and their connections.
 TODO: Image
 
-=== Annexes Tactical Design Analysys
-TODO describe it rules and challanges show solution
+=== Annexes Tactical Design Analysis
 
-Rules:
-Annex Can Only Start During Binding Contract Period
-Annex Can Only Be Attached To Active
-Previous Annex has to be signed
+In this section, we'll dive deeper into the business rules and how they shape our design for the _Annexes_ in the _Contracts_ microservice. Understanding these rules is crucial for ensuring our design maintains consistency and adheres to the business requirements.
 
-"Previous Annex has to be signed" - this role is connected with reltion ship between new and previes annex.
-We need way to protect this invariant. In concurrent environment. Breaking this rule could make that inconsitent.
+==== Business Rules
+
+1. **Annex Can Only Start During Binding Contract Period**:
+   - An annex can only be attached if it falls within the active period of the binding contract. This ensures that all extensions and modifications are valid within the contract's timeframe.
+
+2. **Annex Can Only Be Attached To Active Contracts**:
+   - The binding contract must be active, meaning it hasn't expired or been terminated. This rule prevents any modifications to contracts that are no longer valid.
+
+3. **Previous Annex Must Be Signed**:
+   - Any new annex can only be added if the previous annex has been signed. This maintains a clear and enforceable order of amendments, ensuring that no annex is added without proper authorisation.
+
+Let's take look closer on this rule. "Previous Annex Must Be Signed" - This rule is connected with the relationship between the new and previous annex. This is invariant.
+
+[NOTE]
+====
+Invariant is a rule or condition that must always be true for a system to be considered in a valid state. It ensures the integrity and consistency of the domain model
+====
+
+
+To enforce this business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an Aggregate Root comes into play.
 
 That why binding contract enity has to become Aggregate Root 
 that will guard annexes invariants.
 
+That’s why the binding contract entity has to become the Aggregate Root that will guard the annexes’ invariants.
+
+Before that binding contract was just simple entity beacuse there were no need to procect invariats.
 === Patterns:
 Entity - Definition.
 Guidelines:
 
 
 Aggregate Root - Definition.
-Guidelines:
-
-=== 
+Guidelines: 
 
 == How to Run?
 
