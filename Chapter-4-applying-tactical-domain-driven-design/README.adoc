@@ -86,7 +86,9 @@ Examples of strategic techniques include:
 - Domain Categorization
 - Context Mapping
 
-TODO: Image Domain-Driven Whirlpool image
+Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
+
+image::Assets/ddd-starter-modeling-circular.svg[]
 
 === Tactical
 Tactical techniques, focusing on implementing solutions that we already understand in a way that is easy to maintain, explicit, and uses a ubiquitous language. Tactical techniques enforce business rules that match real business needs.
