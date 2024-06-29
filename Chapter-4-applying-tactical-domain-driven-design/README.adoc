@@ -129,7 +129,6 @@ Let's take look closer on this rule. "Previous Annex Must Be Signed" - This rule
 Invariant is a rule or condition that must always be true for a system to be considered in a valid state. It ensures the integrity and consistency of the domain model
 ====
 
-
 To enforce this business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an Aggregate Root comes into play.
 
 That why binding contract enity has to become Aggregate Root 
@@ -138,13 +137,29 @@ that will guard annexes invariants.
 That’s why the binding contract entity has to become the Aggregate Root that will guard the annexes’ invariants.
 
 Before that binding contract was just simple entity beacuse there were no need to procect invariats.
+
 === Patterns:
-Entity - Definition.
-Guidelines:
 
+==== Entity
 
-Aggregate Root - Definition.
-Guidelines: 
+An **Entity** is an object that is defined by its identity rather than its attributes. This means that even if two entities have the same attributes, they are considered different if they have different identities.
+
+==== Value Object
+
+A **Value Object** is an object that is defined by its attributes. Unlike entities, value objects have no identity. They are used to describe certain aspects of the domain and are immutable.
+
+TODO: mention anemic domain model
+
+==== Aggregate Root
+
+An **Aggregate Root** is an entity that acts as the entry point for an aggregate, which is a cluster of related objects. The aggregate root ensures the integrity of the aggregate by controlling access and enforcing business rules. 
+
+==== Domain Events
+
+**Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system.
+
+Each of these patterns helps us manage and maintain the complexity of the domain by organizing the code in a way that is closer to the business logic and rules.
+
 
 == How to Run?
 
