@@ -95,7 +95,7 @@ Tactical techniques, focusing on implementing solutions that we already understa
 
 [NOTE]
 ====
-We are using Tactical Domain-Driven Design from the start to understand and model the problem. Tactical patterns are used only in the _Contracts_ microservice due to its complexity.
+We are using Strategic Domain-Driven Design techniques from the start to understand and model the problem. Tactical patterns are used only in the _Contracts_ microservice due to its complexity.
 ====
 
 [IMPORTANT]
