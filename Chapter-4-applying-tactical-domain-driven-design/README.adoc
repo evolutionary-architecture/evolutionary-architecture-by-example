@@ -86,6 +86,11 @@ Examples of strategic techniques include:
 - Domain Categorization
 - Context Mapping
 
+[Note]
+====
+Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfull. Treat DDD as pharmacy You. should choose the ones that fit your needs and the complexity of the system you are building.
+====
+
 Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
