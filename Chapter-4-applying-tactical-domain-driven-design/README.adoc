@@ -79,10 +79,10 @@ Strategic techniques help you explore, analyse, and understand the problem space
 
 Examples of strategic techniques include:
 
-- Business Model Canvas
-- Wardley Maps
-- Event Storming 
-- Domain Storytelling
+- link:https://www.strategyzer.com/canvas/business-model-canvas[Business Model Canvas]
+- link:https://learnwardleymapping.com/[Wardley Maps]
+- link:https://www.eventstorming.com/[Event Storming]
+- link:https://domainstorytelling.org/[Domain Storytelling]
 - Domain Categorization
 - Context Mapping
 
