@@ -110,7 +110,8 @@ Use tactical patterns where business complexity is high. Typically, only about 2
 
 === Event Storming Design Level - Workshop
 We did Event Storming Design Level to understand logic and bussiness rules and their connections.
-TODO: Image
+
+image::Assets/design-level-event-storming.jpg[design level event storming]
 
 === Annexes Tactical Design Analysis
 
