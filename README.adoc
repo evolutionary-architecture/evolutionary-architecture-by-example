@@ -325,7 +325,7 @@ This is a recorded presentation from the Programistok 2023 Conference, where Evo
 
 Explore Evolutionary Architecture visualized through NDepend, featuring comprehensive dependency and code analysis in the form of an interview led by Ferry de Boer with Kamil. Watch it on YouTube link:https://www.youtube.com/watch?v=Z60SAiVevIM&t[here].
 
-== Authors
+== Authors ✍️
 
 [cols=2*,options=header]
 |===
@@ -344,6 +344,8 @@ https://artofsoftwaredesign.net/[Blog]
 https://www.linkedin.com/in/kamilbaczek/[Linkedin]
 https://github.com/kamilbaczek[Github]
 |===
+
+== Roadmap 🧭
 
 [cols=3*, options=header]
 |===
