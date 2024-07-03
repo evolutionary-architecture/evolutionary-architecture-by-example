@@ -12,6 +12,52 @@ image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-workflow.yml/badge.svg[Build Status]
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-package-workflow.yml/badge.svg[Build Status]
 
+== Domain Driven Design in a Nutshell
+=== What is Domain-Driven Design?
+
+Domain-Driven Design (DDD) is a set of techniques and methods that help developers tackle business complexity. It is particularly useful for systems full of business processes and rules that are not easy to understand for people unfamiliar with the business area.
+
+Using DDD is not recommended for trivial business cases, such as when the complexity lies only in the technology itself, or when the application is just CRUD-based and can be designed as simple UI mockups (shallow systems).
+
+=== Domain-Driven Design: Tactical vs. Strategic
+
+Domain-Driven Design techniques are split into two categories: strategic and tactical.
+
+==== Strategic
+
+Strategic techniques help you explore, analyse, and understand the problem space. They provide insights into how the company operates, how communication flows, and help build a shared understanding between the development team and the business. Strategic techniques emphasise building a ubiquitous language.
+
+Examples of strategic techniques include:
+
+- link:https://www.strategyzer.com/canvas/business-model-canvas[Business Model Canvas]
+- link:https://learnwardleymapping.com/[Wardley Maps]
+- link:https://www.eventstorming.com/[Event Storming]
+- link:https://domainstorytelling.org/[Domain Storytelling]
+- link:https://vladikk.com/2018/01/26/revisiting-the-basics-of-ddd/[Domain Categorization]
+- link:https://github.com/ddd-crew/context-mapping[Context Mapping]
+
+[Note]
+====
+Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfully. Treat DDD as pharmacy.You should choose the ones that fit your needs and the complexity of the system you are building.
+====
+
+Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
+
+image::Assets/ddd-starter-modeling-circular.svg[]
+
+==== Tactical
+Tactical techniques, focusing on implementing solutions that we already understand in a way that is easy to maintain, explicit, and uses a ubiquitous language. Tactical techniques enforce business rules that match real business needs.
+
+[NOTE]
+====
+We are using Strategic Domain-Driven Design techniques from the start to understand and model the problem. Tactical patterns are used only in the _Contracts_ microservice due to its complexity.
+====
+
+[IMPORTANT]
+====
+Use tactical patterns where business complexity is high. Typically, only about 20% of your application will be complex. Implementing these patterns in less complex areas can lead to over-engineering and slow down development.
+====
+
 == Case
 
 ==== Overview
@@ -61,61 +107,16 @@ We introduce elements like:
 
 - <<aggregate-root,Aggregates>>
 - <<entity,Entities>>
-- Value Objects
+- <<value-object,Value Objects>>
 - Domain Events
 
-=== What is Domain-Driven Design?
-
-Domain-Driven Design (DDD) is a set of techniques and methods that help developers tackle business complexity. It is particularly useful for systems full of business processes and rules that are not easy to understand for people unfamiliar with the business area.
-
-Using DDD is not recommended for trivial business cases, such as when the complexity lies only in the technology itself, or when the application is just CRUD-based and can be designed as simple UI mockups (shallow systems).
-
-=== Domain-Driven Design: Tactical vs. Strategic
-
-Domain-Driven Design techniques are split into two categories: strategic and tactical.
-
-=== Strategic
-Strategic techniques help you explore, analyse, and understand the problem space. They provide insights into how the company operates, how communication flows, and help build a shared understanding between the development team and the business. Strategic techniques emphasise building a ubiquitous language.
-
-Examples of strategic techniques include:
-
-- link:https://www.strategyzer.com/canvas/business-model-canvas[Business Model Canvas]
-- link:https://learnwardleymapping.com/[Wardley Maps]
-- link:https://www.eventstorming.com/[Event Storming]
-- link:https://domainstorytelling.org/[Domain Storytelling]
-- link:https://vladikk.com/2018/01/26/revisiting-the-basics-of-ddd/[Domain Categorization]
-- link:https://github.com/ddd-crew/context-mapping[Context Mapping]
-
-[Note]
-====
-Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfully. Treat DDD as pharmacy.You should choose the ones that fit your needs and the complexity of the system you are building.
-====
-
-Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
-
-image::Assets/ddd-starter-modeling-circular.svg[]
-
-=== Tactical
-Tactical techniques, focusing on implementing solutions that we already understand in a way that is easy to maintain, explicit, and uses a ubiquitous language. Tactical techniques enforce business rules that match real business needs.
-
-[NOTE]
-====
-We are using Strategic Domain-Driven Design techniques from the start to understand and model the problem. Tactical patterns are used only in the _Contracts_ microservice due to its complexity.
-====
-
-[IMPORTANT]
-====
-Use tactical patterns where business complexity is high. Typically, only about 20% of your application will be complex. Implementing these patterns in less complex areas can lead to over-engineering and slow down development.
-====
-
-=== Event Storming Design Level - Workshop
-We did Event Storming Design Level to understand logic and business rules and their connections.
+=== Contracts Bounded Context Tactical Design Analysis
 
 image::Assets/design-level-event-storming.jpg[design level event storming]
 
-=== Annexes Tactical Design Analysis
+Above is the result of the Event Storming workshop. We did this section to model the business processes and rules in the _Contracts_.
 
-In this section, we'll dive deeper into the business rules and how they shape our design for the _Annexes_ in the _Contracts_ microservice. Understanding these rules is crucial for ensuring our design maintains consistency and adheres to the business requirements.
+Understanding these rules is crucial for ensuring our design maintains consistency and adheres to the business requirements.
 
 1. **Annex Can Only Start During Binding Contract Period**:
    - An annex can only be attached if it falls within the active period of the binding contract. This ensures that all extensions and modifications are valid within the contract's timeframe.
@@ -139,16 +140,18 @@ That’s why the binding contract <<entity,entity>> has to be promoted to <<aggr
 
 TODO: Aggregate Root Canvas image
 
-Annexes are a part of the binding contract aggregate. They has to be uniquely identified that why are modeled as entities. Two create same annexes can't be treated as the same annex because they have different identity.
+Annexes are a part of the binding contract <<aggregate,aggregate>>. They has to be uniquely identified that why are modeled as entities. Two create same annexes can't be treated as the same annex because they have different identity.
 
-Binding contract has signature property which has bussiness logic and is no requirment to be uniqly identified. That's why it is modeled as value object. Signature can be compared by its properties.
+Binding contract has signature property which has bussiness logic and is no requirment to be uniqly identified. That's why it is modeled as <<value-object, value object>>. Signature can be compared by its properties.
 
 === Building Blocks:
 
 [[entity]]
 ==== Entity
+
 An **Entity** is an object that is defined by its identity rather than its attributes. This means that even if two entities have the same attributes, they are considered different if they have different identities.
 
+[[value-object]]
 ==== Value Object
 
 A **Value Object** is an object that is defined by its attributes. Unlike entities, value objects have no identity. They are used to describe certain aspects of the domain and are immutable.
@@ -166,7 +169,7 @@ An **Aggregate Root** is an entity that acts as the entry point for an aggregate
 
 Each of these patterns helps us manage and maintain the complexity of the domain by organizing the code in a way that is closer to the business logic and rules.
 
-=== Anti-patterns
+=== Guidelines
 ==== Anemic Domain Model
 TODO: Description
 
