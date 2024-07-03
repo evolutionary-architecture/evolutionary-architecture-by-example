@@ -59,8 +59,8 @@ In this step, we do not change the project structure of the application. We focu
 
 We introduce elements like:
 
-- Aggregates
-- Entities
+- <<aggregate-root,Aggregates>>
+- <<entity,Entities>>
 - Value Objects
 - Domain Events
 
@@ -83,12 +83,12 @@ Examples of strategic techniques include:
 - link:https://learnwardleymapping.com/[Wardley Maps]
 - link:https://www.eventstorming.com/[Event Storming]
 - link:https://domainstorytelling.org/[Domain Storytelling]
-- Domain Categorization
-- Context Mapping
+- link:https://vladikk.com/2018/01/26/revisiting-the-basics-of-ddd/[Domain Categorization]
+- link:https://github.com/ddd-crew/context-mapping[Context Mapping]
 
 [Note]
 ====
-Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfull. Treat DDD as pharmacy You. should choose the ones that fit your needs and the complexity of the system you are building.
+Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfully. Treat DDD as pharmacy.You should choose the ones that fit your needs and the complexity of the system you are building.
 ====
 
 Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
@@ -109,15 +109,13 @@ Use tactical patterns where business complexity is high. Typically, only about 2
 ====
 
 === Event Storming Design Level - Workshop
-We did Event Storming Design Level to understand logic and bussiness rules and their connections.
+We did Event Storming Design Level to understand logic and business rules and their connections.
 
 image::Assets/design-level-event-storming.jpg[design level event storming]
 
 === Annexes Tactical Design Analysis
 
 In this section, we'll dive deeper into the business rules and how they shape our design for the _Annexes_ in the _Contracts_ microservice. Understanding these rules is crucial for ensuring our design maintains consistency and adheres to the business requirements.
-
-==== Business Rules
 
 1. **Annex Can Only Start During Binding Contract Period**:
    - An annex can only be attached if it falls within the active period of the binding contract. This ensures that all extensions and modifications are valid within the contract's timeframe.
@@ -135,22 +133,29 @@ Let's take look closer on this rule. "Previous Annex Must Be Signed" - This rule
 Invariant is a rule or condition that must always be true for a system to be considered in a valid state. It ensures the integrity and consistency of the domain model
 ====
 
-To enforce this business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an Aggregate Root comes into play.
+To enforce this business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
 
-That’s why the binding contract entity has to become the Aggregate Root that will guard the annexes’ invariants.
+That’s why the binding contract <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
 
-=== Patterns:
+TODO: Aggregate Root Canvas image
 
+Annexes are a part of the binding contract aggregate. They has to be uniquely identified that why are modeled as entities. Two create same annexes can't be treated as the same annex because they have different identity.
+
+Binding contract has signature property which has bussiness logic and is no requirment to be uniqly identified. That's why it is modeled as value object. Signature can be compared by its properties.
+
+=== Building Blocks:
+
+[[entity]]
 ==== Entity
-
 An **Entity** is an object that is defined by its identity rather than its attributes. This means that even if two entities have the same attributes, they are considered different if they have different identities.
 
 ==== Value Object
 
 A **Value Object** is an object that is defined by its attributes. Unlike entities, value objects have no identity. They are used to describe certain aspects of the domain and are immutable.
 
-TODO: mention anemic domain model
+TODO: mention primitive model obsession
 
+[[aggregate-root]]
 ==== Aggregate Root
 
 An **Aggregate Root** is an entity that acts as the entry point for an aggregate, which is a cluster of related objects. The aggregate root ensures the integrity of the aggregate by controlling access and enforcing business rules. 
@@ -160,6 +165,10 @@ An **Aggregate Root** is an entity that acts as the entry point for an aggregate
 **Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system.
 
 Each of these patterns helps us manage and maintain the complexity of the domain by organizing the code in a way that is closer to the business logic and rules.
+
+=== Anti-patterns
+==== Anemic Domain Model
+TODO: Description
 
 == How to Run?
 
