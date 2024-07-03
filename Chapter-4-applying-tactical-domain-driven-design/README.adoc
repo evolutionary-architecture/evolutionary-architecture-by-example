@@ -46,7 +46,7 @@ Let's take a look at modelling process. Larger part of the process is about unde
 image::Assets/ddd-starter-modeling-circular.svg[]
 
 ==== Tactical
-Tactical techniques, focusing on implementing solutions that we already understand in a way that is easy to maintain, explicit, and uses a ubiquitous language. Tactical techniques enforce business rules that match real business needs.
+Tactical techniques, focusing on implementing solution for problem that we already explored and understand. They provide a set of patterns and building blocks that help developers to implement the domain model in the code. 
 
 [NOTE]
 ====
