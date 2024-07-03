@@ -38,7 +38,7 @@ Examples of strategic techniques include:
 
 [Note]
 ====
-Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfully. Treat DDD as pharmacy.You should choose the ones that fit your needs and the complexity of the system you are building.
+Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
 ====
 
 Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
@@ -108,15 +108,15 @@ We introduce elements like:
 - <<aggregate-root,Aggregates>>
 - <<entity,Entities>>
 - <<value-object,Value Objects>>
-- Domain Events
+- <<domain-events,Domain Events>>
 
 === Contracts Bounded Context Tactical Design Analysis
 
 image::Assets/design-level-event-storming.jpg[design level event storming]
 
-Above is the result of the Event Storming workshop. We did this section to model the business processes and rules in the _Contracts_.
+Above photo is the result of the Event Storming Design Level workshop.
 
-Understanding these rules is crucial for ensuring our design maintains consistency and adheres to the business requirements.
+Let's focus on business rules that we identified during the workshop.
 
 1. **Annex Can Only Start During Binding Contract Period**:
    - An annex can only be attached if it falls within the active period of the binding contract. This ensures that all extensions and modifications are valid within the contract's timeframe.
@@ -127,7 +127,7 @@ Understanding these rules is crucial for ensuring our design maintains consisten
 3. **Previous Annex Must Be Signed**:
    - Any new annex can only be added if the previous annex has been signed. This maintains a clear and enforceable order of amendments, ensuring that no annex is added without proper authorisation.
 
-Let's take look closer on this rule. "Previous Annex Must Be Signed" - This rule is connected with the relationship between the new and previous annex. This is invariant.
+Let's take look closer on this rule. __Previous Annex Must Be Signed__. This rule is connected with the relationship between the new and previous annex. This is invariant.
 
 [NOTE]
 ====
@@ -140,9 +140,11 @@ That’s why the binding contract <<entity,entity>> has to be promoted to <<aggr
 
 TODO: Aggregate Root Canvas image
 
-Annexes are a part of the binding contract <<aggregate,aggregate>>. They has to be uniquely identified that why are modeled as entities. Two create same annexes can't be treated as the same annex because they have different identity.
+Annexes are a part of the binding contract <<aggregate,aggregate>>. They has to be uniquely identified and encapsule bussines rules that why we've modeled it as <<entity, entity>>.
 
-Binding contract has signature property which has bussiness logic and is no requirment to be uniqly identified. That's why it is modeled as <<value-object, value object>>. Signature can be compared by its properties.
+Binding contract has signature property which has bussines logic and is no requirment to be uniqly identified. Signature can be compared by its properties. We want to use ubiquites languge so we chosen <<value-object, value object>> as bulidng block to model this concept.
+
+Every time we attach annex to the binding contract, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
 === Building Blocks:
 
@@ -163,6 +165,7 @@ TODO: mention primitive model obsession
 
 An **Aggregate Root** is an entity that acts as the entry point for an aggregate, which is a cluster of related objects. The aggregate root ensures the integrity of the aggregate by controlling access and enforcing business rules. 
 
+[[domain-events]]
 ==== Domain Events
 
 **Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system.
