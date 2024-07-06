@@ -36,10 +36,9 @@ Examples of strategic techniques include:
 - link:https://vladikk.com/2018/01/26/revisiting-the-basics-of-ddd/[Domain Categorization]
 - link:https://github.com/ddd-crew/context-mapping[Context Mapping]
 
-[Note]
-====
+[NOTE]
+
 You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
-====
 
 
 Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
@@ -66,7 +65,7 @@ Use tactical patterns where business complexity is high. Typically, only about 2
 
 == Case
 
-==== Overview
+=== Overview
 
 In Chapter 3, we had to find a way to handle the extreme growth of one of our modules - _Contracts_. Based on concrete factors, the decision was to:
 
@@ -120,7 +119,7 @@ We introduce elements like:
 
 image::Assets/design-level-event-storming.jpg[design level event storming]
 
-Above photo is the result of the Event Storming Design Level workshop.
+Above image is the result of the Event Storming Design Level workshop.
 
 Let's focus on business rules that we identified during the workshop.
 
@@ -157,7 +156,50 @@ Every time we attach annex to the binding contract, we want to notify other part
 [[entity]]
 ==== Entity
 
-An **Entity** is an object that is defined by its identity rather than its attributes. This means that even if two entities have the same attributes, they are considered different if they have different identities.
+An **Entity** is representation of business concept that has its own identity. It is defined by its attributes, behavior, and identity. Entities are used to model objects that have a lifecycle and are mutable.
+
+==== Main characteristics of entities:
+
+- They have a unique identity
+- They represent a business concept
+- They have behaviors (methods)
+- They have state (attributes)
+- They can be changed over time
+- They encapsulate business logic
+- They can raise domain events after creating or updating their state
+- They can be internal part of an aggregate root
+- They can be become aggregate root when needed of protecting invariants
+
+[source,csharp]
+----
+public sealed class Annex : Entity
+{
+    public AnnexId Id { get; init; } // Unique Entity Id
+    public BindingContractId BindingContractId { get; init; }
+    public DateTimeOffset ValidFrom { get; init; } // State
+
+    // EF needs this constructor to create non-primitive types
+    private Annex() { }
+
+    private Annex(BindingContractId bindingContractId, DateTimeOffset validFrom)
+    {
+        Id = AnnexId.Create();
+        BindingContractId = bindingContractId;
+        ValidFrom = validFrom;
+
+        var @event = AnnexAttachedToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom); // Raise domain event
+        RecordEvent(@event); 
+    }
+
+    internal static Annex Attach(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
+        new(bindingContractId, validFrom); // Behavior method
+}
+----
+
+[NOTE]
+===
+You propably have heard about Anemic Domain Model. This is a known as anti-pattern. It is a entity that has only properties and no behavior. All business logic is placed in the service layer. This is not a good practice. We should avoid it. 
+===
 
 [[value-object]]
 ==== Value Object
