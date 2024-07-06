@@ -38,19 +38,25 @@ Examples of strategic techniques include:
 
 [Note]
 ====
-Domain Driven Design is collection of techniques that help us to build complex software systems. You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
+You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
 ====
+
 
 Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
+
+[Important]
+====
+We are using Strategic Domain-Driven Design techniques from the start to understand problem space
+====
 
 ==== Tactical
 Tactical techniques, focusing on implementing solution for problem that we already explored and understand. They provide a set of patterns and building blocks that help developers to implement the domain model in the code. 
 
 [NOTE]
 ====
-We are using Strategic Domain-Driven Design techniques from the start to understand and model the problem. Tactical patterns are used only in the _Contracts_ microservice due to its complexity.
+Tactical patterns are used only in the _Contracts_ microservice due to its domain complexity.
 ====
 
 [IMPORTANT]
