@@ -198,15 +198,47 @@ public sealed class Annex : Entity
 
 [NOTE]
 ===
-You propably have heard about Anemic Domain Model. This is a known as anti-pattern. It is a entity that has only properties and no behavior. All business logic is placed in the service layer. This is not a good practice. We should avoid it. 
+You propably have heard about Anemic Domain Model. This is a known as anti-pattern. It is a entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In more complex scenarios, we recommend to encapsulate behavior in the domain entity.
 ===
 
 [[value-object]]
 ==== Value Object
 
-A **Value Object** is an object that is defined by its attributes. Unlike entities, value objects have no identity. They are used to describe certain aspects of the domain and are immutable.
+A **Value Object** is a representation of bussiness concept that has no identity and no have lifecycle. Unlike entities, value objects have no identity. They are used to describe certain aspects of the domain and are immutable.
 
-TODO: mention primitive model obsession
+==== Main characteristics of value objects:
+- They have no identity
+- They represent a bussiness concept
+- They can encapsulate bussiness logic like validation during object initialization
+- They can be used as a part of an entity or aggregate root
+- They are immutable
+- They are compared by their properties
+- They have equals and hashcode methods implemented
+
+TODO: Find a better example
+[source,csharp]
+----
+public sealed class Signature : ValueObject
+{
+    public string Value { get; init; }
+    public DateTimeOffset SignedAt { get; init; }
+
+    private Signature(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            throw new ArgumentException("Signature cannot be empty");
+
+        Value = value;
+    }
+
+    public static Signature Create(string value) => new(value);
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
+    }
+}
+----
 
 [[aggregate-root]]
 ==== Aggregate Root
