@@ -197,9 +197,8 @@ public sealed class Annex : Entity
 ----
 
 [NOTE]
-===
-You propably have heard about Anemic Domain Model. This is a known as anti-pattern. It is a entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In more complex scenarios, we recommend to encapsulate behavior in the domain entity.
-===
+
+You propably have heard about Anemic Domain Model. This is a known as anti-pattern. It is a entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior in the domain entity.
 
 [[value-object]]
 ==== Value Object
