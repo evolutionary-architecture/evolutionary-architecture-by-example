@@ -77,8 +77,8 @@ For several weeks, this solution worked as a charm.
 
 However, new requirements appear. The way we signed contracts changed. Additionally, there are new possible actions:
 
-- Termination of the existing binding contract
-- Attaching annex to the existing binding contract
+- Termination of the existing __Binding Contract__
+- Attaching annex to the existing __Binding Contract__
 
 We already know that there is a plan to complicate _Contracts_ even more in the upcoming weeks and months. _Contracts_ module becomes increasingly complex.
 
@@ -91,10 +91,10 @@ IMPORTANT: It makes no sense to consider the Domain Model in typical CRUD module
 Business requirements changed a lot in comparison to Chapter 3:
 
 1. _Contract_ can still be prepared but does not have the force of law - we treat it as a draft.
-2. After the _Contract_ is signed, _Binding Contract_ is created. It has the force of law and binds the customer with us.
-3. After three months, at any time, the customer can terminate _Binding Contract_ without any penalty.
-4. It is possible to attach an _Annex_ to the existing _Binding Contract_. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
-5. Annex can only be attached if _Binding Contract_ is active - has not yet expired or was not terminated.
+2. After the _Contract_ is signed, ___Binding Contract___ is created. It has the force of law and binds the customer with us.
+3. After three months, at any time, the customer can terminate ___Binding Contract___ without any penalty.
+4. It is possible to attach an _Annex_ to the existing ___Binding Contract___. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
+5. Annex can only be attached if ___Binding Contract___ is active - has not yet expired or was not terminated.
 
 image::Assets/flow.jpg[]
 
@@ -124,10 +124,10 @@ Above image is the result of the Event Storming Design Level workshop.
 Let's focus on business rules that we identified during the workshop.
 
 1. **Annex Can Only Start During Binding Contract Period**:
-   - An annex can only be attached if it falls within the active period of the binding contract. This ensures that all extensions and modifications are valid within the contract's timeframe.
+   - An annex can only be attached if it falls within the active period of the ____Binding Contract____. This ensures that all extensions and modifications are valid within the contract's timeframe.
 
 2. **Annex Can Only Be Attached To Active Contracts**:
-   - The binding contract must be active, meaning it hasn't expired or been terminated. This rule prevents any modifications to contracts that are no longer valid.
+   - The ____Binding Contract____ must be active, meaning it hasn't expired or been terminated. This rule prevents any modifications to contracts that are no longer valid.
 
 3. **Previous Annex Must Be Signed**:
    - Any new annex can only be added if the previous annex has been signed. This maintains a clear and enforceable order of amendments, ensuring that no annex is added without proper authorisation.
@@ -141,15 +141,15 @@ Invariant is a rule or condition that must always be true for a system to be con
 
 To enforce this business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
 
-That’s why the binding contract <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
+That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
 
 TODO: Aggregate Root Canvas image
 
-Annexes are a part of the binding contract <<aggregate,aggregate>>. They has to be uniquely identified and encapsule bussines rules that why we've modeled it as <<entity, entity>>.
+Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They has to be uniquely identified and encapsule bussines rules that why we've modeled it as <<entity, entity>>.
 
-Binding contract has signature property which has bussines logic and is no requirment to be uniqly identified. Signature can be compared by its properties. We want to use ubiquites languge so we chosen <<value-object, value object>> as bulidng block to model this concept.
+__Binding Contract__ has signature property which has bussines logic and is no requirment to be uniqly identified. Signature can be compared by its properties. We want to use ubiquites languge so we chosen <<value-object, value object>> as bulidng block to model this concept.
 
-Every time we attach annex to the binding contract, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
+Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
 === Building Blocks:
 
