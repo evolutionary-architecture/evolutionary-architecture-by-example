@@ -91,10 +91,10 @@ IMPORTANT: It makes no sense to consider the Domain Model in typical CRUD module
 Business requirements changed a lot in comparison to Chapter 3:
 
 1. _Contract_ can still be prepared but does not have the force of law - we treat it as a draft.
-2. After the _Contract_ is signed, ___Binding Contract___ is created. It has the force of law and binds the customer with us.
-3. After three months, at any time, the customer can terminate ___Binding Contract___ without any penalty.
-4. It is possible to attach an _Annex_ to the existing ___Binding Contract___. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
-5. Annex can only be attached if ___Binding Contract___ is active - has not yet expired or was not terminated.
+2. After the _Contract_ is signed, __Binding Contract__ is created. It has the force of law and binds the customer with us.
+3. After three months, at any time, the customer can terminate __Binding Contract__ without any penalty.
+4. It is possible to attach an _Annex_ to the existing __Binding Contract__. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
+5. Annex can only be attached if __Binding Contract__ is active - has not yet expired or was not terminated.
 
 image::Assets/flow.jpg[]
 
@@ -124,10 +124,10 @@ Above image is the result of the Event Storming Design Level workshop.
 Let's focus on business rules that we identified during the workshop.
 
 1. **Annex Can Only Start During Binding Contract Period**:
-   - An annex can only be attached if it falls within the active period of the ____Binding Contract____. This ensures that all extensions and modifications are valid within the contract's timeframe.
+   - An annex can only be attached if it falls within the active period of the ___Binding Contract___. This ensures that all extensions and modifications are valid within the contract's timeframe.
 
 2. **Annex Can Only Be Attached To Active Contracts**:
-   - The ____Binding Contract____ must be active, meaning it hasn't expired or been terminated. This rule prevents any modifications to contracts that are no longer valid.
+   - The ___Binding Contract___ must be active, meaning it hasn't expired or been terminated. This rule prevents any modifications to contracts that are no longer valid.
 
 3. **Previous Annex Must Be Signed**:
    - Any new annex can only be added if the previous annex has been signed. This maintains a clear and enforceable order of amendments, ensuring that no annex is added without proper authorisation.
