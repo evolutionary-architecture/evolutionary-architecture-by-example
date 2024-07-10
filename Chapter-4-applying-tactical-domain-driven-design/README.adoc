@@ -283,12 +283,11 @@ public sealed record AnnexAttachedToBindingContractEvent(
             DateTime.UtcNow);
 }
 
-
 public interface IDomainEvent
 {
-Guid Id { get; }
+    Guid Id { get; }
 
-DateTime OccuredAt { get; }
+    DateTime OccuredAt { get; }
 }
 ----
 
