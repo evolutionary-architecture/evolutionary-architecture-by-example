@@ -163,10 +163,10 @@ An **Entity** is representation of business concept that has its own identity. I
 - They have a unique identity
 - They represent a business concept
 - They have behaviors (methods)
-- They have state (attributes)
+- They have state (properties)
 - They can be changed over time
 - They encapsulate business logic
-- They can raise domain events after creating or updating their state
+- They can raise domain events after creating or state change
 - They can be internal part of an aggregate root
 - They can be become aggregate root when needed of protecting invariants
 
@@ -203,7 +203,19 @@ You propably have heard about Anemic Domain Model. This is a known as anti-patte
 [[value-object]]
 ==== Value Object
 
-A **Value Object** is a representation of bussiness concept that has no identity and no have lifecycle. Unlike entities, value objects have no identity. They are used to describe certain aspects of the domain and are immutable.
+A **Value Object** is a representation of bussiness concept that has no identity and no have lifecycle. Unlike entities, value objects have no identity. They are explict types used to describe certain aspects of the domain and are immutable. They make our domain model more expressive and help us to avoid invalid data, bussines logic duplication, missunderstaning bussiness vocabulary and primitive obsession.
+
+[NOTE]
+
+Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __Phone Number__ as __string__.__String_ allow put to field every character, but __Phone Number__ has specific format (+00) 777 777 777 using string make this phone number concept not always valid and correct. Value object is precise and can validate fromat during object initialization.
+
+==== Examples from different domains:
+- Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
+- SSN (Social Security Number) in the financial domain
+- Money in the financial domain (amount and currency)
+- Address in the e-commerce domain
+- Email in the e-commerce domain
+- Energy Indicator in the eco domain 
 
 ==== Main characteristics of value objects:
 - They have no identity
@@ -250,10 +262,6 @@ An **Aggregate Root** is an entity that acts as the entry point for an aggregate
 **Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system.
 
 Each of these patterns helps us manage and maintain the complexity of the domain by organizing the code in a way that is closer to the business logic and rules.
-
-=== Guidelines
-==== Anemic Domain Model
-TODO: Description
 
 == How to Run?
 
