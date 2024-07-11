@@ -47,11 +47,11 @@ image::Assets/ddd-starter-modeling-circular.svg[]
 
 [Important]
 ====
-We are using Strategic Domain-Driven Design techniques from the start to understand problem space
+We are using Strategic Domain-Driven Design techniques from the beginning to explore and understand the problem space
 ====
 
 ==== Tactical
-Tactical techniques, focusing on implementing solution for problem that we already explored and understand. They provide a set of patterns and building blocks that help developers to implement the domain model in the code. 
+Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and building blocks that help developers apply the solution (domain model) in the code and maintain it in the long term.
 
 [NOTE]
 ====
@@ -255,7 +255,24 @@ public sealed class Signature : ValueObject
 [[aggregate-root]]
 ==== Aggregate Root
 
-An **Aggregate Root** is an entity that acts as the entry point for an aggregate, which is a cluster of related objects. The aggregate root ensures the integrity of the aggregate by controlling access and enforcing business rules, esspesially invariants.
+An **Aggregate Root** is a cluster of associated objects that are treated as a single unit. It is a collection of entities and value objects that are bound together by a root entity. The aggregate root is responsible for maintaining the consistency of the aggregate and enforcing invariants.
+
+TODO: Aggregate Root as boundary image
+
+==== Main characteristics of aggregate roots:
+- They Represents of essential business concept
+- Enforce bussiness rules and invariants of internal inside
+- They have a unique identity
+- They encapsulate entities and value objects and protect them from direct access
+- They are transactional boundaries
+- They have a lifecycle
+- They are lightweight
+- They can raise domain events after creating or state change
+
+==== Why Aggregate Roots should be lightweight?
+TODO:
+
+==== Aggregates and Concurrency
 
 [[domain-events]]
 ==== Domain Events
