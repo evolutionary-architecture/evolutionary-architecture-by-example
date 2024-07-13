@@ -259,6 +259,8 @@ An **Aggregate Root** is a cluster of associated objects that are treated as a s
 
 Aggregate roots are transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
 
+image::Assets/aggregate-root.jpg[]
+
 [NOTE]
 When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
 
