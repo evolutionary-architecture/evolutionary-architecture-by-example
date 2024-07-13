@@ -204,7 +204,7 @@ You propably have heard about Anemic Domain Model. This is a known as anti-patte
 [[value-object]]
 ==== Value Object
 
-A **Value Object** is a representation of bussiness concept that has no identity and no have lifecycle. Unlike entities, value objects have no identity. They are explict types used to describe certain aspects of the domain and are immutable. They make our domain model more expressive and help us to avoid invalid data, bussines logic duplication, missunderstaning bussiness vocabulary and primitive obsession.
+A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity and are immutable, serving as explicit types that describe specific aspects of the domain. They enhance our domain model's expressiveness, prevent invalid data, reduce business logic duplication, clarify business vocabulary, and avoid primitive obsession.
 
 [NOTE]
 
@@ -257,22 +257,31 @@ public sealed class Signature : ValueObject
 
 An **Aggregate Root** is a cluster of associated objects that are treated as a single unit. It is a collection of entities and value objects that are bound together by a root entity. The aggregate root is responsible for maintaining the consistency of the aggregate and enforcing invariants.
 
+Aggregate roots are transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
+
+[NOTE]
+When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
+
 TODO: Aggregate Root as boundary image
 
-==== Main characteristics of aggregate roots:
-- They Represents of essential business concept
-- Enforce bussiness rules and invariants of internal inside
+==== Main characteristics of value objects:
+- They enforce business rules and invariants internally
 - They have a unique identity
 - They encapsulate entities and value objects and protect them from direct access
 - They are transactional boundaries
 - They have a lifecycle
 - They are lightweight
-- They can raise domain events after creating or state change
+- Each method execution state change is wrapped in a transaction
+- They can raise domain events after creating or state changeafter creating or state change
 
 ==== Why Aggregate Roots should be lightweight?
 TODO:
 
 ==== Aggregates and Concurrency
+
+==== DDD Trillema
+TODO: DDD Trillema image
+TODO: DDD Trillema explanation
 
 [[domain-events]]
 ==== Domain Events
