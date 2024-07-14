@@ -91,10 +91,10 @@ IMPORTANT: It makes no sense to consider the Domain Model in typical CRUD module
 Business requirements changed a lot in comparison to Chapter 3:
 
 1. _Contract_ can still be prepared but does not have the force of law - we treat it as a draft.
-2. After the _Contract_ is signed, __Binding Contract__ is created. It has the force of law and binds the customer with us.
+2. After the _Contract_ is signed, a __Binding Contract__ is created. It has the force of law and binds the customer with us.
 3. After three months, at any time, the customer can terminate __Binding Contract__ without any penalty.
 4. It is possible to attach an _Annex_ to the existing __Binding Contract__. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
-5. Annex can only be attached if __Binding Contract__ is active - has not yet expired or was not terminated.
+5. Annex can only be attached if a __Binding Contract__ is active - has not yet expired or was not terminated.
 
 image::Assets/flow.jpg[]
 
@@ -132,14 +132,14 @@ Let's focus on business rules that we identified during the workshop.
 3. **Previous Annex Must Be Signed**:
    - Any new annex can only be added if the previous annex has been signed. This maintains a clear and enforceable order of amendments, ensuring that no annex is added without proper authorisation.
 
-Let's take look closer on this rule. __Previous Annex Must Be Signed__. This rule is connected with the relationship between the new and previous annex. This is invariant.
+Let's take a look closer to this rule. __Previous Annex Must Be Signed__. This rule is connected with the relationship between the new and previous annex. This is invariant.
 
 [NOTE]
 ====
 Invariant is a rule or condition that must always be true for a system to be considered in a valid state. It ensures the integrity and consistency of the domain model
 ====
 
-To enforce this business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
+To enforce these business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
 
 That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
 
@@ -147,7 +147,7 @@ TODO: Aggregate Root Canvas image
 
 Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They has to be uniquely identified and encapsule bussines rules that why we've modeled it as <<entity, entity>>.
 
-__Binding Contract__ has signature property which has bussines logic and is no requirment to be uniqly identified. Signature can be compared by its properties. We want to use ubiquites languge so we chosen <<value-object, value object>> as bulidng block to model this concept.
+__Binding Contract__ has signature property which has business logic and is no requirment to be uniqly identified. Signature can be compared by its properties. We want to use ubiquitous language so we chosen <<value-object, value object>> as bulidng block to model this concept.
 
 Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
@@ -162,14 +162,14 @@ An **Entity** is representation of business concept that has its own identity. I
 
 - They have a unique identity
 - They represent a business concept
-- They have behaviors (methods)
+- They have behavior (methods)
 - They have state (properties)
 - They can be changed over time
 - They encapsulate business logic
 - They can raise domain events after creating or state change
 - They can be internal part of an aggregate root
-- They can be become aggregate root when needed of protecting invariants
-- In one bounded context concept can be modeled as value object and in another as entity
+- They can be becoming aggregate root when needed of protecting invariants
+- In one bounded context concept can be modeled as a value object and in another as an entity
 
 [source,csharp]
 ----
@@ -199,7 +199,7 @@ public sealed class Annex : Entity
 
 [NOTE]
 
-You propably have heard about Anemic Domain Model. This is a known as anti-pattern. It is a entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior in the domain entity.
+You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior in the domain entity.
 
 [[value-object]]
 ==== Value Object
@@ -208,7 +208,7 @@ A **Value Object** represents a business concept without a lifecycle. Unlike ent
 
 [NOTE]
 
-Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __Phone Number__ as __string__.__String_ allow put to field every character, but __Phone Number__ has specific format (+00) 777 777 777 using string make this phone number concept not always valid and correct. Value object is precise and can validate fromat during object initialization.
+Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __Phone Number__ as __string__.__String_ allow put to field every character, but __Phone Number__ has specific format (+00) 777 777 777 using string make this phone number concept not always valid and correct. Value object is precise and can validate format during object initialization.
 
 ==== Examples from different domains:
 - Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
@@ -274,21 +274,21 @@ TODO: Aggregate Root as boundary image
 - They have a lifecycle
 - They are lightweight
 - Each method execution state change is wrapped in a transaction
-- They can raise domain events after creating or state changeafter creating or state change
+- They can raise domain events after creating or state change after creating or state change
 
-==== Why Aggregate Roots should be lightweight?
+==== Why should Aggregate Roots be lightweight?
 TODO:
 
 ==== Aggregates and Concurrency
 
-==== DDD Trillema
+==== DDD Trillium
 TODO: DDD Trillema image
 TODO: DDD Trillema explanation
 
 [[domain-events]]
 ==== Domain Events
 
-**Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system. They can also be translated into messages and sent to external system.
+**Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system. They can also be translated into messages and sent to an external system.
 
 [source,csharp]
 ----
@@ -321,7 +321,16 @@ public interface IDomainEvent
 
 [NOTE]
 
-Beacuse of entities and aggreagets root are highly encapsulated, domain events are the only way check if something happened in the domain model. They are used as assertion in unit tests that make they more bussiness expressiave. 
+Because of entities and aggregate root are highly encapsulated, domain events are the only way check if something happened in the domain model. They are used as assertion in unit tests that make they more business expressive.
+
+=== Persistence Domain Model
+==== Persistence Ignorance
+Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more flexible and easier to test.
+
+TODO: Example image domain model in one layer separated from persistence
+
+==== Persisting encapsulated domain model
+TODO: Explain Shadow Properties
 
 == How to Run?
 
