@@ -145,9 +145,9 @@ That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<
 
 TODO: Aggregate Root Canvas image
 
-Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They has to be uniquely identified and encapsule bussines rules that why we've modeled it as <<entity, entity>>.
+Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business rules that why we've modeled it as <<entity, entity>>.
 
-__Binding Contract__ has signature property which has business logic and is no requirment to be uniqly identified. Signature can be compared by its properties. We want to use ubiquitous language so we chosen <<value-object, value object>> as bulidng block to model this concept.
+__Binding Contract__ has signature property which has business logic and is no requirement to be uniquely identified. Signature can be compared by its properties. We want to use the ubiquitous language, so we have chosen <<value-object, value object>> as building block to model this concept.
 
 Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
