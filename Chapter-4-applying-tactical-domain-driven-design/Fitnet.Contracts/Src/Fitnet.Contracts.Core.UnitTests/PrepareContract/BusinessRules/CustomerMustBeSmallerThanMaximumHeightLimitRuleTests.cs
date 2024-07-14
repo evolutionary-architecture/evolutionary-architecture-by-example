@@ -6,7 +6,7 @@ using Fitnet.Common.Core.BussinessRules;
 public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
 {
     [Fact]
-    internal void Given_customer_height_which_is_greater_than_maximum_height_limit_Then_validation_should_have_error()
+    internal void Given_customer_heigth_which_is_greater_than_maximum_height_limit_Then_validation_should_have_error()
     {
         // Arrange
         const int height = 211;
