@@ -143,7 +143,7 @@ To enforce these business rules and maintain consistency, we need a robust way t
 
 That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
 
-TODO: Aggregate Root Canvas image
+image::Assets/aggregate_root_canvas.png[]
 
 Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business rules that why we've modeled it as <<entity, entity>>.
 
@@ -263,8 +263,6 @@ image::Assets/aggregate-root.jpg[]
 
 [NOTE]
 When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
-
-TODO: Aggregate Root as boundary image
 
 ==== Main characteristics of value objects:
 - They enforce business rules and invariants internally
