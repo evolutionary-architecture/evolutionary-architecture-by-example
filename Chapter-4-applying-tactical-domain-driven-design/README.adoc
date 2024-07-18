@@ -58,11 +58,6 @@ Tactical techniques focus on solution implementation for problems that we alread
 Tactical patterns are used only in the _Contracts_ microservice due to its domain complexity.
 ====
 
-[IMPORTANT]
-====
-Use tactical patterns where business complexity is high. Typically, only about 20% of your application will be complex. Implementing these patterns in less complex areas can lead to over-engineering and slow down development.
-====
-
 == Case
 
 === Overview
@@ -139,7 +134,9 @@ Let's take a look closer to this rule. __Previous Annex Must Be Signed__. This r
 Invariant is a rule or condition that must always be true for a system to be considered in a valid state. It ensures the integrity and consistency of the domain model
 ====
 
-To enforce these business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment. This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
+To enforce these business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment.
+
+ This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
 
 That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
 
@@ -264,7 +261,7 @@ image::Assets/aggregate-root.jpg[]
 [NOTE]
 When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
 
-==== Main characteristics of value objects:
+==== Main characteristics of aggregate roots:
 - They enforce business rules and invariants internally
 - They have a unique identity
 - They encapsulate entities and value objects and protect them from direct access
@@ -275,13 +272,16 @@ When you are looking for boundaries of an aggregate, you should consider which d
 - They can raise domain events after creating or state change after creating or state change
 
 ==== Why should Aggregate Roots be lightweight?
-TODO:
 
-==== Aggregates and Concurrency
+Let's take a look at the following example:
+We have aggregate root __Account__ that protect bussiness rules around a collection of __Transactions__. Over time, the __Transactions__ collection grows, and the __Account__ aggregate root becomes heavier and heavier. This can lead to performance issues, especially when we need to load the __Account__ aggregate root from the database.
 
-==== DDD Trillium
-TODO: DDD Trillema image
-TODO: DDD Trillema explanation
+That is not major problem. Aggregate Root is guardian of consistency and invariants. We have bussiness rule that we can't have more than 100 transactions in __Account__. What when there is two or more transactions o the same account? They are loaded rule is checked and for both current state is 99. When you have no any concurrency mechanims you will end up with 101 transactions in the account. Consistency is broken.
+
+[NOTE] How to solve this problem? You can you should apply optimistic or pessimistic concurrency control. 
+
+You should include to aggregate only those properties that are taking part in bussiness logic.
+If you have documents in the aggregate root, you can refer by document id and check for e.g max 100 documents rule. Extract all additional data to separated entity or read model and keep only those that you are using. In that way you will keep aggregate root lightweight and use it properly.
 
 [[domain-events]]
 ==== Domain Events
