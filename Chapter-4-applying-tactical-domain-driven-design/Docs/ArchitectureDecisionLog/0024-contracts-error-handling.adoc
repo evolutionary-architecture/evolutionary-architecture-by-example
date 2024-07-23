@@ -1,0 +1,46 @@
+= 23. Contracts error handling
+
+Date: 2024-07-23
+
+== Problem
+
+On current project state Contracts module bussiness logic is getting more complex and it is hard to control flow of errors in the module. 
+
+The current approach is based on exceptions, which makes it difficult to follow the error flow and maintain the codebase. The team is considering adopting a new approach to handle errors in the Contracts module.
+
+== Options
+
+=== Keep Exception-based approach
+
+|===
+| Readability | Performance | Maintenance | Entry Level | Effort | Knowledge in Team
+
+| Try-catches make error flow hard to follow | 10 times slower because of the heaviness of exceptions | With new exception type is its harder to maintain switch cases in many error handlers | Exceptions are well known in the .NET community, so entry level is low | No additional effort because it is already implemented | Team is aware how to use exceptions to control flow
+
+|===
+
+=== Introduce new Result type approach
+
+|===
+| Readability | Performance | Maintenance | Entry Level | Effort | Knowledge in Team
+
+| Easy to understand and follow flow. Flow is explict and easy to read | 10 times better compared to exceptions | Easier to m | Slithly higher entry level to lern how to use this error handling approach | We have to refactor the module | Developers have to adapt to a more functional approach
+
+|===
+
+== Decision
+We decided to adopt the Result type approach to handle errors in the Contracts module.
+This approach will provide a more functional way to manage errors and improve the readability and maintainability of the codebase. Get rid of them will improve performance in error scenarios.
+There is knowladge in the team, just need to define some guideline. In the context of growthing contracts module, this approach is more suitable now.
+
+NOTE: We are going to adopt way of thinking that execption are for exceptional cases e.g not reachable database exception, not for bussiness process flow control.
+
+== Consequences
+- The Result type approach will simplify the domain logic.
+- The error flow will be explicit and easier to follow flow.
+- Performance will be improved by reducing the impact of exception handling in negative scenarios.
+- Team will need to adhere to the defined guidelines for using the Result type approach.
+- The team will need to allocate time for refactoring the existing code to adopt the new approach.
+
+== Resources
+link:https://youssefsellami.com/exceptions_vs_result_object/[Benchmark]
