@@ -1,4 +1,4 @@
-= 23. Contracts error handling
+= 24. Error Handling in Contracts Module
 
 Date: 2024-07-23
 
@@ -6,7 +6,7 @@ Date: 2024-07-23
 
 On current project state Contracts module bussiness logic is getting more complex and it is hard to control flow of errors in the module. 
 
-The current approach is based on exceptions, which makes it difficult to follow the error flow and maintain the codebase. The team is considering adopting a new approach to handle errors in the Contracts module.
+The current error handling approach is based on exceptions, which makes it difficult to follow the appliation flow and maintain the codebase. The team is considering adopting a new approach to handle errors in the Contracts module.
 
 == Options
 
@@ -15,7 +15,7 @@ The current approach is based on exceptions, which makes it difficult to follow 
 |===
 | Readability | Performance | Maintenance | Entry Level | Effort | Knowledge in Team
 
-| Try-catches make error flow hard to follow | 10 times slower because of the heaviness of exceptions | With new exception type is its harder to maintain switch cases in many error handlers | Exceptions are well known in the .NET community, so entry level is low | No additional effort because it is already implemented | Team is aware how to use exceptions to control flow
+| Try-catches make error flow hard to follow | 10 times slower because of the heaviness of exceptions | It is harder to maintain switch cases in many error handlers | Exceptions are well known in the .NET community, so entry level is low | No additional effort because it is already implemented | Team is only familiar with exceptions, but short knowledge sharing is enough to use them
 
 |===
 
@@ -24,7 +24,7 @@ The current approach is based on exceptions, which makes it difficult to follow 
 |===
 | Readability | Performance | Maintenance | Entry Level | Effort | Knowledge in Team
 
-| Easy to understand and follow flow. Flow is explict and easy to read | 10 times better compared to exceptions | Easier to m | Slithly higher entry level to lern how to use this error handling approach | We have to refactor the module | Developers have to adapt to a more functional approach
+| Easy to understand and follow flow. Flow is explict and easy to read | 10 times better compared to exceptions | Easier to m | Slightly higher entry level to lern how to use this error handling approach | We have to refactor existing error flows | Developers have to adapt to a more functional approach
 
 |===
 
