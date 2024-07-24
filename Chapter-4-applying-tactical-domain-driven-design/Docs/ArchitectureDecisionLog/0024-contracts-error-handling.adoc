@@ -33,7 +33,7 @@ We decided to adopt the Result type approach to handle errors in the Contracts m
 This approach will provide a more functional way to manage errors and improve the readability and maintainability of the codebase. Get rid of them will improve performance in error scenarios.
 There is knowladge in the team, just need to define some guideline. In the context of growthing contracts module, this approach is more suitable now.
 
-NOTE: We are going to adopt way of thinking that execption are for exceptional cases e.g not reachable database exception, not for bussiness process flow control.
+NOTE: We are going to adopt way of thinking that exception are for exceptional cases e.g not reachable database exception, not for bussiness process flow control.
 
 == Consequences
 - The Result type approach will simplify the domain logic.
