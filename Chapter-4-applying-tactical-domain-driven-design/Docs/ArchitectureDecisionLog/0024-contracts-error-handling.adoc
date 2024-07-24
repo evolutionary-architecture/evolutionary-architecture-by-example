@@ -24,7 +24,7 @@ The current error handling approach is based on exceptions, which makes it diffi
 |===
 | Readability | Performance | Maintenance | Entry Level | Effort | Knowledge in Team
 
-| Easy to understand and follow flow. Flow is explict and easy to read | 10 times better compared to exceptions | Easier to m | Slightly higher entry level to lern how to use this error handling approach | We have to refactor existing error flows | Developers have to adapt to a more functional approach
+| Easy to understand and follow flow. Flow is explict and easy to read | 10 times better compared to exceptions | Easier to maintain, just adding new errors to error result | Slightly higher entry level to lern how to use this error handling approach | We have to refactor existing error flows | Developers have to adapt to a more functional approach
 
 |===
 
