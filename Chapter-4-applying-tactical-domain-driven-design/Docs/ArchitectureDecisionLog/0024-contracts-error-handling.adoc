@@ -4,11 +4,15 @@ Date: 2024-07-23
 
 == Problem
 
-On current project state Contracts module bussiness logic is getting more complex and it is hard to control flow of errors in the module. 
+The Contracts module's business logic is becoming more complex in the current project state, with an increasing number of negative scenarios that need to be handled.
 
-The current error handling approach is based on exceptions, which makes it difficult to follow the appliation flow and maintain the codebase. The team is considering adopting a new approach to handle errors in the Contracts module.
+Current error handling approach is based on exceptions, that are expensive in terms of performance. 
 
-== Options
+As is shown in the link:https://youssefsellami.com/exceptions_vs_result_object/[Benchmark], exceptions are 10 times slower than other error handling approaches like Result type.
+
+In addition, the current approach makes it difficult to follow the application flow and maintain the codebase, beacuse of try-catches and switch cases in many error handlers spread across the codebase.
+
+We are considering adopting a new "Result based" error handling approach.
 
 === Keep Exception-based approach
 
@@ -41,6 +45,3 @@ NOTE: We are going to adopt way of thinking that exception are for exceptional c
 - Performance will be improved by reducing the impact of exception handling in negative scenarios.
 - Team will need to adhere to the defined guidelines for using the Result type approach.
 - The team will need to allocate time for refactoring the existing code to adopt the new approach.
-
-== Resources
-link:https://youssefsellami.com/exceptions_vs_result_object/[Benchmark]
