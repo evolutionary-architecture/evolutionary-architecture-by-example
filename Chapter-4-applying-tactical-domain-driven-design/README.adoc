@@ -135,7 +135,7 @@ Invariant is a rule or condition that must always be true for a system to be con
 
 To enforce these business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment.
 
- This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
+This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
 
 That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
 
