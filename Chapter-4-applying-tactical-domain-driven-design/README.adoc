@@ -207,7 +207,8 @@ Primitive Obsession is a code smell where we use primitive types to represent do
 
 image::Assets/value_object_sets.png[]
 
-For e.g you can treat __SSN__ as __string__.__String_ allow put to field every character, but __SSN__ has specific format using string make this SSN concept not always valid and correct. Value object is precise and can validate format during object initialization.
+For e.g you can treat _SSN_ as _string_._String_ allow put to field every character, but _SSN_ has specific format using string make this _SSN_ concept not always valid and correct.
+**Value object is precise and can validate format during object initialization.**
 
 ==== Examples from different domains:
 - Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
@@ -313,7 +314,10 @@ public sealed record AnnexAttachedToBindingContractEvent(
             validFrom,
             DateTime.UtcNow);
 }
+----
 
+[source,csharp]
+----
 public interface IDomainEvent
 {
     Guid Id { get; }
