@@ -40,7 +40,6 @@ Examples of strategic techniques include:
 
 You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
 
-
 Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
@@ -91,7 +90,7 @@ Business requirements changed a lot in comparison to Chapter 3:
 4. It is possible to attach an _Annex_ to the existing __Binding Contract__. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
 5. Annex can only be attached if a __Binding Contract__ is active - has not yet expired or was not terminated.
 
-image::Assets/flow.jpg[]
+image::Assets/flow.png[]
 
 === Main assumptions
 
@@ -112,7 +111,7 @@ We introduce elements like:
 
 === Contracts Bounded Context Tactical Design Analysis
 
-image::Assets/design-level-event-storming.jpg[design level event storming]
+image::Assets/design-level-event-storming.png[design level event storming]
 
 Above image is the result of the Event Storming Design Level workshop.
 
@@ -195,7 +194,6 @@ public sealed class Annex : Entity
 ----
 
 [NOTE]
-
 You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior in the domain entity.
 
 [[value-object]]
@@ -203,7 +201,7 @@ You probably have heard about Anemic Domain Model. This is known as anti-pattern
 
 A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity and are immutable, serving as explicit types that describe specific aspects of the domain. They enhance our domain model's expressiveness, prevent invalid data, reduce business logic duplication, clarify business vocabulary, and avoid primitive obsession.
 
-[NOTE]
+[IMPORTANT]
 
 Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __Phone Number__ as __string__.__String_ allow put to field every character, but __Phone Number__ has specific format (+00) 777 777 777 using string make this phone number concept not always valid and correct. Value object is precise and can validate format during object initialization.
 
@@ -256,7 +254,7 @@ An **Aggregate Root** is a cluster of associated objects that are treated as a s
 
 Aggregate roots are transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
 
-image::Assets/aggregate-root.jpg[]
+image::Assets/aggregate_root_internals.png[]
 
 [NOTE]
 When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
@@ -278,7 +276,8 @@ We have aggregate root __Account__ that protect bussiness rules around a collect
 
 That is not major problem. Aggregate Root is guardian of consistency and invariants. We have bussiness rule that we can't have more than 100 transactions in __Account__. What when there is two or more transactions o the same account? They are loaded rule is checked and for both current state is 99. When you have no any concurrency mechanims you will end up with 101 transactions in the account. Consistency is broken.
 
-[NOTE] How to solve this problem? You can you should apply optimistic or pessimistic concurrency control. 
+How to solve this problem? 
+You can you should apply optimistic or pessimistic concurrency check. 
 
 You should include to aggregate only those properties that are taking part in bussiness logic.
 If you have documents in the aggregate root, you can refer by document id and check for e.g max 100 documents rule. Extract all additional data to separated entity or read model and keep only those that you are using. In that way you will keep aggregate root lightweight and use it properly.
@@ -323,12 +322,12 @@ Because of entities and aggregate root are highly encapsulated, domain events ar
 
 === Persistence Domain Model
 ==== Persistence Ignorance
-Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more flexible and easier to test.
+Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more focused on the business logic and be easier to test. When are you working on infrastructure you don't touch crucial bussines logic which is good.
 
-TODO: Example image domain model in one layer separated from persistence
+image::Assets/persistance_ignorance.png[]
 
 ==== Persisting encapsulated domain model
-TODO: Explain Shadow Properties
+
 
 == How to Run?
 
