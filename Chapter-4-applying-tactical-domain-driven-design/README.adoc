@@ -137,7 +137,7 @@ To enforce these business rules and maintain consistency, we need a robust way t
 
 This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
 
-That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes’ invariants.
+That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes invariants.
 
 image::Assets/aggregate_root_canvas.png[]
 
@@ -194,18 +194,20 @@ public sealed class Annex : Entity
 ----
 
 [NOTE]
-You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior in the domain entity.
+You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior (methods) in the domain entity insted having this logic in the service layer.
 
 [[value-object]]
 ==== Value Object
 
-A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity and are immutable, serving as explicit types that describe specific aspects of the domain. They enhance our domain model's expressiveness, prevent invalid data, reduce business logic duplication, clarify business vocabulary, and avoid primitive obsession.
+A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity. They are immutable, serving as explicit types that describe specific aspects of the domain. 
 
-Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __SSN__ as __string__.__String_ allow put to field every character, but __SSN__ has specific format using string make this SSN concept not always valid and correct. Value object is precise and can validate format during object initialization.
+They enhance our domain model's expressiveness, prevent invalid data, reduce business logic duplication, clarify business vocabulary, and helps us avoid primitive obsession.
+
+Primitive Obsession is a code smell where we use primitive types to represent domain concepts. 
 
 image::Assets/value_object_sets.png[]
 
-Like you can see above SSN allowed characters set is just a small subset of all characters set that is possible for string. Value object is a precise concept that can validate format during object initialization.
+For e.g you can treat __SSN__ as __string__.__String_ allow put to field every character, but __SSN__ has specific format using string make this SSN concept not always valid and correct. Value object is precise and can validate format during object initialization.
 
 ==== Examples from different domains:
 - Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
@@ -253,9 +255,9 @@ public sealed class Signature : ValueObject
 [[aggregate-root]]
 ==== Aggregate Root
 
-An **Aggregate Root** is a cluster of associated objects that are treated as a single unit. It is a collection of entities and value objects that are bound together by a root entity. The aggregate root is responsible for maintaining the consistency of the aggregate and enforcing invariants.
+An **Aggregate Root** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Treat aggregate root as invariants safeguard, that existing ensure the consistency and validity of the domain model.** Those invariants are esential bussiness rules, we can't model real business processes without them.
 
-Aggregate roots are transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
+Aggregate roots are also transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
 
 image::Assets/aggregate_root_internals.png[]
 
@@ -277,12 +279,13 @@ When you are looking for boundaries of an aggregate, you should consider which d
 Let's take a look at the following example:
 We have aggregate root __Account__ that protect bussiness rules around a collection of __Transactions__. Over time, the __Transactions__ collection grows, and the __Account__ aggregate root becomes heavier and heavier. This can lead to performance issues, especially when we need to load the __Account__ aggregate root from the database.
 
-That is not major problem. Aggregate Root is guardian of consistency and invariants. We have bussiness rule that we can't have more than 100 transactions in __Account__. What when there is two or more transactions o the same account? They are loaded rule is checked and for both current state is 99. When you have no any concurrency mechanims you will end up with 101 transactions in the account. Consistency is broken.
+That is not major problems. We have bussiness rule that we can't have more than 100 transactions in __Account__. What when there is two or more transactions o the same account? They are loaded rule is checked and for both current state is 99. When you have no any concurrency mechanims you will end up with 101 transactions in the account. Consistency is broken.
 
 How to solve this problem? 
 You can you should apply optimistic or pessimistic concurrency check. 
 
 You should include to aggregate only those properties that are taking part in bussiness logic.
+
 If you have documents in the aggregate root, you can refer by document id and check for e.g max 100 documents rule. Extract all additional data to separated entity or read model and keep only those that you are using. In that way you will keep aggregate root lightweight and use it properly.
 
 [[domain-events]]
@@ -328,9 +331,6 @@ Because of entities and aggregate root are highly encapsulated, domain events ar
 Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more focused on the business logic and be easier to test. When are you working on infrastructure you don't touch crucial bussines logic which is good.
 
 image::Assets/persistance_ignorance.png[]
-
-==== Persisting encapsulated domain model
-
 
 == How to Run?
 
