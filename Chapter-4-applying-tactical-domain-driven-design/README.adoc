@@ -21,7 +21,7 @@ Using DDD is not recommended for trivial business cases, such as when the comple
 
 === Domain-Driven Design: Tactical vs. Strategic
 
-Domain-Driven Design techniques are split into two categories: strategic and tactical.
+Domain-Driven Design techniques are split into two categories: __strategic__ and __tactical__.
 
 ==== Strategic
 
