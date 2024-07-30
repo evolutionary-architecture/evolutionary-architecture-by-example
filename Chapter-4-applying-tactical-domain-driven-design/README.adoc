@@ -201,17 +201,20 @@ You probably have heard about Anemic Domain Model. This is known as anti-pattern
 
 A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity and are immutable, serving as explicit types that describe specific aspects of the domain. They enhance our domain model's expressiveness, prevent invalid data, reduce business logic duplication, clarify business vocabulary, and avoid primitive obsession.
 
-[IMPORTANT]
+Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __SSN__ as __string__.__String_ allow put to field every character, but __SSN__ has specific format using string make this SSN concept not always valid and correct. Value object is precise and can validate format during object initialization.
 
-Primitive Obsession is a code smell where we use primitive types to represent domain concepts. For e.g you can treat __Phone Number__ as __string__.__String_ allow put to field every character, but __Phone Number__ has specific format (+00) 777 777 777 using string make this phone number concept not always valid and correct. Value object is precise and can validate format during object initialization.
+image::Assets/value_object_sets.png[]
+
+Like you can see above SSN allowed characters set is just a small subset of all characters set that is possible for string. Value object is a precise concept that can validate format during object initialization.
 
 ==== Examples from different domains:
 - Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
 - SSN (Social Security Number) in the financial domain
 - Money in the financial domain (amount and currency)
 - Address in the e-commerce domain
+- PhoneNumber in the telecommunication domain
 - Email in the e-commerce domain
-- Energy Indicator in the eco domain 
+- Energy Indicator in the eco domain (amount and unit)
 
 ==== Main characteristics of value objects:
 - They have no identity
