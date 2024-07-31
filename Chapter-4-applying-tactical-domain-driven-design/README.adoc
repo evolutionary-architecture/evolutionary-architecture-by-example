@@ -40,17 +40,14 @@ Examples of strategic techniques include:
 
 You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
 
-Let's take a look at modelling process. Larger part of the process is about understanding the business and its rules.
+Let's take a look at modelling process.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
 
-[Important]
-====
-We are using Strategic Domain-Driven Design techniques from the beginning to explore and understand the problem space
-====
+Large part of the process is strategic part. That show us how important is to understand the problem space before we start coding. Tactical part is only a small part of the whole process, but still essential to build a good quailty software. 
 
 ==== Tactical
-Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and building blocks that help developers apply the solution (domain model) in the code and maintain it in the long term.
+Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and <<building blocks, building blocks>> that help developers apply the solution (domain model) in the code and maintain it in the long term.
 
 [NOTE]
 ====
@@ -141,12 +138,17 @@ That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<
 
 image::Assets/aggregate_root_canvas.png[]
 
-Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business rules that why we've modeled it as <<entity, entity>>.
+[Important]
+
+Aggregate Root is pattern that solve specific problem. It is not a silver bullet. Aggregate root canvas will help you make this decision consciously and consider all aspect of design aggregate like invariants, concurency, performance. We are encouraging you to use it in your design process.
+
+Let's proceed with and anlysis and take a look on __Annex__. Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business logic. We will model it as an <<entity, entity>>.
 
 __Binding Contract__ has signature property which has business logic and is no requirement to be uniquely identified. Signature can be compared by its properties. We want to use the ubiquitous language, so we have chosen <<value-object, value object>> as building block to model this concept.
 
 Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
+[[building blocks]]
 === Building Blocks:
 
 [[entity]]
