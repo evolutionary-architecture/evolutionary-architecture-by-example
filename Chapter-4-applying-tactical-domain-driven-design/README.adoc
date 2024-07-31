@@ -37,8 +37,9 @@ Examples of strategic techniques include:
 - link:https://github.com/ddd-crew/context-mapping[Context Mapping]
 
 [NOTE]
-
+===
 You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
+===
 
 Let's take a look at modelling process.
 
@@ -47,7 +48,7 @@ image::Assets/ddd-starter-modeling-circular.svg[]
 Large part of the process is strategic part. That show us how important is to understand the problem space before we start coding. Tactical part is only a small part of the whole process, but still essential to build a good quailty software. 
 
 ==== Tactical
-Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and <<building blocks, building blocks>> that help developers apply the solution (domain model) in the code and maintain it in the long term.
+Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and <<building_blocks, building blocks>> that help developers apply the solution (domain model) in the code and maintain it in the long term.
 
 [NOTE]
 ====
@@ -138,9 +139,7 @@ That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<
 
 image::Assets/aggregate_root_canvas.png[]
 
-[Important]
-
-Aggregate Root is pattern that solve specific problem. It is not a silver bullet. Aggregate root canvas will help you make this decision consciously and consider all aspect of design aggregate like invariants, concurency, performance. We are encouraging you to use it in your design process.
+IMPORTANT: Aggregate Root is pattern that solve specific problem. It is not a silver bullet. Aggregate root canvas will help you make this decision consciously and consider all aspect of design aggregate like invariants, concurency, performance. We are encouraging you to use it in your design process. Enoy!
 
 Let's proceed with and anlysis and take a look on __Annex__. Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business logic. We will model it as an <<entity, entity>>.
 
@@ -148,7 +147,7 @@ __Binding Contract__ has signature property which has business logic and is no r
 
 Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
-[[building blocks]]
+[[building_blocks]]
 === Building Blocks:
 
 [[entity]]
@@ -195,21 +194,20 @@ public sealed class Annex : Entity
 }
 ----
 
-[NOTE]
-You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior (methods) in the domain entity insted having this logic in the service layer.
+NOTE: You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior (methods) in the domain entity insted having this logic in the service layer.
 
 [[value-object]]
 ==== Value Object
 
 A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity. They are immutable, serving as explicit types that describe specific aspects of the domain. 
 
-They enhance our domain model's expressiveness, prevent invalid data, reduce business logic duplication, clarify business vocabulary, and helps us avoid primitive obsession.
+They enhance our domain model's expressiveness, prevent invalid object state and helps us avoid primitive obsession.
 
-Primitive Obsession is a code smell where we use primitive types to represent domain concepts. 
+"Primitive Obsession" is a code smell where we use primitive types to represent domain concepts. 
 
-image::Assets/value_object_sets.png[]
+image::Assets/value_object_sets.png[300,300]
 
-For e.g you can treat _SSN_ as _string_._String_ allow put to field every character, but _SSN_ has specific format using string make this _SSN_ concept not always valid and correct.
+For e.g you can treat _SSN_ as _string_. _String_ allow put to field every character, but _SSN_ has specific format. Take a look at image above. You can see that _SSN_ is just only small subset of _string_ possible values.
 **Value object is precise and can validate format during object initialization.**
 
 ==== Examples from different domains:
@@ -265,6 +263,7 @@ Aggregate roots are also transactional boundaries. All changes to the aggregate 
 image::Assets/aggregate_root_internals.png[]
 
 [NOTE]
+
 When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
 
 ==== Main characteristics of aggregate roots:
