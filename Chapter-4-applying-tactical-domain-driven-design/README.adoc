@@ -247,7 +247,7 @@ public sealed class Signature : ValueObject
 [[aggregate-root]]
 ==== Aggregate Root
 
-An **Aggregate Root** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Treat aggregate root as invariants safeguard, that existing ensure the consistency and validity of the domain model.** Those invariants are esential bussiness rules, we can't model real business processes without them.
+An **Aggregate Root** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Consider the aggregate root as a safeguard for invariants, ensuring the consistency and validity of the domain model.** Those invariants are esential bussiness rules, we can't model real business processes without them.
 
 Aggregate roots are also transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
 
@@ -264,20 +264,6 @@ NOTE: When you are looking for boundaries of an aggregate, you should consider w
 - They are lightweight
 - Each method execution state change is wrapped in a transaction
 - They can raise domain events after creating or state change after creating or state change
-
-==== Why should Aggregate Roots be lightweight?
-
-Let's take a look at the following example:
-We have aggregate root __Account__ that protect bussiness rules around a collection of __Transactions__. Over time, the __Transactions__ collection grows, and the __Account__ aggregate root becomes heavier and heavier. This can lead to performance issues, especially when we need to load the __Account__ aggregate root from the database.
-
-That is not major problems. We have bussiness rule that we can't have more than 100 transactions in __Account__. What when there is two or more transactions o the same account? They are loaded rule is checked and for both current state is 99. When you have no any concurrency mechanims you will end up with 101 transactions in the account. Consistency is broken.
-
-How to solve this problem? 
-You can you should apply optimistic or pessimistic concurrency check. 
-
-You should include to aggregate only those properties that are taking part in bussiness logic.
-
-If you have documents in the aggregate root, you can refer by document id and check for e.g max 100 documents rule. Extract all additional data to separated entity or read model and keep only those that you are using. In that way you will keep aggregate root lightweight and use it properly.
 
 [[domain-events]]
 ==== Domain Events
@@ -349,7 +335,7 @@ There are only 5 steps you need to start the application:
 4. Run `docker-compose build` to build the image of the application.
 5. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
-The `Fitnet``modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
+The `Fitnet` modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
 The `Contracts` microservice runs on port `:8081`. Please navigate to http://localhost:8081 in your browser or http://localhost:8081/swagger/index.html to explore the API.
 
