@@ -15,13 +15,19 @@ public sealed class InMemoryEventBusTests(
     internal async Task Given_valid_event_published_Then_event_should_be_consumed()
     {
         // Arrange
-        var eventBus = ApplicationInMemory.Services.GetRequiredService<IEventBus>();
+        var eventBus = GetEventBus();
         var fakeEvent = FakeEvent.Create();
 
         // Act
-        await eventBus.PublishAsync(fakeEvent, CancellationToken.None);
+        await eventBus!.PublishAsync(fakeEvent, CancellationToken.None);
 
         // Assert
         fakeEvent.Consumed.Should().BeTrue();
     }
+
+    private IEventBus GetEventBus() =>
+        ApplicationInMemory.Services
+            .CreateScope()
+            .ServiceProvider
+            .GetRequiredService<IEventBus>();
 }
