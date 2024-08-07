@@ -6,7 +6,7 @@ public static class InMemoryEventBusModule
 {
     public static IServiceCollection AddInMemoryEventBus(this IServiceCollection services)
     {
-        services.AddSingleton<IEventBus, InMemoryEventBus>();
+        services.AddScoped<IEventBus, InMemoryEventBus>();
 
         return services;
     }
