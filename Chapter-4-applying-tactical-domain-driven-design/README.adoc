@@ -1,4 +1,4 @@
-= Chapter 4: Applying Tacical Domain-Driven Design: Focus On Complexity
+= Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 :toc:
 
 ++++
@@ -7,10 +7,47 @@
 </div>
 ++++
 
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-contracts-package-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-contracts-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-3-package-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-package-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-workflow.yml/badge.svg[Build Status]
+image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-package-workflow.yml/badge.svg[Build Status]
+
+== Domain Driven Design in a Nutshell
+=== What is Domain-Driven Design?
+
+Domain-Driven Design (DDD) is a set of techniques and methods that help developers tackle business complexity. It is particularly useful for systems full of business processes and rules that are not easy to understand for people unfamiliar with the business area.
+
+Using DDD is not recommended for trivial business cases, such as when the complexity lies only in the technology itself, or when the application is just CRUD-based and can be designed as simple UI mockups (shallow systems).
+
+=== Domain-Driven Design: Tactical vs. Strategic
+
+Domain-Driven Design techniques are split into two categories: __strategic__ and __tactical__.
+
+==== Strategic
+
+Strategic techniques help you explore, analyse, and understand the problem space. They provide insights into how the company operates, how communication flows, and help build a shared understanding between the development team and the business. Strategic techniques emphasise building a ubiquitous language.
+
+Examples of strategic techniques include:
+
+- link:https://www.strategyzer.com/canvas/business-model-canvas[Business Model Canvas]
+- link:https://learnwardleymapping.com/[Wardley Maps]
+- link:https://www.eventstorming.com/[Event Storming]
+- link:https://domainstorytelling.org/[Domain Storytelling]
+- link:https://vladikk.com/2018/01/26/revisiting-the-basics-of-ddd/[Domain Categorization]
+- link:https://github.com/ddd-crew/context-mapping[Context Mapping]
+
+NOTE: You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you are building.
+
+Let's take a look at modelling process.
+
+image::Assets/ddd-starter-modeling-circular.svg[]
+
+Large part of the process is strategic part. That show us how important is to understand the problem space before we start coding. Tactical part is only a small part of the whole process, but still essential to build a good quailty software. 
+
+==== Tactical
+Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and <<building_blocks, building blocks>> that help developers apply the solution (domain model) in the code and maintain it in the long term.
+
+NOTE: Tactical patterns are used only in the _Contracts_ microservice due to its domain complexity.
 
 == Case
 
@@ -26,8 +63,8 @@ For several weeks, this solution worked as a charm.
 
 However, new requirements appear. The way we signed contracts changed. Additionally, there are new possible actions:
 
-- Termination of the existing binding contract
-- Attaching annex to the existing binding contract
+- Termination of the existing __Binding Contract__
+- Attaching annex to the existing __Binding Contract__
 
 We already know that there is a plan to complicate _Contracts_ even more in the upcoming weeks and months. _Contracts_ module becomes increasingly complex.
 
@@ -40,12 +77,12 @@ IMPORTANT: It makes no sense to consider the Domain Model in typical CRUD module
 Business requirements changed a lot in comparison to Chapter 3:
 
 1. _Contract_ can still be prepared but does not have the force of law - we treat it as a draft.
-2. After the _Contract_ is signed, _Binding Contract_ is created. It has the force of law and binds the customer with us.
-3. After three months, at any time, the customer can terminate _Binding Contract_ without any penalty.
-4. It is possible to attach an _Annex_ to the existing _Binding Contract_. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
-5. Annex can only be attached if _Binding Contract_ is active - has not yet expired or was not terminated.
+2. After the _Contract_ is signed, a __Binding Contract__ is created. It has the force of law and binds the customer with us.
+3. After three months, at any time, the customer can terminate __Binding Contract__ without any penalty.
+4. It is possible to attach an _Annex_ to the existing __Binding Contract__. This way, the customer can extend the contract for another year without preparing a new _Contract_ for him.
+5. Annex can only be attached if a __Binding Contract__ is active - has not yet expired or was not terminated.
 
-image::Assets/flow.jpg[]
+image::Assets/flow.png[]
 
 === Main assumptions
 
@@ -53,16 +90,225 @@ The assumptions remain unchanged to keep the environment comparable to the previ
 
 === Solution
 
-==== Overview
+== Overview
 
-In this step we do not change the project structure of the application. We focus only on refactoring the code of _Contracts_ microservice.
+In this step, we do not change the project structure of the application. We focus only on implementing new features and refactoring the code of the _Contracts_ microservice.
 
 We introduce elements like:
 
-- Aggregates
-- Entities
-- Value Objects
-- Domain Events
+- <<aggregate-root,Aggregates>>
+- <<entity,Entities>>
+- <<value-object,Value Objects>>
+- <<domain-events,Domain Events>>
+
+=== Contracts Bounded Context Tactical Design Analysis
+
+image::Assets/design-level-event-storming.png[design level event storming]
+
+Above image is the result of the Event Storming Design Level workshop.
+
+Let's focus on business rules that we identified during the workshop.
+
+1. **Annex Can Only Start During Binding Contract Period**:
+   - An annex can only be attached if it falls within the active period of the ___Binding Contract___. This ensures that all extensions and modifications are valid within the contract's timeframe.
+
+2. **Annex Can Only Be Attached To Active Contracts**:
+   - The ___Binding Contract___ must be active, meaning it hasn't expired or been terminated. This rule prevents any modifications to contracts that are no longer valid.
+
+3. **Previous Annex Must Be Signed**:
+   - Any new annex can only be added if the previous annex has been signed. This maintains a clear and enforceable order of amendments, ensuring that no annex is added without proper authorisation.
+
+Let's take a look closer to this rule. __Previous Annex Must Be Signed__. This rule is connected with the relationship between the new and previous annex. This is invariant.
+
+NOTE: Invariant is a rule or condition that must always be true for a system to be considered in a valid state. It ensures the integrity and consistency of the domain model
+
+To enforce these business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment.
+
+This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
+
+That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes invariants.
+
+image::Assets/aggregate_root_canvas.png[]
+
+IMPORTANT: Aggregate Root is pattern that solve specific problem. It is not a silver bullet. "Aggregate Root Canvas" will help you make this decision consciously and consider all essential aspects like purpose, invariants, concurency, performance. We are encouraging you to use it in your design process.
+
+Let's proceed with and anlysis and take a look on __Annex__. Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business logic. We will model it as an <<entity, entity>>.
+
+__Binding Contract__ has signature property which has business logic and is no requirement to be uniquely identified. Signature can be compared by its properties. We want to use the ubiquitous language, so we have chosen <<value-object, value object>> as building block to model this concept.
+
+Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
+
+[[building_blocks]]
+=== Building Blocks:
+
+[[entity]]
+==== Entity
+
+An **Entity** is representation of business concept that has its own identity. It is defined by its attributes, behavior, and identity. Entities are used to model objects that have a lifecycle and are mutable.
+
+==== Main characteristics of entities:
+
+- They have a unique identity
+- They represent a business concept
+- They have behavior (methods)
+- They have state (properties)
+- They can be changed over time
+- They encapsulate business logic
+- They can raise domain events after creating or state change
+- They can be internal part of an aggregate root
+- They can be becoming aggregate root when needed of protecting invariants
+- In one bounded context concept can be modeled as a value object and in another as an entity
+
+[source,csharp]
+----
+public sealed class Annex : Entity
+{
+    public AnnexId Id { get; init; } // Unique Entity Id
+    public BindingContractId BindingContractId { get; init; }
+    public DateTimeOffset ValidFrom { get; init; } // State
+
+    // EF needs this constructor to create non-primitive types
+    private Annex() { }
+
+    private Annex(BindingContractId bindingContractId, DateTimeOffset validFrom)
+    {
+        Id = AnnexId.Create();
+        BindingContractId = bindingContractId;
+        ValidFrom = validFrom;
+
+        var @event = AnnexAttachedToBindingContractEvent.Raise(Id, BindingContractId, ValidFrom); // Raise domain event
+        RecordEvent(@event); 
+    }
+
+    internal static Annex Attach(BindingContractId bindingContractId, DateTimeOffset validFrom) =>
+        new(bindingContractId, validFrom); // Behavior method
+}
+----
+
+NOTE: You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior (methods) in the domain entity insted having this logic in the service layer.
+
+[[value-object]]
+==== Value Object
+
+A **Value Object** represents a business concept without a lifecycle. Unlike entities, value objects lack identity. They are immutable, serving as explicit types that describe specific aspects of the domain. 
+
+They enhance our domain model's expressiveness, prevent invalid object state and helps us avoid primitive obsession.
+
+"Primitive Obsession" is a code smell where we use primitive types to represent domain concepts. 
+
+image::Assets/value_object_sets.png[300,300,align=center]
+
+For e.g you can treat _SSN_ as _string_. _String_ allow put to field every character, but _SSN_ has specific format. Take a look at image above. You can see that _SSN_ is just only small subset of _string_ possible values.
+**Value object is precise and can validate format during object initialization.**
+
+==== Examples from different domains:
+- Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
+- SSN (Social Security Number) in the financial domain
+- Money in the financial domain (amount and currency)
+- Address in the e-commerce domain
+- PhoneNumber in the telecommunication domain
+- Email in the e-commerce domain
+- Energy Indicator in the eco domain (amount and unit)
+
+==== Main characteristics of value objects:
+- They have no identity
+- They represent a bussiness concept
+- They can encapsulate bussiness logic like validation during object initialization
+- They can be used as a part of an entity or aggregate root
+- They are immutable
+- They are compared by their properties
+- They have equals and hashcode methods implemented
+- In one bounded context concept can be modeled as value object and in another as entity
+
+[source,csharp]
+----
+public sealed class Signature : ValueObject
+{
+    public string Value { get; init; }
+    public DateTimeOffset SignedAt { get; init; }
+
+    private Signature(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            throw new ArgumentException("Signature cannot be empty");
+
+        Value = value;
+    }
+
+    public static Signature Create(string value) => new(value);
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
+    }
+}
+----
+
+[[aggregate-root]]
+==== Aggregate Root
+
+An **Aggregate Root** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Consider the aggregate root as a safeguard for invariants, ensuring the consistency and validity of the domain model.** Those invariants are esential bussiness rules, we can't model real business processes without them.
+
+Aggregate roots are also transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
+
+image::Assets/aggregate_root_internals.png[]
+
+NOTE: When you are looking for boundaries of an aggregate, you should consider which data has to change together (has to be in the same transaction) and which data can be changed independently.
+
+==== Main characteristics of aggregate roots:
+- They enforce business rules and invariants internally
+- They have a unique identity
+- They encapsulate entities and value objects and protect them from direct access
+- They are transactional boundaries
+- They have a lifecycle
+- They are lightweight
+- Each method execution state change is wrapped in a transaction
+- They can raise domain events after creating or state change after creating or state change
+
+[[domain-events]]
+==== Domain Events
+
+**Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system. They can also be translated into messages and sent to an external system.
+
+[source,csharp]
+----
+public sealed record AnnexAttachedToBindingContractEvent(
+    Guid Id,
+    AnnexId AnnexId,
+    BindingContractId BindingContractId,
+    DateTimeOffset ValidFrom,
+    DateTime OccuredAt) : IDomainEvent
+{
+    internal static AnnexAttachedToBindingContractEvent Raise(
+        AnnexId annexId,
+        BindingContractId bindingContractId,
+        DateTimeOffset validFrom)
+        => new(
+            Guid.NewGuid(),
+            annexId,
+            bindingContractId,
+            validFrom,
+            DateTime.UtcNow);
+}
+----
+
+[source,csharp]
+----
+public interface IDomainEvent
+{
+    Guid Id { get; }
+
+    DateTime OccuredAt { get; }
+}
+----
+
+NOTE: Because of entities and aggregate root are highly encapsulated, domain events are the only way check if something happened in the domain model. They are used as assertion in unit tests that make they more business expressive.
+
+=== Persistence Domain Model
+==== Persistence Ignorance
+Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more focused on the business logic and be easier to test. When are you working on infrastructure you don't touch crucial bussines logic which is good.
+
+image::Assets/persistance_ignorance.png[]
 
 == How to Run?
 
@@ -89,7 +335,7 @@ There are only 5 steps you need to start the application:
 4. Run `docker-compose build` to build the image of the application.
 5. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
-The `Fitnet``modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
+The `Fitnet` modular monolith application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
 The `Contracts` microservice runs on port `:8081`. Please navigate to http://localhost:8081 in your browser or http://localhost:8081/swagger/index.html to explore the API.
 
@@ -132,10 +378,7 @@ In case of any issues, you can add nuget feed manually:
 
 You should now be able to restore and download the EvolutionaryArchitecture nuget packages from your Artifactory source within Rider.
 
-[NOTE]
-====
-The provided instruction is primarily intended for JetBrains Rider. However, the procedure for adding a NuGet package source in alternative IDEs like Visual Studio is quite similar.
-====
+NOTE: The provided instruction is primarily intended for JetBrains Rider. However, the procedure for adding a NuGet package source in alternative IDEs like Visual Studio is quite similar.
 
 === How to run Integration Tests?
 Running integration tests for both the `Fitnet` Modular Monolith and `Fitness.Contracts` applications involves similar steps, as the testing setup for both projects.
