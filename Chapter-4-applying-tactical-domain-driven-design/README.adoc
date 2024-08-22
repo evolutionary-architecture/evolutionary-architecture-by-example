@@ -42,12 +42,12 @@ Let's take a look at modelling process.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
 
-Large part of the process is strategic part. That show us how important is to understand the problem space before we start coding. Tactical part is only a small part of the whole process, but still essential to build a good quailty software. 
+Large part of the process is strategic part. That show us how important is to understand the problem space before we start coding. Tactical part is only a small part of the whole process, but still essential to build a good quality software. 
 
 ==== Tactical
-Tactical techniques focus on solution implementation for problems that we already comprehend. They provide a set of patterns and <<building_blocks, building blocks>> that help developers apply the solution (domain model) in the code and maintain it in the long term.
+Tactical DDD focus on solution implementation for problems that we already comprehend. They provide a set of patterns and <<building_blocks, building blocks>> that help developers apply the solution (domain model) in the code and maintain it in the long term.
 
-NOTE: Tactical patterns are used only in the _Contracts_ microservice due to its domain complexity.
+NOTE: The patterns of tactical DDD are used only in the _Contracts_ microservice due to its domain complexity.
 
 == Case
 
@@ -96,7 +96,7 @@ In this step, we do not change the project structure of the application. We focu
 
 We introduce elements like:
 
-- <<aggregate-root,Aggregates>>
+- <<aggregate,Aggregates>>
 - <<entity,Entities>>
 - <<value-object,Value Objects>>
 - <<domain-events,Domain Events>>
@@ -124,17 +124,17 @@ NOTE: Invariant is a rule or condition that must always be true for a system to 
 
 To enforce these business rules and maintain consistency, we need a robust way to protect invariant, especially in a concurrent environment.
 
-This is where the concept of an <<aggregate-root,Aggregate Root>> comes into play.
+This is where the concept of an <<aggregate,Aggregate>> comes into play.
 
 That’s why the __Binding Contract__ <<entity,entity>> has to be promoted to <<aggregate-root,Aggregate Root>> that will guard the annexes invariants.
 
 image::Assets/aggregate_root_canvas.png[]
 
-IMPORTANT: Aggregate Root is pattern that solve specific problem. It is not a silver bullet. "Aggregate Root Canvas" will help you make this decision consciously and consider all essential aspects like purpose, invariants, concurency, performance. We are encouraging you to use it in your design process.
+IMPORTANT: Aggregate is pattern that solve specific problems. It is not a silver bullet. "Aggregate Design Canvas" will help you make this decision consciously and consider all essential aspects like purpose, invariants, concurrency, performance. We are encouraging you to use it in your design process.
 
-Let's proceed with and anlysis and take a look on __Annex__. Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business logic. We will model it as an <<entity, entity>>.
+Let's proceed with and analysis and take a look on __Annex__. Annexes are a part of the __Binding Contract__ <<aggregate,aggregate>>. They have to be uniquely identified and encapsulate business logic. We will model it as an <<entity, entity>>  inside the Binding Contract aggregate.
 
-__Binding Contract__ has signature property which has business logic and is no requirement to be uniquely identified. Signature can be compared by its properties. We want to use the ubiquitous language, so we have chosen <<value-object, value object>> as building block to model this concept.
+__Binding Contract__ has signature property which has business logic and is no requirement to be uniquely identified. Signature can be compared by its properties so we have chosen <<value-object, value object>> as building block to model this concept.
 
 Every time we attach annex to the __Binding Contract__, we want to notify other parts of the system about this event. This is a perfect use case for <<domain-events,Domain Events>>.
 
@@ -155,7 +155,7 @@ An **Entity** is representation of business concept that has its own identity. I
 - They can be changed over time
 - They encapsulate business logic
 - They can raise domain events after creating or state change
-- They can be internal part of an aggregate root
+- They can be internal part of an aggregate
 - They can be becoming aggregate root when needed of protecting invariants
 - In one bounded context concept can be modeled as a value object and in another as an entity
 
@@ -185,7 +185,7 @@ public sealed class Annex : Entity
 }
 ----
 
-NOTE: You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior (methods) in the domain entity insted having this logic in the service layer.
+NOTE: You probably have heard about Anemic Domain Model. This is known as anti-pattern. It is an entity that has only properties and no behavior. It is acceptable when you have simple CRUD operations. In complex process, we recommend to encapsulate behavior (methods) in the domain entity instead having this logic in the service layer.
 
 [[value-object]]
 ==== Value Object
@@ -202,8 +202,7 @@ For e.g you can treat _SSN_ as _string_. _String_ allow put to field every chara
 **Value object is precise and can validate format during object initialization.**
 
 ==== Examples from different domains:
-- Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character metters)
-- SSN (Social Security Number) in the financial domain
+- Iccid (International Circuit Card Identifier) in the telecommunications domain (this not just string but every character matters)
 - Money in the financial domain (amount and currency)
 - Address in the e-commerce domain
 - PhoneNumber in the telecommunication domain
@@ -212,8 +211,8 @@ For e.g you can treat _SSN_ as _string_. _String_ allow put to field every chara
 
 ==== Main characteristics of value objects:
 - They have no identity
-- They represent a bussiness concept
-- They can encapsulate bussiness logic like validation during object initialization
+- They represent a business concept
+- They can encapsulate business logic like validation during object initialization
 - They can be used as a part of an entity or aggregate root
 - They are immutable
 - They are compared by their properties
@@ -244,12 +243,12 @@ public sealed class Signature : ValueObject
 }
 ----
 
-[[aggregate-root]]
-==== Aggregate Root
+[[aggregate]]
+==== Aggregate
 
-An **Aggregate Root** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Consider the aggregate root as a safeguard for invariants, ensuring the consistency and validity of the domain model.** Those invariants are esential bussiness rules, we can't model real business processes without them.
+An **Aggregate** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Consider the aggregate root as a safeguard for invariants, ensuring the consistency and validity of the domain model.** Those invariants are essential business rules, we can't model real business processes without them.
 
-Aggregate roots are also transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
+Aggregates are also transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
 
 image::Assets/aggregate_root_internals.png[]
 
@@ -268,7 +267,7 @@ NOTE: When you are looking for boundaries of an aggregate, you should consider w
 [[domain-events]]
 ==== Domain Events
 
-**Domain Events** are used to capture and communicate important events that occur within the domain. These events can trigger side effects or workflows in other parts of the system. They can also be translated into messages and sent to an external system.
+**Domain Events** are used to capture and communicate important events that occur within the domain. They can also be transformed into public events ("Integration Events") and sent to an external system to trigger workflows.
 
 [source,csharp]
 ----
@@ -306,7 +305,7 @@ NOTE: Because of entities and aggregate root are highly encapsulated, domain eve
 
 === Persistence Domain Model
 ==== Persistence Ignorance
-Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more focused on the business logic and be easier to test. When are you working on infrastructure you don't touch crucial bussines logic which is good.
+Persistence Ignorance is a principle that states that domain model should not be aware of the persistence mechanism. It should not have any dependencies on the database or any other storage mechanism. This allows the domain model to be more focused on the business logic and be easier to test. When are you working on infrastructure you don't touch crucial business logic which is good.
 
 image::Assets/persistance_ignorance.png[]
 
