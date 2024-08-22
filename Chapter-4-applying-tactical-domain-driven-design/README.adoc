@@ -47,7 +47,7 @@ Let's take a look at the modelling process.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
 
-Large part of the process is a strategic part. That shows us how important it is to understand the problem space before we start coding. Tactical part is only a small part of the whole process, but still essential to building good quality software. 
+The larger part of the process is a strategic part. That shows us how important it is to understand the problem space before we start coding. The Tactical part is only a small part of the whole process, but still essential to building good quality software. 
 
 ==== Tactical
 Tactical DDD focus on solution implementation for problems that we already comprehend.
@@ -278,7 +278,7 @@ NOTE: When you’re looking for boundaries of an aggregate, you should consider 
 [[domain-events]]
 ==== Domain Events
 
-**Domain Events** are used to capture and communicate important events that occur within the domain. They can also be transformed into public events ("Integration Events") and sent to an external system to trigger workflows.
+**Domain Events** are used to capture and communicate important events that occur within the domain, they’re treated as internal events. They can be transformed to public events and published to the outside world to notify other parts of the system about the changes and trigger workflows.
 
 [source,csharp]
 ----
