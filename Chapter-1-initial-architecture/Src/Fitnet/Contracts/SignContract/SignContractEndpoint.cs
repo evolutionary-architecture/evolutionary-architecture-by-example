@@ -1,40 +1,18 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.SignContract;
 
-using Data.Database;
-using Events;
-using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Common.Validation.Requests;
 
 internal static class SignContractEndpoint
 {
     internal static void MapSignContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Sign,
             async (Guid id, SignContractRequest request,
-                ContractsPersistence persistence,
-                IEventBus bus,
-                TimeProvider timeProvider,
+                ContractService service,
                 CancellationToken cancellationToken) =>
             {
                 var contract =
-                    await persistence.Contracts.FindAsync([id], cancellationToken: cancellationToken);
-
-                if (contract is null)
-                {
-                    return Results.NotFound();
-                }
-
-                var dateNow = timeProvider.GetUtcNow();
-                contract.Sign(request.SignedAt, dateNow);
-                await persistence.SaveChangesAsync(cancellationToken);
-
-                var @event = ContractSignedEvent.Create(
-                    contract.Id,
-                    contract.CustomerId,
-                    contract.SignedAt!.Value,
-                    contract.ExpiringAt!.Value,
-                    timeProvider.GetUtcNow());
-                await bus.PublishAsync(@event, cancellationToken);
-
-                return Results.NoContent();
+                    await service.FindContractAsync(id);
+                await service.SignContractAsync(contract!, request.SignedAt, cancellationToken);
+                return contract is null ? Results.NotFound() : Results.NoContent();
             })
         .ValidateRequest<SignContractRequest>()
         .WithOpenApi(operation => new(operation)

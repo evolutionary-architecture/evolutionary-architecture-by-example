@@ -1,8 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data;
 
-using Common.BusinessRulesEngine;
-using PrepareContract.BusinessRules;
-using SignContract.BusinessRules;
 
 internal sealed class Contract
 {
@@ -15,8 +12,8 @@ internal sealed class Contract
     public DateTimeOffset PreparedAt { get; init; }
     public TimeSpan Duration { get; init; }
 
-    public DateTimeOffset? SignedAt { get; private set; }
-    public DateTimeOffset? ExpiringAt { get; private set; }
+    public DateTimeOffset? SignedAt { get; set; }
+    public DateTimeOffset? ExpiringAt { get; set; }
 
     public bool Signed => SignedAt.HasValue;
 
@@ -31,24 +28,8 @@ internal sealed class Contract
         Duration = duration;
     }
 
-    internal static Contract Prepare(Guid customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, bool? isPreviousContractSigned = null)
-    {
-        BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(customerAge));
-        BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(customerHeight));
-        BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(isPreviousContractSigned));
-
-        return new(Guid.NewGuid(),
+    internal static Contract Create(Guid customerId, DateTimeOffset preparedAt) => new(Guid.NewGuid(),
             customerId,
             preparedAt,
             StandardDuration);
-    }
-
-    internal void Sign(DateTimeOffset signedAt, DateTimeOffset dateNow)
-    {
-        BusinessRuleValidator.Validate(
-            new ContractCanOnlyBeSignedWithin30DaysFromPreparation(PreparedAt, signedAt));
-
-        SignedAt = signedAt;
-        ExpiringAt = dateNow.Add(Duration);
-    }
 }
