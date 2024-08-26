@@ -41,13 +41,15 @@ Examples of strategic techniques include:
 - link:https://vladikk.com/2018/01/26/revisiting-the-basics-of-ddd/[Domain Categorization]
 - link:https://github.com/ddd-crew/context-mapping[Context Mapping]
 
-NOTE: You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you’re building.
+IMPORTANT: You don't have to use all of them to be successfully. Treat DDD as pharmacy. You should choose the ones that fit your needs and the complexity of the system you’re building.
 
 Let's take a look at the modelling process.
 
 image::Assets/ddd-starter-modeling-circular.svg[]
 
-The larger part of the process is a strategic part. That shows us how important it is to understand the problem space before we start coding. The Tactical part is only a small part of the whole process, but still essential to building good quality software. 
+The larger part of the process is a strategic part. That shows us how important it is to understand the problem space before we start coding. The Tactical part is only a small part of the whole process, but still essential to building good quality software.
+
+NOTE: As you’ve likely noticed, we’ve applied strategic techniques from the first chapter. This included breaking down the business domain into bounded contexts and mapping the relationships between them. We didn’t label it as Strategic DDD at the time because we wanted to focus on resolving problems rather than the tools. However, it’s now necessary to fully explain DDD to ensure everyone has a clear understanding of what it entails.
 
 ==== Tactical
 Tactical DDD focus on solution implementation for problems that we already comprehend.
