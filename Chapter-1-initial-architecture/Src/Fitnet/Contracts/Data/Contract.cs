@@ -17,7 +17,10 @@ internal sealed class Contract
 
     public bool Signed => SignedAt.HasValue;
 
-    private Contract(Guid id,
+    // ReSharper disable once ConvertToPrimaryConstructor
+#pragma warning disable IDE0290
+    public Contract(Guid id,
+#pragma warning restore IDE0290
         Guid customerId,
         DateTimeOffset preparedAt,
         TimeSpan duration)

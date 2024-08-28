@@ -7,7 +7,7 @@ using Events;
 using Microsoft.EntityFrameworkCore;
 using PrepareContract;
 
-internal sealed class ContractService(ContractsPersistence persistence, IEventBus bus, TimeProvider timeProvider)
+internal sealed class ContractService(ContractsPersistence persistence, IEventBus bus)
 {
     public async Task<Contract?> FindContractAsync(Guid id) => await persistence.Contracts.FindAsync(id);
 
@@ -18,7 +18,7 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
             throw new ArgumentException("Contract can not be signed because more than 30 days have passed from the contract preparation");
         }
 
-        var dateNow = timeProvider.GetUtcNow();
+        var dateNow = DateTimeOffset.UtcNow;
         contract.SignedAt = signedAt;
         contract.ExpiringAt = dateNow.Add(contract.Duration);
         await persistence.SaveChangesAsync(cancellationToken);
@@ -28,7 +28,7 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
             contract.CustomerId,
             contract.SignedAt!.Value,
             contract.ExpiringAt!.Value,
-            timeProvider.GetUtcNow());
+            DateTimeOffset.UtcNow);
         await bus.PublishAsync(@event, cancellationToken);
     }
 
@@ -42,7 +42,7 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
         {
             if (request.CustomerHeight > 210)
             {
-                if (!contract1!.Signed)
+                if (contract1!.Signed)
                 {
                     throw new ArgumentException("Previous contract must be signed by the customer");
                 }
@@ -53,7 +53,11 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
             throw new ArgumentException("Contract can not be prepared for a person who is not adult");
         }
 
-        var contract = Contract.Create(request.CustomerId, request.PreparedAt);
+        var contract = new Contract(
+            Guid.NewGuid(),
+            request.CustomerId,
+            DateTimeOffset.UtcNow,
+            TimeSpan.FromDays(365));
         await persistence.Contracts.AddAsync(contract);
         await persistence.SaveChangesAsync();
     }
