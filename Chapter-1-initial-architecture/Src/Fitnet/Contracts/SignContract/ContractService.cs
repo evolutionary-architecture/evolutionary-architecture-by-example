@@ -38,17 +38,17 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
 
         if (request.CustomerAge < 18)
         {
+            if (request.CustomerHeight > 210)
+            {
+                if (previousContract?.Signed is false)
+                {
+                    throw new ArgumentException("Previous contract must be signed by the customer");
+                }
+
+                throw new ArgumentException("Customer height must fit maximum limit for gym instruments");
+            }
+
             throw new ArgumentException("Contract can not be prepared for a person who is not adult");
-        }
-
-        if (request.CustomerHeight > 210)
-        {
-            throw new ArgumentException("Customer height must fit maximum limit for gym instruments");
-        }
-
-        if (previousContract?.Signed is false)
-        {
-            throw new ArgumentException("Previous contract must be signed by the customer");
         }
 
         var contract = Contract.Create(request.CustomerId, request.PreparedAt);
