@@ -34,13 +34,15 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
 
     public async Task PrepareContractAsync(PrepareContractRequest request)
     {
-        var previousContract = await GetPreviousForCustomerAsync(persistence, request.CustomerId);
+        var contract1 = await persistence.Contracts
+            .OrderByDescending(contract => contract.PreparedAt)
+            .SingleOrDefaultAsync(contract => contract.CustomerId == request.CustomerId);
 
         if (request.CustomerAge < 18)
         {
             if (request.CustomerHeight > 210)
             {
-                if (previousContract?.Signed is false)
+                if (!contract1!.Signed)
                 {
                     throw new ArgumentException("Previous contract must be signed by the customer");
                 }
@@ -55,9 +57,4 @@ internal sealed class ContractService(ContractsPersistence persistence, IEventBu
         await persistence.Contracts.AddAsync(contract);
         await persistence.SaveChangesAsync();
     }
-
-    private static async Task<Contract?> GetPreviousForCustomerAsync(ContractsPersistence persistence, Guid customerId, CancellationToken cancellationToken = default) =>
-        await persistence.Contracts
-            .OrderByDescending(contract => contract.PreparedAt)
-            .SingleOrDefaultAsync(contract => contract.CustomerId == customerId, cancellationToken);
 }
