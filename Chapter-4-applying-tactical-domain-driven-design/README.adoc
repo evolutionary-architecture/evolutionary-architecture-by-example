@@ -167,7 +167,7 @@ An **Entity** is a representation of a business concept that has its own identit
 - They can raise domain events after creating or state change
 - They can be internal part of an aggregate
 - They can be becoming aggregate root when needed of protecting invariants
-- In one bounded context concept can be modeled as a value object and in another as an entity
+- In one bounded context concept can be modelled as a value object and in another as an entity
 
 [source,csharp]
 ----
@@ -222,12 +222,12 @@ For e.g., you can treat _SSN_ as _string_. _String_ allows put to field every ch
 ==== Main characteristics of value objects:
 - They have no identity
 - They represent a business concept
-- They can encapsulate business logic like validation during object initialization
+- They can encapsulate business logic like validation during object initialisation
 - They can be used as a part of an entity or aggregate root
 - They’re immutable
 - They’re compared by their properties
 - They have equals and hashcode methods implemented
-- In one bounded context concept can be modeled as a value object and in another as an entity
+- In one bounded context concept can be modelled as a value object and in another as an entity
 
 [source,csharp]
 ----
@@ -256,10 +256,14 @@ public sealed class Signature : ValueObject
 [[aggregate]]
 ==== Aggregate
 
-An **Aggregate** is a collection of related objects that are treated as a single unit. It consists of entities and value objects that are interconnected through a root entity. **Consider the aggregate root as a safeguard for invariants, ensuring the consistency and validity of the domain model.** Those invariants are essential business rules, we can't model real business processes without them.
+The **Aggregate** enforces consistency by aggregating changes that must occur together to uphold the aggregate’s invariants. This means that all changes within the aggregate are applied in a way that preserves the business rules and consistency requirements.
 
-[[aggregate-root]]
-IMPORTANT: The aggregate has its root. Entity which has been chosen as root will wrap all other entities and value objects. It will be the only way to access them. This Root entity is called **Aggregate Root**
+It consists of one root entity, known as the <<aggregate-root, Aggregate Root>>, and may include other entities and value objects.
+Consider the aggregate root as a safeguard for invariants,
+ensuring that the aggregate is consistent immediately.
+These invariants are critical domain rules that must remain consistent, and they’re inseparable.
+
+NOTE: The pattern name “aggregate”,  might be confusing. An aggregate doesn’t aggregate data or collections of objects or entities. Instead, it aggregates together the pieces of data that **must change together** to **maintain consistency rules**.
 
 Aggregates are also transactional boundaries. All changes to the aggregate should be done through the aggregate root. This ensures that the aggregate is always in a consistent state.
 
@@ -276,6 +280,13 @@ NOTE: When you’re looking for boundaries of an aggregate, you should consider 
 - They’re lightweight
 - Each method execution state change is wrapped in a transaction
 - They can raise domain events after creating or state change after creating or state change
+
+[[aggregate-root]]
+The aggregate has its root.
+Entity which has been chosen as root will wrap all invariants,
+usually other entities and value objects will be also included.
+It will be the only way to access them.
+This Root entity is called **Aggregate Root**.
 
 [[domain-events]]
 ==== Domain Events
