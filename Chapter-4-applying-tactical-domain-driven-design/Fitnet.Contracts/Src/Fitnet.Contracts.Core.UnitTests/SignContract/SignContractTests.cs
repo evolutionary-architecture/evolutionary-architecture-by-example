@@ -6,6 +6,8 @@ using Core.SignContract;
 
 public sealed class SignContractTests
 {
+    private const string SignatureText = "John Doe";
+
     [Theory]
     [ClassData(typeof(SignContractTestData))]
     internal void Given_sign_contract_Then_expiration_date_is_set_to_contract_duration_from_now(
@@ -18,9 +20,10 @@ public sealed class SignContractTests
         Contract contract = ContractBuilder
             .Prepared()
             .PreparedAt(preparedAt);
+        var signature = Signature.From(signedAt, SignatureText);
 
         // Act
-        var signResult = contract.Sign(signedAt, fakeNow);
+        var signResult = contract.Sign(signature, fakeNow);
 
         // Assert
         var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();
@@ -36,9 +39,10 @@ public sealed class SignContractTests
         // Arrange
         Contract contract = ContractBuilder
             .Prepared();
+        var signature = Signature.From(SignedAt, SignatureText);
 
         // Act
-        var signResult = contract.Sign(SignedAt, FakeNow);
+        var signResult = contract.Sign(signature, FakeNow);
 
         // Assert
         var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();

@@ -4,6 +4,7 @@ using Common;
 
 internal sealed class SignedContractBuilder(Contract parentBuilder)
 {
+    private const string SignatureText = "John Doe";
     private DateTimeOffset? _signDay;
     private DateTimeOffset? _fakeToday;
 
@@ -19,7 +20,8 @@ internal sealed class SignedContractBuilder(Contract parentBuilder)
     {
         var signDay = _signDay ?? FakeContractDates.SignDay;
         var fakeToday = _fakeToday ?? FakeContractDates.SignDay;
-        var bindingContract = parentBuilder.Sign(signDay, fakeToday).Value;
+        var signature = Signature.From(signDay, SignatureText);
+        var bindingContract = parentBuilder.Sign(signature, fakeToday).Value;
 
         return bindingContract;
     }

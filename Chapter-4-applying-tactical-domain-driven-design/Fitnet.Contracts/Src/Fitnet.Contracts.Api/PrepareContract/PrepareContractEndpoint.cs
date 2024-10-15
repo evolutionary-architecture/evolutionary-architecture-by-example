@@ -11,9 +11,17 @@ internal static class PrepareContractEndpoint
 {
     internal static void MapPrepareContract(this IEndpointRouteBuilder app) =>
         app.MapPost(ContractsApiPaths.Prepare,
-            async Task (PrepareContractRequest request, IContractsModule contractsModule, CancellationToken cancellationToken) =>
-                await contractsModule.ExecuteCommandAsync(request.ToCommand(), cancellationToken).Match(
-                contractId => Results.Created(ContractsApiPaths.GetPreparedContractPath(contractId), (object?)contractId),
+            async Task<IResult> (PrepareContractRequest request, IContractsModule contractsModule, CancellationToken cancellationToken) =>
+                await contractsModule.ExecuteCommandAsync(request.ToCommand(), cancellationToken)
+                    .Match(
+                contractId =>
+                {
+                    var uri = ContractsApiPaths.GetPreparedContractPath(contractId);
+                    var value = (object?)contractId;
+                    var response = Results.Created(uri, value);
+
+                    return response;
+                },
                 errors => errors.ToProblem()))
         .ValidateRequest<PrepareContractRequest>()
         .WithOpenApi(operation => new(operation)

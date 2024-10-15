@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.SignContract;
 
+using Core;
 using IntegrationEvents;
 using MassTransit;
 
@@ -12,14 +13,14 @@ internal sealed class SignContractCommandHandler(
 {
     public async Task<ErrorOr<Guid>> Handle(SignContractCommand command, CancellationToken cancellationToken) =>
         await contractsRepository.GetByIdAsync(command.Id, cancellationToken)
-            .ThenAsync(async contract => await contract.Sign(command.SignedAt, timeProvider.GetUtcNow())
+            .ThenAsync(async contract => await contract.Sign(Signature.From(command.SignedAt, command.SignatureText), timeProvider.GetUtcNow())
                 .ThenAsync(async bindingContract =>
                 {
                     await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);
                     await contractsRepository.CommitAsync(cancellationToken);
                     var @event = ContractSignedEvent.Create(contract.Id.Value,
                         contract.CustomerId,
-                        contract.SignedAt!.Value,
+                        contract.Signature!.Date,
                         contract.ExpiringAt!.Value);
                     await publishEndpoint.Publish(@event, cancellationToken);
 

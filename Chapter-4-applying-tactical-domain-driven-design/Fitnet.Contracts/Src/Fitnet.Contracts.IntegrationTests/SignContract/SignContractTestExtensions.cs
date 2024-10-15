@@ -7,7 +7,7 @@ internal static class SignContractTestExtensions
     internal static async Task<Guid> SignContractAsync(this HttpClient httpClient, Guid contractId)
     {
         var requestParameters = SignContractRequestParameters.GetValid(contractId);
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.SignatureText);
         var response = await httpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
         response.EnsureSuccessStatusCode();
 

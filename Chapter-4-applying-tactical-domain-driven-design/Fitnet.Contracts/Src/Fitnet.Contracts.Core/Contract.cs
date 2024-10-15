@@ -17,10 +17,10 @@ public sealed class Contract : Entity
     public DateTimeOffset PreparedAt { get; init; }
     public TimeSpan Duration { get; init; }
 
-    public DateTimeOffset? SignedAt { get; private set; }
+    public Signature? Signature { get; private set; }
     public DateTimeOffset? ExpiringAt { get; private set; }
 
-    public bool IsSigned => SignedAt.HasValue;
+    public bool IsSigned => Signature is not null;
 
     // EF needs this constructor to create non-primitive types
     private Contract() { }
@@ -51,13 +51,13 @@ public sealed class Contract : Entity
             new PreviousContractHasToBeSignedRule(isPreviousContractSigned))
             .Then<Contract>(_ => new Contract(customerId, preparedAt, StandardDuration));
 
-    public ErrorOr<BindingContract> Sign(DateTimeOffset signedAt, DateTimeOffset now) =>
+    public ErrorOr<BindingContract> Sign(Signature signature, DateTimeOffset now) =>
         BusinessRuleValidator.Validate(
                 new ContractMustNotBeAlreadySignedRule(IsSigned),
-                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signedAt))
+                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signature.Date))
             .Then(_ =>
             {
-                SignedAt = signedAt;
+                Signature = signature;
                 ExpiringAt = now.Add(Duration);
                 var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value);
 
