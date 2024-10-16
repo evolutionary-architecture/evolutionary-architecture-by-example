@@ -22,9 +22,9 @@ runs:
         
         if dotnet nuget list source | grep -q $NugetSourceName; then
           echo "Removing existing nuget source: $NugetSourceName"
-          dotnet nuget remove source $NugetSourceName
+          dotnet nuget remove source '$NugetSourceName'
         else
-          echo "Nuget source $NugetSourceName does not exist. Skipping removal."
+          echo "Nuget source '$NugetSourceName' does not exist. Skipping removal."
         fi
 
         dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name ${{ inputs.nuget-source-name }} "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
