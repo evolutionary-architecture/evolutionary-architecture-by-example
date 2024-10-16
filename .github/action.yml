@@ -21,8 +21,8 @@ runs:
         cd ${{ github.workspace }}/${{ inputs.path }}
         
         if dotnet nuget list source | grep -q $NugetSourceName; then
-          echo "Removing existing nuget source: $NugetSourceName"
-          dotnet nuget remove source '$NugetSourceName'
+          echo "Removing existing nuget source: '$NugetSourceName'"
+          dotnet nuget remove source $NugetSourceName
         else
           echo "Nuget source '$NugetSourceName' does not exist. Skipping removal."
         fi
