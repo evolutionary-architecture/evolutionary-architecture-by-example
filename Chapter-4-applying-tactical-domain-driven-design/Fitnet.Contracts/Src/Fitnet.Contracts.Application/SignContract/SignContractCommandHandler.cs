@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Application.SignContract;
 
-using Core;
+using Core.SignContract.Signatures;
 using IntegrationEvents;
 using MassTransit;
 

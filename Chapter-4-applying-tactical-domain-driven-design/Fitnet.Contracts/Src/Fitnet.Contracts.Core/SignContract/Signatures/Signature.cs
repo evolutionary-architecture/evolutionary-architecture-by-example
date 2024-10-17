@@ -1,6 +1,7 @@
-﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures;
 
 using System.Text.RegularExpressions;
+using Exceptions;
 
 public sealed partial class Signature
 {
@@ -25,5 +26,3 @@ public sealed partial class Signature
     [GeneratedRegex(@"^[A-Za-z\s]+$")]
     private static partial Regex SignatureAllowedCharacters();
 }
-
-public sealed class SignatureNotValidException(string signatureText) : InvalidOperationException($"Signature text: '{signatureText}' contains invalid characters.");

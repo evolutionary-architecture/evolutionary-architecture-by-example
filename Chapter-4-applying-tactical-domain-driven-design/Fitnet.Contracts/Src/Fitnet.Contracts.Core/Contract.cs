@@ -5,6 +5,7 @@ using DomainDrivenDesign.BuildingBlocks;
 using PrepareContract;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;
+using SignContract.Signatures;
 
 public sealed class Contract : Entity
 {
@@ -51,7 +52,7 @@ public sealed class Contract : Entity
             new PreviousContractHasToBeSignedRule(isPreviousContractSigned))
             .Then<Contract>(_ => new Contract(customerId, preparedAt, StandardDuration));
 
-    public ErrorOr<BindingContract> Sign(Signature signature, DateTimeOffset now) =>
+    public ErrorOr<BindingContract> Sign(SignContract.Signatures.Signature signature, DateTimeOffset now) =>
         BusinessRuleValidator.Validate(
                 new ContractMustNotBeAlreadySignedRule(IsSigned),
                 new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signature.Date))

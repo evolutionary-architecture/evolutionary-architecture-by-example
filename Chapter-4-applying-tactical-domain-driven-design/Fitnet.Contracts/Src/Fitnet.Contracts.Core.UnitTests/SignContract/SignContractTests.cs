@@ -3,6 +3,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract;
 using Common;
 using Common.Builders;
 using Core.SignContract;
+using Core.SignContract.Signatures;
 
 public sealed class SignContractTests
 {

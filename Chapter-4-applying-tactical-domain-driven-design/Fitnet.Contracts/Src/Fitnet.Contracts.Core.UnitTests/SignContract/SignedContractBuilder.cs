@@ -1,6 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract;
 
 using Common;
+using Core.SignContract.Signatures;
 
 internal sealed class SignedContractBuilder(Contract parentBuilder)
 {

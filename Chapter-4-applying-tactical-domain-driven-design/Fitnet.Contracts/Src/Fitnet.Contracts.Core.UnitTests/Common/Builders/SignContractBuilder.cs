@@ -1,5 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Builders;
 
+using Core.SignContract.Signatures;
+
 internal sealed class SignContractBuilder(Contract parentBuilder)
 {
     private DateTimeOffset _signDay;

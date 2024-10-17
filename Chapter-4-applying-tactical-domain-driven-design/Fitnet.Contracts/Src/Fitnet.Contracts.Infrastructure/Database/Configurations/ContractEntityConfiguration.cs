@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Configurations;
 
 using Core;
+using Core.SignContract.Signatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

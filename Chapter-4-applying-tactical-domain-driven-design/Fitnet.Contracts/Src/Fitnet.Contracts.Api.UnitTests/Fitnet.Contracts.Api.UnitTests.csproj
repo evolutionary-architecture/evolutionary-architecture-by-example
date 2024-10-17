@@ -2,6 +2,7 @@
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.5.1" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     <PackageReference Include="xunit" Version="2.7.0" />
     <PackageReference Include="xunit.analyzers" Version="1.11.0">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" />
+    <ProjectReference Include="..\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
