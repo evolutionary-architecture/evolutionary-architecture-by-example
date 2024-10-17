@@ -23,3 +23,4 @@ runs:
         dotnet nuget remove source $NugetSourceName
         dotnet nuget add source --username ${{ inputs.owner }} --password ${{ inputs.github-token }} --store-password-in-clear-text --name $NugetSourceName "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
         dotnet nuget list source
+      shell: bash
