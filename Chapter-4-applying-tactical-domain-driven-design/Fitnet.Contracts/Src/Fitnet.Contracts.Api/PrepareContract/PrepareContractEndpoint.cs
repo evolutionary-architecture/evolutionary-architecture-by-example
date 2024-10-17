@@ -14,14 +14,7 @@ internal static class PrepareContractEndpoint
             async Task<IResult> (PrepareContractRequest request, IContractsModule contractsModule, CancellationToken cancellationToken) =>
                 await contractsModule.ExecuteCommandAsync(request.ToCommand(), cancellationToken)
                     .Match(
-                contractId =>
-                {
-                    var uri = ContractsApiPaths.GetPreparedContractPath(contractId);
-                    var value = (object?)contractId;
-                    var response = Results.Created(uri, value);
-
-                    return response;
-                },
+                contractId => Results.Created(ContractsApiPaths.GetPreparedContractPath(contractId), (object?)contractId),
                 errors => errors.ToProblem()))
         .ValidateRequest<PrepareContractRequest>()
         .WithOpenApi(operation => new(operation)
