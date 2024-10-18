@@ -1,5 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Builders;
 
+using Core.SignContract.Signatures;
+
 internal sealed class SignContractBuilder(Contract parentBuilder)
 {
     private DateTimeOffset _signDay;
@@ -15,7 +17,8 @@ internal sealed class SignContractBuilder(Contract parentBuilder)
 
     private BindingContract Build()
     {
-        var bindingContract = parentBuilder.Sign(_signDay, _fakeToday);
+        var signature = Signature.From(_signDay, "John Doe");
+        var bindingContract = parentBuilder.Sign(signature, _fakeToday);
 
         return bindingContract.Value;
     }
