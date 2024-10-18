@@ -11,7 +11,7 @@ public sealed class SignatureTests
     [InlineData("Kamil Baczek")]
     [InlineData("Maciej Jedrzejewski")]
     [InlineData("John David Smith")]
-    public void GivenSignatureWhenValidatingThenDoesNotThrow(string signatureText)
+    internal void Given_create_signature_When_signature_is_valid_Then_should_not_throw(string signatureText)
     {
         // Arrange
         var dateTimeOffset = DateTimeOffset.Now;
@@ -27,10 +27,12 @@ public sealed class SignatureTests
     [Theory]
     [InlineData("invalidSignature!")]
     [InlineData("invalid@Signature")]
-    public void GivenInvalidSignatureWhenValidatingThenThrowsSignatureNotValidException(string signature)
+    internal void Given_create_signature_When_signature_has_forbidden_characters_Then_should_throw_exception(string signature)
     {
-        // Act & Assert
+        // Act
         Action act = () => Signature.From(DateTimeOffset.Now, signature);
+
+        // Assert
         act.Should().Throw<SignatureNotValidException>();
     }
 }
