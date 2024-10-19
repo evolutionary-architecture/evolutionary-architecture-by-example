@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Routing;
 
 internal static class SignContractEndpoint
 {
-    internal static void MapSignContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Sign, async (
+    internal static void MapSignContract(this IEndpointRouteBuilder app) => app.MapPatch(ContractsApiPaths.Sign,
+            async Task<IResult> (
                 Guid id,
                 SignContractRequest request,
                 IContractsModule contractsModule, CancellationToken cancellationToken) =>
