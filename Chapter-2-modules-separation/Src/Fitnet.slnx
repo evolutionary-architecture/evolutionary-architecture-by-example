@@ -1,0 +1,46 @@
+﻿<Solution>
+  <Folder Name="/Common/">
+    <Project Path="Common\Fitnet.Common.Api\Fitnet.Common.Api.csproj" Type="Classic C#" />
+    <Project Path="Common\Fitnet.Common.Core\Fitnet.Common.Core.csproj" Type="Classic C#" />
+    <Project Path="Common\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" Type="Classic C#" />
+    <Project Path="Common\Fitnet.Common.IntegrationTests\Fitnet.Common.IntegrationTests.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Common/Tests/">
+    <Project Path="Common\Tests\Fitnet.Common.Api.UnitTests\Fitnet.Common.Api.UnitTests.csproj" Type="Classic C#" />
+    <Project Path="Common\Tests\Fitnet.Common.Core.UnitTests\Fitnet.Common.Core.UnitTests.csproj" Type="Classic C#" />
+    <Project Path="Common\Tests\Fitnet.Common.Infrastructure.IntegrationTests\Fitnet.Common.Infrastructure.IntegrationTests.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Contracts/">
+    <Project Path="Contracts\Fitnet.Contracts.Api\Fitnet.Contracts.Api.csproj" Type="Classic C#" />
+    <Project Path="Contracts\Fitnet.Contracts.Application\Fitnet.Contracts.Application.csproj" Type="Classic C#" />
+    <Project Path="Contracts\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" Type="Classic C#" />
+    <Project Path="Contracts\Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj" Type="Classic C#" />
+    <Project Path="Contracts\Fitnet.Contracts.IntegrationEvents\Fitnet.Contracts.IntegrationEvents.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Contracts/Tests/">
+    <Project Path="Contracts\Tests\Fitnet.Contracts.Core.UnitTests\Fitnet.Contracts.Core.UnitTests.csproj" Type="Classic C#" />
+    <Project Path="Contracts\Tests\Fitnet.Contracts.IntegrationTests\Fitnet.Contracts.IntegrationTests.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Offers/">
+    <Project Path="Offers\Fitnet.Offers.Api\Fitnet.Offers.Api.csproj" Type="Classic C#" />
+    <Project Path="Offers\Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Offers/Tests/">
+    <Project Path="Offers\Tests\Fitnet.Offers.IntegrationTests\Fitnet.Offers.IntegrationTests.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Passes/">
+    <Project Path="Passes\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" Type="Classic C#" />
+    <Project Path="Passes\Fitnet.Passes.DataAccess\Fitnet.Passes.DataAccess.csproj" Type="Classic C#" />
+    <Project Path="Passes\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Passes/Tests/">
+    <Project Path="Passes\Tests\Fitnet.Passes.IntegrationTests\Fitnet.Passes.IntegrationTests.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Reports/">
+    <Project Path="Reports\Fitnet.Reports\Fitnet.Reports.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Reports/Tests/">
+    <Project Path="Reports\Tests\Fitnet.Reports.IntegrationTests\Fitnet.Reports.IntegrationTests.csproj" Type="Classic C#" />
+  </Folder>
+  <Project Path="Fitnet\Fitnet.csproj" Type="Classic C#" />
+</Solution>

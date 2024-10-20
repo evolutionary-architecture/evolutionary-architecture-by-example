@@ -1,0 +1,9 @@
+﻿<Solution>
+  <Project Path="Fitnet.Common.Api.UnitTests\Fitnet.Common.Api.UnitTests.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Common.Api\Fitnet.Common.Api.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Common.Core.UnitTests\Fitnet.Common.Core.UnitTests.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Common.Core\Fitnet.Common.Core.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Common.IntegrationTestsToolbox\Fitnet.Common.IntegrationTestsToolbox.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Common.UnitTesting\Fitnet.Common.UnitTesting.csproj" Type="Classic C#" />
+</Solution>
