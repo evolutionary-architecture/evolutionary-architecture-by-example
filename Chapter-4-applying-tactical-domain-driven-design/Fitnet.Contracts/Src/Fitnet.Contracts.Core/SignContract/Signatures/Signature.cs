@@ -1,23 +1,23 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures;
 
-public sealed partial class DigitalSignature
+public sealed partial class Signature
 {
     private static readonly Regex SignaturePattern = SignatureAllowedCharacters();
     public DateTimeOffset Date { get; }
-    public string Signature { get; }
+    public string Value { get; }
 
-    private DigitalSignature(DateTimeOffset date, string signature)
+    private Signature(DateTimeOffset date, string value)
     {
         Date = date;
-        if (!SignaturePattern.IsMatch(signature))
+        if (!SignaturePattern.IsMatch(value))
         {
-            throw new DigitalSignatureNotValidException(signature);
+            throw new SignatureNotValidException(value);
         }
 
-        Signature = signature;
+        Value = value;
     }
 
-    public static DigitalSignature From(DateTimeOffset signedAt, string signature) =>
+    public static Signature From(DateTimeOffset signedAt, string signature) =>
         new(signedAt, signature);
 
     [GeneratedRegex(@"^[A-Za-z\s]+$")]

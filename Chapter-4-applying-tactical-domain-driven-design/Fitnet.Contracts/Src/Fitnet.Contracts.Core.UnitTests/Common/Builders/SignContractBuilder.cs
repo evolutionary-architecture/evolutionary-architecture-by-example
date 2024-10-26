@@ -17,7 +17,7 @@ internal sealed class SignContractBuilder(Contract parentBuilder)
 
     private BindingContract Build()
     {
-        var signature = DigitalSignature.From(_signDay, "John Doe");
+        var signature = Signature.From(_signDay, "John Doe");
         var bindingContract = parentBuilder.Sign(signature, _fakeToday);
 
         return bindingContract.Value;

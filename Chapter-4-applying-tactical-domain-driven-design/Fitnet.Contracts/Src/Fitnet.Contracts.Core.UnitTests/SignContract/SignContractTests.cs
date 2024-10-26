@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.SignContract;
 using Common;
 using Common.Builders;
 using Core.SignContract;
-using Core.SignContract.Signatures;
 
 public sealed class SignContractTests
 {
@@ -21,7 +20,7 @@ public sealed class SignContractTests
         Contract contract = ContractBuilder
             .Prepared()
             .PreparedAt(preparedAt);
-        var signature = DigitalSignature.From(signedAt, Signature);
+        var signature = Core.SignContract.Signatures.Signature.From(signedAt, Signature);
 
         // Act
         var signResult = contract.Sign(signature, fakeNow);
@@ -40,7 +39,7 @@ public sealed class SignContractTests
         // Arrange
         Contract contract = ContractBuilder
             .Prepared();
-        var digitalSignature = DigitalSignature.From(SignedAt, Signature);
+        var digitalSignature = Core.SignContract.Signatures.Signature.From(SignedAt, Signature);
 
         // Act
         var signResult = contract.Sign(digitalSignature, FakeNow);

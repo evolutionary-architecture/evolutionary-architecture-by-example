@@ -4,38 +4,38 @@ using EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures;
 using Core.SignContract.Signatures.Exceptions;
 using FluentAssertions;
 
-public sealed class DigitalSignatureTests
+public sealed class SignatureTests
 {
     [Theory]
     [InlineData("John Doe")]
     [InlineData("Kamil Baczek")]
     [InlineData("Maciej Jedrzejewski")]
     [InlineData("John David Smith")]
-    internal void Given_create_signature_When_signature_is_valid_Then_should_not_throw(string signature)
+    internal void Given_create_signature_When_signature_is_valid_Then_should_not_throw(string value)
     {
         // Arrange
         var now = DateTimeOffset.Now;
 
         // Act
-        var digitalSignature = DigitalSignature.From(now, signature);
+        var signature = Signature.From(now, value);
 
         // Assert
-        digitalSignature.Signature.Should().Be(signature);
-        digitalSignature.Date.Should().Be(now);
+        signature.Value.Should().Be(value);
+        signature.Date.Should().Be(now);
     }
 
     [Theory]
     [InlineData("invalidSignature!")]
     [InlineData("invalid@Signature")]
-    internal void Given_create_signature_When_signature_has_forbidden_characters_Then_should_throw_exception(string signature)
+    internal void Given_create_signature_When_signature_has_forbidden_characters_Then_should_throw_exception(string value)
     {
         // Arrange
         var now = DateTimeOffset.Now;
 
         // Act
-        Action act = () => DigitalSignature.From(now, signature);
+        Action act = () => Signature.From(now, value);
 
         // Assert
-        act.Should().Throw<DigitalSignatureNotValidException>();
+        act.Should().Throw<SignatureNotValidException>();
     }
 }

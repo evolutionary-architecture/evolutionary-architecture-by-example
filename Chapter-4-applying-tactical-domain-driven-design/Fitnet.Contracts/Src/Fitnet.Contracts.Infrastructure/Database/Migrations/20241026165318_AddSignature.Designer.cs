@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(ContractsPersistence))]
-    [Migration("20241026082140_AddSignature")]
+    [Migration("20241026165318_AddSignature")]
     partial class AddSignature
     {
         /// <inheritdoc />
@@ -104,7 +104,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migr
 
             modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Contracts.Core.Contract", b =>
                 {
-                    b.OwnsOne("EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures.DigitalSignature", "Signature", b1 =>
+                    b.OwnsOne("EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures.Signature", "Signature", b1 =>
                         {
                             b1.Property<Guid>("ContractId")
                                 .HasColumnType("uuid");
@@ -112,7 +112,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migr
                             b1.Property<DateTimeOffset>("Date")
                                 .HasColumnType("timestamp with time zone");
 
-                            b1.Property<string>("Signature")
+                            b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("character varying(100)");
