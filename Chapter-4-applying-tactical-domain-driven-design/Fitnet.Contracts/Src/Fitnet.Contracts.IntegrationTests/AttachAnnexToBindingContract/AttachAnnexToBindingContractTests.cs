@@ -2,11 +2,11 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.AttachAnnex
 
 using Api;
 using Api.AttachAnnexToBindingContract;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Time;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using Common.IntegrationTestsToolbox.TestEngine.Time;
 using PrepareContract;
 using SignContract;
 using TerminateBindingContract;

@@ -3,10 +3,9 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.PrepareCont
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Api;
 using Api.PrepareContract;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
-using Microsoft.AspNetCore.Mvc;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 
 public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
     DatabaseContainer database) : IClassFixture<FitnetWebApplicationFactory<Program>>,

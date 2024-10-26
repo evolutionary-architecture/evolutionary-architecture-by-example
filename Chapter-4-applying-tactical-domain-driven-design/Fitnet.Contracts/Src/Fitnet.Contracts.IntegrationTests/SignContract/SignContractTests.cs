@@ -1,11 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
 using Api.SignContract;
+using Common.IntegrationTestsToolbox.TestEngine;
+using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.Configuration;
-using Fitnet.Common.IntegrationTestsToolbox.TestEngine.EventBus;
-using Microsoft.AspNetCore.Mvc;
 using PrepareContract;
 
 public sealed class SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
