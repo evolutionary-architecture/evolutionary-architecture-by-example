@@ -4,11 +4,13 @@ using FluentValidation;
 
 internal sealed class SignContractRequestValidator : AbstractValidator<SignContractRequest>
 {
+    private const int SignatureMaximumLength = 100;
+
     public SignContractRequestValidator()
     {
-        RuleFor(signContractRequest => signContractRequest.SignatureText)
+        RuleFor(signContractRequest => signContractRequest.Signature)
             .NotEmpty()
-            .MaximumLength(100);
+            .MaximumLength(SignatureMaximumLength);
 
         RuleFor(signContractRequest => signContractRequest.SignedAt)
             .NotEmpty();

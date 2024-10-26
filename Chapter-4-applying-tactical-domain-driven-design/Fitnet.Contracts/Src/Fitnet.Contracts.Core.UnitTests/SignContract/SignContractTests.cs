@@ -7,7 +7,7 @@ using Core.SignContract.Signatures;
 
 public sealed class SignContractTests
 {
-    private const string SignatureText = "John Doe";
+    private const string Signature = "John Doe";
 
     [Theory]
     [ClassData(typeof(SignContractTestData))]
@@ -21,7 +21,7 @@ public sealed class SignContractTests
         Contract contract = ContractBuilder
             .Prepared()
             .PreparedAt(preparedAt);
-        var signature = Signature.From(signedAt, SignatureText);
+        var signature = DigitalSignature.From(signedAt, Signature);
 
         // Act
         var signResult = contract.Sign(signature, fakeNow);
@@ -40,10 +40,10 @@ public sealed class SignContractTests
         // Arrange
         Contract contract = ContractBuilder
             .Prepared();
-        var signature = Signature.From(SignedAt, SignatureText);
+        var digitalSignature = DigitalSignature.From(SignedAt, Signature);
 
         // Act
-        var signResult = contract.Sign(signature, FakeNow);
+        var signResult = contract.Sign(digitalSignature, FakeNow);
 
         // Assert
         var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();

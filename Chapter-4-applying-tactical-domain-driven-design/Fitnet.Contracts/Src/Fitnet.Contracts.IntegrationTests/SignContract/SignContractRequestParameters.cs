@@ -2,10 +2,10 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContrac
 
 using Api;
 
-internal record SignContractRequestParameters(string Url, DateTimeOffset SignedAt, string SignatureText)
+internal record SignContractRequestParameters(string Url, DateTimeOffset SignedAt, string Signature)
 {
-    internal static SignContractRequestParameters GetValid(Guid id, string signatureText = "John Doe") =>
-        new(BuildUrl(id), GetValidSignedAtDate(), signatureText);
+    internal static SignContractRequestParameters GetValid(Guid id, string signature = "John Doe") =>
+        new(BuildUrl(id), GetValidSignedAtDate(), signature);
 
     internal static SignContractRequestParameters GetWithNotExistingContractId() =>
         new(BuildUrl(Guid.NewGuid()), GetValidSignedAtDate(), "John Doe");

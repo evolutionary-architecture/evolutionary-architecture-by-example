@@ -22,7 +22,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var requestParameters = SignContractRequestParameters.GetValid(preparedContractId);
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.SignatureText);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.Signature);
 
         // Act
         var signContractResponse =
@@ -37,7 +37,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
     {
         // Arrange
         var requestParameters = SignContractRequestParameters.GetWithNotExistingContractId();
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.SignatureText);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.Signature);
 
         // Act
         var signContractResponse =
@@ -55,7 +55,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var requestParameters =
             SignContractRequestParameters.GetWithInvalidSignedAtDate(preparedContractId);
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.SignatureText);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.Signature);
 
         // Act
         var signContractResponse =

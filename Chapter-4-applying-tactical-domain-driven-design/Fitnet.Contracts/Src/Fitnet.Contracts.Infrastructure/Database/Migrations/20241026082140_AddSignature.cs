@@ -4,7 +4,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Migr
 using Microsoft.EntityFrameworkCore.Migrations;
 
 /// <inheritdoc />
-public partial class AddSignatureText : Migration
+public partial class AddSignature : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ public partial class AddSignatureText : Migration
             newName: "Signature_Date");
 
         migrationBuilder.AddColumn<string>(
-            name: "Signature_Text",
+            name: "Signature_Signature",
             schema: "Contracts",
             table: "Contracts",
             type: "character varying(100)",
@@ -28,7 +28,7 @@ public partial class AddSignatureText : Migration
     protected override void Down(MigrationBuilder migrationBuilder)
     {
         migrationBuilder.DropColumn(
-            name: "Signature_Text",
+            name: "Signature_Signature",
             schema: "Contracts",
             table: "Contracts");
 

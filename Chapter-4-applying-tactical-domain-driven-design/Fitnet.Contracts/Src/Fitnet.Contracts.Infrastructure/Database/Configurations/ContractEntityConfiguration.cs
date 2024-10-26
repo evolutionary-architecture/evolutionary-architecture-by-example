@@ -19,10 +19,10 @@ internal sealed class ContractEntityConfiguration : IEntityTypeConfiguration<Con
                 value => new ContractId(value))
             .ValueGeneratedOnAdd();
         builder.Property(contract => contract.PreparedAt).IsRequired();
-        builder.OwnsOne<Signature>("Signature", signatureBuilder =>
+        builder.OwnsOne<DigitalSignature>("Signature", signatureBuilder =>
         {
             signatureBuilder.Property(signature => signature.Date).IsRequired();
-            signatureBuilder.Property(signature => signature.Text).IsRequired().HasMaxLength(100);
+            signatureBuilder.Property(signature => signature.Signature).IsRequired().HasMaxLength(100);
         });
     }
 }

@@ -13,7 +13,7 @@ internal sealed class SignContractCommandHandler(
 {
     public async Task<ErrorOr<Guid>> Handle(SignContractCommand command, CancellationToken cancellationToken) =>
         await contractsRepository.GetByIdAsync(command.Id, cancellationToken)
-            .ThenAsync(async contract => await contract.Sign(Signature.From(command.SignedAt, command.SignatureText), timeProvider.GetUtcNow())
+            .ThenAsync(async contract => await contract.Sign(DigitalSignature.From(command.SignedAt, command.Signature), timeProvider.GetUtcNow())
                 .ThenAsync(async bindingContract =>
                 {
                     await bindingContractsRepository.AddAsync(bindingContract, cancellationToken);

@@ -18,7 +18,7 @@ public sealed class Contract : Entity
     public DateTimeOffset PreparedAt { get; init; }
     public TimeSpan Duration { get; init; }
 
-    public Signature? Signature { get; private set; }
+    public DigitalSignature? Signature { get; private set; }
     public DateTimeOffset? ExpiringAt { get; private set; }
 
     public bool IsSigned => Signature is not null;
@@ -52,13 +52,13 @@ public sealed class Contract : Entity
             new PreviousContractHasToBeSignedRule(isPreviousContractSigned))
             .Then<Contract>(_ => new Contract(customerId, preparedAt, StandardDuration));
 
-    public ErrorOr<BindingContract> Sign(Signature signature, DateTimeOffset now) =>
+    public ErrorOr<BindingContract> Sign(DigitalSignature digitalSignature, DateTimeOffset now) =>
         BusinessRuleValidator.Validate(
                 new ContractMustNotBeAlreadySignedRule(IsSigned),
-                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, signature.Date))
+                new ContractCanOnlyBeSignedWithin30DaysFromPreparationRule(PreparedAt, digitalSignature.Date))
             .Then(_ =>
             {
-                Signature = signature;
+                Signature = digitalSignature;
                 ExpiringAt = now.Add(Duration);
                 var bindingContract = BindingContract.Start(Id, CustomerId, Duration, now, ExpiringAt.Value);
 

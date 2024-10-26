@@ -101,7 +101,7 @@ namespace EvolutionaryArchitecture.Fitnet.Migrations
 
             modelBuilder.Entity("EvolutionaryArchitecture.Fitnet.Contracts.Core.Contract", b =>
                 {
-                    b.OwnsOne("EvolutionaryArchitecture.Fitnet.Contracts.Core.Signature", "Signature", b1 =>
+                    b.OwnsOne("EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures.DigitalSignature", "Signature", b1 =>
                         {
                             b1.Property<Guid>("ContractId")
                                 .HasColumnType("uuid");
@@ -109,7 +109,7 @@ namespace EvolutionaryArchitecture.Fitnet.Migrations
                             b1.Property<DateTimeOffset>("Date")
                                 .HasColumnType("timestamp with time zone");
 
-                            b1.Property<string>("Text")
+                            b1.Property<string>("Signature")
                                 .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("character varying(100)");
