@@ -14,6 +14,7 @@ internal sealed class TerminateBindingContractCommandHandler(
                 .ThenAsync(async _ =>
                 {
                     await bindingContractsRepository.CommitAsync(cancellationToken);
+                    
                     return Unit.Value;
                 }));
 }
