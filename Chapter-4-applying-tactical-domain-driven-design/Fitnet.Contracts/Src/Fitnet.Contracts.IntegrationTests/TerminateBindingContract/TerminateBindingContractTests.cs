@@ -1,10 +1,10 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.TerminateBindingContract;
 
-using Common.IntegrationTestsToolbox.TestEngine.Time;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Common.IntegrationTestsToolbox.TestEngine;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using Common.IntegrationTestsToolbox.TestEngine.Time;
 using PrepareContract;
 using SignContract;
 

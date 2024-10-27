@@ -1,11 +1,10 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.IntegrationTests.SignContract;
 
 using Api.SignContract;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using Common.IntegrationTestsToolbox.TestEngine;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using Common.IntegrationTestsToolbox.TestEngine.EventBus;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using PrepareContract;
 
 public sealed class SignContractTests(FitnetWebApplicationFactory<Program> applicationInMemoryFactory,
@@ -22,7 +21,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         // Arrange
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var requestParameters = SignContractRequestParameters.GetValid(preparedContractId);
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.Signature);
 
         // Act
         var signContractResponse =
@@ -37,7 +36,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
     {
         // Arrange
         var requestParameters = SignContractRequestParameters.GetWithNotExistingContractId();
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.Signature);
 
         // Act
         var signContractResponse =
@@ -55,7 +54,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         var preparedContractId = await _applicationHttpClient.PrepareContractAsync();
         var requestParameters =
             SignContractRequestParameters.GetWithInvalidSignedAtDate(preparedContractId);
-        var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
+        var signContractRequest = new SignContractRequest(requestParameters.SignedAt, requestParameters.Signature);
 
         // Act
         var signContractResponse =
@@ -64,9 +63,9 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
         // Assert
         signContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
 
-        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ExceptionResponseMessage>();
-        responseMessage?.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Message.Should()
-            .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
+        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
+        responseMessage?.Detail.Should()
+            .Be("Contract can only be signed within 30 days from preparation");
     }
 }

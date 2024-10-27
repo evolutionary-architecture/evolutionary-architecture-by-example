@@ -4,6 +4,15 @@ using FluentValidation;
 
 internal sealed class SignContractRequestValidator : AbstractValidator<SignContractRequest>
 {
-    public SignContractRequestValidator() => RuleFor(signContractRequest => signContractRequest.SignedAt)
-        .NotEmpty();
+    private const int SignatureMaximumLength = 100;
+
+    public SignContractRequestValidator()
+    {
+        RuleFor(signContractRequest => signContractRequest.Signature)
+            .NotEmpty()
+            .MaximumLength(SignatureMaximumLength);
+
+        RuleFor(signContractRequest => signContractRequest.SignedAt)
+            .NotEmpty();
+    }
 }

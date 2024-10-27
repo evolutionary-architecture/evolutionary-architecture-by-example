@@ -1,6 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database.Configurations;
 
 using Core;
+using Core.SignContract.Signatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,6 +18,10 @@ internal sealed class ContractEntityConfiguration : IEntityTypeConfiguration<Con
                 value => new ContractId(value))
             .ValueGeneratedOnAdd();
         builder.Property(contract => contract.PreparedAt).IsRequired();
-        builder.Property(contract => contract.SignedAt).IsRequired(false);
+        builder.OwnsOne<Signature>("Signature", signatureBuilder =>
+        {
+            signatureBuilder.Property(signature => signature.Date).IsRequired();
+            signatureBuilder.Property(signature => signature.Value).IsRequired().HasMaxLength(100);
+        });
     }
 }

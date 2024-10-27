@@ -11,8 +11,9 @@ internal static class PrepareContractEndpoint
 {
     internal static void MapPrepareContract(this IEndpointRouteBuilder app) =>
         app.MapPost(ContractsApiPaths.Prepare,
-            async Task (PrepareContractRequest request, IContractsModule contractsModule, CancellationToken cancellationToken) =>
-                await contractsModule.ExecuteCommandAsync(request.ToCommand(), cancellationToken).Match(
+            async Task<IResult> (PrepareContractRequest request, IContractsModule contractsModule, CancellationToken cancellationToken) =>
+                await contractsModule.ExecuteCommandAsync(request.ToCommand(), cancellationToken)
+                    .Match(
                 contractId => Results.Created(ContractsApiPaths.GetPreparedContractPath(contractId), (object?)contractId),
                 errors => errors.ToProblem()))
         .ValidateRequest<PrepareContractRequest>()
