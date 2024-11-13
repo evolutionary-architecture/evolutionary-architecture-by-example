@@ -2,11 +2,16 @@
 Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc:
 
-++++
 <div align="center">
-  <img src="Assets/ea_banner.png" width="350" align="center" height="350" alt="ea banner">
+  <picture>
+    <!-- Dark theme logo -->
+    <source srcset="Assets/ea_banner_dark.png" media="(prefers-color-scheme: dark)">
+    <!-- Light theme logo -->
+    <source srcset="Assets/ea_banner_light.png" media="(prefers-color-scheme: light)">
+    <!-- Default logo (fallback if no theme is detected) -->
+    <img src="Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
+  </picture>
 </div>
-++++
 
 image:https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example[realease, alt="realease"]
 
