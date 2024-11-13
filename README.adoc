@@ -2,6 +2,7 @@
 Maciej "MJ" Jedrzejewski; Kamil Baczek
 :toc:
 
+++++
 <div align="center">
   <picture>
     <!-- Dark theme logo -->
@@ -12,6 +13,7 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
     <img src="Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
   </picture>
 </div>
+++++
 
 image:https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example[realease, alt="realease"]
 
