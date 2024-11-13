@@ -4,7 +4,11 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
 
 ++++
 <div align="center">
-  <img src="Assets/ea_banner.png" width="350" align="center" height="350" alt="ea banner">
+  <picture>
+    <source srcset="Assets/ea_banner_dark.png" media="(prefers-color-scheme: dark)">
+    <source srcset="Assets/ea_banner_light.png" media="(prefers-color-scheme: light)">
+    <img src="Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
+  </picture>
 </div>
 ++++
 
