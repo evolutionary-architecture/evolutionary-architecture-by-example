@@ -48,7 +48,7 @@ app.MapPasses();
 app.MapContracts();
 app.MapReports();
 
-app.Run();
+await app.RunAsync();
 
 namespace EvolutionaryArchitecture.Fitnet
 {
