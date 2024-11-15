@@ -9,7 +9,6 @@ using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using Passes.RegisterPass;
 using TestData;
 
-[UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
