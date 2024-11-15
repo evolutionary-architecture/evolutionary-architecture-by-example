@@ -94,6 +94,7 @@ public sealed class PrepareContractTests(
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight, customerId);
         var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+        
         return prepareContractResponse;
     }
 }
