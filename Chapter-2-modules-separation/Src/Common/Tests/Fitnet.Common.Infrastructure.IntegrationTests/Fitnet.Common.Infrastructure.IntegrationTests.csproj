@@ -5,7 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
     </ItemGroup>
 
     <ItemGroup>
