@@ -349,19 +349,6 @@ https://www.linkedin.com/in/kamilbaczek/[Linkedin]
 https://github.com/kamilbaczek[Github]
 |===
 
-== Roadmap 🧭
-
-[cols=3*, options=header]
-|===
-| Milestone | Date | Done
-
-| Repository Premiere :rocket: | 2023.10 | ✅
-| Migration to .NET 8 :fire: | 2023.11 | ✅
-| Architecture Tests :wrench: | 2023.12 |
-| Chapter 4: Focus on Complexity :brain: | 2024.03 |
-| Fitness Functions :gear: | 2024.05 |
-|===
-
 == 👩‍💻👨‍💻 What Software Engeeniers Say
 
 === 👨‍💼 Chief Software Architect
