@@ -12,7 +12,6 @@
 ++++
 
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-workflow.yml/badge.svg[Build Status]
-image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-package-workflow.yml/badge.svg[Build Status]
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-contracts-workflow.yml/badge.svg[Build Status]
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-4-package-workflow.yml/badge.svg[Build Status]
 
@@ -235,25 +234,28 @@ For e.g., you can treat _SSN_ as _string_. _String_ allows put to field every ch
 
 [source,csharp]
 ----
-public sealed class Signature : ValueObject
+public sealed partial class Signature
 {
-    public string Value { get; init; }
-    public DateTimeOffset SignedAt { get; init; }
+    private static readonly Regex SignaturePattern = SignatureAllowedCharacters();
+    public DateTimeOffset Date { get; }
+    public string Value { get; }
 
-    private Signature(string value)
+    private Signature(DateTimeOffset date, string value)
     {
-        if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException("Signature cannot be empty");
+        Date = date;
+        if (!SignaturePattern.IsMatch(value))
+        {
+            throw new SignatureNotValidException(value);
+        }
 
         Value = value;
     }
 
-    public static Signature Create(string value) => new(value);
+    public static Signature From(DateTimeOffset signedAt, string signature) =>
+        new(signedAt, signature);
 
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
-    }
+    [GeneratedRegex(@"^[A-Za-z\s]+$")]
+    private static partial Regex SignatureAllowedCharacters();
 }
 ----
 
