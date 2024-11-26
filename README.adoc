@@ -104,7 +104,7 @@ More information:
 - link:/Chapter-1-initial-architecture/README.adoc[Chapter's readme]
 - https://s.icepanel.io/vY0SkvgDs7V83U/wOj3[Interactive diagram]
 
-=== Chapter 2: Modules Separation: Focus On Maintainability
+==== Chapter 2: Modules Separation: Focus On Maintainability
 In this chapter, we will tackle a familiar scenario: your initial architecture is starting to show its limits. Your codebase has matured, and reality has begun to diverge from your early assumptions. Some modules are more complex than anticipated, others simpler. Meanwhile, your growing team is wrestling with merge conflicts in your single project.
 
 Time for the next evolution of your architecture. We will split our project into purpose-built projects that match each module's actual needs.
@@ -137,7 +137,7 @@ More information:
 
 - link:/Chapter-2-modules-separation/README.adoc[Chapter's readme]
 
-=== Chapter 3: Microservice Extraction: Focus On Growth
+==== Chapter 3: Microservice Extraction: Focus On Growth
 
 In this chapter, we tackle a crucial evolution: knowing when and how to extract your first microservice. We will explore the real-world signals (we call them "disintegrators") that tell you it is time to let a module spread its wings and become independent.
 
@@ -150,7 +150,7 @@ More information:
 - link:/Chapter-3-microservice-extraction/README.adoc[Chapter's readme]
 - https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP[Interactive diagram]
 
-=== Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
+==== Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 
 In the final chapter of our journey, we will show you something powerful: you can grow into a domain model without starting from scratch. Getting there is more like evolution than revolution.
 
