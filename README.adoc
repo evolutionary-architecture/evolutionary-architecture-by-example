@@ -47,47 +47,46 @@ This repository offers something different: not just another static collection o
 Your journey to architectural clarity begins here.
 
 === Proposed Solution
-Our solution should be read like a story and is divided into 4 chapters:
+Our approach unfolds like a story across four chapters, each building upon the last:
 
 link:/Chapter-1-initial-architecture/README.adoc[**Chapter 1:** Initial Architecture: Focus On Simplicity]
 
+Start with the basics: a production-ready foundation that separates modules with namespaces and leverages communication with an in-memory queue. Single production project with all the code inside.
+
 link:/Chapter-2-modules-separation/README.adoc[**Chapter 2:** Modules Separation: Focus On Maintainability]
+
+Develop the structure by organizing modules into separate projects. Multiple production projects that communicate with each other using an in-memory queue and events.
 
 link:/Chapter-3-microservice-extraction/README.adoc[**Chapter 3:** Microservice Extraction: Focus On Growth]
 
+Transform the selected module into an independent microservice, introducing an external message queue component (RabbitMQ) for inter-service communication. Code divided into multiple solutions representing modular monolith, microservice, and Nuget package.
+
 link:/Chapter-4-applying-tactical-domain-driven-design/README.adoc[**Chapter 4:** Applying Tactical Domain-Driven Design: Focus On Complexity]
 
-In each chapter we describe the evolution of the architecture of a selected domain:
+Leverage the power of tactical Domain-Driven Design concepts such as entities, value objects, aggregates, and domain events to manage the growing complexity of the extracted microservice.
 
-- Starting with a simple solution architecture that meets early production needs, where business processes are separated in namespaces and communication is handled by an in-memory queue
-- Moving to module separation with the structure of multiple projects associated with each module (including CQRS)
-- Continue with the single module extraction to a microservice and add the message queue component
-- Tackling the complexity of one of the modules using tactical Domain-Driven Design
+The entire repostiory reflects years of real-world experience, including the lessons we learned the hard way. Our goal is to guide you toward architecture that grows with your needs – neither too simplistic to scale nor too complex to maintain.
 
-We apply everything we have learned over many years of software development - our aim is to help you avoid making the same mistakes we have. This way you can be sure that your architecture will not be too trivial for too long, or too complex from the start. Treat it as a guide, something you can refer to at any time.
+What we cover:
 
-What we focus on:
-
-- Selected business domain analysis
-- Split the domain into subdomains (Core and Supportive)
-- Choice of architectural pattern
-- Evolution from monolithic to modular
-- Evolution to a mix of modular monolith and microservices
-- Applying Domain-Driven Design to a Core module
-- Backend (.NET) with minimal API
+- Analysis of a representative business domain (Fitness)
+- Domain-Driven Design (strategic and tactical)
+- Architectural patterns selection and evolution
+- Hybrid architecture combining modular monolith and microservices
 - Loose coupling
+- .NET backend implementation with minimal API
 - Architecture decision log
-- Good coding practices
+- Clean coding practices
 
-What we do not focus on:
+What we leave to you:
 
-- Frontend (you can use React, Vue, Angular, Svelte or anything else)
-- Logging (you can use https://serilog.net/[Serilog])
-- Contract testing (you can use https://github.com/pact-foundation/pact-net[Pact Net])
+- Frontend technology choice (React, Vue, Angular, Svelte, etc.)
+- Logging implementation (we recommend https://serilog.net/[Serilog])
+- Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
 
-so that you get the gist of what we have to share with you. Additionally, static code analysis is enabled in all chapters to help us to keep the code base as clean as possible. It is strongly suggested to use it as well in your production code.
+Each chapter includes static code analysis to maintain code quality – a practice we strongly recommend for production environments.
 
-NOTE: Keep in mind that these are our suggestions. In the end you will have to decide for yourself which chapters fit your needs or combine them into one solution.
+NOTE: These chapters represent several proven patterns and practices, but they are not hard and fast rules. Choose the approaches that meet your specific needs, or combine them to create the solution that fits your context. Think of this as your architectural compass, ready when you need it.
 
 == Domain
 
