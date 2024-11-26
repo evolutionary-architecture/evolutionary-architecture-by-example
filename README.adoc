@@ -29,20 +29,22 @@ image:https://img.shields.io/discord/1140287971367600148[alt="Discord Active"]
 == Objective
 
 === Problem
-There are many repositories that describe software and solution architecture in .NET. As there is no single definition of software architecture, they combine several topics:
+When searching for guidance on .NET solution architecture, you will find countless repositories and resources. Each tends to focus exclusively on their preferred approach, whether it is:
 
-- Deployment strategies like Modular Monolith and Microservices
-- Domain-Driven Design
-- Clean, Onion, Hexagonal Architecture
-- Infrastructure
+- Clean, Onion or Hexagonal architecture
+- Tactical Domain-Driven Design
+- Modular monolith
+- Microserverices
 
-as if each of the above were the only possible solution. And that is the problem - it is very rare that any single material shows you a concrete decision path or mix of the above approaches.
+The real challenge? Most materials present their chosen approach as the universal solution, overlooking the nuanced reality of day-to-day software development. What is missing is a clear decision map to help you understand when and how to combine these different architectural elements and patterns.
 
-Often the examples you find are either too trivial or too complex. Sometimes they are harmful because they misunderstand different concepts. As a result, it is very difficult to take just one and follow some patterns for your own application.
+The examples you find often fall into two extremes: oversimplified demos that don't reflect real-world complexity, or overwhelming enterprise-scale applications that are difficult to learn from. Worse still, some resources inadvertently perpetuate misconceptions by conflating different architectural concepts.
 
-_It depends_ - one of the most overused phrases. Well, it always depends on something, but there are always heuristics to help you decide.
+We have all heard the phrase "it depends" so often it's become a cliché. Yes, every decision depends on context - but that doesn't mean we can't develop heuristics to guide our choices.
 
-In summary, if you are looking for a journey - not just a single article describing a solution - look no further. It starts here, in this repo.
+This repository offers something different: not just another static collection of patterns, but an evolutionary journey through the software architecture decision-making process. Here you will learn how to evaluate trade-offs, combine approaches, and craft solutions that fit your specific needs at the time.
+
+Your path to architectural clarity starts here.
 
 === Proposed Solution
 Our solution should be read like a story and is divided into 4 chapters:
