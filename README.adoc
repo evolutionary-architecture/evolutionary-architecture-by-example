@@ -38,13 +38,13 @@ When searching for guidance on .NET solution architecture, you will find countle
 
 The real challenge? Most materials present their chosen approach as the universal solution, overlooking the nuanced reality of day-to-day software development. What is missing is a clear decision map to help you understand when and how to combine these different architectural elements and patterns.
 
-The examples you find often fall into two extremes: oversimplified demos that don't reflect real-world complexity, or overwhelming enterprise-scale applications that are difficult to learn from. Worse still, some resources inadvertently perpetuate misconceptions by conflating different architectural concepts.
+The examples you do find often fall into two extremes: oversimplified demos that don't reflect real-world complexity, or overwhelming enterprise-scale applications that are difficult to learn from. Even worse, some resources inadvertently perpetuate misconceptions by conflating different architectural concepts.
 
-We have all heard the phrase "it depends" so often it's become a cliché. Yes, every decision depends on context - but that doesn't mean we can't develop heuristics to guide our choices.
+We've all heard the phrase "it depends" so often it's become a cliché. Yes, every decision depends on context-but that doesn't mean we can't develop heuristics to guide our choices.
 
-This repository offers something different: not just another static collection of patterns, but an evolutionary journey through the software architecture decision-making process. Here you will learn how to evaluate trade-offs, combine approaches, and craft solutions that fit your specific needs at the time.
+This repository offers something different: not just another static collection of patterns, but an evolutionary journey through the software architecture decision-making process. Here you will learn how to evaluate tradeoffs, combine approaches, and craft solutions that meet your specific needs at any given time.
 
-Your path to architectural clarity starts here.
+Your journey to architectural clarity begins here.
 
 === Proposed Solution
 Our solution should be read like a story and is divided into 4 chapters:
