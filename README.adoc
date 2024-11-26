@@ -272,30 +272,26 @@ When you are finished defining all the bounded contexts, you should define the c
 
 === Overview
 
-We are trying to keep this repository as simple as possible, so that you can read it like a book. It contains chapters, where each chapter is an extension of the previous one, read like a story.
+Think of this repository as a novel rather than a technical manual. Each chapter builds naturally on the last, telling the story of how a real-world application evolves from its first lines of code to a mature, well-architected system. Simply follow the chapters in order, like turning the pages of a book, and see how each architectural decision naturally leads to the next. This "story-first" approach helps you understand not only what we built, but also why we made each choice along the way (supported by the architecture decision log).
 
 === How To Navigate?
 
-In the root folder of this repository you will find only this README, the assets (images & diagrams) used in it, and 4 folders containing the content for each chapter.
+This repository is organized with crystal-clear simplicity: beyond this main README and its supporting assets, you will find four key chapters that tell our evolutionary story:
 
 In each folder you will find the same root solution, but expanded:
 
-1. Chapter 1 - Initial state of the application
-2. Chapter 2 - Extraction into separate projects
-3. Chapter 3 - Extracting a module to a microservice and using the message queue
-4. Chapter 4 - Applying Tactical Domain-Driven Design to one of the modules
+- Chapter 1: Your starting point - a simple, initial architecture
+- Chapter 2: Growing pains lead to project separation
+- Chapter 3: Taking the microservice leap and upgrading communication
+- Chapter 4: Embracing tactical DDD in a maturing microservice
 
-Another important thing to note is that the detailed description of each chapter is in its own README folder. There you will find the information on how to run the solution, what solution structure is used, and other important things that are only relevant to that particular chapter. 
+Each chapter comes with its own detailed README - think of it as a chapter-specific guide that walks you through running the code, understanding the structure, and grasping concepts unique to that stage. We believe in building on knowledge, not repeating it, so each chapter focuses on what is new while assuming you are familiar with what came before.
 
-We are not repeating the information covered in the previous chapter, we are just extending it with the decision we have made.
-
-IMPORTANT: If you want to get the most out of this repository, we recommend that you read the first chapter, understand the code and description, and then navigate to another folder. Of course you can go through the folders in your own way but you might miss some concepts.
+IMPORTANT: While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
 
 == Libraries and Platforms Used
 
-The entire application is developed using C# and .NET 8.
-
-In each chapter we use libraries and platforms that simplify the development process (no need to create them yourself). We try to keep it to a minimum. The certain disadvantage is that we do not have full control over it (trade-off we accept). Here is the list of the most important ones:
+Our solution is built with C# and .NET 9, complemented by a carefully curated set of libraries and platforms. We have intentionally kept external dependencies minimal - just enough to avoid reinventing wheels while keeping the focus on architecture. While using third-party tools means trading some control for productivity, we believe it is a worthwhile tradeoff for most business applications.
 
 Application:
 
@@ -318,34 +314,34 @@ Testing:
 
 == Videos 🎥
 
-You can learn the essentials of Evolutionary Architecture from these videos:
+You can get a solid understanding of Evolutionary Architecture through these videos:
 
 === Webinar from Architecture Weekly 🇬🇧
 
-In this webinar, Maciej "MJ" Jedrzejewski gives a detailed talk on Evolutionary Architecture. You can watch the recorded webinar link:https://www.architecture-weekly.com/p/webinar-11-maciej-mj-jedrzejewski[here].
+In this webinar, Maciej "MJ" Jedrzejewski gives an in-depth presentation on Evolutionary Architecture. You can watch the recorded webinar at https://www.architecture-weekly.com/p/webinar-11-maciej-mj-jedrzejewski[here].
 
 === Presentation at Programistok 2023 Conference 🇵🇱
 
-This is a recorded presentation from the Programistok 2023 Conference, where Evolutionary Architecture was extensively explained. You can watch it on YouTube link:https://www.youtube.com/watch?v=tfCtM8D_DZ4&t=598s[here].
+This is a recorded presentation from the Programistok 2023 conference where Evolutionary Architecture was explained in detail. You can watch it on YouTube link:https://www.youtube.com/watch?v=tfCtM8D_DZ4[here].
 
 === Evolutionary Architecture Visualized Through NDepend 🇬🇧
 
-Explore Evolutionary Architecture visualized through NDepend, featuring comprehensive dependency and code analysis in the form of an interview led by Ferry de Boer with Kamil. Watch it on YouTube link:https://www.youtube.com/watch?v=Z60SAiVevIM&t[here].
+Explore Evolutionary Architecture visualized with NDepend, with comprehensive dependency and code analysis in the form of an interview with Kamil conducted by Ferry de Boer. Watch it on YouTube at https://www.youtube.com/watch?v=Z60SAiVevIM&t[here].
 
 == Authors ✍️
 
 [cols=2*,options=header]
 |===
-|Maciej Jedrzejewski
+|Maciej "MJ" Jedrzejewski
 |Kamil Baczek
 
-|Software architect, tech lead and facilitator of modern software development practices that allow shortening the feedback loop in every area of a lifecycle e.g. trunk-based development, short-living branches, vertical slices, canary releases, CI/CD, and more.
+|Author of the book "Master Software Architecture", technology agnostic architect, and Microsoft MVP.
 
-https://meaboutsoftware.com/[Blog]
+http://mastersoftwarearchitecturebook.com[Book]
+https://newsletter.fractionalarchitect.io[Newsletter]
 https://www.linkedin.com/in/jedrzejewski-maciej/[Linkedin]
-https://www.youtube.com/@meaboutsoftware[YouTube]
 
-|.NET Engineer, Software Architect who empowers teams to build better software through solid software architecture, utilising techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.
+|.NET Engineer, software architect, and Microsoft MVP who empowers teams to build better software through solid software architecture, utilising techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.
 
 https://artofsoftwaredesign.net/[Blog]
 https://www.linkedin.com/in/kamilbaczek/[Linkedin]
@@ -371,9 +367,9 @@ ____
 
 
 == 💬 Join our Community
-Join the "Evolutionary Architecture Community" on Discord (https://discord.gg/BGxYkHFCCF) to engage with fellow architects and enthusiasts who share a fervor for pushing boundaries and crafting high-quality software systems. Whether you have questions, suggestions, or feedback for our repository, we're excited to hear from you and collaborate towards continuous improvement.
+Connect with fellow architects and developers in our "Evolutionary Architecture" community on our https://discord.gg/BGxYkHFCCF[Discord]. Share your questions, suggestions, or feedback about our repository - we're here to learn and improve together.
 
 image::Assets/discord.png[link="https://discord.gg/BGxYkHFCCF",width=200,height=64]
 
 == ⭐ Say thanks
-Feel free to give a ⭐ to this repository if you like it. Your support is greatly appreciated!
+Finding this repository helpful? Drop us a ⭐! It is a small gesture that makes a big difference in helping others discover it.
