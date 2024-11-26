@@ -117,38 +117,68 @@ While we won't model every aspect of a fitness studio's operations (that would b
 Ultimately, you should be able to apply similar techniques to your own complex domains, regardless of industry.
 
 === Subdomains
-Now that you understand which business domain we are focusing on, it is time to break it down into smaller pieces called _Subdomains_.
+Every complex business domain becomes more manageable when broken down into smaller pieces. In domain modeling, we call these pieces _Subdomains_. Each subdomain represents a cohesive part of the domain. 
 
-There are many ways to do this. Our 3 favourites are:
+image::Assets/subdomains_theory.png[]
 
-- https://domainstorytelling.org[Domain Storytelling]
-- https://www.eventstorming.com[Event Storming]
-- https://storystorming.com[Story Storming]
+But how do we identify them?
 
-In general, the idea is to find processes by discovering the flow. Based on different heuristics you are able to define the smaller blocks.
+While there are several effective approaches to domain decomposition, we particularly value two powerful techniques:
 
-After a round of analysis, we decided to choose the following areas for implementation to show you the idea of _Evolutionary Architecture_:
+- https://www.eventstorming.com[Event Storming]: A collaborative modeling method that helps discover domain events and processes
+- https://domainstorytelling.org[Domain Storytelling]: A visual approach to understanding business processes through storytelling
 
-image::Assets/subdomains.jpg[]
+Both techniques help reveal the natural boundaries in your system by focusing on business flows and interactions. We won't focus on the details of either here, just the results you can achieve.
 
-As you can imagine, each subdomain covers a lot of different processes. Again, due to time constraints, we cannot focus on every single aspect. Therefore, we have chosen the following actions for each subdomain:
+After careful analysis, we have identified the following subdomains that represent fitness domain:
 
-image::Assets/subdomains_processes.jpg[]
+image::Assets/subdomains.png[]
 
-There are 6 different processes in 4 different subdomains. There is a problem here - these subdomains do not communicate with each other and this is one of the most common problems we have in our applications. So we decided to complicate things a bit and add some communication:
+NOTE: Watch out! You might have noticed we used simple names like _Pass, Offer,_ and _Contract_ for our subdomains. While these work for our example, they could lead you down the wrong path in real projects. These entity-like names can limit your thinking about what a subdomain represents. Instead, think in terms of business capabilities and processes. For example, instead of _Passes_, consider _Passes Registration_; rather than _Offers_, use _Offers Management_. This process-oriented naming becomes especially valuable when your domain grows. You might need to split a subdomain into more specific business processes – for instance, breaking _Offers Management_ into _Offer Publishing_ and _Offer Advertising_. 
 
-image::Assets//subdomains_communication.jpg[]
+While there are many processes in each of the subdomains, we have chosen specific workflows to keep our example focused and meaningful:
 
-There are 2 triggers:
+image::Assets/subdomains_processes.png[]
 
-- when the contract is signed by you (a customer), then the new pass is registered to allow you to enter the fitness studio
-- when the pass expires, then the new offer is prepared (which will be sent to you as a customer)
+Here is where things get interesting: these six processes across four subdomains initially appear independent. However, this isolation represents a common architectural pitfall in real-world applications. To make our example more realistic and instructive, we need to address how these subdomains communicate with each other.
 
-This way we are almost ready to start the implementation.
+image::Assets//subdomains_communication.png[]
 
-One more thing to mention - in our example, each subdomain is a separate _Bounded Context_.
+Our fitness studio system comes alive through two key interactions:
 
-IMPORTANT: It is worth mentioning that there may be a situation where multiple subdomains create a single _Bounded Context_. An example of this in _Fitness Studio_ domain can be: Assessments, Progress Tracking and Virtual Coaching that creates 1 _Bounded Context_ called _Personalised Training_.
+- First, when you sign a contract, the system automatically registers your access pass
+- Second, when your membership nears expiration, it triggers the creation of an  offer
+
+These workflows demonstrate how our seemingly separate subdomains need to work together in real-world scenarios.
+
+Now we need to somehow transform our subdomains into a technical solution. It is time to focus on bounded contexts.
+
+=== Bounded contexts
+To represent subdomains in your technical solution, you need a model. Often, we decide to just create a single, unified model for the entire solution. Unfortunately, this leads in future to a lot of issues because every subdomain operates in its own, and unique context.
+
+Let us explain.
+
+Imagine having two subdomains of _Workout Programming_ and _Meal Planning_ and each operate with the _Set_ term. However, it has very different meanings in each context:
+
+- In _Workout Programming_, a it refers to a specific number of exercise repetitions (like "3 sets of 10 pushups")
+- In _Meal Planning_, it means a predefined collection of meals (like "the basic meal set includes breakfast, lunch, and two snacks")
+
+Using a single model across different subdomains forces your code to constantly check its context before applying business logic. This inevitable path leads to what developers jokingly call "ifology" - a maze of nested if-statements spreading throughout your codebase. Soon enough, what started as a simple intent to reuse code transforms into the dreaded "big ball of mud" or "spaghetti code" - where business rules become so intertwined that making even small changes becomes risky and time-consuming.
+
+Another approach is to divide your system into multiple models. Each model will represent its ubiquitous language, business capabilities, and rules. This approach allows models to be extended independently without affecting the others. This way each model becomes a separate bounded context.
+
+IMPORTANT: Don't be misled by the word "ubiquitous" in "ubiquitous language" - it is a common trap that catches many development teams. It is only universal (ubiquitous) within its specific bounded context, not across your entire system. 
+
+While working on software systems, you will usually face one of the following cases:
+
+- Multiple subdomains are represented by a single bounded context
+- Each subdomain is represented by a single bounded context
+
+In our implementation, we have made a deliberate architectural choice: each subdomain operates as its own bounded context, establishing clear boundaries and independence. However, it is important to note that real-world domains aren't always this neat. Sometimes multiple subdomains naturally group together into a single bounded context. Take, for example, how _Progress Tracking_, and _Virtual Coaching_ might naturally combine into a "Personalized Training" bounded context.
+
+One of the really useful tools while working on the definition of bounded contexts is https://github.com/ddd-crew/bounded-context-canvas[Bounded Context Canvas] from DDD Crew.
+
+When you are finished defining all the bounded contexts, you should define the communication and integration map between them. You can use a _Context Map_ to do this, but we will not focus on explaining it here.
 
 === Potential Patterns
 Before you decide to start coding, it is worth to look at your analysis and division one more time and check the complexity of each (it will be mainly defined by the amount of processes and its business rules/policies). Let's take a look at below examples.
