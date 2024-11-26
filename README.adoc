@@ -24,8 +24,6 @@ image:https://img.shields.io/github/forks/evolutionary-architecture/evolutionary
 image:https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example[GitHub watchers, alt="Watchers Badge"]
 image:https://img.shields.io/discord/1140287971367600148[alt="Discord Active"]
 
-
-
 == Objective
 
 === Problem
