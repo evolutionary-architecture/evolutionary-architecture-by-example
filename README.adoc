@@ -40,30 +40,34 @@ The real challenge? Most materials present their chosen approach as the universa
 
 The examples you do find often fall into two extremes: oversimplified demos that don't reflect real-world complexity, or overwhelming enterprise-scale applications that are difficult to learn from. Even worse, some resources inadvertently perpetuate misconceptions by conflating different architectural concepts.
 
-We've all heard the phrase "it depends" so often it's become a cliché. Yes, every decision depends on context-but that doesn't mean we can't develop heuristics to guide our choices.
+We have all heard the phrase "it depends" so often it's become a cliché. Yes, every decision depends on context-but that doesn't mean we can't develop heuristics to guide our choices.
 
 This repository offers something different: not just another static collection of patterns, but an evolutionary journey through the software architecture decision-making process. Here you will learn how to evaluate tradeoffs, combine approaches, and craft solutions that meet your specific needs at any given time.
 
-Your journey to architectural clarity begins here.
+Such an approach plays well with the dynamics of system implementation. Every development project faces a fundamental challenge that is called _"_The Project Paradox_:
 
-=== Proposed Solution
-Our approach unfolds like a story across four chapters, each building upon the last:
+image::Assets/project_paradox.png[]
 
-link:/Chapter-1-initial-architecture/README.adoc[**Chapter 1:** Initial Architecture: Focus On Simplicity]
+When we start a project, we need to make crucial architectural decisions - exactly when we understand the domain the least. This creates a strong temptation to fall into one of two extremes - overcomplicated trap or oversimplified pitfall.
 
-Start with the basics: a production-ready foundation that separates modules with namespaces and leverages communication with an in-memory queue. Single production project with all the code inside.
+Too often, we get swept up in tech trends and conference talks, leading us to preemptively adopt:
 
-link:/Chapter-2-modules-separation/README.adoc[**Chapter 2:** Modules Separation: Focus On Maintainability]
+- Microservices before understanding our scaling needs
+- Complex orchestration systems
+- Data streaming solutions
+- NoSQL databases
+- Caching layers
 
-Develop the structure by organizing modules into separate projects. Multiple production projects that communicate with each other using an in-memory queue and events.
+...and more, "just in case we need them."
 
-link:/Chapter-3-microservice-extraction/README.adoc[**Chapter 3:** Microservice Extraction: Focus On Growth]
+The result? We create our own complexity nightmare. New team members face a steep learning curve, costs spiral without clear benefits, and identifying performance bottlenecks becomes a maze of interconnected systems. We end up solving problems we don't have yet while making it harder to solve the ones we do.
 
-Transform the selected module into an independent microservice, introducing an external message queue component (RabbitMQ) for inter-service communication. Code divided into multiple solutions representing modular monolith, microservice, and Nuget package.
+The opposite extreme, though less common, is equally problematic: starting too simple and staying there too long. This usually manifests as a monolith that grows unchecked until it becomes an unmaintainable "big ball of mud" - where new features simply get piled on without proper boundaries or structure.
 
-link:/Chapter-4-applying-tactical-domain-driven-design/README.adoc[**Chapter 4:** Applying Tactical Domain-Driven Design: Focus On Complexity]
+What we will show you is an evolutionary approach to architecture - one that grows with your understanding of the domain, and the complexity of your system. This path will help you build systems that are neither overengineered from the start nor too simplistic to scale.
 
-Leverage the power of tactical Domain-Driven Design concepts such as entities, value objects, aggregates, and domain events to manage the growing complexity of the extracted microservice.
+=== Solution
+Our approach unfolds like a story across four chapters, each building upon the last.
 
 The entire repostiory reflects years of real-world experience, including the lessons we learned the hard way. Our goal is to guide you toward architecture that grows with your needs – neither too simplistic to scale nor too complex to maintain.
 
@@ -84,9 +88,93 @@ What we leave to you:
 - Logging implementation (we recommend https://serilog.net/[Serilog])
 - Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
 
+==== Chapter 1: Initial Architecture: Focus On Simplicity
+In this chapter, we will show you how to lay the right foundation for your solution architecture. Our approach begins with a single project (`Fitnet`) that is thoughtfully organized from day one - but without overcomplicating things.
+
+The key is our vertical slice approach: each business process gets its own namespace, creating natural boundaries while keeping related code together. Think of it as organizing by what your software does rather than by technical categories.
+
+Why this works:
+
+- Hit the ground running - spend time building features instead of debating project structures
+- Everything for a process lives in one place (like SignContract) - no more jumping between Controllers, Entities, and Services folders
+- Future-proof your code - need to remove or relocate a feature? Just grab its namespace
+
+Our modules talk to each other through a simple in-memory queue - just enough infrastructure to get the job done without overcomplicating things.
+
+More information:
+
+- link:/Chapter-1-initial-architecture/README.adoc[Chapter's readme]
+- https://s.icepanel.io/vY0SkvgDs7V83U/wOj3[Interactive diagram]
+
+=== Chapter 2: Modules Separation: Focus On Maintainability
+In this chapter, we will tackle a familiar scenario: your initial architecture is starting to show its limits. Your codebase has matured, and reality has begun to diverge from your early assumptions. Some modules are more complex than anticipated, others simpler. Meanwhile, your growing team is wrestling with merge conflicts in your single project.
+
+Time for the next evolution of your architecture. We will split our project into purpose-built projects that match each module's actual needs.
+
+Simple modules stay simple:
+
+- `Fitnet.Reports`
+
+When all you need is straightforward data access and presentation? One project could be enough.
+
+Middle-ground modules find their balance
+
+- `Fitnet.Passes.Api`
+- `Fitnet.Passes.DataAccess`
+
+Perfect for modules that need clean data access patterns but aren't swimming in complex business rules.
+
+Complex domains get room to breathe
+
+- `Fitnet.Contracts.Api`
+- `Fitnet.Contracts.Application`
+- `Fitnet.Contracts.Core`
+- `Fitnet.Contracts.Infrastructure`
+
+For those modules where business logic runs deep.
+
+The beauty of this approach? Each module gets exactly the architecture it deserves - no more, no less. Meanwhile, our modules keep talking through the same in-memory queue, proving you don't need to complicate everything at once.
+
+More information:
+
+- link:/Chapter-2-modules-separation/README.adoc[Chapter's readme]
+
+=== Chapter 3: Microservice Extraction: Focus On Growth
+
+In this chapter, we tackle a crucial evolution: knowing when and how to extract your first microservice. We will explore the real-world signals (we call them "disintegrators") that tell you it is time to let a module spread its wings and become independent.
+
+But extracting a microservice is just part of the story. We will also level up our communication game by replacing our trusty in-memory queue with a proper message queue component. This isn't just about following trends - it is about building the robust communication backbone and ensure redundancy that your growing system needs to communicate with the new microservice.
+
+Along the way, you will pick up key microservice architecture concepts - not just the theory, but the practical knowledge you need to make it work in the real world.
+
+More information:
+
+- link:/Chapter-3-microservice-extraction/README.adoc[Chapter's readme]
+- https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP[Interactive diagram]
+
+=== Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
+
+In the final chapter of our journey, we will show you something powerful: you can grow into a domain model without starting from scratch. Getting there is more like evolution than revolution.
+
+Remember all that work you did early on - breaking down your domain, identifying subdomains, and organizing them into modules? Surprise! You have already done most of the heavy lifting for strategic Domain-Driven Design. That's right - your foundation is stronger than you thought.
+
+Now comes the fun part: tactical DDD. Think of it as adding precision tools to your toolkit:
+
+- Value Objects
+- Entities
+- Aggregates
+- Domain Events
+
+The best part? You don't need to apply every DDD concept to get value. It is like a chef's kitchen - you don't need every gadget to cook great meals, just the right ones for your dish.
+
+More information:
+
+- link:/Chapter-4-applying-tactical-domain-driven-design/README.adoc[Chapter's readme]
+
+==== Additional notes
 Each chapter includes static code analysis to maintain code quality – a practice we strongly recommend for production environments.
 
-NOTE: These chapters represent several proven patterns and practices, but they are not hard and fast rules. Choose the approaches that meet your specific needs, or combine them to create the solution that fits your context. Think of this as your architectural compass, ready when you need it.
+NOTE: All chapters represent various patterns and practices, but they are not hard and fast rules. Choose the approaches that meet your specific needs, or combine them to create the solution that fits your context. Think of this as your architectural compass, ready when you need it.
 
 == Domain
 
@@ -153,7 +241,7 @@ These workflows demonstrate how our seemingly separate subdomains need to work t
 
 Now we need to somehow transform our subdomains into a technical solution. It is time to focus on bounded contexts.
 
-=== Bounded contexts
+=== Bounded Contexts
 To represent subdomains in your technical solution, you need a model. Often, we decide to just create a single, unified model for the entire solution. Unfortunately, this leads in future to a lot of issues because every subdomain operates in its own, and unique context.
 
 Let us explain.
@@ -179,131 +267,6 @@ In our implementation, we have made a deliberate architectural choice: each subd
 One of the really useful tools while working on the definition of bounded contexts is https://github.com/ddd-crew/bounded-context-canvas[Bounded Context Canvas] from DDD Crew.
 
 When you are finished defining all the bounded contexts, you should define the communication and integration map between them. You can use a _Context Map_ to do this, but we will not focus on explaining it here.
-
-=== Potential Patterns
-Before you decide to start coding, it is worth to look at your analysis and division one more time and check the complexity of each (it will be mainly defined by the amount of processes and its business rules/policies). Let's take a look at below examples.
-
-==== Passes
-
-image::Assets/subdomain_passes_logic.jpg[]
-
-There is no business logic:
-
-- in the pass registration process, it is only informed that the contract has been signed
-- In the pass expiry process, it is only informed that the pass expiry date has been reached.
-
-In addition, the potential for new business rules to be applied to the above processes or other actions is rather low. As it looks like a perfect candidate for CRUD operations, we want to mark it as a candidate to become an _Active Record_ pattern.
-
-NOTE: _Active Record_ is an pattern that rationalises the persistence layer in an application. It encapsulates the idea that a database record is an object in the application, with properties that map to the columns of the database table and the behaviour (domain logic) of that object.
-
-==== Offers
-
-image::Assets/subdomain_offers_logic.jpg[]
-
-The story here is similar to _Passes_. There is no business logic, only the fact that the pass is expiring.
-
-==== Contracts
-
-image::Assets//subdomain_contracts_logic.jpg[]
-
-This is the place where the fun begins. There are 3 business rules:
-
-- in the process of contract preparation, it is only allowed if the customer is an adult AND smaller than the maximum height allowed (210 cm)
-- in the contract signing process, it is only allowed if it is signed within 30 days of the contract being created, otherwise the contract has to be created from scratch
-
-In addition, the potential for new business rules being applied to the above processes or other actions is quite high. Here the warning bell should go off - this has a really high potential to become more and more complex, so it might be a good candidate for a _Domain Model_.
-
-NOTE: _Domain Model_ is a widely used pattern in software engineering that encapsulates the concepts and behaviours of a particular problem domain. This representation is designed to mimic the structure and functionality of the real-world system. The domain model pattern is particularly well known for its ability to handle complex business logic by providing a rich, object-oriented representation of the problem domain.
-
-==== Reports
-
-image::Assets/subdomain_reports.jpg[]
-
-This case is really simple. The only thing that we want to achieve is to get the information about new passes that have been registered in each month. 
-
-There is no business logic and there is also no need to have an object representation of the data retrieved. This is a perfect candidate for a _Transaction Script_.
-
-NOTE: _Transaction Script_ is a pattern commonly used in software engineering that organises business logic into procedures, where each procedure handles a single request from the presentation. Each transaction script is a series of procedural steps that represent a sequence of tasks performed as part of a transaction, similar to a script in a play.
-
-==== Summary
-
-After deeper thinking about our subdomains, we decided for following patterns that will be applied in one of 4 chapters:
-
-image::Assets/subdomains_architectural_patterns.jpg[]
-
-== Chapters
-
-In the beginning of every greenfield project we need to make a lot of decisions and we lack of knowledge. It is called _The Project Paradox_:
-
-image::Assets/project_paradox.png[]
-
-Quite often we are biased by conferences, meetups, friends and colleagues. As a result we decide for too complex architecture. 
-
-This means starting with:
-
-- microservices (where we do not yet know the traffic, scale and other factors)
-- orchestrators
-- data streaming
-- NoSQL
-- cache
-
-and many more. In the end, we have a lot of problems of our own making, and the barrier to entry for any team member is extremely high. In fact, after release, we do not know if we need this or that block. We are also not optimised from a cost perspective and it is very difficult to find bottlenecks.
-
-Another problem is choosing an architecture that is too trivial for too long (this happens less often than "overcomplicated"). This means that we just add code to a monolith, new features flood our codebase and then it becomes a big ball of mud.
-
-What we want to show you in our story is the evolutionary approach that will tackle most of the applications you work with.
-
-=== Chapter 1: Initial Architecture: Focus On Simplicity
-
-In this chapter we will show you how to start your solution architecture. We start with modularisation from day one of the application, but modules are only separated by namespaces (there is only one project for the production code called `Fitnet`). Each process that occurs in each module is sliced vertically - all the code is covered in each process namespace. This gives us several advantages:
-
-- better productivity - when we start a new design, we are not distracted by creating namespaces, renaming, moving things around
-- all the code for each process is in just one namespace, so there is no need to look around in folders like `Controllers, Entities, Commands, Queries` etc. Everything is just in e.g. `SignContract`
-- deleting or extracting the process is simple - you just drop or extract a namespace
-
-Modules communicate with the in-memory queue.
-
-==== https://s.icepanel.io/vY0SkvgDs7V83U/wOj3[Interactive diagram]
-image::Assets/ice_panel_black.png[link="https://s.icepanel.io/vY0SkvgDs7V83U/wOj3",width=100,height=28]
-
-=== Chapter 2: Modules Separation: Focus On Maintainability
-
-This chapter focuses on the second step you can take in your application. After some time, you will find that your assumptions about modules were wrong - they grow fast, the business logic becomes more complex. You may have to decide to use a different type of database (e.g. key-value). Or the other way around - something you thought was going to be complex is actually quite simple and there is not a lot of business logic involved. Also, the team has grown and it is quite difficult to work on one project - lots of conflict and merging hell.
-
-With this in mind, you can now start thinking to split your single `Fitnet` project into several ones:
-
-- for one module it will be just `Fitnet.Reports` - there is only a transaction script, no business logic
-- for another, it will be `Fitnet.Passes.Api, Fitnet.Passes.DataAccess` to build around the active record
-- for the complex one it will be `Fitnet.Contracts.Api, Fitnet.Contracts.Application, Fitnet.Contracts.Core, Fitnet.Contracts.Infrastructure`
-
-and so on. The modules still communicate with the in-memory queue (alternatives described in the chapter's own README).
-
-=== Chapter 3: Microservice Extraction: Focus On Growth
-
-Over time, you may need to extract a microservice from one of your application modules. In this chapter, you will identify the most common disintegrators (decision drivers for extracting a microservice). 
-
-We will also add a message queue component to replace the in-memory queue. This way, we will improve the exchange of messages between the modules themselves and the microservice.
-
-Here you will learn about various concepts that are important from a microservices architecture perspective.
-
-==== https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP[Interactive diagram]
-image::Assets/ice_panel_black.png[link="https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP",width=100,height=28]
-
-=== Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
-
-At the end of the story, we want to show you that it is possible to evolve to a domain model for one of your modules at some point.
-
-You do not have to start from scratch if you do not know your business domain. And you do not need to apply all the concepts of Domain-Driven Design to get good results. 
-
-Interesting fact - if you have done a proper analysis of your business domain in the beginning and have already broken it down into different subdomains (and combined them into e.g. a module), then you are almost done from a strategic Domain-Driven Design perspective. Now you just need to make some adjustments and do some tactical DDD. Cool? Absolutely cool!
-
-Here we focus mainly on tactical DDD and describe
-
-- value objects
-- entities
-- aggregates
-
-You will also find some tips for the next steps.
 
 == Repository Structure
 
