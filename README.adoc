@@ -91,21 +91,30 @@ NOTE: These chapters represent several proven patterns and practices, but they a
 == Domain
 
 === Overview
-The chosen domain for analysis and implementation is a _Fitness Studio_. It is an area that most of people have an idea of how it works. You can:
+It is time to look at our domain. We have chosen a fitness domain as our example – one that seems familiar at first glance. Most people recognize the basic flow:
 
-- Get an offer
-- Request for a contract
-- Sign the contract
-- Receive a pass (to be able to enter the fitness studio)
-- Attend to fitness classes
+- Getting membership offers
+- Preparing and signing contracts
+- Getting access passes
+- Attending fitness classes
 
-and many more.
+But this surface-level familiarity can be deceptive.
 
-However, in order to identify the above processes, you usually need to analyse the domain with _Domain Experts_ and break it down into smaller pieces called _Subdomains_. Otherwise, there is a high risk of falling into a big ball of mud (or distributed mud) where everything is tightly coupled.
+However, to identify the above processes, you usually need to analyze the domain with domain experts and break it down into smaller pieces called subdomains. Otherwise, there is a high risk of falling into a big ball of mud (or distributed mud) where everything is tightly coupled.
 
-At first glance, the domain seems small and problems of oversimplification of initial assumptions usually arise from this interpretation. There are dozens of processes related to expired passes and renewals, discount policies, VIP access, negative cases (e.g. rejection of the access). We often tend to underestimate the problem.
+NOTE: The traditional domain expert is often pictured as a business representative – someone who lives and breathes the business processes every day. But don't overlook another crucial source of domain expertise: your developers, especially those who have been in the trenches with legacy systems. **Think about it:** developers working with legacy code must understand not just how the system works, but why it works that way. They have seen the edge cases, handled the exceptions, and often know which business rules are truly critical versus which ones are historical artifacts.
 
-IMPORTANT: Remember that what we want to show you in this repository is how to handle a domain split into a few example subdomains, and how to prepare building blocks that will allow you to easily extend them to cover all processes. We are not able to cover the entire _Fitness Studio_ domain, as that would probably take us a year (or more) of work. **Do not worry -  we try to show ideas here that are complex enough to be applied to your application.**
+What appears to be a straightforward domain actually conceals layers of complexity:
+
+- Pass expiration and renewal workflows
+- Sophisticated discount strategies
+- VIP member privileges
+- Access control and rejection handling
+- Membership status transitions
+
+While we won't model every aspect of a fitness studio's operations (that would be a year-long endeavor!), we will demonstrate something more valuable: how to identify and separate key subdomains, and how to build extensible components that can grow with your needs. We have carefully chosen examples that are complex enough to illustrate real-world challenges while remaining manageable and instructive.
+
+Ultimately, you should be able to apply similar techniques to your own complex domains, regardless of industry.
 
 === Subdomains
 Now that you understand which business domain we are focusing on, it is time to break it down into smaller pieces called _Subdomains_.
