@@ -66,18 +66,26 @@ They were clear about their approach: if the system proves valuable, they will i
 
 === Main assumptions
 
-It is important to remember that most systems we want to build are based on many assumptions, since we do not know how the market will react to our idea (even if, based on surveys, polls, potential customer feedback, everything points to success). Just look at the Project Paradox in the root README.
+Even with market research, surveys, and customer feedback pointing to success, any new system is built on assumptions. We need to be realistic about what we don't know. We have the following key assumptions.
 
-After discussions with our company, we have several assumptions:
+Initial scale and usage:
 
-1. Since we want to go global and there are a lot of gyms that claim they want to use our software, we assume that our application will be used by 500 - 5000 people in the beginning.
-2. Each gym has different opening hours (some are open 12 hours, some 16 hours and some 24/7).
-3. We only work in Europe, so the time differences are not big.
-4. Each person creates about 100 requests per day, which gives 5000 people * 100 req/day = 500 000 req/day for all people. We add 25% of the traffic (to be on the safe side), so it will be 500,000 + 125,000 = 625,000 req/day = 7 req/second. Now we know that we do not need a fancy infrastructure to start with for such a load.
+- Starting userbase: 500-5000 people
+- European market only (minimal timezone complexity)
+- Mix of operating hours (12h, 16h, and 24/7 facilities)
 
-NOTE: We will not cover the topic of infrastructure in this repository. The assumptions are marked here to show you that you should also consider the infrastructure, not just the solution structure. The initial calculation (such as 7 req/sec) is simply to take into account your potential traffic - which may be different during the day and at night - and to design the infrastructure architecture with this in mind. Often this is not thought through and we end up with super complicated infrastructure blocks.
+Traffic calculations:
 
-IMPORTANT: Before going live with the application, it is advisable to run performance tests to see where our real limits are. You can do this for example with https://k6.io/[k6].
+- Average 100 requests per user per day
+- With 5000 users: 500,000 daily requests
+- Adding 25% safety margin: 625,000 daily requests
+- Breaks down to about 7 requests per second
+
+This relatively modest load means we can start with simple infrastructure - no need for complex systems yet.
+
+NOTE: Each application has different characteristics. For instance, on social media platforms, users may generate an average of several thousand requests each, while in banking or intranet applications, it might be dozens or hundreds. In addition, in real-world applications, traffic is not evenly distributed. Your application needs to be able to handle spikes.
+
+NOTE: Before you go live with the application, it is a good idea to see how it performs under heavy traffic. This will help you understand the limitations of your architecture. This is usually done against expected traffic (load tests) and spikes (stress tests). You can use any tool to do this. Our recommendation is https://k6.io/[k6].
 
 === Solution
 
