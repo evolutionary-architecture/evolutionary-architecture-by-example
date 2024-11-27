@@ -154,14 +154,15 @@ NOTE: Each module follows this pattern - its own namespace, vertical slices for 
 
 ==== Communication
 
-The topic of communication is often discussed. It was no different in our case. In the end we decided to use our own in-memory event bus. This has several advantages and disadvantages:
+For communication, we decided to implement our own in-memory event bus at this point. While this might seem like a simple solution, it came after careful consideration of our current needs and future flexibility. The key advantage of this approach is how it enables loose coupling between our components right from the start. When different parts of our system need to interact, they can do so through events rather than direct calls, making the system more flexible and easier to modify as we learn more about our business requirements.
 
-1. By implementing an in-memory event bus, our components will be loosely coupled and better able to communicate and interact with each other. This will allow us to develop and deploy our system in a more scalable and flexible way.
-2. One consequence of using it rather than an external message broker is that we cannot retire messages and persist them on the event bus for later retrieval. In an external message broker, messages can be persisted and stored for a period of time so that they can be replayed or reprocessed if necessary. In an in-memory event bus, messages are stored only in memory and are lost when the event bus is stopped or restarted.
+NOTE: In practice, there are times when direct calls are an acceptable solution. For example, when you need an immediate response, or when you are dealing with critical business operations that require synchronous communication. The key is to be pragmatic - while loose coupling is generally preferred, forcing it everywhere can lead to unnecessary complexity. Sometimes a direct call is simply a better choice.
 
-Overall, we believe that the benefits of implementing in-memory communication in the early stages of our project outweigh the potential risks and challenges.
+However, we need to be upfront about the limitations of this approach. Unlike external message brokers, our in-memory solution doesn't persist messages. This means if our system restarts, any messages in transit are lost. We also can't replay messages later - a feature that can be valuable for debugging or recovering from errors. These limitations might sound serious, but for our early-stage MVP, we believe the benefits of keeping things simple outweigh these drawbacks.
 
-NOTE: As this may be a controversial topic for you, you should judge it on your own case. If you can accept some data inconsistency and the application is in its very early stages (e.g. the MVP), you may choose to use in-memory communication. If you prefer to start with a more relevant solution, you can implement an _Outbox_ pattern or integrate an external component like RabbitMQ from day one of your project. The choice is yours.
+The choice of using in-memory communication wasn't made lightly, and it might not be right for every project. If you are building a system where data is crucial from day one, you might want to consider implementing the Outbox and Inbox patterns or integrating a message broker like RabbitMQ from the start. However, if you are in the early stages of your project and can accept some data loss while you validate your business model, an in-memory solution could help you move faster and learn more quickly.
+
+The beauty of this approach is that it doesn't lock us in. As our system grows and our needs evolve, we can gradually introduce more sophisticated messaging solutions. Starting simple doesn't mean staying simple - it means building on a foundation that we understand completely and can evolve confidently.
 
 ==== Tests
 
