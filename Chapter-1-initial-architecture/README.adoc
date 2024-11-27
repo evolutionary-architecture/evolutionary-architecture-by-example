@@ -91,23 +91,15 @@ NOTE: Before you go live with the application, it is a good idea to see how it p
 
 ==== Overview
 
-Before we dive into the technical solution, let's have a look at what we want to build for the MVP of the software that operates in the _Fitness Studio_ domain:
+During our business analysis, we identified several subdomains of the fitness domain. We decided to make each subdomain its own bounded context.
 
-image::../Assets/subdomains_communication.jpg[]
+image::../Assets/subdomains.png[]
 
-During the business analysis we divided our business domain into the above subdomains and identified the most important processes. We also agreed that it made sense to translate our subdomains directly into bounded contexts. So in our case 1 subdomain equals 1 bounded context.
+We also decided to represent each bounded context by a separate module in our codebase. Of course, your bounded contexts aren't set in stone - they will evolve as your business does. As your company launches new services, restructures existing operations, or acquires other companies, you will likely need to adapt. This may mean adjusting or removing existing bounded contexts, or creating entirely new ones.
 
-NOTE: There is a chance that in your project you will discover that it makes sense to combine 2 or more subdomains into 1 bounded context at the beginning. This is perfectly fine - in most cases, at some point, you will have the majority of bounded contexts containing multiple subdomains. There is also a chance that 1 subdomain will evolve into several different ones. This is the most likely case for our initial partitioning, as we are focusing on really common (with the potential to become very large) subdomains. Be flexible and accept that the business will certainly change.
+The next step is to define the structure of our solution.
 
-Look at the example below, which shows a bounded context that spans multiple subdomains (we will not cover this scenario in this repo):
-
-image::Assets/multiple_subdomains_single_bounded_context.jpg[]
-
-There are 3 subdomains that are grouped into a single bounded context - _Personalised Training_ - because it makes sense. What does "it makes sense" mean? Based on different heuristics and ubiquitous language, we see that these subdomains will communicate very often with each other, the naming convention is the same (e.g. training in _Progress Tracking_ means the same as in _Virtual Coaching_ and _Assessments_).
-
-Ok. So, now we are ready to translate the above bounded contexts into our solution architecture.
-
-==== Solution structure
+==== Structure
 
 After creating our solution, we split the code into just 3 projects:
 
