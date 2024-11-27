@@ -111,7 +111,7 @@ image::Assets/projects_division.png[]
 
 Yes, you read that right - only 3 projects! While this might seem unconventional, it is worth considering for your greenfield application. Rather than splitting modules into separate projects, we organize them using namespaces. It is a different mindset, but one that offers significant benefits.
 
-The main Fitnet project contains the entire production code responsible for:
+The main `Fitnet` project contains the entire production code responsible for:
 
 - API to our application
 - Business logic for our processes
@@ -210,11 +210,11 @@ The application runs on port `:8080`. Please navigate to http://localhost:8080 i
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
 === How to run Integration Tests?
-To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
+To run the integration tests for the project located in the `Fitnet.IntegrationTests` project, you can use either the command:
 
 `dotnet test`
 
-or the `IDE test Explorer`. 
+or the `IDE test explorer`. 
 
 These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing.
 
