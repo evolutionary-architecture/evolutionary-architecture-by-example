@@ -54,15 +54,15 @@ Always choose architecture based on *your current needs and context*. Not a wish
 
 === Requirements
 
-Fitness Studio ordered a completely new system that we had to implement from scratch. There are 5 main requirements for the MVP that we need to address:
+A fitness studio we work with needed a simple membership management system. Here is what they asked for in their MVP:
 
-1. A way to create offers for new and existing customers.
-2. When the offer is accepted by a customer, it is possible to prepare the contract.
-3. The customer can sign the contract.
-4. After signing the contract, a new pass is registered for the customer.
-5. When the pass expires, a new offer is sent to the customer.
+- Create offers for customers (both new and existing)
+- Prepare contracts when customers accept offers
+- Enable contract signing by customers
+- Automatically create customer passes after contract signing
+- Send renewal offers when passes expire
 
-Based on the outcome - success or failure of the application, the requirements will be extended or the system will be dropped (yes, we need to consider both scenarios).
+They were clear about their approach: if the system proves valuable, they will invest in more features, and help us to get more customers. If not, they will cut their losses and try something else. This practical mindset helped us focus on delivering the core functionality first.
 
 === Main assumptions
 
