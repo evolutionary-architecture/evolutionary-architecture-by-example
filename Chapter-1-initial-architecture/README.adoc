@@ -79,7 +79,7 @@ Traffic calculations:
 - Average 100 requests per user per day
 - With 5000 users: 500,000 daily requests
 - Adding 25% safety margin: 625,000 daily requests
-- Breaks down to about 7 requests per second
+- Breaks down to about 7 requests per second (to simplify - it could only happen in a perfect world with the even distribution)
 
 This relatively modest load means we can start with simple infrastructure - no need for complex systems yet.
 
