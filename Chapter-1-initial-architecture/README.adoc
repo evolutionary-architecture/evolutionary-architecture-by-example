@@ -182,9 +182,11 @@ NOTE: As your project evolves, you might want to consider additional testing str
 
 ==== Miscellaneous
 
-Within _Docs_ you will find the _Architecture Decision Log_. This log contains _Architecture Decision Records_. Each record is immutable and contains an explanation of why we chose one approach over another. If you need to override one of the previous decisions, you need to create a new record. This is one of the easiest ways to keep your architecture documentation up to date. You can read more about this at https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[here].
+In our _Docs_ folder, you will find the _Architecture Decision Log_ - a collection of _Architecture Decision Records_. Each record is immutable and documents why we made specific architectural choices. When we need to change a previous decision, we create a new record rather than modifying the old one. This approach helps maintain a clear history of our architectural evolution and keeps our documentation current. If you are interested in learning more about this method, check out https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[Cognitect's blog post] on documenting architecture decisions.
 
-If you want to test the endpoints, you can find http files in the docs for each module. The only thing you need to configure is the application url in _http-client.env.json_.
+NOTE: _Architecture Decision Log_ is particularly valuable when new team members join or when you need to understand historical context months or years later. They answer not just what was decided, but why - making them an invaluable part of your project's documentation.
+
+For testing the API endpoints, we have included HTTP files in the docs folder for each module. Getting started is simple - just update the application URL in http-client.env.json, and you are ready to test the endpoints.
 
 == How to run?
 
