@@ -51,11 +51,12 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: Add Evolutionary Architecture Nuget Source
-        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
