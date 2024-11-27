@@ -19,37 +19,38 @@ image:https://codecov.io/gh/evolutionary-architecture/evolutionary-architecture-
 
 === Overview
 
-When starting a new greenfield application, our focus often shifts to frameworks, libraries, architecture and components that we have heard about from our friends, at conferences, workshops and meetups. As a result, we start to create an overly complicated infrastructure and solution architecture, using components that are not relevant in the beginning.
+When building a new application, we often get caught up in using the latest tech stack - jumping straight to advanced frameworks, complex architectures, and trendy tools. This creates unnecessary complexity from day one.
 
-This is how we fall into the trap associated with the project paradox - we make a lot of decisions at a time when we have almost no prior knowledge about our business domain. As a result, our decisions are usually inaccurate or, if we are lucky, they fit our future needs (a rare case). This means that at some point we will have to change the way we have been thinking, or it will simply be too late and too complex.
+Here is the core problem: We make critical technical decisions at the exact moment (the beginning) when we understand the least about what we are building. Most of these early decisions turn out to be wrong, or at best, lucky guesses. By the time we realize our mistakes, the codebase is either too complex to change or it is too late.
 
-In the end, we may have:
+This approach typically leads to one of two outcomes:
 
-- a big ball of mud OR
-- big ball of distributed mud
+- A big ball of mud
+- A big ball of distributed mud
 
-Instead, we should shift our focus and efforts to understanding business processes and preparing the simplest possible solution.
+The solution? Focus first on understanding the business requirements and build the simplest working solution possible.
 
-At this point, in the vast majority of cases, you do not need to focus on:
+At the start, we skip these complexities:
 
-- clean/onion/hexagonal architecture
-- microservices
-- cache
-- tactical Domain-Driven Design
-- data streams
-- orchestrators
+- Microservices
+- Caching
+- Aggregates
+- Data streaming
+- Heavy container orchestrators
 
-Thanks to this approach:
+Starting simple brings clear benefits:
 
-- we make most decisions only when we need them
-- each member of the team has a low entry threshold for the application
-- we add components one at a time, so we can build up the knowledge before adding the next components
-- we minimise the risk of ending up with spaghetti (however it is still possible!)
+- Decisions are made when you have enough knowledge to make them
+- New developers can onboard quickly
+- The team can master each component before adding more complexity
+- The codebase stays maintainable and clean
 
-This is what _Evolutionary Architecture_ is all about.
+This approach doesn't guarantee perfection, but it dramatically improves your chances of building something that is both useful and maintainable. And that is our way.
+
+Let's get into the details!
 
 [quote]
-Always choose architecture based on *your current needs*. *Not a wishful thinking*.
+Always choose architecture based on *your current needs and context*. Not a wishful thinking.
 
 === Requirements
 
