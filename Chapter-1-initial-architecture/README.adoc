@@ -166,16 +166,19 @@ The beauty of this approach is that it doesn't lock us in. As our system grows a
 
 ==== Tests
 
-Here we are. The decision we have made is to have 2 sets of tests in the early stages of our application:
+We decided to start with two essential types of tests.
 
-1. _Integration tests_ - here we test the whole business process with different input parameters. We may get a successful response or an exception will be thrown. In some cases we use snapshot testing using the https://github.com/VerifyTests/Verify[Verify] library. Integration tests for all modules and shared logic are located here.
+===== Integration Tests
 
-2. _Unit Tests_ - What could be more standard than unit testing? Unit tests for all modules and shared logic can be found here.
+These focus on testing complete business processes end-to-end. We run processes with various input parameters, checking both successful outcomes and error scenarios. For some complex responses, we use snapshot testing with the https://github.com/VerifyTests/Verify[Verify] library. All integration tests, whether for specific modules or shared logic, live in the `Fitnet.IntegrationTests` project.
 
-In test projects you will find _GlobalUsings.cs_. You are not required to use it in your project, but it does make it easier to manage global usings (each class will contain less code).
+===== Unit Tests
 
-NOTE: If you are implementing your own application, you may want to consider contract testing. This means you would have another project called _Fitnet.ContractTests_. There is also another approach you can take, where you can combine contract and integration tests together. This will give you something called _ModuleTests_. If you choose contract testing, we suggest https://docs.pact.io/[Pact]. If you go for module tests, we suggest using Verify (mentioned above) or https://github.com/approvals/ApprovalTests.Net[ApprovalTests], as this makes maintenance easier.
+These are your standard unit tests, focused on testing individual behaviors in isolation. You will find them organized by module and shared logic in the `Fitnet.UnitTests` project.
 
+Both test projects include a `GlobalUsings.cs` file. While not mandatory, it helps reduce code clutter in individual test files by centralizing common using statements.
+
+NOTE: As your project evolves, you might want to consider additional testing strategies. Contract testing is one option, which would live in a separate `Fitnet.ContractTests` project. Another approach is combining contract and integration tests into what we call module tests. If you choose contract testing, we recommend looking into https://docs.pact.io/[Pact]. For module tests, consider using Verify or https://github.com/approvals/ApprovalTests.Net[ApprovalTests] - both make test maintenance significantly easier by simplifying the verification of complex test outputs. The choice largely depends on your specific needs.
 
 ==== Miscellaneous
 
