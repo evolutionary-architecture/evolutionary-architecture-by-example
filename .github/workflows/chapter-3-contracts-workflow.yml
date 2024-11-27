@@ -11,7 +11,8 @@ on:
 
 env:
   CHAPTER_DIR: "Chapter-3-microservice-extraction/Fitnet.Contracts/Src"
-
+  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
+  
 jobs:
   build:
     defaults:
