@@ -12,6 +12,7 @@ on:
 
 env:
   CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet.Common'
+  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
 
 jobs: 
   build:
@@ -35,6 +36,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ env.CHAPTER_DIR }}
+
     runs-on: ubuntu-latest
     name: Test
     needs: build
@@ -77,6 +79,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
           
       - name: Publish Packages
         run: |
