@@ -12,6 +12,7 @@ on:
 
 env:
   CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet.Contracts/Src'
+  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
 
 jobs:
   build:
@@ -32,6 +33,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -57,6 +59,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
+          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
     - name: Pack Project
       run: dotnet pack Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj -c Release 
     - name: Publish Packages
