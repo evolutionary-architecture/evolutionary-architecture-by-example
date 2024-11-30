@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="3.1.1" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="3.2.5" />
     <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
   </ItemGroup>
 </Project>
