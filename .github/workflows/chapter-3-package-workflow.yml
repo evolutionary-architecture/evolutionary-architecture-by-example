@@ -83,7 +83,7 @@ jobs:
           
       - name: Publish Packages
         run: |
-          dotnet nuget push "Fitnet.Common.Api/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Api.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.Common.Core/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Core.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
-          dotnet nuget push "Fitnet.Common.Infrastructure/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Infrastructure.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.Api/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Api.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.Core/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Core.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "Fitnet.Common.Infrastructure/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Infrastructure.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
           dotnet nuget push "Fitnet.Common.IntegrationTestsToolbox/bin/Release/EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
