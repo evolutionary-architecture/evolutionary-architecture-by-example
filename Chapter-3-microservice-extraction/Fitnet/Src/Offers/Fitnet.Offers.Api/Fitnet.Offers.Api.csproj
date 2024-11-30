@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\Passes\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
-      <ProjectReference Include="..\Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Passes\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj"/>
+    <ProjectReference Include="..\Fitnet.Offers.DataAccess\Fitnet.Offers.DataAccess.csproj"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests" />
-    </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="evolutionaryarchitecture.fitnet.common.core" Version="3.1.1" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="evolutionaryarchitecture.fitnet.common.core" Version="3.1.1"/>
+  </ItemGroup>
 
 </Project>

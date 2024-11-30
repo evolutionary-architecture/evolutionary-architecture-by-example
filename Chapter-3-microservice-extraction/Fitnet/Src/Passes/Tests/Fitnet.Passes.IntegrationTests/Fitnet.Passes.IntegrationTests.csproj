@@ -1,26 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="evolutionaryarchitecture.fitnet.common.api" Version="3.1.1" />
-        <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="3.1.1" />
-        <PackageReference Include="evolutionaryarchitecture.fitnet.contracts.integrationevents" Version="1.0.7" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    </ItemGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <None Remove="appsettings.IntegrationTests.json" />
-      <Content Include="appsettings.IntegrationTests.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0"/>
+    <PackageReference Include="evolutionaryarchitecture.fitnet.common.api" Version="3.1.1"/>
+    <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="3.1.1"/>
+    <PackageReference Include="evolutionaryarchitecture.fitnet.contracts.integrationevents" Version="1.0.7"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
+    <PackageReference Include="System.Net.Http" Version="4.3.4"/>
+    <PackageReference Include="System.Text.Json" Version="9.0.0"/>
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\..\Fitnet\Fitnet.csproj" />
-      <ProjectReference Include="..\..\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <None Remove="appsettings.IntegrationTests.json"/>
+    <Content Include="appsettings.IntegrationTests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Fitnet\Fitnet.csproj"/>
+    <ProjectReference Include="..\..\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj"/>
+  </ItemGroup>
 
 </Project>

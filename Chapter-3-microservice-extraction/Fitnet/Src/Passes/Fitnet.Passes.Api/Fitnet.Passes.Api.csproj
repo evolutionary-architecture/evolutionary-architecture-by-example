@@ -1,25 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\Fitnet.Passes.DataAccess\Fitnet.Passes.DataAccess.csproj" />
-    <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\Fitnet.Passes.DataAccess\Fitnet.Passes.DataAccess.csproj"/>
+    <ProjectReference Include="..\Fitnet.Passes.IntegrationEvents\Fitnet.Passes.IntegrationEvents.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests" />
-    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests"/>
+    <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests"/>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="evolutionaryArchitecture.fitnet.common.api" Version="3.1.1" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.1.1" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.7" />
-    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.2.2" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
+    <PackageReference Include="evolutionaryArchitecture.fitnet.common.api" Version="3.1.1"/>
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.1.1"/>
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.7"/>
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.3.2"/>
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.2"/>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0"/>
   </ItemGroup>
 </Project>
