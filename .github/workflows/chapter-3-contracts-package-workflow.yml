@@ -63,4 +63,4 @@ jobs:
     - name: Pack Project
       run: dotnet pack Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj -c Release 
     - name: Publish Packages
-      run: dotnet nuget push "Fitnet.Contracts.IntegrationEvents/bin/Release/EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents.*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet nuget push "Fitnet.Contracts.IntegrationEvents/bin/Release/EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
