@@ -1,0 +1,7 @@
+= 25. Applying Domain-Driven Design Patterns for Contracts
+
+Date: 2024-11-23
+
+== Problem
+
+== Consequences
