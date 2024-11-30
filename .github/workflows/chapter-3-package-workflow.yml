@@ -74,7 +74,7 @@ jobs:
           dotnet pack Fitnet.Common.IntegrationTestsToolbox/Fitnet.Common.IntegrationTestsToolbox.csproj -c Release
 
       - name: Add Evolutionary Architecture Nuget Source
-        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@feature/nuget_config
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
