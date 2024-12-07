@@ -26,12 +26,12 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
 
-    [Theory]
-    [ClassData(typeof(ReportTestCases))]
-    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
+    [Fact]
+    internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data()
     {
         // Arrange
-        await RegisterPasses(passRegistrationDateRanges);
+        var reportTestData = ReportTestCases.GetAnnualPassesData();
+        await RegisterPasses(reportTestData);
 
         // Act
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
