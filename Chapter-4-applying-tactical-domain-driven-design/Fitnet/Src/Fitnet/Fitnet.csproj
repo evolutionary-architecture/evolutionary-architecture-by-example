@@ -5,8 +5,8 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
     </ItemGroup>
 
     <ItemGroup>
