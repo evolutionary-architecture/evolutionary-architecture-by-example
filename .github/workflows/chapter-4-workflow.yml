@@ -28,7 +28,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Add Evolutionary Architecture Nuget Source
         uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
         with:
@@ -53,7 +53,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Add Evolutionary Architecture Nuget Source
         uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
         with:

@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="4.1.6" />
+    <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="4.1.7" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
   </ItemGroup>
 </Project>

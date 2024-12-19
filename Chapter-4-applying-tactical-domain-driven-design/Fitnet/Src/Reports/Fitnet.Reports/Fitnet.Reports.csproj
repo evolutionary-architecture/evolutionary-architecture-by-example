@@ -4,12 +4,13 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.1.35" />
-      <PackageReference Include="evolutionaryarchitecture.fitnet.common.api" Version="4.1.6" />
-      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.1.6" />
-      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="4.1.6" />
-      <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
-      <PackageReference Include="Npgsql" Version="8.0.3" />
+      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="4.1.7" />
+      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.1.7" />
+      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="4.1.7" />
+      <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.4" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+      <PackageReference Include="Npgsql" Version="9.0.2" />
+      <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
