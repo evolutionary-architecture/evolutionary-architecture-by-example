@@ -6,7 +6,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <AnalysisLevel>latest</AnalysisLevel>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <!-- <TreatWarningsAsErrors>true</TreatWarningsAsErrors> -->
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
