@@ -12,7 +12,6 @@
         <PackageReference Include="System.Text.Json" Version="9.0.0" />
         <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
       <PackageReference Include="BouncyCastle.Cryptography" Version="2.5.0" />
-
     </ItemGroup>
 
     <ItemGroup>
