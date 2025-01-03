@@ -27,7 +27,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -45,7 +45,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
@@ -64,7 +64,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
 
       - name: Pack Projects
         run: |

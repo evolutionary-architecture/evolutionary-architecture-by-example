@@ -22,10 +22,12 @@ public sealed class PrepareContractRequestValidatorTests
         result.ShouldNotHaveAnyValidationErrors();
     }
 
-    [Theory]
-    [ClassData(typeof(InvalidPrepareContractRequestTestCases))]
-    internal void Given_prepare_contract_request_validation_When_property_is_valid_Then_result_should_have_error(PrepareContractRequest request, string expectedInvalidPropertyName)
+    [Theory, ClassData(typeof(InvalidPrepareContractRequestTestCases))]
+    internal void Given_prepare_contract_request_validation_When_property_is_valid_Then_result_should_have_error(string customerId, int customerAge, int customerHeight, DateTimeOffset preparedAt, string expectedInvalidPropertyName)
     {
+        // Arrange
+        var request = new PrepareContractRequest(Guid.Parse(customerId), customerAge, customerHeight, preparedAt);
+
         // Act
         var result = _validator.TestValidate(request);
 

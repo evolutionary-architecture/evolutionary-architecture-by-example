@@ -19,150 +19,166 @@ image:https://codecov.io/gh/evolutionary-architecture/evolutionary-architecture-
 
 === Overview
 
-When starting a new greenfield application, our focus often shifts to frameworks, libraries, architecture and components that we have heard about from our friends, at conferences, workshops and meetups. As a result, we start to create an overly complicated infrastructure and solution architecture, using components that are not relevant in the beginning.
+When building a new application, we often get caught up in using the latest tech stack - jumping straight to advanced frameworks, complex architectures, and trendy tools. This creates unnecessary complexity from day one.
 
-This is how we fall into the trap associated with the project paradox - we make a lot of decisions at a time when we have almost no prior knowledge about our business domain. As a result, our decisions are usually inaccurate or, if we are lucky, they fit our future needs (a rare case). This means that at some point we will have to change the way we have been thinking, or it will simply be too late and too complex.
+Here is the core problem: We make critical technical decisions at the exact moment (the beginning) when we understand the least about what we are building. Most of these early decisions turn out to be wrong, or at best, lucky guesses. By the time we realize our mistakes, the codebase is either too complex to change or it is too late.
 
-In the end, we may have:
+This approach typically leads to one of two outcomes:
 
-- a big ball of mud OR
-- big ball of distributed mud
+- A big ball of mud
+- A big ball of distributed mud
 
-Instead, we should shift our focus and efforts to understanding business processes and preparing the simplest possible solution.
+The solution? Focus first on understanding the business requirements and build the simplest working solution possible.
 
-At this point, in the vast majority of cases, you do not need to focus on:
+At the start, we skip these complexities:
 
-- clean/onion/hexagonal architecture
-- microservices
-- cache
-- tactical Domain-Driven Design
-- data streams
-- orchestrators
+- Microservices
+- Caching
+- Aggregates
+- Data streaming
+- Heavy container orchestrators
 
-Thanks to this approach:
+Starting simple brings clear benefits:
 
-- we make most decisions only when we need them
-- each member of the team has a low entry threshold for the application
-- we add components one at a time, so we can build up the knowledge before adding the next components
-- we minimise the risk of ending up with spaghetti (however it is still possible!)
+- Decisions are made when you have enough knowledge to make them
+- New developers can onboard quickly
+- The team can master each component before adding more complexity
+- The codebase stays maintainable and clean
 
-This is what _Evolutionary Architecture_ is all about.
+This approach doesn't guarantee perfection, but it dramatically improves your chances of building something that is both useful and maintainable. And that is our way.
+
+Let's get into the details!
 
 [quote]
-Always choose architecture based on *your current needs*. *Not a wishful thinking*.
+Always choose architecture based on *your current needs and context*. Not a wishful thinking.
 
 === Requirements
 
-Fitness Studio ordered a completely new system that we had to implement from scratch. There are 5 main requirements for the MVP that we need to address:
+A fitness studio we work with needed a simple membership management system. Here is what they asked for in their MVP:
 
-1. A way to create offers for new and existing customers.
-2. When the offer is accepted by a customer, it is possible to prepare the contract.
-3. The customer can sign the contract.
-4. After signing the contract, a new pass is registered for the customer.
-5. When the pass expires, a new offer is sent to the customer.
+- Create offers for customers (both new and existing)
+- Prepare contracts when customers accept offers
+- Enable contract signing by customers
+- Automatically create customer passes after contract signing
+- Send renewal offers when passes expire
 
-Based on the outcome - success or failure of the application, the requirements will be extended or the system will be dropped (yes, we need to consider both scenarios).
+They were clear about their approach: if the system proves valuable, they will invest in more features, and help us to get more customers. If not, they will cut their losses and try something else. This practical mindset helped us focus on delivering the core functionality first.
 
 === Main assumptions
 
-It is important to remember that most systems we want to build are based on many assumptions, since we do not know how the market will react to our idea (even if, based on surveys, polls, potential customer feedback, everything points to success). Just look at the Project Paradox in the root README.
+Even with market research, surveys, and customer feedback pointing to success, any new system is built on assumptions. We need to be realistic about what we don't know. We have the following key assumptions.
 
-After discussions with our company, we have several assumptions:
+Initial scale and usage:
 
-1. Since we want to go global and there are a lot of gyms that claim they want to use our software, we assume that our application will be used by 500 - 5000 people in the beginning.
-2. Each gym has different opening hours (some are open 12 hours, some 16 hours and some 24/7).
-3. We only work in Europe, so the time differences are not big.
-4. Each person creates about 100 requests per day, which gives 5000 people * 100 req/day = 500 000 req/day for all people. We add 25% of the traffic (to be on the safe side), so it will be 500,000 + 125,000 = 625,000 req/day = 7 req/second. Now we know that we do not need a fancy infrastructure to start with for such a load.
+- Starting userbase: 500-5000 people
+- European market only (minimal timezone complexity)
+- Mix of operating hours (12h, 16h, and 24/7 facilities)
 
-NOTE: We will not cover the topic of infrastructure in this repository. The assumptions are marked here to show you that you should also consider the infrastructure, not just the solution structure. The initial calculation (such as 7 req/sec) is simply to take into account your potential traffic - which may be different during the day and at night - and to design the infrastructure architecture with this in mind. Often this is not thought through and we end up with super complicated infrastructure blocks.
+Traffic calculations:
 
-IMPORTANT: Before going live with the application, it is advisable to run performance tests to see where our real limits are. You can do this for example with https://k6.io/[k6].
+- Average 100 requests per user per day
+- With 5000 users: 500,000 daily requests
+- Adding 25% safety margin: 625,000 daily requests
+- Breaks down to about 7 requests per second (to simplify - it could only happen in a perfect world with the even distribution)
+
+This relatively modest load means we can start with simple infrastructure - no need for complex systems yet.
+
+NOTE: Each application has different characteristics. For instance, on social media platforms, users may generate an average of several thousand requests each, while in banking or intranet applications, it might be dozens or hundreds. In addition, in real-world applications, traffic is not evenly distributed. Your application needs to be able to handle spikes.
+
+NOTE: Before you go live with the application, it is a good idea to see how it performs under heavy traffic. This will help you understand the limitations of your architecture. This is usually done against expected traffic (load tests) and spikes (stress tests). You can use any tool to do this. Our recommendation is https://k6.io/[k6].
 
 === Solution
 
 ==== Overview
 
-Before we dive into the technical solution, let's have a look at what we want to build for the MVP of the software that operates in the _Fitness Studio_ domain:
+During our business analysis, we identified several subdomains of the fitness domain. We decided to make each subdomain its own bounded context.
 
-image::../Assets/subdomains_communication.jpg[]
+image::../Assets/subdomains.png[]
 
-During the business analysis we divided our business domain into the above subdomains and identified the most important processes. We also agreed that it made sense to translate our subdomains directly into bounded contexts. So in our case 1 subdomain equals 1 bounded context.
+We also decided to represent each bounded context by a separate module in our codebase. Of course, your bounded contexts aren't set in stone - they will evolve as your business does. As your company launches new services, restructures existing operations, or acquires other companies, you will likely need to adapt. This may mean adjusting or removing existing bounded contexts, or creating entirely new ones.
 
-NOTE: There is a chance that in your project you will discover that it makes sense to combine 2 or more subdomains into 1 bounded context at the beginning. This is perfectly fine - in most cases, at some point, you will have the majority of bounded contexts containing multiple subdomains. There is also a chance that 1 subdomain will evolve into several different ones. This is the most likely case for our initial partitioning, as we are focusing on really common (with the potential to become very large) subdomains. Be flexible and accept that the business will certainly change.
+The next step is to define the structure of our solution.
 
-Look at the example below, which shows a bounded context that spans multiple subdomains (we will not cover this scenario in this repo):
+==== Structure
 
-image::Assets/multiple_subdomains_single_bounded_context.jpg[]
+After creating our solution, we split the code into just 3 projects:
 
-There are 3 subdomains that are grouped into a single bounded context - _Personalised Training_ - because it makes sense. What does "it makes sense" mean? Based on different heuristics and ubiquitous language, we see that these subdomains will communicate very often with each other, the naming convention is the same (e.g. training in _Progress Tracking_ means the same as in _Virtual Coaching_ and _Assessments_).
+- `Fitnet` (main production code)
+- `Fitnet.IntegrationTests`
+- `Fitnet.UnitTests`
 
-Ok. So, now we are ready to translate the above bounded contexts into our solution architecture.
+image::Assets/projects_division.png[]
 
-==== Solution structure
+Yes, you read that right - only 3 projects! While this might seem unconventional, it is worth considering for your greenfield application. Rather than splitting modules into separate projects, we organize them using namespaces. It is a different mindset, but one that offers significant benefits.
 
-After creation of our solution, we decided to split the code *into 3 projects*. 
+The main `Fitnet` project contains the entire production code responsible for:
 
-*Yes! It is only 3 projects* and you can easily follow this path within your greenfield application. No one said that the modules should be split into separate projects. It is a question of accepting a completely different approach, and dividing them into namespaces. It is hard to accept, but worth giving a chance:
+- API to our application
+- Business logic for our processes
+- Data access
 
-image::Assets/projects_division.jpg[]
+However, this isn't a classic technical layer split. Instead, we structure our code based on:
 
-The main advantage of this approach is that you do not have to decide at this stage whether you want to follow a clean, hexagonal, onion or layered architecture, and whether there is a need to apply things like Domain-Driven Design to a particular module or not. In this way, you postpone such decisions until you have enough knowledge to make them.
+- Modules represented by namespaces - each bounded context gets its own module
+- Data divided into database schemas (logical split), with each module having its own schema
+- Business processes organized in vertical slices - all code needed for a specific process (like contract signing) lives in one folder
 
-The first project called _Fitnet_ contains entire production code that is responsible for:
+Looking at the contract signing process as an example, you will find these elements grouped together:
 
-1. API to our application.
-2. Business logic for our processes.
-3. Data access.
+- Business rules
+- Events
+- Endpoints
+- Request objects used by the endpoints
 
-However, it is not a classic division between some API, Service and Data access layers. What we focus on is to divide and structure our code on:
+You can see how it looks like https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/tree/main/Chapter-1-initial-architecture/Src/Fitnet/Contracts/SignContract[here].
 
-- Module that is represented by a namespace - we create separate module for each bounded context
-- Data is divided into schemas, where each module has its own schema
-- Business processes are closed in vertical slices, so all the code needed for e.g. contract signing is closed in a _SignContract_ folder.
+Some code is naturally shared within each module:
 
-You can check how does it look like https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/tree/main/Chapter-1-initial-architecture/Src/Fitnet/Contracts/SignContract[here].
+- Entities in the Data folder (reused across business processes)
+- Database migrations and operations
+- Module registrations for endpoints, database usage, and API paths
 
-As you can see, there are some business rules, events, endpoint and the request object that is used inside the endpoint. Everything grouped together.
+There is some https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/tree/main/Chapter-1-initial-architecture/Src/Fitnet/Contracts[code] that is reused for each vertical slice (such as _PrepareContract_ and _SignedContract_):
 
-There is some https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/tree/main/Chapter-1-initial-architecture/Src/Fitnet/Contracts[code] that is reused for each vertical slice (like _PrepareContract_ and _SignedContract_):
+Integration and unit tests follow the same organizational principle - they are in their respective projects (`Fitnet.IntegrationTests` and `Fitnet.UnitTests`) and are divided into the same module namespaces.
 
-- there is an entity _Contract_ inside folder _Data_ because it is reused by both business processes
-- there are database migrations and operations for _Contracts_ module
-- there are module registrations for endpoints, database usage and API paths
-
-Integration and unit tests for each module are located in the same project - _Fitnet.IntegrationTests_ and _Fitnet.UnitTests_ and are also divided into module namespaces.
-
-NOTE: Each module is done in a similar way - own namespace, vertical slices for processes and its own database schema. This way we are able to easily extract module to another project (or set of projects) or microservice. Thanks to vertical slices, the entry threshold for each team member is low because of no need to search in technical folders for events, handlers, queries, controllers, entities and so on. Every piece related to a concrete business process is closed in its own folder.
+NOTE: Each module follows this pattern - its own namespace, vertical slices for processes, and its own database schema. This approach makes it easy to extract a module into another project or microservice later. Thanks to vertical slices, the entry threshold for team members is low - no need to search through technical folders for events, handlers, queries, controllers, and entities. Everything related to a specific business process lives in its own folder.
 
 ==== Communication
 
-The topic of communication is often discussed. It was no different in our case. In the end we decided to use our own in-memory event bus. This has several advantages and disadvantages:
+For communication, we decided to implement our own in-memory event bus at this point. While this might seem like a simple solution, it came after careful consideration of our current needs and future flexibility. The key advantage of this approach is how it enables loose coupling between our components right from the start. When different parts of our system need to interact, they can do so through events rather than direct calls, making the system more flexible and easier to modify as we learn more about our business requirements.
 
-1. By implementing an in-memory event bus, our components will be loosely coupled and better able to communicate and interact with each other. This will allow us to develop and deploy our system in a more scalable and flexible way.
-2. One consequence of using it rather than an external message broker is that we cannot retire messages and persist them on the event bus for later retrieval. In an external message broker, messages can be persisted and stored for a period of time so that they can be replayed or reprocessed if necessary. In an in-memory event bus, messages are stored only in memory and are lost when the event bus is stopped or restarted.
+NOTE: In practice, there are times when direct calls are an acceptable solution. For example, when you need an immediate response, or when you are dealing with critical business operations that require synchronous communication. The key is to be pragmatic - while loose coupling is generally preferred, forcing it everywhere can lead to unnecessary complexity. Sometimes a direct call is simply a better choice.
 
-Overall, we believe that the benefits of implementing in-memory communication in the early stages of our project outweigh the potential risks and challenges.
+However, we need to be upfront about the limitations of this approach. Unlike external message brokers, our in-memory solution doesn't persist messages. This means if our system restarts, any messages in transit are lost. We also can't replay messages later - a feature that can be valuable for debugging or recovering from errors. These limitations might sound serious, but for our early-stage MVP, we believe the benefits of keeping things simple outweigh these drawbacks.
 
-NOTE: As this may be a controversial topic for you, you should judge it on your own case. If you can accept some data inconsistency and the application is in its very early stages (e.g. the MVP), you may choose to use in-memory communication. If you prefer to start with a more relevant solution, you can implement an _Outbox_ pattern or integrate an external component like RabbitMQ from day one of your project. The choice is yours.
+The choice of using in-memory communication wasn't made lightly, and it might not be right for every project. If you are building a system where data is crucial from day one, you might want to consider implementing the Outbox and Inbox patterns or integrating a message broker like RabbitMQ from the start. However, if you are in the early stages of your project and can accept some data loss while you validate your business model, an in-memory solution could help you move faster and learn more quickly.
+
+The beauty of this approach is that it doesn't lock us in. As our system grows and our needs evolve, we can gradually introduce more sophisticated messaging solutions. Starting simple doesn't mean staying simple - it means building on a foundation that we understand completely and can evolve confidently.
 
 ==== Tests
 
-Here we are. The decision we have made is to have 2 sets of tests in the early stages of our application:
+We decided to start with two essential types of tests.
 
-1. _Integration tests_ - here we test the whole business process with different input parameters. We may get a successful response or an exception will be thrown. In some cases we use snapshot testing using the https://github.com/VerifyTests/Verify[Verify] library. Integration tests for all modules and shared logic are located here.
+===== Integration Tests
 
-2. _Unit Tests_ - What could be more standard than unit testing? Unit tests for all modules and shared logic can be found here.
+These focus on testing complete business processes end-to-end. We run processes with various input parameters, checking both successful outcomes and error scenarios. For some complex responses, we use snapshot testing with the https://github.com/VerifyTests/Verify[Verify] library. All integration tests, whether for specific modules or shared logic, live in the `Fitnet.IntegrationTests` project.
 
-In test projects you will find _GlobalUsings.cs_. You are not required to use it in your project, but it does make it easier to manage global usings (each class will contain less code).
+===== Unit Tests
 
-NOTE: If you are implementing your own application, you may want to consider contract testing. This means you would have another project called _Fitnet.ContractTests_. There is also another approach you can take, where you can combine contract and integration tests together. This will give you something called _ModuleTests_. If you choose contract testing, we suggest https://docs.pact.io/[Pact]. If you go for module tests, we suggest using Verify (mentioned above) or https://github.com/approvals/ApprovalTests.Net[ApprovalTests], as this makes maintenance easier.
+These are your standard unit tests, focused on testing individual behaviors in isolation. You will find them organized by module and shared logic in the `Fitnet.UnitTests` project.
 
+Both test projects include a `GlobalUsings.cs` file. While not mandatory, it helps reduce code clutter in individual test files by centralizing common using statements.
+
+NOTE: As your project evolves, you might want to consider additional testing strategies. Contract testing is one option, which would live in a separate `Fitnet.ContractTests` project. Another approach is combining contract and integration tests into what we call module tests. If you choose contract testing, we recommend looking into https://docs.pact.io/[Pact]. For module tests, consider using Verify or https://github.com/approvals/ApprovalTests.Net[ApprovalTests] - both make test maintenance significantly easier by simplifying the verification of complex test outputs. The choice largely depends on your specific needs.
 
 ==== Miscellaneous
 
-Within _Docs_ you will find the _Architecture Decision Log_. This log contains _Architecture Decision Records_. Each record is immutable and contains an explanation of why we chose one approach over another. If you need to override one of the previous decisions, you need to create a new record. This is one of the easiest ways to keep your architecture documentation up to date. You can read more about this at https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[here].
+In our _Docs_ folder, you will find the _Architecture Decision Log_ - a collection of _Architecture Decision Records_. Each record is immutable and documents why we made specific architectural choices. When we need to change a previous decision, we create a new record rather than modifying the old one. This approach helps maintain a clear history of our architectural evolution and keeps our documentation current. If you are interested in learning more about this method, check out https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[Cognitect's blog post] on documenting architecture decisions.
 
-If you want to test the endpoints, you can find http files in the docs for each module. The only thing you need to configure is the application url in _http-client.env.json_.
+NOTE: _Architecture Decision Log_ is particularly valuable when new team members join or when you need to understand historical context months or years later. They answer not just what was decided, but why - making them an invaluable part of your project's documentation.
+
+For testing the API endpoints, we have included HTTP files in the docs folder for each module. Getting started is simple - just update the application URL in http-client.env.json, and you are ready to test the endpoints.
 
 == How to run?
 
@@ -194,11 +210,12 @@ The application runs on port `:8080`. Please navigate to http://localhost:8080 i
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
 === How to run Integration Tests?
-To run the integration tests for the project located in the Fitnet.IntegrationTests project, you can use either the command:
+To run the integration tests for the project located in the `Fitnet.IntegrationTests` project, you can use either the command:
 
 `dotnet test`
 
-or the `IDE test Explorer`. 
+or the `IDE test explorer`. 
 
-These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing. 
+These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing.
+
 Therefore, make sure to have `Docker` running before executing the integration tests.

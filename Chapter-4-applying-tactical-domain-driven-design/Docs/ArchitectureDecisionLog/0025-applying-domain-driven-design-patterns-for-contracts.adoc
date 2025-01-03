@@ -1,7 +1,27 @@
-= 25. Applying Domain-Driven Design Patterns for Contracts
+= 25. Applying Tatical DDD Patterns in Contracts Module
 
-Date: 2024-11-23
+Date: 2024-12-21
+
+The business logic in our Contracts module has been expanding at a rapid pace, particularly with new requirements for contract annexes. 
+The Contracts module requires strict data consistency as it represents a core business capability.
+As the domain complexity increases, maintaining the module has become increasingly challenging.
 
 == Problem
+The Team has considered to use Domain-Driven Design (DDD) patterns like Aggregate Root, Entity, Value Object and more in near future.
+
+== Decision
+The team has decided to implement Tactical DDD patterns in the Contracts module, designating the binding contract as an Aggregate Root.
 
 == Consequences
+* More accurate representation of business concepts and relationships through explicit domain modeling
+* Improved data consistency through aggregate boundaries
+* Clearer business rules encapsulation
+* Easier to test domain logic in isolation
+* More explicit domain invariants
+* Reduced accidental complexity
+* Learning curve for team members not familiar with DDD patterns
+* Initial development overhead
+* Need for careful aggregate boundary design
+* Additional boilerplate code for value objects and entities
+* Need for knowledge transfer sessions to align understanding of DDD patterns
+* Additional development time for refactoring existing module
