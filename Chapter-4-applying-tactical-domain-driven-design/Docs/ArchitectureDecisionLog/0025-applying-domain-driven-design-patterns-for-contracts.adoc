@@ -7,21 +7,21 @@ The Contracts module requires strict data consistency as it represents a core bu
 As the domain complexity increases, maintaining the module has become increasingly challenging.
 
 == Problem
-The Team has considered to use Domain-Driven Design (DDD) patterns like Aggregate Root, Entity, Value Object and more in near future.
+The Team has considered using Domain-Driven Design (DDD) patterns like Aggregate Root, Entity, Value Object and more in near future.
 
 == Decision
 The team has decided to implement Tactical DDD patterns in the Contracts module, designating the binding contract as an Aggregate Root.
 
 == Consequences
-* More accurate representation of business concepts and relationships through explicit domain modeling
-* Improved data consistency through aggregate boundaries
-* Clearer business rules encapsulation
-* Easier to test domain logic in isolation
-* More explicit domain invariants
-* Reduced accidental complexity
-* Learning curve for team members not familiar with DDD patterns
-* Initial development overhead
-* Need for careful aggregate boundary design
-* Additional boilerplate code for value objects and entities
-* Need for knowledge transfer sessions to align understanding of DDD patterns
-* Additional development time for refactoring existing module
+* **Maintainability**: More explicit domain invariants
+* **Flexibility**: Easier to adapt to business changes due to clear aggregate boundaries
+* **Accuracy**: More accurate representation of business concepts and relationships through explicit domain modeling
+* **Consistency**: Improved data consistency through aggregate boundaries
+* **Testability**: Easier to test domain logic in isolation
+* **Clarity**: Clearer encapsulation of business rules
+* **Complexity Management**: Reduced accidental complexity
+* **Learning Curve**: Requires team members to learn DDD patterns
+* **Time**: Initial development overhead and additional refactoring time
+* **Careful Boundary Design**: Need for careful design of aggregate boundaries
+* **Knowledge Transfer**: Need for knowledge-sharing sessions to align understanding of DDD patterns
+* **Boilerplate**: Additional boilerplate code for value objects and entities
