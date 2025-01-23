@@ -54,7 +54,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
     }
 
     [Fact]
@@ -68,7 +68,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     private async Task<ContractSignedEvent> RegisterPass()
@@ -84,9 +84,9 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     private async Task<Guid> GetCreatedPass(Guid customerId)
     {
         var createdPass = await CreatedPass(customerId);
-        createdPass.Should().NotBeNull();
+        createdPass.ShouldNotBeNull();
 
-        return createdPass!.Id;
+        return createdPass.Id;
     }
 
     private async Task<PassDto?> CreatedPass(Guid customerId)

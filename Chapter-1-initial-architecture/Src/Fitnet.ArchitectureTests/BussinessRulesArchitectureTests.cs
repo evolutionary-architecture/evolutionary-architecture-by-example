@@ -2,6 +2,7 @@
 
 using Common;
 using Fitnet.Common.BusinessRulesEngine;
+using Shouldly;
 
 public class BusinessRulesArchitectureTests
 {
@@ -21,6 +22,6 @@ public class BusinessRulesArchitectureTests
         var validationResult = forbiddenTypes!.Should().NotHaveDependencyOnAny(businessRules).GetResult();
 
         // Assert
-        validationResult.FailingTypes.Should().BeNull();
+        validationResult.FailingTypes.ShouldBeNull();
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests;
 
 using Common;
+using Shouldly;
 
 public sealed class OffersArchitectureTests
 {
@@ -28,7 +29,7 @@ public sealed class OffersArchitectureTests
         var validationResult = rules!.GetResult();
 
         // Assert
-        validationResult.FailingTypes.Should().BeNull();
+        validationResult.FailingTypes.ShouldBeNull();
     }
 
     [Fact]
@@ -52,6 +53,6 @@ public sealed class OffersArchitectureTests
         var validationResult = rules!.GetResult();
 
         // Assert
-        validationResult.FailingTypes.Should().BeNull();
+        validationResult.FailingTypes.ShouldBeNull();
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests;
 
 using Common;
+using Shouldly;
 
 public sealed class ContractsArchitectureTests
 {
@@ -27,6 +28,6 @@ public sealed class ContractsArchitectureTests
         var validationResult = rules!.GetResult();
 
         // Assert
-        validationResult.FailingTypes.Should().BeNull();
+        validationResult.FailingTypes.ShouldBeNull();
     }
 }

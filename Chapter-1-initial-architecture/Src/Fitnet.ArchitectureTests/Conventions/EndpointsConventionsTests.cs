@@ -1,6 +1,7 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests.Conventions;
 
 using Common;
+using Shouldly;
 
 public sealed class EndpointsConventionsTests
 {
@@ -21,6 +22,6 @@ public sealed class EndpointsConventionsTests
         var result = rules.GetResult();
 
         // Assert
-        result.IsSuccessful.Should().BeTrue();
+        result.IsSuccessful.ShouldBeTrue();
     }
 }
