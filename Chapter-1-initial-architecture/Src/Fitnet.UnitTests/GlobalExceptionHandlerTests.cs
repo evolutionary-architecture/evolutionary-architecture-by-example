@@ -17,17 +17,16 @@ public sealed class GlobalExceptionHandlerTests
     {
         // Arrange
         const string exceptionMessage = "Business rule not met";
-        var exceptionHandler =
-            new GlobalExceptionHandler(_logger);
+        var exceptionHandler = new GlobalExceptionHandler(_logger);
 
         // Act
         await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
 
         // Assert
-        _context.Response.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.Conflict);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Title.Should().Be(exceptionMessage);
+        responseMessage.Title.ShouldBe(exceptionMessage);
     }
 
     [Fact]
@@ -35,17 +34,16 @@ public sealed class GlobalExceptionHandlerTests
     {
         // Arrange
         const string exceptionMessage = "Server Error";
-        var exceptionHandler =
-            new GlobalExceptionHandler(_logger);
+        var exceptionHandler = new GlobalExceptionHandler(_logger);
 
         // Act
         await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
 
         // Assert
-        _context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+        _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.InternalServerError);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Title.Should().Be(exceptionMessage);
+        responseMessage.Title.ShouldBe(exceptionMessage);
     }
 
     private static DefaultHttpContext GetHttpContext() =>
