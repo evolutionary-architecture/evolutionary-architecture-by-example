@@ -6,29 +6,16 @@ using EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
 public sealed class PreviousContractHasToBeSignedRuleTests
 {
     [Fact]
-    internal void Given_previous_contract_signed_Then_validation_should_pass()
-    {
+    internal void Given_previous_contract_signed_Then_validation_should_pass() =>
         // Arrange
-
-        // Act
-        var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(true));
-
-        // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
-    }
+        // Act & Assert
+        Should.NotThrow(() => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(true)));
 
     [Fact]
-    internal void Given_previous_contract_not_exists_Then_validation_should_pass()
-    {
+    internal void Given_previous_contract_not_exists_Then_validation_should_pass() =>
         // Arrange
-
-        // Act
-        var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(null));
-
-        // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
-    }
-
+        // Act & Assert
+        Should.NotThrow(() => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(null)));
 
     [Fact]
     internal void Given_previous_contract_unsigned_Then_validation_should_throw()
@@ -36,9 +23,9 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false));
+        var exception = Should.Throw<BusinessRuleValidationException>(() => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false)));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Previous contract must be signed by the customer");
+        exception.Message.ShouldBe("Previous contract must be signed by the customer");
     }
 }
