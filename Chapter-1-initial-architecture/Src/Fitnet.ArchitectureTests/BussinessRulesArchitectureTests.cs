@@ -2,7 +2,6 @@
 
 using Common;
 using Fitnet.Common.BusinessRulesEngine;
-using Shouldly;
 
 public class BusinessRulesArchitectureTests
 {
