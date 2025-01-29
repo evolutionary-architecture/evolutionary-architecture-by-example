@@ -1,7 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests;
 
 using Common;
-using Shouldly;
 
 public sealed class ContractsArchitectureTests
 {

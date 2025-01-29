@@ -1,7 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.ArchitectureTests.Conventions;
 
 using Common;
-using Shouldly;
 
 public sealed class EndpointsConventionsTests
 {
