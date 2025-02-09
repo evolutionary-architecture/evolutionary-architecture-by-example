@@ -285,7 +285,7 @@ NOTE: When you’re looking for boundaries of an aggregate, you should consider 
 - They have a lifecycle
 - They’re lightweight
 - Each method execution state change is wrapped in a transaction
-- They can raise domain events after creating or state change after creating or state change
+- They can raise domain events after creating or state change
 
 [[aggregate-root]]
 The aggregate has its root.
