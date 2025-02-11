@@ -19,7 +19,7 @@ public class SignContractTests
         contract.Sign(signedAt, fakeNow);
 
         // Assert
-        contract.ExpiringAt.Should().Be(expectedExpirationDate);
+        contract.ExpiringAt.ShouldBe(expectedExpirationDate);
     }
 
     private static Contract PrepareContract(DateTimeOffset preparedAt)

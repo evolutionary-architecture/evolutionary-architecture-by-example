@@ -35,7 +35,7 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
     }
 
     [Fact]
@@ -50,12 +50,11 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     [Fact]
-    internal async Task
-        Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict_status_code()
+    internal async Task Given_contract_signature_request_with_invalid_signed_date_Then_should_return_conflict_status_code()
     {
         // Arrange
         var preparedContractId = await PrepareContract();
@@ -68,12 +67,11 @@ public sealed class SignContractTests : IClassFixture<FitnetWebApplicationFactor
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
 
         var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Title.Should()
-            .Be("Contract can not be signed because more than 30 days have passed from the contract preparation");
+        responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.ShouldBe("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
 
     private async Task<Guid> PrepareContract()

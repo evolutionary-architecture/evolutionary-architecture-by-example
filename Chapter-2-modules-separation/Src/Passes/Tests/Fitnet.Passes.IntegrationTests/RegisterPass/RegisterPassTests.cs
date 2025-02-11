@@ -7,6 +7,7 @@ using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Contracts.IntegrationEvents;
+using Shouldly;
 
 public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>

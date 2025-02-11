@@ -26,7 +26,7 @@ public sealed class PrepareContractTests(
         var prepareContractResponse = await PrepareCorrectContract(requestParameters);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
+        prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Fact]
@@ -44,9 +44,8 @@ public sealed class PrepareContractTests(
 
         // Assert
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Title.Should()
-            .Be("Contract can not be prepared for a person who is not adult");
+        responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.ShouldBe("Contract can not be prepared for a person who is not adult");
     }
 
     [Fact]
@@ -64,9 +63,8 @@ public sealed class PrepareContractTests(
 
         // Assert
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Title.Should()
-            .Be("Customer height must fit maximum limit for gym instruments");
+        responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.ShouldBe("Customer height must fit maximum limit for gym instruments");
     }
 
     [Fact]
@@ -82,9 +80,8 @@ public sealed class PrepareContractTests(
 
         // Assert
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Title.Should()
-            .Be("Previous contract must be signed by the customer");
+        responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
+        responseMessage?.Title.ShouldBe("Previous contract must be signed by the customer");
     }
 
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)
