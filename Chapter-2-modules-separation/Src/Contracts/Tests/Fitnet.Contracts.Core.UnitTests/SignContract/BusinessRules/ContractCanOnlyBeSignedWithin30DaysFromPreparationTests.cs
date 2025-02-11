@@ -17,7 +17,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
                     DateTimeOffset.Now.AddDays(31)));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage(
+        act.ShouldThrow<BusinessRuleValidationException>().Message.ShouldBe(
             "Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
 
@@ -33,7 +33,7 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
                     DateTimeOffset.Now.AddDays(30)));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow<BusinessRuleValidationException>();
     }
 
     [Fact]
@@ -48,6 +48,6 @@ public sealed class ContractCanOnlyBeSignedWithin30DaysFromPreparationTests
                     DateTimeOffset.Now.AddDays(29)));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow<BusinessRuleValidationException>();
     }
 }
