@@ -4,6 +4,7 @@ using ErrorHandling;
 using Core.BusinessRules;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Shouldly;
 
 public sealed class GlobalExceptionHandlerTests
 {
@@ -22,10 +23,10 @@ public sealed class GlobalExceptionHandlerTests
         await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
 
         // Assert
-        _context.Response.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.Conflict);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Title.Should().Be(exceptionMessage);
+        responseMessage.Title.ShouldBe(exceptionMessage);
     }
 
     [Fact]
@@ -40,10 +41,10 @@ public sealed class GlobalExceptionHandlerTests
         await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
 
         // Assert
-        _context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+        _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.InternalServerError);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Title.Should().Be(exceptionMessage);
+        responseMessage.Title.ShouldBe(exceptionMessage);
     }
 
     private static DefaultHttpContext GetHttpContext() =>
