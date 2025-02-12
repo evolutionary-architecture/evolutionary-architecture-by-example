@@ -307,7 +307,7 @@ Testing:
 - https://nsubstitute.github.io/[NSubstitute]
 - https://github.com/VerifyTests/Verify[Verify]
 - https://github.com/bchavez/Bogus[Bogus]
-- https://github.com/fluentassertions/fluentassertions[Fluent Assertions]
+- https://docs.shouldly.org/documentation/getting-started[Shouldly]
 - https://dotnet.testcontainers.org[Test Containers]
 
 == Videos 🎥
