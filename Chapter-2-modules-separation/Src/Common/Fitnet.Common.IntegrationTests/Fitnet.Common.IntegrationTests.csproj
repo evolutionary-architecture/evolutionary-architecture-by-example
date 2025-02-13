@@ -7,7 +7,6 @@
   
     <ItemGroup>
         <PackageReference Include="Bogus" Version="35.6.1" />
-        <PackageReference Include="FluentAssertions" Version="6.12.2" />
         <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="9.0.0" />
         <PackageReference Include="Verify.Xunit" Version="28.3.2" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
