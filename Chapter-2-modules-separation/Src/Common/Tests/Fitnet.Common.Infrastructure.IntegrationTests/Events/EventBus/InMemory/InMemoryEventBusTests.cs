@@ -22,7 +22,7 @@ public sealed class InMemoryEventBusTests(
         await eventBus!.PublishAsync(fakeEvent, CancellationToken.None);
 
         // Assert
-        fakeEvent.Consumed.Should().BeTrue();
+        fakeEvent.Consumed.ShouldBeTrue();
     }
 
     private IEventBus GetEventBus() =>

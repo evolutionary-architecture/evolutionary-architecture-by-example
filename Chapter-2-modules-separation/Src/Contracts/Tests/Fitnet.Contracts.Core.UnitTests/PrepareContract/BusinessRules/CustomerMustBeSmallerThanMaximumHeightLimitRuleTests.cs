@@ -15,7 +15,8 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         var act = () => BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Customer height must fit maximum limit for gym instruments");
+        var exception = act.ShouldThrow<BusinessRuleValidationException>();
+        exception.Message.ShouldBe("Customer height must fit maximum limit for gym instruments");
     }
 
     [Fact]
@@ -28,7 +29,7 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         var act = () => BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 
     [Fact]
@@ -41,6 +42,6 @@ public sealed class CustomerMustBeSmallerThanMaximumHeightLimitRuleTests
         var act = () => BusinessRuleValidator.Validate(new CustomerMustBeSmallerThanMaximumHeightLimitRule(height));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 }

@@ -1,13 +1,13 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.IntegrationTests.MarkPassAsExpired;
 
-using Common.Infrastructure.Events.EventBus;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
-using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using Api;
 using Api.GetAllPasses;
+using Common.Infrastructure.Events.EventBus;
 using Common.IntegrationTests.TestEngine;
 using Common.IntegrationTests.TestEngine.Configuration;
 using Contracts.IntegrationEvents;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Database;
+using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.IntegrationEvents.Handlers;
 using IntegrationEvents;
 using RegisterPass;
 
@@ -55,7 +55,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     private async Task<ContractSignedEvent> RegisterPass()
@@ -87,9 +87,9 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
         var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
         var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
-        createdPass.Should().NotBeNull();
+        createdPass.ShouldNotBeNull();
 
-        return createdPass!.Id;
+        return createdPass.Id;
     }
 
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());

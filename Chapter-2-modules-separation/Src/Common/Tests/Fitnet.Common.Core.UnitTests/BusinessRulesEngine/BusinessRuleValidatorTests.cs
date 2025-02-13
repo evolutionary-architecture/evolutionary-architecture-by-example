@@ -13,7 +13,7 @@ public sealed class BusinessRuleValidatorTests
         var act = () => BusinessRuleValidator.Validate(new FakeBusinessRule(20));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 
     [Fact]
@@ -25,6 +25,7 @@ public sealed class BusinessRuleValidatorTests
         var act = () => BusinessRuleValidator.Validate(new FakeBusinessRule(1));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Fake business rule was not met");
+        var exception = act.ShouldThrow<BusinessRuleValidationException>();
+        exception.Message.ShouldBe("Fake business rule was not met");
     }
 }

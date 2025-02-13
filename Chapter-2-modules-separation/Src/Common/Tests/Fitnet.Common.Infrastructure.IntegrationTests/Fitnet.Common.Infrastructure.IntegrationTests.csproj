@@ -7,6 +7,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
         <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
+        <PackageReference Include="Shouldly" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>
