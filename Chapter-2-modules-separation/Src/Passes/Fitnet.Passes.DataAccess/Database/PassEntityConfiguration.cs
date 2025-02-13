@@ -10,7 +10,6 @@ internal sealed class PassEntityConfiguration : IEntityTypeConfiguration<Pass>
         builder.ToTable("Passes");
         builder.HasKey(pass => pass.Id);
         builder.Property(pass => pass.CustomerId).IsRequired();
-        builder.Property(pass => pass.From).IsRequired();
         builder.Property(pass => pass.To).IsRequired();
     }
 }
