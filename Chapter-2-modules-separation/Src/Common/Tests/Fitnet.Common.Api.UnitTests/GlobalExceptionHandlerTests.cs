@@ -4,7 +4,6 @@ using ErrorHandling;
 using Core.BusinessRules;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Shouldly;
 
 public sealed class GlobalExceptionHandlerTests
 {
