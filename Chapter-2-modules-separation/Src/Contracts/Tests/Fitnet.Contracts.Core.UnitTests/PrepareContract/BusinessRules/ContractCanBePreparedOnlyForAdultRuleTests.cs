@@ -14,7 +14,8 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         var act = () => BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(17));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Contract can not be prepared for a person who is not adult");
+        var exception = act.ShouldThrow<BusinessRuleValidationException>();
+        exception.Message.ShouldBe("Contract can not be prepared for a person who is not adult");
     }
 
     [Fact]
@@ -26,7 +27,7 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         var act = () => BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(18));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 
     [Fact]
@@ -38,6 +39,6 @@ public sealed class ContractCanBePreparedOnlyForAdultRuleTests
         var act = () => BusinessRuleValidator.Validate(new ContractCanBePreparedOnlyForAdultRule(19));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 }

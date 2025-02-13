@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Core.UnitTests.BusinessRulesEngine;
 
 using BusinessRules;
-using Shouldly;
 
 public sealed class BusinessRuleValidatorTests
 {
@@ -14,7 +13,7 @@ public sealed class BusinessRuleValidatorTests
         var act = () => BusinessRuleValidator.Validate(new FakeBusinessRule(20));
 
         // Assert
-        act.ShouldNotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 
     [Fact]
@@ -26,6 +25,7 @@ public sealed class BusinessRuleValidatorTests
         var act = () => BusinessRuleValidator.Validate(new FakeBusinessRule(1));
 
         // Assert
-        act.ShouldThrow<BusinessRuleValidationException>().WithMessage("Fake business rule was not met");
+        var exception = act.ShouldThrow<BusinessRuleValidationException>();
+        exception.Message.ShouldBe("Fake business rule was not met");
     }
 }

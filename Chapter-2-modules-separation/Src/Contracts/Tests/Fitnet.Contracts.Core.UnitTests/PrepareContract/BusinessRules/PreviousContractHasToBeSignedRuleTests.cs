@@ -14,7 +14,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(true));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
 
     [Fact]
@@ -26,9 +26,8 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(null));
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        act.ShouldNotThrow();
     }
-
 
     [Fact]
     internal void Given_previous_contract_unsigned_Then_validation_should_throw()
@@ -39,6 +38,7 @@ public sealed class PreviousContractHasToBeSignedRuleTests
         var act = () => BusinessRuleValidator.Validate(new PreviousContractHasToBeSignedRule(false));
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Previous contract must be signed by the customer");
+        var exception = act.ShouldThrow<BusinessRuleValidationException>();
+        exception.Message.ShouldBe("Previous contract must be signed by the customer");
     }
 }
