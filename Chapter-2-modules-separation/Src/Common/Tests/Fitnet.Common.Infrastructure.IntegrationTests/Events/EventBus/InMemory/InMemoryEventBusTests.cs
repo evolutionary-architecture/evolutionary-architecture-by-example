@@ -3,7 +3,6 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Infrastructure.IntegrationTests
 using Common.IntegrationTests.TestEngine;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Configuration;
-using Shouldly;
 
 public sealed class InMemoryEventBusTests(
     FitnetWebApplicationFactory<Program> applicationInMemoryFactory) : IClassFixture<
