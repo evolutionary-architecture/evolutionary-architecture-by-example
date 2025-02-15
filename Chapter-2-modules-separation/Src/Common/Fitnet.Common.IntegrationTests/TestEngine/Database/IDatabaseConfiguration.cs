@@ -2,5 +2,5 @@ namespace EvolutionaryArchitecture.Fitnet.Common.IntegrationTests.TestEngine.Dat
 
 public interface IDatabaseConfiguration
 {
-    public Dictionary<string, string?> Get();
+    Dictionary<string, string?> Get();
 }
