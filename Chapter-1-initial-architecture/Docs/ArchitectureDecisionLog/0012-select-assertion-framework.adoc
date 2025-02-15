@@ -6,7 +6,7 @@ Date: 2025-09-04
 
 We have been using Fluent Assertions as an assertion library to enhance the readability and maintainability of our test code through fluent interfaces. However, starting from version 8, Fluent Assertions has transitioned to a paid NuGet package. Given the current pricing model, the cost outweighs the benefits it provides to our project. Consequently, we are evaluating open-source alternatives to replace Fluent Assertions.
 
-Option 1: NFluentAssertions
+=== Option 1: NFluentAssertions
 
 This library is a fork of Fluent Assertions, allowing us to transition without modifying our existing assertions—only a NuGet package change is required.
 
@@ -14,7 +14,7 @@ The project is maintained by a separate group of developers, raising concerns ab
 
 Repository: https://github.com/tpierrain/NFluent
 
-Option 2: MSTest Assertions
+=== Option 2: MSTest Assertions
 
 These assertions are the standard Microsoft .NET testing utilities, maintained and updated with each .NET release.
 
@@ -22,7 +22,7 @@ They offer a reliable and well-supported alternative but lack the fluent syntax,
 
 Documentation: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
-Option 3: Shouldly
+=== Option 3: Shouldly
 
 Shouldly provides a similar fluent interface to Fluent Assertions with minor syntactic differences.
 
