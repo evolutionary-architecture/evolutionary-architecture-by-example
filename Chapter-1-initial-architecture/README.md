@@ -1,4 +1,4 @@
-= Chapter 1: Initial Architecture - Focus On Simplicity
+# Chapter 1: Initial Architecture - Focus On Simplicity
 :toc:
 
 ++++
@@ -15,9 +15,9 @@ image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-
 
 image:https://codecov.io/gh/evolutionary-architecture/evolutionary-architecture-by-example/branch/main/graph/badge.svg[Codecov, link=https://codecov.io/gh/evolutionary-architecture/evolutionary-architecture-by-example]
 
-== Case
+## Case
 
-=== Overview
+### Overview
 
 When building a new application, we often get caught up in using the latest tech stack - jumping straight to advanced frameworks, complex architectures, and trendy tools. This creates unnecessary complexity from day one.
 
@@ -50,9 +50,9 @@ This approach doesn't guarantee perfection, but it dramatically improves your ch
 Let's get into the details!
 
 [quote]
-Always choose architecture based on *your current needs and context*. Not a wishful thinking.
+Always choose architecture based on _your current needs and context_. Not a wishful thinking.
 
-=== Requirements
+### Requirements
 
 A fitness studio we work with needed a simple membership management system. Here is what they asked for in their MVP:
 
@@ -64,7 +64,7 @@ A fitness studio we work with needed a simple membership management system. Here
 
 They were clear about their approach: if the system proves valuable, they will invest in more features, and help us to get more customers. If not, they will cut their losses and try something else. This practical mindset helped us focus on delivering the core functionality first.
 
-=== Main assumptions
+### Main assumptions
 
 Even with market research, surveys, and customer feedback pointing to success, any new system is built on assumptions. We need to be realistic about what we don't know. We have the following key assumptions.
 
@@ -87,9 +87,9 @@ NOTE: Each application has different characteristics. For instance, on social me
 
 NOTE: Before you go live with the application, it is a good idea to see how it performs under heavy traffic. This will help you understand the limitations of your architecture. This is usually done against expected traffic (load tests) and spikes (stress tests). You can use any tool to do this. Our recommendation is https://k6.io/[k6].
 
-=== Solution
+### Solution
 
-==== Overview
+#### Overview
 
 During our business analysis, we identified several subdomains of the fitness domain. We decided to make each subdomain its own bounded context.
 
@@ -99,7 +99,7 @@ We also decided to represent each bounded context by a separate module in our co
 
 The next step is to define the structure of our solution.
 
-==== Structure
+#### Structure
 
 After creating our solution, we split the code into just 3 projects:
 
@@ -144,7 +144,7 @@ Integration and unit tests follow the same organizational principle - they are i
 
 NOTE: Each module follows this pattern - its own namespace, vertical slices for processes, and its own database schema. This approach makes it easy to extract a module into another project or microservice later. Thanks to vertical slices, the entry threshold for team members is low - no need to search through technical folders for events, handlers, queries, controllers, and entities. Everything related to a specific business process lives in its own folder.
 
-==== Communication
+#### Communication
 
 For communication, we decided to implement our own in-memory event bus at this point. While this might seem like a simple solution, it came after careful consideration of our current needs and future flexibility. The key advantage of this approach is how it enables loose coupling between our components right from the start. When different parts of our system need to interact, they can do so through events rather than direct calls, making the system more flexible and easier to modify as we learn more about our business requirements.
 
@@ -156,7 +156,7 @@ The choice of using in-memory communication wasn't made lightly, and it might no
 
 The beauty of this approach is that it doesn't lock us in. As our system grows and our needs evolve, we can gradually introduce more sophisticated messaging solutions. Starting simple doesn't mean staying simple - it means building on a foundation that we understand completely and can evolve confidently.
 
-==== Tests
+#### Tests
 
 We decided to start with two essential types of tests.
 
@@ -172,7 +172,7 @@ Both test projects include a `GlobalUsings.cs` file. While not mandatory, it hel
 
 NOTE: As your project evolves, you might want to consider additional testing strategies. Contract testing is one option, which would live in a separate `Fitnet.ContractTests` project. Another approach is combining contract and integration tests into what we call module tests. If you choose contract testing, we recommend looking into https://docs.pact.io/[Pact]. For module tests, consider using Verify or https://github.com/approvals/ApprovalTests.Net[ApprovalTests] - both make test maintenance significantly easier by simplifying the verification of complex test outputs. The choice largely depends on your specific needs.
 
-==== Miscellaneous
+#### Miscellaneous
 
 In our _Docs_ folder, you will find the _Architecture Decision Log_ - a collection of _Architecture Decision Records_. Each record is immutable and documents why we made specific architectural choices. When we need to change a previous decision, we create a new record rather than modifying the old one. This approach helps maintain a clear history of our architectural evolution and keeps our documentation current. If you are interested in learning more about this method, check out https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[Cognitect's blog post] on documenting architecture decisions.
 
@@ -180,36 +180,36 @@ NOTE: _Architecture Decision Log_ is particularly valuable when new team members
 
 For testing the API endpoints, we have included HTTP files in the docs folder for each module. Getting started is simple - just update the application URL in http-client.env.json, and you are ready to test the endpoints.
 
-== How to run?
+## How to run?
 
-=== Requirements
+### Requirements
 
 - .NET SDK
 - Docker
 
-=== How to get .NET SDK?
+### How to get .NET SDK?
 
 To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
 
-Click link:https://dotnet.microsoft.com/en-us/download[here] 
+Click [here](https://dotnet.microsoft.com/en-us/download) 
 
 to download it from the official Microsoft website.
 
-=== Run locally
+### Run locally
 
 The Fitnet application requires Docker to run properly.
 
 There are only 3 steps you need to start the application:
 
 1. Make sure that you are in `/Src` directory. 
-2. Run `docker-compose build` to build the image of the application.
-3. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
+1. Run `docker-compose build` to build the image of the application.
+1. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
 The application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
-=== How to run Integration Tests?
+### How to run Integration Tests?
 To run the integration tests for the project located in the `Fitnet.IntegrationTests` project, you can use either the command:
 
 `dotnet test`
