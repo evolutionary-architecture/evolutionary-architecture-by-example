@@ -1,4 +1,4 @@
-= Chapter 2: Modules Separation: Focus On Maintainability
+# Chapter 2: Modules Separation: Focus On Maintainability
 :toc:
 
 ++++
@@ -13,18 +13,18 @@
 
 image:https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/actions/workflows/chapter-2-workflow.yml/badge.svg[Build Status]
 
-== Case
+## Case
 
-=== Overview
+### Overview
 
 After the initial steps - while building the MVP of the application - the codebase starts to get bigger and more complicated.
 
 Imagine that you started developing your application with a similar approach as in the first chapter - with only 1 production code project. It was successful, got more and more traction in the market, and therefore a lot of customers. In addition, together with the development team, you introduce new features and therefore:
 
 1. Each module grows.
-2. Some modules change more often than others.
-3. New teams are created. Now there are 3 different teams working on features within one project. It becomes harder to maintain - teams touch the same areas, there are a lot of conflicts.
-4. You notice that some modules are typical CRUD modules and some are very complex.
+1. Some modules change more often than others.
+1. New teams are created. Now there are 3 different teams working on features within one project. It becomes harder to maintain - teams touch the same areas, there are a lot of conflicts.
+1. You notice that some modules are typical CRUD modules and some are very complex.
 
 It makes sense now to start splitting a production project into a set of projects per domain. 
 
@@ -32,31 +32,31 @@ NOTE: This step makes the codebase much larger than before. Think twice before d
 
 IMPORTANT: To keep the code simple and understandable while comparing it to the first chapter, we have not added any new features (business processes). Thanks to this, you can see how complex the code structure is compared to the previous one.
 
-=== Requirements
+### Requirements
 
 As mentioned in the overview, the requirements remain unchanged to keep the codebase comparable to the previous step. We will continue to do this throughout the chapters.
 
-=== Main assumptions
+### Main assumptions
 
 Due to changing requirements and the current market situation (here you have to imagine that this is the case, although we do not assume any new requirements), we have to adjust our assumptions:
 
 1. Our application is now being used by 5000 people, which is the maximum number of users based on our initial MVP assumptions. It still makes no sense to extract parts of the application into microservices, so we keep our modular monolith and scale it as a single deployment unit.
-2. A lot of new features will be added to our solution. There are many requests from our customers and after considering them, we usually decide to implement them. We also decide to add some features on our own based on analytics observations.
-3. Parts of the application change extremely quickly - several times a day.
-4. The _Contracts_ module is becoming increasingly complex due to new business logic.
-5. We have several development teams and they start complaining about conflicts they have while working with the code and touching the same areas.
+1. A lot of new features will be added to our solution. There are many requests from our customers and after considering them, we usually decide to implement them. We also decide to add some features on our own based on analytics observations.
+1. Parts of the application change extremely quickly - several times a day.
+1. The _Contracts_ module is becoming increasingly complex due to new business logic.
+1. We have several development teams and they start complaining about conflicts they have while working with the code and touching the same areas.
 
 NOTE: We can utilize load balancer and feature flags to independently scale modules in our monolith.
 
-=== Solution
+### Solution
 
-==== Overview
+#### Overview
 
 The step we decided to take was crucial to our application. We started in a very simple way:
 
 1. Create 3 projects, where 1 is production code and 2 are test related.
-2. Separate the modules by namespace.
-3. Communicate using an in-memory queue.
+1. Separate the modules by namespace.
+1. Communicate using an in-memory queue.
 
 Over time, however, we have found that it makes sense to divide it up more granularly (see the _Main Assumptions_ chapter). 
 
@@ -79,19 +79,19 @@ Let's translate all of the above into code.
 
 NOTE: _Domain Model_ and _Transaction Script_ are domain logic patterns and _Active Record_ is a data source architecture pattern. That's why we're grouping them all together under the term _Patterns_. You can see how they are implemented in our solution by looking at the codebase.
 
-==== Solution structure
+#### Solution structure
 
 In total there are now over 20 projects. Each module is built using different set of projects (because of the selected pattern). This way:
 
 1. _Contracts_ are built with `Api`, `Application`, `Core` and `Infrastructure` projects. Additionally there are unit and integrations tests and a project responsible for keeping integration events. You can read more about this decision in `Architecture Decision Log` for this chapter.
-2. _Offers_ and _Passes_ are built with `Api` and `DataAccess` projects. Additionally there are integration tests and integration events projects. As these are projects with simple or no business logic, we do not need to overcomplicate its structure.
-3. _Reports_ contain only one production code project and integration tests. As this is a transaction script, we do not need to overcomplicate the structure of the code.
-4. We had to extract common logic that is used by different modules and it made no sense to write everything twice (WET). The example of the shared logic is the exception middleware, business rule validation mechanism or event bus.
-5. Additionally, we have one project `Fitnet` that is responsible for all modules registration and starting our application.
+1. _Offers_ and _Passes_ are built with `Api` and `DataAccess` projects. Additionally there are integration tests and integration events projects. As these are projects with simple or no business logic, we do not need to overcomplicate its structure.
+1. _Reports_ contain only one production code project and integration tests. As this is a transaction script, we do not need to overcomplicate the structure of the code.
+1. We had to extract common logic that is used by different modules and it made no sense to write everything twice (WET). The example of the shared logic is the exception middleware, business rule validation mechanism or event bus.
+1. Additionally, we have one project `Fitnet` that is responsible for all modules registration and starting our application.
 
 NOTE: You can now see how complex the code get. As an exercise, compare it with a simple structure from the first chapter. In the end, you can ask yourself if it is worth to focus on such division for your application MVP, especially as the requirements will change a lot in the initial phases of development.
 
-==== Communication
+#### Communication
 
 We decided to keep the in-memory queue communication (because we plan to replace it in the third chapter), but it makes sense to think about a more reliable component. 
 
@@ -101,7 +101,7 @@ The change we have already made in this chapter is to create a separate project 
 
 IMPORTANT: The above problem of an additional project for the module's integration events can be solved either by extending the in-memory implementation of our queue or by using a third party component, which we will show in the third chapter.
 
-==== Tests
+#### Tests
 
 Compared to the previous chapter, where we only had 2 projects with tests: `Fitnet.UnitTests` and `Fitnet.IntegrationTests`, we decided to split them into separate projects for each module. This way, each module has the following structure:
 
@@ -112,45 +112,45 @@ Tests are located in solution folders: `SelectedModule | Tests | SelectedModule.
 
 In addition, tests for common code (such as `ExceptionMiddleware`) are located in the `Common` namespace.
 
-==== Miscellaneous
+#### Miscellaneous
 
 We have introduced a concept of feature triggers that can enable and disable any module. This is important because:
 
 1. We can set the visibility of each module in the production code. This allows us to turn them on or off based on business needs (or subscription levels).
-2. We can ensure that testing a particular module does not require running the entire application. Instead we can configure it so that for e.g. `Passes.IntegrationTests` we want to set up the environment that will run only Passes (or 2 modules if it requires integration between several).
+1. We can ensure that testing a particular module does not require running the entire application. Instead we can configure it so that for e.g. `Passes.IntegrationTests` we want to set up the environment that will run only Passes (or 2 modules if it requires integration between several).
 
 NOTE: This step is not required in your application, but is highly recommended - it will help make it as flexible as possible and can reduce the cost of resources needed to run the entire application.
 
-== How to run?
+## How to run?
 
-=== Requirements
+### Requirements
 
 - .NET SDK
 - Docker
 
-=== How to get .NET SDK?
+### How to get .NET SDK?
 
 To run the Fitnet application, you will need to have the recent .NET SDK installed on your computer.
 
-Click link:https://dotnet.microsoft.com/en-us/download[here] 
+Click [here](https://dotnet.microsoft.com/en-us/download) 
 
 to download it from the official Microsoft website.
 
-=== Run locally
+### Run locally
 
 The Fitnet application requires Docker to run properly.
 
 There are only 3 steps you need to start the application:
 
 1. Make sure that you are in `/Src` directory. 
-2. Run `docker-compose build` to build the image of the application.
-3. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
+1. Run `docker-compose build` to build the image of the application.
+1. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
 
 The application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
-=== How to run Integration Tests?
+### How to run Integration Tests?
 To run the integration tests go to a module integration tests (`SelectedModule.IntegrationTests`) and run using either the command:
 [source,shell]
 ----
