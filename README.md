@@ -1,8 +1,5 @@
 # Evolutionary Architecture
-Maciej "MJ" Jedrzejewski; Kamil Baczek
-:toc:
 
-++++
 <div align="center">
   <picture>
     <source srcset="Assets/ea_banner_dark.png" media="(prefers-color-scheme: dark)">
@@ -10,19 +7,17 @@ Maciej "MJ" Jedrzejewski; Kamil Baczek
     <img src="Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
   </picture>
 </div>
-++++
 
-image:https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example[realease, alt="realease"]
-
-image:https://img.shields.io/github/license/evolutionary-architecture/evolutionary-architecture-by-example[GitHub license, alt="License Badge"]
-image:https://img.shields.io/github/stars/evolutionary-architecture/evolutionary-architecture-by-example[GitHub stars, alt="Stars Badge"]
-image:https://img.shields.io/github/commit-activity/m/evolutionary-architecture/evolutionary-architecture-by-example[GitHub commits, alt="Commits Badge"]
-image:https://img.shields.io/github/last-commit/evolutionary-architecture/evolutionary-architecture-by-example[GitHub last commit, alt="Last Commit Badge"]
-image:https://img.shields.io/github/issues/evolutionary-architecture/evolutionary-architecture-by-example[GitHub issues, alt="Issues Badge"]
-image:https://img.shields.io/github/issues-pr/evolutionary-architecture/evolutionary-architecture-by-example[GitHub pull requests, alt="Pull Requests Badge"]
-image:https://img.shields.io/github/forks/evolutionary-architecture/evolutionary-architecture-by-example[GitHub forks, alt="Forks Badge"]
-image:https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example[GitHub watchers, alt="Watchers Badge"]
-image:https://img.shields.io/discord/1140287971367600148[alt="Discord Active"]
+![Release](https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example)
+![License](https://img.shields.io/github/license/evolutionary-architecture/evolutionary-architecture-by-example)
+![Stars](https://img.shields.io/github/stars/evolutionary-architecture/evolutionary-architecture-by-example)
+![Commits](https://img.shields.io/github/commit-activity/m/evolutionary-architecture/evolutionary-architecture-by-example)
+![Last Commit](https://img.shields.io/github/last-commit/evolutionary-architecture/evolutionary-architecture-by-example)
+![Issues](https://img.shields.io/github/issues/evolutionary-architecture/evolutionary-architecture-by-example)
+![Pull Requests](https://img.shields.io/github/issues-pr/evolutionary-architecture/evolutionary-architecture-by-example)
+![Forks](https://img.shields.io/github/forks/evolutionary-architecture/evolutionary-architecture-by-example)
+![Watchers](https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example)
+![Discord](https://img.shields.io/discord/1140287971367600148)
 
 ## Objective
 
@@ -81,10 +76,9 @@ What we cover:
 - Clean coding practices
 
 What we leave to you:
-
-- Frontend technology choice (React, Vue, Angular, Svelte, etc.)
-- Logging implementation (we recommend https://serilog.net/[Serilog])
-- Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
+- Frontend technology choice (React, Vue, Angular, Svelte, etc.)  
+- Logging implementation (we recommend [Serilog](https://serilog.net/))  
+- Contract testing (we suggest [Pact Net](https://github.com/pact-foundation/pact-net))
 
 #### Chapter 1: Initial Architecture: Focus On Simplicity
 In this chapter, we will show you how to lay the right foundation for your solution architecture. Our approach begins with a single project (`Fitnet`) that is thoughtfully organized from day one - but without overcomplicating things.
@@ -92,7 +86,6 @@ In this chapter, we will show you how to lay the right foundation for your solut
 The key is our vertical slice approach: each business process gets its own namespace, creating natural boundaries while keeping related code together. Think of it as organizing by what your software does rather than by technical categories.
 
 Why this works:
-
 - Hit the ground running - spend time building features instead of debating project structures
 - Everything for a process lives in one place (like SignContract) - no more jumping between Controllers, Entities, and Services folders
 - Future-proof your code - need to remove or relocate a feature? Just grab its namespace
