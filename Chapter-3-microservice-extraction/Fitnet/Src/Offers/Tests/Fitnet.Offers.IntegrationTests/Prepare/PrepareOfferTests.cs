@@ -2,8 +2,8 @@ namespace EvolutionaryArchitecture.Fitnet.Offers.IntegrationTests.Prepare;
 
 using Api.Prepare;
 using Common.IntegrationTestsToolbox.TestEngine;
-using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
+using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Passes.IntegrationEvents;
 
@@ -40,6 +40,6 @@ public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactor
     private async Task EnsureThatOfferPreparedEventWasPublished()
     {
         var offerPrepared = await _testEventBus.Published.Any<OfferPrepareEvent>();
-        offerPrepared.Should().BeTrue();
+        offerPrepared.ShouldBeTrue();
     }
 }
