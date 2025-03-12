@@ -88,7 +88,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
         createdPass.ShouldNotBeNull();
 
-        return createdPass!.Id;
+        return createdPass.Id;
     }
 
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());

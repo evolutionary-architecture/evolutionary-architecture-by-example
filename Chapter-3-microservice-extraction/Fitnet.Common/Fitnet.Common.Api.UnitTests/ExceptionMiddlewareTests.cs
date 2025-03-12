@@ -2,6 +2,9 @@ namespace EvolutionaryArchitecture.Fitnet.Common.Api.UnitTests;
 
 using ErrorHandling;
 using Core.BusinessRules;
+using System.IO;
+using System.Threading.Tasks;
+using System;
 
 public sealed class ExceptionMiddlewareTests
 {
@@ -19,10 +22,10 @@ public sealed class ExceptionMiddlewareTests
         await middleware.InvokeAsync(_context);
 
         // Assert
-        _context.Response.StatusCode.Should().Be((int)HttpStatusCode.Conflict);
+        _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.Conflict);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Should().Be(exceptionMessage);
+        responseMessage.ShouldBe(exceptionMessage);
     }
 
     [Fact]
@@ -37,10 +40,10 @@ public sealed class ExceptionMiddlewareTests
         await middleware.InvokeAsync(_context);
 
         // Assert
-        _context.Response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+        _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.InternalServerError);
 
         var responseMessage = await GetExceptionResponseMessage();
-        responseMessage.Should().Be(exceptionMessage);
+        responseMessage.ShouldBe(exceptionMessage);
     }
 
     private static DefaultHttpContext GetHttpContext() =>

@@ -10,10 +10,13 @@ public sealed class BusinessRuleValidatorTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new FakeBusinessRule(20));
+        static void FakeBusinessRule()
+        {
+            BusinessRuleValidator.Validate(new FakeBusinessRule(20));
+        }
 
         // Assert
-        act.Should().NotThrow<BusinessRuleValidationException>();
+        Should.NotThrow(FakeBusinessRule);
     }
 
     [Fact]
@@ -22,9 +25,13 @@ public sealed class BusinessRuleValidatorTests
         // Arrange
 
         // Act
-        var act = () => BusinessRuleValidator.Validate(new FakeBusinessRule(1));
+        static void NotMetRuleAction()
+        {
+            BusinessRuleValidator.Validate(new FakeBusinessRule(1));
+        }
 
         // Assert
-        act.Should().Throw<BusinessRuleValidationException>().WithMessage("Fake business rule was not met");
+        var exception = Should.Throw<BusinessRuleValidationException>(NotMetRuleAction);
+        exception.Message.ShouldBe("Fake business rule was not met");
     }
 }
