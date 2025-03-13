@@ -5,8 +5,8 @@ using Dtos;
 using DataAccess;
 
 internal sealed class NewPassesRegistrationPerMonthReportDataRetriever(
-        IDatabaseConnectionFactory databaseConnectionFactory,
-        TimeProvider timeProvider) : INewPassesRegistrationPerMonthReportDataRetriever
+    IDatabaseConnectionFactory databaseConnectionFactory,
+    TimeProvider timeProvider) : INewPassesRegistrationPerMonthReportDataRetriever
 {
     public async Task<IReadOnlyCollection<NewPassesRegistrationsPerMonthDto>> GetReportDataAsync(
         CancellationToken cancellationToken = default)
@@ -25,6 +25,6 @@ internal sealed class NewPassesRegistrationPerMonthReportDataRetriever(
         var newPassesRegistrationsPerMonthDtos =
             await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(queryDefinition);
 
-        return newPassesRegistrationsPerMonthDtos.ToList();
+        return [..newPassesRegistrationsPerMonthDtos];
     }
 }
