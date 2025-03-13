@@ -54,6 +54,6 @@ public static class EventBusExtensions
             }
         }
 
-        return testHarness.Consumed!.Select<TMessage>(cancellationToken)!.ToList();
+        return [.. testHarness.Consumed!.Select<TMessage>(cancellationToken)];
     }
 }
