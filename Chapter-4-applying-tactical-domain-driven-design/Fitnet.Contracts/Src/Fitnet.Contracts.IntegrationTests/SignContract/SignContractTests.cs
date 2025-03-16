@@ -28,7 +28,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     [Fact]
@@ -61,11 +61,10 @@ public sealed class SignContractTests(FitnetWebApplicationFactory<Program> appli
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
-        signContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
 
         var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Status.Should().Be((int)HttpStatusCode.Conflict);
-        responseMessage?.Detail.Should()
-            .Be("Contract can only be signed within 30 days from preparation");
+        responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
+        responseMessage?.Detail.ShouldBe("Contract can only be signed within 30 days from preparation");
     }
 }

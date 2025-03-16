@@ -3,6 +3,7 @@ namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.TerminateBind
 using Common;
 using Common.Builders;
 using Core.TerminateBindingContract;
+using Shouldly;
 
 public sealed class TerminateBindingContractTests
 {
@@ -18,6 +19,6 @@ public sealed class TerminateBindingContractTests
         bindingContract.Terminate(_terminatedAt);
 
         var @event = bindingContract.GetPublishedEvent<BindingContractTerminatedEvent>();
-        @event?.TerminatedAt.Should().Be(_terminatedAt);
+        @event?.TerminatedAt.ShouldBe(_terminatedAt);
     }
 }
