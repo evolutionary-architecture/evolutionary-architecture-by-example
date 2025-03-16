@@ -4,6 +4,7 @@ using Common;
 using Common.Builders;
 using Core.SignContract;
 using Core.SignContract.Signatures;
+using Shouldly;
 
 public sealed class SignContractTests
 {
@@ -28,7 +29,7 @@ public sealed class SignContractTests
 
         // Assert
         var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();
-        @event?.ExpiringAt.Should().Be(expectedExpirationDate);
+        @event?.ExpiringAt.ShouldBe(expectedExpirationDate);
     }
 
     private static readonly DateTimeOffset FakeNow = FakeContractDates.PreparedAt.AddDays(1);
@@ -47,6 +48,6 @@ public sealed class SignContractTests
 
         // Assert
         var @event = signResult.Value.GetPublishedEvent<BindingContractStartedEvent>();
-        @event?.BindingFrom.Should().Be(SignedAt);
+        @event?.BindingFrom.ShouldBe(SignedAt);
     }
 }
