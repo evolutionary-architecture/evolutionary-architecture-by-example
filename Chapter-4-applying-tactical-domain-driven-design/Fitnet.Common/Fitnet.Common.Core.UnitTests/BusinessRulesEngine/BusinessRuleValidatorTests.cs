@@ -1,7 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.Common.Core.UnitTests.BusinessRulesEngine;
 
 using BussinessRules;
-using EvolutionaryArchitecture.Fitnet.Common.UnitTesting.Assertions.ErrorOr;
 
 public sealed class BusinessRuleValidatorTests
 {
@@ -14,7 +13,7 @@ public sealed class BusinessRuleValidatorTests
         var result = BusinessRuleValidator.Validate(new FakeBusinessRule(20));
 
         // Assert
-        result.Should().BeSuccessful();
+        result.IsError.ShouldBeFalse();
     }
 
     [Fact]
@@ -27,6 +26,6 @@ public sealed class BusinessRuleValidatorTests
         var result = BusinessRuleValidator.Validate(testRule);
 
         // Assert
-        result.Should().ContainError(testRule.Error);
+        result.Errors.ShouldContain(testRule.Error);
     }
 }

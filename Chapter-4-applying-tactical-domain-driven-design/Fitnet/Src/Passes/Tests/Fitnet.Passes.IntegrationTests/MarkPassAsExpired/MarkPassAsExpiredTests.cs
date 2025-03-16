@@ -10,6 +10,8 @@ using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.
 using Contracts.IntegrationEvents;
 using IntegrationEvents;
 using RegisterPass;
+using System.Net;
+using System.Net.Http.Json;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
@@ -37,10 +39,10 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var url = BuildUrl(registeredPassId);
 
         // Act
-        await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        await EnsureThatPassExpiredEventWasPublished();
+        markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
     }
 
     [Fact]
@@ -52,10 +54,10 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var url = BuildUrl(registeredPassId);
 
         // Act
-        var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        await EnsureThatPassExpiredEventWasPublished();
     }
 
     [Fact]
@@ -69,7 +71,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
-        markAsExpiredResponse.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     private async Task<ContractSignedEvent> RegisterPass()
@@ -86,9 +88,9 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
         var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
         var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
         var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
-        createdPass.Should().NotBeNull();
+        createdPass.ShouldNotBeNull();
 
-        return createdPass!.Id;
+        return createdPass.Id;
     }
 
     private static string BuildUrl(Guid id) => PassesApiPaths.MarkPassAsExpired.Replace("{id}", id.ToString());
@@ -96,6 +98,6 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<FitnetWebApplicationF
     private async Task EnsureThatPassExpiredEventWasPublished()
     {
         var passRegisteredEventPublished = await _testEventBus.Published.Any<PassExpiredEvent>();
-        passRegisteredEventPublished.Should().BeTrue();
+        passRegisteredEventPublished.ShouldBeTrue();
     }
 }

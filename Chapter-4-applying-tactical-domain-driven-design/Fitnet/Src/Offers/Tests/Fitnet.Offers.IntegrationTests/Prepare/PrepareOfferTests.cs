@@ -6,6 +6,7 @@ using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Passes.IntegrationEvents;
+using Shouldly;
 
 public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
@@ -40,6 +41,6 @@ public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactor
     private async Task EnsureThatOfferPreparedEventWasPublished()
     {
         var offerPrepared = await _testEventBus.Published.Any<OfferPrepareEvent>();
-        offerPrepared.Should().BeTrue();
+        offerPrepared.ShouldBeTrue();
     }
 }

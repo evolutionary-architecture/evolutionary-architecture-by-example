@@ -8,6 +8,7 @@
         <PackageReference Include="BouncyCastle.Cryptography" Version="2.5.0" />
         <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="4.1.7" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+        <PackageReference Include="Shouldly" Version="4.3.0" />
         <PackageReference Include="System.Net.Http" Version="4.3.4" />
         <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
         <PackageReference Include="System.Text.Json" Version="9.0.0" />
