@@ -1,8 +1,8 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests.SignContract.Signatures;
 using EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures;
-
 using Core.SignContract.Signatures.Exceptions;
-using FluentAssertions;
+using Shouldly;
+using System;
 
 public sealed class SignatureTests
 {
@@ -20,8 +20,8 @@ public sealed class SignatureTests
         var signature = Signature.From(now, value);
 
         // Assert
-        signature.Value.Should().Be(value);
-        signature.Date.Should().Be(now);
+        signature.Value.ShouldBe(value);
+        signature.Date.ShouldBe(now);
     }
 
     [Theory]
@@ -33,9 +33,12 @@ public sealed class SignatureTests
         var now = DateTimeOffset.Now;
 
         // Act
-        Action act = () => Signature.From(now, value);
+        void Act()
+        {
+            Signature.From(now, value);
+        }
 
         // Assert
-        act.Should().Throw<SignatureNotValidException>();
+        Should.Throw<SignatureNotValidException>(Act);
     }
 }
