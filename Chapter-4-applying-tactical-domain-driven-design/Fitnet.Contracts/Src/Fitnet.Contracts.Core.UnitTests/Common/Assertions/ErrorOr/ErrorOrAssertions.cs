@@ -1,5 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Assertions.ErrorOr;
 
+using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 

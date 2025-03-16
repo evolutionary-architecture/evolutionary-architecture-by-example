@@ -2,6 +2,7 @@
 
 using Common;
 using Core.PrepareContract;
+using Shouldly;
 
 public sealed class PrepareContractTests
 {
@@ -19,7 +20,7 @@ public sealed class PrepareContractTests
         // Assert
         var contract = preparationResult.Value;
         var @event = contract.GetPublishedEvent<ContractPreparedEvent>();
-        @event?.CustomerId.Should().Be(_customerId);
-        @event?.PreparedAt.Should().Be(_preparedAt);
+        @event?.CustomerId.ShouldBe(_customerId);
+        @event?.PreparedAt.ShouldBe(_preparedAt);
     }
 }
