@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using ErrorHandling;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using Shouldly;
 using Xunit;
 
 public sealed class ExceptionMiddlewareTests
