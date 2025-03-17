@@ -4,7 +4,6 @@ using Common;
 using Common.Builders;
 using Core.SignContract;
 using Core.SignContract.Signatures;
-using Shouldly;
 
 public sealed class SignContractTests
 {

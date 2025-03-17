@@ -1,32 +1,25 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common.Assertions.ErrorOr;
 
-using FluentAssertions;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+using System.Linq;
 
-internal sealed class ErrorOrSuccessAssertions(ErrorOr<Success> subject)
-    : ReferenceTypeAssertions<ErrorOr<Success>, ErrorOrSuccessAssertions>(subject)
+public static class ErrorOrSuccessAssertions
 {
-
-    protected override string Identifier => "ErrorOr<Success>";
-
-    public AndConstraint<ErrorOr<Success>> BeSuccessful(string because = "", params object[] becauseArgs)
+    public static void ShouldBeSuccessful(this ErrorOr<Success> errorOr, string? message = null)
     {
-        Execute.Assertion
-            .ForCondition(!Subject.IsError)
-            .BecauseOf(because, becauseArgs)
-            .FailWith("Expected {context:ErrorOr<Success>} to be successful{reason}, but found {0}.", string.Join(", ", Subject.Errors.Select(x => x.Description)));
-
-        return new AndConstraint<ErrorOr<Success>>(Subject);
+        if (errorOr.IsError)
+        {
+            var errorMessage = string.Join(", ", errorOr.Errors.Select(x => x.Description));
+            throw new ShouldAssertException(message ?? $"ErrorOr<Success> should be successful but found errors: {errorMessage}");
+        }
     }
 
-    public AndConstraint<ErrorOr<Success>> ContainError(Error error, string because = "", params object[] becauseArgs)
+    public static void ShouldContainError(this ErrorOr<Success> errorOr, Error error, string? message = null)
     {
-        Execute.Assertion
-            .ForCondition(Subject.IsError && Subject.Errors.Contains(error))
-            .BecauseOf(because, becauseArgs)
-            .FailWith("Expected to contain error '{0}' but found errors: {1}", string.Join(", ", Subject.Errors.Select(x => x.Description)), error.Description);
-
-        return new AndConstraint<ErrorOr<Success>>(Subject);
+        errorOr.IsError.ShouldBeTrue("ErrorOr<Success> should be in error state");
+        if (!errorOr.Errors.Contains(error))
+        {
+            var actualErrors = string.Join(", ", errorOr.Errors.Select(x => x.Description));
+            throw new ShouldAssertException(message ?? $"Expected to contain error '{error.Description}' but found errors: {actualErrors}");
+        }
     }
 }
