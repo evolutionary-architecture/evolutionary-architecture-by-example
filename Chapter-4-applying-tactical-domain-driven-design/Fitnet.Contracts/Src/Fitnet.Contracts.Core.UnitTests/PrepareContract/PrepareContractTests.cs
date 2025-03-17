@@ -2,7 +2,6 @@
 
 using Common;
 using Core.PrepareContract;
-using Shouldly;
 
 public sealed class PrepareContractTests
 {

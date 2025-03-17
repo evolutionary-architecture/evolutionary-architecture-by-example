@@ -3,7 +3,6 @@
 using Core.TerminateBindingContract.BusinessRules;
 using Fitnet.Common.Core.BussinessRules;
 using TerminationIsPossibleOnlyAfterThreeMonthsHavePassed.TestData;
-using Shouldly;
 
 public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
 {

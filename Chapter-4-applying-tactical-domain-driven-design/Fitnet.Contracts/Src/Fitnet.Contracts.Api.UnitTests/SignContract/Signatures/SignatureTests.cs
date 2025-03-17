@@ -1,8 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Api.UnitTests.SignContract.Signatures;
 using EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract.Signatures;
 using Core.SignContract.Signatures.Exceptions;
-using Shouldly;
-using System;
 
 public sealed class SignatureTests
 {
