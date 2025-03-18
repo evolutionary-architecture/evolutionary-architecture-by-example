@@ -1,5 +1,9 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core.UnitTests;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 public class ValueObjectTests
 {
     private const int DefaultIntProperty = 1;
@@ -13,10 +17,10 @@ public class ValueObjectTests
         var secondObject = new FakeValueObject();
 
         // Act & Assert
-        firstObject.Should().Be(secondObject);
-        firstObject.Equals(secondObject).Should().BeTrue();
-        (firstObject == secondObject).Should().BeTrue();
-        (firstObject != secondObject).Should().BeFalse();
+        firstObject.ShouldBe(secondObject);
+        firstObject.Equals(secondObject).ShouldBeTrue();
+        (firstObject == secondObject).ShouldBeTrue();
+        (firstObject != secondObject).ShouldBeFalse();
     }
 
     [Fact]
@@ -28,14 +32,14 @@ public class ValueObjectTests
         var thirdObject = new FakeValueObject(property2: Guid.NewGuid().ToString());
 
         // Act & Assert
-        firstObject.Should().NotBe(secondObject);
-        firstObject.Equals(secondObject).Should().BeFalse();
-        (firstObject == secondObject).Should().BeFalse();
-        (firstObject != secondObject).Should().BeTrue();
-        firstObject.Should().NotBe(thirdObject);
-        firstObject.Equals(thirdObject).Should().BeFalse();
-        (firstObject == thirdObject).Should().BeFalse();
-        (firstObject != thirdObject).Should().BeTrue();
+        firstObject.ShouldNotBe(secondObject);
+        firstObject.Equals(secondObject).ShouldBeFalse();
+        (firstObject == secondObject).ShouldBeFalse();
+        (firstObject != secondObject).ShouldBeTrue();
+        firstObject.ShouldNotBe(thirdObject);
+        firstObject.Equals(thirdObject).ShouldBeFalse();
+        (firstObject == thirdObject).ShouldBeFalse();
+        (firstObject != thirdObject).ShouldBeTrue();
     }
 
     [Fact]
@@ -46,7 +50,7 @@ public class ValueObjectTests
         var secondObject = new FakeValueObject();
 
         // Act & Assert
-        firstObject.GetHashCode().Should().Be(secondObject.GetHashCode());
+        firstObject.GetHashCode().ShouldBe(secondObject.GetHashCode());
     }
 
     [Fact]
@@ -57,10 +61,10 @@ public class ValueObjectTests
         var secondObject = new AnotherTypeFakeValueObject();
 
         // Act & Assert
-        firstObject.Should().NotBe(secondObject);
-        firstObject.Equals(secondObject).Should().BeFalse();
-        (firstObject == secondObject).Should().BeFalse();
-        (firstObject != secondObject).Should().BeTrue();
+        // firstObject.ShouldNotBe(secondObject);
+        firstObject.Equals(secondObject).ShouldBeFalse();
+        (firstObject == secondObject).ShouldBeFalse();
+        (firstObject != secondObject).ShouldBeTrue();
     }
 
     [Fact]
@@ -80,8 +84,8 @@ public class ValueObjectTests
         var result = valueObjects.Where(vo => vo == targetValueObject).ToList();
 
         // Assert
-        result.Should().HaveCount(2);
-        result.Should().AllBeEquivalentTo(targetValueObject);
+        result.Count.ShouldBe(2);
+        result.ForEach(vo => vo.ShouldBe(targetValueObject));
     }
 
     [Fact]
@@ -101,7 +105,7 @@ public class ValueObjectTests
         var result = valueObjects.Where(vo => vo == targetValueObject).ToList();
 
         // Assert
-        result.Should().BeEmpty();
+        result.ShouldBeEmpty();
     }
 
     private class FakeValueObject(int property1 = DefaultIntProperty, string property2 = DefaultStringProperty) : ValueObject
