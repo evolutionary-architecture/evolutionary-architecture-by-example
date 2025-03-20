@@ -61,7 +61,7 @@ public class ValueObjectTests
         var secondObject = new AnotherTypeFakeValueObject();
 
         // Act & Assert
-        // firstObject.ShouldNotBe(secondObject);
+        firstObject.GetType().ShouldNotBe(secondObject.GetType());
         firstObject.Equals(secondObject).ShouldBeFalse();
         (firstObject == secondObject).ShouldBeFalse();
         (firstObject != secondObject).ShouldBeTrue();
