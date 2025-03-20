@@ -39,7 +39,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
         var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
         // Assert
-        getReportResult.Should().HaveStatusCode(HttpStatusCode.OK);
+        getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
         var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
         await Verify(reportData);
     }

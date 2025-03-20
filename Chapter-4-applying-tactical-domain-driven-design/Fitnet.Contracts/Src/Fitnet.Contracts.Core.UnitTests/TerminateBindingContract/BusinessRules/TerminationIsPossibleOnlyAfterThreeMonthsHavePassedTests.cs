@@ -19,9 +19,7 @@ public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
                 new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
-        result.Errors
-            .Should()
-            .ContainSingle();
+        result.Errors.ShouldHaveSingleItem();
     }
 
     [Theory]
@@ -37,6 +35,6 @@ public sealed class TerminationIsPossibleOnlyAfterThreeMonthsHavePassedTests
                 new TerminationIsPossibleOnlyAfterThreeMonthsHavePassedRule(bindingFrom, terminatedAt));
 
         // Assert
-        result.Should().BeSuccessful();
+        result.IsError.ShouldBeFalse();
     }
 }

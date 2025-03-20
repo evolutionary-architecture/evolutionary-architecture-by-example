@@ -34,7 +34,7 @@ public sealed class TerminateBindingContractTests(
         var response = await _applicationHttpClient.PatchAsync(request.Url, content: null);
 
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     [Fact]
@@ -52,7 +52,7 @@ public sealed class TerminateBindingContractTests(
             await _applicationHttpClient.PatchAsync(request.Url, null);
 
         // Assert
-        terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        terminateContractResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
     }
 
     [Fact]
@@ -69,6 +69,6 @@ public sealed class TerminateBindingContractTests(
             await _applicationHttpClient.PatchAsync(request.Url, null);
 
         // Assert
-        terminateContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        terminateContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
     }
 }

@@ -18,6 +18,6 @@ public sealed class TerminateBindingContractTests
         bindingContract.Terminate(_terminatedAt);
 
         var @event = bindingContract.GetPublishedEvent<BindingContractTerminatedEvent>();
-        @event?.TerminatedAt.Should().Be(_terminatedAt);
+        @event?.TerminatedAt.ShouldBe(_terminatedAt);
     }
 }

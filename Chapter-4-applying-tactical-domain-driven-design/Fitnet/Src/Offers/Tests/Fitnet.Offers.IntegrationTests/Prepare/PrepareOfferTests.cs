@@ -6,7 +6,6 @@ using Common.IntegrationTestsToolbox.TestEngine.EventBus;
 using Common.IntegrationTestsToolbox.TestEngine.Configuration;
 using EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox.TestEngine.Database;
 using Passes.IntegrationEvents;
-using Shouldly;
 
 public sealed class PrepareOfferTests : IClassFixture<FitnetWebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>

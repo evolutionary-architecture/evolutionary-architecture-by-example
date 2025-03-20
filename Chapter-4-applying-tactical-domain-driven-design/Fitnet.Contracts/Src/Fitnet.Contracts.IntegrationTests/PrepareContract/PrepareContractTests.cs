@@ -26,7 +26,7 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
         var prepareContractResponse = await PrepareCorrectContract(requestParameters);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Created);
+        prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Fact]
@@ -43,9 +43,9 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Detail.Should().Be("Contract can not be prepared for a person who is not adult");
+        responseMessage?.Detail.ShouldBe("Contract can not be prepared for a person who is not adult");
     }
 
     [Fact]
@@ -62,10 +62,10 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
 
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Detail.Should().Be("Customer height must fit maximum limit for gym instruments");
+        responseMessage?.Detail.ShouldBe("Customer height must fit maximum limit for gym instruments");
     }
 
     [Fact]
@@ -81,9 +81,9 @@ public sealed class PrepareContractTests(FitnetWebApplicationFactory<Program> ap
         var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
 
         // Assert
-        prepareContractResponse.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
         var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
-        responseMessage?.Detail.Should().Be("Previous contract must be signed by the customer");
+        responseMessage?.Detail.ShouldBe("Previous contract must be signed by the customer");
     }
 
     private async Task<HttpResponseMessage> PrepareCorrectContract(PrepareContractRequestParameters requestParameters, Guid? customerId = null)

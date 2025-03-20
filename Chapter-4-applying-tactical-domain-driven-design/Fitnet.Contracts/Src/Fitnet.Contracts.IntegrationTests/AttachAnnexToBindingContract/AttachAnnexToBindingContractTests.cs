@@ -37,7 +37,7 @@ public class AttachAnnexToBindingContractTests(
         var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.Created);
+        response.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class AttachAnnexToBindingContractTests(
         var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.NotFound);
+        response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
     }
 
     [Fact]
@@ -73,7 +73,7 @@ public class AttachAnnexToBindingContractTests(
         var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        response.StatusCode.ShouldBe(HttpStatusCode.Conflict);
     }
 
     [Fact]
@@ -92,6 +92,6 @@ public class AttachAnnexToBindingContractTests(
         var response = await _applicationHttpClient.PostAsJsonAsync(annexesPath, request);
 
         // Assert
-        response.Should().HaveStatusCode(HttpStatusCode.Conflict);
+        response.StatusCode.ShouldBe(HttpStatusCode.Conflict);
     }
 }
