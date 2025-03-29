@@ -65,7 +65,7 @@ Before we look at the technical solution, a few explanations are in order. First
 - _Contracts_ is a _core_ type.
 - The rest of our subdomains are still _supporting_.
 
-image::Assets/subdomain_types.jpg[]
+image::Assets/subdomain_types.png[]
 
 The next step is to focus on the patterns that can be used in our modules - we were not able to make this decision in the first chapter due to lack of knowledge about our business domain and how it will be used by our customers (see _Project Paradox_ we described earlier). Thanks to the knowledge we gained, we decided on the following patterns for our modules:
 
@@ -73,7 +73,7 @@ The next step is to focus on the patterns that can be used in our modules - we w
 - For _Passes_ and _Offers_ we have chosen the _Active Record_
 - In _Reports_ we will use _Transaction Script_
 
-image::../Assets/subdomains_architectural_patterns.jpg[]
+image::Assets/architectural_patterns.png[]
 
 Let's translate all of the above into code.
 
