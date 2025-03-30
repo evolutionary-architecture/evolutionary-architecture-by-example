@@ -1,32 +1,54 @@
-= Evolutionary Architecture
+# Evolutionary Architecture
 Maciej "MJ" Jedrzejewski; Kamil Baczek
-:toc:
 
-++++
+## Table of Contents
+- [Objective](#objective)
+  - [Problem](#problem)
+  - [Solution](#solution)
+    - [Chapter 1: Initial Architecture: Focus On Simplicity](#chapter-1-initial-architecture-focus-on-simplicity)
+    - [Chapter 2: Modules Separation: Focus On Maintainability](#chapter-2-modules-separation-focus-on-maintainability)
+    - [Chapter 3: Microservice Extraction: Focus On Growth](#chapter-3-microservice-extraction-focus-on-growth)
+    - [Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity](#chapter-4-applying-tactical-domain-driven-design-focus-on-complexity)
+    - [Additional notes](#additional-notes)
+- [Domain](#domain)
+  - [Overview](#overview)
+  - [Subdomains](#subdomains)
+  - [Bounded Contexts](#bounded-contexts)
+- [Repository Structure](#repository-structure)
+  - [Overview](#overview-2)
+  - [How To Navigate?](#how-to-navigate)
+- [Libraries and Platforms Used](#libraries-and-platforms-used)
+- [Videos 🎥](#videos-)
+  - [Webinar from Architecture Weekly 🇬🇧](#webinar-from-architecture-weekly-)
+  - [Presentation at Programistok 2023 Conference 🇵🇱](#presentation-at-programistok-2023-conference-)
+  - [Evolutionary Architecture Visualized Through NDepend 🇬🇧](#evolutionary-architecture-visualized-through-ndepend-)
+- [Authors ✍️](#authors-)
+- [👩‍💻👨‍💻 What Software Engeeniers Say](#-what-software-engeeniers-say)
+  - [👨‍💼 Chief Software Architect](#-chief-software-architect)
+  - [👨‍💻 .NET Developer](#-net-developer)
+  - [👨‍💻 .NET Developer](#-net-developer-1)
+- [💬 Join our Community](#-join-our-community)
+- [⭐ Say thanks](#-say-thanks)
+
 <div align="center">
-  <picture>
-    <source srcset="Assets/ea_banner_dark.png" media="(prefers-color-scheme: dark)">
-    <source srcset="Assets/ea_banner_light.png" media="(prefers-color-scheme: light)">
-    <img src="Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
-  </picture>
+  <img src="Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
 </div>
-++++
 
-image:https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example[realease, alt="realease"]
+[![realease](https://img.shields.io/github/v/release/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/releases)
 
-image:https://img.shields.io/github/license/evolutionary-architecture/evolutionary-architecture-by-example[GitHub license, alt="License Badge"]
-image:https://img.shields.io/github/stars/evolutionary-architecture/evolutionary-architecture-by-example[GitHub stars, alt="Stars Badge"]
-image:https://img.shields.io/github/commit-activity/m/evolutionary-architecture/evolutionary-architecture-by-example[GitHub commits, alt="Commits Badge"]
-image:https://img.shields.io/github/last-commit/evolutionary-architecture/evolutionary-architecture-by-example[GitHub last commit, alt="Last Commit Badge"]
-image:https://img.shields.io/github/issues/evolutionary-architecture/evolutionary-architecture-by-example[GitHub issues, alt="Issues Badge"]
-image:https://img.shields.io/github/issues-pr/evolutionary-architecture/evolutionary-architecture-by-example[GitHub pull requests, alt="Pull Requests Badge"]
-image:https://img.shields.io/github/forks/evolutionary-architecture/evolutionary-architecture-by-example[GitHub forks, alt="Forks Badge"]
-image:https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example[GitHub watchers, alt="Watchers Badge"]
-image:https://img.shields.io/discord/1140287971367600148[alt="Discord Active"]
+[![License Badge](https://img.shields.io/github/license/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/blob/main/LICENSE)
+[![Stars Badge](https://img.shields.io/github/stars/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/stargazers)
+[![Commits Badge](https://img.shields.io/github/commit-activity/m/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/commits/main)
+[![Last Commit Badge](https://img.shields.io/github/last-commit/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/commits/main)
+[![Issues Badge](https://img.shields.io/github/issues/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/issues)
+[![Pull Requests Badge](https://img.shields.io/github/issues-pr/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/pulls)
+[![Forks Badge](https://img.shields.io/github/forks/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/network/members)
+[![Watchers Badge](https://img.shields.io/github/watchers/evolutionary-architecture/evolutionary-architecture-by-example)](https://github.com/evolutionary-architecture/evolutionary-architecture-by-example/watchers)
+[![Discord Active](https://img.shields.io/discord/1140287971367600148)](https://discord.gg/BGxYkHFCCF)
 
-== Objective
+## Objective
 
-=== Problem
+### Problem
 When searching for guidance on .NET solution architecture, you will find countless repositories and resources. Each tends to focus exclusively on their preferred approach, whether it is:
 
 - Clean, Onion or Hexagonal architecture
@@ -44,7 +66,7 @@ This repository offers something different: not just another static collection o
 
 Such an approach plays well with the dynamics of system implementation. Every development project faces a fundamental challenge that is called _"_The Project Paradox_:
 
-image::Assets/project_paradox.png[]
+![](Assets/project_paradox.png)
 
 When we start a project, we need to make crucial architectural decisions - exactly when we understand the domain the least. This creates a strong temptation to fall into one of two extremes - overcomplicated trap or oversimplified pitfall.
 
@@ -64,7 +86,7 @@ The opposite extreme, though less common, is equally problematic: starting too s
 
 What we will show you is an evolutionary approach to architecture - one that grows with your understanding of the domain, and the complexity of your system. This path will help you build systems that are neither overengineered from the start nor too simplistic to scale.
 
-=== Solution
+### Solution
 Our approach unfolds like a story across four chapters, each building upon the last.
 
 The entire repostiory reflects years of real-world experience, including the lessons we learned the hard way. Our goal is to guide you toward architecture that grows with your needs – neither too simplistic to scale nor too complex to maintain.
@@ -83,10 +105,10 @@ What we cover:
 What we leave to you:
 
 - Frontend technology choice (React, Vue, Angular, Svelte, etc.)
-- Logging implementation (we recommend https://serilog.net/[Serilog])
-- Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
+- Logging implementation (we recommend [Serilog](https://serilog.net/))
+- Contract testing (we suggest [Pact Net](https://github.com/pact-foundation/pact-net))
 
-==== Chapter 1: Initial Architecture: Focus On Simplicity
+#### Chapter 1: Initial Architecture: Focus On Simplicity
 In this chapter, we will show you how to lay the right foundation for your solution architecture. Our approach begins with a single project (`Fitnet`) that is thoughtfully organized from day one - but without overcomplicating things.
 
 The key is our vertical slice approach: each business process gets its own namespace, creating natural boundaries while keeping related code together. Think of it as organizing by what your software does rather than by technical categories.
@@ -101,10 +123,10 @@ Our modules talk to each other through a simple in-memory queue - just enough in
 
 More information:
 
-- link:/Chapter-1-initial-architecture/README.adoc[Chapter's readme]
-- https://s.icepanel.io/vY0SkvgDs7V83U/wOj3[Interactive diagram]
+- [Chapter's readme](/Chapter-1-initial-architecture/README.adoc)
+- [Interactive diagram](https://s.icepanel.io/vY0SkvgDs7V83U/wOj3)
 
-==== Chapter 2: Modules Separation: Focus On Maintainability
+#### Chapter 2: Modules Separation: Focus On Maintainability
 In this chapter, we will tackle a familiar scenario: your initial architecture is starting to show its limits. Your codebase has matured, and reality has begun to diverge from your early assumptions. Some modules are more complex than anticipated, others simpler. Meanwhile, your growing team is wrestling with merge conflicts in your single project.
 
 Time for the next evolution of your architecture. We will split our project into purpose-built projects that match each module's actual needs.
@@ -135,9 +157,9 @@ The beauty of this approach? Each module gets exactly the architecture it deserv
 
 More information:
 
-- link:/Chapter-2-modules-separation/README.adoc[Chapter's readme]
+- [Chapter's readme](/Chapter-2-modules-separation/README.adoc)
 
-==== Chapter 3: Microservice Extraction: Focus On Growth
+#### Chapter 3: Microservice Extraction: Focus On Growth
 
 In this chapter, we tackle a crucial evolution: knowing when and how to extract your first microservice. We will explore the real-world signals (we call them "disintegrators") that tell you it is time to let a module spread its wings and become independent.
 
@@ -147,10 +169,10 @@ Along the way, you will pick up key microservice architecture concepts - not jus
 
 More information:
 
-- link:/Chapter-3-microservice-extraction/README.adoc[Chapter's readme]
-- https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP[Interactive diagram]
+- [Chapter's readme](/Chapter-3-microservice-extraction/README.adoc)
+- [Interactive diagram](https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP)
 
-==== Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
+#### Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 
 In the final chapter of our journey, we will show you something powerful: you can grow into a domain model without starting from scratch. Getting there is more like evolution than revolution.
 
@@ -167,16 +189,17 @@ The best part? You don't need to apply every DDD concept to get value. It is lik
 
 More information:
 
-- link:/Chapter-4-applying-tactical-domain-driven-design/README.adoc[Chapter's readme]
+- [Chapter's readme](/Chapter-4-applying-tactical-domain-driven-design/README.adoc)
 
-==== Additional notes
+#### Additional notes
 Each chapter includes static code analysis to maintain code quality – a practice we strongly recommend for production environments.
 
-NOTE: All chapters represent various patterns and practices, but they are not hard and fast rules. Choose the approaches that meet your specific needs, or combine them to create the solution that fits your context. Think of this as your architectural compass, ready when you need it.
+> [!NOTE]
+> All chapters represent various patterns and practices, but they are not hard and fast rules. Choose the approaches that meet your specific needs, or combine them to create the solution that fits your context. Think of this as your architectural compass, ready when you need it.
 
-== Domain
+## Domain
 
-=== Overview
+### Overview
 It is time to look at our domain. We have chosen a fitness domain as our example – one that seems familiar at first glance. Most people recognize the basic flow:
 
 - Getting membership offers
@@ -188,7 +211,8 @@ But this surface-level familiarity can be deceptive.
 
 However, to identify the above processes, you usually need to analyze the domain with domain experts and break it down into smaller pieces called subdomains. Otherwise, there is a high risk of falling into a big ball of mud (or distributed mud) where everything is tightly coupled.
 
-NOTE: The traditional domain expert is often pictured as a business representative – someone who lives and breathes the business processes every day. But don't overlook another crucial source of domain expertise: your developers, especially those who have been in the trenches with legacy systems. **Think about it:** developers working with legacy code must understand not just how the system works, but why it works that way. They have seen the edge cases, handled the exceptions, and often know which business rules are truly critical versus which ones are historical artifacts.
+> [!NOTE]
+> The traditional domain expert is often pictured as a business representative – someone who lives and breathes the business processes every day. But don't overlook another crucial source of domain expertise: your developers, especially those who have been in the trenches with legacy systems. **Think about it:** developers working with legacy code must understand not just how the system works, but why it works that way. They have seen the edge cases, handled the exceptions, and often know which business rules are truly critical versus which ones are historical artifacts.
 
 What appears to be a straightforward domain actually conceals layers of complexity:
 
@@ -202,33 +226,34 @@ While we won't model every aspect of a fitness studio's operations (that would b
 
 Ultimately, you should be able to apply similar techniques to your own complex domains, regardless of industry.
 
-=== Subdomains
+### Subdomains
 Every complex business domain becomes more manageable when broken down into smaller pieces. In domain modeling, we call these pieces _Subdomains_. Each subdomain represents a cohesive part of the domain. 
 
-image::Assets/subdomains_theory.png[]
+![](Assets/subdomains_theory.png)
 
 But how do we identify them?
 
 While there are several effective approaches to domain decomposition, we particularly value two powerful techniques:
 
-- https://www.eventstorming.com[Event Storming]: A collaborative modeling method that helps discover domain events and processes
-- https://domainstorytelling.org[Domain Storytelling]: A visual approach to understanding business processes through storytelling
+- [Event Storming](https://www.eventstorming.com): A collaborative modeling method that helps discover domain events and processes
+- [Domain Storytelling](https://domainstorytelling.org): A visual approach to understanding business processes through storytelling
 
 Both techniques help reveal the natural boundaries in your system by focusing on business flows and interactions. We won't focus on the details of either here, just the results you can achieve.
 
 After careful analysis, we have identified the following subdomains that represent fitness domain:
 
-image::Assets/subdomains.png[]
+![](Assets/subdomains.png)
 
-NOTE: Watch out! You might have noticed we used simple names like _Pass, Offer,_ and _Contract_ for our subdomains. While these work for our example, they could lead you down the wrong path in real projects. These entity-like names can limit your thinking about what a subdomain represents. Instead, think in terms of business capabilities and processes. For example, instead of _Passes_, consider _Passes Registration_; rather than _Offers_, use _Offers Management_. This process-oriented naming becomes especially valuable when your domain grows. You might need to split a subdomain into more specific business processes – for instance, breaking _Offers Management_ into _Offer Publishing_ and _Offer Advertising_. 
+> [!NOTE]
+> Watch out! You might have noticed we used simple names like _Pass, Offer,_ and _Contract_ for our subdomains. While these work for our example, they could lead you down the wrong path in real projects. These entity-like names can limit your thinking about what a subdomain represents. Instead, think in terms of business capabilities and processes. For example, instead of _Passes_, consider _Passes Registration_; rather than _Offers_, use _Offers Management_. This process-oriented naming becomes especially valuable when your domain grows. You might need to split a subdomain into more specific business processes – for instance, breaking _Offers Management_ into _Offer Publishing_ and _Offer Advertising_. 
 
 While there are many processes in each of the subdomains, we have chosen specific workflows to keep our example focused and meaningful:
 
-image::Assets/subdomains_processes.png[]
+![](Assets/subdomains_processes.png)
 
 Here is where things get interesting: these six processes across four subdomains initially appear independent. However, this isolation represents a common architectural pitfall in real-world applications. To make our example more realistic and instructive, we need to address how these subdomains communicate with each other.
 
-image::Assets//subdomains_communication.png[]
+![](Assets//subdomains_communication.png)
 
 Our fitness studio system comes alive through two key interactions:
 
@@ -239,7 +264,7 @@ These workflows demonstrate how our seemingly separate subdomains need to work t
 
 Now we need to somehow transform our subdomains into a technical solution. It is time to focus on bounded contexts.
 
-=== Bounded Contexts
+### Bounded Contexts
 To represent subdomains in your technical solution, you need a model. Often, we decide to just create a single, unified model for the entire solution. Unfortunately, this leads in future to a lot of issues because every subdomain operates in its own, and unique context.
 
 Let us explain.
@@ -253,7 +278,8 @@ Using a single model across different subdomains forces your code to constantly 
 
 Another approach is to divide your system into multiple models. Each model will represent its ubiquitous language, business capabilities, and rules. This approach allows models to be extended independently without affecting the others. This way each model becomes a separate bounded context.
 
-IMPORTANT: Don't be misled by the word "ubiquitous" in "ubiquitous language" - it is a common trap that catches many development teams. It is only universal (ubiquitous) within its specific bounded context, not across your entire system. 
+> [!IMPORTANT]
+> Don't be misled by the word "ubiquitous" in "ubiquitous language" - it is a common trap that catches many development teams. It is only universal (ubiquitous) within its specific bounded context, not across your entire system. 
 
 While working on software systems, you will usually face one of the following cases:
 
@@ -262,17 +288,17 @@ While working on software systems, you will usually face one of the following ca
 
 In our implementation, we have made a deliberate architectural choice: each subdomain operates as its own bounded context, establishing clear boundaries and independence. However, it is important to note that real-world domains aren't always this neat. Sometimes multiple subdomains naturally group together into a single bounded context. Take, for example, how _Progress Tracking_, and _Virtual Coaching_ might naturally combine into a "Personalized Training" bounded context.
 
-One of the really useful tools while working on the definition of bounded contexts is https://github.com/ddd-crew/bounded-context-canvas[Bounded Context Canvas] from DDD Crew.
+One of the really useful tools while working on the definition of bounded contexts is [Bounded Context Canvas](https://github.com/ddd-crew/bounded-context-canvas) from DDD Crew.
 
 When you are finished defining all the bounded contexts, you should define the communication and integration map between them. You can use a _Context Map_ to do this, but we will not focus on explaining it here.
 
-== Repository Structure
+## Repository Structure
 
-=== Overview
+### Overview
 
 Think of this repository as a novel rather than a technical manual. Each chapter builds naturally on the last, telling the story of how a real-world application evolves from its first lines of code to a mature, well-architected system. Simply follow the chapters in order, like turning the pages of a book, and see how each architectural decision naturally leads to the next. This "story-first" approach helps you understand not only what we built, but also why we made each choice along the way (supported by the architecture decision log).
 
-=== How To Navigate?
+### How To Navigate?
 
 This repository is organized with crystal-clear simplicity: beyond this main README and its supporting assets, you will find four key chapters that tell our evolutionary story:
 
@@ -285,89 +311,71 @@ In each folder you will find the same root solution, but expanded:
 
 Each chapter comes with its own detailed README - think of it as a chapter-specific guide that walks you through running the code, understanding the structure, and grasping concepts unique to that stage. We believe in building on knowledge, not repeating it, so each chapter focuses on what is new while assuming you are familiar with what came before.
 
-IMPORTANT: While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
+> [!IMPORTANT]
+> While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
 
-== Libraries and Platforms Used
+## Libraries and Platforms Used
 
 Our solution is built with C# and .NET 9, complemented by a carefully curated set of libraries and platforms. We have intentionally kept external dependencies minimal - just enough to avoid reinventing wheels while keeping the focus on architecture. While using third-party tools means trading some control for productivity, we believe it is a worthwhile tradeoff for most business applications.
 
 Application:
 
-- https://www.docker.com[Docker]
-- https://docs.fluentvalidation.net/en/latest/[Fluent Validation]
-- https://github.com/jbogard/MediatR[MediatR]
-- https://github.com/DapperLib/Dapper[Dapper]
-- https://github.com/dotnet/efcore[Entity Framework]
-- https://github.com/npgsql/npgsql[Npgsql]
-- https://github.com/SonarSource/sonar-dotnet[SonarAnalyzer]
+- [Docker](https://www.docker.com)
+- [Fluent Validation](https://docs.fluentvalidation.net/en/latest/)
+- [MediatR](https://github.com/jbogard/MediatR)
+- [Dapper](https://github.com/DapperLib/Dapper)
+- [Entity Framework](https://github.com/dotnet/efcore)
+- [Npgsql](https://github.com/npgsql/npgsql)
+- [SonarAnalyzer](https://github.com/SonarSource/sonar-dotnet)
 
 Testing:
 
-- https://github.com/xunit/xunit[xunit]
-- https://nsubstitute.github.io/[NSubstitute]
-- https://github.com/VerifyTests/Verify[Verify]
-- https://github.com/bchavez/Bogus[Bogus]
-- https://docs.shouldly.org/documentation/getting-started[Shouldly]
-- https://dotnet.testcontainers.org[Test Containers]
+- [xunit](https://github.com/xunit/xunit)
+- [NSubstitute](https://nsubstitute.github.io/)
+- [Verify](https://github.com/VerifyTests/Verify)
+- [Bogus](https://github.com/bchavez/Bogus)
+- [Shouldly](https://docs.shouldly.org/documentation/getting-started)
+- [Test Containers](https://dotnet.testcontainers.org)
 
-== Videos 🎥
+## Videos 🎥
 
 You can get a solid understanding of Evolutionary Architecture through these videos:
 
-=== Webinar from Architecture Weekly 🇬🇧
+### Webinar from Architecture Weekly 🇬🇧
 
-In this webinar, Maciej "MJ" Jedrzejewski gives an in-depth presentation on Evolutionary Architecture. You can watch the recorded webinar at https://www.architecture-weekly.com/p/webinar-11-maciej-mj-jedrzejewski[here].
+In this webinar, Maciej "MJ" Jedrzejewski gives an in-depth presentation on Evolutionary Architecture. You can watch the recorded webinar at [here](https://www.architecture-weekly.com/p/webinar-11-maciej-mj-jedrzejewski).
 
-=== Presentation at Programistok 2023 Conference 🇵🇱
+### Presentation at Programistok 2023 Conference 🇵🇱
 
-This is a recorded presentation from the Programistok 2023 conference where Evolutionary Architecture was explained in detail. You can watch it on YouTube link:https://www.youtube.com/watch?v=tfCtM8D_DZ4[here].
+This is a recorded presentation from the Programistok 2023 conference where Evolutionary Architecture was explained in detail. You can watch it on YouTube [here](https://www.youtube.com/watch?v=tfCtM8D_DZ4).
 
-=== Evolutionary Architecture Visualized Through NDepend 🇬🇧
+### Evolutionary Architecture Visualized Through NDepend 🇬🇧
 
-Explore Evolutionary Architecture visualized with NDepend, with comprehensive dependency and code analysis in the form of an interview with Kamil conducted by Ferry de Boer. Watch it on YouTube at https://www.youtube.com/watch?v=Z60SAiVevIM&t[here].
+Explore Evolutionary Architecture visualized with NDepend, with comprehensive dependency and code analysis in the form of an interview with Kamil conducted by Ferry de Boer. Watch it on YouTube at [here](https://www.youtube.com/watch?v=Z60SAiVevIM&t).
 
-== Authors ✍️
+## Authors ✍️
 
-[cols=2*,options=header]
-|===
-|Maciej "MJ" Jedrzejewski
-|Kamil Baczek
+| Maciej "MJ" Jedrzejewski | Kamil Baczek |
+|--------------------------|--------------|
+| Author of the book "Master Software Architecture", technology agnostic architect, and Microsoft MVP. | .NET Engineer, software architect, and Microsoft MVP who empowers teams to build better software through solid software architecture, utilising techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns. |
+| [Book](http://mastersoftwarearchitecturebook.com) [Newsletter](https://newsletter.fractionalarchitect.io) [Linkedin](https://www.linkedin.com/in/jedrzejewski-maciej/) | [Blog](https://artofsoftwaredesign.net/) [Linkedin](https://www.linkedin.com/in/kamilbaczek/) [Github](https://github.com/kamilbaczek) |
 
-|Author of the book "Master Software Architecture", technology agnostic architect, and Microsoft MVP.
+## 👩‍💻👨‍💻 What Software Engeeniers Say
 
-http://mastersoftwarearchitecturebook.com[Book]
-https://newsletter.fractionalarchitect.io[Newsletter]
-https://www.linkedin.com/in/jedrzejewski-maciej/[Linkedin]
+### 👨‍💼 Chief Software Architect
+> Really appreciate the repository and the content you are sharing. I think it is really valuable to see the evolutionary approach in practice, and focus on simplicity and pragmatic reasoning and making decisions in software design.
 
-|.NET Engineer, software architect, and Microsoft MVP who empowers teams to build better software through solid software architecture, utilising techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.
+### 👨‍💻 .NET Developer
+> Your work has been super helpful as I dive deeper into this field. Evolutionary Architecture, in particular, is incredible and has really clicked for me thanks to your examples and insights.
 
-https://artofsoftwaredesign.net/[Blog]
-https://www.linkedin.com/in/kamilbaczek/[Linkedin]
-https://github.com/kamilbaczek[Github]
-|===
-
-== 👩‍💻👨‍💻 What Software Engeeniers Say
-
-=== 👨‍💼 Chief Software Architect
-____
-Really appreciate the repository and the content you are sharing. I think it is really valuable to see the evolutionary approach in practice, and focus on simplicity and pragmatic reasoning and making decisions in software design.
-____
-
-=== 👨‍💻 .NET Developer
-____
-Your work has been super helpful as I dive deeper into this field. Evolutionary Architecture, in particular, is incredible and has really clicked for me thanks to your examples and insights.
-____
-
-=== 👨‍💻 .NET Developer
-____
-I was always concerned about what architecture to use on a project. Sometimes, spending time on researching what's right affects my motivation. Your approach which focuses on creating a project with an architecture that evolves resonates perfectly with me. Your efforts in creating such a wonderful resource is greatly appreciated.
-____
+### 👨‍💻 .NET Developer
+> I was always concerned about what architecture to use on a project. Sometimes, spending time on researching what's right affects my motivation. Your approach which focuses on creating a project with an architecture that evolves resonates perfectly with me. Your efforts in creating such a wonderful resource is greatly appreciated.
 
 
-== 💬 Join our Community
-Connect with fellow architects and developers in our "Evolutionary Architecture" community on our https://discord.gg/BGxYkHFCCF[Discord]. Share your questions, suggestions, or feedback about our repository - we're here to learn and improve together.
+## 💬 Join our Community
+Connect with fellow architects and developers in our "Evolutionary Architecture" community on our [Discord](https://discord.gg/BGxYkHFCCF). Share your questions, suggestions, or feedback about our repository - we're here to learn and improve together.
 
-image::Assets/discord.png[link="https://discord.gg/BGxYkHFCCF",width=200,height=64]
+[![](Assets/discord.png)](https://discord.gg/BGxYkHFCCF)
 
-== ⭐ Say thanks
+## ⭐ Say thanks
 Finding this repository helpful? Drop us a ⭐! It is a small gesture that makes a big difference in helping others discover it.
