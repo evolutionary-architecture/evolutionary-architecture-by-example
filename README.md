@@ -121,10 +121,14 @@ Why this works:
 
 Our modules talk to each other through a simple in-memory queue - just enough infrastructure to get the job done without overcomplicating things.
 
-More information:
-
-- [Chapter's readme](/Chapter-1-initial-architecture/README.adoc)
-- [Interactive diagram](https://s.icepanel.io/vY0SkvgDs7V83U/wOj3)
+<div align="center">
+  <a href="/Chapter-1-initial-architecture/README.md">
+    <img src="https://img.shields.io/badge/Chapter%201%20Details-8A2BE2?style=for-the-badge&logo=bookstack&logoColor=white" alt="Chapter 1 Details" />
+  </a>
+  <a href="https://s.icepanel.io/vY0SkvgDs7V83U/wOj3">
+    <img src="https://img.shields.io/badge/Interactive%20Diagram-22B455?style=for-the-badge&logo=diagram&logoColor=white" alt="Interactive Diagram" />
+  </a>
+</div>
 
 #### Chapter 2: Modules Separation: Focus On Maintainability
 In this chapter, we will tackle a familiar scenario: your initial architecture is starting to show its limits. Your codebase has matured, and reality has begun to diverge from your early assumptions. Some modules are more complex than anticipated, others simpler. Meanwhile, your growing team is wrestling with merge conflicts in your single project.
@@ -155,9 +159,11 @@ For those modules where business logic runs deep.
 
 The beauty of this approach? Each module gets exactly the architecture it deserves - no more, no less. Meanwhile, our modules keep talking through the same in-memory queue, proving you don't need to complicate everything at once.
 
-More information:
-
-- [Chapter's readme](/Chapter-2-modules-separation/README.adoc)
+<div align="center">
+  <a href="/Chapter-2-modules-separation/README.md">
+    <img src="https://img.shields.io/badge/Chapter%202%20Details-4169E1?style=for-the-badge&logo=bookstack&logoColor=white" alt="Chapter 2 Details" />
+  </a>
+</div>
 
 #### Chapter 3: Microservice Extraction: Focus On Growth
 
@@ -167,10 +173,14 @@ But extracting a microservice is just part of the story. We will also level up o
 
 Along the way, you will pick up key microservice architecture concepts - not just the theory, but the practical knowledge you need to make it work in the real world.
 
-More information:
-
-- [Chapter's readme](/Chapter-3-microservice-extraction/README.adoc)
-- [Interactive diagram](https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP)
+<div align="center">
+  <a href="/Chapter-3-microservice-extraction/README.md">
+    <img src="https://img.shields.io/badge/Chapter%203%20Details-FF6347?style=for-the-badge&logo=bookstack&logoColor=white" alt="Chapter 3 Details" />
+  </a>
+  <a href="https://s.icepanel.io/EPX45vmGXfBpnJ/cBSP">
+    <img src="https://img.shields.io/badge/Interactive%20Diagram-22B455?style=for-the-badge&logo=diagram&logoColor=white" alt="Interactive Diagram" />
+  </a>
+</div>
 
 #### Chapter 4: Applying Tactical Domain-Driven Design: Focus On Complexity
 
@@ -187,9 +197,11 @@ Now comes the fun part: tactical DDD. Think of it as adding precision tools to y
 
 The best part? You don't need to apply every DDD concept to get value. It is like a chef's kitchen - you don't need every gadget to cook great meals, just the right ones for your dish.
 
-More information:
-
-- [Chapter's readme](/Chapter-4-applying-tactical-domain-driven-design/README.adoc)
+<div align="center">
+  <a href="/Chapter-4-applying-tactical-domain-driven-design/README.md">
+    <img src="https://img.shields.io/badge/Chapter%204%20Details-2E8B57?style=for-the-badge&logo=bookstack&logoColor=white" alt="Chapter 4 Details" />
+  </a>
+</div>
 
 #### Additional notes
 Each chapter includes static code analysis to maintain code quality – a practice we strongly recommend for production environments.
@@ -355,10 +367,30 @@ Explore Evolutionary Architecture visualized with NDepend, with comprehensive de
 
 ## Authors ✍️
 
-| Maciej "MJ" Jedrzejewski | Kamil Baczek |
-|--------------------------|--------------|
-| Author of the book "Master Software Architecture", technology agnostic architect, and Microsoft MVP. | .NET Engineer, software architect, and Microsoft MVP who empowers teams to build better software through solid software architecture, utilising techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns. |
-| [Book](http://mastersoftwarearchitecturebook.com) [Newsletter](https://newsletter.fractionalarchitect.io) [Linkedin](https://www.linkedin.com/in/jedrzejewski-maciej/) | [Blog](https://artofsoftwaredesign.net/) [Linkedin](https://www.linkedin.com/in/kamilbaczek/) [Github](https://github.com/kamilbaczek) |
+<table>
+  <tr>
+    <th><b>Maciej "MJ" Jedrzejewski</b></th>
+    <th><b>Kamil Baczek</b></th>
+  </tr>
+  <tr>
+    <td>
+      <p>Author of the book "Master Software Architecture", technology agnostic architect, and Microsoft MVP.</p>
+      <p>
+        <a href="http://mastersoftwarearchitecturebook.com"><img src="https://img.shields.io/badge/Book-ED8B00?style=for-the-badge&logo=book&logoColor=white" alt="Book"/></a>
+        <a href="https://newsletter.fractionalarchitect.io"><img src="https://img.shields.io/badge/Newsletter-3A76F0?style=for-the-badge&logo=substack&logoColor=white" alt="Newsletter"/></a>
+        <a href="https://www.linkedin.com/in/jedrzejewski-maciej/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+      </p>
+    </td>
+    <td>
+      <p>.NET Engineer, software architect, and Microsoft MVP who empowers teams to build better software through solid software architecture, utilising techniques such as Event Storming, Domain Driven Design and various architecture styles and design patterns.</p>
+      <p>
+        <a href="https://artofsoftwaredesign.net/"><img src="https://img.shields.io/badge/Blog-21759B?style=for-the-badge&logo=wordpress&logoColor=white" alt="Blog"/></a>
+        <a href="https://www.linkedin.com/in/kamilbaczek/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+        <a href="https://github.com/kamilbaczek"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Github"/></a>
+      </p>
+    </td>
+  </tr>
+</table>
 
 ## 👩‍💻👨‍💻 What Software Engeeniers Say
 
@@ -375,7 +407,11 @@ Explore Evolutionary Architecture visualized with NDepend, with comprehensive de
 ## 💬 Join our Community
 Connect with fellow architects and developers in our "Evolutionary Architecture" community on our [Discord](https://discord.gg/BGxYkHFCCF). Share your questions, suggestions, or feedback about our repository - we're here to learn and improve together.
 
-[![](Assets/discord.png)](https://discord.gg/BGxYkHFCCF)
+<div align="center">
+  <a href="https://discord.gg/BGxYkHFCCF">
+    <img src="Assets/discord.png" width="120" alt="Join Discord">
+  </a>
+</div>
 
 ## ⭐ Say thanks
 Finding this repository helpful? Drop us a ⭐! It is a small gesture that makes a big difference in helping others discover it.
