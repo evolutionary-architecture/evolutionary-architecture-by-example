@@ -1,6 +1,4 @@
 # Evolutionary Architecture
-Maciej "MJ" Jedrzejewski; Kamil Baczek
-
 ## Table of Contents
 - [Objective](#objective)
   - [Problem](#problem)
