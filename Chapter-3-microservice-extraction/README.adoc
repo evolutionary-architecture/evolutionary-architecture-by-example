@@ -74,7 +74,7 @@ In the current chapter, the complexity grows even more, as we had to
 
 This way our application looks like this:
 
-image::Assets/components.jpg[]
+image::Assets/components.png[]
 
 ==== Solution structure
 
@@ -98,7 +98,7 @@ At this point, our application was already being used by many people, and we wan
 
 We decided to use `RabbitMQ` with `MassTransit`. In doing so, we have created a separate component that now requires additional maintenance. Whenever an integration event arrives in the message queue, the module subscribed to it can receive it and update itself accordingly:
 
-image::Assets/communication.jpg[]
+image::Assets/communication.png[]
 
 IMPORTANT: If you are deploying a separate component like `RabbitMQ` for production purposes, it makes sense to create at least 1 other replica (our suggestion is to have 2) - in case the first instance goes down, another instance can handle the message communication. This way you protect your application from random failures (or rather, you reduce the chance of your application going down :)).
 
