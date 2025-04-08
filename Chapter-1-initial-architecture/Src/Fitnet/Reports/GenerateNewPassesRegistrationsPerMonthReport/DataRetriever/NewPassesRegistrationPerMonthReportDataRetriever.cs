@@ -21,6 +21,6 @@ internal sealed class NewPassesRegistrationPerMonthReportDataRetriever(IDatabase
         var queryDefinition = new CommandDefinition(query, cancellationToken: cancellationToken);
         var newPassesRegistrationsPerMonthDtos = await connection.QueryAsync<NewPassesRegistrationsPerMonthDto>(queryDefinition);
 
-        return newPassesRegistrationsPerMonthDtos.ToList();
+        return [.. newPassesRegistrationsPerMonthDtos];
     }
 }
