@@ -74,7 +74,7 @@ In the current chapter, the complexity grows even more, as we had to
 
 This way our application looks like this:
 
-image::Assets/components.png[align="center", width=80%, height=80%]
+image::Assets/components.png[align="center", width=60%, height=60%]
 
 ==== Solution structure
 
@@ -84,7 +84,7 @@ After the changes, our solution was divided into 3 separate solutions:
 2. `Fitnet.Common` is a solution that contains all reusable components (no common business logic, only technical components like exception middleware).
 3. `Fitnet` is a solution that contains our modular monolith with 3 modules - `Passes`, `Offers` and `Reports`.
 
-For each solution we have created a separate build in GH Actions. 
+For each solution, we have created a separate build in GH Actions. 
 
 Components located in `Fitnet.Common` are built into packages that are then reused by both - modular monolith and microservice. Whenever you extract another microservice, it is ready to integrate common components inside.
 
