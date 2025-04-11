@@ -74,7 +74,7 @@ In the current chapter, the complexity grows even more, as we had to
 
 This way our application looks like this:
 
-image::Assets/components.png[align="center", width=500, height=800]
+image::Assets/components.png[align="center", width=450, height=700]
 
 ==== Solution structure
 
