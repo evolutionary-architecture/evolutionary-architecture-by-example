@@ -211,7 +211,7 @@ They enhance our domain model's expressiveness, prevent invalid object state and
 
 ++++
 <div align="center">
-  <img src="Assets/value_object_sets.png" width="300" height="300" alt="Value Object Sets">
+<img src="Assets/value_object_sets.png" width="30%" height="30%" alt="Value Object Sets">
 </div>
 ++++
 
