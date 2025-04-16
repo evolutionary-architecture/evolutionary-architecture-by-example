@@ -209,7 +209,11 @@ They enhance our domain model's expressiveness, prevent invalid object state and
 
 "Primitive Obsession" is a code smell where we use primitive types to represent domain concepts. 
 
-image::Assets/value_object_sets.png[300,300,align=center]
+++++
+<div align="center">
+  <img src="Assets/value_object_sets.png" width="300" height="300" alt="Value Object Sets">
+</div>
+++++
 
 For e.g., you can treat _SSN_ as _string_. _String_ allows put to field every character, but _SSN_ has a specific format. Take a look at the image above. You can see that _SSN_ is just only small subset of _string_ possible values.
 **Value object is precise and can validate a format during object initialization.**
