@@ -1,4 +1,5 @@
 using EvolutionaryArchitecture.Fitnet.Common.Clock;
+using EvolutionaryArchitecture.Fitnet.Common.Documentation;
 using EvolutionaryArchitecture.Fitnet.Common.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using EvolutionaryArchitecture.Fitnet.Common.Validation.Requests;
@@ -30,6 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseApiDocumentation();
 app.UsePasses();
 app.UseContracts();
 app.UseReports();

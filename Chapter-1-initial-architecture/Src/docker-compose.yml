@@ -1,5 +1,5 @@
 services:
-  web:
+  fitnet:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
