@@ -1,9 +1,14 @@
 version: '3.9'
 
 services:
-  web:
+  fitnet:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__Passes=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - ConnectionStrings__Contracts=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - ConnectionStrings__Reports=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - ConnectionStrings__Offers=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
     build: .
     ports:
       - "8080:80"
