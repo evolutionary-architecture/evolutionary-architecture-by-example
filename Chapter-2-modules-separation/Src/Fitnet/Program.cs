@@ -1,3 +1,4 @@
+using EvolutionaryArchitecture.Fitnet.Common.Api.Documentation;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 using EvolutionaryArchitecture.Fitnet.Modules;
@@ -19,12 +20,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseApiDocumentation();
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.UseErrorHandling();
-
 app.MapControllers();
 
 app.RegisterModules();
