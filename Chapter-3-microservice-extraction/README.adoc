@@ -75,7 +75,9 @@ In the current chapter, the complexity grows even more, as we had to
 This way our application looks like this:
 
 ++++
-<img src="Assets/components.png" align="center" width="50%" height="50%">
+<p align="center">
+  <img src="Assets/components.png" width="50%" height="50%">
+</p>
 ++++
 
 ==== Solution structure
