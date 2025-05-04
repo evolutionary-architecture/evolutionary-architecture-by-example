@@ -5,10 +5,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings__Passes__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
-      - ConnectionStrings__Contracts__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
-      - ConnectionStrings__Reports__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
-      - ConnectionStrings__Offers__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - Passes__ConnectionStrings__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - Contracts__ConnectionStrings__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - Reports__ConnectionStrings__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
+      - Offers__ConnectionStrings__Primary=Host=postgres;Database=fitnet;Username=postgres;Password=mysecretpassword
     build: .
     ports:
       - "8080:80"
