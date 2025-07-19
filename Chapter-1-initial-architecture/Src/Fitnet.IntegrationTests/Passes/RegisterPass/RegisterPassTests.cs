@@ -6,21 +6,29 @@ using Fitnet.Contracts.SignContract.Events;
 using Fitnet.Passes.RegisterPass.Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 
-public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>,
-    IClassFixture<DatabaseContainer>
+public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
     private readonly WebApplicationFactory<Program> _applicationInMemory;
     private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
+    private readonly HttpClient _applicationHttpClient;
 
     public RegisterPassTests(WebApplicationFactory<Program> applicationInMemoryFactory,
         DatabaseContainer database)
     {
         _applicationInMemory = applicationInMemoryFactory
-                .WithContainerDatabaseConfigured(database.ConnectionString!)
-                .WithFakeEventBus(_fakeEventBus);
-#pragma warning disable IDISP004
-        _applicationInMemory.CreateClient();
-#pragma warning restore IDISP004
+            .WithContainerDatabaseConfigured(database.ConnectionString!)
+            .WithFakeEventBus(_fakeEventBus);
+        _applicationHttpClient = _applicationInMemory.CreateClient();
+    }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public async Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+#pragma warning disable IDISP007
+        await _applicationInMemory.DisposeAsync();
+#pragma warning restore IDISP007
     }
 
     [Fact]

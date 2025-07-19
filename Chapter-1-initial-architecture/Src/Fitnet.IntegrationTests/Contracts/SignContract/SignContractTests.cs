@@ -9,19 +9,31 @@ using Fitnet.Contracts.SignContract.Events;
 using EvolutionaryArchitecture.Fitnet.Common.Events.EventBus;
 using Microsoft.AspNetCore.Mvc;
 
-public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
-#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient;
-#pragma warning restore IDISP006
     private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
+    private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
 
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
-        DatabaseContainer database) =>
+        DatabaseContainer database)
+    {
+        _applicationInMemoryFactory = applicationInMemoryFactory;
         _applicationHttpClient = applicationInMemoryFactory
             .WithFakeEventBus(_fakeEventBus)
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .CreateClient();
+    }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public async Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+#pragma warning disable IDISP007
+        await _applicationInMemoryFactory.DisposeAsync();
+#pragma warning restore IDISP007
+    }
 
     [Fact]
     internal async Task Given_valid_contract_signature_request_Then_should_return_no_content_status_code()

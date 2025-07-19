@@ -24,9 +24,6 @@
             PrivateAssets="all"
             Condition="$(MSBuildProjectExtension) == '.csproj'"
         />
-        <PackageReference Include="IDisposableAnalyzers" Version="3.4.15"
-                          PrivateAssets="all"
-                          Condition="$(MSBuildProjectExtension) == '.csproj'"/>
     </ItemGroup>
     
 </Project>

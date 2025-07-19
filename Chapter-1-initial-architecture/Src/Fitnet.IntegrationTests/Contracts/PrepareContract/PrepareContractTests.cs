@@ -9,11 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 public sealed class PrepareContractTests(
     WebApplicationFactory<Program> applicationInMemoryFactory,
     DatabaseContainer database) : IClassFixture<WebApplicationFactory<Program>>,
-    IClassFixture<DatabaseContainer>
+    IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
-#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
-#pragma warning restore IDISP006
         .WithContainerDatabaseConfigured(database.ConnectionString!)
         .CreateClient();
 
@@ -100,5 +98,13 @@ public sealed class PrepareContractTests(
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         return prepareContractResponse;
+    }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public async Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+        await applicationInMemoryFactory.DisposeAsync();
     }
 }

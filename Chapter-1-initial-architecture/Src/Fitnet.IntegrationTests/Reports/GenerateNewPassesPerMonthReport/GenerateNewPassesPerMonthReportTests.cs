@@ -13,9 +13,7 @@ using TestData;
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
     private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
-#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient;
-#pragma warning restore IDISP006
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
 
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
@@ -24,7 +22,6 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .WithTime(FakeTimeProvider);
-
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
 
@@ -64,11 +61,9 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
 
     public Task InitializeAsync() => Task.CompletedTask;
 
-    public Task DisposeAsync()
+    public async Task DisposeAsync()
     {
         _applicationHttpClient.Dispose();
-        _applicationInMemoryFactory.Dispose();
-
-        return Task.CompletedTask;
+        await _applicationInMemoryFactory.DisposeAsync();
     }
 }
