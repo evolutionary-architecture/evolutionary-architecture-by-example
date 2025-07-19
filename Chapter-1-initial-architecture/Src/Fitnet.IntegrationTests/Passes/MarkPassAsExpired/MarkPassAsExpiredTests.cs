@@ -14,9 +14,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
 {
     private static readonly StringContent EmptyContent = new(string.Empty);
 
-#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient;
-#pragma warning restore IDISP006
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
     private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 

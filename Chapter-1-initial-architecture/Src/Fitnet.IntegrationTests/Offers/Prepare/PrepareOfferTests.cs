@@ -19,10 +19,7 @@ public sealed class PrepareOfferTests : IClassFixture<WebApplicationFactory<Prog
         _applicationInMemory = applicationInMemoryFactory
             .WithFakeEventBus(_fakeEventBus)
             .WithContainerDatabaseConfigured(database.ConnectionString!);
-
-#pragma warning disable IDISP004
         _applicationInMemory.CreateClient();
-#pragma warning restore IDISP004
     }
 
     [Fact]

@@ -26,9 +26,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
     public async Task DisposeAsync()
     {
         _applicationHttpClient.Dispose();
-#pragma warning disable IDISP007
         await _applicationInMemory.DisposeAsync();
-#pragma warning restore IDISP007
     }
 
     [Fact]

@@ -30,9 +30,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
     public async Task DisposeAsync()
     {
         _applicationHttpClient.Dispose();
-#pragma warning disable IDISP007
         await _applicationInMemoryFactory.DisposeAsync();
-#pragma warning restore IDISP007
     }
 
     [Fact]
