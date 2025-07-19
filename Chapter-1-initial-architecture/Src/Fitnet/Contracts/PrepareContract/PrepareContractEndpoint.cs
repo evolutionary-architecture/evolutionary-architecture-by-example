@@ -37,5 +37,5 @@ internal static class PrepareContractEndpoint
         CancellationToken cancellationToken = default) =>
         await persistence.Contracts
             .OrderByDescending(contract => contract.PreparedAt)
-            .SingleOrDefaultAsync(contract => contract.CustomerId == customerId, cancellationToken);
+            .FirstOrDefaultAsync(contract => contract.CustomerId == customerId, cancellationToken);
 }
