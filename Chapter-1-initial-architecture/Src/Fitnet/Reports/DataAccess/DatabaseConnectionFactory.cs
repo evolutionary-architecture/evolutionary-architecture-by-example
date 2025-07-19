@@ -14,6 +14,7 @@ internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : 
             return _connection;
         }
 
+        _connection?.Dispose();
         _connection =
             new NpgsqlConnection(configuration.GetConnectionString("Reports"));
         _connection.Open();

@@ -27,7 +27,7 @@ public sealed class InMemoryEventBusTests(
 
     private IEventBus GetEventBus() =>
         _applicationInMemory.Services
-            .CreateScope()
+            .CreateScope()!
             .ServiceProvider
             .GetRequiredService<IEventBus>();
 }

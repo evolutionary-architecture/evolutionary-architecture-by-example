@@ -11,7 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
+#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient;
+#pragma warning restore IDISP006
     private readonly IEventBus _fakeEventBus = Substitute.For<IEventBus>();
 
     public SignContractTests(WebApplicationFactory<Program> applicationInMemoryFactory,
@@ -30,7 +32,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        var signContractResponse =
+        using var signContractResponse =
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
@@ -63,7 +65,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        var signContractResponse =
+        using var signContractResponse =
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
@@ -81,7 +83,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        var signContractResponse =
+        using var signContractResponse =
             await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
 
         // Assert
@@ -97,7 +99,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var requestParameters = PrepareContractRequestParameters.GetValid();
         PrepareContractRequest prepareContractRequest = new PrepareContractRequestFaker(requestParameters.MinAge,
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
-        var prepareContractResponse =
+        using var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
         var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>();
 

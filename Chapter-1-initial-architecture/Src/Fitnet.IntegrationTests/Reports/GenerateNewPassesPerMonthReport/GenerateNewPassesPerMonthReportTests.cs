@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
+using System;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Common.TestEngine.Time;
@@ -9,10 +10,12 @@ using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using Passes.RegisterPass;
 using TestData;
 
-public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
     private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
+#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient;
+#pragma warning restore IDISP006
     private readonly WebApplicationFactory<Program> _applicationInMemoryFactory;
 
     public GenerateNewPassesPerMonthReportTests(WebApplicationFactory<Program> applicationInMemoryFactory,
@@ -34,7 +37,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         await RegisterPasses(passRegistrationDateRanges);
 
         // Act
-        var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
+        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
         // Assert
         getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
@@ -57,5 +60,15 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
         var @event = ContractSignedEventFaker.Create(from, to);
         await integrationEventHandler.Handle(@event, CancellationToken.None);
+    }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+        _applicationInMemoryFactory.Dispose();
+
+        return Task.CompletedTask;
     }
 }

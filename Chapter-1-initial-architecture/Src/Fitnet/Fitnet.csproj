@@ -38,5 +38,10 @@
         <Link>Dockerfile</Link>
       </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Common\Events\EventBus\InMemory\MassTransitInMemoryEventBusModule.cs" />
+      <Compile Remove="Common\Events\EventBus\InMemory\MassTransitInMemoryEventBus.cs" />
+    </ItemGroup>
     
 </Project>

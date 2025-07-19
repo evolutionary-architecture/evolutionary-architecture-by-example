@@ -11,7 +11,9 @@ public sealed class PrepareContractTests(
     DatabaseContainer database) : IClassFixture<WebApplicationFactory<Program>>,
     IClassFixture<DatabaseContainer>
 {
+#pragma warning disable IDISP006
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
+#pragma warning restore IDISP006
         .WithContainerDatabaseConfigured(database.ConnectionString!)
         .CreateClient();
 
@@ -22,7 +24,7 @@ public sealed class PrepareContractTests(
         var requestParameters = PrepareContractRequestParameters.GetValid();
 
         // Act
-        var prepareContractResponse = await PrepareCorrectContract(requestParameters);
+        using var prepareContractResponse = await PrepareCorrectContract(requestParameters);
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
@@ -38,7 +40,7 @@ public sealed class PrepareContractTests(
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
         // Act
-        var prepareContractResponse =
+        using var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
@@ -59,7 +61,7 @@ public sealed class PrepareContractTests(
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
         // Act
-        var prepareContractResponse =
+        using var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
@@ -80,7 +82,7 @@ public sealed class PrepareContractTests(
         await PrepareCorrectContract(requestParameters, customerId);
 
         //Act
-        var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
+        using var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);

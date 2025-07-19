@@ -18,7 +18,9 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         _applicationInMemory = applicationInMemoryFactory
                 .WithContainerDatabaseConfigured(database.ConnectionString!)
                 .WithFakeEventBus(_fakeEventBus);
+#pragma warning disable IDISP004
         _applicationInMemory.CreateClient();
+#pragma warning restore IDISP004
     }
 
     [Fact]
