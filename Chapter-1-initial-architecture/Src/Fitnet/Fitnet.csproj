@@ -5,17 +5,16 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Dapper" Version="2.1.66" />
-        <PackageReference Include="FluentValidation" Version="12.0.0" />
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+        <PackageReference Include="Dapper" Version="2.1.35" />
+        <PackageReference Include="FluentValidation" Version="11.10.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
-        <PackageReference Include="MediatR" Version="13.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
-        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.14.0.120626" />
-        <PackageReference Update="IDisposableAnalyzers" Version="4.0.8" />
+        <PackageReference Include="MediatR" Version="12.4.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-rc.2.24474.1" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0-rc.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
     </ItemGroup>
 
     <ItemGroup>
