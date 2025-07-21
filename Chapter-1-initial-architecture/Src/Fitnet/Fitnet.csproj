@@ -14,7 +14,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-rc.2.24474.1" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0-rc.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
-        <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.14.0.120626" />
     </ItemGroup>
 
     <ItemGroup>
