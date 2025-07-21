@@ -4,7 +4,9 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
+using Fitnet.Contracts.SignContract;
 using Microsoft.AspNetCore.Mvc;
+using SignContract;
 
 public sealed class PrepareContractTests(
     WebApplicationFactory<Program> applicationInMemoryFactory,
@@ -26,6 +28,27 @@ public sealed class PrepareContractTests(
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
+    }
+
+    [Fact]
+    internal async Task Given_valid_contract_preparation_request_When_preparing_new_contract_for_same_customer_after_previous_contract_was_signed_Then_should_return_created_status_code()
+    {
+        // Arrange
+        var customerId = Guid.NewGuid();
+        var requestParameters = PrepareContractRequestParameters.GetValid();
+        var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
+        var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>();
+        var signContractRequestParameters = SignContractRequestParameters.GetValid(preparedContractId);
+        var signContractRequest = new SignContractRequest(signContractRequestParameters.SignedAt);
+        var signContractResponse =
+            await _applicationHttpClient.PatchAsJsonAsync(signContractRequestParameters.Url, signContractRequest);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+
+        // Act
+        var secondContractPreparationResponse = await PrepareCorrectContract(requestParameters, customerId);
+
+        // Assert
+        secondContractPreparationResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Fact]
