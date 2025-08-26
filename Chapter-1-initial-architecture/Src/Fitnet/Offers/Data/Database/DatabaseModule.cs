@@ -1,15 +1,22 @@
 namespace EvolutionaryArchitecture.Fitnet.Offers.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 internal static class DatabaseModule
 {
-    private const string ConnectionStringName = "Offers";
-
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString(ConnectionStringName);
-        services.AddDbContext<OffersPersistence>(options => options.UseNpgsql(connectionString));
+        // First point - register options using native SDK method with validation
+        services.Configure<OffersPersistenceOptions>(configuration.GetSection(OffersPersistenceOptions.SectionName));
+        services.AddOptionsWithValidateOnStart<OffersPersistenceOptions>();
+
+        services.AddDbContext<OffersPersistence>((serviceProvider, options) =>
+        {
+            var persistenceOptions = serviceProvider.GetRequiredService<IOptions<OffersPersistenceOptions>>();
+            var connectionString = persistenceOptions.Value.Offers;
+            options.UseNpgsql(connectionString);
+        });
 
         return services;
     }
