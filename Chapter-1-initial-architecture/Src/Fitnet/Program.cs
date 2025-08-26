@@ -18,6 +18,7 @@ builder.Services.AddEventBus();
 builder.Services.AddRequestsValidations();
 builder.Services.AddClock();
 
+// Add modules - each module registers its own options with validation
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
 builder.Services.AddOffers(builder.Configuration);
