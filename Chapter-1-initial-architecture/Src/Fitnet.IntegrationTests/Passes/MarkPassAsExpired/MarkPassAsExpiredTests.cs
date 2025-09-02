@@ -10,7 +10,7 @@ using Fitnet.Passes.GetAllPasses;
 using Fitnet.Passes.MarkPassAsExpired.Events;
 
 public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory<Program>>,
-    IClassFixture<DatabaseContainer>
+    IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
     private static readonly StringContent EmptyContent = new(string.Empty);
 
@@ -51,7 +51,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var url = BuildUrl(registeredPassId);
 
         // Act
-        var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        using var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
         markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
@@ -65,7 +65,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var url = BuildUrl(notExistingId);
 
         // Act
-        var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        using var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
 
         // Assert
         markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
@@ -91,9 +91,10 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
 
     private async Task<PassDto?> CreatedPass(Guid customerId)
     {
-        var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
+        using var getAllPassesResponse = await _applicationHttpClient.GetAsync(PassesApiPaths.GetAll);
         var response = await getAllPassesResponse.Content.ReadFromJsonAsync<GetAllPassesResponse>();
         var createdPass = response!.Passes.FirstOrDefault(pass => pass.CustomerId == customerId);
+
         return createdPass;
     }
 
@@ -101,4 +102,12 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
 
     private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Received(1)
         .PublishAsync(Arg.Any<PassExpiredEvent>(), Arg.Any<CancellationToken>());
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public async Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+        await _applicationInMemoryFactory.DisposeAsync();
+    }
 }
