@@ -1,5 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
+using System;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Common.TestEngine.Time;
@@ -9,7 +10,7 @@ using Fitnet.Reports.GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using Passes.RegisterPass;
 using TestData;
 
-public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
+public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
     private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
     private readonly HttpClient _applicationHttpClient;
@@ -21,7 +22,6 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         _applicationInMemoryFactory = applicationInMemoryFactory
             .WithContainerDatabaseConfigured(database.ConnectionString!)
             .WithTime(FakeTimeProvider);
-
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
 
@@ -34,7 +34,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         await RegisterPasses(passRegistrationDateRanges);
 
         // Act
-        var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
+        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
 
         // Assert
         getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
@@ -57,5 +57,13 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
         var @event = ContractSignedEventFaker.Create(from, to);
         await integrationEventHandler.Handle(@event, CancellationToken.None);
+    }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public async Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+        await _applicationInMemoryFactory.DisposeAsync();
     }
 }
