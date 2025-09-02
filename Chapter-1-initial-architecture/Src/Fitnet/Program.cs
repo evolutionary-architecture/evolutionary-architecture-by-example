@@ -21,7 +21,7 @@ builder.Services.AddClock();
 builder.Services.AddPasses(builder.Configuration);
 builder.Services.AddContracts(builder.Configuration);
 builder.Services.AddOffers(builder.Configuration);
-builder.Services.AddReports();
+builder.Services.AddReports(builder.Configuration);
 
 var app = builder.Build();
 
