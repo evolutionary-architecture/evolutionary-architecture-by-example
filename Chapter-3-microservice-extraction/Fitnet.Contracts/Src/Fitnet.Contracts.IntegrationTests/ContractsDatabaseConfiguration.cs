@@ -10,6 +10,6 @@ internal sealed class ContractsDatabaseConfiguration : IDatabaseConfiguration
 
     public Dictionary<string, string?> Get() => new()
     {
-        { "ConnectionStrings:Contracts", _connectionString }
+        { "Database:ConnectionString", _connectionString }
     };
 }
