@@ -1,13 +1,12 @@
 namespace EvolutionaryArchitecture.Fitnet.Reports.DataAccess;
 
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using Npgsql;
 
-internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : IDatabaseConnectionFactory
+internal sealed class DatabaseConnectionFactory(IOptions<ReportsPersistenceOptions> persistenceOptions) : IDatabaseConnectionFactory
 {
-    private const string ConnectionStringConfigurationSection = "Modules:Reports:ConnectionStrings:Primary";
     private NpgsqlConnection? _connection;
 
     public IDbConnection Create()
@@ -17,9 +16,8 @@ internal sealed class DatabaseConnectionFactory(IConfiguration configuration) : 
             return _connection;
         }
 
-        var connectionString = configuration.GetRequiredSection(ConnectionStringConfigurationSection).Value;
-        _connection =
-            new NpgsqlConnection(connectionString);
+        var connectionString = persistenceOptions.Value.Primary;
+        _connection = new NpgsqlConnection(connectionString);
         _connection.Open();
 
         return _connection;

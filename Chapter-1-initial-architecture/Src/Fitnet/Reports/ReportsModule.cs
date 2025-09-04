@@ -5,9 +5,9 @@ using GenerateNewPassesRegistrationsPerMonthReport;
 
 internal static class ReportsModule
 {
-    internal static IServiceCollection AddReports(this IServiceCollection services)
+    internal static IServiceCollection AddReports(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDataAccess();
+        services.AddDataAccess(configuration);
         services.AddNewPassesRegistrationsPerMonthReport();
 
         return services;
