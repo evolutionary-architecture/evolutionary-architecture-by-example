@@ -11,7 +11,6 @@ internal static class DatabaseModule
 {
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        // First point - register options using native SDK method with validation
         services.Configure<ContractsPersistenceOptions>(configuration.GetSection(ContractsPersistenceOptions.SectionName));
         services.AddOptionsWithValidateOnStart<ContractsPersistenceOptions>();
 
@@ -21,7 +20,7 @@ internal static class DatabaseModule
             var connectionString = persistenceOptions.Value.Primary;
             options.UseNpgsql(connectionString);
         });
-        
+
         services.AddRepositories();
 
         return services;

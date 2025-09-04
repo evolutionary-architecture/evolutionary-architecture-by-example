@@ -1,4 +1,4 @@
-﻿er namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database;
+﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Infrastructure.Database;
 
 using System.ComponentModel.DataAnnotations;
 
