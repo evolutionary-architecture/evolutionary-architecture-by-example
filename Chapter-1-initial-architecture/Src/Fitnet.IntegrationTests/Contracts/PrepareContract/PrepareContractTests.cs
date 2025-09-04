@@ -4,12 +4,14 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Contracts.PrepareContract;
 using Common.TestEngine;
 using Common.TestEngine.Configuration;
+using Fitnet.Contracts.SignContract;
 using Microsoft.AspNetCore.Mvc;
+using SignContract;
 
 public sealed class PrepareContractTests(
     WebApplicationFactory<Program> applicationInMemoryFactory,
     DatabaseContainer database) : IClassFixture<WebApplicationFactory<Program>>,
-    IClassFixture<DatabaseContainer>
+    IClassFixture<DatabaseContainer>, IAsyncLifetime
 {
     private readonly HttpClient _applicationHttpClient = applicationInMemoryFactory
         .WithContainerDatabaseConfigured(database.ConnectionString!)
@@ -22,10 +24,31 @@ public sealed class PrepareContractTests(
         var requestParameters = PrepareContractRequestParameters.GetValid();
 
         // Act
-        var prepareContractResponse = await PrepareCorrectContract(requestParameters);
+        using var prepareContractResponse = await PrepareCorrectContract(requestParameters);
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
+    }
+
+    [Fact]
+    internal async Task Given_valid_contract_preparation_request_When_preparing_new_contract_for_same_customer_after_previous_contract_was_signed_Then_should_return_created_status_code()
+    {
+        // Arrange
+        var customerId = Guid.NewGuid();
+        var requestParameters = PrepareContractRequestParameters.GetValid();
+        var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
+        var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>();
+        var signContractRequestParameters = SignContractRequestParameters.GetValid(preparedContractId);
+        var signContractRequest = new SignContractRequest(signContractRequestParameters.SignedAt);
+        var signContractResponse =
+            await _applicationHttpClient.PatchAsJsonAsync(signContractRequestParameters.Url, signContractRequest);
+        signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+
+        // Act
+        var secondContractPreparationResponse = await PrepareCorrectContract(requestParameters, customerId);
+
+        // Assert
+        secondContractPreparationResponse.StatusCode.ShouldBe(HttpStatusCode.Created);
     }
 
     [Fact]
@@ -38,7 +61,7 @@ public sealed class PrepareContractTests(
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
         // Act
-        var prepareContractResponse =
+        using var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
@@ -59,7 +82,7 @@ public sealed class PrepareContractTests(
             requestParameters.MaxAge, requestParameters.MinHeight, requestParameters.MaxHeight);
 
         // Act
-        var prepareContractResponse =
+        using var prepareContractResponse =
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         // Assert
@@ -80,7 +103,7 @@ public sealed class PrepareContractTests(
         await PrepareCorrectContract(requestParameters, customerId);
 
         //Act
-        var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
+        using var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
@@ -98,5 +121,13 @@ public sealed class PrepareContractTests(
             await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
 
         return prepareContractResponse;
+    }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public async Task DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+        await applicationInMemoryFactory.DisposeAsync();
     }
 }
