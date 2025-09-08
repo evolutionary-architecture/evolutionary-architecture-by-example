@@ -6,7 +6,6 @@ internal static class DataAccessModule
     {
         services.Configure<ReportsPersistenceOptions>(configuration.GetSection(ReportsPersistenceOptions.SectionName));
         services.AddOptionsWithValidateOnStart<ReportsPersistenceOptions>();
-
         services.AddScoped<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
 
         return services;

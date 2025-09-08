@@ -7,11 +7,9 @@ internal static class DatabaseModule
 {
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        // First point - register options using native SDK method with validation
         services.Configure<ContractsPersistenceOptions>(
             configuration.GetSection(ContractsPersistenceOptions.SectionName));
         services.AddOptionsWithValidateOnStart<ContractsPersistenceOptions>();
-
         services.AddDbContext<ContractsPersistence>((serviceProvider, options) =>
         {
             var persistenceOptions = serviceProvider.GetRequiredService<IOptions<ContractsPersistenceOptions>>();
