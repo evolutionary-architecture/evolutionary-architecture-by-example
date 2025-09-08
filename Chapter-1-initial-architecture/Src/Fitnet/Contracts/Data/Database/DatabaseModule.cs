@@ -1,15 +1,21 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 internal static class DatabaseModule
 {
-    private const string ConnectionStringName = "Contracts";
-
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString(ConnectionStringName);
-        services.AddDbContext<ContractsPersistence>(options => options.UseNpgsql(connectionString));
+        services.Configure<ContractsPersistenceOptions>(
+            configuration.GetSection(ContractsPersistenceOptions.SectionName));
+        services.AddOptionsWithValidateOnStart<ContractsPersistenceOptions>();
+        services.AddDbContext<ContractsPersistence>((serviceProvider, options) =>
+        {
+            var persistenceOptions = serviceProvider.GetRequiredService<IOptions<ContractsPersistenceOptions>>();
+            var connectionString = persistenceOptions.Value.Contracts;
+            options.UseNpgsql(connectionString);
+        });
 
         return services;
     }
