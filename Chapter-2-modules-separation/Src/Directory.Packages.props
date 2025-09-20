@@ -20,6 +20,8 @@
     <PackageVersion Include="Npgsql" Version="9.0.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="System.Text.Encodings.Web" Version="9.0.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.1" />
