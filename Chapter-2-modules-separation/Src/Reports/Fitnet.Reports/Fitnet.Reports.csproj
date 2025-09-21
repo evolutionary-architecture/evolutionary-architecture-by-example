@@ -7,10 +7,9 @@
       <ProjectReference Include="..\..\Common\Fitnet.Common.Infrastructure\Fitnet.Common.Infrastructure.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Dapper" Version="2.1.35" />
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-      <PackageReference Include="Npgsql" Version="9.0.0" />
-      <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
+      <PackageReference Include="Dapper" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+      <PackageReference Include="Npgsql" />
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
