@@ -17,13 +17,4 @@
         <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference 
-            Include="SonarAnalyzer.CSharp" 
-            Version="9.25.0.90414" 
-            PrivateAssets="all"
-            Condition="$(MSBuildProjectExtension) == '.csproj'"
-        />
-    </ItemGroup>
-
 </Project>
