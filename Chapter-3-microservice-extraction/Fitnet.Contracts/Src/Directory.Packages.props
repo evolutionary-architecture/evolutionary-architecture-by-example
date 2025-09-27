@@ -6,6 +6,7 @@
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="3.2.5" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.2.5" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="3.2.5" />
+    <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" Version="3.2.5" />
     <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
     <PackageVersion Include="MassTransit.Abstractions" Version="8.3.2" />
     <PackageVersion Include="MassTransit" Version="8.3.2" />
