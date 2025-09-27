@@ -12,7 +12,7 @@ on:
 
 env:
   CHAPTER_DIR: "Chapter-3-microservice-extraction/Fitnet/Src"
-  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
+  NUGET_SOURCE_NAME: "EvolutionaryArchitecture"
 
 jobs:
   build:
