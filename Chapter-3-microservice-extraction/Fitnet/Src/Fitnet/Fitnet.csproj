@@ -5,9 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2024.3.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0"/>
-    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0"/>
+    <PackageReference Include="JetBrains.Annotations" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>

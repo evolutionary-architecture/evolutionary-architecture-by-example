@@ -2,19 +2,19 @@ name: Chapter 3 package workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-3-microservice-extraction/Fitnet.Common/**'
+      - "Chapter-3-microservice-extraction/Fitnet.Common/**"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Chapter-3-microservice-extraction/Fitnet.Common/**'
+      - "Chapter-3-microservice-extraction/Fitnet.Common/**"
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet.Common'
-  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
+  CHAPTER_DIR: "Chapter-3-microservice-extraction/Fitnet.Common"
+  NUGET_SOURCE_NAME: "EvolutionaryArchitecture"
 
-jobs: 
+jobs:
   build:
     defaults:
       run:
@@ -31,7 +31,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-        
+
   test:
     defaults:
       run:
@@ -51,7 +51,7 @@ jobs:
       - name: Test
         run: dotnet test
 
-  pack: 
+  pack:
     defaults:
       run:
         working-directory: ${{ env.CHAPTER_DIR }}
@@ -65,7 +65,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 9.0.x
-      
+
       - name: Pack Projects
         run: |
           dotnet pack Fitnet.Common.Api/Fitnet.Common.Api.csproj -c Release
@@ -80,7 +80,7 @@ jobs:
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
           nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
-          
+
       - name: Publish Packages
         run: |
           dotnet nuget push "Fitnet.Common.Api/bin/Release/EvolutionaryArchitecture.Fitnet.Common.Api.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}

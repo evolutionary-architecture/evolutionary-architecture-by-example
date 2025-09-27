@@ -1,0 +1,33 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup Label="Production">
+    <PackageVersion Include="FluentValidation" Version="12.0.0" />
+    <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
+    <PackageVersion Include="MassTransit" Version="8.3.2" />
+    <PackageVersion Include="MediatR" Version="12.5.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+  </ItemGroup>
+  <ItemGroup Label="Tests">
+    <PackageVersion Include="Bogus" Version="35.6.3" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.9" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageVersion Include="Shouldly" Version="4.3.0" />
+    <PackageVersion Include="Testcontainers" Version="4.7.0" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.7.0" />
+    <PackageVersion Include="Verify.Xunit" Version="30.17.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.analyzers" Version="1.24.0" />
+    <PackageVersion Include="xunit.categories" Version="2.0.8" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" PrivateAssets="all" Condition="$(MSBuildProjectExtension) == '.csproj'" />
+  </ItemGroup>
+</Project>
