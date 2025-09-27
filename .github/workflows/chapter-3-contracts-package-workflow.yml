@@ -2,17 +2,17 @@ name: Contracts package workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-    - 'Chapter-3-microservice-extraction/Fitnet.Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
+      - "Chapter-3-microservice-extraction/Fitnet.Contracts/Src/Fitnet.Contracts.IntegrationEvents/**"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-    - 'Chapter-3-microservice-extraction/Fitnet.Contracts/Src/Fitnet.Contracts.IntegrationEvents/**'
+      - "Chapter-3-microservice-extraction/Fitnet.Contracts/Src/Fitnet.Contracts.IntegrationEvents/**"
 
 env:
-  CHAPTER_DIR: 'Chapter-3-microservice-extraction/Fitnet.Contracts/Src'
-  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
+  CHAPTER_DIR: "Chapter-3-microservice-extraction/Fitnet.Contracts/Src"
+  NUGET_SOURCE_NAME: "EvolutionaryArchitecture"
 
 jobs:
   build:
@@ -22,22 +22,22 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 9.0.x
-    - name: Add Evolutionary Architecture Nuget Source
-      uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
-      with:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 9.0.x
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
+        with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
           nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
 
   pack:
     defaults:
@@ -48,19 +48,19 @@ jobs:
     if: github.ref == 'refs/heads/main'
     name: Pack and Publish
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 9.0.x
-    - name: Add Evolutionary Architecture Nuget Source
-      uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
-      with:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 9.0.x
+      - name: Add Evolutionary Architecture Nuget Source
+        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
+        with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           path: ${{ env.CHAPTER_DIR }}
           nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
-    - name: Pack Project
-      run: dotnet pack Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj -c Release 
-    - name: Publish Packages
-      run: dotnet nuget push "Fitnet.Contracts.IntegrationEvents/bin/Release/EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
+      - name: Pack Project
+        run: dotnet pack Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj -c Release
+      - name: Publish Packages
+        run: dotnet nuget push "Fitnet.Contracts.IntegrationEvents/bin/Release/EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents.*.nupkg" --source ${{ env.NUGET_SOURCE_NAME }} --api-key ${{ secrets.GITHUB_TOKEN }}
