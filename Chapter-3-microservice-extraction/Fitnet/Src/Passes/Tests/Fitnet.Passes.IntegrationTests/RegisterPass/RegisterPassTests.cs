@@ -23,7 +23,9 @@ public sealed class RegisterPassTests : IClassFixture<FitnetWebApplicationFactor
     }
 
     [Fact]
+#pragma warning disable S2699
     internal async Task Given_contract_signed_event_Then_should_register_pass()
+#pragma warning restore S2699
     {
         // Arrange
         var @event = ContractSignedEventFaker.Create();

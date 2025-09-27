@@ -38,7 +38,7 @@ app.RegisterPasses(Module.Passes);
 app.RegisterOffers(Module.Offers);
 app.RegisterReports(Module.Reports);
 
-app.Run();
+await app.RunAsync();
 
 namespace EvolutionaryArchitecture.Fitnet
 {
