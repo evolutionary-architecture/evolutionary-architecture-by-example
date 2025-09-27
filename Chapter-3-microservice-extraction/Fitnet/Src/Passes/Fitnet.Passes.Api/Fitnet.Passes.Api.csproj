@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="evolutionaryArchitecture.fitnet.common.api" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" />
     <PackageReference Include="MassTransit.EntityFrameworkCore" />
