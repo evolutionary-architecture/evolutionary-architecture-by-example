@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BouncyCastle.Cryptography" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="BouncyCastle.Cryptography" />
   </ItemGroup>
 
   <ItemGroup>

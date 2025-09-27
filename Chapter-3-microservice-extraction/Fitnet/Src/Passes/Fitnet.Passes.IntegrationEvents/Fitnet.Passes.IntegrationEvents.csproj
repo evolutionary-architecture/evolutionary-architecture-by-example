@@ -1,9 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="MassTransit.RabbitMQ" />
-    <PackageReference Include="System.Text.Encodings.Web" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" />
+    <PackageReference Include="MassTransit.RabbitMQ" />
   </ItemGroup>
 </Project>

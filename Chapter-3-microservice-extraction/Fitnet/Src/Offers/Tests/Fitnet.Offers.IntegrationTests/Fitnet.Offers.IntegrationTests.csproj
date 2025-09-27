@@ -6,10 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Integrationteststoolbox" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Shouldly" />
-    <PackageReference Include="BouncyCastle.Cryptography" />
   </ItemGroup>
 
   <ItemGroup>
