@@ -5,13 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="evolutionaryarchitecture.fitnet.common.integrationteststoolbox" Version="3.2.5"/>
-    <PackageReference Include="evolutionaryarchitecture.fitnet.contracts.integrationevents" Version="1.0.7"/>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
-    <PackageReference Include="System.Net.Http" Version="4.3.4"/>
-    <PackageReference Include="System.Text.Json" Version="9.0.0"/>
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0"/>
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
   </ItemGroup>
 
   <ItemGroup>
