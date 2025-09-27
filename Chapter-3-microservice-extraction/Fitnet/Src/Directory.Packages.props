@@ -20,7 +20,6 @@
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
     <PackageVersion Include="Npgsql" Version="9.0.3" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
-    <PackageVersion Include="System.Text.Encodings.Web" Version="9.0.9" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.4" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="3.2.5"/>
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.2.5"/>

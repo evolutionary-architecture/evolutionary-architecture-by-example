@@ -10,7 +10,6 @@
     <PackageReference Include="MassTransit.RabbitMQ" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Npgsql" />
-    <PackageReference Include="System.Text.Encodings.Web" />
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests"/>
