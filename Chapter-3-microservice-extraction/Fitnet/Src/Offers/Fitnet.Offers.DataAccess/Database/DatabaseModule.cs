@@ -4,15 +4,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 internal static class DatabaseModule
 {
-    private const string ConnectionStringName = "Offers";
+    private const string DatabaseConfigurationSection = "Database";
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString(ConnectionStringName);
-        services.AddDbContext<OffersPersistence>(options => options.UseNpgsql(connectionString));
+        services.Configure<DatabaseOptions>(_ => configuration.GetSection(DatabaseConfigurationSection));
+        services.AddDbContext<OffersPersistence>((serviceProvider, options) =>
+        {
+            var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>();
+            options.UseNpgsql(databaseOptions.Value.ConnectionString);
+        });
 
         return services;
     }
