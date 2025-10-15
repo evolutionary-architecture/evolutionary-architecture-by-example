@@ -12,7 +12,7 @@ internal static class DatabaseModule
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<DatabaseOptions>(options => configuration.GetSection(DatabaseConfigurationSection).Bind(options));
+        services.Configure<DatabaseOptions>(_ => configuration.GetSection(DatabaseConfigurationSection));
         services.AddDbContext<OffersPersistence>((serviceProvider, options) =>
         {
             var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>();
