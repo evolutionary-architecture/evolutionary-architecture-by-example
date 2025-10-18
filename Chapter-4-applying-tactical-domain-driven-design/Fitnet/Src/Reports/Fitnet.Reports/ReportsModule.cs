@@ -28,7 +28,7 @@ public static class ReportsModule
             return services;
         }
 
-        services.AddDataAccess();
+        services.AddDataAccess(configuration);
         services.AddNewPassesRegistrationsPerMonthReport();
 
         return services;
