@@ -31,12 +31,6 @@
       <Content Include="..\..\Docs\Contracts\Api\Contracts.http">
         <Link>Contracts.http</Link>
       </Content>
-      <Content Include="..\docker-compose.yml">
-        <Link>docker-compose.yml</Link>
-      </Content>
-      <Content Include="..\Dockerfile">
-        <Link>Dockerfile</Link>
-      </Content>
     </ItemGroup>
-    
+  
 </Project>
