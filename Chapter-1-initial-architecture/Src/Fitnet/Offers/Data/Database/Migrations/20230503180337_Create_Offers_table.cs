@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 namespace SuperSimpleArchitecture.Fitnet.Migrations.OffersPersistenceMigrations;
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
