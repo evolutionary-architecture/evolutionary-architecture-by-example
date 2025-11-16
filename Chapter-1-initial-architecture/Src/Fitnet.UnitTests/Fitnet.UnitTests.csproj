@@ -23,7 +23,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.14.0.120626" />
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
     </ItemGroup>
     
     <ItemGroup>
