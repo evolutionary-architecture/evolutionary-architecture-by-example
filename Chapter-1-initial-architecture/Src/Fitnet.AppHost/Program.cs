@@ -14,4 +14,4 @@ builder.AddProject<Fitnet>("fitnet")
     .WithReference(fitnetDatabase, "Offers")
     .WaitFor(postgres);
 
-builder.Build().Run();
+await builder.Build().RunAsync();
