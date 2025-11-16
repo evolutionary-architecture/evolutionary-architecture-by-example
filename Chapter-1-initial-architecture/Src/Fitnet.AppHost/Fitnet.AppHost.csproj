@@ -1,21 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0"/>
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0"/>
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <IsAspireHost>true</IsAspireHost>
-        <UserSecretsId>b4ef32d8-9e82-4dd1-b9a7-bc43e2c564e9</UserSecretsId>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>b4ef32d8-9e82-4dd1-b9a7-bc43e2c564e9</UserSecretsId>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0"/>
-        <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.0.0"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0"/>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.0.0"/>
+    <PackageReference Include="KubernetesClient" Version="17.0.14"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Fitnet\Fitnet.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fitnet\Fitnet.csproj"/>
+  </ItemGroup>
 
 </Project>
