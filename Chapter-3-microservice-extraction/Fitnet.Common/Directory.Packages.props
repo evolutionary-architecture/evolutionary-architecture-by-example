@@ -21,7 +21,8 @@
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Testcontainers" Version="4.7.0" />
     <PackageVersion Include="Testcontainers.PostgreSql" Version="4.7.0" />
-    <PackageVersion Include="Verify.Xunit" Version="31.0.0" />
+    <!-- Verify.Xunit is temporarily disabled due to incompatibility with xUnit v3 -->
+    <!-- <PackageVersion Include="Verify.Xunit" Version="31.0.0" /> -->
     <PackageVersion Include="xunit.v3" Version="1.0.0" />
     <PackageVersion Include="xunit.analyzers" Version="1.18.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.0" />

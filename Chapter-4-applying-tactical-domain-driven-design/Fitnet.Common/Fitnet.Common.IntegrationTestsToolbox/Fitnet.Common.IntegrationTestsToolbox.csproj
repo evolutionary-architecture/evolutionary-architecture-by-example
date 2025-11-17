@@ -9,7 +9,8 @@
         <PackageReference Include="FluentAssertions" Version="6.12.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
         <PackageReference Include="MassTransit" Version="8.3.2" />
-        <PackageReference Include="Verify.Xunit" Version="31.0.0" />
+        <!-- Verify.Xunit is temporarily disabled due to incompatibility with xUnit v3 -->
+        <!-- <PackageReference Include="Verify.Xunit" Version="31.0.0" /> -->
         <PackageReference Include="Testcontainers" Version="4.0.0" />
         <PackageReference Include="Testcontainers.PostgreSql" Version="4.0.0" />
         <PackageReference Include="xunit.v3" Version="1.0.0" />
