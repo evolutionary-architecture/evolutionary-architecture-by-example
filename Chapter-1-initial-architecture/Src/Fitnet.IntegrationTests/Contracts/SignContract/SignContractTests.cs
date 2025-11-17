@@ -25,9 +25,9 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
             .CreateClient();
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await _applicationInMemoryFactory.DisposeAsync();

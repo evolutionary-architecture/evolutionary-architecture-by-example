@@ -103,9 +103,9 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
     private void EnsureThatPassExpiredEventWasPublished() => _fakeEventBus.Received(1)
         .PublishAsync(Arg.Any<PassExpiredEvent>(), Arg.Any<CancellationToken>());
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await _applicationInMemoryFactory.DisposeAsync();

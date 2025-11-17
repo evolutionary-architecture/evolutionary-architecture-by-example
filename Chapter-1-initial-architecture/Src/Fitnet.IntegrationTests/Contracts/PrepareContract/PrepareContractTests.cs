@@ -123,9 +123,9 @@ public sealed class PrepareContractTests(
         return prepareContractResponse;
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await applicationInMemoryFactory.DisposeAsync();
