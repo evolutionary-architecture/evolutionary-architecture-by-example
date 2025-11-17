@@ -8,12 +8,11 @@
         <PackageReference Include="Bogus" />
         <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" />
         <PackageReference Include="Shouldly" />
-        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.v3" />
         <PackageReference Include="xunit.analyzers">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="xunit.categories" />
         <PackageReference Include="xunit.runner.visualstudio">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -9,13 +9,12 @@
         <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.1.7" />
         <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.UnitTesting" Version="4.1.7" />
         <PackageReference Include="Shouldly" Version="4.3.0" />
-        <PackageReference Include="xunit" Version="2.8.1" />
-        <PackageReference Include="xunit.analyzers" Version="1.14.0">
+        <PackageReference Include="xunit.v3" Version="1.0.0" />
+        <PackageReference Include="xunit.analyzers" Version="1.18.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="xunit.categories" Version="2.0.8" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.1">
+        <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

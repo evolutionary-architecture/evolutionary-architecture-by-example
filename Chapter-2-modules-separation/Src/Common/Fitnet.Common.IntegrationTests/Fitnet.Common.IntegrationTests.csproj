@@ -15,12 +15,11 @@
         </PackageReference>
         <PackageReference Include="Testcontainers" />
         <PackageReference Include="Testcontainers.PostgreSql" />
-        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.v3" />
         <PackageReference Include="xunit.analyzers">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="xunit.categories" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
         <PackageReference Include="coverlet.collector">
