@@ -9,15 +9,15 @@
         <PackageReference Include="FluentAssertions" Version="6.12.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
         <PackageReference Include="MassTransit" Version="8.3.2" />
-        <!-- Verify.Xunit is temporarily disabled due to incompatibility with xUnit v3 -->
-        <!-- <PackageReference Include="Verify.Xunit" Version="31.0.0" /> -->
+        <PackageReference Include="Verify.Xunit" Version="28.3.2" />
         <PackageReference Include="Testcontainers" Version="4.0.0" />
         <PackageReference Include="Testcontainers.PostgreSql" Version="4.0.0" />
-        <PackageReference Include="xunit.v3" Version="1.0.0" />
-        <PackageReference Include="xunit.analyzers" Version="1.18.0">
+        <PackageReference Include="xunit" Version="2.9.2" />
+        <PackageReference Include="xunit.analyzers" Version="1.17.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="xunit.categories" Version="2.0.8" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
         <PackageReference Include="coverlet.collector" Version="6.0.2">

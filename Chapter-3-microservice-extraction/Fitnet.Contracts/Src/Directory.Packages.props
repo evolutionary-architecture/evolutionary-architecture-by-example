@@ -24,9 +24,10 @@
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
-    <PackageVersion Include="xunit.v3" Version="1.0.0" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.0" />
-    <PackageVersion Include="xunit.analyzers" Version="1.18.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageVersion Include="xunit.analyzers" Version="1.24.0" />
+    <PackageVersion Include="xunit.categories" Version="2.0.8" />
   </ItemGroup>
   <ItemGroup>
     <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" PrivateAssets="all" Condition="$(MSBuildProjectExtension) == '.csproj'" />

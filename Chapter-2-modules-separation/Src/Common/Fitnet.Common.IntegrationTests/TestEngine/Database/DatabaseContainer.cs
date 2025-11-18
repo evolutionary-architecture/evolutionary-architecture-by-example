@@ -11,7 +11,7 @@ public sealed class DatabaseContainer : IAsyncLifetime
     private PostgreSqlContainer? _container;
     public string? ConnectionString { get; private set; }
 
-    public async ValueTask InitializeAsync()
+    public async Task InitializeAsync()
     {
         _container = new PostgreSqlBuilder()
             .WithDatabase(Database)
@@ -24,5 +24,5 @@ public sealed class DatabaseContainer : IAsyncLifetime
         ConnectionString = _container.GetConnectionString();
     }
 
-    public async ValueTask DisposeAsync() => await _container!.StopAsync();
+    public async Task DisposeAsync() => await _container!.StopAsync();
 }
