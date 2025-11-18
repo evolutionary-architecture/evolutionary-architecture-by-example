@@ -36,7 +36,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var url = BuildUrl(registeredPassId);
 
         // Act
-        await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent, TestContext.Current.CancellationToken);
 
         // Assert
         EnsureThatPassExpiredEventWasPublished();
@@ -51,7 +51,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var url = BuildUrl(registeredPassId);
 
         // Act
-        using var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        using var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent, TestContext.Current.CancellationToken);
 
         // Assert
         markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
@@ -65,7 +65,7 @@ public sealed class MarkPassAsExpiredTests : IClassFixture<WebApplicationFactory
         var url = BuildUrl(notExistingId);
 
         // Act
-        using var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent);
+        using var markAsExpiredResponse = await _applicationHttpClient.PatchAsJsonAsync(url, EmptyContent, TestContext.Current.CancellationToken);
 
         // Assert
         markAsExpiredResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);

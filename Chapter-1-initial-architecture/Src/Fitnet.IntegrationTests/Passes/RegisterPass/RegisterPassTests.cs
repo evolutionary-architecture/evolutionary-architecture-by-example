@@ -38,7 +38,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         var @event = ContractSignedEventFaker.Create();
 
         // Act
-        await integrationEventHandlerScope.Consume(@event);
+        await integrationEventHandlerScope.Consume(@event, TestContext.Current.CancellationToken);
 
         // Assert
         EnsureThatPassRegisteredEventWasPublished();

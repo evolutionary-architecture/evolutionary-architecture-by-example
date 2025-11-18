@@ -34,11 +34,11 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         await RegisterPasses(passRegistrationDateRanges);
 
         // Act
-        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
+        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport, TestContext.Current.CancellationToken);
 
         // Assert
         getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
-        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
+        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>(TestContext.Current.CancellationToken);
         reportData.ShouldNotBeNull();
     }
 
