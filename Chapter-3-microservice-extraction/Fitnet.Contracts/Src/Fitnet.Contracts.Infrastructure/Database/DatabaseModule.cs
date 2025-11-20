@@ -10,14 +10,24 @@ using Repositories;
 internal static class DatabaseModule
 {
     private const string DatabaseConfigurationSection = "Database";
+    private const string PostgresConnectionName = "fitnet";
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<DatabaseOptions>(options => configuration.GetSection(DatabaseConfigurationSection).Bind(options));
         services.AddDbContext<ContractsPersistence>((serviceProvider, options) =>
         {
-            var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>();
-            options.UseNpgsql(databaseOptions.Value.ConnectionString);
+            // Try to get Aspire connection string first
+            var connectionString = configuration.GetConnectionString(PostgresConnectionName);
+            
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                // Fallback to legacy configuration
+                var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>();
+                connectionString = databaseOptions.Value.ConnectionString;
+            }
+            
+            options.UseNpgsql(connectionString);
         });
         services.AddRepositories();
 
