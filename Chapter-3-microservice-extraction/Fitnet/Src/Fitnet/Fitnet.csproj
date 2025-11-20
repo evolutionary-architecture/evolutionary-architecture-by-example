@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Offers\Fitnet.Offers.Api\Fitnet.Offers.Api.csproj"/>
     <ProjectReference Include="..\Passes\Fitnet.Passes.Api\Fitnet.Passes.Api.csproj"/>
     <ProjectReference Include="..\Reports\Fitnet.Reports\Fitnet.Reports.csproj"/>
+    <ProjectReference Include="..\..\..\Fitnet.ServiceDefaults\Fitnet.ServiceDefaults.csproj"/>
   </ItemGroup>
 
 </Project>
