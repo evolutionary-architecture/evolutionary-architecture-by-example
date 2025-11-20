@@ -138,17 +138,16 @@ to download it from the official Microsoft website.
 
 === Run locally
 
-The Fitnet application requires Docker to run properly.
+The Fitnet application uses .NET Aspire for orchestration.
 
-There are only 3 steps you need to start the application:
+There are only 2 steps you need to start the application:
 
 1. Make sure that you are in `/Src` directory. 
-2. Run `docker-compose build` to build the image of the application.
-3. Run `docker-compose up` to start the application. In the meantime it will also start Postgres inside container.
+2. Run `dotnet run --project Fitnet.AppHost` to start the application. This will automatically start PostgreSQL container and the Fitnet application, providing an observability dashboard.
 
-The application runs on port `:8080`. Please navigate to http://localhost:8080 in your browser or http://localhost:8080/swagger/index.html to explore the API.
+The application runs on a dynamically assigned port. Check the Aspire dashboard (which will open automatically in your browser) to see the application URL and access the Swagger UI.
 
-That's it! You should now be able to run the application using either one of the above. :thumbsup:
+That's it! You should now be able to run the application. The Aspire dashboard provides real-time monitoring and links to all services. :thumbsup:
 
 === How to run Integration Tests?
 To run the integration tests go to a module integration tests (`SelectedModule.IntegrationTests`) and run using either the command:
