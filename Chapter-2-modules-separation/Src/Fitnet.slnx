@@ -42,5 +42,6 @@
   <Folder Name="/Reports/Tests/">
     <Project Path="Reports\Tests\Fitnet.Reports.IntegrationTests\Fitnet.Reports.IntegrationTests.csproj" Type="Classic C#" />
   </Folder>
+  <Project Path="Fitnet.AppHost/Fitnet.AppHost.csproj" />
   <Project Path="Fitnet\Fitnet.csproj" Type="Classic C#" />
 </Solution>
