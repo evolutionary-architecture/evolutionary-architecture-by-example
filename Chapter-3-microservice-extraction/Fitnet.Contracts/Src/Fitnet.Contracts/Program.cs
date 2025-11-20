@@ -1,8 +1,11 @@
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Clock;
 using EvolutionaryArchitecture.Fitnet.Contracts.Api;
+using Fitnet.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -19,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapDefaultEndpoints();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
