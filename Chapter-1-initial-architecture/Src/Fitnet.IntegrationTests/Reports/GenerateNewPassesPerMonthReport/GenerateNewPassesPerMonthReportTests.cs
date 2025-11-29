@@ -39,7 +39,7 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         // Assert
         getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
         var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>(TestContext.Current.CancellationToken);
-        reportData.ShouldNotBeNull();
+        await Verify(reportData);
     }
 
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
