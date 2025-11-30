@@ -2,7 +2,7 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 var postgres = builder.AddPostgres("postgres")
-    .WithImage("postgres", "14.3")
+    .WithImage("postgres", "15.15")
     .WithPgAdmin();
 
 var fitnetDatabase = postgres.AddDatabase("fitnetsdb", "fitnet");
