@@ -12,7 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0"/>
     <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.0.0"/>
-    <PackageReference Include="KubernetesClient" Version="17.0.14"/>
     <PackageReference Update="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
   </ItemGroup>
 
