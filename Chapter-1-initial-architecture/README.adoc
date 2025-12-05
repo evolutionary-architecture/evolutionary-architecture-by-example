@@ -198,7 +198,12 @@ to download it from the official Microsoft website.
 === Run locally
 
 The Fitnet application uses .NET Aspire for local development.
-Simply run the .NET Aspire project to start the application locally.
+
+To run the application locally, follow these steps:
+
+1. **Ensure Docker is running** on your machine.
+2. **Navigate to the solution root directory** in your terminal.
+3. **Run the AppHost project using the following command:**
 
 === How to run Integration Tests?
 To run the integration tests for the project located in the `Fitnet.IntegrationTests` project, you can use either the command:
