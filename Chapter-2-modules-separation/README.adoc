@@ -138,24 +138,21 @@ to download it from the official Microsoft website.
 
 === Run locally
 
-The Fitnet application uses .NET Aspire for orchestration.
+The Fitnet application uses .NET Aspire for local development.
 
-There are only 2 steps you need to start the application:
+To run the application locally, follow these steps:
 
-1. Make sure that you are in `/Src` directory. 
-2. Run `dotnet run --project Fitnet.AppHost` to start the application. This will automatically start PostgreSQL container and the Fitnet application, providing an observability dashboard.
-
-The application runs on a dynamically assigned port. Check the Aspire dashboard (which will open automatically in your browser) to see the application URL and access the Swagger UI.
-
-That's it! You should now be able to run the application. The Aspire dashboard provides real-time monitoring and links to all services. :thumbsup:
+1. **Ensure Docker is running** on your machine.
+2. **Navigate to the solution root directory** in your terminal.
+3. **Run the AppHost project using the following command:**
 
 === How to run Integration Tests?
-To run the integration tests go to a module integration tests (`SelectedModule.IntegrationTests`) and run using either the command:
-[source,shell]
-----
-dotnet test
-----
-or the `IDE test Explorer`. 
+To run the integration tests for the project located in the `Fitnet.IntegrationTests` project, you can use either the command:
 
-These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing. 
+`dotnet test`
+
+or the `IDE test explorer`. 
+
+These tests are written using `xUnit` and require `Docker` to be running as they use `test containers` package to run PostgresSQL in a Docker container during testing.
+
 Therefore, make sure to have `Docker` running before executing the integration tests.
