@@ -34,11 +34,11 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         await RegisterPasses(passRegistrationDateRanges);
 
         // Act
-        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
+        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport, TestContext.Current.CancellationToken);
 
         // Assert
         getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
-        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
+        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>(TestContext.Current.CancellationToken);
         await Verify(reportData);
     }
 
@@ -59,9 +59,9 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         await integrationEventHandler.Handle(@event, CancellationToken.None);
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await _applicationInMemoryFactory.DisposeAsync();
