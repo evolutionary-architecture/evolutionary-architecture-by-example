@@ -1,33 +1,28 @@
+using Projects;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add PostgreSQL database
 var postgres = builder.AddPostgres("postgres")
-    .WithImage("postgres")
-    .WithImageTag("14.3")
-    .WithEnvironment("POSTGRES_PASSWORD", "mysecretpassword")
-    .WithHealthCheck();
+    .WithImage("postgres", "14.3")
+    .WithPgAdmin();
 
-var fitnetDb = postgres.AddDatabase("fitnet");
+var fitnetDatabase = postgres.AddDatabase("fitnetsdb", "fitnet");
 
-// Add RabbitMQ message broker
 var rabbitmq = builder.AddRabbitMQ("rabbitmq")
-    .WithImage("rabbitmq")
-    .WithImageTag("management")
-    .WithManagementPlugin()
-    .WithHealthCheck();
+    .WithManagementPlugin();
 
-// Add Fitnet Contracts Microservice
-var contractsApi = builder.AddProject<Projects.Fitnet_Contracts>("fitnet-contracts-microservice")
-    .WithReference(fitnetDb)
-    .WithReference(rabbitmq)
-    .WithHttpEndpoint(port: 8081, targetPort: 80, name: "http")
-    .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development");
+builder.AddProject<Fitnet>("fitnet-modular-monolith")
+    .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development")
+    .WithReference(fitnetDatabase, "Database__ConnectionString")
+    .WithReference(rabbitmq, "EventBus__ConnectionString")
+    .WaitFor(postgres)
+    .WaitFor(rabbitmq);
 
-// Add Fitnet Modular Monolith
-var fitnetApi = builder.AddProject<Projects.Fitnet>("fitnet-modular-monolith")
-    .WithReference(fitnetDb)
-    .WithReference(rabbitmq)
-    .WithHttpEndpoint(port: 8080, targetPort: 80, name: "http")
-    .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development");
+builder.AddProject<Fitnet_Contracts>("fitnet-contracts-microservice")
+    .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development")
+    .WithReference(fitnetDatabase, "Database__ConnectionString")
+    .WithReference(rabbitmq, "EventBus__ConnectionString")
+    .WaitFor(postgres)
+    .WaitFor(rabbitmq);
 
-builder.Build().Run();
+await builder.Build().RunAsync();

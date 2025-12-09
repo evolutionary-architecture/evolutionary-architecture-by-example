@@ -10,7 +10,6 @@ using Outbox;
 internal static class EventBusModule
 {
     private const string EventBusConfiguration = "EventBus";
-    private const string RabbitMqConnectionName = "rabbitmq";
 
     internal static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
     {
@@ -21,32 +20,30 @@ internal static class EventBusModule
             configurator.AddConsumers(Assembly.GetExecutingAssembly());
             configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
-                // Try to get Aspire connection string first
-                var connectionString = configuration.GetConnectionString(RabbitMqConnectionName);
-                
-                if (!string.IsNullOrEmpty(connectionString))
+                var options = context.GetRequiredService<IOptions<EventBusOptions>>();
+                var externalEventBusConfigured = options.Value is not null;
+                if (!externalEventBusConfigured)
                 {
-                    // Use Aspire connection string
-                    factoryConfigurator.Host(new Uri(connectionString));
+                    return;
                 }
-                else
+                
+                var uri = options.Value.Uri;
+                var username = options.Value.Username;
+                var password = options.Value.Password;
+                
+                if (!string.IsNullOrEmpty(uri))
                 {
-                    // Fallback to legacy configuration
-                    var options = context.GetRequiredService<IOptions<EventBusOptions>>();
-                    if (options.Value is not null && !string.IsNullOrEmpty(options.Value.Uri))
+                    factoryConfigurator.Host(uri, h =>
                     {
-                        factoryConfigurator.Host(options.Value.Uri, hostConfigurator =>
+                        if (!string.IsNullOrEmpty(username))
                         {
-                            if (!string.IsNullOrEmpty(options.Value.Username))
-                            {
-                                hostConfigurator.Username(options.Value.Username);
-                            }
-                            if (!string.IsNullOrEmpty(options.Value.Password))
-                            {
-                                hostConfigurator.Password(options.Value.Password);
-                            }
-                        });
-                    }
+                            h.Username(username);
+                        }
+                        if (!string.IsNullOrEmpty(password))
+                        {
+                            h.Password(password);
+                        }
+                    });
                 }
                 
                 factoryConfigurator.ConfigureEndpoints(context);

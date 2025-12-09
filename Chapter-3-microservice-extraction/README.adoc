@@ -160,55 +160,25 @@ The `Contracts` microservice runs on port `:8081`. Please navigate to http://loc
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
-=== Run with .NET Aspire (Recommended)
+=== Run with .NET Aspire
 
-.NET Aspire provides a modern way to run and orchestrate distributed applications with built-in observability, service discovery, and resilience. This is the recommended approach for local development.
+The Fitnet application uses .NET Aspire for local development.
 
-==== Requirements
-- .NET SDK 9.0 or higher
-- Docker (for PostgreSQL and RabbitMQ containers)
+To run the application locally using Aspire, follow these steps:
 
-==== Steps to run
-
-1. Create you own personal access token in Github (it is needed to be able to download our GH Packages for `Common`). Instruction how to do it you can find https://www.educative.io/answers/how-to-create-a-personal-access-token-for-github-access[here]. Your PAT must have only one value of `read:packages`.
-
-2. Configure NuGet credentials as described in the "Building and debugging code in Rider IDE" section below.
-
-3. Navigate to the AppHost directory:
+1. **Ensure Docker is running** on your machine.
+2. **Navigate to the AppHost directory:**
 [source,shell]
 ----
 cd Fitnet.AppHost
 ----
-
-4. Run the Aspire AppHost:
+3. **Run the AppHost project:**
 [source,shell]
 ----
 dotnet run
 ----
 
-The Aspire Dashboard will automatically open in your browser, showing:
-
-- **Services**: All running services (Fitnet modular monolith and Contracts microservice)
-- **Resources**: PostgreSQL database and RabbitMQ message broker
-- **Traces**: Distributed tracing across all services
-- **Metrics**: Performance metrics for each service
-- **Logs**: Consolidated logs from all services
-
-The applications will be available at:
-
-- Fitnet modular monolith: http://localhost:8080 or http://localhost:8080/swagger/index.html
-- Contracts microservice: http://localhost:8081 or http://localhost:8081/swagger/index.html
-- Aspire Dashboard: The URL will be displayed in the console when you run the AppHost
-
-==== Benefits of using Aspire
-
-- **Automatic orchestration**: PostgreSQL and RabbitMQ are automatically started as Docker containers
-- **Service discovery**: Services can discover each other automatically
-- **Observability**: Built-in distributed tracing, metrics, and log aggregation
-- **Connection strings**: Automatically injected into services
-- **Health checks**: Monitor the health of all services and dependencies
-- **Resilience**: HTTP clients are configured with retry policies and circuit breakers
-
+The Aspire Dashboard will open automatically, showing all services, resources, and logs.
 
 === Building and debugging code in Rider IDE
 
