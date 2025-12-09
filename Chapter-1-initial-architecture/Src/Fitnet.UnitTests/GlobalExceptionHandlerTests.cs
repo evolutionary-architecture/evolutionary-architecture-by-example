@@ -20,7 +20,7 @@ public sealed class GlobalExceptionHandlerTests
         var exceptionHandler = new GlobalExceptionHandler(_logger);
 
         // Act
-        await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
+        await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), TestContext.Current.CancellationToken);
 
         // Assert
         _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.Conflict);
@@ -37,7 +37,7 @@ public sealed class GlobalExceptionHandlerTests
         var exceptionHandler = new GlobalExceptionHandler(_logger);
 
         // Act
-        await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
+        await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), TestContext.Current.CancellationToken);
 
         // Assert
         _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.InternalServerError);

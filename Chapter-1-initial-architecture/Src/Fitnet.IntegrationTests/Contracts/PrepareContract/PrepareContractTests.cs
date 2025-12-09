@@ -37,11 +37,11 @@ public sealed class PrepareContractTests(
         var customerId = Guid.NewGuid();
         var requestParameters = PrepareContractRequestParameters.GetValid();
         var prepareContractResponse = await PrepareCorrectContract(requestParameters, customerId);
-        var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>();
+        var preparedContractId = await prepareContractResponse.Content.ReadFromJsonAsync<Guid>(TestContext.Current.CancellationToken);
         var signContractRequestParameters = SignContractRequestParameters.GetValid(preparedContractId);
         var signContractRequest = new SignContractRequest(signContractRequestParameters.SignedAt);
         var signContractResponse =
-            await _applicationHttpClient.PatchAsJsonAsync(signContractRequestParameters.Url, signContractRequest);
+            await _applicationHttpClient.PatchAsJsonAsync(signContractRequestParameters.Url, signContractRequest, TestContext.Current.CancellationToken);
         signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
 
         // Act
@@ -62,12 +62,12 @@ public sealed class PrepareContractTests(
 
         // Act
         using var prepareContractResponse =
-            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest, TestContext.Current.CancellationToken);
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
 
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
         responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
         responseMessage?.Title.ShouldBe("Contract can not be prepared for a person who is not adult");
     }
@@ -83,12 +83,12 @@ public sealed class PrepareContractTests(
 
         // Act
         using var prepareContractResponse =
-            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest);
+            await _applicationHttpClient.PostAsJsonAsync(ContractsApiPaths.Prepare, prepareContractRequest, TestContext.Current.CancellationToken);
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
 
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
         responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
         responseMessage?.Title.ShouldBe("Customer height must fit maximum limit for gym instruments");
     }
@@ -107,7 +107,7 @@ public sealed class PrepareContractTests(
 
         // Assert
         prepareContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
-        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        var responseMessage = await prepareContractResponse.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
         responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
         responseMessage?.Title.ShouldBe("Previous contract must be signed by the customer");
     }
@@ -123,9 +123,9 @@ public sealed class PrepareContractTests(
         return prepareContractResponse;
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await applicationInMemoryFactory.DisposeAsync();

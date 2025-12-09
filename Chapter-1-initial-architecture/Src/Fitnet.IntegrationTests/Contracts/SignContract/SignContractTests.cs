@@ -25,9 +25,9 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
             .CreateClient();
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await _applicationInMemoryFactory.DisposeAsync();
@@ -43,7 +43,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
         // Act
         using var signContractResponse =
-            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest, TestContext.Current.CancellationToken);
 
         // Assert
         signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NoContent);
@@ -58,7 +58,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
         var signContractRequest = new SignContractRequest(requestParameters.SignedAt);
 
         // Act
-        await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+        await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest, TestContext.Current.CancellationToken);
 
         // Assert
         EnsureThatContractSignedEventWasPublished();
@@ -76,7 +76,7 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
         // Act
         using var signContractResponse =
-            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest, TestContext.Current.CancellationToken);
 
         // Assert
         signContractResponse.StatusCode.ShouldBe(HttpStatusCode.NotFound);
@@ -94,12 +94,12 @@ public sealed class SignContractTests : IClassFixture<WebApplicationFactory<Prog
 
         // Act
         using var signContractResponse =
-            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest);
+            await _applicationHttpClient.PatchAsJsonAsync(requestParameters.Url, signContractRequest, TestContext.Current.CancellationToken);
 
         // Assert
         signContractResponse.StatusCode.ShouldBe(HttpStatusCode.Conflict);
 
-        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ProblemDetails>();
+        var responseMessage = await signContractResponse.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
         responseMessage?.Status.ShouldBe((int)HttpStatusCode.Conflict);
         responseMessage?.Title.ShouldBe("Contract can not be signed because more than 30 days have passed from the contract preparation");
     }
