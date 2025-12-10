@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0"/>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>a3ef42d8-8e72-4dd1-a8a7-cd43e2c575e8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+    <PackageReference Include="KubernetesClient" />
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fitnet\Fitnet.csproj"/>
+  </ItemGroup>
+
+</Project>
