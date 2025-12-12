@@ -4,6 +4,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="evolutionaryarchitecture.fitnet.common.infrastructure" Version="4.1.7" />
-    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="10.0.0" />
   </ItemGroup>
 </Project>
