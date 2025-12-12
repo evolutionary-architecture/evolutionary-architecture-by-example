@@ -19,12 +19,8 @@ internal static class GetAllPassesEndpoint
 
                 return Results.Ok(response);
             })
-            .WithOpenApi(operation => new(operation)
-            {
-                Summary = "Returns all passes that exist in the system",
-                Description =
-                    "This endpoint is used to retrieve all existing passes.",
-            })
+            .WithSummary("Returns all passes that exist in the system")
+            .WithDescription("This endpoint is used to retrieve all existing passes.")
             .Produces<GetAllPassesResponse>()
             .Produces(StatusCodes.Status500InternalServerError);
 }
