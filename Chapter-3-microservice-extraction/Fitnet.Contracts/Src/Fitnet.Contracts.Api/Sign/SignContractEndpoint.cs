@@ -19,12 +19,8 @@ internal static class SignContractEndpoint
             return Results.NoContent();
         })
         .ValidateRequest<SignContractRequestValidator>()
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Signs prepared contract",
-            Description =
-                "This endpoint is used to sign prepared contract by customer.",
-        })
+        .WithSummary("Signs prepared contract")
+        .WithDescription("This endpoint is used to sign prepared contract by customer.")
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status409Conflict)

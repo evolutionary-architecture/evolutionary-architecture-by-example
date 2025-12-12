@@ -18,12 +18,8 @@ internal static class PrepareContractEndpoint
                 return Results.Created($"/{ContractsApiPaths.Prepare}/{contractId}", contractId);
             })
         .ValidateRequest<PrepareContractRequest>()
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Triggers preparation of a new contract for new or existing customer",
-            Description =
-                "This endpoint is used to prepare a new contract for new and existing customers.",
-        })
+        .WithSummary("Triggers preparation of a new contract for new or existing customer")
+        .WithDescription("This endpoint is used to prepare a new contract for new and existing customers.")
         .Produces<string>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status409Conflict)
         .Produces(StatusCodes.Status500InternalServerError);
