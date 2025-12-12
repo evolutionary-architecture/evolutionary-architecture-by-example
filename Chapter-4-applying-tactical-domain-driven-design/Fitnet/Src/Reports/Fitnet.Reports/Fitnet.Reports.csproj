@@ -8,9 +8,10 @@
       <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.1.7" />
       <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="4.1.7" />
       <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.4" />
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-      <PackageReference Include="Npgsql" Version="9.0.2" />
-      <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+      <PackageReference Include="Microsoft.OpenApi" Version="2.3.0" />
+      <PackageReference Include="Npgsql" Version="10.0.0" />
+      <PackageReference Include="System.Text.Encodings.Web" Version="10.0.0" />
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Reports.IntegrationTests" />
