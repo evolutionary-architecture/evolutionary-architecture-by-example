@@ -300,6 +300,7 @@ Application:
 - https://github.com/dotnet/efcore[Entity Framework]
 - https://github.com/npgsql/npgsql[Npgsql]
 - https://github.com/SonarSource/sonar-dotnet[SonarAnalyzer]
+- https://github.com/dotnet/aspire[.NET Aspire]
 
 Testing:
 
