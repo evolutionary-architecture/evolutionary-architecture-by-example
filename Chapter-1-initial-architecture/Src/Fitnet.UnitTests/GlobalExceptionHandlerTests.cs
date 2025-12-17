@@ -61,6 +61,7 @@ public sealed class GlobalExceptionHandlerTests
         using var streamReader = new StreamReader(_context.Response.Body);
         var responseBody = await streamReader.ReadToEndAsync();
         var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(responseBody);
+
         return problemDetails!;
     }
 }
