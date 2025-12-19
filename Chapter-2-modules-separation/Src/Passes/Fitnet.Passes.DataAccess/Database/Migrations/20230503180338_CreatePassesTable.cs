@@ -1,7 +1,7 @@
 ﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
-using System;
+
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
