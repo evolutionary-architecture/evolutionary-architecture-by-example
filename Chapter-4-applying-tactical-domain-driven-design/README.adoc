@@ -374,6 +374,26 @@ The `Contracts` microservice runs on port `:8081`. Please navigate to http://loc
 
 That's it! You should now be able to run the application using either one of the above. :thumbsup:
 
+=== Run with .NET Aspire
+
+The Fitnet application uses .NET Aspire for local development.
+
+To run the application locally using Aspire, follow these steps:
+
+1. **Ensure Docker is running** on your machine.
+2. **Navigate to the AppHost directory:**
+[source,shell]
+----
+cd Fitnet.AppHost
+----
+3. **Run the AppHost project:**
+[source,shell]
+----
+dotnet run
+----
+
+The Aspire Dashboard will open automatically, showing all services, resources, and logs.
+
 === Building and debugging code in Rider IDE
 
 Before you build or debug code in `Rider` or `Visual Studio` IDE, you first have to provide your username and previously generated PAT for artifactory to download packages for `Common` which is a part of this repository. When you load the solution, your IDE should request the credentials:  

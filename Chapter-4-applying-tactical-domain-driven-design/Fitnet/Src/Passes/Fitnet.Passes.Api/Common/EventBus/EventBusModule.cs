@@ -26,6 +26,26 @@ internal static class EventBusModule
                 {
                     return;
                 }
+                
+                var uri = options.Value.Uri;
+                var username = options.Value.Username;
+                var password = options.Value.Password;
+                
+                if (!string.IsNullOrEmpty(uri))
+                {
+                    factoryConfigurator.Host(uri, h =>
+                    {
+                        if (!string.IsNullOrEmpty(username))
+                        {
+                            h.Username(username);
+                        }
+                        if (!string.IsNullOrEmpty(password))
+                        {
+                            h.Password(password);
+                        }
+                    });
+                }
+                
                 factoryConfigurator.ConfigureEndpoints(context);
             });
             configurator.ConfigureOutbox();
