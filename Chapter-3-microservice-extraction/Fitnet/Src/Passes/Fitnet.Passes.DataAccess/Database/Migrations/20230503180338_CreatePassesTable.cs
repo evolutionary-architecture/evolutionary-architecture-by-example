@@ -3,6 +3,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
