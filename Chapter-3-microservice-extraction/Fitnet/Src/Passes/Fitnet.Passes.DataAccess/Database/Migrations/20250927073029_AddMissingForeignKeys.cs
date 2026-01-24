@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database.Migrations;
+
 using Microsoft.EntityFrameworkCore.Migrations;
 
 /// <inheritdoc />
