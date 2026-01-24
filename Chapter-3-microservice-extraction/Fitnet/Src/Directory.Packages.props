@@ -3,6 +3,8 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup Label="Production">
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.0.0" />
     <PackageVersion Include="Dapper" Version="2.1.66" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="3.2.5" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.2.5" />
