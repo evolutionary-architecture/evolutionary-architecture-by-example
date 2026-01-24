@@ -20,7 +20,7 @@ public sealed class GlobalExceptionHandlerTests
         var exceptionHandler = new GlobalExceptionHandler(_logger);
 
         // Act
-        await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), default);
+        await exceptionHandler.TryHandleAsync(_context, new BusinessRuleValidationException(exceptionMessage), TestContext.Current.CancellationToken);
 
         // Assert
         _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.Conflict);
@@ -37,7 +37,7 @@ public sealed class GlobalExceptionHandlerTests
         var exceptionHandler = new GlobalExceptionHandler(_logger);
 
         // Act
-        await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), CancellationToken.None);
+        await exceptionHandler.TryHandleAsync(_context, new InvalidCastException("test"), TestContext.Current.CancellationToken);
 
         // Assert
         _context.Response.StatusCode.ShouldBe((int)HttpStatusCode.InternalServerError);
@@ -61,6 +61,7 @@ public sealed class GlobalExceptionHandlerTests
         using var streamReader = new StreamReader(_context.Response.Body);
         var responseBody = await streamReader.ReadToEndAsync();
         var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(responseBody);
+
         return problemDetails!;
     }
 }

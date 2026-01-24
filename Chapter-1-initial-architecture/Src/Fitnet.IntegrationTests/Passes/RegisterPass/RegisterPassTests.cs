@@ -21,9 +21,9 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         _applicationHttpClient = _applicationInMemory.CreateClient();
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         _applicationHttpClient.Dispose();
         await _applicationInMemory.DisposeAsync();
@@ -38,7 +38,7 @@ public sealed class RegisterPassTests : IClassFixture<WebApplicationFactory<Prog
         var @event = ContractSignedEventFaker.Create();
 
         // Act
-        await integrationEventHandlerScope.Consume(@event);
+        await integrationEventHandlerScope.Consume(@event, TestContext.Current.CancellationToken);
 
         // Assert
         EnsureThatPassRegisteredEventWasPublished();

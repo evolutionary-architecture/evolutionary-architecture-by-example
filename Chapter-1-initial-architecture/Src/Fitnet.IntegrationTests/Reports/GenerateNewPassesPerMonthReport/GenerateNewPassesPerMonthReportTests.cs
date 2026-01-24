@@ -1,6 +1,5 @@
 namespace EvolutionaryArchitecture.Fitnet.IntegrationTests.Reports.GenerateNewPassesPerMonthReport;
 
-using System;
 using Common.TestEngine.Configuration;
 using Common.TestEngine.IntegrationEvents.Handlers;
 using Common.TestEngine.Time;
@@ -25,6 +24,14 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         _applicationHttpClient = _applicationInMemoryFactory.CreateClient();
     }
 
+    public ValueTask InitializeAsync() => ValueTask.CompletedTask;
+
+    public async ValueTask DisposeAsync()
+    {
+        _applicationHttpClient.Dispose();
+        await _applicationInMemoryFactory.DisposeAsync();
+    }
+
     [Theory]
     [ClassData(typeof(ReportTestCases))]
     internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(
@@ -34,12 +41,12 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         await RegisterPasses(passRegistrationDateRanges);
 
         // Act
-        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport);
+        using var getReportResult = await _applicationHttpClient.GetAsync(ReportsApiPaths.GenerateNewReport, TestContext.Current.CancellationToken);
 
         // Assert
         getReportResult.StatusCode.ShouldBe(HttpStatusCode.OK);
-        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>();
-        await Verify(reportData);
+        var reportData = await getReportResult.Content.ReadFromJsonAsync<NewPassesRegistrationsPerMonthResponse>(TestContext.Current.CancellationToken);
+        await Verify(reportData).UseParameters(passRegistrationDateRanges.Count);
     }
 
     private async Task RegisterPasses(List<PassRegistrationDateRange> reportTestData)
@@ -57,13 +64,5 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<WebAppl
         var integrationEventHandler = integrationEventHandlerScope.IntegrationEventHandler;
         var @event = ContractSignedEventFaker.Create(from, to);
         await integrationEventHandler.Handle(@event, CancellationToken.None);
-    }
-
-    public Task InitializeAsync() => Task.CompletedTask;
-
-    public async Task DisposeAsync()
-    {
-        _applicationHttpClient.Dispose();
-        await _applicationInMemoryFactory.DisposeAsync();
     }
 }
