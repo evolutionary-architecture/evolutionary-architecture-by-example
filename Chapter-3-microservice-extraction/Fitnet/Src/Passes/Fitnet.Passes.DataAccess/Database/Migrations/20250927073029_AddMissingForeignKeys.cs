@@ -1,8 +1,11 @@
 ﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database.Migrations;
+
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+[ExcludeFromCodeCoverage]
 /// <inheritdoc />
 public partial class AddMissingForeignKeys : Migration
 {
