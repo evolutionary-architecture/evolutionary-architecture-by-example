@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet", "Fitnet\Fitnet.csproj", "{F794BA2B-0F1A-4D1C-93B8-32B916FDEDEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitnet.AppHost", "Fitnet.AppHost\Fitnet.AppHost.csproj", "{A1B2C3D4-5E6F-7890-ABCD-EF1234567890}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{7D3193F0-C731-4683-893F-53CE8087D7E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Passes", "Passes", "{732AD772-11C2-4DCC-B6DC-D59EABEF335B}"
@@ -78,6 +80,10 @@ Global
 		{76B919C8-0434-4A54-AFD3-07F817CCEC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B919C8-0434-4A54-AFD3-07F817CCEC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B919C8-0434-4A54-AFD3-07F817CCEC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-5E6F-7890-ABCD-EF1234567890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-5E6F-7890-ABCD-EF1234567890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-5E6F-7890-ABCD-EF1234567890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-5E6F-7890-ABCD-EF1234567890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B834E435-6093-4174-9AC1-10D2E7398D31} = {732AD772-11C2-4DCC-B6DC-D59EABEF335B}
