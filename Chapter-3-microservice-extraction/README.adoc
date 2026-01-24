@@ -162,15 +162,15 @@ That's it! You should now be able to run the application using either one of the
 
 === Run with .NET Aspire
 
-The Fitnet application uses .NET Aspire for local development.
+The Fitnet application uses .NET Aspire for local development orchestration.
 
-To run the application locally using Aspire, follow these steps:
+==== Run Fitnet Modular Monolith
 
 1. **Ensure Docker is running** on your machine.
-2. **Navigate to the AppHost directory:**
+2. **Navigate to the Fitnet AppHost directory:**
 [source,shell]
 ----
-cd Fitnet.AppHost
+cd Fitnet/Src/Fitnet.AppHost
 ----
 3. **Run the AppHost project:**
 [source,shell]
@@ -178,7 +178,23 @@ cd Fitnet.AppHost
 dotnet run
 ----
 
-The Aspire Dashboard will open automatically, showing all services, resources, and logs.
+The Aspire Dashboard will open automatically, showing the Fitnet modular monolith and PostgreSQL database.
+
+==== Run Fitnet.Contracts Microservice
+
+1. **Ensure Docker is running** on your machine.
+2. **Navigate to the Contracts AppHost directory:**
+[source,shell]
+----
+cd Fitnet.Contracts/Src/Fitnet.Contracts.AppHost
+----
+3. **Run the AppHost project:**
+[source,shell]
+----
+dotnet run
+----
+
+The Aspire Dashboard will open automatically, showing the Fitnet.Contracts microservice, PostgreSQL database, and RabbitMQ message broker.
 
 === Building and debugging code in Rider IDE
 
