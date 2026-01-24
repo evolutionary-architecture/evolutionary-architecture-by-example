@@ -3,6 +3,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Data.Database.Migrations;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 [ExcludeFromCodeCoverage]
