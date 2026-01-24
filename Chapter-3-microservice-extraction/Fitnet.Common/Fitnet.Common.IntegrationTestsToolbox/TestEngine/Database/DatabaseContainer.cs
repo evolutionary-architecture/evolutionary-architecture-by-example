@@ -13,7 +13,7 @@ public sealed class DatabaseContainer : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        _container = new PostgreSqlBuilder()
+        _container = new PostgreSqlBuilder("postgres:17-alpine")
             .WithDatabase(Database)
             .WithUsername(Username)
             .WithPassword(Password)
