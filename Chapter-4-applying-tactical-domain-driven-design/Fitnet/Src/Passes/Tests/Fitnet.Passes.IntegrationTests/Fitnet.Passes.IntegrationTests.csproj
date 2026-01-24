@@ -10,7 +10,6 @@
         <PackageReference Include="Shouldly" />
         <PackageReference Include="System.Net.Http" />
         <PackageReference Include="System.Text.Json" />
-        <PackageReference Include="System.Text.RegularExpressions" />
         <PackageReference Include="BouncyCastle.Cryptography" />
     </ItemGroup>
 
