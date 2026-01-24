@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="ErrorOr" Version="2.0.1" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="4.1.6" />
-    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.7" />
-    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-    <PackageReference Include="MassTransit.Abstractions" Version="8.3.4" />
-    <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="ErrorOr" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" />
+    <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" />
+    <PackageReference Include="JetBrains.Annotations" />
+    <PackageReference Include="MassTransit.Abstractions" />
+    <PackageReference Include="MediatR" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fitnet.Contracts.Core\Fitnet.Contracts.Core.csproj" />
