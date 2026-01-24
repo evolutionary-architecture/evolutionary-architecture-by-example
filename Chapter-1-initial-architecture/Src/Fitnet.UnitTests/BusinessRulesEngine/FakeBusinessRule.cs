@@ -1,6 +1,6 @@
 namespace EvolutionaryArchitecture.Fitnet.UnitTests.BusinessRulesEngine;
 
-using EvolutionaryArchitecture.Fitnet.Common.BusinessRulesEngine;
+using Common.BusinessRulesEngine;
 
 internal sealed class FakeBusinessRule : IBusinessRule
 {
