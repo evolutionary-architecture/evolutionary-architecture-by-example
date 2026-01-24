@@ -28,7 +28,7 @@ await using var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference();
+    app.MapScalarApiReference("/docs/{documentName}");
 }
 
 app.UseApiDocumentation();

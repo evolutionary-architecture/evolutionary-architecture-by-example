@@ -182,7 +182,7 @@ For testing the API endpoints, we have included HTTP files in the docs folder fo
 
 ==== API Documentation
 
-For professional API documentation, we use https://scalar.com[Scalar] - a modern API reference UI that provides interactive testing capabilities, multi-language code snippets, and full OpenAPI 3.1 support. The documentation is available at `/scalar/v1` in development mode.
+For professional API documentation, we use https://scalar.com[Scalar] - a modern API reference UI that provides interactive testing capabilities, multi-language code snippets, and full OpenAPI 3.1 support. The documentation is available at `/docs/v1` in development mode.
 
 == How to run?
 
