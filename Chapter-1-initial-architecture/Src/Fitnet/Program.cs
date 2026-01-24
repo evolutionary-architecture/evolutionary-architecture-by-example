@@ -7,13 +7,13 @@ using EvolutionaryArchitecture.Fitnet.Contracts;
 using EvolutionaryArchitecture.Fitnet.Offers;
 using EvolutionaryArchitecture.Fitnet.Passes;
 using EvolutionaryArchitecture.Fitnet.Reports;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddExceptionHandling();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 builder.Services.AddEventBus();
 builder.Services.AddRequestsValidations();
 builder.Services.AddClock();
@@ -27,8 +27,8 @@ await using var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseApiDocumentation();

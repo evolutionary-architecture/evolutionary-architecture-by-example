@@ -14,7 +14,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
         <PackageReference Include="Microsoft.OpenApi" Version="2.3.0" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.12.17" />
         <PackageReference Update="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
     </ItemGroup>
 
