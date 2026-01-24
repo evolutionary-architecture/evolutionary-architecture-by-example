@@ -182,25 +182,7 @@ For testing the API endpoints, we have included HTTP files in the docs folder fo
 
 ==== API Documentation
 
-For API documentation, we use https://scalar.com[Scalar] - a modern, beautiful alternative to traditional Swagger UI. Scalar provides an interactive API reference that is automatically generated from our OpenAPI specification.
-
-The API documentation is available at `/scalar/v1` when running the application in development mode. It provides:
-
-- A clean, modern interface for exploring API endpoints
-- Interactive "Test Request" functionality to try out endpoints directly
-- Code snippets in multiple programming languages (Shell, Ruby, Node.js, PHP, Python, and more)
-- Downloadable OpenAPI document
-- Built-in search functionality
-
-We use the native `Microsoft.AspNetCore.OpenApi` package to generate the OpenAPI specification, which is then rendered by `Scalar.AspNetCore`. This approach leverages the latest OpenAPI 3.1 specification and integrates seamlessly with ASP.NET Core.
-
-===== Before (Swagger UI)
-
-image::Assets/swagger-ui-before.png[]
-
-===== After (Scalar API Reference)
-
-image::Assets/scalar-api-reference-after.png[]
+For professional API documentation, we use https://scalar.com[Scalar] - a modern API reference UI that provides interactive testing capabilities, multi-language code snippets, and full OpenAPI 3.1 support. The documentation is available at `/scalar/v1` in development mode.
 
 == How to run?
 
