@@ -4,7 +4,6 @@
   </PropertyGroup>
   <ItemGroup Label="Production">
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
-    <PackageVersion Include="FluentAssertions" Version="6.12.2" />
     <PackageVersion Include="FluentValidation" Version="12.0.0" />
     <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
     <PackageVersion Include="MassTransit" Version="8.3.2" />
@@ -18,6 +17,7 @@
   <ItemGroup Label="Tests">
     <PackageVersion Include="Bogus" Version="35.6.3" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="FluentAssertions" Version="6.12.2" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
