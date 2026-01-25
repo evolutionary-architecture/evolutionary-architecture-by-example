@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+      <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentValidation" Version="11.11.0" />
+      <PackageReference Include="FluentValidation" />
     </ItemGroup>
     
     <ItemGroup>
@@ -13,11 +13,8 @@
     </ItemGroup>
     
     <ItemGroup>
-        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Tests" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Api.UnitTests" />
+      <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure.Tests" />
+      <InternalsVisibleTo Include="EvolutionaryArchitecture.Fitnet.Common.Api.UnitTests" />
     </ItemGroup>
     
 </Project>

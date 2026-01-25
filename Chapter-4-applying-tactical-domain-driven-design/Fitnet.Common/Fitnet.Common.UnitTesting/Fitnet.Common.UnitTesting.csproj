@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ErrorOr" Version="2.0.1" />
-      <PackageReference Include="FluentAssertions" Version="6.12.2" />
+      <PackageReference Include="ErrorOr" />
+      <PackageReference Include="FluentAssertions" />
     </ItemGroup>
 
 </Project>
