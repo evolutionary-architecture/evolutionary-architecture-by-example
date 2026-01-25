@@ -5,9 +5,9 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="4.1.6" />
-        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" />
+      <PackageReference Include="JetBrains.Annotations" />
+      <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
     
     <ItemGroup>
