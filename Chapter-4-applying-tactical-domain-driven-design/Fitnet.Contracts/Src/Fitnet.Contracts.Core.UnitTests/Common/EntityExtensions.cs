@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.UnitTests.Common;
 
-using DomainDrivenDesign.BuildingBlocks;
+using Fitnet.Common.Core;
 
 internal static class EntityExtensions
 {

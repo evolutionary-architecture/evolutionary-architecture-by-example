@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Tests/">
+    <Project Path="Fitnet.Contracts.Api.UnitTests/Fitnet.Contracts.Api.UnitTests.csproj" />
+    <Project Path="Fitnet.Contracts.Core.UnitTests/Fitnet.Contracts.Core.UnitTests.csproj" />
+    <Project Path="Fitnet.Contracts.IntegrationTests/Fitnet.Contracts.IntegrationTests.csproj" />
+  </Folder>
+  <Project Path="Fitnet.Contracts.Api/Fitnet.Contracts.Api.csproj" />
+  <Project Path="Fitnet.Contracts.Application/Fitnet.Contracts.Application.csproj" />
+  <Project Path="Fitnet.Contracts.Core/Fitnet.Contracts.Core.csproj" />
+  <Project Path="Fitnet.Contracts.Infrastructure/Fitnet.Contracts.Infrastructure.csproj" />
+  <Project Path="Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj" />
+  <Project Path="Fitnet.Contracts/Fitnet.Contracts.csproj" />
+</Solution>
