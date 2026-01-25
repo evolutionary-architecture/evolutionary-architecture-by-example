@@ -44,7 +44,6 @@ internal static class EventBusModule
                         }
                     });
                 }
-                
                 factoryConfigurator.ConfigureEndpoints(context);
             });
             configurator.ConfigureOutbox();
