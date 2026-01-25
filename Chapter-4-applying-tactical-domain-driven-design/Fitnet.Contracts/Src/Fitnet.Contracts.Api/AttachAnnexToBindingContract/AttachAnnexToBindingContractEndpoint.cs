@@ -18,11 +18,8 @@ internal static class AttachAnnexToBindingContractEndpoint
                     await contractsModule.ExecuteCommandAsync(request.ToCommand(id), cancellationToken)
                         .Match(annexId => Results.Created(BuildUrl(id, annexId), annexId),
                             errors => errors.ToProblem()))
-            .WithOpenApi(operation => new(operation)
-            {
-                Summary = "Attach annex to existing binding contract",
-                Description = "This endpoint is used to attach an annex to an existing binding contract.",
-            })
+            .WithSummary("Attach annex to existing binding contract")
+            .WithDescription("This endpoint is used to attach an annex to an existing binding contract.")
             .Produces<string>(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status404NotFound)
             .Produces(StatusCodes.Status409Conflict)

@@ -26,7 +26,7 @@ app.UseErrorHandling();
 app.MapControllers();
 app.RegisterContractsApi();
 
-app.Run();
+await app.RunAsync();
 
 namespace EvolutionaryArchitecture.Fitnet.Contracts
 {

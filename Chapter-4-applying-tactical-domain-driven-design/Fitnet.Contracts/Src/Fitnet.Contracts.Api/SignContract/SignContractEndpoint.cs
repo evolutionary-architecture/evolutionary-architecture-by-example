@@ -20,12 +20,8 @@ internal static class SignContractEndpoint
                     bindingContractId => Results.Created($"/{ContractsApiPaths.BindingContracts}/{bindingContractId}",
                         bindingContractId), errors => errors.ToProblem()))
         .ValidateRequest<SignContractRequestValidator>()
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Signs prepared contract",
-            Description =
-                "This endpoint is used to sign prepared contract by customer.",
-        })
+        .WithSummary("Signs prepared contract")
+        .WithDescription("This endpoint is used to sign prepared contract by customer.")
         .Produces(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status409Conflict)

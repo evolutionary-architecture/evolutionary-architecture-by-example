@@ -46,7 +46,9 @@ public sealed class AnnexCanOnlyStartDuringBindingContractPeriodRuleTests
 
     [Fact]
     internal void
+#pragma warning disable S4144
         Given_attach_annex_When_annex_valid_from_is_equal_to_binding_contract_expired_Then_it_is_possible_to_attach()
+#pragma warning restore S4144
     {
         // Arrange
         var bindingContractExpiringAt = _now;
