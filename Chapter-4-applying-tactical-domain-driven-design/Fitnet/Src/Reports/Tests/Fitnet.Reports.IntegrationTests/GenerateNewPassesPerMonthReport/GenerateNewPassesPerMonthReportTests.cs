@@ -9,8 +9,8 @@ using GenerateNewPassesRegistrationsPerMonthReport.Dtos;
 using Passes.Api.RegisterPass;
 using Contracts.IntegrationEvents;
 using TestData;
+using ReportTestCases = TestData.ReportTestCases;
 
-[UsesVerify]
 public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetWebApplicationFactory<Program>>, IClassFixture<DatabaseContainer>
 {
     private static readonly FakeTimeProvider FakeTimeProvider = new(ReportTestCases.FakeNowDate);
@@ -29,7 +29,9 @@ public sealed class GenerateNewPassesPerMonthReportTests : IClassFixture<FitnetW
     }
 
     [Theory]
+#pragma warning disable xUnit1045
     [ClassData(typeof(ReportTestCases))]
+#pragma warning restore xUnit1045
     internal async Task Given_valid_generate_new_report_request_Then_should_return_correct_data(List<PassRegistrationDateRange> passRegistrationDateRanges)
     {
         // Arrange
