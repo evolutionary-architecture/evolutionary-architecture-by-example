@@ -1,9 +1,12 @@
 ﻿#nullable disable
 
 namespace EvolutionaryArchitecture.Fitnet.Passes.DataAccess.Database.Migrations;
+
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 /// <inheritdoc />
+[ExcludeFromCodeCoverage]
 public partial class AddMissingForeignKeys : Migration
 {
     private static readonly string[] columns = ["InboxMessageId", "InboxConsumerId"];

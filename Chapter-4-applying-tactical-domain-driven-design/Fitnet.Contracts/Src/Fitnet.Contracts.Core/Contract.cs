@@ -1,7 +1,7 @@
 namespace EvolutionaryArchitecture.Fitnet.Contracts.Core;
 
+using Common.Core;
 using Common.Core.BussinessRules;
-using DomainDrivenDesign.BuildingBlocks;
 using PrepareContract;
 using PrepareContract.BusinessRules;
 using SignContract.BusinessRules;

@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.SignContract;
 
-using DomainDrivenDesign.BuildingBlocks;
+using Common.Core;
 
 public sealed record BindingContractStartedEvent(
     Guid Id,

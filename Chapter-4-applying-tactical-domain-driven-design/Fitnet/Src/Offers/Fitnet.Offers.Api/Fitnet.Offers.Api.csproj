@@ -14,8 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="evolutionaryarchitecture.fitnet.common.core" Version="4.1.7" />
-      <PackageReference Include="System.Text.Encodings.Web" Version="9.0.0" />
+      <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Core" />
     </ItemGroup>
 
 </Project>

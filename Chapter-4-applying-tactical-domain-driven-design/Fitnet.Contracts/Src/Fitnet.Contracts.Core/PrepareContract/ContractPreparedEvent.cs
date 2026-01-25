@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Contracts.Core.PrepareContract;
 
-using DomainDrivenDesign.BuildingBlocks;
+using Common.Core;
 
 public sealed record ContractPreparedEvent(
     Guid Id,

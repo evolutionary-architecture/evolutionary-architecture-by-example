@@ -10,4 +10,5 @@
   <Project Path="Fitnet.Contracts.Infrastructure\Fitnet.Contracts.Infrastructure.csproj" Type="Classic C#" />
   <Project Path="Fitnet.Contracts.IntegrationEvents\Fitnet.Contracts.IntegrationEvents.csproj" Type="Classic C#" />
   <Project Path="Fitnet.Contracts\Fitnet.Contracts.csproj" Type="Classic C#" />
+  <Project Path="Fitnet.Contracts.AppHost\Fitnet.Contracts.AppHost.csproj" Type="Classic C#" />
 </Solution>

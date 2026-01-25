@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
-    <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="ErrorOr"/>
   </ItemGroup>
 
 </Project>

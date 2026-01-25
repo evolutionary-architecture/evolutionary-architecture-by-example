@@ -30,12 +30,8 @@ internal static class MarkPassAsExpiredEndpoint
 
                 return Results.NoContent();
             })
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Marks pass which expired",
-            Description =
-                "This endpoint is used to mark expired pass. Based on that it is possible to offer new contract to customer.",
-        })
+        .WithSummary("Marks pass which expired")
+        .WithDescription("This endpoint is used to mark expired pass. Based on that it is possible to offer new contract to customer.")
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status500InternalServerError);
