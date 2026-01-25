@@ -21,15 +21,16 @@ internal static class EventBusModule
             configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
                 var options = context.GetRequiredService<IOptions<EventBusOptions>>();
-                var externalEventBusConfigured = options.Value is not null;
+                var eventBusOptions = options.Value;
+                var externalEventBusConfigured = eventBusOptions is not null;
                 if (!externalEventBusConfigured)
                 {
                     return;
                 }
 
-                var uri = options.Value.Uri;
-                var username = options.Value.Username;
-                var password = options.Value.Password;
+                var uri = eventBusOptions.Uri;
+                var username = eventBusOptions.Username;
+                var password = eventBusOptions.Password;
 
                 if (!string.IsNullOrEmpty(uri))
                 {
