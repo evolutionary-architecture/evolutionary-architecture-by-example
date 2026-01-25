@@ -26,7 +26,6 @@ internal static class EventBusModule
                 {
                     return;
                 }
-                
                 var uri = options.Value?.Uri;
                 var username = options.Value?.Username;
                 var password = options.Value?.Password;
