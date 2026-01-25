@@ -13,7 +13,7 @@ on:
 
 env:
   CHAPTER_DIR: "Chapter-4-applying-tactical-domain-driven-design/Fitnet/Src"
-  NUGET_SOURCE_NAME: "evolutionaryArchitecture"
+  NUGET_SOURCE_NAME: "EvolutionaryArchitecture"
 
 jobs:
   build:
@@ -29,13 +29,13 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 10.0.x
-      - name: Add Evolutionary Architecture Nuget Source
-        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          owner: ${{ github.repository_owner }}
-          path: ${{ env.CHAPTER_DIR }}
-          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
+      - name: Authenticate to GitHub Packages
+        run: |
+          dotnet nuget update source ${{ env.NUGET_SOURCE_NAME }} \
+            --username ${{ github.actor }} \
+            --password ${{ secrets.GITHUB_TOKEN }} \
+            --store-password-in-clear-text \
+            --configfile nuget.config
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
@@ -54,14 +54,13 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 10.0.x
-      - name: Add Evolutionary Architecture Nuget Source
-        uses: evolutionary-architecture/evolutionary-architecture-by-example/.github@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          owner: ${{ github.repository_owner }}
-          path: ${{ env.CHAPTER_DIR }}
-          nuget-source-name: ${{ env.NUGET_SOURCE_NAME }}
-
+      - name: Authenticate to GitHub Packages
+        run: |
+          dotnet nuget update source ${{ env.NUGET_SOURCE_NAME }} \
+            --username ${{ github.actor }} \
+            --password ${{ secrets.GITHUB_TOKEN }} \
+            --store-password-in-clear-text \
+            --configfile nuget.config
       - name: Restore dependencies
         run: dotnet restore
       - name: Test
