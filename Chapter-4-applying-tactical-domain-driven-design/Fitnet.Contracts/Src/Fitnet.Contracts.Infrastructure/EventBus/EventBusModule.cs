@@ -19,8 +19,7 @@ internal static class EventBusModule
             {
                 var options = context.GetRequiredService<IOptions<EventBusOptions>>();
                 var eventBusOptions = options.Value;
-                var externalEventBusConfigured = eventBusOptions is not null;
-                if (!externalEventBusConfigured)
+                if (eventBusOptions is null)
                 {
                     return;
                 }
