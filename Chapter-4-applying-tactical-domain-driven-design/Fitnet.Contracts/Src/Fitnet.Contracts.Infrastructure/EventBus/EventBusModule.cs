@@ -24,9 +24,9 @@ internal static class EventBusModule
                     return;
                 }
 
-                var uri = eventBusOptions.Uri;
-                var username = eventBusOptions.Username;
-                var password = eventBusOptions.Password;
+                var uri = eventBusOptions!.Uri;
+                var username = eventBusOptions!.Username;
+                var password = eventBusOptions!.Password;
 
                 if (!string.IsNullOrEmpty(uri))
                 {
