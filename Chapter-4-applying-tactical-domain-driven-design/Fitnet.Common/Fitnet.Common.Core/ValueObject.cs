@@ -1,6 +1,8 @@
 ﻿namespace EvolutionaryArchitecture.Fitnet.Common.Core;
 
+#pragma warning disable S4035
 public abstract class ValueObject : IEquatable<ValueObject>
+#pragma warning restore S4035
 {
     protected abstract IEnumerable<object> GetEqualityComponents();
 
