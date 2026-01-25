@@ -30,7 +30,6 @@ internal static class EventBusModule
                 var uri = options.Value?.Uri;
                 var username = options.Value?.Username;
                 var password = options.Value?.Password;
-                
                 if (!string.IsNullOrEmpty(uri))
                 {
                     factoryConfigurator.Host(uri, h =>
