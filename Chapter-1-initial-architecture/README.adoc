@@ -180,10 +180,6 @@ NOTE: _Architecture Decision Log_ is particularly valuable when new team members
 
 For testing the API endpoints, we have included HTTP files in the docs folder for each module. Getting started is simple - just update the application URL in http-client.env.json, and you are ready to test the endpoints.
 
-==== API Documentation
-
-For professional API documentation, we use https://scalar.com[Scalar] - a modern API reference UI that provides interactive testing capabilities, multi-language code snippets, and full OpenAPI 3.1 support. The documentation is available at `/docs/v1` in development mode.
-
 == How to run?
 
 === Requirements
