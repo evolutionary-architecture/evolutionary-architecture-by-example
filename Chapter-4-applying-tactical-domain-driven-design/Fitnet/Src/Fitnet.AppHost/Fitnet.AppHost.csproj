@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fitnet.Contracts\Src\Fitnet.Contracts\Fitnet.Contracts.csproj" />
     <ProjectReference Include="..\Fitnet\Src\Fitnet\Fitnet.csproj" />
   </ItemGroup>
 

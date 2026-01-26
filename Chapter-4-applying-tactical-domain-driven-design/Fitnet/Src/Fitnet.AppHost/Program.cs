@@ -18,11 +18,4 @@ builder.AddProject<Fitnet>("fitnet-modular-monolith")
     .WaitFor(postgres)
     .WaitFor(rabbitmq);
 
-builder.AddProject<Fitnet_Contracts>("fitnet-contracts-microservice")
-    .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development")
-    .WithReference(fitnetDatabase, "Database__ConnectionString")
-    .WithReference(rabbitmq, "EventBus__ConnectionString")
-    .WaitFor(postgres)
-    .WaitFor(rabbitmq);
-
 await builder.Build().RunAsync();
