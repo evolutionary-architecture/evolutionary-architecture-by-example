@@ -6,6 +6,7 @@
   </Folder>
   <Project Path="Fitnet.Contracts.Api/Fitnet.Contracts.Api.csproj" />
   <Project Path="Fitnet.Contracts.Application/Fitnet.Contracts.Application.csproj" />
+  <Project Path="Fitnet.Contracts.AppHost/Fitnet.Contracts.AppHost.csproj" />
   <Project Path="Fitnet.Contracts.Core/Fitnet.Contracts.Core.csproj" />
   <Project Path="Fitnet.Contracts.Infrastructure/Fitnet.Contracts.Infrastructure.csproj" />
   <Project Path="Fitnet.Contracts.IntegrationEvents/Fitnet.Contracts.IntegrationEvents.csproj" />
