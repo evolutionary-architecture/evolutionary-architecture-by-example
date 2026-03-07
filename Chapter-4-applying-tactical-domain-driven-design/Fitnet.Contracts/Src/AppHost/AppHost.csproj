@@ -1,0 +1,17 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.1.0">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UserSecretsId>baa61b13-91c4-4b1d-b245-ea3f9d627edf</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+        <PackageReference Include="Aspire.Hosting.RabbitMQ" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Fitnet.Contracts\Fitnet.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

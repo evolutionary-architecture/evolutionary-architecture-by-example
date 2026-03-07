@@ -4,6 +4,7 @@
     <Project Path="Fitnet.Contracts.Core.UnitTests/Fitnet.Contracts.Core.UnitTests.csproj" />
     <Project Path="Fitnet.Contracts.IntegrationTests/Fitnet.Contracts.IntegrationTests.csproj" />
   </Folder>
+  <Project Path="AppHost/AppHost.csproj" />
   <Project Path="Fitnet.Contracts.Api/Fitnet.Contracts.Api.csproj" />
   <Project Path="Fitnet.Contracts.Application/Fitnet.Contracts.Application.csproj" />
   <Project Path="Fitnet.Contracts.Core/Fitnet.Contracts.Core.csproj" />
