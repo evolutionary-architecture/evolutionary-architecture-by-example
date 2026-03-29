@@ -25,7 +25,7 @@ public sealed class PassesArchitectureTests
         var rules = passesModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
-        var validationResult = rules!.GetResult();
+        var validationResult = rules.GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();
@@ -50,7 +50,7 @@ public sealed class PassesArchitectureTests
         var rules = passesModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
-        var validationResult = rules!.GetResult();
+        var validationResult = rules.GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();

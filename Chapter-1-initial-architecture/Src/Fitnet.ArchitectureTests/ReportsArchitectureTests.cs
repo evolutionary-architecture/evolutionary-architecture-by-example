@@ -24,7 +24,7 @@ public sealed class ReportsArchitectureTests
         var rules = reportsModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
-        var validationResult = rules!.GetResult();
+        var validationResult = rules.GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();

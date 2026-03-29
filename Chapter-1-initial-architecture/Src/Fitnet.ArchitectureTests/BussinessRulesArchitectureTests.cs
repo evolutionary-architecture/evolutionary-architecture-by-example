@@ -18,7 +18,7 @@ public class BusinessRulesArchitectureTests
             .HaveNameEndingWith(forbiddenTypeEnding);
 
         // Act
-        var validationResult = forbiddenTypes!.Should().NotHaveDependencyOnAny(businessRules).GetResult();
+        var validationResult = forbiddenTypes.Should().NotHaveDependencyOnAny(businessRules).GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();

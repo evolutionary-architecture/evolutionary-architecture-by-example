@@ -24,7 +24,7 @@ public sealed class ContractsArchitectureTests
         var rules = contractsModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
-        var validationResult = rules!.GetResult();
+        var validationResult = rules.GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();
