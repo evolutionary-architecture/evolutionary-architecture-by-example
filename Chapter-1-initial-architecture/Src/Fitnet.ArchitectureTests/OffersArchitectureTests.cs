@@ -25,7 +25,7 @@ public sealed class OffersArchitectureTests
         var rules = offersModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
-        var validationResult = rules!.GetResult();
+        var validationResult = rules.GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();
@@ -49,7 +49,7 @@ public sealed class OffersArchitectureTests
         var rules = offersModule
             .Should()
             .NotHaveDependencyOnAny(forbiddenModuleTypes);
-        var validationResult = rules!.GetResult();
+        var validationResult = rules.GetResult();
 
         // Assert
         validationResult.FailingTypes.ShouldBeNull();
