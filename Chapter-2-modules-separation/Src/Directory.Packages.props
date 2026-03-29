@@ -22,7 +22,7 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="2.3.0" />
     <PackageVersion Include="Npgsql" Version="10.0.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.0.1" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.17" />
   </ItemGroup>
   <ItemGroup Label="Tests">
     <PackageVersion Include="Bogus" Version="35.6.3" />

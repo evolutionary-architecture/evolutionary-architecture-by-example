@@ -2,11 +2,11 @@ using EvolutionaryArchitecture.Fitnet.Common.Api.Documentation;
 using EvolutionaryArchitecture.Fitnet.Common.Api.ErrorHandling;
 using EvolutionaryArchitecture.Fitnet.Common.Infrastructure;
 using EvolutionaryArchitecture.Fitnet.Modules;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
 builder.Services.AddExceptionHandling();
 builder.Services.AddCommonInfrastructure();
@@ -16,8 +16,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference("/docs/v1");
 }
 
 app.UseApiDocumentation();

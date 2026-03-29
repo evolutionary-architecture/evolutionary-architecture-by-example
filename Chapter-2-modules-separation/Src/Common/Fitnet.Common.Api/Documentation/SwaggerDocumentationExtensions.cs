@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Routing;
 public static class ApiDocumentationExtensions
 {
     public static void UseApiDocumentation(this IEndpointRouteBuilder app) =>
-        app.MapGet("/", () => Results.Redirect("/swagger"))
+        app.MapGet("/", () => Results.Redirect("/docs/v1"))
             .Produces(StatusCodes.Status200OK)
             .WithTags("Documentation");
 }
