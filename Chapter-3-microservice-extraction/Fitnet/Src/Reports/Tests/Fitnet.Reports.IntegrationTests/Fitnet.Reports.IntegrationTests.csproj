@@ -8,6 +8,7 @@
     <PackageReference Include="BouncyCastle.Cryptography" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" />
     <PackageReference Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" />
+    <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
   </ItemGroup>
 

@@ -7,7 +7,7 @@
     <ItemGroup>
       <PackageReference Include="EvolutionaryArchitecture.Fitnet.Common.Api" />
       <PackageReference Include="JetBrains.Annotations" />
-      <PackageReference Include="Swashbuckle.AspNetCore" />
+      <PackageReference Include="Scalar.AspNetCore" />
     </ItemGroup>
     
     <ItemGroup>
