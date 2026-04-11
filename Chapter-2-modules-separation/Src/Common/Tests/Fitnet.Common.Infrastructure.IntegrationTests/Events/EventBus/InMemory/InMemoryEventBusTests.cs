@@ -19,7 +19,7 @@ public sealed class InMemoryEventBusTests(
         var fakeEvent = FakeEvent.Create();
 
         // Act
-        await eventBus!.PublishAsync(fakeEvent, CancellationToken.None);
+        await eventBus.PublishAsync(fakeEvent, CancellationToken.None);
 
         // Assert
         fakeEvent.Consumed.ShouldBeTrue();
