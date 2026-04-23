@@ -42,7 +42,7 @@ We have all heard the phrase "it depends" so often it's become a cliché. Yes, e
 
 This repository offers something different: not just another static collection of patterns, but an evolutionary journey through the software architecture decision-making process. Here you will learn how to evaluate tradeoffs, combine approaches, and craft solutions that meet your specific needs at any given time.
 
-Such an approach plays well with the dynamics of system implementation. Every development project faces a fundamental challenge that is called _"_The Project Paradox_:
+Such an approach plays well with the dynamics of system implementation. Every development project faces a fundamental challenge that is called _The Project Paradox_:
 
 image::Assets/project_paradox.png[]
 
