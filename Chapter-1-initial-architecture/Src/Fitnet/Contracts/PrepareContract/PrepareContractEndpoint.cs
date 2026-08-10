@@ -21,6 +21,7 @@ internal static class PrepareContractEndpoint
                         request.CustomerHeight,
                         request.PreparedAt,
                         previousContract?.Signed);
+
                     await persistence.Contracts.AddAsync(contract, cancellationToken);
                     await persistence.SaveChangesAsync(cancellationToken);
 
