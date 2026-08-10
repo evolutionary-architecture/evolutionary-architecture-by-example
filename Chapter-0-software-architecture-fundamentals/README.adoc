@@ -1,0 +1,134 @@
+= Chapter 0: Software Architecture Fundamentals: Focus On Foundations
+:toc:
+
+++++
+<div align="center">
+  <picture>
+    <source srcset="../Assets/ea_banner_dark.png" media="(prefers-color-scheme: dark)">
+    <source srcset="../Assets/ea_banner_light.png" media="(prefers-color-scheme: light)">
+    <img src="../Assets/ea_banner_light.png" width="350" height="350" alt="ea banner">
+  </picture>
+</div>
+++++
+
+NOTE: This chapter is different from the ones that follow it. There is no Fitnet code here, no `How to Run?` section, no requirements to satisfy. Chapter 0 exists purely to build the vocabulary and mental models that Chapter 1 assumes you already have.
+
+== Why Start With Fundamentals?
+
+Before Fitnet has a single line of code, we need a shared vocabulary. Chapters 1 through 4 make architecture decisions constantly - splitting a monolith, extracting a microservice, introducing aggregates - and every one of those decisions leans on terms we have not defined yet.
+
+Take two minutes before you keep reading: how would you define software architecture, in your own words? Write it down. Most people struggle with this more than they expect, and that struggle is the point - basic knowledge of software architecture has become the new "Hello World" of our industry. Everyone touches it eventually, few people are taught it deliberately.
+
+Here is a definition worth anchoring on, from Grady Booch:
+
+[quote, Grady Booch]
+Software architecture is a collection of significant decisions that define the structure and functionality of a system, with the cost of change serving as the primary metric of significance.
+
+And a shorter, more honest one from Ralph Johnson:
+
+[quote, Ralph Johnson]
+Architecture is about the important stuff. Whatever that is.
+
+Both are correct at the same time, and that is not a contradiction. What counts as "significant" or "important" depends entirely on your system, your team, and your constraints - which is exactly why we will spend this chapter building the vocabulary to reason about it, instead of handing you a checklist.
+
+== What Software Architecture Actually Is
+
+If architecture is "the significant decisions," it helps to see what those decisions actually look like in practice. They rarely announce themselves as capital-A Architecture. They show up as ordinary-sounding questions, grouped into a handful of recurring categories:
+
+- Structure - monolith or microservices? Layered or vertical slices?
+- Application architecture - Domain Model or Transaction Script?
+- Infrastructure architecture - Kubernetes or Docker Swarm?
+- Communication architecture - REST or SOAP? Synchronous or event-driven?
+- Data architecture - one shared database or one schema per module?
+- Deployment unit separation - one deployable, or many?
+- Testing - what do we verify, and at which boundary?
+
+NOTE: None of these questions has a universally correct answer. That is the whole reason this repository exists as an evolving story instead of a static template - the right answer changes as your system and your understanding of it grow.
+
+== The Architect Role
+
+"Architect" is not one job. Picture two axes: how close the role sits to business strategy, and how close it sits to technology. An Enterprise Architect sits high on the business axis. A Cloud Architect or Data Architect sits high on the technology axis. A Solution Architect sits closer to the middle, translating between the two.
+
+That translation work has a name: Gregor Hohpe calls it the _Architect Elevator_. Picture a building where business strategy lives on the top floor and engineering lives in the basement. Most people spend their career on one floor. The architect's job is to ride the elevator between them, carrying context in both directions - explaining technical constraints to the business floor, and business intent to the engineering floor.
+
+IMPORTANT: If you only ride the elevator in one direction, you are not doing the job. An architect who only reports technical status upward, without carrying business context back down to the team, has stopped being an elevator and become a wall.
+
+In a typical setup, a single Solution Architect supports several delivery teams at once, each with its own team lead, backend, frontend, QA, and DevOps engineers. The architect is not part of any one team full time - they are the constant, moving between them.
+
+== Three Laws of Architecture
+
+Three ideas keep resurfacing across every architecture decision we will make in this repository, often without being named. Naming them now makes them easier to spot later.
+
+=== Law 1: Everything Is a Trade-off
+
+Security versus performance. High availability versus consistency. Complexity versus cost. Every architectural choice buys you something by spending something else. The moment you hear a pitch for a pattern that has no downside, you are not looking at architecture - you are looking at marketing.
+
+=== Law 2: Conway's Law
+
+The architecture of a system is a reflection of the organization that builds it. Consider an ecommerce platform built by four teams: a Frontend team owns the FE layer, a Backend team owns the API, a Data Admin team owns the data layer, and a Product team owns business logic. You did not design that architecture on a whiteboard - your org chart designed it for you. If you want a different architecture, changing the diagram without changing the team boundaries rarely works.
+
+=== Law 3: Architecture Exists to Enable Change
+
+[quote]
+The ultimate goal of architecture isn't perfection, it's adaptability. Systems evolve, requirements shift, businesses pivot. A good architecture provides the scaffolding to absorb change gracefully, not to prevent change entirely.
+
+This is the same idea this entire repository is built around, just stated as a law instead of demonstrated as a four-chapter story.
+
+== The C4 Model
+
+Diagrams go stale fast unless they follow a convention everyone agrees on. The C4 model, created by Simon Brown, gives you four levels of zoom instead of one overloaded diagram that tries to show everything at once:
+
+- **Context** - the system in its environment: who uses it, what other systems it talks to
+- **Container** - the applications and data stores inside that system boundary
+- **Component** - the groups of functionality inside a single container, each behind an interface
+- **Code** - usually auto-generated from the codebase itself, and outside the scope of this chapter
+
+You build these top-down and reuse work as you go: draw the Context diagram first, then expand it into a Container diagram (the same actors and external systems reappear, just with the system boundary opened up), then draw one Component diagram per container that actually needs one.
+
+Simon Brown's own example is an internet banking system. At the Context level, a Personal Banking Customer talks to the Internet Banking System, which in turn talks to a Mainframe Banking System and an E-mail System. Open the Container level, and the Internet Banking System becomes a Web Application, a Single-Page Application, a Mobile App, an API Application, and a Database. Open the API Application at the Component level, and you find a Sign-In Controller, a Reset Password Controller, an Accounts Summary Controller, a Security Component, an E-mail Component, and a Mainframe Banking System Facade.
+
+NOTE: You have already seen this exact style of diagram in this repository, even if nobody called it C4. The interactive diagrams linked from the Chapter 1 and Chapter 3 READMEs (built with IcePanel) are Context and Container-level views of Fitnet itself. Go back and look at them again with these four levels in mind.
+
+IMPORTANT: The C4 model itself, including the diagrams referenced above, was created by Simon Brown and is available at https://c4model.com[c4model.com] under a CC BY 4.0 license. This chapter borrows the concept and the terminology, not the original artwork.
+
+== Why This Matters
+
+It is easy to justify an architecture decision by pointing at three visible use cases it enables. That is also how you miss the point. Picture an iceberg: the use cases are the small tip above the waterline. Underneath, invisible until something breaks, sits the part of the architecture that actually determines whether the system survives contact with production - availability, security, reliability, scalability, and maintainability.
+
+=== Quality Attributes
+
+These underwater concerns have a name: quality attributes. The useful way to write one down is not "the system should be fast," which nobody can verify, but as a scenario with three parts:
+
+- **Aspect** - which quality attribute (performance, scalability, maintainability, availability, testability, usability, extensibility)
+- **Scenario** - the concrete situation it applies to (for example, "500 concurrent users submit a contract signature request")
+- **Metric** - the number that tells you whether you met it (for example, "95th percentile response time under 300ms")
+
+IMPORTANT: A quality attribute without a metric is an opinion, not a requirement. "The system should be scalable" commits you to nothing and cannot be tested. "The system should handle 625,000 daily requests with a 25% safety margin" - the exact number Chapter 1 uses for Fitnet's own capacity planning - is something you can design for and verify.
+
+== Architecture Styles At A Glance
+
+An architecture style is a reusable answer to the structural questions from earlier in this chapter - how do we partition the system, and along which lines? You will run into the same handful of names again and again: Layered, Modular Monolith, Microkernel, Service-Based, Service-Oriented, Microservices, Event-Driven, and Space-Based.
+
+Two partitioning approaches sit underneath all eight. Some styles partition by **technical concern** - a UI layer, a business logic layer, a data layer, stacked on top of each other, the way Layered does it. Others partition by **domain** - Modular Monolith, Service-Based, Microservices, and Event-Driven all draw their boundaries around subdomains instead of technical layers. That single choice explains most of the trade-off: technical partitioning tends to win on simplicity and cost, domain partitioning tends to win on scalability, deployability, and fault tolerance - and pays for it in operational complexity.
+
+.Comparison of architecture styles across quality attributes. Source: Mark Richards and Neal Ford, https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/[_Fundamentals of Software Architecture_] (O'Reilly, 2020).
+[quote, Mark Richards and Neal Ford, Fundamentals of Software Architecture]
+No single architecture style wins on every quality attribute at once - each one trades a different set of characteristics for another, and the right choice depends entirely on which trade-offs your system can afford to make.
+
+We won't reproduce Richards and Ford's full comparison grid here - it's worth reading straight from the source, alongside the rest of their book. If Modular Monolith and Microservices sound familiar from that comparison, they should: Chapters 1 through 3 of this repository walk through exactly this evolution for a real system, Fitnet - starting as a namespace-organized modular monolith and extracting `Contracts` into a microservice once the numbers justified it.
+
+IMPORTANT: There is no style that wins on every dimension. The moment you hear a pitch for one that has no downside, you are back at Law 1 - you are looking at marketing, not architecture.
+
+== Summary And What's Next
+
+None of what you just read is Fitnet-specific. It is the vocabulary and the mental models we will lean on for the rest of this repository without re-explaining them: what actually counts as an architectural decision, the habit of zooming through Context, Container, and Component instead of drawing one diagram that tries to do everything, and the honest trade-off behind every architecture style.
+
+[quote]
+Always choose architecture based on *your current needs and context*. Not a wishful thinking.
+
+Now it is time to put this vocabulary to work on a real system. In Chapter 1, we start Fitnet from the simplest architecture that could possibly work, and watch The Project Paradox play out in practice.
+
+More information:
+
+- link:/Chapter-1-initial-architecture/README.adoc[Chapter 1's readme]
+- link:/README.adoc[Root readme]
