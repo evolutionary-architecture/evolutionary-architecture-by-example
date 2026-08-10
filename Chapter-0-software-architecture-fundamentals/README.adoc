@@ -145,7 +145,7 @@ A useful ADR stays short: the options considered, the decision, the rationale, a
 
 NOTE: Every chapter in this repository keeps its own Architecture Decision Log under `Docs/ArchitectureDecisionLog` - browse any chapter's folder to see real ADRs written this way, including ones that were later revisited and superseded as our understanding of Fitnet grew.
 
-== The C4 Model
+== Visualizing Architecture: The C4 Model
 
 Diagrams go stale fast unless they follow a convention everyone agrees on. The C4 model, created by Simon Brown, gives you four levels of zoom instead of one overloaded diagram that tries to show everything at once:
 
