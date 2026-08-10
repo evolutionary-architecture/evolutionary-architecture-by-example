@@ -1,4 +1,4 @@
-= Chapter 0: Software Architecture Fundamentals: Focus On Foundations
+= Chapter 0: Software Architecture Fundamentals
 :toc:
 
 ++++
@@ -11,11 +11,11 @@
 </div>
 ++++
 
-NOTE: This chapter is different from the ones that follow it. There is no Fitnet code here, no `How to Run?` section, no requirements to satisfy. Chapter 0 exists purely to build the vocabulary and mental models that Chapter 1 assumes you already have.
-
 == Why Start With Fundamentals?
 
-Before Fitnet has a single line of code, we need a shared vocabulary. Chapters 1 through 4 make architecture decisions constantly - splitting a monolith, extracting a microservice, introducing aggregates - and every one of those decisions leans on terms we have not defined yet.
+This chapter is for aspiring architects - engineers who are ready to start making architectural decisions but have not yet built the mindset to reason like an architect. Its purpose is narrow on purpose: prepare you to understand the decisions the rest of this repository makes, not walk you through making them yet. Chapter 1 is where that mindset gets applied to a real system for the first time, and every chapter after it assumes you already think this way.
+
+Before Fitnet has a single line of code, before we even start thinking about Fitnet's own architecture, we need that mindset in place. The chapters ahead make architecture decisions constantly, and every one of those decisions leans on a way of thinking we have not built yet.
 
 Take two minutes before you keep reading: how would you define software architecture, in your own words? Write it down. Most people struggle with this more than they expect, and that struggle is the point - basic knowledge of software architecture has become the new "Hello World" of our industry. Everyone touches it eventually, few people are taught it deliberately.
 
@@ -29,7 +29,7 @@ And a shorter, more honest one from Ralph Johnson:
 [quote, Ralph Johnson]
 Architecture is about the important stuff. Whatever that is.
 
-Both are correct at the same time, and that is not a contradiction. What counts as "significant" or "important" depends entirely on your system, your team, and your constraints - which is exactly why we will spend this chapter building the vocabulary to reason about it, instead of handing you a checklist.
+Both are correct at the same time, and that is not a contradiction. What counts as "significant" or "important" depends entirely on your system, your team, and your constraints - which is exactly why we will spend this chapter building the mindset to reason about it, instead of handing you a checklist.
 
 == What Software Architecture Actually Is
 
@@ -43,7 +43,27 @@ If architecture is "the significant decisions," it helps to see what those decis
 - Deployment unit separation - one deployable, or many?
 - Testing - what do we verify, and at which boundary?
 
-NOTE: None of these questions has a universally correct answer. That is the whole reason this repository exists as an evolving story instead of a static template - the right answer changes as your system and your understanding of it grow.
+NOTE: None of these questions has a universally correct answer. Every project has a different context - team size, deadline, budget, regulatory constraints, the problem itself - and context is king. The right answer for one system can be the wrong answer for another one that looks nearly identical on paper.
+
+Not every one of these questions is architectural, and telling the two apart matters more than memorizing the list. Run each candidate decision through Booch's own test: what would it cost to change your mind later? Upgrading a library to its next major version, or preferring a switch expression over a switch statement, is a pull request - reversible in an afternoon, maybe a little annoying, not architectural. Changing your database engine eighteen months into production is a different animal: the migration itself can take weeks, every query and every team that touches that data is affected, and reversing the decision once it ships costs almost as much as making it did in the first place. The first decision is cheap to reverse, so it is just a choice. The second is expensive to reverse, so it is architecture.
+
+IMPORTANT: The cost-of-change test cuts both ways. A decision that looks trivial today can quietly become architectural later, once enough code depends on it - which is exactly why "we'll clean this up later" is a promise that gets more expensive to keep every day you don't keep it.
+
+The switch-expression-versus-switch-statement example above is design. The database-engine example is architecture.
+
+== Designing Versus Architecture
+
+"Design" and "architecture" get used interchangeably, and that habit is exactly what makes it hard to tell which decisions deserve an architect's attention and which don't. Design happens inside a boundary someone already drew - which data structure to use, what to name a method, whether this class needs an interface. Its blast radius is the file or module you made the decision in. Architecture is drawing the boundary itself - which module owns this data, where "our system" ends and the outside world begins. Its blast radius is the whole system.
+
+A few more pairs, drawn from real projects rather than abstract ones:
+
+- **Design:** choosing a caching library for one slow endpoint. **Architecture:** deciding that caching lives at the API gateway for every service, not inside each one individually.
+- **Design:** how a single class validates its own input. **Architecture:** deciding which module owns the source of truth for "is this customer active," so five different classes stop each answering that question differently.
+- **Design:** the retry logic inside one HTTP client. **Architecture:** deciding whether failed cross-service calls are retried synchronously at all, or handed to a queue so a downstream outage doesn't cascade upstream.
+
+// TODO: reference table comparing design decisions vs architecture decisions goes here
+
+NOTE: Neither activity is more important than the other. Good architecture built on sloppy design still produces a system nobody wants to maintain - the two are complementary skills, not a hierarchy.
 
 == The Architect Role
 
@@ -55,6 +75,18 @@ IMPORTANT: If you only ride the elevator in one direction, you are not doing the
 
 In a typical setup, a single Solution Architect supports several delivery teams at once, each with its own team lead, backend, frontend, QA, and DevOps engineers. The architect is not part of any one team full time - they are the constant, moving between them.
 
+=== Ivory Tower Architect Versus Hands-On Architect
+
+There is a second spectrum, orthogonal to the business-versus-technology one above, and it matters just as much: how close does the architect stay to the actual code?
+
+At one end sits the **Ivory Tower Architect** - a well-known architect anti-pattern. This is an architect who makes decisions from a diagram, hands them down as a mandate, and never opens the codebase to see whether the decision survives contact with reality. The diagrams look authoritative. The team stops trusting them anyway, because every mandate ignores a constraint only visible from inside the code - a flaky third-party API, a migration that takes longer than a sprint, a library that does not do what its documentation claims.
+
+At the other end sits the **Hands-On Architect** - someone who still writes code, reviews pull requests, and pairs with the team often enough that their decisions are tested against the same reality the engineers live in. This does not mean the architect should be the top committer on the repository; it means they should never go long enough without touching the code that they start mistaking the diagram for the system.
+
+NOTE: This is a spectrum, not a binary, and where you sit on it can change month to month depending on what the team needs. An architect deep in a critical migration might code daily for weeks. An architect coordinating four teams through a quarter-end deadline might code far less that month, and lean harder on code review and pairing instead. What ruins credibility is not spending less time in the code - it is spending none, for long enough that you stop knowing what you are actually asking the team to build.
+
+IMPORTANT: Staying hands-on is not free - every hour writing code is an hour not spent riding the elevator between business and engineering. The Ivory Tower trap and the "architect who never leaves the codebase and stops doing the translation work" trap are the same failure from opposite directions: both mean the architect has stopped doing half the job.
+
 == Three Laws of Architecture
 
 Three ideas keep resurfacing across every architecture decision we will make in this repository, often without being named. Naming them now makes them easier to spot later.
@@ -63,16 +95,55 @@ Three ideas keep resurfacing across every architecture decision we will make in 
 
 Security versus performance. High availability versus consistency. Complexity versus cost. Every architectural choice buys you something by spending something else. The moment you hear a pitch for a pattern that has no downside, you are not looking at architecture - you are looking at marketing.
 
+Ignoring the trade-off does not make it disappear, it just makes it surprise you later. A team that picks strict consistency because it sounds safer, without ever asking whether the business actually needed five-nines availability, finds out the trade-off was real the first time a database failover takes the whole system down instead of degrading gracefully. The law was never optional - only whether you paid the cost on purpose or by accident was.
+
 === Law 2: Conway's Law
 
 The architecture of a system is a reflection of the organization that builds it. Consider an ecommerce platform built by four teams: a Frontend team owns the FE layer, a Backend team owns the API, a Data Admin team owns the data layer, and a Product team owns business logic. You did not design that architecture on a whiteboard - your org chart designed it for you. If you want a different architecture, changing the diagram without changing the team boundaries rarely works.
+
+The practical flip side of this law has its own name: the **Inverse Conway Maneuver**. If Conway's Law means your org chart shapes your architecture whether you plan it or not, then reorganizing your teams around the boundaries you actually want is a legitimate architectural tool - not a HR decision that happens to have side effects. Want four independently deployable services instead of one tangled layer cake? Splitting the team along those same four boundaries first will get you there faster than any diagram.
 
 === Law 3: Architecture Exists to Enable Change
 
 [quote]
 The ultimate goal of architecture isn't perfection, it's adaptability. Systems evolve, requirements shift, businesses pivot. A good architecture provides the scaffolding to absorb change gracefully, not to prevent change entirely.
 
-This is the same idea this entire repository is built around, just stated as a law instead of demonstrated as a four-chapter story.
+This is the same idea this entire repository is built around, just stated as a law instead of demonstrated as a four-chapter story. `Fitnet` itself is the proof - watch how it changes shape as you move through the chapters ahead, and you will see this law playing out in practice, not just in a quote.
+
+== The Frugal Architect
+
+Cost is not a side effect of an architectural decision, it is a first-class concern - exactly like availability or scalability. Every initiative you propose, from adopting a new message broker to extracting a microservice, has a cost you should calculate before you commit to it, not discover afterward on an invoice.
+
+Calculating it once is not enough. Costs drift as traffic grows, as cloud pricing changes, as a "temporary" workaround quietly becomes permanent - so an architect keeps observing the number after the decision ships, not just before it. This matters more than almost anything else in this chapter: in a real business, every stakeholder in the room will ask about cost, and "what does this cost us this month, compared to last month" will matter to them more than whether your data model has one table or two.
+
+Being frugal is not the same as being cheap. A frugal architect still spends money on genuine complexity, the moment the numbers actually justify it - you will see that trade-off made concretely later in this repository. What a frugal architect never does is spend money on complexity nobody asked for, because "it might be useful later" is not a cost estimate, it is a guess wearing a budget.
+
+IMPORTANT: Before you propose an architectural change, you should be able to answer three questions: what does this cost to build, what does it cost to run every month afterward, and what does it cost if you are wrong and have to reverse it? If you cannot answer at least the first two, you are not ready to propose the decision yet - only the idea.
+
+== Managing Risk
+
+Every architectural decision carries risk alongside its cost: what is the probability this decision goes wrong, and how bad is it if it does? A decision with low cost but high risk - skipping load testing before a big product launch - deserves more scrutiny than a decision with real cost but low risk, like paying for a managed database instead of running your own.
+
+You could capture this in a table or a bullet-point document on your own - a risk, a likelihood, an impact, one row at a time. That works for recording risks once you already know what they are. It does not work for finding them: the risks that sink a project are usually the ones nobody on their own thought to write down, because they sat outside that one person's expertise.
+
+A more collaborative way to actually discover them is a lightweight technique called **Risk Storming**: the team gathers around an architecture diagram - a Container or Component diagram works well - and identifies candidate risks together, one sticky note per risk, attached to the part of the system it threatens. A security engineer spots something the backend developer never would, and vice versa. Each risk then gets scored on two axes: how likely it is, and how bad the impact would be if it happened. Plot them on a simple grid, and the risks worth your attention this quarter cluster in one corner - high likelihood, high impact - while everything else can wait.
+
+NOTE: Color-coding the diagram itself works well here: green where the risk is low, yellow where it needs a mitigation plan, red where it needs one before you ship. A single glance at a red cluster on a Container diagram says more than a page of prose.
+
+IMPORTANT: Not every risk needs to be eliminated. A risk you have identified, scored, and consciously decided to accept - documented, not ignored - is a legitimate outcome. The failure mode is not accepting risk, it is not knowing it was there.
+
+== Recording Decisions
+
+Cost, risk, and trade-offs are only useful if the reasoning behind them survives past the meeting where you worked them out. Six months later, someone will ask "why did we choose this?" and "I don't remember, it felt right at the time" is not an answer anyone can build on. An **Architecture Decision Record** (ADR) exists to prevent that.
+
+[quote]
+The code shows the current snapshot of the system, while ADRs provide the context - the "why?" - behind it.
+
+image::Assets/adr_example.png[An example Architecture Decision Record]
+
+A useful ADR stays short: the options considered, the decision, the rationale, and the constraints that shaped it - not a design document, just enough context for the next person to trust the decision instead of relitigating it.
+
+NOTE: Every chapter in this repository keeps its own Architecture Decision Log under `Docs/ArchitectureDecisionLog` - browse any chapter's folder to see real ADRs written this way, including ones that were later revisited and superseded as our understanding of Fitnet grew.
 
 == The C4 Model
 
@@ -85,9 +156,18 @@ Diagrams go stale fast unless they follow a convention everyone agrees on. The C
 
 You build these top-down and reuse work as you go: draw the Context diagram first, then expand it into a Container diagram (the same actors and external systems reappear, just with the system boundary opened up), then draw one Component diagram per container that actually needs one.
 
+Each level exists because a different audience needs it, and handing someone the wrong level wastes both your time and theirs:
+
+- **Context** is what you show a stakeholder who has never opened the codebase and never will - it answers "what does this system do, and what does it talk to?" in a single glance.
+- **Container** is what you hand a new engineer on day one, or anyone deciding where a change belongs - it answers "what are the separately runnable pieces, and how do they call each other?"
+- **Component** is for the team that owns a specific container and needs to reason about its internals without dragging in the rest of the system.
+- **Code** is generated, not drawn by hand, and mostly useful to tooling rather than to a person in a meeting.
+
+Show a stakeholder a Component diagram and you will lose them in the first ten seconds. Show an engineer only the Context diagram and they will nod politely and still not know which repository to open.
+
 Simon Brown's own example is an internet banking system. At the Context level, a Personal Banking Customer talks to the Internet Banking System, which in turn talks to a Mainframe Banking System and an E-mail System. Open the Container level, and the Internet Banking System becomes a Web Application, a Single-Page Application, a Mobile App, an API Application, and a Database. Open the API Application at the Component level, and you find a Sign-In Controller, a Reset Password Controller, an Accounts Summary Controller, a Security Component, an E-mail Component, and a Mainframe Banking System Facade.
 
-NOTE: You have already seen this exact style of diagram in this repository, even if nobody called it C4. The interactive diagrams linked from the Chapter 1 and Chapter 3 READMEs (built with IcePanel) are Context and Container-level views of Fitnet itself. Go back and look at them again with these four levels in mind.
+NOTE: You will run into this exact style of diagram later in this repository, even though nobody calls it C4 by name there. The interactive diagrams linked from the Chapter 1 and Chapter 3 READMEs (built with IcePanel) are Context and Container-level views of Fitnet itself. When you reach them, come back to these four levels and you will recognize exactly what you are looking at.
 
 IMPORTANT: The C4 model itself, including the diagrams referenced above, was created by Simon Brown and is available at https://c4model.com[c4model.com] under a CC BY 4.0 license. This chapter borrows the concept and the terminology, not the original artwork.
 
@@ -95,9 +175,24 @@ IMPORTANT: The C4 model itself, including the diagrams referenced above, was cre
 
 It is easy to justify an architecture decision by pointing at three visible use cases it enables. That is also how you miss the point. Picture an iceberg: the use cases are the small tip above the waterline. Underneath, invisible until something breaks, sits the part of the architecture that actually determines whether the system survives contact with production - availability, security, reliability, scalability, and maintainability.
 
+=== Understanding Functional Requirements
+
+Quality attributes get the spotlight in this chapter because nobody names them out loud without prompting - but understanding functional requirements, what the system is actually supposed to do, is just as much an architect's skill. You cannot draw a sensible module boundary around a business process you don't understand yet.
+
+Two techniques help here, and neither requires you to become a business analyst first:
+
+- **Event Storming** - a collaborative workshop where the team fills a wall with sticky notes, one per domain event ("Contract Signed," "Pass Expired"), then works backward to the commands and actors that trigger them. It surfaces the real business process, in the language the business already uses, faster than any requirements document.
+- **Domain Storytelling** - a lighter, more visual alternative: actors, activities, and work objects strung together as a literal story ("the Customer signs the Contract, which creates a Pass"), read left to right like a comic strip instead of parsed like a workshop output.
+
+NOTE: You will see these two techniques named again in this repository's root README, used to identify Fitnet's own subdomains. That is not a coincidence - the skill that helps you draw a module boundary in Chapter 1 is the same one you are building right now.
+
 === Quality Attributes
 
-These underwater concerns have a name: quality attributes. The useful way to write one down is not "the system should be fast," which nobody can verify, but as a scenario with three parts:
+These underwater concerns have a name, and it is worth being deliberate about which name you use. You will often hear them called "non-functional requirements." Retire that term. Calling something "non-functional" tells a client or stakeholder, in the name itself, that it is not a function - not valuable, not something they are paying for - when availability, security, and scalability are frequently the requirements that make or break the system in production. "Quality attributes" describes the same thing without insulting it on the way in.
+
+Ownership follows the same split as the naming. Functional requirements - what the system does - are typically owned by a product owner or business stakeholder. Quality attributes - how well it does it, under what conditions, at what scale - are typically owned by the architect. Nobody else in the room is positioned to negotiate the trade-offs between them, which is exactly why Law 1 keeps showing up in this conversation.
+
+The useful way to write a quality attribute down is not "the system should be fast," which nobody can verify, but as a scenario with three parts:
 
 - **Aspect** - which quality attribute (performance, scalability, maintainability, availability, testability, usability, extensibility)
 - **Scenario** - the concrete situation it applies to (for example, "500 concurrent users submit a contract signature request")
@@ -105,28 +200,51 @@ These underwater concerns have a name: quality attributes. The useful way to wri
 
 IMPORTANT: A quality attribute without a metric is an opinion, not a requirement. "The system should be scalable" commits you to nothing and cannot be tested. "The system should handle 625,000 daily requests with a 25% safety margin" - the exact number Chapter 1 uses for Fitnet's own capacity planning - is something you can design for and verify.
 
-== Architecture Styles At A Glance
+=== How To Gather Them
 
-An architecture style is a reusable answer to the structural questions from earlier in this chapter - how do we partition the system, and along which lines? You will run into the same handful of names again and again: Layered, Modular Monolith, Microkernel, Service-Based, Service-Oriented, Microservices, Event-Driven, and Space-Based.
+The metric rarely exists in anyone's head until you ask for it in the right shape. Ask a stakeholder "what performance do you need?" and you will get silence, or a reflexive "as fast as possible" - which is not a number, it is a feeling, and you cannot design against a feeling.
 
-Two partitioning approaches sit underneath all eight. Some styles partition by **technical concern** - a UI layer, a business logic layer, a data layer, stacked on top of each other, the way Layered does it. Others partition by **domain** - Modular Monolith, Service-Based, Microservices, and Event-Driven all draw their boundaries around subdomains instead of technical layers. That single choice explains most of the trade-off: technical partitioning tends to win on simplicity and cost, domain partitioning tends to win on scalability, deployability, and fault tolerance - and pays for it in operational complexity.
+Ask a bounded question instead, and the same stakeholder will suddenly have an opinion:
 
-.Comparison of architecture styles across quality attributes. Source: Mark Richards and Neal Ford, https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/[_Fundamentals of Software Architecture_] (O'Reilly, 2020).
-[quote, Mark Richards and Neal Ford, Fundamentals of Software Architecture]
-No single architecture style wins on every quality attribute at once - each one trades a different set of characteristics for another, and the right choice depends entirely on which trade-offs your system can afford to make.
+[cols="1,2,3", options="header"]
+|===
+|Quality Attribute |Instead of asking |Ask this
 
-We won't reproduce Richards and Ford's full comparison grid here - it's worth reading straight from the source, alongside the rest of their book. If Modular Monolith and Microservices sound familiar from that comparison, they should: Chapters 1 through 3 of this repository walk through exactly this evolution for a real system, Fitnet - starting as a namespace-organized modular monolith and extracting `Contracts` into a microservice once the numbers justified it.
+|Performance
+|"How fast should it be?"
+|"Is a one-second response acceptable, or does this need to feel instant - under 200 milliseconds?"
 
-IMPORTANT: There is no style that wins on every dimension. The moment you hear a pitch for one that has no downside, you are back at Law 1 - you are looking at marketing, not architecture.
+|Scalability
+|"How many users do you expect?"
+|"If we doubled our user base tomorrow, what is the first thing that would break? What is the busiest hour of your busiest day?"
+
+|Availability
+|"How available should this be?"
+|"If this goes down for five minutes at 2am, does anyone notice? What about five minutes at 2pm on a Monday during checkout?"
+
+|Security
+|"Does this need to be secure?"
+|"What is the worst thing that happens if this data leaks - a fine, a headline, or a shrug? Who is allowed to see it, and who explicitly is not?"
+
+|Maintainability
+|"Should this be easy to maintain?"
+|"A new engineer joins in three months - what should they be able to change safely on day one, and what should scare them into asking first?"
+|===
+
+Each right-hand question forces a concrete boundary out of someone who could not have produced one from the vague version on the left. "As fast as possible," "highly available," and "should be secure" are not requirements - they are the absence of a decision, dressed up to sound like one.
+
+NOTE: The people who can answer these questions are rarely only the architects in the room. Support and on-call engineers know which outages actually paged someone at 2am. Finance knows what an extra nine of availability actually costs to run. Whoever answers "is 1 second acceptable?" is telling you where the real requirement lives - go find that person before you guess on their behalf.
+
+Once you have a handful of scenarios, you will not be able to hit every metric at once - a stricter availability target usually costs consistency, and instant response times usually cost cost. That is Law 1 again. Gathering quality attributes is not a checklist exercise; it ends in a negotiation about which few of them your system genuinely cannot afford to get wrong, and which ones you are consciously choosing to leave "good enough."
 
 == Summary And What's Next
 
-None of what you just read is Fitnet-specific. It is the vocabulary and the mental models we will lean on for the rest of this repository without re-explaining them: what actually counts as an architectural decision, the habit of zooming through Context, Container, and Component instead of drawing one diagram that tries to do everything, and the honest trade-off behind every architecture style.
+None of what you just read is Fitnet-specific. It is the mindset we will lean on for the rest of this repository without re-explaining it: what actually counts as an architectural decision, the habit of zooming through Context, Container, and Component instead of drawing one diagram that tries to do everything, and the discipline of naming a trade-off, a cost, or a risk instead of pretending it isn't there.
 
 [quote]
 Always choose architecture based on *your current needs and context*. Not a wishful thinking.
 
-Now it is time to put this vocabulary to work on a real system. In Chapter 1, we start Fitnet from the simplest architecture that could possibly work, and watch The Project Paradox play out in practice.
+Now it is time to put this mindset to work on a real system. In Chapter 1, we start Fitnet from the simplest architecture that could possibly work, and watch The Project Paradox play out in practice.
 
 More information:
 
