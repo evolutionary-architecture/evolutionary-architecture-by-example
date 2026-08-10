@@ -146,9 +146,9 @@ IMPORTANT: What ruins credibility is not spending less time in the code. It is s
 
 NOTE: Both ends of this spectrum are named in Mark Richards and Neal Ford's _Fundamentals of Software Architecture_, which catalogues several more architect anti-patterns worth reading about.
 
-== Laws Worth Naming
+== Fundamental Laws of Architecture
 
-Four ideas keep coming back in every decision we make in the chapters ahead. We name them here so that later, when one of them is doing the work, you recognize it instead of reading it as an opinion.
+Four laws keep coming back in every decision we make in the chapters ahead. We name them here so that later, when one of them is doing the work, you recognize it instead of reading it as an opinion.
 
 === Everything Is a Trade-off
 
