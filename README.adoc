@@ -65,7 +65,7 @@ The opposite extreme, though less common, is equally problematic: starting too s
 What we will show you is an evolutionary approach to architecture - one that grows with your understanding of the domain, and the complexity of your system. This path will help you build systems that are neither overengineered from the start nor too simplistic to scale.
 
 === Solution
-Our approach unfolds like a story across four chapters, each building upon the last.
+Our approach unfolds like a story across four chapters, each building upon the last, with an optional Chapter 0 in front of them for readers who want the fundamentals first.
 
 The entire repostiory reflects years of real-world experience, including the lessons we learned the hard way. Our goal is to guide you toward architecture that grows with your needs – neither too simplistic to scale nor too complex to maintain.
 
@@ -85,6 +85,17 @@ What we leave to you:
 - Frontend technology choice (React, Vue, Angular, Svelte, etc.)
 - Logging implementation (we recommend https://serilog.net/[Serilog])
 - Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
+
+==== Chapter 0: Software Architecture Fundamentals: Focus On Foundations
+This chapter is optional, and it is the one to read first if you have never had to defend an architecture decision to anyone. It covers no Fitnet code at all.
+
+Instead it builds the vocabulary the rest of the story assumes you already have: what separates an architectural decision from a design one, why every choice is a trade-off, how to turn "it should be fast" into a number you can test, and how to write the reasoning down so the next person does not have to guess at it.
+
+If those already sound familiar, start at Chapter 1 and come back only when a term catches you off guard.
+
+More information:
+
+- link:/Chapter-0-software-architecture-fundamentals/README.adoc[Chapter's readme]
 
 ==== Chapter 1: Initial Architecture: Focus On Simplicity
 In this chapter, we will show you how to lay the right foundation for your solution architecture. Our approach begins with a single project (`Fitnet`) that is thoughtfully organized from day one - but without overcomplicating things.
