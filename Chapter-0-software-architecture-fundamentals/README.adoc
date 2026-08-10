@@ -1,4 +1,4 @@
-= Chapter 0: Software Architecture Fundamentals
+= Chapter 0: Software Architecture Fundamentals: Focus On Foundations
 :toc:
 
 ++++
@@ -79,7 +79,7 @@ In a typical setup, a single Solution Architect supports several delivery teams 
 
 There is a second spectrum, orthogonal to the business-versus-technology one above, and it matters just as much: how close does the architect stay to the actual code?
 
-At one end sits the **Ivory Tower Architect** - a well-known architect anti-pattern. This is an architect who makes decisions from a diagram, hands them down as a mandate, and never opens the codebase to see whether the decision survives contact with reality. The diagrams look authoritative. The team stops trusting them anyway, because every mandate ignores a constraint only visible from inside the code - a flaky third-party API, a migration that takes longer than a sprint, a library that does not do what its documentation claims.
+Mark Richards and Neal Ford name the two ends of it in _Fundamentals of Software Architecture_. At one end sits the **Ivory Tower Architect** - a well-known architect anti-pattern. This is an architect who makes decisions from a diagram, hands them down as a mandate, and never opens the codebase to see whether the decision survives contact with reality. The diagrams look authoritative. The team stops trusting them anyway, because every mandate ignores a constraint only visible from inside the code - a flaky third-party API, a migration that takes longer than a sprint, a library that does not do what its documentation claims.
 
 At the other end sits the **Hands-On Architect** - someone who still writes code, reviews pull requests, and pairs with the team often enough that their decisions are tested against the same reality the engineers live in. This does not mean the architect should be the top committer on the repository; it means they should never go long enough without touching the code that they start mistaking the diagram for the system.
 
@@ -112,7 +112,7 @@ This is the same idea this entire repository is built around, just stated as a l
 
 == The Frugal Architect
 
-Cost is not a side effect of an architectural decision, it is a first-class concern - exactly like availability or scalability. Every initiative you propose, from adopting a new message broker to extracting a microservice, has a cost you should calculate before you commit to it, not discover afterward on an invoice.
+Neal Ford calls this discipline _The Frugal Architect_. Cost is not a side effect of an architectural decision, it is a first-class concern - exactly like availability or scalability. Every initiative you propose, from adopting a new message broker to extracting a microservice, has a cost you should calculate before you commit to it, not discover afterward on an invoice.
 
 Calculating it once is not enough. Costs drift as traffic grows, as cloud pricing changes, as a "temporary" workaround quietly becomes permanent - so an architect keeps observing the number after the decision ships, not just before it. This matters more than almost anything else in this chapter: in a real business, every stakeholder in the room will ask about cost, and "what does this cost us this month, compared to last month" will matter to them more than whether your data model has one table or two.
 
@@ -126,7 +126,7 @@ Every architectural decision carries risk alongside its cost: what is the probab
 
 You could capture this in a table or a bullet-point document on your own - a risk, a likelihood, an impact, one row at a time. That works for recording risks once you already know what they are. It does not work for finding them: the risks that sink a project are usually the ones nobody on their own thought to write down, because they sat outside that one person's expertise.
 
-A more collaborative way to actually discover them is a lightweight technique called **Risk Storming**: the team gathers around an architecture diagram - a Container or Component diagram works well - and identifies candidate risks together, one sticky note per risk, attached to the part of the system it threatens. A security engineer spots something the backend developer never would, and vice versa. Each risk then gets scored on two axes: how likely it is, and how bad the impact would be if it happened. Plot them on a simple grid, and the risks worth your attention this quarter cluster in one corner - high likelihood, high impact - while everything else can wait.
+A more collaborative way to actually discover them is a lightweight technique Richards and Ford call **Risk Storming**: the team gathers around an architecture diagram - a Container or Component diagram works well - and identifies candidate risks together, one sticky note per risk, attached to the part of the system it threatens. A security engineer spots something the backend developer never would, and vice versa. Each risk then gets scored on two axes: how likely it is, and how bad the impact would be if it happened. Plot them on a simple grid, and the risks worth your attention this quarter cluster in one corner - high likelihood, high impact - while everything else can wait.
 
 NOTE: Color-coding the diagram itself works well here: green where the risk is low, yellow where it needs a mitigation plan, red where it needs one before you ship. A single glance at a red cluster on a Container diagram says more than a page of prose.
 
