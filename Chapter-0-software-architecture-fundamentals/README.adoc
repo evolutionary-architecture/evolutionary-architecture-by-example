@@ -118,17 +118,33 @@ IMPORTANT: If you only ride the elevator in one direction, you are not doing the
 
 In a typical setup, a single Solution Architect supports several delivery teams at once, each with its own team lead, backend, frontend, QA, and DevOps engineers. The architect is not part of any one team full time - they are the constant, moving between them.
 
-=== Ivory Tower Architect Versus Hands-On Architect
+=== Common Architect Mistakes
 
-There is a second spectrum, orthogonal to the business-versus-technology one above, and it matters just as much: how close does the architect stay to the actual code?
+There is a second spectrum, and it matters just as much as the business-versus-technology one above: how close does the architect stay to the actual code? Both ends of it are a mistake, and the second one is harder to spot because it looks like a virtue.
 
-Mark Richards and Neal Ford name the two ends of it in _Fundamentals of Software Architecture_. At one end sits the **Ivory Tower Architect** - a well-known architect anti-pattern. This is an architect who makes decisions from a diagram, hands them down as a mandate, and never opens the codebase to see whether the decision survives contact with reality. The diagrams look authoritative. The team stops trusting them anyway, because every mandate ignores a constraint only visible from inside the code - a flaky third-party API, a migration that takes longer than a sprint, a library that does not do what its documentation claims.
+==== The Mistake That Looks Like Authority
 
-At the other end sits the **Hands-On Architect** - someone who still writes code, reviews pull requests, and pairs with the team often enough that their decisions are tested against the same reality the engineers live in. This does not mean the architect should be the top committer on the repository; it means they should never go long enough without touching the code that they start mistaking the diagram for the system.
+Picture an architect who works entirely from diagrams. The boxes are clean, the arrows are labeled, the decision is handed down as a mandate, and the codebase never gets opened to see whether any of it survives contact with reality.
 
-Where you sit on this spectrum can change month to month depending on what the team needs. An architect deep in a critical migration might code daily for weeks. An architect coordinating 4 teams through a quarter-end deadline might code far less, and lean harder on code review and pairing instead. What ruins credibility is not spending less time in the code - it is spending none, for long enough that you stop knowing what you are actually asking the team to build.
+The mandate is not wrong on paper. It is wrong because it ignores a constraint only visible from inside the code - a third-party API that fails 1 request in 200, a migration that takes longer than a sprint, a library that does not do what its documentation claims. The team hits that constraint in the first week, works around it quietly, and stops bringing the next problem to the architect at all. The diagrams still look authoritative. Nobody builds from them anymore.
 
-IMPORTANT: Staying hands-on is not free either - every hour writing code is an hour not spent riding the elevator between business and engineering. The Ivory Tower trap and the architect who never leaves the codebase are the same failure from opposite ends: both have stopped doing half the job.
+This is the **Ivory Tower Architect**, the best known architect anti-pattern, and the reason it survives is that from the top of the tower everything looks fine. No one reports that they stopped listening.
+
+==== The Mistake That Looks Like Virtue
+
+So the answer seems obvious: stay in the code. The **Hands-On Architect** writes code, reviews pull requests, and pairs with the team often enough that every decision gets tested against the same reality the engineers live in. Credibility goes up, decisions get better, and the team stops working around you because you already know what they are working around.
+
+That is genuinely better, and it is where the trap is. Every hour spent writing code is an hour not spent riding the elevator, and nobody on the team will complain about it - they got an extra pair of hands and a faster reviewer. The business floor is the one that notices, months later, when a technical constraint that should have been raised in a strategy meeting shows up as a missed deadline instead.
+
+An architect who never leaves the codebase and the architect who never enters it are the same failure from opposite ends. Both stopped doing half the job. Only one of them gets thanked for it while it happens.
+
+==== Where You Should Sit
+
+Somewhere in the middle, and not the same place every month. An architect deep in a critical migration might code daily for weeks. An architect coordinating 4 teams through a quarter-end deadline might code far less, and lean harder on code review and pairing instead.
+
+IMPORTANT: What ruins credibility is not spending less time in the code. It is spending none, for long enough that you stop knowing what you are actually asking the team to build. Being the top committer is not the goal either - hands-on means you would notice if the diagram stopped matching the system, not that you personally wrote it.
+
+NOTE: Both ends of this spectrum are named in Mark Richards and Neal Ford's _Fundamentals of Software Architecture_, which catalogues several more architect anti-patterns worth reading about.
 
 == Laws Worth Naming
 
