@@ -15,15 +15,9 @@
 
 This chapter builds the foundation of architectural thinking. Nothing here is tied to Fitnet, and everything here gets applied in practice from Chapter 1 onward, where the same ideas stop being definitions and turn into decisions on a real system under real constraints.
 
-It is written for 3 kinds of readers: engineers who aspire to become architects, tech leads who already make these calls without the title, and architects who want to revisit the fundamentals.
+The gap it fills is not coding skill. You already know your language, your framework, and the awkward corners of your codebase. What is missing is a way of reasoning about questions that have no lookup answer (1 service or 3, shared database or a schema per module, is this pattern worth the complexity it adds) and the technical breadth to judge options built on technology you have never run in production. Nobody teaches either one on purpose, and those questions reach you long before anyone hands you the architect title.
 
-If you aspire to the role, you already know your language, your framework, and the awkward corners of your codebase. What is missing is not coding skill. It is a way of reasoning about questions that have no lookup answer (1 service or 3, shared database or a schema per module, is this pattern worth the complexity it adds) and the technical breadth to judge options built on technology you have never run in production. Nobody teaches either one on purpose.
-
-If you are a tech lead, you already make several of these decisions every month, usually under a deadline and usually without anyone in the room calling them architecture. What this chapter adds is the vocabulary to defend them and the instruments to tell the expensive ones apart from the cheap ones before you commit.
-
-If you already hold the title, little of this will be new, and that is the point. It is the vocabulary and the reasoning the rest of this repository assumes, collected in one place, so you can check your own defaults against it before the chapters start making decisions.
-
-So this chapter's purpose is narrow: prepare you to understand the decisions the rest of this repository makes, not walk you through making them yet. Chapter 1 is where that thinking gets applied to a real system for the first time, and every chapter after it assumes you already reason this way.
+So the purpose here is narrow: prepare you to understand the decisions the rest of this repository makes, not walk you through making them yet. Chapter 1 is where that thinking gets applied to a real system for the first time, and every chapter after it assumes you already reason this way.
 
 Before Fitnet has a single line of code, before we even start thinking about Fitnet's own architecture, we need that mindset in place. The chapters ahead make architecture decisions constantly, and every one of those decisions leans on a way of thinking we have not built yet.
 
@@ -111,7 +105,7 @@ In a typical setup, a single Solution Architect supports several delivery teams 
 
 There is a second spectrum, and it matters just as much as the business-versus-technology one above: how close does the architect stay to the actual code? Both ends of it are a mistake, and the second one is harder to spot because it looks like a virtue.
 
-==== The Mistake That Looks Like Authority
+==== Ivory Architect
 
 Picture an architect who works entirely from diagrams. The boxes are clean, the arrows are labeled, the decision is handed down as a mandate, and the codebase never gets opened to see whether any of it survives contact with reality.
 
@@ -119,7 +113,7 @@ The mandate is not wrong on paper. It is wrong because it ignores a constraint o
 
 This is the **Ivory Tower Architect**, the best known architect anti-pattern, and the reason it survives is that from the top of the tower everything looks fine. No one reports that they stopped listening.
 
-==== The Mistake That Looks Like Virtue
+==== Hands-On Architect
 
 So the answer seems obvious: stay in the code. The **Hands-On Architect** writes code, reviews pull requests, and pairs with the team often enough that every decision gets tested against the same reality the engineers live in. Credibility goes up, decisions get better, and the team stops working around you because you already know what they are working around.
 
@@ -137,7 +131,7 @@ Both ends of this spectrum are catalogued, along with several more architect ant
 
 == Fundamental Laws of Architecture
 
-Four laws keep coming back in every decision we make in the chapters ahead. We name them here so that later, when one of them is doing the work, you recognize it instead of reading it as an opinion. The first 2 are stated as laws of software architecture by Richards and Ford. The other 2 come from elsewhere, Conway's 1967 paper and the evolutionary architecture work this repository takes its name from, and we group them here because in practice they carry the same weight.
+Four laws keep coming back in every decision we make in the chapters ahead. We name them here so that later, when one of them is doing the work, you recognize it instead of reading it as an opinion. The first 2 are stated as laws of software architecture by Richards and Ford. The other 2 come from elsewhere, Conway's 1967 paper and the wider work on evolutionary architecture, and we group them here because in practice they carry the same weight.
 
 === Everything Is a Trade-off
 
@@ -177,7 +171,7 @@ The shape is always the same:
 - The API must stay fast, so a load test fails the pipeline when the 95th percentile crosses 300ms
 - Layers must not be bypassed, so an architecture test fails when a handler talks straight to the database context
 
-Without one, every architectural rule degrades into a code review someone eventually forgets to do, and the boundary erodes 1 "just this once" at a time. The term comes from https://www.thoughtworks.com/insights/books/building-evolutionary-architectures[Building Evolutionary Architectures] by Neal Ford, Rebecca Parsons and Patrick Kua, the book this repository takes its name and its whole approach from.
+Without one, every architectural rule degrades into a code review someone eventually forgets to do, and the boundary erodes 1 "just this once" at a time. The term comes from https://www.thoughtworks.com/insights/books/building-evolutionary-architectures[Building Evolutionary Architectures] by Neal Ford, Rebecca Parsons and Patrick Kua, which is worth reading in full.
 
 IMPORTANT: A fitness function only protects a characteristic you can name and measure, which puts it downstream of the Quality Attributes section further down. If you cannot state the metric, you cannot write the test, and the rule stays a good intention. It also means fitness functions earn their place once a boundary starts to matter, not on the first day of a project when there is barely a boundary to protect.
 
