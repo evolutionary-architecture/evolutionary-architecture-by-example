@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup Label="Production">
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
@@ -10,6 +11,7 @@
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" Version="4.2.0" />
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.1.0" />
     <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="13.1.0" />
+    <PackageVersion Include="MessagePack" Version="3.1.8" />
     <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
     <PackageVersion Include="MassTransit.Abstractions" Version="8.3.2" />
     <PackageVersion Include="MassTransit" Version="8.3.2" />
