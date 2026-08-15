@@ -5,6 +5,7 @@ using Testcontainers.PostgreSql;
 [UsedImplicitly]
 public sealed class DatabaseContainer : IAsyncLifetime
 {
+    private const string Image = "postgres:15.15";
     private const string Username = "admin";
     private const string Password = "$3cureP@ssw0rd";
     private const string Database = "fitnet";
@@ -13,7 +14,7 @@ public sealed class DatabaseContainer : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        _container = new PostgreSqlBuilder()
+        _container = new PostgreSqlBuilder(Image)
             .WithDatabase(Database)
             .WithUsername(Username)
             .WithPassword(Password)
