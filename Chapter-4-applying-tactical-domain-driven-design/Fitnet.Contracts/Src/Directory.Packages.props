@@ -25,7 +25,7 @@
   </ItemGroup>
   <ItemGroup Label="Tests">
     <PackageVersion Include="Bogus" Version="35.6.3" />
-    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.4.0" />
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.7.0" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.UnitTesting" Version="4.2.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />

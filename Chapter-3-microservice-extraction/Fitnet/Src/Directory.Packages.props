@@ -33,7 +33,7 @@
   </ItemGroup>
   <ItemGroup Label="Tests">
     <PackageVersion Include="Bogus" Version="35.6.3" />
-    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.4.0" />
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.7.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.IntegrationTestsToolbox" Version="3.3.3" />
     <PackageVersion Include="FluentAssertions" Version="6.12.2" />
