@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.1.2" />
+    <PackageReference Include="MessagePack" Version="2.5.302" />
     <PackageReference Update="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
   </ItemGroup>
 

@@ -37,6 +37,7 @@ internal static class EventBusModule
                         {
                             h.Username(username);
                         }
+
                         if (!string.IsNullOrEmpty(password))
                         {
                             h.Password(password);
