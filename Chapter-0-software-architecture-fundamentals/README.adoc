@@ -23,7 +23,13 @@ That is what an architect is for: keeping the project sustainable. A system stay
 
 === What this chapter is for
 
-Before Fitnet has a single line of code, this chapter builds the thinking the rest of the repository runs on. Nothing here is tied to Fitnet. From Chapter 1 onward these ideas stop being definitions and turn into decisions on a real system, under a deadline, with a budget.
+This chapter carries 0 because it changes nothing.
+
+Chapters 1 to 4 are a journey, and each one changes Fitnet: a single project, then modules split apart, then a microservice extracted, then tactical Domain-Driven Design applied where complexity earned it. They are steps, and steps happen in order. Here there is no project, no service and no line of code to run. There is only the ground the other 4 chapters stand on, and we put it first on purpose.
+
+Understanding the fundamentals is the part most people skip, and the part everything else rests on. Dive straight into modules and services and you learn what we built. Spend one chapter on the theory first - what an architectural decision is, what a boundary costs once it exists, how to compare 2 options honestly - and you learn why we built it that way, which is the part you can carry into a system that looks nothing like Fitnet. From Chapter 1 onward these ideas stop being definitions and turn into decisions on a real system, under a deadline, with a budget.
+
+We wrote it for people who have already heard the vocabulary. You know that ADRs exist. You have heard of bounded contexts, coupling, quality attributes and fitness functions, maybe used a few of them, and never had a reason to line them up in one place. Hearing a term and being able to argue with it are different things, and the distance between them is where most architecture discussions get stuck.
 
 The gap it fills is not coding skill. You already know your language, your framework, and the awkward corners of your codebase. What is missing is a way to reason about questions with no lookup answer:
 
@@ -32,6 +38,12 @@ The gap it fills is not coding skill. You already know your language, your frame
 - is this pattern worth the complexity it adds?
 
 Everyone touches architecture eventually. Few people are taught it deliberately, and these questions arrive long before anyone hands you the architect title.
+
+For aspiring architects this chapter is **required**. The chapters that follow show you decisions, and a decision without the force behind it is just our taste. Read Chapter 2 without this one and "we split the modules into separate projects" looks like a preference. Read it with this one and the same sentence becomes a calculation you can redo with your own team size, your own deadline and your own numbers.
+
+For architects with years of design work behind them it is **optional**. You already carry this knowledge, collected from production incidents, from arguments in code reviews, and from a rollback or 2 nobody wants to talk about. What this chapter offers you is alignment rather than education: the same word for the same concept, so that when we write _subdomain_ or _boundary_ in Chapter 3, you know exactly which meaning we are using. Treat it as 20 minutes spent putting scattered experience into a shape you can hand to somebody else.
+
+IMPORTANT: Skipping this chapter when the concepts are new to you will not stop you from running the code - every chapter builds and every test passes on its own. The cost is less visible. You will copy our structure instead of our reasoning, and structure copied from a repository is exactly the habit that puts 6 services in front of a team of 4.
 
 .The pillars are what this chapter covers. The floors are what the rest of the repository builds on them.
 image::Assets/fundamentals.png[]
