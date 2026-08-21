@@ -1,4 +1,4 @@
-= Chapter 0: Software Architecture Fundamentals: Focus On Foundations
+= Chapter 0: Software Architecture Fundamentals - Focus On Foundations
 :toc:
 
 ++++
@@ -179,9 +179,41 @@ What ruins credibility is not spending less time in the code. It is spending non
 
 Both ends are catalogued, with several more architect anti-patterns, in Mark Richards and Neal Ford's _Fundamentals of Software Architecture_. The same book gives us 2 of the 4 laws further down.
 
+=== Reading a system you did not build
+
+Most architecture work does not start on a blank page. You join a team, or you are handed a system that 6 people built over 4 years, and the first question is not what to change. It is what is actually here.
+
+Reading the code top to bottom will not answer it - you run out of patience long before you run out of files. Ask 4 questions instead, in this order:
+
+- **What deploys separately?** Count the deployment units and you have the real boundaries, whatever the folder structure claims.
+- **Who owns the data?** Follow the connection strings. Two deployables writing to the same tables are 1 system wearing 2 names, and no diagram will tell you that.
+- **What changes most often?** Git history answers this in a minute, and the files that appear in every release are where the real complexity lives.
+- **What is everyone afraid to touch?** Ask the team out loud. The answer names the part with no tests, no owner, or a consequence nobody wants to explain to a customer.
+
+Then draw what you found, a Container diagram is enough, and show it to the people who built it. The corrections you collect in that meeting are worth more than another week of reading code, and they tell you who actually understands the system.
+
+IMPORTANT: The system you inherit is rarely as bad as it looks on day 1. Somebody made each of those decisions under constraints you cannot see yet: a deadline, a team that left, a customer who asked for something strange and paid for it. Find the reason before you propose the rewrite. Sometimes the reason is gone and the change is easy. Sometimes the reason is still there, and it would have caught you too.
+
+=== Making a decision stick
+
+Knowing the right decision and getting a team to adopt it are 2 different skills, and the second one is where most first-time architects lose. A decision nobody follows is a document, not a decision.
+
+What fails is announcing the conclusion. "We are going with 1 schema per module" invites the room to argue about the conclusion, and then the loudest voice wins rather than the best argument.
+
+Bring the trade-off instead, and let the team arrive at the conclusion with you:
+
+- Start with the force, not the answer - "invoicing outages currently take checkout down with them"
+- Put the metric on the table - "checkout has a 300ms budget and invoicing spends 400ms of it"
+- Name the cost of your own proposal out loud, before somebody else finds it
+- Ask what you are missing, and mean it - the person who gets paged for that module at 2am knows something you do not
+
+Then record it as an ADR with the objections written into the consequences. A colleague who disagreed but sees their objection captured honestly will still implement the decision. One who was overruled and erased will reopen the argument in 3 months, usually in front of somebody more senior than you.
+
+NOTE: You will sometimes be wrong, and that is survivable. What is not survivable is being wrong in a way nobody could challenge, because you presented the decision as settled before anyone had a chance to test it. Authority a team gives you takes 1 meeting to lose that way, and months to earn back.
+
 == Where requirements come from
 
-Before any instrument comes the input it works on, and that input arrives in 2 shapes: what the system has to do, and how well it has to do it. Miss the first and you draw boundaries around a business process you never understood. Miss the second and you find out in production.
+Before any instrument comes the input it works on, and that input arrives in 3 shapes: what the system has to do, how well it has to do it, and what you are not allowed to change. Miss the first and you draw boundaries around a business process you never understood. Miss the second and you find out in production. Miss the third and you design something that was never permitted in the first place.
 
 === Understanding functional requirements
 
@@ -219,6 +251,23 @@ The useful way to write a quality attribute down is not "the system should be fa
 - **Metric**: the number that tells you whether you met it, for example "95th percentile response time under 300ms"
 
 NOTE: A quality attribute without a metric is an opinion, not a requirement. "The system should be scalable" commits you to nothing and cannot be tested. "The system should handle 625,000 daily requests with a 25% safety margin" is something you can design for and verify.
+
+=== Constraints
+
+Quality attributes are negotiable. Constraints are not, and confusing the 2 is how an architect spends a month designing something that was never allowed.
+
+A constraint is a boundary somebody else already drew, and your design lives inside it:
+
+- Customer data stays inside the EU, because the regulator says so
+- The system runs on the company's existing Kubernetes cluster, because there is no budget for a second one
+- The team is 4 people who know C# and nothing else, and hiring is frozen until next year
+- The first release ships before the trade fair in March, because the trade fair does not move
+
+Only the first of those sounds technical. A deadline, a budget, a team's skill set and a signed vendor contract shape a design exactly as hard as a regulation does.
+
+The difference shows up in the meeting. When a quality attribute is expensive, you negotiate it: 99.99% availability costs this much, 99.9% costs that much, so pick one. When a constraint is expensive, you design around it or you escalate it, and treating it as negotiable only delays the moment somebody says no.
+
+NOTE: Constraints expire, and nobody sends a notice when they do. The cluster gets replaced, the budget arrives, the team doubles in size. Write down which constraint forced a decision, and an ADR is the right place for it, so that when the constraint disappears you know exactly which decisions are worth reopening.
 
 === How to gather them
 
