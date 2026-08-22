@@ -15,9 +15,9 @@
 
 === Overview
 
-Nobody buys architecture. People buy features and the promise that the thing they depend on still works next quarter. Architecture decides whether you can keep that promise, and at what price.
+Architecture is not a feature. Nobody asks for it, and no customer sees it. What they see is how fast you ship, and whether the system still works when they depend on it.
 
-Skip it and nothing collapses on day one. The system gets fragile first, then stops scaling, usually in the middle of the growth you were waiting for. By then the cost has left the codebase: the feature a competitor ships in 2 weeks takes you 6 months, and your outage becomes your customers' reputation.
+When architecture is ignored, nothing breaks on day one. The code gets harder to change, then harder to scale, and the bill usually arrives at the worst moment - when the business is finally growing. A feature that used to take 2 weeks now takes 6 months, and nobody can point to the day it went wrong. You end up with a fragile system that nobody wants to touch, because every change can break something else.
 
 That is what an architect is for: keeping the project sustainable. A system stays sustainable only while its architecture keeps moving with the business, decision by decision, instead of being settled once at the start and defended afterwards. Work that way and the cost of change stays low, so when the business changes its mind the answer is "a month" rather than "not without a rewrite".
 
