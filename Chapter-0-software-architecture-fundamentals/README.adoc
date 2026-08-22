@@ -17,33 +17,23 @@
 
 Architecture is not a feature. Nobody asks for it, and no customer sees it. What they see is how fast you ship, and whether the system still works when they depend on it.
 
-When architecture is ignored, nothing breaks on day one. The code gets harder to change, then harder to scale, and the bill usually arrives at the worst moment - when the business is finally growing. A feature that used to take 2 weeks now takes 6 months, and nobody can point to the day it went wrong. You end up with a fragile system that nobody wants to touch, because every change can break something else.
+When architecture is ignored, nothing breaks on day one. The code gets harder to change, then harder to scale, and the bill usually arrives at the worst moment, when the business is finally growing. A feature that used to take 2 weeks now takes 6 months, and nobody can point to the day it went wrong. You end up with a fragile system that nobody wants to touch, because every change can break something else.
 
 That is what an architect is for: keeping the project sustainable. A system stays sustainable only while its architecture keeps moving with the business, decision by decision, instead of being settled once at the start and defended afterwards. Work that way and the cost of change stays low, so when the business changes its mind the answer is "a month" rather than "not without a rewrite".
 
 === What this chapter is for
 
-This chapter carries 0 because it changes nothing.
+This chapter carries 0 because it changes nothing. In chapters 1 to 4 the Fitnet code grows step by step. Here there is no code to run. There is only the theory that the other 4 chapters are built on.
 
-Chapters 1 to 4 are a journey, and each one changes Fitnet: a single project, then modules split apart, then a microservice extracted, then tactical Domain-Driven Design applied where complexity earned it. They are steps, and steps happen in order. Here there is no project, no service and no line of code to run. There is only the ground the other 4 chapters stand on, and we put it first on purpose.
+If you start with the code, you learn what we built. If you start here, you learn why we built it that way. That part stays useful in a system that looks nothing like Fitnet.
 
-Understanding the fundamentals is the part most people skip, and the part everything else rests on. Dive straight into modules and services and you learn what we built. Spend one chapter on the theory first - what an architectural decision is, what a boundary costs once it exists, how to compare 2 options honestly - and you learn why we built it that way, which is the part you can carry into a system that looks nothing like Fitnet. From Chapter 1 onward these ideas stop being definitions and turn into decisions on a real system, under a deadline, with a budget.
+We wrote it for people who have already heard the words, like ADRs or quality attributes. You heard them in talks and in code reviews, and you can repeat them, but you do not really understand what is behind them. That is the gap this chapter closes.
 
-We wrote it for people who have already heard the vocabulary. You know that ADRs exist. You have heard of bounded contexts, coupling, quality attributes and fitness functions, maybe used a few of them, and never had a reason to line them up in one place. Hearing a term and being able to argue with it are different things, and the distance between them is where most architecture discussions get stuck.
+IMPORTANT: For experienced architects this chapter is optional. You know most of it already, from production incidents and from long discussions in code reviews. Read it for alignment, so that when we write _subdomain_ or _boundary_ in Chapter 3, you know which meaning we use.
 
-The gap it fills is not coding skill. You already know your language, your framework, and the awkward corners of your codebase. What is missing is a way to reason about questions with no lookup answer:
+For aspiring architects it is required. Without it, "we split the modules into separate projects" looks like our preference. With it, you can repeat the same calculation with your own team size, deadline and numbers. You will need this earlier than you expect. One service or three? Shared database, or a schema per module? Is this pattern worth its complexity? Such questions come long before anyone gives you the architect title.
 
-- 1 service or 3?
-- shared database, or a schema per module?
-- is this pattern worth the complexity it adds?
-
-Everyone touches architecture eventually. Few people are taught it deliberately, and these questions arrive long before anyone hands you the architect title.
-
-For aspiring architects this chapter is **required**. The chapters that follow show you decisions, and a decision without the force behind it is just our taste. Read Chapter 2 without this one and "we split the modules into separate projects" looks like a preference. Read it with this one and the same sentence becomes a calculation you can redo with your own team size, your own deadline and your own numbers.
-
-For architects with years of design work behind them it is **optional**. You already carry this knowledge, collected from production incidents, from arguments in code reviews, and from a rollback or 2 nobody wants to talk about. What this chapter offers you is alignment rather than education: the same word for the same concept, so that when we write _subdomain_ or _boundary_ in Chapter 3, you know exactly which meaning we are using. Treat it as 20 minutes spent putting scattered experience into a shape you can hand to somebody else.
-
-IMPORTANT: Skipping this chapter when the concepts are new to you will not stop you from running the code - every chapter builds and every test passes on its own. The cost is less visible. You will copy our structure instead of our reasoning, and structure copied from a repository is exactly the habit that puts 6 services in front of a team of 4.
+IMPORTANT: Skipping this chapter when the concepts are new to you will not stop you from running the code. Every chapter builds and every test passes on its own. The cost is less visible. You will copy our structure instead of our reasoning, and structure copied from a repository is exactly the habit that puts 6 services in front of a team of 4.
 
 .The pillars are what this chapter covers. The floors are what the rest of the repository builds on them.
 image::Assets/fundamentals.png[]
