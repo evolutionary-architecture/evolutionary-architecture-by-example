@@ -87,11 +87,17 @@ What we leave to you:
 - Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
 
 ==== Chapter 0: Software Architecture Fundamentals: Focus On Foundations
-This chapter is optional, and it is the one to read first if you have never had to defend an architecture decision to anyone. It covers no Fitnet code at all.
+This chapter is optional and has no Fitnet code. It covers the theory the other chapters assume you already know.
 
-Instead it builds the vocabulary the rest of the story assumes you already have: what separates an architectural decision from a design one, why every choice is a trade-off, how to turn "it should be fast" into a number you can test, and how to write the reasoning down so the next person does not have to guess at it.
+What we cover:
 
-If those already sound familiar, start at Chapter 1 and come back only when a term catches you off guard.
+- What architecture is, and where it ends and design begins
+- Coupling and cohesion, and what a boundary costs once it exists
+- Requirements, quality attributes and constraints
+- Turning "it should be fast" into a number you can test
+- Recording decisions in an architecture decision log, and drawing them with C4
+
+If you have never had to defend an architecture decision to anyone, read this first. If the terms above are familiar, start at Chapter 1 and come back when one of them catches you off guard.
 
 More information:
 
@@ -285,10 +291,11 @@ Think of this repository as a novel rather than a technical manual. Each chapter
 
 === How To Navigate?
 
-This repository is organized with crystal-clear simplicity: beyond this main README and its supporting assets, you will find four key chapters that tell our evolutionary story:
+This repository is organized with crystal-clear simplicity: beyond this main README and its supporting assets, you will find four key chapters that tell our evolutionary story, preceded by an optional Chapter 0 with the fundamentals:
 
 In each folder you will find the same root solution, but expanded:
 
+- Chapter 0: The theory behind the decisions that follow - no code, optional
 - Chapter 1: Your starting point - a simple, initial architecture
 - Chapter 2: Growing pains lead to project separation
 - Chapter 3: Taking the microservice leap and upgrading communication
@@ -296,7 +303,7 @@ In each folder you will find the same root solution, but expanded:
 
 Each chapter comes with its own detailed README - think of it as a chapter-specific guide that walks you through running the code, understanding the structure, and grasping concepts unique to that stage. We believe in building on knowledge, not repeating it, so each chapter focuses on what is new while assuming you are familiar with what came before.
 
-IMPORTANT: While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
+IMPORTANT: While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 (or Chapter 0, if the fundamentals are new to you) and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
 
 == Libraries and Platforms Used
 
