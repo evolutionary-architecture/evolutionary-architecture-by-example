@@ -27,7 +27,7 @@ This chapter carries 0 because it changes nothing. Chapters 1 to 4 present the F
 
 We wrote it for people who have already heard the words, like ADRs or quality attributes. You have heard them in talks and on the internet, and you can repeat them, but you do not really know what stands behind them. That is the gap this chapter closes.
 
-IMPORTANT: For experienced architects this chapter is optional. You know most of it already, from production incidents and from long discussions in code reviews. Read it for alignment, so that when we write _subdomain_ or _boundary_ in Chapter 3, you know which meaning we use.
+IMPORTANT: If you already work as an architect, this chapter is optional. You have made these decisions yourself and you live with their consequences. Read it for alignment, so that when we write _coupling_ or _cohesion_ in Chapter 2, you know which meaning we use.
 
 For aspiring architects it is required. Without it, "we split the modules into separate projects" looks like our preference. With it, you can repeat the same calculation with your own team size, deadline and numbers. You will need this earlier than you expect. One service or three? Shared database, or a schema per module? Is this pattern worth its complexity? Such questions come long before anyone gives you the architect title.
 
