@@ -119,20 +119,6 @@ image::Assets/coupling_cohesion.png[]
 
 NOTE: Low coupling is not free either. Replacing a direct method call with an event removes the compile-time dependency, and pays for it with an async flow that is harder to debug, harder to test, and eventually consistent instead of immediate. Every chapter ahead pays some version of that bill.
 
-=== When those decisions get made
-
-Knowing which decisions are expensive raises a harder question: when do you make them? Move too early and you pay for complexity you cannot yet justify. Wait too long and the structure hardens around a choice nobody made on purpose.
-
-Teams get that timing wrong in 2 directions, and this repository has a name for each of them.
-
-The first is the _Overcomplicated trap_: reaching for advanced patterns before you have the need, because they feel like insurance against a future you cannot yet describe. The symptom is a 2-person team running 6 services, spending more hours on pipelines and infrastructure than on features, unable to name which business problem any of that complexity solved.
-
-The second is the _Oversimplified pitfall_: staying simple long after the system outgrew it. The symptom is the mirror image. Every new feature touches the same 3 files, nobody can change one part without breaking another, and the team explains this as "our code is just old" instead of "we never drew a boundary".
-
-Both are timing problems rather than knowledge problems, and the rest of this chapter is mostly about telling which one you are in.
-
-image::Assets/two_traps.png[]
-
 == The architect role
 
 "Architect" is not one job. Put it on two axes: how close the role sits to business strategy, and how close it sits to technology. An Enterprise Architect sits high on the business axis. A Cloud Architect or Data Architect sits high on the technology axis. A Solution Architect sits closer to the middle, translating between the two.
