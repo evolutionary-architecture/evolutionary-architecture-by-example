@@ -15,19 +15,17 @@
 
 === Overview
 
-Architecture is not a feature. Nobody asks for it, and no customer sees it. What they see is how fast you ship, and whether the system still works when they depend on it.
+Architecture is not a feature. Nobody asks for it, and no user ever sees it. What users do see is how fast you ship, and whether the system still holds when they depend on it.
 
-When architecture is ignored, nothing breaks on day one. The code gets harder to change, then harder to scale, and the bill usually arrives at the worst moment, when the business is finally growing. A feature that used to take 2 weeks now takes 6 months, and nobody can point to the day it went wrong. You end up with a fragile system that nobody wants to touch, because every change can break something else.
+When architecture is ignored, nothing breaks on day one. The code gets harder to change, then harder to scale, and the bill arrives at the worst possible moment - when the business is finally growing. A feature that used to take 2 weeks now takes 6 months. You end up with a fragile system that nobody wants to touch, because every change carries the risk of breaking something else.
 
-That is what an architect is for: keeping the project sustainable. A system stays sustainable only while its architecture keeps moving with the business, decision by decision, instead of being settled once at the start and defended afterwards. Work that way and the cost of change stays low, so when the business changes its mind the answer is "a month" rather than "not without a rewrite".
+That is what an architect is for: keeping the project sustainable. A system stays sustainable only while its architecture keeps moving with the business, decision by decision, instead of being settled once at the start and defended ever after. Work that way and the cost of change stays low, so when the business changes its mind the answer is "we can deliver it" rather than "not without a rewrite".
 
 === What this chapter is for
 
-This chapter carries 0 because it changes nothing. In chapters 1 to 4 the Fitnet code grows step by step. Here there is no code to run. There is only the theory that the other 4 chapters are built on.
+This chapter carries 0 because it changes nothing. Chapters 1 to 4 present the Fitnet architecture and evolve it step by step. Before you follow that evolution, you need the vocabulary those chapters are built on. Start here and you get the fundamentals that let you think like an architect and read the later chapters in depth. That knowledge is system agnostic, so it stays useful far outside Fitnet.
 
-If you start with the code, you learn what we built. If you start here, you learn why we built it that way. That part stays useful in a system that looks nothing like Fitnet.
-
-We wrote it for people who have already heard the words, like ADRs or quality attributes. You heard them in talks and in code reviews, and you can repeat them, but you do not really understand what is behind them. That is the gap this chapter closes.
+We wrote it for people who have already heard the words, like ADRs or quality attributes. You have heard them in talks and on the internet, and you can repeat them, but you do not really know what stands behind them. That is the gap this chapter closes.
 
 IMPORTANT: For experienced architects this chapter is optional. You know most of it already, from production incidents and from long discussions in code reviews. Read it for alignment, so that when we write _subdomain_ or _boundary_ in Chapter 3, you know which meaning we use.
 
