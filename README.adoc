@@ -65,7 +65,7 @@ The opposite extreme, though less common, is equally problematic: starting too s
 What we will show you is an evolutionary approach to architecture - one that grows with your understanding of the domain, and the complexity of your system. This path will help you build systems that are neither overengineered from the start nor too simplistic to scale.
 
 === Solution
-Our approach unfolds like a story across four chapters, each building upon the last.
+Our approach unfolds like a story across four chapters, each building upon the last, with an optional Chapter 0 in front of them for readers who want the fundamentals first.
 
 The entire repostiory reflects years of real-world experience, including the lessons we learned the hard way. Our goal is to guide you toward architecture that grows with your needs – neither too simplistic to scale nor too complex to maintain.
 
@@ -85,6 +85,23 @@ What we leave to you:
 - Frontend technology choice (React, Vue, Angular, Svelte, etc.)
 - Logging implementation (we recommend https://serilog.net/[Serilog])
 - Contract testing (we suggest https://github.com/pact-foundation/pact-net[Pact Net])
+
+==== Chapter 0: Software Architecture Fundamentals: Focus On Foundations
+This chapter is optional and has no Fitnet code. It covers the theory the other chapters assume you already know.
+
+What we cover:
+
+- What architecture is, and where it ends and design begins
+- Coupling and cohesion, and what a boundary costs once it exists
+- Requirements, quality attributes and constraints
+- Turning "it should be fast" into a number you can test
+- Recording decisions in an architecture decision log, and drawing them with C4
+
+If you have never had to defend an architecture decision to anyone, read this first. If the terms above are familiar, start at Chapter 1 and come back when one of them catches you off guard.
+
+More information:
+
+- link:/Chapter-0-software-architecture-fundamentals/README.adoc[Chapter's readme]
 
 ==== Chapter 1: Initial Architecture: Focus On Simplicity
 In this chapter, we will show you how to lay the right foundation for your solution architecture. Our approach begins with a single project (`Fitnet`) that is thoughtfully organized from day one - but without overcomplicating things.
@@ -274,10 +291,11 @@ Think of this repository as a novel rather than a technical manual. Each chapter
 
 === How To Navigate?
 
-This repository is organized with crystal-clear simplicity: beyond this main README and its supporting assets, you will find four key chapters that tell our evolutionary story:
+This repository is organized with crystal-clear simplicity: beyond this main README and its supporting assets, you will find four key chapters that tell our evolutionary story, preceded by an optional Chapter 0 with the fundamentals:
 
 In each folder you will find the same root solution, but expanded:
 
+- Chapter 0: The theory behind the decisions that follow - no code, optional
 - Chapter 1: Your starting point - a simple, initial architecture
 - Chapter 2: Growing pains lead to project separation
 - Chapter 3: Taking the microservice leap and upgrading communication
@@ -285,7 +303,7 @@ In each folder you will find the same root solution, but expanded:
 
 Each chapter comes with its own detailed README - think of it as a chapter-specific guide that walks you through running the code, understanding the structure, and grasping concepts unique to that stage. We believe in building on knowledge, not repeating it, so each chapter focuses on what is new while assuming you are familiar with what came before.
 
-IMPORTANT: While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
+IMPORTANT: While you are free to explore these chapters in any order, we strongly recommend starting with Chapter 1 (or Chapter 0, if the fundamentals are new to you) and progressing sequentially. Like any good story, the earlier chapters lay crucial groundwork that makes later developments more meaningful. Jumping ahead might leave you missing important context and concepts.
 
 == Libraries and Platforms Used
 
