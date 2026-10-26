@@ -8,7 +8,7 @@
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.0.0" />
     <PackageVersion Include="Dapper" Version="2.1.66" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Api" Version="3.3.3" />
-    <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="3.3.3" />
+    <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Core" Version="4.2.0" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Common.Infrastructure" Version="3.3.3" />
     <PackageVersion Include="EvolutionaryArchitecture.Fitnet.Contracts.IntegrationEvents" Version="1.0.7" />
     <PackageVersion Include="FluentValidation" Version="12.0.0" />
